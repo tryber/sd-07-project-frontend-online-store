@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import NotFound from './components/NotFoud';
-
+// Comentário
 function App() {
   return (
     <div className="App">
