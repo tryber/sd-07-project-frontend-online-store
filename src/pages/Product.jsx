@@ -6,7 +6,7 @@ class Product extends Component {
     return (
       <div data-testid="product">
         <span>{title}</span>
-        <img src={thumbnail} alt="product image" />
+        <img src={thumbnail} alt={title} />
         <span>{price}</span>
       </div>
     );

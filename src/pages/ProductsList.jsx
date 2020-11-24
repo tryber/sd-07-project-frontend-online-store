@@ -3,16 +3,14 @@ import { Link } from "react-router-dom";
 import * as API from "../services/api";
 import CategoriesList from "../components/CategoriesList";
 import Logo from "../shoppingCartImage.png";
-import Product from "./Product";
+import Product from './Product';
 
 class ProductsList extends Component {
   constructor() {
     super();
     this.showProducts = this.showProducts.bind(this);
     this.showMessage = this.showMessage.bind(this);
-    this.requestProductsFromCategoryAndQuery = this.requestProductsFromCategoryAndQuery.bind(
-      this
-    );
+    this.searchQueryProducts = this.searchQueryProducts.bind(this);
     this.state = {
       categories: undefined,
       products: [],
@@ -29,18 +27,23 @@ class ProductsList extends Component {
     this.setState({ categories: categoriesList });
   }
   async searchQueryProducts() {
-    const ListProducts = await API.getQuery(
-      this.state.search
-    );
-    if (ListProducts === '') return (<span>Nenhum produto foi encontrado</span>);
+    const ListProducts = await API.getQuery(this.state.search);
+    if (ListProducts === "") return <span>Nenhum produto foi encontrado</span>;
     this.setState({ products: ListProducts });
   }
-  showProducts(params) {
-        return (
-          params.map((element) => {
-              <Product key={element.id} title={element.title} price={element.price} thumbnail={element.thumbnail}/>
-          })
-        )
+  showProducts() {
+    return (
+      <div>
+        {this.state.products.map((element) => {
+          return <Product
+            key={element.id}
+            title={element.title}
+            price={element.price}
+            thumbnail={element.thumbnail}
+          />;
+        })}
+      </div>
+    );
   }
   showMessage() {
     return (
@@ -61,9 +64,9 @@ class ProductsList extends Component {
           <input
             type="text"
             data-testid="query-input"
-            onChange={this.requestProductsFromCategoryAndQuery}
+            onChange={this.searchQueryProducts}
           />
-          {this.state.products === [] ? showMessage() : showProducts()}
+          {products === [] ? this.showMessage() : this.showProducts()}
           <Link data-testid="shopping-cart-button" to="/PageCard">
             <img src={Logo} alt="shoppingCart" />
           </Link>
