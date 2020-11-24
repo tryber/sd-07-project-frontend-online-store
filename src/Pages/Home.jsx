@@ -1,16 +1,16 @@
 import React from 'react';
 import InitialMessage from '../components/InitialMessage';
 
-class ShearchPage extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.updateShearcValue  = this.updateShearcValue.bind(this);
+        this.updateSearchValue  = this.updateSearchValue.bind(this);
         this.state = {
-          text:'',
+          shearch:'',
         };
       }
 
-    updateShearcValue (field, newValue) {
+    updateSearchValue (field, newValue) {
         this.setState({ [field]: newValue });
       }
       
@@ -19,11 +19,12 @@ class ShearchPage extends React.Component {
             <div>
                 <header>
                     <input 
-                    id="shearch_bar"
-                    type="text"
-                    className="shearch_bar"
-                    value={this.state.text}
-                    onChange={(event) => this.updateShearcValue('text', event.target.value)}/>
+                      id="shearch_bar"
+                      type="text"
+                      className="shearch_bar"
+                      value={this.state.shearch}
+                      onChange={(event) => this.updateShearcValue('shearch', event.target.value)}
+                    />
                 </header>
                 <InitialMessage />
             </div>
@@ -31,7 +32,7 @@ class ShearchPage extends React.Component {
     }
 }
 
-export default ShearchPage;
+export default Home;
 
 /*Lógica de atualização do status usada foi retirado do 
 projeto sd-07-project-movie-card-library-crud, arquivo MovieForm */
