@@ -9,7 +9,7 @@ function App() {
   api.getProductsFromCategoryAndQuery().then(categories => { console.log(categories) })
   return (
     <Router>
-        <Link to="/">Search Basr</Link>
+        <Link to="/">Search Bar</Link>
         <Switch>
           <Route exact path="/" component={SearchBar} />
         </Switch>
