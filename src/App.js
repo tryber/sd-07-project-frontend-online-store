@@ -13,8 +13,16 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Title</h1>
+      <div className="App">
+        <Router>
+          <div>Projeto</div>
+          <Link data-testid="shopping-cart-button" to="/cart">
+            CART
+          </Link>
+          <Switch>
+            <Route path="/cart" component={CartList} />
+          </Switch>
+        </Router>
       </div>
     );
   }
