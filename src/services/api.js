@@ -16,7 +16,6 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     if (query) {
       endPoint += endPoint.endsWith('?') ? `q=${query}` : `&q=${query}`;
     }
-    console.log(endPoint);
     return new Promise((resolve, reject) => {
       fetch(endPoint)
         .then((response) => response.json())
