@@ -1,6 +1,13 @@
 // faz a chamada da API
 const makeRequest = (url) => fetch(url).then((response) => response.json());
 
+export async function getQuery(query) {
+  const url = `https://api.mercadolibre.com/sites/MLB/search?q=$${query}`;
+  const myReturn = makeRequest(url);
+  await myReturn;
+  return myReturn;
+}
+
 export async function getCategories() {
   // Implemente aqui
   const url = 'https://api.mercadolibre.com/sites/MLB/categories';
