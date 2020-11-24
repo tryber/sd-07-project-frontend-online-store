@@ -5,6 +5,7 @@ class Home extends React.Component {
     return (
       <p data-testid="home-initial-message">
         Digite algum termo de pesquisa ou escolha uma categoria.
+        oi
       </p>
     );
   }
