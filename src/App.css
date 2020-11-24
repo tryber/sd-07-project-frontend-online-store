@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.container-header {
+  align-items: center;
+  border-bottom: 1px solid #c9c9c9;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo {
+  flex:1;
+}
+
+.input-serch {
+  flex:2;
+}
+
+.input {
+  background-color: #c9c9c9;
+  border:none;
+  width: 25em;
+  border-radius:5px;
+  padding: 5px; 
+}
+
