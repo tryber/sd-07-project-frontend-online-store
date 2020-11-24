@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Card from '../../components/Card';
 import CartButton from '../../components/CartButton';
-import CategoryList from '../../components/categoryList';
+import CategoryList from '../../components/CategoryList';
 
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 
