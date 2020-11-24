@@ -7,11 +7,11 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={HomeInitial}/>
-      </Switch>
+        <Switch>
+          <Route exact path="/" component={ HomeInitial } />
+        </Switch>
       </BrowserRouter>
-    )
+    );
   }
 }
 export default App;
