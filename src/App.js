@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Products from './pages/Products';
+import CategoryList from './components/CategoryList';
 
 import './App.css';
 
@@ -13,6 +14,8 @@ function App() {
         <Route path="/" component={Products} />
       </Switch>
     </BrowserRouter>
+    <CategoryList />
+
     </div>
   );
 }
