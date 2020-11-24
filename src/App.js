@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={ Search }/>
+        <Route path="/" exact component={ Search } />
       </Switch>
     </BrowserRouter>
   );
