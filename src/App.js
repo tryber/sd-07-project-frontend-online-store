@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import * as api from './services/api';
 import ProductListing from './pages/productListing';
 
@@ -14,15 +14,17 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Title</h1>
-
-        <BrowserRouter>
-
-          <Route exact path="/" component={ ProductListing } />
-
-        </BrowserRouter>
-
+      <div className="App">
+        <Router>
+          <div>Projeto</div>
+          <Link data-testid="shopping-cart-button" to="/cart">
+            CART
+          </Link>
+          <Switch>
+            <Route path="/cart" component={CartList} />
+            <Route exact path="/" component={ ProductListing } />
+          </Switch>
+        </Router>
       </div>
     );
   }
