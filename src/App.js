@@ -9,13 +9,12 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" component={Products} />
-      </Switch>
-    </BrowserRouter>
-    <CategoryList />
-
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={ Products } />
+        </Switch>
+      </BrowserRouter>
+      <CategoryList />
     </div>
   );
 }
