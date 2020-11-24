@@ -11,6 +11,7 @@ function App() {
           <Route exact path="/" component={ListagemDeProdutos} />
         </Switch>
       </BrowserRouter>
+      <div></div>
     </div>
   );
 }
