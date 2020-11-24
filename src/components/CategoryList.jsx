@@ -17,9 +17,9 @@ class CategoryList extends Component {
   render() {
     const { category } = this.state;
     return (
-      <div>
+      <div className="category-list">
         {category.map((item) => (
-          <li data-testid="category" key={item.id}>
+          <li data-testid="category" key={item.id} className='category-item'>
             {item.name}
           </li>
         ))}

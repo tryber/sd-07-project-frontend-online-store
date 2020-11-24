@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import CategoryList from './CategoryList';
-
+import '../style/categoryList.css'
 class SearchBar extends Component {
   constructor() {
     super();
