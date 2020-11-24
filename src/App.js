@@ -1,10 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
-    <div className="App">Hello Trybe</div>
+    <div className="App">
+      Hello Trybe
+      { /* <Header /> */ }
+      <Router>
+        <Switch>
+          <Route exact path="/" component={ SearchBar } />
+          { /* <Route component={NotFound} /> */ }
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
