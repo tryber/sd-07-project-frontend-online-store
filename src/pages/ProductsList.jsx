@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as API from '../services/api';
-import CategoriesList from '../components/CategoriesList'
+import CategoriesList from '../components/CategoriesList';
+import Logo from '../shoppingCartImage.png';
 
 class ProductsList extends Component {
   constructor() {
@@ -31,6 +33,9 @@ class ProductsList extends Component {
           <h1 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h1>
+          <Link data-testid="shopping-cart-button" to="/PageCard">
+            <img src={Logo} alt="shoppingCart" />
+          </Link>
         </div>
       </div>
     );
