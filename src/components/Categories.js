@@ -12,7 +12,7 @@ class Categories extends Component {
     this.state = {
       loading: true,
       categories: [],
-    }
+    };
   }
 
   componentDidMount() {
@@ -20,35 +20,35 @@ class Categories extends Component {
   }
 
   fetchCategories() {
-    this.setState({loading: true},
+    this.setState({ loading: true },
       async () => {
         const categoriesRet = await categoryAPI.getCategories();
-        this.setState({categories: categoriesRet, loading: false});
-      }
-    );
+        this.setState({ categories: categoriesRet, loading: false });
+      });
   }
 
   render() {
     const { categories, loading } = this.state;
 
+    if (loading) return <Loading />;
+
     return (
-      loading ? <Loading /> :
       <div className="categories">
         <h3>Categorias</h3>
         <ul>
           {categories
             .map(({ id, name }) => (
-            <li key={id}>
-              <input
-                type="radio"
-                id={id}
-                name="category"
-                data-testid="category"
-              />
-              <label htmlFor={id}>
-                {name}
-              </label>
-            </li>
+              <li key={ id }>
+                <input
+                  type="radio"
+                  id={ id }
+                  name="category"
+                  data-testid="category"
+                />
+                <label htmlFor={ id }>
+                  { name }
+                </label>
+              </li>
             ))}
         </ul>
       </div>
