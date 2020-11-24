@@ -1,3 +1,23 @@
+.header {
+  display: flex;
+}
+
+.input {
+  margin-top: 10px;
+  width: 80%;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.home-initial {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-initial-input {
+  width: 100%;
+}
+
 .App {
   text-align: center;
 }

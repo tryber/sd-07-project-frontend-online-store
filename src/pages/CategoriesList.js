@@ -43,14 +43,19 @@ class CategoriesList extends Component {
 
   render() {
     return (
-      <div>
-        <label htmlFor="home-initial-message">
-          <input />
-          <h2 data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </h2>
-        </label>
-        <Link to="/shoopingcart" data-testid="shopping-cart-button">
+      <div className="home-initial">
+        <div className="home-initial-input">
+          <label htmlFor="home-initial-message">
+            <input className="input" />
+            <h3 data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </h3>
+          </label>
+        </div>
+        <Link
+          to="/shoopingcart"
+          data-testid="shopping-cart-button"
+          className="home-initial-link">
           <img
             src="images/icons-shopping-cart.png"
             alt="Carrinho de Compras"
