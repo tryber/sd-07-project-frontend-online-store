@@ -1,4 +1,3 @@
-
 export async function getCategories() {
   const endpointCategories = 'https://api.mercadolibre.com/sites/MLB/categories';
   const response = await fetch(endpointCategories);

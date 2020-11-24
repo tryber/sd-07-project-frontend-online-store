@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import * as api from './services/api';
 
@@ -14,7 +13,7 @@ class App extends React.Component {
   }
 
   testApi() {
-    api.getCategories().then(categories => { console.log(categories) });
+    api.getCategories().then((categories) => { console.log(categories); });
   }
 
   render() {
@@ -24,6 +23,6 @@ class App extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default App;
