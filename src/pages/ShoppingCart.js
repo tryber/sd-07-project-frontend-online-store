@@ -7,11 +7,11 @@ export default class ShoppingCart extends Component {
       <div className="class-name">
         <Header
           text="Carrinho de Compras"
-          imagePath="images/icons-shopping-cart.png"
-          imagePathReply="images/reply-arrow.png"
+          imagePath="images/shopping-cart-50.png"
+          imagePathReply="images/reply-arrow-red-50.png"
         />
         <img
-          src="images/empty-box.png"
+          src="images/empty-shopping-basket-red.png"
           alt="Carrinho de Compras"
         />
         <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
