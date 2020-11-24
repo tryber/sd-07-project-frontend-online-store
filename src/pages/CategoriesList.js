@@ -1,46 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
-import * as api from '../services/api';
-
 class CategoriesList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categories: [],
-      categoryId: '',
-      query: '',
-    };
-    this.CategoriesList = this.CategoriesList.bind(this);
-  }
-
-  componentDidMount() {
-    this.CategoriesList();
-  }
-
-
-  CategoriesList() {
-    api.getCategories()
-      .then((categories) => {
-        console.log(categories);
-        this.setState({ categories });
-      })
-      .catch((error) => console.log('Promises rejected: ', error));
-  }
-
-  SearchProduct() {
-    const { categoryId, query } = this.state;
-
-    api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((categorie) => {
-        console.log(categorie);
-        this.setState({ categorie });
-      })
-      .catch((error) => console.log('Promises rejected: ', error));
-  }
-
-
   render() {
     return (
       <div className="home-initial">
@@ -55,9 +16,10 @@ class CategoriesList extends Component {
         <Link
           to="/shoopingcart"
           data-testid="shopping-cart-button"
-          className="home-initial-link">
+          className="home-initial-link"
+        >
           <img
-            src="images/icons-shopping-cart.png"
+            src="images/shopping-cart-50.png"
             alt="Carrinho de Compras"
           />
         </Link>
