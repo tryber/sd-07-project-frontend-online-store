@@ -1,5 +1,5 @@
-const getFetch = async (url) => await fetch(url)
-  .then(element => element.json());
+const getFetch = async (url) => (await fetch(url)
+  .then(element => element.json()));
 
 export function getCategories() {
   const url = 'https://api.mercadolibre.com/sites/MLB/categories';
