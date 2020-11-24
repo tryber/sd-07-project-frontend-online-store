@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+header {
+  width: 100%;
+  margin: 10px;
+  padding: 5px;
+}
+
+header input {
+  width: 80%;
+  margin: 5px;
+}
+
+header button {
+  width: 15%;
+}
