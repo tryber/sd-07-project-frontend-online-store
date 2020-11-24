@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import SearchBar from '../components/SearchBar'
+import FilteredProductsList from '../components/FilteredProductsList';
 
 class ProductsList extends Component {
-    render() {
-        return (
-            <div>Tela principal - Lista de produtos</div>
-        )
+  constructor() {
+    super();
+    this.state = {
+      productsToRender: []
     }
-}
+  }
 
-export default ProductsList;
+  render() {
+    return (
+    <div>
+      <div>
+        <SearchBar />
+        <FilteredProductsList />
+      </div>
+    </div>
+    )
+  }
+}
+  
+  export default ProductsList;

@@ -10,7 +10,11 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
+<<<<<<< HEAD
+    "react-scripts": "3.4.1"
+=======
     "react-scripts": "^3.4.4"
+>>>>>>> main-group-5
   },
   "scripts": {
     "start": "react-scripts start",
