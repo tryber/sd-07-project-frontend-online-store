@@ -51,7 +51,10 @@ class CategoriesList extends Component {
           </h2>
         </label>
         <Link to="/shoopingcart" data-testid="shopping-cart-button">
-          Carrinho de Compras
+          <img
+            src="images/icons-shopping-cart.png"
+            alt="Carrinho de Compras"
+          />
         </Link>
       </div>
     );
