@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import Card from '../../components/Card';
+import CartButton from '../../components/CartButton';
+
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 
 class ProductList extends Component {
@@ -45,6 +47,7 @@ class ProductList extends Component {
           >
             Pesquisar
           </button>
+          <CartButton />
           <h4 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h4>
