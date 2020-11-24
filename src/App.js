@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import * as api from './services/api';
+import ProductListing from './pages/productListing';
 
 class App extends Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class App extends Component {
           </Link>
           <Switch>
             <Route path="/cart" component={CartList} />
+            <Route exact path="/" component={ ProductListing } />
           </Switch>
         </Router>
       </div>
