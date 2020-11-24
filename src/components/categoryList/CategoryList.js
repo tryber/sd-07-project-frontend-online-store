@@ -11,26 +11,25 @@ class CategoryList extends Component {
 
     this.state = {
       categories: [],
-    }
-  }
-
-  async fetchCategories() {
-    const categoriesFromApi = await api.getCategories();
-    
-    this.setState ({
-      categories: categoriesFromApi,
-    });
+    };
   }
 
   componentDidMount() {
     this.fetchCategories();
   }
 
+  async fetchCategories() {
+    const categoriesFromApi = await api.getCategories();
+    this.setState({
+      categories: categoriesFromApi,
+    });
+  }
+
   render() {
     return (
       <div>
         {categories.map((item) => (
-          <p data-testid="category" key={this.state.categories.id}>
+          <p data-testid="category" key={ this.state.categories.id }>
             {this.state.categories.name}
           </p>
         ))}
