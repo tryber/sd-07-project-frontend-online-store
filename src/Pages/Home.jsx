@@ -4,8 +4,6 @@ import InitialMessage from '../components/InitialMessage';
 
 class Home extends React.Component {
     constructor() {
-        console.log('hey constructor home');
-
         super();
         this.updateSearchValue  = this.updateSearchValue.bind(this);
         this.state = {

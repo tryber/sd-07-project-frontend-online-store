@@ -11,7 +11,7 @@ export default class CategoryList extends React.Component {
     this.getCategories = this.getCategories.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getCategories();
   }
 
