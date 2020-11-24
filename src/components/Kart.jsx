@@ -5,16 +5,19 @@ class Kart extends React.Component {
   constructor() {
     super();
     this.state = {
-      product: [],
+      message: 'Seu carrinho está vazio',
     };
   }
 
   render() {
     const { message } = this.state;
-    return (
-      <div className="kart">
-      </div>
-    );
+    if (kartStatus === false) {
+      return (
+        <div className="kart">
+          <h1>{message}</h1>
+        </div>
+      );
+    }
   }
 }
 
