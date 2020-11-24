@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SideBar } from './index';
 import './InitialScreen.css';
 
