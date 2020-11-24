@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import ProductList from './pages/ProductList/ProductList';
+import ProductList from './pages/ProductList';
 import ShoppingCart from './pages/ShoppingCart';
 
 function App() {
