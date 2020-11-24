@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { SideBar } from './index';
 import './InitialScreen.css';
+import KartImg from '../img/kart.svg'
 
 import * as api from '../services/api';
+import Kart from './Kart'
 
 class InitialScreen extends React.Component {
   constructor() {
@@ -35,6 +38,7 @@ class InitialScreen extends React.Component {
         </div>
         <div className="container-initial-screen">
           <input type="text" />
+          <Link data-testid="shopping-cart-button" to={'/kart'}><img src={KartImg} /></Link>
           <h1 data-testid="home-initial-message">{message}</h1>
         </div>
       </div>

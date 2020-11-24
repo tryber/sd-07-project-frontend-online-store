@@ -11,10 +11,11 @@ class Kart extends React.Component {
 
   render() {
     const { message } = this.state;
+    const kartStatus = false;
     if (kartStatus === false) {
       return (
         <div className="kart">
-          <h1>{message}</h1>
+          <h1 data-testid="shopping-cart-empty-message">{message}</h1>
         </div>
       );
     }
