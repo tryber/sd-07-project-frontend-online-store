@@ -1,30 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import * as api from './services/api';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    api.getCategories.then(teste => console.log(teste));
+    api.getProductsFromCategoryAndQuery('MLB5672', 'Acessórios para Veículos')
+      .then(product => console.log(product.results[0]))
+    return (
+      <div>teste</div>      
+    );
+  }
 }
 
 export default App;
