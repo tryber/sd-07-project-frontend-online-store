@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 import * as api from '../services/api';
 
@@ -42,10 +44,15 @@ class CategoriesList extends Component {
   render() {
     return (
       <div>
-        <label>
+        <label htmlFor="home-initial-message">
           <input />
-          <h2 data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</h2>
+          <h2 data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </h2>
         </label>
+        <Link to="/shoopingcart" data-testid="shopping-cart-button">
+          Carrinho de Compras
+        </Link>
       </div>
     );
   }
