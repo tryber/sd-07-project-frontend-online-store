@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import HomeInitial from "./Pages/HomeInitial";
-import ShoppingCart from "./Pages/ShoppingCart";
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import HomeInitial from './Pages/HomeInitial';
+import ShoppingCart from './Pages/ShoppingCart';
 // import * as api from '../services/api';
 
 class App extends Component {
