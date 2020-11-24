@@ -1,14 +1,17 @@
 import React from 'react';
 
 class InitialScreen extends React.Component {
-//   constructor() {
-//     super();
-//   }
+  constructor() {
+    super();
+    this.state = {
+      message: 'Digite....'
+    }
+  }
 
   render() {
     return (
       <div>
-        <h1>teste</h1>
+        <h1>{this.state.message}</h1>
       </div>
     );
   }
