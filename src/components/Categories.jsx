@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import * as api from '../services/api';
 
@@ -22,9 +23,9 @@ class Categories extends Component {
       <div>
         <h2>Categorias</h2>
         {this.state.categories.map((category) =>
-        <div data-testid="category" key={category.name}>
-          <input type="radio" name="category" value={category.name} />
-          <label htmlFor={category.name}>{category.name}</label>
+          <div data-testid="category" key={category.name}>
+            <input type="radio" name="category" value={category.name} />
+            <label htmlFor={category.name}>{category.name}</label>
           </div>
         )}
       </div>
