@@ -10,7 +10,7 @@ function App() {
         <header>
           <input type="text" data-testid="home-initial-message" />
           <h2>Digite algum termo de pesquisa ou escolha uma categoria.</h2>
-          <Route path="/shopping-cart" component={ShoppingCart} />
+          <Route path="/shopping-cart" component={ ShoppingCart } />
           <Link to="/shopping-cart" data-testid="shopping-cart-button">
             Carrinho de compras
           </Link>
