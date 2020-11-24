@@ -5,7 +5,7 @@ import * as api from '../services/api';
 class CategoriesList extends React.Component {
   constructor() {
     super();
-    this.state = { list: [], filteredList: [] };
+    this.state = { list: [] };
     this.fetchCategories = this.fetchCategories.bind(this);
   }
 
@@ -16,15 +16,15 @@ class CategoriesList extends React.Component {
 
   async fetchCategories() {
     const list = await api.getCategories();
-    this.setState({ list, filteredList: list });
+    this.setState({ list });
   }
 
   render() {
-    const  filteredList  = [{id:1, name:"produto 1"},{id:2, name:"produto 2"}];
+    const list = [{id:1, name:"produto 1"},{id:2, name:"produto 2"}];
     return (
       <div>
         Categorias de Produtos:
-        {filteredList.map(({ id, name }) => (
+        {list.map(({ id, name }) => (
           <div key={ id }>
             <input
               id={ id }
