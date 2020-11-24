@@ -19,3 +19,14 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     throw new Error(`requisição não concluida: ${err.message}`);
   }
 }
+
+export async function getProductsFromQuery(query) {
+  try {
+    const endpoint = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
+    const data = await fetch(endpoint);
+    const result = await data.json();
+    return result;
+  } catch (err) {
+    throw new Error(`requisição não concluida: ${err.message}`);
+  }
+}
