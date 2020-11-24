@@ -1,31 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import * as api from './services/api';
-
+import SearchBar from './components/SearchBar';
+import NotFound from './components/NotFoud';
+// Comentário
 function App() {
-  api.getCategories().then(categories => { console.log(categories) });
-
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={ SearchBar } />
+          <Route component={ NotFound } />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
