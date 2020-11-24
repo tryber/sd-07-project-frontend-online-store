@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class Listagem extends Component {
   render() {
     return (
-      <div>
-        <input type="text" data-testid="home-initial-message" />
+      <div data-testid="home-initial-message">
+        <input type="text" />
         <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
       </div>
     );
