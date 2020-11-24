@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { InitialScreen } from './components';
 import './App.css';
-import * as api from './services/api';
 
 class App extends React.Component {
   render() {
@@ -14,6 +13,6 @@ class App extends React.Component {
       </BrowserRouter>
     );
   }
-
+}
 
 export default App;
