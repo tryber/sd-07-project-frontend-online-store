@@ -1,12 +1,19 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import SearchBar from './components/SearchBar';
+import ShoppingCart from './components/ShoppingCart';
+
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <Route path="/" component={SearchBar} />
+        <Route exact path="/" component={ SearchBar } />
+        <Route exact path="/shopping-cart" component={ ShoppingCart } />
+        <Link to="/shopping-cart">
+          <ShoppingCartOutlinedIcon data-testid="shopping-cart-button" />
+        </Link>
       </BrowserRouter>
     </div>
   );
