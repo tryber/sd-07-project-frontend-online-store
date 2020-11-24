@@ -1,15 +1,8 @@
-import React, {Component} from 'react';
-import * as api from './services/api'
+import React, { Component } from 'react';
 
 class App extends Component {
-  render(){
-    return (
-      <div>
-        {
-          
-        }
-      </div> 
-      )
+  render() {
+    return <div>hello world</div>;
   }
 }
 
