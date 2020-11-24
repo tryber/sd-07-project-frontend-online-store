@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SearchBar from './components/SearchBar';
+import SearchBar from './components/searchBar';
 
 function App() {
   return (
