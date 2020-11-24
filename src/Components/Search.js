@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import * as api from '../services/api';
+
 
 class Search extends React.Component {
   constructor(props) {
@@ -44,6 +46,12 @@ class Search extends React.Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+       <div>
+				<p data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</p>
+				<Link data-testid="shopping-cart-button" to="/cartBuy"><img className="cartBuy"
+        src="https://img.icons8.com/ios/452/shopping-cart.png"
+        alt="imagem de carrinho" /></Link>
+			</div>
       </div>
     );
   }
