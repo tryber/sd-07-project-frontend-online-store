@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 export default class Products extends Component {
   render() {
@@ -8,6 +8,6 @@ export default class Products extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
       </div>
-    )
+    );
   }
 }
