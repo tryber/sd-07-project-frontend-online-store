@@ -46,6 +46,11 @@ header input {
   width: 80%;
 }
 
-header button {
+header a {
+  padding: 5px;
   margin: 10px;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 3px ;
 }

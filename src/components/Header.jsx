@@ -1,16 +1,24 @@
 import React from 'react';
+import {BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import ShoppingCart from '../pages/shopping-cart'
 
 class Header extends React.Component {
     constructor() {
-        super()
-    }
+        super();
+        }
+    
 
     render() {
         return (
-        <header>
-            <input type="text" id="shopping-cart-search"/>
-            <button data-testid="shopping-cart-button">Pesquisar</button>
-        </header>
+        <BrowserRouter>
+            <header>
+                <input type="text" id="shopping-cart-search" />
+                <Link data-testid="shopping-cart-button" to={'/pages/shopping-cart'}>Carrinho</Link>
+            </header>
+            <Switch>
+                <Route exact path='/pages/shopping-cart' component={ShoppingCart} />
+            </Switch>
+        </BrowserRouter>
         )}
 }
 
