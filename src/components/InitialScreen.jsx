@@ -26,11 +26,11 @@ class InitialScreen extends React.Component {
   }
 
   render() {
-    const { message } = this.state;
+    const { message, categories } = this.state;
     return (
       <div className="container">
         <div className="side-bar">
-          <SideBar />
+          <SideBar categories={ categories } />
         </div>
         <div className="container-initial-screen">
           <input type="text" />
