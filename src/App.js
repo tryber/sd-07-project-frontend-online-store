@@ -5,7 +5,7 @@ import SearchBar from './components/SearchBar';
 function App() {
   return (
     <div className="App">
-      Hello Trybe
+      Hello Trybers
       { /* <Header /> */ }
       <Router>
         <Switch>
