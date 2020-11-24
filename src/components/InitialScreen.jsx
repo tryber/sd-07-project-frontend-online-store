@@ -44,7 +44,7 @@ class InitialScreen extends React.Component {
   }
 
   render() {
-    const { message, searchInput, products } = this.state;
+    const { message, searchInput } = this.state;
     return (
       <div className="container">
         <div className="side-bar">
