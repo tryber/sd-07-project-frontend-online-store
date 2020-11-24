@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 class ShoppingCartButton extends Component {
   render() {
     return (
-      <Link data-testid="shopping-cart-button" to="/shopping-cart">Carrinho de compras</Link>
+      <Link
+        data-testid="shopping-cart-button"
+        to="/shopping-cart"
+      >
+        Carrinho de compras
+      </Link>
     );
   }
 }
