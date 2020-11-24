@@ -4,16 +4,16 @@ export async function getCategories() {
     const categories = await request.json();
     return categories;
   } catch (error) {
-    throw new Error(`There was an error making the request: ${error}`);  
+    throw new Error(`There was an error making the request: ${error}`);
   }
 }
 
-export async function getProductsFromCategoryAndQuery( categoryId, query ) {
+export async function getProductsFromCategoryAndQuery(categoryId, query) {
   try {
     const request = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`);
     const categories = await request.json();
     return categories;
   } catch (error) {
-    throw new Error(`There was an error making the request with id and query: ${error}`);  
+    throw new Error(`There was an error making the request with id and query: ${error}`);
   }
 }
