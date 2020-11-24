@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import './App.css';
+// import './App.css';
 import ListagemDeProdutos from './ListagemDeProdutos'
 
 function App() {
