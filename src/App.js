@@ -1,5 +1,8 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import * as api from './services/api';
+import Home from './pages/Home';
 
 class App extends React.Component {
   constructor() {
@@ -19,7 +22,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <p>Funcionou!</p>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" component={ Home } />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
