@@ -24,7 +24,9 @@ class Categories extends React.Component {
   render() {
     const { categories } = this.state;
 
-    if (categories.length === 0) {
+    const notCategoriesLength = 0;
+
+    if (categories.length === notCategoriesLength) {
       return <div>Carregando</div>;
     }
 
