@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import * from './Images';
+import Logo from './shoppingCartImage.png';
 
 class ProductList extends Component {
   render() {
@@ -12,7 +12,7 @@ class ProductList extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
       <Link data-testid="shopping-cart-button" to="/PageCard">
-        <img src="shoppingCartImage.png" alt="shoppingCart" />
+        <img src={Logo} alt="shoppingCart" />
       </Link>
       
       </div>
