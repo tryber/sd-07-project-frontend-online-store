@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class SearchPage extends Component {
+class ProductsList extends Component {
     constructor() {
         super();
         this.state = {
@@ -15,10 +15,10 @@ class SearchPage extends Component {
         <button>Botão de pesquisa</button>
         <input type="text"></input>
         </label>
-        <Link to="/shoppingcart"><button>Carrinho de compras</button></Link>
+        <Link to="/shoppingCart"><button>Carrinho de compras</button></Link>
         <ul data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria</ul>
         </div>)
     }
   }
   
-  export default SearchPage;
+  export default ProductsList;
