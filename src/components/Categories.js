@@ -23,6 +23,11 @@ class Categories extends React.Component {
 
   render() {
     const { categories } = this.state;
+
+    if (categories.length === 0) {
+      return <div>Carregando</div>;
+    }
+
     return (
       <div>
         <h3>Categorias</h3>
