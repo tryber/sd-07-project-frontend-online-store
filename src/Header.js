@@ -11,7 +11,7 @@ class Header extends React.Component {
         {/* filtro */}
         {/* carrinho */}
       </div>
-    )
+    );
   }
 }
 
