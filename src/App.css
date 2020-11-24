@@ -22,3 +22,15 @@
   border: 1px solid black;
   padding-right: 10%
 }
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  width: 25%;
+  border: 1px solid black;
+  margin-bottom: 20px;
+  margin-right: 3%;
+}
