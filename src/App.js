@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
 import * as api from './services/api';
+import ProductListing from './pages/productListing';
 
 class App extends Component {
   componentDidMount() {
@@ -15,6 +16,13 @@ class App extends Component {
     return (
       <div>
         <h1>Title</h1>
+
+        <BrowserRouter>
+
+          <Route exact path="/" component={ ProductListing } />
+
+        </BrowserRouter>
+
       </div>
     );
   }
