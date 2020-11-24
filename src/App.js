@@ -1,11 +1,8 @@
 import React from 'react';
-import * as api from './services/api';
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <div className="App">Teste</div>
   );
 }
 
