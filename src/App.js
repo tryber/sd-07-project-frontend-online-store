@@ -1,11 +1,16 @@
 import React from 'react';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 // import './App.css';
-import * as api from './services/api';
+import ListagemDeProdutos from './ListagemDeProdutos'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header" />
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ListagemDeProdutos} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
