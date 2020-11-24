@@ -1,4 +1,5 @@
 import React from 'react';
+import Categories from './Categories';
 
 class SearchBar extends React.Component {
   render() {
