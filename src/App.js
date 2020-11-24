@@ -8,11 +8,8 @@ function App() {
   api.getCategories().then(categories => { console.log(categories) })
   api.getProductsFromCategoryAndQuery().then(categories => { console.log(categories) })
   return (
-    <div className="App">
-      Eu ainda odeio React
-    </div>
     <Router>
-        <Link to="/">Search Bar</Link>
+        <Link to="/">Search Basr</Link>
         <Switch>
           <Route exact path="/" component={SearchBar} />
         </Switch>
