@@ -15,14 +15,15 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-	this.getProduct()
+    this.getProduct();
   }
 
   getProduct() {
     this.setState({ loading: true }, async () => {
+      const { categoryId, term } = this.state;
       const getingProduct = await api.getProductsFromCategoryAndQuery(
-        this.state.categoryId,
-        this.state.term
+        categoryId,
+        term
       );
       this.setState({ loading: false, product: getingProduct });
     });
@@ -37,7 +38,7 @@ class Search extends React.Component {
           type="text"
           placeholder="Digite algum termo de pesquisa aqui"
         />
-        <button className="button-search" data-testid="query-button">
+        <button type="button" className="button-search" data-testid="query-button">
           Procurar
         </button>
         <p data-testid="home-initial-message">
