@@ -5,5 +5,5 @@ class App extends React.Component {
     return <div>hello world</div>;
   }
 }
-//Teste
+
 export default App;
