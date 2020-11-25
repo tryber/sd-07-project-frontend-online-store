@@ -29,27 +29,28 @@ class ProductDetail extends React.Component {
 
   render() {
     const { dataDetail } = this.state;
-    const { title, price, thumbnail } = dataDetail;
+    let renderDetails = '';
+    if (dataDetail !== [] || dataDetail) {
+      renderDetails = (
+        <div>
+          <h3 data-testid="product-detail-name">{`${dataDetail.title} - R$ ${dataDetail.price}`}</h3>
+          <img src={dataDetail.thumbnail} alt="Imagem do produto" />
+          <div>
+            <ul>
+              <li>Especificação 01</li>
+              <li>Especificação 02</li>
+              <li>Especificação 03</li>
+              <li>Especificação 04</li>
+              <li>Especificação 05</li>
+              <li>Especificação 06</li>
+              <li>Especificação 07</li>
+            </ul>
+          </div>
+        </div>
+      );
+    }
 
-    return (
-      <div>
-        <div>
-          <h3 data-testid="product-detail-name">{`${title} - R$ ${price}`}</h3>
-          <img src={ thumbnail } alt="Imagem do produto" />
-        </div>
-        <div>
-          <ul>
-            <li>Especificação 01</li>
-            <li>Especificação 02</li>
-            <li>Especificação 03</li>
-            <li>Especificação 04</li>
-            <li>Especificação 05</li>
-            <li>Especificação 06</li>
-            <li>Especificação 07</li>
-          </ul>
-        </div>
-      </div>
-    );
+    return <div>{renderDetails !== '' ? renderDetails : 'Loading'}</div>;
   }
 }
 
