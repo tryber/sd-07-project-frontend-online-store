@@ -22,9 +22,6 @@ class Categories extends React.Component {
 
   render() {
     const { categories } = this.state;
-    if (categories.length < 1) {
-      return <p>Carregando...</p>;
-    }
     return (
       <div>
         <select name="categorias" id="categories">
