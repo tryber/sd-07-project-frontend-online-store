@@ -6,16 +6,18 @@ import FilterList from '../filterList';
 class home extends Component {
   constructor() {
     super();
-    this.changeSelected = this.changeSelected.bind(this)
+    this.changeSelected = this.changeSelected.bind(this);
     this.state = {
       category: '',
     };
   }
-  changeSelected (item){
-    console.log('rodou')
-    this.setState({category: item})
-    console.log(this.state.category)
+
+  changeSelected(item) {
+    const { category } = this.state;
+    this.setState({ category: item });
+    console.log(category);
   }
+
   render() {
     return (
       <div>
@@ -31,7 +33,7 @@ class home extends Component {
             data-testid="shopping-cart-button"
           />
         </Link>
-        <FilterList changeSelected={this.changeSelected}/>
+        <FilterList changeSelected={ this.changeSelected } />
       </div>
     );
   }

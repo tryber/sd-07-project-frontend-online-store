@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as API from './services/api';
-import { Link } from 'react-router-dom';
+
 class FilterList extends Component {
   constructor() {
     super();
     this.state = {
       categoriesList: [],
       loading: false,
-      selected: '',   
     };
   }
+
   componentDidMount() {
     this.fetchCategories();
   }
+
   fetchCategories() {
     this.setState({ loading: true }, async () => {
       const data = await API.getCategories();
@@ -22,27 +25,38 @@ class FilterList extends Component {
 
   render() {
     const { categoriesList, loading } = this.state;
-    console.log(this.state.selected)
+    const { changeSelected } = this.props;
     let option;
     if (loading) {
       option = <p>Carregando...</p>;
     } else {
-      option = (<ul> Filtre por categoria: <br /><br/>
-        {categoriesList.map((item) => (
-            <li key={item.id}>
-              <Link to='' onClick={() => this.props.changeSelected(item.id)} >
-                {item.name}
-                {/* to='' onClick={() => this.setState({selected: item.id,})} */}
-              </Link>
-            </li>
-        ))}
-      </ul>);
+      option = (
+        <div>
+          <h3>Filtre por categoria:</h3>
+          {categoriesList.map(({ id, name }) => (
+            <div key={ id }>
+              <input
+                type="radio"
+                id={ id }
+                name="category"
+                value={ id }
+                onChange={ () => changeSelected(id) }
+                data-testid="category"
+              />
+              <label htmlFor={ id }>{ name }</label>
+              <br />
+            </div>
+          ))}
+        </div>);
     }
     return (
-      <div className='getCategories'>
+      <div className="getCategories">
         {option}
       </div>
     );
   }
 }
+FilterList.propTypes = {
+  changeSelected: PropTypes.func.isRequired,
+};
 export default FilterList;
