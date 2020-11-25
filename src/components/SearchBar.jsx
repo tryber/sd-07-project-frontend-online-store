@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
+import CategoryList from './CategoryList';
 import ProductList from './ProductList';
 
 class SearchBar extends Component {
@@ -9,31 +10,22 @@ class SearchBar extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      // loading: false,
+      loading: true,
       categoryId: '',
       query: '',
       product: [],
     };
   }
 
-  componentDidMount() {
-    this.handleSearch();
-  }
-
   async handleSearch() {
     const { categoryId, query } = this.state;
-    this.setState(
-      // { loading: true },
-      async () => {
-        const productSearch = await api
-          .getProductsFromCategoryAndQuery(categoryId, query);
-        this.setState({
-        // loading: false,
-          product: productSearch.results,
-        });
-      },
-    );
+    const productSearch = await api
+      .getProductsFromCategoryAndQuery(categoryId, query);
+    this.setState({
+      product: productSearch.results,
+    }, () => this.setState({ loading: false }));
   }
+
 
   handleChange(event) {
     const { name, value } = event.target;
@@ -46,7 +38,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { product } = this.state;
+    const { product, loading } = this.state;
     return (
       <div>
         <label htmlFor="search-bar">
@@ -64,12 +56,17 @@ class SearchBar extends Component {
             Pesquisar
           </button>
         </label>
-        <p
-          data-testid="home-initial-message"
-        >
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        {product.map((item) => <ProductList key={ item.id } product={ item } />)}
+        {loading
+          ? <p
+            data-testid="home-initial-message"
+          >
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+          : product.map((item) => <ProductList key={ item.id } product={ item } />)}
+        <CategoryList
+          handleChange={ this.handleChange }
+          handleClick={ this.handleClick }
+        />
       </div>
     );
   }
