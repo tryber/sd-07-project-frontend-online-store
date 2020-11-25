@@ -4,7 +4,7 @@ import './App.css';
 import SearchBar from './components/SearchBar';
 import NotFound from './components/NotFoud';
 import ShoppingCart from './components/ShoppingCart';
-// Comentário
+// Comentário 2
 function App() {
   return (
     <div className="App">
