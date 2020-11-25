@@ -1,6 +1,5 @@
 // General
 export { default as CardProduct } from './CardProduct';
-export { default as Icon } from './Icons';
 export { default as Loading } from './Loading';
 
 // Inputs

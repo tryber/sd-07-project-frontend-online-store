@@ -1,11 +1,17 @@
 import React from 'react';
 import * as cp from './components';
+import * as icon from './components/Icons';
 
 function App() {
   return (
     <div>
-      <cp.Input width='450px' />
-      <cp.Input width='100px' />
+      <icon.Cart />
+      <icon.Plus />
+      <icon.Minus />
+      <icon.Search />
+      <icon.Star />
+      <icon.Back />
+      <icon.Close />
     </div>
   );
 }
