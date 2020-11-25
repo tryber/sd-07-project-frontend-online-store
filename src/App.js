@@ -1,6 +1,6 @@
 import React from 'react';
-import * as api from './services/api';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import * as api from './services/api';
 import HomeBeforeSearch from './pages/HomeBeforeSearch';
 import './App.css';
 import ShoppingCart from './pages/ShoppingCart';
@@ -10,11 +10,11 @@ api.getProductsFromCategoryAndQuery().then((categories) => { console.log(categor
 
 function App() {
   return (
-    <div className='app-div'>
+    <div className="app-div">
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={HomeBeforeSearch} />
-          <Route path="/ShoppingCart" component={ShoppingCart} />
+          <Route exact path="/" component={ HomeBeforeSearch } />
+          <Route path="/ShoppingCart" component={ ShoppingCart } />
         </Switch>
       </BrowserRouter>
     </div>
