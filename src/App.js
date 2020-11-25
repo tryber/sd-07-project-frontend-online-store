@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import * as api from './services/api';
 import Listagem from './components/listagem';
 import './App.css';
 
