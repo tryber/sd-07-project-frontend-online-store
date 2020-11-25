@@ -8,6 +8,6 @@ export async function getCategories() {
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   // const myObj = { method: 'GET' };
   const myFetch = fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`)
-    .then((resolve) => resolve.json())
+    .then((resolve) => resolve.json());
   return myFetch;
 }
