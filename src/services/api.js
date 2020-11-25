@@ -8,20 +8,12 @@ export async function getCategories() {
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
-  if (categoryId || query) {
-    let endPoint = 'https://api.mercadolibre.com/sites/MLB/search?';
-    if (categoryId) {
-      endPoint += `category=${categoryId}`;
-    }
-    if (query) {
-      endPoint += endPoint.endsWith('?') ? `q=${query}` : `&q=${query}`;
-    }
-    return new Promise((resolve, reject) => {
-      fetch(endPoint)
-        .then((response) => response.json())
-        .then((result) => resolve(result))
-        .catch((error) => reject(error));
-    });
-  }
-  return {};
+  const endPoint = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
+  return new Promise((resolve, reject) => {
+    fetch(endPoint)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+ 
 }
