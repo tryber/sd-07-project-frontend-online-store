@@ -24,8 +24,12 @@ class Categories extends React.Component {
     }
     return (
       <div>
+        <label>Categorias:</label>
         <select id="categories">
-          {categories.map((category) => <option key={category.id} value={category.name}>{category.name}</option>)}
+        <option key='Todas' value=''>Todas</option>
+        {categories.map((category) =>{
+          <option key={ category.id } value={ category.name }>{ category.name }</option>
+        })}
         </select>
       </div>
     );
