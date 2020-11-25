@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class CategoriesCard extends React.Component {
+class ProdoctCard extends React.Component {
   render() {
     const { product } = this.props;
     const { thumbnail, title, price, category_id, id } = product;
@@ -18,7 +18,7 @@ class CategoriesCard extends React.Component {
   }
 }
 
-CategoriesCard.propTypes = {
+ProdoctCard.propTypes = {
   product: PropTypes.array }.isRequired;
 
-export default CategoriesCard;
+export default ProdoctCard;
