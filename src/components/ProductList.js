@@ -8,7 +8,8 @@ class ProductList extends Component {
 
     this.state = {
       textValue: '',
-      products,
+      products: [],
+      search: false,
     };
 
     this.updateState = this.updateState.bind(this);
@@ -24,23 +25,38 @@ class ProductList extends Component {
 
   async updateState() {
     const { textValue } = this.state;
-    const products = await api.getProductsFromQuery(textValue);
+    const products = await api.getProductsFromCategoryAndQuery('', textValue);
     this.setState({
-      products,
+      products: products.results,
+      search: true,
     });
   }
 
   render() {
-    const { products } = this.state;
+    const { products, search } = this.state;
+
     return (
       <div>
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
-        <input data-testid="query-input" onChange={ this.textValueChange } />
-        {products.map((product) => (
-          <ProductCard key={ product.id } product={ product } />
-        ))}
+        <input
+          data-testid="query-input"
+          onChange={ (event) => this.textValueChange(event) }
+        />
+        <button
+          data-testid="query-button"
+          onClick={ () => this.updateState() }
+          type="button"
+        >
+          Procurar
+        </button>
+        <div>
+          {products.map((product) => (
+            <ProductCard key={ product.id } product={ product } />
+          ))}
+          {!products.length && search && <p>Nenhum produto foi encontrado</p>}
+        </div>
       </div>
     );
   }
