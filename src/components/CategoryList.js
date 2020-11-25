@@ -1,8 +1,6 @@
 import React from 'react';
 import ItemCategory from './ItemCategory';
 
-import * as api from '../services/api';
-
 class CategoryList extends React.Component {
   constructor() {
     super();
