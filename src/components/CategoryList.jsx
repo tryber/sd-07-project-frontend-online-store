@@ -21,7 +21,7 @@ class CategoryList extends Component {
   render() {
     const { category } = this.state;
     return (
-      <div className="category-list">
+      <div className="category-list" data-testid="category">
         <select onChange={ (event) => console.log(event.target.value) }>
           <option defaultValue value="" name="categoryId">Selecione uma categoria</option>
           {category.map((item) => (
