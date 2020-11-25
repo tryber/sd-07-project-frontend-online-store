@@ -26,7 +26,6 @@ class CategoryList extends React.Component {
   }
 
   render() {
-    
     const { categories } = this.state;
     
     return (
