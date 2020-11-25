@@ -5,7 +5,9 @@ class ProductDetails extends Component {
   render() {
     return (
       <div>
-
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+          Carrinho de compras
+        </Link>
       </div>
     );
   }
