@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import chart from '../icon/chart.png';
+import lupa from '../icon/lupa.png';
 import '../App.css';
 
 class Main extends React.Component {
   render() {
     return (
-      <div>
+      <div className="container">
+        <img className="lupa" src={ lupa } alt="lupa" />
         <input className="searchInput" type="search" />
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.

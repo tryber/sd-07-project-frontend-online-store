@@ -4,7 +4,7 @@ import React from 'react';
 class ShoppinCart extends React.Component {
   render() {
     return (
-      <div>
+      <div className="cart">
         <h3 data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
         </h3>
