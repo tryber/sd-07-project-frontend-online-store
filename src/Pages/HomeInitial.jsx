@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ShoppingCartButton from '../Components/ShoppingCartButton';
-import * as api from '../services/api';
 import SearchBar from '../Components/SearchBar';
+import * as api from '../services/api';
+import ProductCard from '../Components/ProductCard';
 
 class HomeInitial extends Component {
   constructor() {
@@ -10,21 +11,27 @@ class HomeInitial extends Component {
     this.searchOnChange = this.searchOnChange.bind(this);
     this.state = {
       productArr: [],
-      searchBarValue: undefined,
+      searchBarValue: '',
     };
+  }
+
+  getProductList() {
+    const { productArr } = this.state;
+    return productArr.map(
+      (product, { title }) => <li key={ title }><ProductCard product={ product } /></li>,
+    );
+  }
+
+  searchOnChange(event) {
+    this.setState({ searchBarValue: event.target.value });
   }
 
   async searchEventHandler() {
     const { searchBarValue } = this.state;
     const dataArr = await api.getProductsFromCategoryAndQuery(searchBarValue);
     this.setState({
-      productArr: dataArr,
+      productArr: dataArr.results,
     });
-  }
-
-  searchOnChange() {
-    this.setState({ searchBarValue: Eventarget.value });
-    console.log(this.state.searchBarValue);
   }
 
   render() {
@@ -39,6 +46,9 @@ class HomeInitial extends Component {
           searchEventHandler={ this.searchEventHandler }
           searchOnChange={ this.searchOnChange }
         />
+        <ul>
+          {productArr !== [] ? this.getProductList() : <p>Nenhum produto foi encontrado</p>}
+        </ul>
       </div>
     );
   }
