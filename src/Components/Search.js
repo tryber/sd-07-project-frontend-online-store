@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import * as api from '../services/api';
 
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +26,7 @@ class Search extends React.Component {
         categoryId,
         term
       );
+      console.log(getingProduct)
       this.setState({ loading: false, product: getingProduct });
     });
   }
@@ -40,18 +40,25 @@ class Search extends React.Component {
           type="text"
           placeholder="Digite algum termo de pesquisa aqui"
         />
-        <button type="button" className="button-search" data-testid="query-button">
+        <button
+          type="button"
+          className="button-search"
+          data-testid="query-button"
+        >
           Procurar
         </button>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-       <div>
-				<p data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</p>
-				<Link data-testid="shopping-cart-button" to="/cartBuy"><img className="cartBuy"
-        src="https://img.icons8.com/ios/452/shopping-cart.png"
-        alt="imagem de carrinho" /></Link>
-			</div>
+          <Link to="/cartBuy" data-testid="shopping-cart-button">
+            <img
+              className="cartBuy"
+              src="https://img.icons8.com/ios/452/shopping-cart.png"
+              alt="imagem de carrinho"
+            />
+          </Link>
+        <div>
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+        </div>
       </div>
     );
   }
