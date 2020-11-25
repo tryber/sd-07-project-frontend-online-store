@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import CategorieItem from './CategorieItem';
 
 class CategoriesList extends Component {
   render() {
-    const { categories } = this.props;
+    const { categorie } = this.props;
+    const { id, name } = categorie;
     return (
-      <ul>
-        {categories.map((categorie) => <CategorieItem key={categorie.id} categorie={categorie.name} />)}
-      </ul>
+      <div data-testid="category">
+        <input type="radio" name="category" value={id}></input>
+        <label htmlFor={id}>{name}</label>
+      </div>
     );
   }
 }

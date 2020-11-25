@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as API from "../services/api";
 import CategoriesList from "../components/CategoriesList";
 import Logo from "../shoppingCartImage.png";
-import Product from './Product';
+import Product from '../components/Product';
 
 class ProductsList extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class ProductsList extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       categories: undefined,
-      products: [],
+      products: undefined,
       search: "",
     };
   }
@@ -70,7 +70,7 @@ class ProductsList extends Component {
     return (
       <div>
         <div>
-          {categories ? <CategoriesList categories={categories} /> : null}
+          {categories ? categories.map((categorie) => <CategoriesList key={categorie.id} categorie={categorie} />) : null }
         </div>
         <div>
           <input
@@ -79,7 +79,7 @@ class ProductsList extends Component {
             onChange={this.handleChange}
           />
           <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
-          {products === [] ? this.showMessage() : this.showProducts()}
+          {products === undefined ? this.showMessage() : this.showProducts()}
           <Link data-testid="shopping-cart-button" to="/PageCard">
             <img src={Logo} alt="shoppingCart" />
           </Link>
