@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ButtonCart extends React.Component {
+class Cart extends React.Component {
   render() {
     return (
       <div>
@@ -11,4 +11,4 @@ class ButtonCart extends React.Component {
   }
 }
 
-export default ButtonCart;
+export default Cart;
