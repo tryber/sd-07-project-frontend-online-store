@@ -31,7 +31,8 @@ class ProductsList extends Component {
   async searchQueryProducts() {
     const ListProducts = await API.getProductsFromCategoryAndQuery(undefined, this.state.search);
     if (ListProducts === "") return <span>Nenhum produto foi encontrado</span>;
-    return (this.setState({ products: ListProducts }));
+    const { results } = ListProducts;
+    return (this.setState({ products: results }));
   }
 
   showProducts() {
