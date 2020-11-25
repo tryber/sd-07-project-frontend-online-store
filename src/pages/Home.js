@@ -13,10 +13,14 @@ export default class Home extends Component {
       products: [],
       categoryId: '',
       query: '',
-    }
+    };
 
     this.getProdutsByQuery = this.getProdutsByQuery.bind(this);
     this.onSearchText = this.onSearchText.bind(this);
+  }
+
+  onSearchText({ target: { name, value } }) {
+    this.setState({ [name]: value });
   }
 
   async getProdutsByQuery() {
@@ -25,17 +29,14 @@ export default class Home extends Component {
     this.setState({ products: searchResult.results });
   }
 
-  onSearchText({ target: { name, value } }) {
-    this.setState({ [name]: value });
-  }
- 
   render() {
+    const { query, products } = this.state;
     return (
       <div className="busca">
-        <SearchBar 
-          query={this.state.query}
-          onChange={this.onSearchText}
-          onClick={this.getProdutsByQuery}
+        <SearchBar
+          query={ query }
+          onChange={ this.onSearchText }
+          onClick={ this.getProdutsByQuery }
         />
 
         <p data-testid="home-initial-message">
@@ -43,7 +44,7 @@ export default class Home extends Component {
         </p>
 
         <CategoriesList />
-        <ProductList products={this.state.products} />
+        <ProductList products={ products } />
       </div>
     );
   }

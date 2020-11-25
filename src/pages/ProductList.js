@@ -1,25 +1,29 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 class ProductList extends React.Component {
-
   render() {
     const { products } = this.props;
-    return(
+    return (
       <div>
-        {products.map(({id, title, thumbnail, price}) => (
-          <div className="card" key={id} data-testid="product">
-            <h4> {title} </h4>
-            <img src={thumbnail} alt={title} />
-            <p> {price} </p>
+        { products.map(({ id, title, thumbnail, price }) => (
+          <div className="card" key={ id } data-testid="product">
+            <h4>
+              { title }
+            </h4>
+            <img src={ thumbnail } alt={ title } />
+            <p>
+              { price }
+            </p>
           </div>
-          ))
-        }
+        ))}
       </div>
-    )
+    );
   }
 }
 
-
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ProductList;
