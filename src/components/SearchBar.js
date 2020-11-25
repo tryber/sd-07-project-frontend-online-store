@@ -4,9 +4,11 @@ class SearchBar extends React.Component {
     render() {
 
         return (
-            <div>
-                <input type="text"></input>
-                <div data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</div>
+            <div className="search">
+                <input className="search-bar" type="text"></input>
+                <div data-testid="home-initial-message">
+                    <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
+                </div>
             </div>
         )
 

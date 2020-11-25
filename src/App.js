@@ -8,12 +8,17 @@ function App() {
   api.getCategories().then(categories => { console.log(categories) })
   api.getProductsFromCategoryAndQuery().then(categories => { console.log(categories) })
   return (
-    <Router>
-        <Link to="/">Search Bar</Link>
-        <Switch>
-          <Route exact path="/" component={SearchBar} />
-        </Switch>
-    </Router>
+    <div className="App">
+      <header>
+        <Router>
+          <Link to="/">Search Bar</Link>
+          <Switch>
+            <Route exact path="/" component={SearchBar} />
+          </Switch>
+        </Router>
+      </header> 
+    </div>
+
   );
 }
 
