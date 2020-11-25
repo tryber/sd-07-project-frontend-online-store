@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import * as api from './services/api';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import * as api from './services/api';
 import SearchBar from './components/SearchBar';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <header>
         <Router>
-          <Link to="/"></Link>
+          <Link to="/" />
           <Switch>
             <Route exact path="/" component={ SearchBar } />
           </Switch>
