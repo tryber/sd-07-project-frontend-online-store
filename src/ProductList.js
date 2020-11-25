@@ -8,6 +8,7 @@ class ProductList extends Component {
     this.state = {
       inputValue: '',
       productsArray: [],
+      click: false,
     };
     this.stateActual = this.stateActual.bind(this);
     this.responseGetProducts = this.responseGetProducts.bind(this);
@@ -21,22 +22,44 @@ class ProductList extends Component {
     // const resultCategory = await api.getCategories();
     const resultApiProduct = await api.getProduct(this.state.inputValue);
     const { results } = resultApiProduct;
-    this.setState({ productsArray: results });
+    this.setState({
+      productsArray: results,
+      click: true,
+    });
   }
 
   render() {
+    if (this.state.productsArray.length > 0) {
+      return (
+        <div>
+          <input data-testid="query-input" value={this.state.inputValue} onChange={this.stateActual} />
+          <button data-testid="query-button"onClick={this.responseGetProducts}>Pesquisar</button>
+          <div>
+            {this.state.productsArray.map(product => <div key={product.id}> <Products product={product} /> </div>)}
+          </div>
+        </div>
+      );
+    } else if (this.state.click) {
+      return (
+        <div>
+          <input data-testid="query-input" value={this.state.inputValue} onChange={this.stateActual} />
+          <button data-testid="query-button"onClick={this.responseGetProducts}>Pesquisar</button>
+          <div>
+            <p>Nenhum produto foi encontrado</p>
+          </div>
+        </div>
+      );
+    }
     return (
       <div>
         <input data-testid="query-input" value={this.state.inputValue} onChange={this.stateActual} />
         <button data-testid="query-button"onClick={this.responseGetProducts}>Pesquisar</button>
-        <div>
-          {this.state.productsArray.map(product => <div key={product.id}> <Products product={product} /> </div>)}
-        </div>
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
       </div>
     );
+    
   }  
 }
 

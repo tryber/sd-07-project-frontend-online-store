@@ -10,9 +10,9 @@ class Products extends React.Component {
     const { product } = this.props;
     return(
       <div>
-        <p>
-          {product.title}
-        </p>
+        <p>{product.title}</p>
+        <img src={product.thumbnail} />
+        <p>R${product.price}</p>
       </div>
     );
   }
