@@ -8,6 +8,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">TrybeLibre Online Store</header>
+        <input />
+        <p data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
         <Categories />
       </div>
     );
