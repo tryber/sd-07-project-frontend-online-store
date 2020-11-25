@@ -38,16 +38,16 @@ class Listagem extends Component {
     const { productList } = this.state;
     return (
       <div>
+        <div data-testid="home-initial-message">
         <input
           type="text"
           data-testid="query-input"
           onChange={ this.handleChange }
         />
-        <p
-          data-testid="home-initial-message"
-        >
+        <p>
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        </div>
         <button
           type="submit"
           data-testid="query-button"
