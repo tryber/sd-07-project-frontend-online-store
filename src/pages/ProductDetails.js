@@ -4,7 +4,7 @@ class ProductDetails extends Component {
   render() {
     return (
       <div>Página de detalhes do produto</div>
-    )
+    );
   }
 }
 

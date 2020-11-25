@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import SearchBar from '../components/SearchBar'
+// import { Link } from 'react-router-dom';
+import SearchBar from '../components/SearchBar';
 import FilteredProductsList from '../components/FilteredProductsList';
 
 class ProductsList extends Component {
   constructor() {
     super();
-    this.state = {
-      productsToRender: []
-    }
+    // this.state = {
+    //   productsToRender: [];
+    // }
   }
 
   render() {
-    return (
-    <div>
+    return (        
       <div>
         <SearchBar />
         <FilteredProductsList />
-      </div>
-    </div>
-    )
+      </div>        
+    );
   }
 }
   

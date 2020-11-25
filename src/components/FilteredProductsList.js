@@ -4,9 +4,11 @@ class FilteredProductsList extends Component {
   render() {
     return (
       <div>
-        <ul data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria</ul>
+        <ul data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria
+        </ul>
       </div>
-    )
+    );
   }
 }
 
