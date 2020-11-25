@@ -16,9 +16,9 @@ class Categories extends React.Component {
   }
 
   async getApi() {
-    api.getCategories().then(result => {
+    api.getCategories().then((result) => {
       this.setState({ categories: result });
-    })
+    });
   }
 
   render() {
