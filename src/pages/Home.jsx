@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CategorieFilter from '../components/CategorieFilter';
 import * as api from '../services/api';
+import ProductCard from '../components/ProductCard';
 
 export default class Home extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       searchText: '',
       products: [],
@@ -24,10 +25,6 @@ export default class Home extends React.Component {
     console.log(products)
   }
 
-  componentDidMount() {
-    this.findProduct();
-  }
-
   updateValue(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -38,7 +35,9 @@ export default class Home extends React.Component {
 
     return (
       <div>
-        <CategorieFilter />
+        <div>
+          <CategorieFilter />
+        </div>
         <div>
           <input
             data-testid="query-input"
@@ -48,11 +47,13 @@ export default class Home extends React.Component {
             name="searchText"
           />
           <button data-testid="query-button"
-            onClick={() => this.findProduct}>
+            onClick={this.findProduct}>
             Search
           </button>
         </div>
-        {/* <ProductsList products={products} /> */}
+        <div>
+          {this.state.products.map((product => <ProductCard key={product.id} product={product} />))}
+        </div>
         <Link data-testid="shopping-cart-button" to="/pages/shoppingcart"><img src="https://image.flaticon.com/icons/png/512/34/34562.png" alt="icone-carrinho" /></Link>
         <div data-testid="home-initial-message">
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
