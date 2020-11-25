@@ -1,7 +1,12 @@
-const getFetch = (url) => fetch(url).then(element => element.json());
+const getFetch = (url) => fetch(url).then((element) => element.json());
 
-export const getCategories = () =>
-  getFetch('https://api.mercadolibre.com/sites/MLB/categories');
-
-export const getProductsFromCategoryAndQuery = (categoryId, query) =>
-  getFetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`)
+export async function getCategories() {
+  const url = 'https://api.mercadolibre.com/sites/MLB/categories';
+  const result = await getFetch(url);
+  return result;
+}
+export async function getProductsFromCategoryAndQuery(categoryId, query) {
+  const url = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
+  const result = await getFetch(url);
+  return result;
+}
