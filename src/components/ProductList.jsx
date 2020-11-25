@@ -8,10 +8,10 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: '',
+      queryValue: '',
       products: [],
       loading: false,
-      checkInput: undefined,
+      idValue: undefined,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,14 +25,14 @@ class ProductList extends React.Component {
 
   handleFetch(event) {
     event.preventDefault();
-    const { inputValue, checkInput } = this.state;
+    const { queryValue, idValue } = this.state;
     this.setState(
       {
         loading: true,
       },
       () => {
         api
-          .getProductsFromCategoryAndQuery(checkInput, inputValue)
+          .getProductsFromCategoryAndQuery(idValue, queryValue)
           .then((response) => {
             this.setState({
               loading: false,
@@ -44,7 +44,7 @@ class ProductList extends React.Component {
   }
 
   render() {
-    const { inputValue, products, loading } = this.state;
+    const { queryValue, products, loading } = this.state;
 
     return (
       <div className="product-list">
@@ -54,12 +54,12 @@ class ProductList extends React.Component {
 
         <div className="container">
           <form className="first-input">
-            <label htmlFor="inputValue" data-testid="home-initial-message">
+            <label htmlFor="queryValue" data-testid="home-initial-message">
               <input
-                name="inputValue"
+                name="queryValue"
                 type="text"
                 data-testid="query-input"
-                value={ inputValue }
+                value={ queryValue }
                 onChange={ this.handleInputChange }
               />
               <Link data-testid="shopping-cart-button" to="/cart">
