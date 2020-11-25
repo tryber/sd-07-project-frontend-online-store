@@ -1,5 +1,7 @@
 import React from 'react';
 import InitialMessage from '../components/InitialMessage';
+import ButtonShop from '../components/ButtonShop';
+
 
 class Home extends React.Component {
     constructor(props) {
@@ -9,6 +11,7 @@ class Home extends React.Component {
           shearch:'',
         };
       }
+
 
     updateSearchValue (field, newValue) {
         this.setState({ [field]: newValue });
@@ -25,6 +28,7 @@ class Home extends React.Component {
                       value={this.state.shearch}
                       onChange={(event) => this.updateShearcValue('shearch', event.target.value)}
                     />
+                    <ButtonShop />
                 </header>
                 <InitialMessage />
             </div>
