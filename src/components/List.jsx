@@ -12,5 +12,5 @@ class List extends React.Component {
     </h3>);
   };
 }
-//Comentário aleatório para comitar
+
 export default List;
