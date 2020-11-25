@@ -9,7 +9,11 @@ class CategoryList extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchCategory();
+  }
+
+  async fetchCategory() {
     const category = await api.getCategories();
     this.setState({ category });
   }
