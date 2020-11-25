@@ -18,17 +18,20 @@ class CategoryList extends Component {
     const { category } = this.state;
     return (
       <div className="category-list">
-        {category.map((item) => (
-          <div
-            data-testid="category"
-            key={ item.id }
-            className="category-item"
-            onClick={ () => console.log(item.id) }
-            role="presentation"
-          >
-            {item.name}
-          </div>
-        ))}
+        <select>
+          {category.map((item) => (
+            <option
+              data-testid="category"
+              name="categoryId"
+              value={ item.id }
+              key={ item.id }
+              className="category-item"
+              onClick={ (event) => console.log(event.target.value) }
+            >
+              {item.name}
+            </option>
+          ))}
+        </select>
       </div>
     );
   }

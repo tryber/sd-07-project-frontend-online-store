@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import CategoryList from './CategoryList';
-import '../style/categoryList.css'
+
 class SearchBar extends Component {
   constructor() {
     super();
@@ -16,7 +16,7 @@ class SearchBar extends Component {
           <input type="text" />
         </label>
         <p data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</p>
-      <CategoryList />
+        <CategoryList />
       </div>
     );
   }
