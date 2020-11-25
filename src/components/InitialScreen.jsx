@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { SideBar } from './index';
 import './InitialScreen.css';
@@ -51,7 +52,7 @@ class InitialScreen extends React.Component {
       datacategorySelected,
       dataInputSearch,
     );
-    
+
     this.setState({ products: getProducts.results });
   }
 
@@ -65,9 +66,8 @@ class InitialScreen extends React.Component {
 
   render() {
     const { message, searchInput, products, categories } = this.state;
-
+    const { addToShoppingCart } = this.props;
     const tagMessage = <h1 data-testid="home-initial-message">{message}</h1>;
-
 
     return (
       <>
@@ -84,11 +84,15 @@ class InitialScreen extends React.Component {
           />
         </div>
 
-        <ProductList products={ products } />
+        <ProductList products={ products } addToShoppingCart={ addToShoppingCart } />
       </>
 
     );
   }
 }
+
+InitialScreen.propTypes = {
+  addToShoppingCart: PropTypes.func.isRequired,
+};
 
 export default InitialScreen;
