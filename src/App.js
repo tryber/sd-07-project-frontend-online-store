@@ -7,7 +7,6 @@ import ShoppingCart from './pages/ShoppingCart';
 import './App.css';
 
 class App extends React.Component {
-
   render() {
     return (
       <div className="App">
