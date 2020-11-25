@@ -14,7 +14,7 @@ class HomePage extends Component {
     // const { category } = this.state;
     return (
       <div>
-        <ProductList category="info" />
+        <ProductList categoryId="MLB5672" />
       </div>
     );
   }

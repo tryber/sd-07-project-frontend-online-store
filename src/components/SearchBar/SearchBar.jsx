@@ -6,8 +6,18 @@ class SearchBar extends Component {
     const { searchInput, onSearchInput, onSubmit } = this.props;
     return (
       <div>
-        <input data-testid="query-input" value={ searchInput } onChange={ onSearchInput } />
-        <button data-testid="query-button" onClick={ onSubmit } type="submit">Buscar</button>
+        <input
+          data-testid="query-input"
+          value={ searchInput }
+          onChange={ onSearchInput }
+        />
+        <button
+          data-testid="query-button"
+          onClick={ onSubmit }
+          type="submit"
+        >
+          Buscar
+        </button>
       </div>
     );
   }
@@ -16,6 +26,7 @@ class SearchBar extends Component {
 SearchBar.propTypes = {
   searchInput: PropTypes.string.isRequired,
   onSearchInput: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

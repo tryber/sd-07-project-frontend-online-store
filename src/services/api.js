@@ -7,8 +7,11 @@ export async function getCategories() {
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const endPoint = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
-    fetch(endPoint).then((request) => request.json()).then((object) => resolve(object));
+    fetch(endPoint)
+      .then((request) => request.json())
+      .then((object) => resolve(object))
+      .catch((err) => reject(new Error(err.message)));
   });
 }

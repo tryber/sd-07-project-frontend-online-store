@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import SearchBar from '../SearchBar/SearchBar';
 import * as api from '../../services/api';
 import InitialMessage from '../InitialMessage/InitialMessage';
 import NotFound from '../NotFound/NotFound';
+import ProductCard from '../ProductCard/ProductCard';
 
 class ProductList extends Component {
   constructor(props) {
@@ -21,10 +23,13 @@ class ProductList extends Component {
   }
 
   onSubmit() {
+    const { categoryId } = this.props;
     const { searchInput } = this.state;
-    api.getProductsFromCategoryAndQuery(category, searchInput).then((object) => {
-      this.setState({ productList: object.results });
-    });
+    api.getProductsFromCategoryAndQuery(categoryId, searchInput)
+      .then((object) => {
+        this.setState({ productList: object.results });
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -34,26 +39,26 @@ class ProductList extends Component {
       return (
         <div>
           <SearchBar
-            searchInput={searchInput}
-            onSearchInput={this.onSearchInput}
-            onSubmit={this.onSubmit}
+            searchInput={ searchInput }
+            onSearchInput={ this.onSearchInput }
+            onSubmit={ this.onSubmit }
           />
           <InitialMessage />
         </div>
       );
     }
 
-    if (searchInput !== '' && productList.length !== 0) {
+    if (searchInput !== '' && productList.length) {
       return (
         <div>
           <SearchBar
-            searchInput={searchInput}
-            onSearchInput={this.onSearchInput}
-            onSubmit={this.onSubmit}
+            searchInput={ searchInput }
+            onSearchInput={ this.onSearchInput }
+            onSubmit={ this.onSubmit }
           />
           <div>
             {productList.map((product) => (
-              <ProductCard product={product} />
+              <ProductCard product={ product } key={ product.id } />
             ))}
           </div>
         </div>
@@ -63,14 +68,18 @@ class ProductList extends Component {
     return (
       <div>
         <SearchBar
-          searchInput={searchInput}
-          onSearchInput={this.onSearchInput}
-          onSubmit={this.onSubmit}
+          searchInput={ searchInput }
+          onSearchInput={ this.onSearchInput }
+          onSubmit={ this.onSubmit }
         />
         <NotFound />
       </div>
     );
   }
 }
+
+ProductList.propTypes = {
+  categoryId: PropTypes.string.isRequired,
+};
 
 export default ProductList;
