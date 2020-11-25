@@ -15,5 +15,4 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
       .then((result) => resolve(result))
       .catch((error) => reject(error));
   });
- 
 }
