@@ -10,9 +10,12 @@ class HomeInitial extends Component {
     super();
     this.searchEventHandler = this.searchEventHandler.bind(this);
     this.searchOnChange = this.searchOnChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+
     this.state = {
       productArr: [],
       searchBarValue: '',
+      selectedCategory: '',
     };
   }
 
@@ -21,7 +24,6 @@ class HomeInitial extends Component {
     return productArr.map(
       (product) => <li data-testid="product" key={ product.id }><ProductCard product={ product } /></li>,
     );
-
   }
 
   searchOnChange(event) {
@@ -42,11 +44,17 @@ class HomeInitial extends Component {
     }
   }
 
+  handleCategoryChange(event) {
+    this.setState({
+      selectedCategory: event.target.value,
+    });
+  }
+
   render() {
     const { productArr } = this.state;
     return (
       <div className="home-page">
-        <CategoryList />
+        <CategoryList handleCategoryChange={ this.handleCategoryChange } />
         <ShoppingCartButton className="shopping-cart-button" />
         <span data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.

@@ -25,16 +25,27 @@ class CategoryList extends Component {
 
   render() {
     const { categories } = this.state;
+    const { handleCategoryChange } = this.props;
     return (
       <div>
         <span>Categorias</span>
-        <ul>
+        <form>
           {categories.map((category) => (
-            <li data-testid="category" key={ category.id }>
+            <label
+              htmlFor="category"
+              key={ category.id }
+            >
+              <input
+                name="category"
+                value={ category.name }
+                type="radio"
+                data-testid="category"
+                onChange={ handleCategoryChange }
+              />
               {category.name}
-            </li>
+            </label>
           ))}
-        </ul>
+        </form>
       </div>
     );
   }
