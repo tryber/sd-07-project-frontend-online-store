@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import * as API from "../services/api";
 import CategoriesList from "../components/CategoriesList";
 import Logo from "../shoppingCartImage.png";
-import Product from '../components/Product';
+import ShowProducts from "../components/ShowProducts";
 
 class ProductsList extends Component {
   constructor() {
     super();
-    this.showProducts = this.showProducts.bind(this);
     this.showMessage = this.showMessage.bind(this);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
+    this.categoryChoice = this.categoryChoice.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
+      category: undefined,
       categories: undefined,
       products: undefined,
       search: "",
@@ -29,25 +30,11 @@ class ProductsList extends Component {
   }
 
   async searchQueryProducts() {
-    const ListProducts = await API.getProductsFromCategoryAndQuery(undefined, this.state.search);
+    const ListProducts = await API.getProductsFromCategoryAndQuery(this.state.category, this.state.search);
     if (ListProducts === "") return <span>Nenhum produto foi encontrado</span>;
     const { results } = ListProducts;
+    console.log(results);
     return (this.setState({ products: results }));
-  }
-
-  showProducts() {
-    return (
-      <div>
-        {this.state.products.map((element) => {
-          return <Product
-            key={element.id}
-            title={element.title}
-            price={element.price}
-            thumbnail={element.thumbnail}
-          />;
-        })}
-      </div>
-    );
   }
 
   showMessage() {
@@ -58,10 +45,15 @@ class ProductsList extends Component {
     );
   }
 
-  handleChange(event) {
-    this.setState({
-      search: event.target.value
-    });
+  categoryChoice({ target }) {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+    this.searchQueryProducts();
+  }
+
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState({ [name]: value });
   }
   
   render() {
@@ -70,16 +62,21 @@ class ProductsList extends Component {
     return (
       <div>
         <div>
-          {categories ? categories.map((categorie) => <CategoriesList key={categorie.id} categorie={categorie} />) : null }
+          {categories ? categories.map((categorie) => <CategoriesList
+            key={categorie.id}
+            categorie={categorie}
+            onCategoryChoice={this.categoryChoice} />
+          ) : null }
         </div>
         <div>
           <input
+            name="search"
             type="text"
             data-testid="query-input"
             onChange={this.handleChange}
           />
           <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
-          {products === undefined ? this.showMessage() : this.showProducts()}
+          {products === undefined ? this.showMessage() : <ShowProducts products={products} />}
           <Link data-testid="shopping-cart-button" to="/PageCard">
             <img src={Logo} alt="shoppingCart" />
           </Link>
