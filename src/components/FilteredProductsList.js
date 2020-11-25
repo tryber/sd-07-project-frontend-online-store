@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import IndividualCard from './IndividualCard';
 
 class FilteredProductsList extends Component {
@@ -28,5 +29,9 @@ class FilteredProductsList extends Component {
     );
   }
 }
+
+FilteredProductsList.propTypes = {
+  allProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default FilteredProductsList;
