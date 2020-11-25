@@ -4,8 +4,7 @@ class ShoppingCart extends React.Component{
   render() {
     return (
       <div>
-        <h2>Carrinho de Compras</h2>
-        <h3>Seu Carrinho Está Vazio</h3>
+        <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
       </div>
     )
   }
