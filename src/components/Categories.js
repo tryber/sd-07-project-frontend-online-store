@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 // import { Link } from 'react-router-dom';
-import * as api from '../services/api';
+import * as api from "../services/api";
 
 class Categories extends React.Component {
   constructor(props) {
@@ -10,7 +10,6 @@ class Categories extends React.Component {
     };
   }
   async componentDidMount() {
-
     const categoriesRequi = await api.getCategories().then((result) => {
       this.setState({ categories: result });
     });
@@ -23,9 +22,9 @@ class Categories extends React.Component {
     return (
       <div>
         <select id="categories">
-          {categories.map((category) =>{
-            return <option value={category.name}>{category.name}</option>
-            })}
+          {categories.map((category) => {
+            return <option value={category.name}>{category.name}</option>;
+          })}
         </select>
       </div>
     );
