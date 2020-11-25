@@ -1,9 +1,10 @@
 import React from 'react';
-import logo from '../logo.svg';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import * as mlAPI from '../services/api';
 import Categories from './Categories';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-
+import '../App.css';
+import logo from '../images/logo.svg';
+import shoppingCart from '../images/shopping-cart.png';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -54,7 +55,9 @@ class SearchBar extends React.Component {
           <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
         </div>
         <Router>
-          <Link to="/cart">Cart</Link>
+          <Link to="/cart">
+            <img className="shopping-cart-icon" alt="Shopping cart icon" src={shoppingCart} />
+          </Link>
         </Router>
       </div >
     );
