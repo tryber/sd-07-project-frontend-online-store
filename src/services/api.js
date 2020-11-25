@@ -7,7 +7,6 @@ export async function getCategories() {
   });
 }
 
-
 export async function getProductsFromCategoryAndQuery(/* categoryId, query */) {
   return new Promise((resolve) => {
     const categories = 'https://api.mercadolibre.com/sites/MLB/search?q=$QUERY';
