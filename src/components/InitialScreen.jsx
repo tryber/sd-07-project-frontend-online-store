@@ -51,7 +51,7 @@ class InitialScreen extends React.Component {
       datacategorySelected,
       dataInputSearch,
     );
-    
+
     this.setState({ products: getProducts.results });
   }
 
@@ -67,7 +67,6 @@ class InitialScreen extends React.Component {
     const { message, searchInput, products, categories } = this.state;
 
     const tagMessage = <h1 data-testid="home-initial-message">{message}</h1>;
-
 
     return (
       <>
@@ -86,7 +85,6 @@ class InitialScreen extends React.Component {
 
         <ProductList products={ products } />
       </>
-
     );
   }
 }
