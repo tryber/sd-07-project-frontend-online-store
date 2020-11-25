@@ -1,10 +1,10 @@
 import React from 'react';
 import '../App.css';
-import * as api from '../services/api';
+/* import * as api from '../services/api'; */
 
 
 class Search extends React.Component {
-  constructor(props) {
+  /* constructor(props) {
     super(props);
     this.state = {
       term: '',
@@ -28,7 +28,7 @@ class Search extends React.Component {
       );
       this.setState({ loading: false, product: getingProduct });
     });
-  }
+  } */
 
   render() {
     return (
