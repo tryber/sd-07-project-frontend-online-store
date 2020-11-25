@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import PageCard from './PageCard';
+import PageCard from './pages/PageCard';
 // import './App.css';
 import ProductsList from './pages/ProductsList';
 
