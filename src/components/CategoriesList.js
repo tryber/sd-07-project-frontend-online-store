@@ -38,8 +38,6 @@ class CategoriesList extends Component {
               <p data-testid="category" key={ category.id }>
                 {category.name}
               </p>
-
-
             ))}
           </div>
         )}
