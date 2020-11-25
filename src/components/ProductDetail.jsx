@@ -8,6 +8,7 @@ class ProductDetail extends React.Component {
     this.fetchDetails = this.fetchDetails.bind(this);
     this.state = {
       dataDetail: [],
+      loading: false,
     };
   }
 
@@ -29,6 +30,7 @@ class ProductDetail extends React.Component {
 
   render() {
     const { dataDetail } = this.state;
+    console.log(dataDetail);
     let renderDetails = '';
     if (dataDetail !== [] || dataDetail) {
       renderDetails = (
