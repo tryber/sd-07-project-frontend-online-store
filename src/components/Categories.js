@@ -6,9 +6,6 @@ import Loading from './Loading';
 class Categories extends Component {
   constructor() {
     super();
-
-    this.fetchCategories = this.fetchCategories.bind(this);
-
     this.state = {
       loading: true,
       categories: [],
@@ -45,6 +42,7 @@ class Categories extends Component {
                   id={ id }
                   name="category"
                   data-testid="category"
+                  /* onClick={ (event) => handleChangeCategory(event) } */
                 />
                 <label htmlFor={ id }>
                   { name }

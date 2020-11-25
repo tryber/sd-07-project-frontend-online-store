@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-
-import Categories from './components/Categories';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Home, ShoppingCart } from './components/index';
 
 class App extends Component {
   render() {
@@ -12,7 +12,12 @@ class App extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <Categories />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/shoppingcart" component={ ShoppingCart } />
+          </Switch>
+          <Route exaxt path="/" component={ Home } />
+        </BrowserRouter>
       </div>
     );
   }
