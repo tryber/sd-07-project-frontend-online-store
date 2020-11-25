@@ -8,11 +8,13 @@ class PageListProducts extends React.Component {
   constructor() {
     super();
     this.fetchCategorys = this.fetchCategorys.bind(this);
+    this.categoryUpdate = this.categoryUpdate.bind(this);
     this.state = {
       categorys: [],
       products: [],
       loading: false,
       searchText: '',
+      selectedCategory: ''
     };
   }
 
@@ -30,12 +32,18 @@ class PageListProducts extends React.Component {
     });
   }
 
+  categoryUpdate(categoryId) {
+    console.log('categoria foi atualizada com '+categoryId);
+    this.setState({selectedCategory:categoryId})
+  }
+
   render() {
     return (
       <div className="page-list-products">
-        <Categorias categorys={this.state.categorys} />
+        <Categorias categorys={this.state.categorys} callback={this.categoryUpdate} />
         <div className="list-products">
-          <ProductListing
+          <ProductListing 
+          categoryId={this.state.selectedCategory} 
           />
         </div>
       </div>
