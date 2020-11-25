@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 /* import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined'; */
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 /* import SearchBar from './components/SearchBar';
 import ShoppingCart from './components/ShoppingCart'; */
 import MainPage from './pages/main-page';
