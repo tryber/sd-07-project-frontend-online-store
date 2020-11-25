@@ -8,9 +8,10 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: '',
+      queryValue: '',
       products: [],
       loading: false,
+      idValue: undefined,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,14 +25,14 @@ class ProductList extends React.Component {
 
   handleFetch(event) {
     event.preventDefault();
-    const { inputValue } = this.state;
+    const { queryValue, idValue } = this.state;
     this.setState(
       {
         loading: true,
       },
       () => {
         api
-          .getProductsFromCategoryAndQuery(undefined, inputValue)
+          .getProductsFromCategoryAndQuery(idValue, queryValue)
           .then((response) => {
             this.setState({
               loading: false,
@@ -43,22 +44,22 @@ class ProductList extends React.Component {
   }
 
   render() {
-    const { inputValue, products, loading } = this.state;
-
-    if (loading) return <div>Carregando...</div>;
+    const { queryValue, products, loading } = this.state;
 
     return (
       <div className="product-list">
-        <CategoryList />
+        <CategoryList
+          onChange={ this.handleInputChange }
+        />
 
         <div className="container">
           <form className="first-input">
-            <label htmlFor="inputValue" data-testid="home-initial-message">
+            <label htmlFor="queryValue" data-testid="home-initial-message">
               <input
-                name="inputValue"
+                name="queryValue"
                 type="text"
                 data-testid="query-input"
-                value={ inputValue }
+                value={ queryValue }
                 onChange={ this.handleInputChange }
               />
               <Link data-testid="shopping-cart-button" to="/cart">
@@ -72,6 +73,7 @@ class ProductList extends React.Component {
               Digite algum termo de pesquisa ou escolha uma categoria.
             </label>
             <br />
+
             <button
               type="button"
               data-testid="query-button"
@@ -91,6 +93,8 @@ class ProductList extends React.Component {
                   title={ product.title }
                   thumbnail={ product.thumbnail }
                   price={ product.price }
+                  id={ product.id }
+                  filterId={ product.category_id }
                 />
               ))
             )}

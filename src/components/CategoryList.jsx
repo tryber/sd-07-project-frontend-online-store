@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class CategoryList extends React.Component {
@@ -35,6 +36,7 @@ class CategoryList extends React.Component {
 
   render() {
     const { categories, loading } = this.state;
+    const { onChange } = this.props;
 
     if (loading) return <div>Carregando...</div>;
 
@@ -42,8 +44,13 @@ class CategoryList extends React.Component {
       <div className="category-list">
         Categorias:
         {categories.map((element) => (
-          <label htmlFor="input-check" data-testid="category" key={ element.id }>
-            <input id="input-check" type="checkbox" />
+          <label htmlFor="idValue" data-testid="category" key={ element.id }>
+            <input
+              name="idValue"
+              value={ element.id }
+              onChange={ onChange }
+              type="checkbox"
+            />
             {element.name}
           </label>
         ))}
@@ -51,5 +58,10 @@ class CategoryList extends React.Component {
     );
   }
 }
+
+CategoryList.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
+
 
 export default CategoryList;
