@@ -10,7 +10,7 @@ class ProductList extends Component {
         </h1>
       </div>
     );
-  }  
+  }
 }
 
 export default ProductList;
