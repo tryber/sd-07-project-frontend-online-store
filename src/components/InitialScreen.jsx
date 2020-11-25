@@ -51,11 +51,13 @@ class InitialScreen extends React.Component {
   }
 
   render() {
+
     const { message, searchInput, products } = this.state;
+        
     return (
       <div className="container">
         <div className="side-bar">
-          <SideBar />
+          <SideBar categories={ categories } />
         </div>
         <header className="container-initial-screen">
           <input
