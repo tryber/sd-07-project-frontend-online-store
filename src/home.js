@@ -11,7 +11,7 @@ class home extends Component {
         </h2>
         <Link to="/shoppingCart">
           <img
-            src={icon}
+            src={ icon }
             width="70"
             height="70"
             alt="shopping-cart-icon"
