@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 class SearchBar extends Component {
     render() {
+    return(
         <div>
             <label>
                 <button>Botão de pesquisa</button>
@@ -10,6 +11,7 @@ class SearchBar extends Component {
             </label>
             <Link to="/shoppingCart"><button>Carrinho de compras</button></Link>
         </div>
+    )
     }
 }
 

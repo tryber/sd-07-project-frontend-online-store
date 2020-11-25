@@ -9,3 +9,6 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const searchedItems = await requestAPI.json();
   return searchedItems;
 }
+
+export default getCategories
+export default getProductsFromCategoryAndQuery
