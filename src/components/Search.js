@@ -17,17 +17,13 @@ class Search extends React.Component {
 
   async fetchAPI(event) {
     event.preventDefault();
-    try {
-      const { searchTerms } = this.state;
-      const response = await api.getProductsFromCategoryAndQuery('', searchTerms);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    const { searchTerms } = this.state;
+    const { results } = await api.getProductsFromCategoryAndQuery('', searchTerms);
+    this.setState({ products: results });
   }
 
   render() {
-    const { searchTerms } = this.state;
+    const { searchTerms, products } = this.state;
     return (
       <div data-testid="home-initial-message">
         <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
@@ -50,7 +46,7 @@ class Search extends React.Component {
           </button>
         </form>
 
-        <Cards />
+        <Cards products={ products } />
       </div>
     );
   }
