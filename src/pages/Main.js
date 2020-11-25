@@ -12,7 +12,7 @@ class Main extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
         <Link to="/shoppingCart" data-testid="shopping-cart-button">
-          <img className="chartImg" src={chart}></img>
+          <img className="chartImg" src={ chart } alt="carrinho-de-compras" />
         </Link>
       </div>
     );
