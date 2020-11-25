@@ -5,8 +5,8 @@ import CategoryList from './components/CategoryList';
 function App() {
   return (
     <div>
-      <CategoryList />
       <ProductList />
+      <CategoryList />
     </div>
   );
 }
