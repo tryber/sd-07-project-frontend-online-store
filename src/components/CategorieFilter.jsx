@@ -22,13 +22,19 @@ export default class CategorieFilter extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <ul>
+      <div>
         { categories.map((categorie) => (
-          <li key={ categorie.id }>
-            {categorie.name}
-          </li>
+          <div key={ categorie.id }>
+            <label htmlFor={ categorie.id }>{ categorie.name }</label>
+            <input
+              type="radio"
+              data-testid="category"
+              name={ categorie.name }
+              value={ categorie.name }
+            />
+          </div>
         ))}
-      </ul>
+      </div>
     );
   }
 }
