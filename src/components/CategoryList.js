@@ -26,11 +26,9 @@ class CategoryList extends React.Component {
   }
 
   render() {
-    const { categories } = this.state;
-
     return (
       <div>
-        {categories.map(
+        {this.state.categories.map(
           (category) => <ItemCategory key={ category.id } category={ category } />,
         )}
       </div>
