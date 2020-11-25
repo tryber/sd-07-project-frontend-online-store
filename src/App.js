@@ -12,6 +12,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
+          <Header />
           <Switch>
             <Route exact path="/" component={ Products } />
             <Route exact path="/pages/shopping-cart" component={ ShoppingCart } />
