@@ -1,51 +1,92 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import CategoriesCard from '../components/CategoriesCard';
+
 
 import * as api from '../services/api';
 
 class CategoriesList extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      categories: [],
-      categoryId: '',
       query: '',
+      object: [],
     };
     this.CategoriesList = this.CategoriesList.bind(this);
+    this.onInputSearchChange = this.onInputSearchChange.bind(this);
+    this.SearchProduct = this.SearchProduct.bind(this);
+    this.getProducts = this.getProducts.bind(this);
   }
 
   componentDidMount() {
     this.CategoriesList();
   }
 
+  onInputSearchChange({ target }) {
+    this.setState({ query: target.value });
+  }
+
+  async getProducts(categoryId, query) {
+    const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
+
+    return products;
+  }
+
+  async SearchProduct() {
+    const { query } = this.state;
+    const categoryId = 'ALL';
+    const { results } = await this.getProducts(categoryId, query);
+    this.setState({ object: results });
+  }
 
   CategoriesList() {
     api.getCategories()
-      .then((categories) => {
-        console.log(categories);
-        this.setState({ categories });
-      })
+      .then()
       .catch((error) => console.log('Promises rejected: ', error));
   }
-
-  SearchProduct() {
-    const { categoryId, query } = this.state;
-
-    api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((categorie) => {
-        console.log(categorie);
-        this.setState({ categorie });
-      })
-      .catch((error) => console.log('Promises rejected: ', error));
-  }
-
 
   render() {
+    const { object } = this.state;
+    const { query } = this.state;
     return (
-      <div>
-        <label>
-          <input />
-          <h2 data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</h2>
-        </label>
+      <div className="home-initial">
+        <div className="home-initial-input">
+          <label htmlFor="home-initial-message">
+            <input
+              className="input"
+              data-testid="query-input"
+              placeholder="Pesquisar"
+              value={ query }
+              onChange={ this.onInputSearchChange }
+            />
+            <button
+              data-testid="query-button"
+              type="button"
+              onClick={ this.SearchProduct }
+            >
+              Pesquisar
+            </button>
+          </label>
+          <section>
+            {object.map((product) => (
+              <CategoriesCard key={ product.id } product={ product } />
+            ))}
+          </section>
+          <h3 data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </h3>
+        </div>
+        <Link
+          to="/shoopingcart"
+          data-testid="shopping-cart-button"
+          className="home-initial-link"
+        >
+          <img
+            src="images/icons-shopping-cart.png"
+            alt="Carrinho de Compras"
+          />
+        </Link>
       </div>
     );
   }
