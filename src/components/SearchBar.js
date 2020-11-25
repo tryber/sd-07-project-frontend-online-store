@@ -1,24 +1,21 @@
 import React from 'react';
-import * as api from '../services/api';
-import ProductsList from './ProductsList';
+import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   constructor() {
     super();
     this.state = {
       query: '',
-      products: [],
     };
 
-    this.showProducts = this.showProducts.bind(this);
+    this.sendQuerySearch = this.sendQuerySearch.bind(this);
     this.handleQuery = this.handleQuery.bind(this);
   }
 
-  showProducts() {
+  sendQuerySearch() {
     const { query } = this.state;
-    getProductsFromCategoryAndQuery('', query).then(({ products }) =>
-      this.setState({ products })
-    );
+    const { getQuerySearch } = this.props;
+    getQuerySearch(query);
   }
 
   handleQuery({ target }) {
@@ -26,30 +23,23 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const { products } = this.state;
     return (
       <div>
-        <input onChange={this.handleQuery} data-testid='query-input' />
+        <input onChange={ this.handleQuery } data-testid="query-input" />
         <button
-          type='button'
-          data-testid='query-button'
-          onClick={this.showProducts}>
+          type="button"
+          data-testid="query-button"
+          onClick={ this.sendQuerySearch }
+        >
           Enviar
         </button>
-        <div>
-          <div data-testid='home-initial-message'>
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </div>
-          <div data-testid='product'>
-            {products.map((product) => (
-              <ProductsList key={product.id} data={product} />
-            ))}
-            {!products.length && <p>Nenhum produto foi encontrado</p>}
-          </div>
-        </div>
       </div>
     );
   }
 }
+
+SearchBar.propTypes = {
+  getQuerySearch: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
