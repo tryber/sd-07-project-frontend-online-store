@@ -1,35 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../App.css';
 import * as api from '../services/api';
+import CardList from './CardList';
+import ProductNotFound from './ProductNotFound';
 
 class Search extends React.Component {
-  constructor(props) {
+ constructor(props) {
     super(props);
     this.state = {
       term: '',
-      product: {},
+      products: {},
+      status: '',
       categoryId: 0,
-      loading: false,
     };
     this.getProduct = this.getProduct.bind(this);
-  }
-
-  componentDidMount() {
-    this.getProduct();
+    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   getProduct() {
-    this.setState({ loading: true }, async () => {
+    this.setState( async () => {
       const { categoryId, term } = this.state;
       const getingProduct = await api.getProductsFromCategoryAndQuery(
         categoryId,
-        term
+        term,
       );
-      console.log(getingProduct)
-      this.setState({ loading: false, product: getingProduct });
+      this.setState({ products: getingProduct.results, status: 'OK' });
     });
+  } 
+
+  onSearchChange(event) {
+   const { name, value } = event.target
+   this.setState({ [name]: value });
   }
+
 
   render() {
     return (
@@ -38,26 +41,24 @@ class Search extends React.Component {
           data-testid="query-input"
           className="input-search"
           type="text"
+          name="term"
+          value={this.state.term}
           placeholder="Digite algum termo de pesquisa aqui"
+          onChange={this.onSearchChange}
         />
         <button
           type="button"
           className="button-search"
           data-testid="query-button"
+          onClick={this.getProduct}
         >
-          Procurar
+        Procurar
         </button>
-          <Link to="/cartBuy" data-testid="shopping-cart-button">
-            <img
-              className="cartBuy"
-              src="https://img.icons8.com/ios/452/shopping-cart.png"
-              alt="imagem de carrinho"
-            />
-          </Link>
         <div>
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
+          {this.state.status === 'OK' ? <CardList products={this.state.products} /> : <ProductNotFound /> }
         </div>
       </div>
     );
