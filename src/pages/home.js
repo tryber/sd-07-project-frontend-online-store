@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CartIcon from '../images/CartIcon.png';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 import ProductCard from './ProductCard';
 import SearchBar from './SearchBar';
 
@@ -40,10 +40,10 @@ class home extends Component {
         <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
-        <SearchBar query={this.inputEvent} />
+        <SearchBar query={ this.inputEvent } />
         <Link to="/shoppingCart">
           <img
-            src={CartIcon}
+            src={ CartIcon }
             width="70"
             height="70"
             alt="shopping-cart-icon"
@@ -51,8 +51,10 @@ class home extends Component {
           />
         </Link>
         <div>
-          {products.map((product) =>
-            <ProductCard key={product.id} product={product} />)}
+          {
+            products
+              .map((product) => <ProductCard key={ product.id } product={ product } />)
+          }
         </div>
       </div>
     );

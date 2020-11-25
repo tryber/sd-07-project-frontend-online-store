@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import lupa from '../images/lupa.png';
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.textImput = this.textImput.bind(this);
+    this.inputChange = this.inputChange.bind(this);
+
     this.state = {
       inputValue: '',
     };
@@ -15,10 +18,16 @@ class SearchBar extends Component {
   }
 
   textImput() {
+    const { query } = this.props;
+    const { inputValue } = this.state;
     return (
       <label htmlFor="searchBar">
-        <button onClick={() => this.props.query(this.state.inputValue) } type="button">
-          <img src={lupa} width="15" height="15" alt="imageButton" />
+        <button
+          onClick={ () => query(inputValue) }
+          type="button"
+          data-testid="query-button"
+        >
+          <img src={ lupa } width="15" height="15" alt="imageButton" />
         </button>
         <input
           type="text"
@@ -26,7 +35,7 @@ class SearchBar extends Component {
           name="searchBar"
           onChange={ this.inputChange }
         />
-      </label >
+      </label>
     );
   }
 
@@ -39,4 +48,6 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar
+export default SearchBar;
+
+SearchBar.propTypes = { query: PropTypes.func.isRequired };
