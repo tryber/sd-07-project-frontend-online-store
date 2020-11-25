@@ -1,16 +1,18 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Search from './Components/Search';
-import ButtonCart from './Components/ButtonCart';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './Pages/Home';
+import Cart from './Pages/Cart';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Switch>
-        <Route exact path="/" component={ Search } />
-        <Route exact path="/cartBuy" component={ ButtonCart } />
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ Home } />
+          <Route exact path="/cartBuy" component={ Cart } />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
