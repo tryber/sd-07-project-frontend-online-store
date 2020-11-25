@@ -15,6 +15,10 @@ class ListCategory extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.fetchCategories();
+  }
+
   fetchCategories() {
     this.setState(
       {
@@ -29,10 +33,6 @@ class ListCategory extends React.Component {
         }));
       },
     );
-  }
-
-  componentDidMount() {
-    this.fetchCategories();
   }
 
   render() {
