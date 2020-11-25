@@ -18,10 +18,11 @@ class CategoryList extends React.Component {
     this.fetchCategoryList();
   }
 
-  async fetchCategoryList() {
-    await productsAPI.getCategories();
-    this.setState({
-      categories: [],
+  fetchCategoryList() {
+    productsAPI.getCategories().then((data) => {
+      this.setState({
+        categories: [...data],
+      });
     });
   }
 
