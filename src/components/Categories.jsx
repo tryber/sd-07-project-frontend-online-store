@@ -23,7 +23,7 @@ class Categories extends Component {
       <div>
         <h2>Categorias</h2>
         {this.state.categories.map((category) =>
-          <div data-testid="category" key={category.name}>
+          <div key={category.name}>
             <input
               id={category.name}
               type="radio"
@@ -31,7 +31,7 @@ class Categories extends Component {
               value={category.name}
               onChange={onChange}
             />
-            <label htmlFor={category.name}>{category.name}</label>
+            <label data-testid="category" htmlFor={category.name}>{category.name}</label>
           </div>
         )}
       </div>
