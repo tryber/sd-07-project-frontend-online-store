@@ -1,17 +1,22 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import ProductList from './components/ProductList';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import CategoriesList from './components/CategoriesList';
 import Home from './components/Home';
 import './App.css';
+import ProductList from './components/ProductList';
 
 function App() {
   return (
-    <div>
-      <Home />
-      <BrowserRouter>
+
+
+    <BrowserRouter>
+      <Switch>
         <Route exact path="/" component={ ProductList } />
-      </BrowserRouter>
-    </div>
+        <Route exact path="/" component={ CategoriesList } />
+      </Switch>
+    </BrowserRouter>
+
+
   );
 }
 
