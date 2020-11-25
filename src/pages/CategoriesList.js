@@ -20,7 +20,7 @@ class CategoriesList extends React.Component {
   }
 
   render() {
-    const list = [{id:1, name:"produto 1"},{id:2, name:"produto 2"}];
+    const list = this.state.list;
     return (
       <div>
         Categorias de Produtos:
@@ -29,8 +29,9 @@ class CategoriesList extends React.Component {
             <input
               id={ id }
               type="radio"
-              value={name}
+              value={ name }
               name="category"
+              data-testid="category"
             />
             <label htmlFor={ id }>{ name }</label>
           </div>
