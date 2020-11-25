@@ -51,7 +51,7 @@ class Listagem extends Component {
         <button
           type="submit"
           data-testid="query-button"
-          onClick={ this.handleClick() }
+          onClick={ this.handleClick }
         >
           Pesquisar
         </button>
