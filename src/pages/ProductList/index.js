@@ -17,6 +17,7 @@ class ProductList extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
   }
 
   handleInputChange({ target }) {
@@ -30,14 +31,21 @@ class ProductList extends Component {
       .then(({ results }) => this.setState({ results }));
   }
 
+  handleChangeCategory(categoryID) {
+    const { searchInput } = this.state;
+    getProductsFromCategoryAndQuery(categoryID, searchInput)
+      .then(({ results }) => this.setState({ results }));
+  }
+
   render() {
-    const { results } = this.state;
+    const { results, searchInput } = this.state;
     return (
       <section>
         <header>
           <input
             type="text"
             name="searchInput"
+            value={ searchInput }
             data-testid="query-input"
             onChange={ this.handleInputChange }
           />
@@ -55,7 +63,7 @@ class ProductList extends Component {
         </header>
         <main>
           <aside>
-            <CategoryList />
+            <CategoryList onChange={ this.handleChangeCategory } />
           </aside>
           <section>
             {results.map((result) => <Card key={ result.id } data={ result } />)}
