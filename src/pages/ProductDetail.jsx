@@ -7,6 +7,7 @@ class ProductDetail extends React.Component {
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
 
     this.state = {
+      id: '',
       attributes: [],
       title: '',
       price: 0,
@@ -15,8 +16,8 @@ class ProductDetail extends React.Component {
   }
 
   async searchQueryProducts() {
-    const ListProducts = await API.getProductById(this.props.match.params.id);
-    const { attributes, title, thumbnail, price } = ListProducts;
+    const ListProducts = await API.getProductsFromCategoryAndQuery(this.props.match.params.id, undefined);
+    const { id, attributes, title, thumbnail, price } = ListProducts;
     return this.setState({ attributes, title, thumbnail, price });
   }
 
@@ -36,7 +37,7 @@ class ProductDetail extends React.Component {
           <ul>
             {this.state.attributes.map((element) => {
               return (
-                <li>
+                <li key={element.id}>
                   {`${element.name} --- ${element.value_name}`};
                 </li>
               );

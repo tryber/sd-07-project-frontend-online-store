@@ -10,9 +10,13 @@ function App() {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ ProductsList } />
-          <Route exact path="/PageCard" component={ PageCard } />
-          <Route exact path="/ProductDetail/:id" render={(props) => <ProductDetail {...props} />} />
+          <Route exact path='/' component={ProductsList} />
+          <Route exact path='/PageCard' component={PageCard} />
+          <Route
+            exact
+            path='/ProductDetail/:id'
+            render={(props) => <ProductDetail {...props} />}
+          />
         </Switch>
       </BrowserRouter>
     </div>

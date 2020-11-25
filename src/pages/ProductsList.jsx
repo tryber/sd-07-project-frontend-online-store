@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import * as API from "../services/api";
-import CategoriesList from "../components/CategoriesList";
-import Logo from "../shoppingCartImage.png";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import * as API from '../services/api';
+import CategoriesList from '../components/CategoriesList';
+import Logo from '../shoppingCartImage.png';
 import Product from './Product';
 
 class ProductsList extends Component {
@@ -15,7 +15,7 @@ class ProductsList extends Component {
     this.state = {
       categories: undefined,
       products: [],
-      search: "",
+      search: '',
     };
   }
 
@@ -29,23 +29,28 @@ class ProductsList extends Component {
   }
 
   async searchQueryProducts() {
-    const ListProducts = await API.getProductsFromCategoryAndQuery(undefined, this.state.search);
-    if (ListProducts === "") return <span>Nenhum produto foi encontrado</span>;
+    const ListProducts = await API.getProductsFromCategoryAndQuery(
+      undefined,
+      this.state.search
+    );
+    if (ListProducts === '') return <span>Nenhum produto foi encontrado</span>;
     const { results } = ListProducts;
-    return (this.setState({ products: results }));
+    return this.setState({ products: results });
   }
 
   showProducts() {
     return (
       <div>
         {this.state.products.map((element) => {
-          return <Product
-            key={element.id}
-            id={element.id}
-            title={element.title}
-            price={element.price}
-            thumbnail={element.thumbnail}
-          />;
+          return (
+            <Product
+              key={element.id}
+              id={element.id}
+              title={element.title}
+              price={element.price}
+              thumbnail={element.thumbnail}
+            />
+          );
         })}
       </div>
     );
@@ -53,7 +58,7 @@ class ProductsList extends Component {
 
   showMessage() {
     return (
-      <h1 data-testid="home-initial-message">
+      <h1 data-testid='home-initial-message'>
         Digite algum termo de pesquisa ou escolha uma categoria.
       </h1>
     );
@@ -61,10 +66,10 @@ class ProductsList extends Component {
 
   handleChange(event) {
     this.setState({
-      search: event.target.value
+      search: event.target.value,
     });
   }
-  
+
   render() {
     const { categories, products } = this.state;
 
@@ -75,14 +80,16 @@ class ProductsList extends Component {
         </div>
         <div>
           <input
-            type="text"
-            data-testid="query-input"
+            type='text'
+            data-testid='query-input'
             onChange={this.handleChange}
           />
-          <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
+          <button data-testid='query-button' onClick={this.searchQueryProducts}>
+            Pesquisar
+          </button>
           {products === [] ? this.showMessage() : this.showProducts()}
-          <Link data-testid="shopping-cart-button" to="/PageCard">
-            <img src={Logo} alt="shoppingCart" />
+          <Link data-testid='shopping-cart-button' to='/PageCard'>
+            <img src={Logo} alt='shoppingCart' />
           </Link>
         </div>
       </div>
