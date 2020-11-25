@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import icon from './download.png';
+import CartIcon from '../images/CartIcon.png';
 
 class home extends Component {
   render() {
@@ -11,7 +11,7 @@ class home extends Component {
         </h2>
         <Link to="/shoppingCart">
           <img
-            src={ icon }
+            src={ CartIcon }
             width="70"
             height="70"
             alt="shopping-cart-icon"
