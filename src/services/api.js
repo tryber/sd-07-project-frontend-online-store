@@ -5,24 +5,30 @@ export async function getCategories() {
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   if (categoryId && query) {
-    return fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`)
-      .then((response) => response.json());
+    const API = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}}`;
+    const response = fetch(API)
+      .then((r) => r.json());
+    if (response.error) {
+      throw new Error(`endpoint não existe ${response.error}`);
+    }
+    return response;
+  }
+  if (query) {
+    const API = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
+    const response = fetch(API)
+      .then((r) => r.json());
+    if (response.error) {
+      throw new Error(`endpoint não existe ${response.error}`);
+    }
+    return response;
+  }
+  if (categoryId) {
+    const API = `https://api.mercadolibre.com/sites/MLB/search?q=${categoryId}`;
+    const response = fetch(API)
+      .then((r) => r.json());
+    if (response.error) {
+      throw new Error(`endpoint não existe ${response.error}`);
+    }
+    return response;
   }
 }
-
-// export async function getProductsFromQuery(query) {
-//   return fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`)
-//     .then((response) => response.json())
-//     .then((data) => data);
-// }
-
-
-// export async function getProductsFromCategoryAndQuery(categoryId, query) {
-//   if (categoryId && query) {
-//     fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`)
-//       .then((response) => response.json());
-//   } else if (query) {
-//     fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`)
-//       .then((response) => response.json());
-//   }
-// }
