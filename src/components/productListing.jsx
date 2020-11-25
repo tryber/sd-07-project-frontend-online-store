@@ -33,7 +33,6 @@ class ProductListing extends Component {
   }
 
   render() {
-    const { handleChange, queryProducts } = this.props;
     return (
       <div>
         <input
