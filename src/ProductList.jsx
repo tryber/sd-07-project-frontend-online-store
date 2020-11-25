@@ -1,9 +1,9 @@
 import React from 'react';
-import * as api from './services/api'
-import CategoriesList from './CategoriesList';
-import './App.css';
 import { Link } from 'react-router-dom';
+import * as api from './services/api';
+import CategoriesList from './CategoriesList';
 import shoppingCartLogo from './shopping-cart.png';
+import './App.css';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -30,6 +30,7 @@ class ProductList extends React.Component {
 
   handleChange({ target }) {
     const { name, value } = target;
+    console.log(name, value);
     this.setState({ [name]: value });
   }
 
@@ -43,7 +44,7 @@ class ProductList extends React.Component {
     return (
       <div className="product-list-container">
         <div className="categories-list">
-          <CategoriesList />
+          <CategoriesList handleChange={ this.handleChange } />
         </div>
         <div className="product-list">
           <input
@@ -61,13 +62,14 @@ class ProductList extends React.Component {
           </button>
           <br />
           <span
-            data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
+            data-testid="home-initial-message"
+          >
+            Digite algum termo de pesquisa ou escolha uma categoria.
           </span>
           <Link to="/shoppingcart" data-testid="shopping-cart-button">
             <img src={ shoppingCartLogo } alt="icon shopping cart" />
           </Link>
-           <br />
+          <br />
           <ul>
             {produtctList.length
               ? produtctList.map(({ id, title, thumbnail, price }) => (
