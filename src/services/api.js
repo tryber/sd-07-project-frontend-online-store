@@ -7,7 +7,7 @@ export async function getCategories() {
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   if (categoryId && query) {
     const API = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}}`;
-    const response = fetch(API)
+    const response = await fetch(API)
       .then((r) => r.json());
     if (response.error) {
       throw new Error(`endpoint não existe ${response.error}`);
@@ -16,7 +16,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   }
   if (query) {
     const API = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
-    const response = fetch(API)
+    const response = await fetch(API)
       .then((r) => r.json());
     if (response.error) {
       throw new Error(`endpoint não existe ${response.error}`);
@@ -25,7 +25,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   }
   if (categoryId) {
     const API = `https://api.mercadolibre.com/sites/MLB/search?q=${categoryId}`;
-    const response = fetch(API)
+    const response = await fetch(API)
       .then((r) => r.json());
     if (response.error) {
       throw new Error(`endpoint não existe ${response.error}`);
