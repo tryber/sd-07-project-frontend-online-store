@@ -19,13 +19,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     return new Promise((resolve, reject) => {
       fetch(endPoint)
         .then((response) => response.json())
-        .then((result) => {
-          if (Object.entries(result).length) {
-            resolve(result.results);
-          } else {
-            resolve(result);
-          }
-        })
+        .then((result) => resolve(result))
         .catch((error) => reject(error));
     });
   }
