@@ -1,36 +1,70 @@
 import React from 'react';
 import CategoryList from '../components/CategoryList';
 import InitialMessage from '../components/InitialMessage';
+import * as api from '../services/api';
+import Item from '../components/Item';
 
 class Home extends React.Component {
-    constructor() {
-        super();
-        this.updateSearchValue  = this.updateSearchValue.bind(this);
-        this.state = {
-          search:''
-        };
-      }
+  constructor() {
+    super();
+    this.updateSearchValue = this.updateSearchValue.bind(this);
+    this.searchProduct = this.searchProduct.bind(this);
+    this.state = {
+      search:'',
+      products: [],
+      categoryID: '',
+    };
+  }
 
-    updateSearchValue(field, newValue) {
-      this.setState({ [field]: newValue });
-    }
-      
-    render() {
-        return ( 
-          <div>
-            <header>
-              <input 
-                id="search_bar"
-                type="text"
-                className="search_bar"
-                value={this.state.search}
-                onChange={(event) => this.updateSearchValue('search', event.target.value)}
-              />
-            </header>
-            <InitialMessage />
-            <CategoryList />
+  async searchProduct() {
+    const { categoryID, search } = this.state;
+    const products = await api.getProductsFromCategoryAndQuery(categoryID, search);
+    this.setState({
+      products: products.results,
+    });
+    console.log('searching', this.state.products)
+    console.log(this.state.products[0].title)
+  }
+
+  updateSearchValue(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+    
+  render() {
+    // if (this.state.products.length > 0) return <ItemList />
+    return ( 
+      <div>
+        <div>
+          <input
+            data-testid="query-input"
+            id="search_bar"
+            type="text"
+            name="search"
+            className="search_bar"
+            value={this.state.search}
+            onChange={this.updateSearchValue}
+          />
+          <button
+            data-testid="query-button"
+            onClick={this.searchProduct}
+          >
+            Search
+          </button>
         </div>
-      );
+        <InitialMessage />
+        <CategoryList />
+        <div>
+          {this.state.products
+            .map((product) => 
+              <Item
+                key={product.id}
+                title={product.title}
+                thumbnail={product.thumbnail}
+                price={product.price} />)}
+        </div>
+      </div>
+    );
   }
 }
 
