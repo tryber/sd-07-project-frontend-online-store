@@ -27,33 +27,28 @@ class CategoriesList extends Component {
     this.setState({ query: target.value });
   }
 
-  async getProducts(categoryId, query) {    
+  async getProducts(categoryId, query) {
     const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
 
-    return products;   
+    return products;
   }
 
   async SearchProduct() {
     const { query } = this.state;
-    const categoryId = 'ALL';    
-    const { results } = await this.getProducts(categoryId, query);     
+    const categoryId = 'ALL';
+    const { results } = await this.getProducts(categoryId, query);
     this.setState({ object: results });
   }
 
   CategoriesList() {
     api.getCategories()
-      .then((categories) => {
-        // console.log(categories);
-        //this.setState({ categories });
-      })
+      .then()
       .catch((error) => console.log('Promises rejected: ', error));
   }
 
   render() {
     const { object } = this.state;
     const { query } = this.state;
-    //console.log(object);
-    //console.log(query);
     return (
       <div className="home-initial">
         <div className="home-initial-input">
