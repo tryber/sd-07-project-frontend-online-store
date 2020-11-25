@@ -15,7 +15,7 @@ class Home extends React.Component {
     this.state = {
       category: "",
       searchValue: "",
-      list: {}
+      list: {},
     }
   }
 
