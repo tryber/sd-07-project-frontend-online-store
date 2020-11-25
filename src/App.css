@@ -18,6 +18,9 @@ Body {
 .chartImg {
   width: 50px;
 }
+.voltar {
+  width: 50px;
+}
 .lupa {
   border: none;
   background: transparent;
