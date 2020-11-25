@@ -6,13 +6,7 @@ class Categories extends Component {
     super();
     this.get.bind(this);
     this.state = {
-      categories: [{
-        name: 'ca',
-      }, {
-        name: 'rre',
-      }, {
-        name: 'go',
-      }],
+      categories: [],
     };
   }
 
@@ -40,7 +34,7 @@ class Categories extends Component {
               value={category.name}
               onChange={onChange}
             />
-            <label htmlFor={category.name}>{category.name}</label>
+            <label data-testid="category" htmlFor={category.name}>{category.name}</label>
           </div>)
         }
       </div>

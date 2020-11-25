@@ -5,11 +5,9 @@ class List extends React.Component {
   render() {
     const { lista } = this.props;
     return(
-      (lista.results) ?
-        lista.results.map((resultado, index) => <Card key={index} produto={resultado}/> )
-      : <h3 data-testid="home-initial-message">
+      <h3 data-testid="home-initial-message">
       Digite algum termo de pesquisa ou escolha uma categoria.
-    </h3>
+      </h3>
     );
   };
 }

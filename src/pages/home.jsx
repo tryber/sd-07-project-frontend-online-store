@@ -25,7 +25,6 @@ class Home extends React.Component {
   async buscaQuery(query) {
     const lista = await api.getProductsFromQuery(query)
     this.setState({ list: lista });
-    console.log(lista.results)
   }
 
   async buscaCategory(category) {
@@ -49,6 +48,8 @@ class Home extends React.Component {
     } else {
       if(searchValue !== "") {
         this.buscaQuery(searchValue);
+      } else {
+        this.setState()
       }
     }
   }
@@ -64,7 +65,6 @@ class Home extends React.Component {
   }
 
   render() {
-    const { list } = this.state;
     return(
       <div>
         <Caregories onChange={this.select} />
@@ -73,7 +73,7 @@ class Home extends React.Component {
             <SearchBar onClick={this.onClick} />
             <ShoppingCartIcon />
           </div>
-          <List lista={list} />
+          <List lista={this.state.list} />
         </div>
       </div>
     );
