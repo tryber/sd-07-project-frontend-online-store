@@ -21,6 +21,7 @@ class CategoriesList extends React.Component {
 
   render() {
     const { list } = this.state;
+    console.log(list);
     return (
       <div>
         Categorias de Produtos:
