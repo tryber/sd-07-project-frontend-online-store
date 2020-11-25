@@ -5,6 +5,7 @@ import * as api from './services/api';
 import Home from './pages/Home';
 import CartList from './pages/CartList';
 import './App.css';
+import ProductDetail from './pages/ProductDetail';
 
 class App extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class App extends Component {
             CART
           </Link>
           <Switch>
+            <Route path="/product_Detail" component={ProductDetail} />
             <Route path="/cart" component={CartList} />
             <Route exact path="/" component={Home} />
           </Switch>
