@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 // import { Link } from 'react-router-dom';
-import * as api from "../services/api";
+import * as api from '../services/api';
 
 class Categories extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Categories extends React.Component {
           {categories.map((category) => {
             const { id, name } = category;
             return (
-              <option key={id} value={name}>
+              <option key={ id } value={ name }>
                 {name}
               </option>
             );
