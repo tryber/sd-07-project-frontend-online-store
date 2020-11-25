@@ -1,6 +1,8 @@
 import React from 'react';
 import CategoryList from '../components/CategoryList';
 import InitialMessage from '../components/InitialMessage';
+import ButtonShop from '../components/ButtonShop';
+
 
 class Home extends React.Component {
     constructor() {
@@ -10,7 +12,7 @@ class Home extends React.Component {
           search:''
         };
       }
-
+  
     updateSearchValue(field, newValue) {
       this.setState({ [field]: newValue });
     }
@@ -26,6 +28,7 @@ class Home extends React.Component {
                 value={this.state.search}
                 onChange={(event) => this.updateSearchValue('search', event.target.value)}
               />
+              <ButtonShop />
             </header>
             <InitialMessage />
             <CategoryList />
