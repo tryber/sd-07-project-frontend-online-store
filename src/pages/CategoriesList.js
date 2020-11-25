@@ -10,8 +10,6 @@ class CategoriesList extends Component {
     super(props);
 
     this.state = {
-      categories: [],
-      // categoryId: '',
       query: '',
       object: [],
     };
@@ -39,15 +37,14 @@ class CategoriesList extends Component {
     const { query } = this.state;
     const categoryId = 'ALL';    
     const { results } = await this.getProducts(categoryId, query);     
-    this.setState( {object: results});
+    this.setState({ object: results });
   }
-
 
   CategoriesList() {
     api.getCategories()
       .then((categories) => {
         // console.log(categories);
-        this.setState({ categories });
+        //this.setState({ categories });
       })
       .catch((error) => console.log('Promises rejected: ', error));
   }
