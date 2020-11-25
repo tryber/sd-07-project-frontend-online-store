@@ -5,8 +5,11 @@ class SearchBar extends React.Component {
 
         return (
             <div className="search">
-                <input className="search-bar" type="text"></input>
-                <div data-testid="home-initial-message">
+                <div className="search-bar-content">
+                    <img className="search-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJTOvaCRMvUxPy8OR3W53CXP_eLOKV3QBaw&usqp=CAU" alt="search icon"></img>
+                    <input className="search-bar" type="text"></input>
+                </div>
+                <div className="home-initial-message" data-testid="home-initial-message">
                     <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
                 </div>
             </div>

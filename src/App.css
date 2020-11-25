@@ -1,23 +1,53 @@
 .App {
+  background-color: wheat;
   display: flex;
   justify-content: center;
 }
 
 header {
   background-color: rgb(230, 230, 94);
+  color: gray;
   display: flex;
   height: 100px;
   justify-content: center;
+  padding: 20px;
   width: 100vw;
 }
 
 .search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: auto;
 }
 
+.search-bar-content {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding-left: 10px;
+}
+
 .search-bar {
-  border: 2px solid black;
-  border-radius: 5px;
-  height: 25px;
-  width: 600px;
+  border: none;
+  border-radius: 25px;
+  font-size: 20px;
+  height: 30px;
+  width: 800px;
+}
+
+textarea:focus, input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+} 
+
+.search-icon {
+  height: 15px;
+  margin-right: 5px;
+}
+
+.home-initial-message {
+  font-size: 20px;
+  text-align: center;
 }

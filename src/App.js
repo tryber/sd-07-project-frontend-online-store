@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <header>
         <Router>
-          <Link to="/">Search Bar</Link>
+          <Link to="/"></Link>
           <Switch>
             <Route exact path="/" component={SearchBar} />
           </Switch>
