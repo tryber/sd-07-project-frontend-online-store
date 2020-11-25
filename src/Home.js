@@ -16,7 +16,7 @@ class ProductsList extends Component {
                   value={ value }
                   className="inputHome"
                   type="text"
-                  onChange={ onChange }
+                  // onChange={ onChange }
                 />
                 <span data-testid="home-initial-message">
                   Digite algum termo de pesquisa ou escolha uma categoria.
