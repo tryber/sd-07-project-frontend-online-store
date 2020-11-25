@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './Components/SearchBar';
+import ShoppingCartButton from './Components/ShoppingCartButton';
 
 
 class Header extends React.Component {
@@ -9,7 +10,7 @@ class Header extends React.Component {
         {/* logo */}
         <SearchBar />
         {/* filtro */}
-        {/* carrinho */}
+        <ShoppingCartButton />
       </div>
     );
   }
