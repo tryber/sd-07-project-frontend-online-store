@@ -6,7 +6,9 @@ class Categories extends Component {
     super();
     this.get.bind(this);
     this.state = {
-      categories: [],
+      categories: [{
+        name: "carregando",
+      }],
       carregado: false,
     };
   }
@@ -22,11 +24,12 @@ class Categories extends Component {
 
   render() {
     const { onChange } = this.props;
+    const { categories, carregado } = this.state;
     return (
-      (this.state.carregado) ?
+      // (carregado) ?
       <div>
         <h2>Categorias</h2>
-        {this.state.categories.map((category) =>
+        {categories.map((category) =>
           <div key={category.name}>
             <input
               id={category.name}
@@ -38,7 +41,7 @@ class Categories extends Component {
             <label data-testid="category" htmlFor={category.name}>{category.name}</label>
           </div>
         )}
-      </div> : <h1>carregando</h1>
+      </div> //: <h1>carregando</h1>
     );
   }
 }
