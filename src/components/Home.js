@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from './Sidebar';
 import PropTypes from 'prop-types';
+import Sidebar from './Sidebar';
 
 class Home extends React.Component {
   render() {
