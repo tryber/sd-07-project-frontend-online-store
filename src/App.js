@@ -8,6 +8,8 @@ import {
 import Categories from './components/Categories';
 
 import Search from './components/Search';
+import CartButton from './components/CartButton';
+import CartEmptyMessage from './components/Cart';
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
       <Categories />
       <Switch>
         <Route path="/" exact component={ Search } />
+        <Route path="/Cart" exact component={ CartEmptyMessage } />
       </Switch>
+      <CartButton />
     </BrowserRouter>
   );
 }
