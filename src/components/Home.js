@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Sidebar from './Sidebar';
 
 class Home extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class Home extends React.Component {
         >
           Cart
         </button>
+        <Sidebar />
       </div>
     );
   }
