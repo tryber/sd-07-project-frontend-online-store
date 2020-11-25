@@ -5,6 +5,7 @@ import * as api from '../services/api';
 class Categories extends React.Component {
   constructor(props) {
     super(props);
+    this.componentDidMount = this.componentDidMount.bind(this);
     this.getApi = this.getApi.bind(this);
     this.state = {
       categories: [],
@@ -16,9 +17,14 @@ class Categories extends React.Component {
   }
 
   async getApi() {
+    let categorias = [];
     api.getCategories().then((result) => {
-      this.setState({ categories: result });
+    result.map((category) => {
+      return categorias.push(category);
+    })
+    this.setState({ categories: categorias });
     });
+    
   }
 
   render() {
