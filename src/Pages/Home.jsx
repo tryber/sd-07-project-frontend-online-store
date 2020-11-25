@@ -22,8 +22,6 @@ class Home extends React.Component {
     this.setState({
       products: products.results,
     });
-    console.log('searching', this.state.products)
-    console.log(this.state.products[0].title)
   }
 
   updateSearchValue(event) {
@@ -32,7 +30,6 @@ class Home extends React.Component {
   }
     
   render() {
-    // if (this.state.products.length > 0) return <ItemList />
     return ( 
       <div>
         <div>
