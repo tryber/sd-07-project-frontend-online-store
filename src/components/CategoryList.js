@@ -21,14 +21,17 @@ class CategoryList extends React.Component {
   async fetchCategoryList() {
     const requestResponse = await productsAPI.getCategories();
     this.setState({
-      categories: [...requestResponse],
+      categories: [],
     });
   }
 
   render() {
+    
+    const { categories } = this.state;
+    
     return (
       <div>
-        {this.state.categories.map(
+        {categories.map(
           (category) => <ItemCategory key={ category.id } category={ category } />,
         )}
       </div>
