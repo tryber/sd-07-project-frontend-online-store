@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import * as api from '../services/api';
 
@@ -40,6 +41,9 @@ class ProductList extends Component {
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
+        <Link data-testid="shopping-cart-button" to="/carrinho">
+          Carrinho
+        </Link>
         <input
           data-testid="query-input"
           onChange={ (event) => this.textValueChange(event) }
@@ -57,6 +61,7 @@ class ProductList extends Component {
           ))}
           {!products.length && search && <p>Nenhum produto foi encontrado</p>}
         </div>
+
       </div>
     );
   }
