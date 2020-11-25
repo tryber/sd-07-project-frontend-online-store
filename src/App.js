@@ -8,10 +8,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-          <Route exact path="/" component={CategoriesList} />
+      <BrowserRouter>          
         <Switch>
-          <Route exact path="/product/:id" component={ProductDetail} />          
+          <Route exact path="/product/:category_id/:title/:id" component={ProductDetail} />          
           <Route exact path="/" component={ CategoriesList } />
           <Route exact path="/shoopingcart" component={ ShoppingCart } />
         </Switch>
