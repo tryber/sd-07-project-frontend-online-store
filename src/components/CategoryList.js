@@ -8,6 +8,7 @@ class CategoryList extends React.Component {
     this.state = {
       categories: [],
     };
+    this.apiRequisition = this.apiRequisition.bind(this);
   }
 
   componentDidMount() {
