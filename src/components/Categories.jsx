@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import * as api from '../services/api';
 
@@ -33,4 +32,4 @@ class Categories extends Component {
   }
 }
 
-export default Categories;
+export default Categories; 
