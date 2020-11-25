@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import './App.css';
 import Listagem from './pages/listagem';
-import Carrinho from './pages/carrinho.jsx';
+import Carrinho from './pages/carrinho';
 
 function App() {
   return (
