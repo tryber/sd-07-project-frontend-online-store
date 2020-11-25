@@ -2,11 +2,27 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
+  constructor() {
+    super();
+    this.atualizarTexto = this.atualizarTexto.bind(this);
+    this.state = {
+      texto: ""
+    }
+  }
+
+  atualizarTexto(event) {
+    this.setState({
+      texto: event.target.value,
+    })
+  }
+
   render() {
-    const { onChange, value } = this.props;
+    const { onClick } = this.props;
+    const { texto } = this.state;
     return (
       <label>
-        <input type="text" value={value} onChange={onChange} />
+        <input type="text" value={texto} onChange={this.atualizarTexto} />
+        <input type="button" value="pesquisar" onClick={() => onClick(texto)} />
       </label>
     );
   };

@@ -7,7 +7,7 @@ import List from '../components/List';
 class Home extends React.Component {
   constructor() {
     super();
-    this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.select = this.select.bind(this);
     this.state = {
       category: "",
@@ -15,8 +15,8 @@ class Home extends React.Component {
     }
   }
 
-  onChange(event) {
-    this.setState({ searchValue: event.target.value })
+  onClick(texto) {
+    this.setState({ searchValue: texto })
   }
 
   select(event) {
@@ -30,7 +30,7 @@ class Home extends React.Component {
         <Caregories onChange={this.select} />
         <div>
           <div>
-            <SearchBar onChange={this.onChange} value={searchValue} />
+            <SearchBar onClick={this.onClick} />
             <ShoppingCartIcon />
           </div>
           <List category={category} query={searchValue} />
