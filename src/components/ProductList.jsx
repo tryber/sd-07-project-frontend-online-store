@@ -11,6 +11,7 @@ class ProductList extends React.Component {
       inputValue: '',
       products: [],
       loading: false,
+      checkInput: undefined,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,14 +25,14 @@ class ProductList extends React.Component {
 
   handleFetch(event) {
     event.preventDefault();
-    const { inputValue } = this.state;
+    const { inputValue, checkInput } = this.state;
     this.setState(
       {
         loading: true,
       },
       () => {
         api
-          .getProductsFromCategoryAndQuery(undefined, inputValue)
+          .getProductsFromCategoryAndQuery(checkInput, inputValue)
           .then((response) => {
             this.setState({
               loading: false,
@@ -45,11 +46,11 @@ class ProductList extends React.Component {
   render() {
     const { inputValue, products, loading } = this.state;
 
-    if (loading) return <div>Carregando...</div>;
-
     return (
       <div className="product-list">
-        <CategoryList />
+        <CategoryList
+          onChange={ this.handleInputChange }
+        />
 
         <div className="container">
           <form className="first-input">
