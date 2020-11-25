@@ -1,14 +1,54 @@
 import React, { Component } from 'react';
 import ShoppingCartButton from '../Components/ShoppingCartButton';
+import SearchBar from '../Components/SearchBar';
+import * as api from '../services/api';
+import ProductCard from '../Components/ProductCard';
 
 class HomeInitial extends Component {
+  constructor() {
+    super();
+    this.searchEventHandler = this.searchEventHandler.bind(this);
+    this.searchOnChange = this.searchOnChange.bind(this);
+    this.state = {
+      productArr: [],
+      searchBarValue: '',
+    };
+  }
+
+  getProductList() {
+    const { productArr } = this.state;
+    return productArr.map(
+      (product, { title }) => <li key={ title }><ProductCard product={ product } /></li>,
+    );
+  }
+
+  searchOnChange(event) {
+    this.setState({ searchBarValue: event.target.value });
+  }
+
+  async searchEventHandler() {
+    const { searchBarValue } = this.state;
+    const dataArr = await api.getProductsFromCategoryAndQuery(searchBarValue);
+    this.setState({
+      productArr: dataArr.results,
+    });
+  }
+
   render() {
+    const { productArr } = this.state;
     return (
       <div className="home-page">
+        <ShoppingCartButton className="shopping-cart-button" />
         <span data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </span>
-        <ShoppingCartButton className="shopping-cart-button" />
+        <SearchBar
+          searchEventHandler={ this.searchEventHandler }
+          searchOnChange={ this.searchOnChange }
+        />
+        <ul>
+          {productArr !== [] ? this.getProductList() : <p>Nenhum produto foi encontrado</p>}
+        </ul>
       </div>
     );
   }
