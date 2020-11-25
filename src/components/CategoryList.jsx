@@ -44,9 +44,9 @@ class CategoryList extends React.Component {
       <div className="category-list">
         Categorias:
         {categories.map((element) => (
-          <label htmlFor="checkInput" data-testid="category" key={ element.id }>
+          <label htmlFor="idValue" data-testid="category" key={ element.id }>
             <input
-              name="checkInput"
+              name="idValue"
               value={ element.id }
               onChange={ onChange }
               type="checkbox"
