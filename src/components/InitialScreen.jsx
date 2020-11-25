@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { SideBar } from './index';
 import './InitialScreen.css';
-import KartImg from '../img/kart.svg';
-import ProductCard from './ProductCard';
+import Header from './Header';
+import ProductList from './ProductList';
 
 import * as api from '../services/api';
 
@@ -38,7 +37,8 @@ class InitialScreen extends React.Component {
   async fetchProducts() {
     const { searchInput } = this.state;
     const dataInputSearch = searchInput;
-    const getProducts = await api.getProductsFromCategoryAndQuery('query', dataInputSearch);
+    const getProducts = await api
+      .getProductsFromCategoryAndQuery('query', dataInputSearch);
     this.setState({ products: getProducts.results });
   }
 
@@ -51,36 +51,22 @@ class InitialScreen extends React.Component {
   }
 
   render() {
-
     const { message, searchInput, products, categories } = this.state;
-        
+    const tagMessage = <h1 data-testid="home-initial-message">{message}</h1>;
+
     return (
-      <div className="container">
+      <>
+        <Header
+          searchInput={ searchInput }
+          onInputSearchChange={ this.onInputSearchChange }
+          buttonSearch={ this.buttonSearch }
+        />
+        {!searchInput ? tagMessage : ''}
         <div className="side-bar">
           <SideBar categories={ categories } />
         </div>
-        <header className="container-initial-screen">
-          <input
-            data-testid="query-input"
-            type="text"
-            name="inputSearch"
-            value={searchInput}
-            onChange={this.onInputSearchChange}
-          />
-          <button data-testid="query-button" type="submit" onClick={this.buttonSearch}>
-            Buscar
-          </button>
-          <Link data-testid="shopping-cart-button" to="/kart">
-            <img src={KartImg} alt="Botão carrinho de compras" />
-          </Link>
-          <h1 data-testid="home-initial-message">{message}</h1>
-        </header>
-        <div>
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </div>
+        <ProductList products={ products } />
+      </>
     );
   }
 }
