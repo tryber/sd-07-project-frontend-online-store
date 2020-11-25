@@ -1,7 +1,6 @@
 import React from 'react';
-import SearchBar from './Components/SearchBar';
-import ShoppingCartButton from './Components/ShoppingCartButton';
-
+import SearchBar from './SearchBar';
+import ShoppingCartButton from './ShoppingCartButton';
 
 class Header extends React.Component {
   render() {
