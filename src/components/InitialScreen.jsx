@@ -52,7 +52,7 @@ class InitialScreen extends React.Component {
 
   render() {
 
-    const { message, searchInput, products } = this.state;
+    const { message, searchInput, products, categories } = this.state;
         
     return (
       <div className="container">
