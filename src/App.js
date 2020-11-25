@@ -1,12 +1,13 @@
 import React from 'react';
-import './App.css';
-import * as api from './services/api';
-
-class App extends React.Component {
-  render() {
-    api.getCategories().then((data) => console.log(data));
-    return <div>Oi</div>;
-  }
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ProductsList from './Home';
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={ ProductsList } />
+      </Switch>
+    </BrowserRouter>
+  );
 }
-
 export default App;
