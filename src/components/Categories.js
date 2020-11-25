@@ -13,13 +13,13 @@ class Categories extends Component {
       loading: true,
       categories: [],
     };
-  } 
+  }
 
   componentDidMount() {
     this.fetchCategories();
   }
 
-// Fetch categories from API
+  // Fetch categories from API
   fetchCategories() {
     this.setState({ loading: true },
       async () => {
