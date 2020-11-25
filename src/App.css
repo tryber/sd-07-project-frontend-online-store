@@ -55,9 +55,15 @@
 
 .input {
   background-color: #c9c9c9;
-  border:none;
+  border: none;
   width: 25em;
-  border-radius:5px;
-  padding: 5px; 
+  border-radius: 5px;
+  padding: 10px; 
 }
 
+.inner-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 1100px;
+}
