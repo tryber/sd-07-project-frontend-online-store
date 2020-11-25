@@ -39,14 +39,14 @@ class Listagem extends Component {
     return (
       <div>
         <div data-testid="home-initial-message">
-        <input
-          type="text"
-          data-testid="query-input"
-          onChange={ this.handleChange }
-        />
-        <p>
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
+          <input
+            type="text"
+            data-testid="query-input"
+            onChange={ this.handleChange }
+          />
+          <p>
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
         </div>
         <button
           type="submit"
