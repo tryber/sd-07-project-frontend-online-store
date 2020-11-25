@@ -1,22 +1,20 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import ProductList from './components/ProductList';
+import Home from './components/Home';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import ShoppingCart from './ShoppingCart';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <header>
-          <input type="text" data-testid="home-initial-message" />
-          <h2>Digite algum termo de pesquisa ou escolha uma categoria.</h2>
-          <Route path="/shopping-cart" component={ ShoppingCart } />
-          <Link to="/shopping-cart" data-testid="shopping-cart-button">
-            Carrinho de compras
-          </Link>
-        </header>
-      </div>
-    </BrowserRouter>
+    <div>
+      <Home />
+      <BrowserRouter>
+        <Route path="/shopping-cart" component={ ShoppingCart } />
+        <Route exact path="/" component={ ProductList } />
+      </BrowserRouter>
+    </div>
   );
 }
 
