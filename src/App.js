@@ -3,6 +3,7 @@ import './App.css';
 import ProductList from './ProductList';
 import ShoppingCart from './ShoppingCart';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import CategoryList from './CategoryList';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
           <Route exact path="/ShoppingCart" component={ ShoppingCart } />
         </Switch>
       </BrowserRouter>
+      <ProductList />
+      <CategoryList />
     </div>
   );
 }

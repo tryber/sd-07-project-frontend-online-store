@@ -16,7 +16,7 @@ class ProductList extends Component {
           </button>
       </div>
     );
-  }  
+  }
 }
 
 export default ProductList;
