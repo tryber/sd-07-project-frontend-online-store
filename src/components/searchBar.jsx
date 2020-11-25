@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Category from './categoryList';
 
 class SearchBar extends React.Component {
   render() {
@@ -11,11 +12,12 @@ class SearchBar extends React.Component {
             <input
             id="text-input"
             name="searchText"
-            value=""
+            value=''
             onChange=''
             type="text"
             />
-          </label> 
+          </label>
+          <Category />
         </form>
       </div>
     );
