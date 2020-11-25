@@ -23,9 +23,9 @@ class ListCategory extends React.Component {
       async () => {
         const response = await api.getCategories();
         // console.log(response)
-        this.setState((prevStates) => ({
+        this.setState(() => ({
           loading: false,
-          categories: [...prevStates.categories, ...response],
+          categories: [...response],
         }));
       },
     );
