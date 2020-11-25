@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+
 import Categories from './components/Categories';
 
 import Search from './components/Search';
@@ -15,6 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Categories />
+
       <Switch>
         <Route path="/" exact component={ Search } />
         <Route path="/Cart" exact component={ CartEmptyMessage } />
