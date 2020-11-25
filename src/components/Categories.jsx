@@ -7,9 +7,12 @@ class Categories extends Component {
     this.get.bind(this);
     this.state = {
       categories: [{
-        name: "carregando",
+        name: 'ca',
+      }, {
+        name: 'rre',
+      }, {
+        name: 'go',
       }],
-      carregado: false,
     };
   }
 
@@ -19,14 +22,13 @@ class Categories extends Component {
 
   async get() {
     const categories = await api.getCategories();
-    this.setState({ categories, carregado: true });
+    this.setState({ categories });
   }
 
   render() {
     const { onChange } = this.props;
-    const { categories, carregado } = this.state;
+    const { categories } = this.state;
     return (
-      // (carregado) ?
       <div>
         <h2>Categorias</h2>
         {categories.map((category) =>
@@ -38,10 +40,10 @@ class Categories extends Component {
               value={category.name}
               onChange={onChange}
             />
-            <label data-testid="category" htmlFor={category.name}>{category.name}</label>
-          </div>
-        )}
-      </div> //: <h1>carregando</h1>
+            <label htmlFor={category.name}>{category.name}</label>
+          </div>)
+        }
+      </div>
     );
   }
 }
