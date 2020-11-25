@@ -1,6 +1,7 @@
 import React from 'react';
 import * as api from '../services/api';
 import Loading from './Loading';
+import Item from './ItemCategory';
 
 class ListCategory extends React.Component {
   constructor() {
@@ -39,9 +40,7 @@ class ListCategory extends React.Component {
     if (loading) return <Loading />;
     return (
       <div>
-        {categories.map((items) => (
-          <li data-testid='category' key={items.id}>{items.name}</li>
-        ))}
+        {categories.map(({ id, name }) => <Item key={id} name={name} id={id} />)}
       </div>
     );
   }
