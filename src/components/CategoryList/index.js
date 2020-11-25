@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../../services/api';
 
 class CategoryList extends Component {
@@ -6,6 +7,7 @@ class CategoryList extends Component {
     super();
 
     this.fetchCategories = this.fetchCategories.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
 
     this.state = {
       categories: [],
@@ -23,18 +25,30 @@ class CategoryList extends Component {
     });
   }
 
+  handleChangeCategory(categoryID) {
+    const { onChange } = this.props;
+    onChange(categoryID);
+  }
+
   render() {
     const { categories } = this.state;
     return (
       <div>
         {categories.map((item) => (
-          <p data-testid="category" key={ item.id }>
+          <button
+            type="button"
+            data-testid="category"
+            key={ item.id }
+            onClick={ () => this.handleChangeCategory(item.id) }
+          >
             {item.name}
-          </p>
+          </button>
         ))}
       </div>
     );
   }
 }
+
+CategoryList.propTypes = { onChange: PropTypes.func.isRequired };
 
 export default CategoryList;
