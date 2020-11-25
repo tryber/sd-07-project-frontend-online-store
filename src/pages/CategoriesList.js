@@ -18,6 +18,7 @@ class CategoriesList extends Component {
     this.CategoriesList = this.CategoriesList.bind(this);
     this.onInputSearchChange = this.onInputSearchChange.bind(this);
     this.SearchProduct = this.SearchProduct.bind(this);
+    this.getProducts = this.getProducts.bind(this);
   }
 
   componentDidMount() {
@@ -28,16 +29,17 @@ class CategoriesList extends Component {
     this.setState({ query: target.value });
   }
 
-  SearchProduct() {
+  async getProducts(categoryId, query) {    
+    const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
+
+    return products;   
+  }
+
+  async SearchProduct() {
     const { query } = this.state;
-    const categoryId = 'ALL';
-    console.log(query);
-    api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((object) => {
-        // console.log(object);
-        this.setState({ object });
-      })
-      .catch((error) => console.log('Promises rejected: ', error));
+    const categoryId = 'ALL';    
+    const { results } = await this.getProducts(categoryId, query);     
+    this.setState( {object: results});
   }
 
 
@@ -53,8 +55,8 @@ class CategoriesList extends Component {
   render() {
     const { object } = this.state;
     const { query } = this.state;
-    console.log(object);
-    console.log(query);
+    //console.log(object);
+    //console.log(query);
     return (
       <div className="home-initial">
         <div className="home-initial-input">
@@ -68,7 +70,7 @@ class CategoriesList extends Component {
             />
             <button
               data-testid="query-button"
-              type="submit"
+              type="button"
               onClick={ this.SearchProduct }
             >
               Pesquisar

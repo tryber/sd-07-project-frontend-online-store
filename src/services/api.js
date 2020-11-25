@@ -32,7 +32,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
       if (object.error) {
         throw new Error(object.error);
       } else {
-        return object.results;
+        return object;
       }
     } catch (error) {
       console.log(error);
