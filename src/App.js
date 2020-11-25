@@ -1,9 +1,13 @@
 import React from 'react';
 import ProductList from './components/ProductList';
+import CategoryList from './CategoryList';
 
 function App() {
   return (
-    <ProductList />
+    <div>
+      <CategoryList />
+      <ProductList />
+    </div>
   );
 }
 
