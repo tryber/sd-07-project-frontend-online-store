@@ -16,6 +16,6 @@ export async function getProductsFromCategoryAndQuery(query) {
     const objectAPI = await responseURL.json();
     return objectAPI;
   } catch (Error) {
-    console.log(Error);
+    return undefined;
   }
 }

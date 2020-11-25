@@ -18,11 +18,10 @@ class HomeInitial extends Component {
 
   getProductList() {
     const { productArr } = this.state;
-    return productArr.map((product, { title }) => (
-      <li key={ title }>
-        <ProductCard product={ product } />
-      </li>
-    ));
+    return productArr.map(
+      (product) => <li data-testid="product" key={ product.id }><ProductCard product={ product } /></li>,
+    );
+
   }
 
   searchOnChange(event) {
@@ -32,9 +31,15 @@ class HomeInitial extends Component {
   async searchEventHandler() {
     const { searchBarValue } = this.state;
     const dataArr = await api.getProductsFromCategoryAndQuery(searchBarValue);
-    this.setState({
-      productArr: dataArr.results,
-    });
+    if (dataArr.results.length < 1) {
+      this.setState({
+        productArr: undefined,
+      });
+    } else {
+      this.setState({
+        productArr: dataArr.results,
+      });
+    }
   }
 
   render() {
@@ -51,7 +56,7 @@ class HomeInitial extends Component {
           searchOnChange={ this.searchOnChange }
         />
         <ul>
-          {productArr !== [] ? this.getProductList() : <p>Nenhum produto foi encontrado</p>}
+          {productArr !== undefined ? this.getProductList() : <p>Nenhum produto foi encontrado</p>}
         </ul>
       </div>
     );
