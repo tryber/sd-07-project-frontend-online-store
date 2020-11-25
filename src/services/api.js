@@ -10,5 +10,4 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const objc = await endpoint.json();
 
   return objc;
-  // Implemente aqui! Quando o fizer, descomente os parâmetros que essa função recebe
 }
