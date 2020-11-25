@@ -18,24 +18,28 @@ class CategoryList extends Component {
     this.setState({ category });
   }
 
+  async filterCategory(event) {
+    const { handleChange, handleClick } = this.props;
+    await handleChange(event);
+    handleClick(event);
+  }
+
   render() {
     const { category } = this.state;
     return (
-      <div className="category-list" data-testid="category">
-        <select onChange={ (event) => console.log(event.target.value) }>
-          <option defaultValue value="" name="categoryId">Selecione uma categoria</option>
-          {category.map((item) => (
-            <option
-              data-testid="category"
-              name="categoryId"
-              value={ item.id }
-              key={ item.id }
-              className="category-item"
-            >
-              {item.name}
-            </option>
-          ))}
-        </select>
+      <div className="category-list">
+        {category.map((item) => (
+          <input
+            type="button"
+            data-testid="category"
+            name="categoryId"
+            value={ item.id }
+            key={ item.id }
+            className="category-item"
+            onClick={ (event) => this.filterCategory(event) }
+          />
+
+        ))}
       </div>
     );
   }
