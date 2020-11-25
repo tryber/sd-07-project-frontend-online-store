@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
+body {
+  background-color: whitesmoke;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.movie-card {
+  display: inline-block;
+  height: 95%;
+  margin-left: 15%;
+  margin-top: 1rem;
+  width: 70%;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input, select {
+  margin-left: 30px;
+  margin-right: 50px;
+  width: 350px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.grid {
+  display: grid;
+  grid-template-columns: 150px 1;
+  grid-template-rows: 150px;
+  height: 100%;
+  margin: 5px 0;
+  width: 100%;
+
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  grid-column-start: 2;
+  justify-content: space-between;
+
+}
+
+header {
+  background-color:rgba(255, 241, 89, 0.7);
+  display: grid;
+  grid-template-rows: 48% 48%;
+  grid-template-columns: 15% 70% 15%;
+  height: 70px;
+  width: 100%;
+  grid-area: center;
+}  
+
+.item-inputsearch {
+  align-items: center;
   display: flex;
   flex-direction: column;
+  padding: 0.4rem;
+
+}
+
+img {
+  height: auto;
+  max-height: 36px;
+  max-width: 75px;
+  width: 100%;
+
+}
+
+.card-image {
+  display: inline-block;
+  margin-left: 5%;
+  max-height: 300px;
+  max-width: 90%;
+
+}
+
+.info {
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  padding: 0.75rem;
 }
 
-.App-link {
-  color: #61dafb;
+.red {
+  color: red;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.auth {
+  background: rgb(181, 247, 58);
+  border-radius: 50%;
+  height: 24px;
+  margin: 0.5rem 1rem 0.5rem 0;
+  width: 24px;
+}
+
+@media screen and ( max-width : 600px ) {
+
+  .grid {
+    grid-template-columns: 2;
   }
-  to {
-    transform: rotate(360deg);
+
+  .card-image {
+    height: 180px;
+    max-height: none;
+    max-width: 100%;
+    width: 100%;
+
   }
 }
