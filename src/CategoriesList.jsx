@@ -7,7 +7,7 @@ class CategoriesList extends React.Component {
     super()
 
     this.state = {
-      categories: ['Carros', 'Alimentos', 'Construção'],
+      categories: [],
     }
 
     this.fetchCategories = this.fetchCategories.bind(this);
