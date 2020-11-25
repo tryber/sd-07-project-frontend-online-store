@@ -1,5 +1,5 @@
 import React from 'react';
-import * as API from "../services/api";
+import * as API from '../services/api';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -7,33 +7,42 @@ class ProductDetail extends React.Component {
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
 
     this.state = {
-
+      attributes: [],
+      title: '',
+      price: 0,
+      thumbnail: '',
     };
   }
 
   async searchQueryProducts() {
     const ListProducts = await API.getProductById(this.props.match.params.id);
-    console.log(ListProducts);
-    // if (ListProducts === "") return <span>Nenhum produto foi encontrado</span>;
-    // const { results } = ListProducts;
-    // return (this.setState({ products: results }));
+    const { attributes, title, thumbnail, price } = ListProducts;
+    return this.setState({ attributes, title, thumbnail, price });
   }
 
   componentDidMount() {
     this.searchQueryProducts();
   }
 
-  
-
   render() {
-    console.log(this.props);
-    const { title, price, thumbnail } = this.props;
+    const { title, price, thumbnail } = this.state;
     return (
       <div>
-        <h3 className="product-detail-name">{title}</h3>
+        <h3 className='product-detail-name'>{title}</h3>
         <div>{price}</div>
         <img src={thumbnail} alt={title} />
-        <div>Especificações Técnicas</div>
+        <div>
+          Especificações Técnicas
+          <ul>
+            {this.state.attributes.map((element) => {
+              return (
+                <li>
+                  {`${element.name} --- ${element.value_name}`};
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     );
   }
