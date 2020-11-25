@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from './components/Button';
+
 class ProductsList extends Component {
   render() {
     const value = '';
