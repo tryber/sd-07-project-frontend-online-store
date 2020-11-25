@@ -3,6 +3,7 @@ import ShoppingCartButton from '../Components/ShoppingCartButton';
 import SearchBar from '../Components/SearchBar';
 import * as api from '../services/api';
 import ProductCard from '../Components/ProductCard';
+import CategoryList from '../Components/CategoryList';
 
 class HomeInitial extends Component {
   constructor() {
@@ -20,6 +21,7 @@ class HomeInitial extends Component {
     return productArr.map(
       (product) => <li data-testid="product" key={ product.id }><ProductCard product={ product } /></li>,
     );
+
   }
 
   searchOnChange(event) {
@@ -44,6 +46,7 @@ class HomeInitial extends Component {
     const { productArr } = this.state;
     return (
       <div className="home-page">
+        <CategoryList />
         <ShoppingCartButton className="shopping-cart-button" />
         <span data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
