@@ -1,6 +1,8 @@
 import React from 'react';
 import ItemCategory from './ItemCategory';
 
+import * as productsAPI from '../services/api';
+
 class CategoryList extends React.Component {
   constructor() {
     super();
@@ -17,7 +19,7 @@ class CategoryList extends React.Component {
   }
 
   async fetchCategoryList() {
-    console.log('hello');
+    await productsAPI.getCategories();
   }
 
   render() {
