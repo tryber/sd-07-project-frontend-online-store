@@ -15,4 +15,4 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   }
   const searchedItems = await requestAPI.json();
   return searchedItems;
-}
+} 
