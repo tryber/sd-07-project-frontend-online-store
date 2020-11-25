@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from '../components/SearchBar';
-import ShoppingCartButton from '../components/ShoppingCartButton'
+import ListCategories from '../components/ListCategories';
+import ShoppingCartButton from '../components/ShoppingCartButton';
     
 export default class Home extends Component {
   render() {
@@ -9,6 +10,7 @@ export default class Home extends Component {
         <header>
           <h1>Home</h1>
           <SearchBar />
+          <ListCategories />
           <ShoppingCartButton />
         </header>
       </div>
