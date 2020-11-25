@@ -58,7 +58,7 @@ class ProductList extends React.Component {
         <br />
         <ul>
           {produtctList.length
-            && produtctList.map(({ id, title, thumbnail, price }) => (
+            ? produtctList.map(({ id, title, thumbnail, price }) => (
               <li
                 key={ id }
                 data-testid="product"
@@ -67,7 +67,7 @@ class ProductList extends React.Component {
                 <img src={ thumbnail } alt="Product" />
                 <p>{ price }</p>
               </li>
-            ))}
+            )) : (<li> Nenhum produto foi encontrado </li>)}
         </ul>
       </div>
     );

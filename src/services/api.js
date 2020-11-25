@@ -3,7 +3,7 @@ export async function getCategories() {
     fetch('https://api.mercadolibre.com/sites/MLB/categories')
       .then((response) => response.json())
       .then((result) => resolve(result))
-      .catch((error) => reject(error));
+      .catch((error) => reject(new Error(error.message)));
   });
 }
 
@@ -13,6 +13,6 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     fetch(endPoint)
       .then((response) => response.json())
       .then((result) => resolve(result))
-      .catch((error) => reject(error));
+      .catch((error) => reject(new Error(error.message)));
   });
 }
