@@ -19,6 +19,7 @@ class Categories extends Component {
     this.fetchCategories();
   }
 
+  // Fetch categories from API
   fetchCategories() {
     this.setState({ loading: true },
       async () => {
