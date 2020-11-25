@@ -5,8 +5,8 @@ import * as api from './services/api';
 import SearchBar from './components/SearchBar';
 
 function App() {
-  api.getCategories().then((categories) => { console.log(categories) });
-  api.getProductsFromCategoryAndQuery().then((categories) => { console.log(categories) });
+  api.getCategories().then((categories) => { console.log(categories); });
+  api.getProductsFromCategoryAndQuery().then((categories) => { console.log(categories); });
   return (
     <div className="App">
       <header>
