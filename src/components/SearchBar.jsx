@@ -50,7 +50,6 @@ class SearchBar extends Component {
     const { product } = this.state;
     return (
       <div>
-        <CategoryList />
         <label htmlFor="search-bar">
           <input
             data-testid="query-input"
@@ -72,7 +71,6 @@ class SearchBar extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         {product.map((item) => <ProductList key={ item.id } product={ item } />)}
-        <p data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</p>
       </div>
     );
   }
