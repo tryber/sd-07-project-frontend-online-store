@@ -19,9 +19,15 @@ class CategoryList extends Component {
     return (
       <div className="category-list">
         {category.map((item) => (
-          <li data-testid="category" key={item.id} className='category-item'>
+          <div
+            data-testid="category"
+            key={ item.id }
+            className="category-item"
+            onClick={ () => console.log(item.id) }
+            role="presentation"
+          >
             {item.name}
-          </li>
+          </div>
         ))}
       </div>
     );
