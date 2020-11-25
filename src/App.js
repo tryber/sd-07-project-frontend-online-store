@@ -1,19 +1,23 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as api from './services/api';
-import Listagem from './components/listagem';
+import HomeBeforeSearch from './pages/HomeBeforeSearch';
 import './App.css';
+import ShoppingCart from './pages/ShoppingCart';
 
 api.getCategories().then((categories) => { console.log(categories); });
 api.getProductsFromCategoryAndQuery().then((categories) => { console.log(categories); });
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ Listagem } />
-      </Switch>
-    </BrowserRouter>
+    <div className="app-div">
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ HomeBeforeSearch } />
+          <Route path="/ShoppingCart" component={ ShoppingCart } />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 

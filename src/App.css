@@ -1,38 +1,79 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-div {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-bar {
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-bar {
+  margin-top: 15px;
+  border-radius: 50px;
+  width: 500px;
+  height: 30px;
+  border: 1.7px solid black;
+}
+
+.search-bar-input {
+  position: absolute;
+  top: 17px;
+  left: 160px;
+  width: 440px;
+  height: 25px;
+  border: none;
+}
+
+.search-bar-icon {
+  margin: 5px;
+  position: relative;
+  left: -235px;
+}
+
+.shopping-cart-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  margin: 10px 15px 10px 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.shopping-cart-icon:hover {
+  transform: scale(1.1);
+}
+
+.shopping-cart-icon-2 {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 35px;
+  margin: 10px 15px 10px 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.shopping-cart-icon-2:hover {
+  transform: scale(1.1);
+}
+
+.shopping-cart-text {
+  position: absolute;
+  top: 40px;
+  left: 15px;
+  width: 200px;
+  margin: 10px 15px 10px 10px;
+}
+
+.go-back-arrow-icon {
+  position: absolute;
+  top: 0px;
+  left: 1px;
+  width: 30px;
+  margin: 10px 15px 10px 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.go-back-arrow-icon:hover {
+  transform: scale(1.1);
 }
