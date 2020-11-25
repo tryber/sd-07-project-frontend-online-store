@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import * as api from '../services/api';
+import CategoryList from './CategoryList';
 
 class ProductList extends Component {
   constructor() {
@@ -41,6 +42,7 @@ class ProductList extends Component {
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
+        <CategoryList />
         <Link data-testid="shopping-cart-button" to="/carrinho">
           Carrinho
         </Link>
