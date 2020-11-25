@@ -4,13 +4,15 @@ import './App.css';
 import Listagem from './pages/listagem';
 
 function App() {
-  return (<div className="App">
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Listagem} />
-      </Switch>
-    </BrowserRouter>
-  </div>)
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ Listagem } />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
