@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import CategoriesCard from '../components/CategoriesCard';
-
-
+import QueryBar from '../components/QueryBar';
+import CategoryItem from '../components/CategoryItem';
 import * as api from '../services/api';
 
 class CategoriesList extends Component {
@@ -10,6 +9,7 @@ class CategoriesList extends Component {
     super(props);
 
     this.state = {
+      categories: [],
       query: '',
       object: [],
     };
@@ -29,7 +29,6 @@ class CategoriesList extends Component {
 
   async getProducts(categoryId, query) {
     const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
-
     return products;
   }
 
@@ -40,53 +39,38 @@ class CategoriesList extends Component {
     this.setState({ object: results });
   }
 
+
   CategoriesList() {
     api.getCategories()
-      .then()
+      .then((categories) => {
+        this.setState({ categories });
+      })
       .catch((error) => console.log('Promises rejected: ', error));
   }
 
   render() {
-    const { object } = this.state;
-    const { query } = this.state;
+    const { categories, object, query } = this.state;
+
     return (
-      <div className="home-initial">
-        <div className="home-initial-input">
-          <label htmlFor="home-initial-message">
-            <input
-              className="input"
-              data-testid="query-input"
-              placeholder="Pesquisar"
-              value={ query }
-              onChange={ this.onInputSearchChange }
-            />
-            <button
-              data-testid="query-button"
-              type="button"
-              onClick={ this.SearchProduct }
-            >
-              Pesquisar
-            </button>
-          </label>
-          <section>
+      <div className="main-list">
+        <div className="side-bar">
+          { categories.map((category) => (<CategoryItem
+            key={ category }
+            category={ category }
+          />))}
+        </div>
+        <div className="main">
+          <QueryBar
+            query={ query }
+            onQueryChange={ this.onInputSearchChange }
+            onClick={ this.SearchProduct }
+          />
+          <section className="prodoct-cards">
             {object.map((product) => (
               <CategoriesCard key={ product.id } product={ product } />
             ))}
           </section>
-          <h3 data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </h3>
         </div>
-        <Link
-          to="/shoopingcart"
-          data-testid="shopping-cart-button"
-          className="home-initial-link"
-        >
-          <img
-            src="images/icons-shopping-cart.png"
-            alt="Carrinho de Compras"
-          />
-        </Link>
       </div>
     );
   }
