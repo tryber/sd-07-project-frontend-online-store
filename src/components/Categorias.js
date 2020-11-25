@@ -3,11 +3,11 @@ import Categoria from './Categoria';
 
 class Categorias extends React.Component {
   render() {
-    const allCategorys = this.props.categorys;
+    const {categorys, callback} = this.props
     return (
       <div className="categorys">
-        {allCategorys.map((category) => (
-          <Categoria key={category.name} category={category} />
+        {categorys.map((category) => (
+          <Categoria key={category.name} category={category} callback={callback} />
         ))}
       </div>
     );

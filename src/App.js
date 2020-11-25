@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import * as api from './services/api';
 import Home from './pages/Home';
 import CartList from './pages/CartList';
+import './App.css';
 import ProductDetail from './pages/ProductDetail';
-import './App.css'
 
 class App extends Component {
   componentDidMount() {
