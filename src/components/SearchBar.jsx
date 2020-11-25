@@ -10,7 +10,6 @@ class SearchBar extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      // loading: false,
       categoryId: '',
       query: '',
       product: [],
@@ -23,17 +22,12 @@ class SearchBar extends Component {
 
   async handleSearch() {
     const { categoryId, query } = this.state;
-    this.setState(
-      // { loading: true },
-      async () => {
-        const productSearch = await api
-          .getProductsFromCategoryAndQuery(categoryId, query);
-        this.setState({
-        // loading: false,
-          product: productSearch.results,
-        });
-      },
-    );
+    const productSearch = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    const fix = [];
+    fix.push(productSearch);
+    console.log(fix);
+    this.setState({product: fix});
+    console.log(this.state.product);
   }
 
   handleChange(event) {
