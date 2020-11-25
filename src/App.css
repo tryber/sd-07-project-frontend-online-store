@@ -75,8 +75,10 @@
 
 .container-cart {
   display: flex;
+  height: 100vh;
   margin: auto;
   width: 1100px;
+
 }
 
 .list-product {
@@ -84,15 +86,23 @@
   text-align: left;
   padding: 10px;
 }
+
 .header-product {
   border-bottom: 1px solid #c9c9c9;
   display:flex;
   justify-content: space-between;
+  padding-top: 50px;
 }
+
 .order {
   background-color: #e2dfdf;
   flex:1;
   padding: 10px;
+  padding-top: 60px;
+}
+
+.body-order {
+  height: 70vh;
 }
 
 .header-order {
