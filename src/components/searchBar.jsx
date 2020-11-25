@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Category from './categoryList';
 
 class SearchBar extends React.Component {
   render() {
@@ -17,7 +16,6 @@ class SearchBar extends React.Component {
             type="text"
             />
           </label>
-          <Category />
         </form>
       </div>
     );
