@@ -11,6 +11,7 @@ class ProductsList extends Component {
     this.showProducts = this.showProducts.bind(this);
     this.showMessage = this.showMessage.bind(this);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
       categories: undefined,
       products: [],
@@ -29,7 +30,7 @@ class ProductsList extends Component {
   async searchQueryProducts() {
     const ListProducts = await API.getQuery(this.state.search);
     if (ListProducts === "") return <span>Nenhum produto foi encontrado</span>;
-    this.setState({ products: ListProducts });
+    return (this.setState({ products: ListProducts }));
   }
   showProducts() {
     return (
@@ -52,6 +53,11 @@ class ProductsList extends Component {
       </h1>
     );
   }
+  handleChange(event) {
+    this.setState({
+      search: event.target.value
+    });
+  }
   render() {
     const { categories, products } = this.state;
 
@@ -64,8 +70,9 @@ class ProductsList extends Component {
           <input
             type="text"
             data-testid="query-input"
-            onChange={this.searchQueryProducts}
+            onChange={this.handleChange}
           />
+          <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
           {products === [] ? this.showMessage() : this.showProducts()}
           <Link data-testid="shopping-cart-button" to="/PageCard">
             <img src={Logo} alt="shoppingCart" />

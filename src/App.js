@@ -9,7 +9,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/:searchText" component={ ProductsList } />
+          <Route exact path="/" component={ ProductsList } />
           <Route exact path="/PageCard" component={ PageCard } />
         </Switch>
       </BrowserRouter>
