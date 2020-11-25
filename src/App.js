@@ -14,6 +14,7 @@ function App() {
         <Link to="/shopping-cart">
           <ShoppingCartOutlinedIcon data-testid="shopping-cart-button" />
         </Link>
+        <Route path="/" component={ SearchBar } />
       </BrowserRouter>
     </div>
   );
