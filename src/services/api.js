@@ -14,7 +14,8 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
       ).then((response) => resolve(response.json()));
     });
   }
-  if (!categoryId && query) {
+
+  if (categoryId === undefined) {
     return new Promise((resolve) => {
       fetch(
         `https://api.mercadolibre.com/sites/MLB/search?q=${query}`,
