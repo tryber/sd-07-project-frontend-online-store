@@ -5,7 +5,7 @@ import * as api from '../services/api';
 class CategoriesList extends React.Component {
   constructor() {
     super();
-    this.state = { list: [] };
+    this.state = { list: [{ id: 0, name: '' }] };
     this.fetchCategories = this.fetchCategories.bind(this);
   }
 
