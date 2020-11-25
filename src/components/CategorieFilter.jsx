@@ -5,16 +5,18 @@ export default class CategorieFilter extends React.Component {
   constructor() {
     super();
 
+    this.FetchCategories = this.FetchCategories.bind(this);
+
     this.state = {
       categories: [],
     };
   }
 
   componentDidMount() {
-    this.FecthCategories();
+    this.FetchCategories();
   }
 
-  async FecthCategories() {
+  async FetchCategories() {
     const result = await api.getCategories();
     this.setState({ categories: result });
   }
