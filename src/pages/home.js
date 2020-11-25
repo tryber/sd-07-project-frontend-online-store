@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CartIcon from '../images/CartIcon.png';
+import FilterList from '../filterList';
 
 class home extends Component {
+  constructor() {
+    super();
+    this.changeSelected = this.changeSelected.bind(this)
+    this.state = {
+      category: '',
+    };
+  }
+  changeSelected (item){
+    console.log('rodou')
+    this.setState({category: item})
+    console.log(this.state.category)
+  }
   render() {
     return (
       <div>
@@ -18,6 +31,7 @@ class home extends Component {
             data-testid="shopping-cart-button"
           />
         </Link>
+        <FilterList changeSelected={this.changeSelected}/>
       </div>
     );
   }
