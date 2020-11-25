@@ -31,7 +31,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     }
   } else {
     try {
-      request = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${QUERY}
+      request = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}
       `);
       objectJson = request.json();
       return objectJson;
