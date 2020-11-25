@@ -20,7 +20,7 @@ class CategoryList extends React.Component {
 
   async fetchCategoryList() {
     this.setState({
-      categories: await productsAPI.getCategories(),
+      categories: [...requestResponse],
     });
   }
 
