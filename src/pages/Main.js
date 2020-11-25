@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import chart from '../icon/chart.png';
 import lupa from '../icon/lupa.png';
 import '../App.css';
+import Categories from '../components/Categories';
 
 class Main extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class Main extends React.Component {
         <Link to="/shoppingCart" data-testid="shopping-cart-button">
           <img className="chartImg" src={ chart } alt="carrinho-de-compras" />
         </Link>
+        <Categories />
       </div>
     );
   }

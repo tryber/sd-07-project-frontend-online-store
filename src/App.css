@@ -6,13 +6,13 @@ Body {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  width: 50%;
+  width: 100%;
 }
 
 .searchInput {
   border-radius: 5px;
   height: 30px;
-  width: 50%;
+  width: 100%;
 }
 
 .chartImg {
