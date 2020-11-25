@@ -1,5 +1,5 @@
 import React from 'react';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import * as api from '../services/api';
 import Cards from './Cards';
 
 class Search extends React.Component {
@@ -7,7 +7,7 @@ class Search extends React.Component {
     super(props);
 
     this.state = { searchTerms: '', products: [] };
-    this.handleSearchTerms = this.handleSearchTerms.bind(this)
+    this.handleSearchTerms = this.handleSearchTerms.bind(this);
     this.fetchAPI = this.fetchAPI.bind(this);
   }
 
@@ -17,8 +17,13 @@ class Search extends React.Component {
 
   async fetchAPI(event) {
     event.preventDefault();
-    const response = await getProductsFromCategoryAndQuery('MLB271599', this.state.searchTerms);
-    console.log(response);
+    try {
+      const { searchTerms } = this.state;
+      const response = await api.getProductsFromCategoryAndQuery('', searchTerms);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -31,17 +36,21 @@ class Search extends React.Component {
           <input
             type="text"
             data-testid="query-input"
-            value={searchTerms}
-            onChange={this.handleSearchTerms}
+            value={ searchTerms }
+            onChange={ this.handleSearchTerms }
           />
 
           <button
+            type="button"
             data-testid="query-button"
-            onClick={this.fetchAPI}
-          >buscar</button>
+            onClick={ this.fetchAPI }
+          >
+            buscar
+
+          </button>
         </form>
 
-        <Cards /> 
+        <Cards />
       </div>
     );
   }
