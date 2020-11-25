@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class SideBar extends Component {
   render() {
-    const { categories } = this.props;
+    const { categories, onChangeCategorySelected } = this.props;
 
     return (
       <form>
@@ -14,6 +14,7 @@ class SideBar extends Component {
               id={ id }
               type="radio"
               value={ name }
+              onChange={ onChangeCategorySelected }
             />
             {name}
           </label>
@@ -23,6 +24,9 @@ class SideBar extends Component {
   }
 }
 
-SideBar.propTypes = { categories: PropTypes.arrayOf(PropTypes.object).isRequired };
+SideBar.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onChangeCategorySelected: PropTypes.func.isRequired,
+};
 
 export default SideBar;

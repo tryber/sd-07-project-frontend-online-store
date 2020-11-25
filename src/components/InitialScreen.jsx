@@ -14,20 +14,28 @@ class InitialScreen extends React.Component {
     this.fetchAPI = this.fetchAPI.bind(this);
     this.onInputSearchChange = this.onInputSearchChange.bind(this);
     this.buttonSearch = this.buttonSearch.bind(this);
+    this.onChangeCategorySelected = this.onChangeCategorySelected.bind(this);
     this.state = {
       searchInput: '',
       categories: [],
       products: [],
       message: 'Digite algum termo de pesquisa ou escolha uma categoria.',
+      categorySelected: '',
     };
   }
 
-  async componentDidMount() {
-    await this.fetchAPI();
+  componentDidMount() {
+    this.fetchAPI();
   }
 
   onInputSearchChange({ target }) {
     this.setState({ searchInput: target.value });
+  }
+
+  onChangeCategorySelected({ target }) {
+    this.setState({ categorySelected: target.id }, () => {
+      this.fetchProducts();
+    });
   }
 
   buttonSearch() {
@@ -35,10 +43,15 @@ class InitialScreen extends React.Component {
   }
 
   async fetchProducts() {
-    const { searchInput } = this.state;
+    const { searchInput, categorySelected } = this.state;
     const dataInputSearch = searchInput;
-    const getProducts = await api
-      .getProductsFromCategoryAndQuery('query', dataInputSearch);
+
+    const datacategorySelected = categorySelected;
+    const getProducts = await api.getProductsFromCategoryAndQuery(
+      datacategorySelected,
+      dataInputSearch,
+    );
+    
     this.setState({ products: getProducts.results });
   }
 
@@ -52,7 +65,9 @@ class InitialScreen extends React.Component {
 
   render() {
     const { message, searchInput, products, categories } = this.state;
+
     const tagMessage = <h1 data-testid="home-initial-message">{message}</h1>;
+
 
     return (
       <>
@@ -63,10 +78,15 @@ class InitialScreen extends React.Component {
         />
         {!searchInput ? tagMessage : ''}
         <div className="side-bar">
-          <SideBar categories={ categories } />
+          <SideBar
+            categories={ categories }
+            onChangeCategorySelected={ this.onChangeCategorySelected }
+          />
         </div>
+
         <ProductList products={ products } />
       </>
+
     );
   }
 }
