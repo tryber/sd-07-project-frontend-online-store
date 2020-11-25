@@ -1,5 +1,5 @@
 import React from 'react';
-import * as api from '../services/api'
+import * as api from '../services/api';
 
 class CategoryList extends React.Component {
   constructor() {
@@ -26,21 +26,20 @@ class CategoryList extends React.Component {
     const { categories } = this.state;
     return (
       <div>
-        {categories.map((category) => {
-          return (
-            <label
-            key={category.id}
-            data-testid='category'
-            htmlFor="">
-              <input
-                type="checkbox"
-                name={category.name}
-                value={category.name}
-              />
-              {category.name}
-            </label>
-          )}
-        )}
+        {categories.map((category) => (
+          <span
+            key={ category.id }
+            data-testid="category"
+            htmlFor=""
+          >
+            <input
+              type="checkbox"
+              name={ category.name }
+              value={ category.name }
+            />
+            { category.name}
+          </span>
+        ))}
       </div>
     );
   }
