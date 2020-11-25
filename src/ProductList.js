@@ -59,8 +59,12 @@ class ProductList extends Component {
         </h1>
       </div>
     );
+<<<<<<< HEAD
     
   }  
+=======
+  }
+>>>>>>> b44d9e71794f0e7b7674d4b43707daef9e750dcb
 }
 
 export default ProductList;
