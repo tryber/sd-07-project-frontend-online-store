@@ -33,7 +33,10 @@ class Home extends React.Component {
             <SearchBar onChange={this.onChange} value={searchValue} />
             <ShoppingCartIcon />
           </div>
-          <List category={category} query={searchValue} />
+          {(category === "" && searchValue === "") ?
+          <h3 data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+            </h3> : <List category={category} query={searchValue} />}
         </div>
       </div>
     );
