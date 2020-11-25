@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import CategoriesCard from '../components/CategoriesCard';
+// import PropTypes from 'prop-types';
+import ProductCard from '../components/ProductCard';
 import QueryBar from '../components/QueryBar';
-import CategoryItem from '../components/CategoryItem';
+import ProductItem from '../components/ProductItem';
 import * as api from '../services/api';
 
-class CategoriesList extends Component {
+class ProductList extends Component {
   constructor(props) {
     super(props);
 
@@ -54,7 +55,7 @@ class CategoriesList extends Component {
     return (
       <div className="main-list">
         <div className="side-bar">
-          { categories.map((category) => (<CategoryItem
+          { categories.map((category) => (<ProductItem
             key={ category }
             category={ category }
           />))}
@@ -67,7 +68,7 @@ class CategoriesList extends Component {
           />
           <section className="prodoct-cards">
             {object.map((product) => (
-              <CategoriesCard key={ product.id } product={ product } />
+              <ProductCard key={ product.id } product={ product } />
             ))}
           </section>
         </div>
@@ -76,4 +77,5 @@ class CategoriesList extends Component {
   }
 }
 
-export default CategoriesList;
+
+export default ProductList;

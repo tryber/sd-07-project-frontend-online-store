@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default class QueryBar extends Component {
   render() {
@@ -42,3 +43,9 @@ export default class QueryBar extends Component {
     );
   }
 }
+
+QueryBar.propTypes = {
+  query: PropTypes.string.isRequired,
+  onQueryChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

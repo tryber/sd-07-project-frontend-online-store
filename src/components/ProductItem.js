@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class CategoryItem extends Component {
+export default class ProductItem extends Component {
   render() {
     const { category } = this.props;
     return (
@@ -14,7 +14,7 @@ export default class CategoryItem extends Component {
   }
 }
 
-CategoryItem.propTypes = {
+ProductItem.propTypes = {
   category: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
