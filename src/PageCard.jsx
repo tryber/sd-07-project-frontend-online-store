@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 
 class PageCard extends React.Component {
   constructor(props) {
@@ -9,14 +8,20 @@ class PageCard extends React.Component {
       products: [],
     };
   }
-
+  
   render() {
     const { loading, products } = this.state;
-    if (loading) return (<span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>);
+    if (loading)
+      return (
+        <span data-testid="shopping-cart-empty-message">
+          Seu carrinho está vazio
+        </span>
+      );
     return (
       <div className="">
+        
       </div>
-    );
+      )
   }
 }
 
