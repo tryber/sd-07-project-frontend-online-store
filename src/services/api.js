@@ -1,6 +1,5 @@
 // faz a chamada da API
 const makeRequest = (url) => fetch(url).then((response) => response.json());
-const makeSearchRequest = (url) => makeRequest(url).then((data) => data.results);
 
 export async function getCategories() {
   // Implemente aqui
