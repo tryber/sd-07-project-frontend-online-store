@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import * as api from './services/api';
 import Home from './pages/Home';
 import CartList from './pages/CartList';
+import ProductDetail from './pages/ProductDetail';
 import './App.css'
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
             CART
           </Link>
           <Switch>
+            <Route path="/product_Detail" component={ProductDetail} />
             <Route path="/cart" component={CartList} />
             <Route exact path="/" component={Home} />
           </Switch>
