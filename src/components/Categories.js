@@ -11,10 +11,10 @@ class Categories extends React.Component {
   }
 
   async componentDidMount() {
-    const categoriesRequi = await api.getCategories();
-    categoriesRequi.then((result) => {
+    const categoriesRequi = await api.getCategories().then((result) => {
       this.setState({ categories: result });
     });
+    console.log(categoriesRequi);
   }
 
   render() {
