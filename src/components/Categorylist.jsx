@@ -10,8 +10,8 @@ class Categorylist extends React.Component {
   }
 
   async componentDidMount() {
-    const category = await api.getCategories();
-    this.setState({ category });
+    const response = await api.getCategories();
+    this.setState({ category: response });
   }
 
   render() {
