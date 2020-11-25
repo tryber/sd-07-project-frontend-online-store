@@ -6,7 +6,6 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Search />
         <Link data-testid="shopping-cart-button" to="/cartBuy">
           <img
             className="cartBuy"
@@ -14,6 +13,7 @@ class Home extends React.Component {
             alt="imagem de carrinho"
           />
         </Link>
+        <Search />
       </div>
     );
   }
