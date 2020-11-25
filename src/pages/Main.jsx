@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Category from './Category';
+import ProductList from './ProductList';
 
 
 class Main extends React.Component {
@@ -13,6 +14,7 @@ class Main extends React.Component {
           <i className="fas fa-shopping-cart" />
         </Link>
         <Category />
+        <ProductList />
       </div>
     );
   }

@@ -23,13 +23,7 @@ class Category extends React.Component {
       <div>
         {category.map(({ name, id }) => (
           <div key={id}>
-            <input
-              type="radio"
-              name={name}
-              id={id}
-              value={id}
-              data-testid="category"
-            />
+            <input type="radio" name={name} id={id} data-testid="category" />
             <label htmlFor={id}>{name}</label>
           </div>
         ))}
