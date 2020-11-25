@@ -8,14 +8,14 @@ export default class CategoryList extends React.Component {
     this.state = {
       categories: [],
     };
-    this.getCategories = this.getCategories.bind(this);
+    this.setCategories = this.setCategories.bind(this);
   }
 
   componentDidMount() {
-    this.getCategories();
+    this.setCategories();
   }
 
-  async getCategories() {
+  async setCategories() {
     const categories = await api.getCategories();
     this.setState({
       categories: categories,
