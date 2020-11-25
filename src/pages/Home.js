@@ -10,7 +10,9 @@ class PageListProducts extends React.Component {
     this.fetchCategorys = this.fetchCategorys.bind(this);
     this.state = {
       categorys: [],
+      products: [],
       loading: false,
+      searchText: '',
     };
   }
 
@@ -33,7 +35,8 @@ class PageListProducts extends React.Component {
       <div className="page-list-products">
         <Categorias categorys={this.state.categorys} />
         <div className="list-products">
-          <ProductListing />
+          <ProductListing
+          />
         </div>
       </div>
     );
