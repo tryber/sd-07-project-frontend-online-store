@@ -3,7 +3,14 @@ const makeRequest = (url) => fetch(url).then((response) => response.json());
 
 export async function getCategories() {
   // Implemente aqui
-  const url = "https://api.mercadolibre.com/sites/MLB/categories";
+  const url = 'https://api.mercadolibre.com/sites/MLB/categories';
+  const myReturn = makeRequest(url);
+  await myReturn;
+  return myReturn;
+}
+
+export async function getProductById(id) {
+  const url = `https://api.mercadolibre.com/items/${id}`;
   const myReturn = makeRequest(url);
   await myReturn;
   return myReturn;

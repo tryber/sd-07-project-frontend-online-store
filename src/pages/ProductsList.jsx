@@ -41,6 +41,7 @@ class ProductsList extends Component {
         {this.state.products.map((element) => {
           return <Product
             key={element.id}
+            id={element.id}
             title={element.title}
             price={element.price}
             thumbnail={element.thumbnail}
