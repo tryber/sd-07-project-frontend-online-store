@@ -5,12 +5,17 @@ import * as api from '../services/api';
 class Categories extends React.Component {
   constructor(props) {
     super(props);
+    this.getApi = this.getApi.bind(this);
     this.state = {
       categories: [],
     };
   }
-
-  async componentDidMount() {
+  
+  componentDidMount() {
+    this.getApi();
+  }
+  
+  async getApi() {
     const categoriesRequi = await api.getCategories().then((result) => {
       this.setState({ categories: result });
     });
