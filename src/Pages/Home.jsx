@@ -3,6 +3,7 @@ import CategoryList from '../components/CategoryList';
 import InitialMessage from '../components/InitialMessage';
 import * as api from '../services/api';
 import Item from '../components/Item';
+import ButtonShop from '../components/ButtonShop';
 
 class Home extends React.Component {
   constructor() {
@@ -32,7 +33,7 @@ class Home extends React.Component {
   render() {
     return ( 
       <div>
-        <div>
+        <header>
           <input
             data-testid="query-input"
             id="search_bar"
@@ -48,7 +49,8 @@ class Home extends React.Component {
           >
             Search
           </button>
-        </div>
+          <ButtonShop />
+        </header>
         <InitialMessage />
         <CategoryList />
         <div>
