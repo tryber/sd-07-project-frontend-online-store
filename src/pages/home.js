@@ -19,7 +19,6 @@ class Home extends Component {
   }
 
   handleSearchKey({ target }) {
-    console.log(target.value);
     this.setState({
       searchKey: target.value,
     });
@@ -28,7 +27,7 @@ class Home extends Component {
   async fetchAPI() {
     const { searchKey } = this.state;
     const request = await api.getProductsFromCategoryAndQuery('', searchKey);
-    console.log(request.results);
+
     this.setState({
       results: request.results,
     });
@@ -39,15 +38,19 @@ class Home extends Component {
     return (
       <div>
         <header>
-          <input data-testid="query-input" type="text" onChange={this.handleSearchKey} />
-          <button type="submit" data-testid="query-button" onClick={this.fetchAPI}>
+          <input
+            data-testid="query-input"
+            type="text"
+            onChange={ this.handleSearchKey }
+          />
+          <button type="submit" data-testid="query-button" onClick={ this.fetchAPI }>
             Search
           </button>
           <Link to="/cart" data-testid="shopping-cart-button">
             Carrinho de compras
           </Link>
         </header>
-        <ProductList results={results} />
+        <ProductList results={ results } />
         <Categories />
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
