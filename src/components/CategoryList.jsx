@@ -1,4 +1,5 @@
 import React from 'react';
+import * as api from '../services/api'
 
 class CategoryList extends React.Component {
     constructor() {
@@ -22,7 +23,9 @@ class CategoryList extends React.Component {
       }
     
     render() {
-        return();
+        return(
+          <div>teste</div>
+        );
     }
 }
 
