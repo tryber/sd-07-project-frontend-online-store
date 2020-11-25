@@ -49,7 +49,7 @@ class ProductDetails extends React.Component {
     if (loading) return <div>Carregando...</div>;
 
     return (
-      <div data-testid="product">
+      <div>
         <p data-testid="product-detail-name">{product.title}</p>
         <img src={ product.thumbnail } alt="" />
         <p>
