@@ -2,9 +2,24 @@ import React from 'react';
 
 class List extends React.Component {
   render() {
-    return (
-      <h3 data-testid="home-initial-message" >Digite algum termo de pesquisa ou escolha uma categoria.</h3>
-    );
+    const { category, query } = this.props;
+    if(category === "") {
+      if(query === "") {
+        return(
+          <p
+            data-testid="home-initial-message"
+          >Digite algum termo de pesquisa ou escolha uma categoria.</p>
+        );
+      }else {
+        return(<h3>pesquisa por titulo</h3>);
+      }
+    } else {
+      if(query === "") {
+        return(<h3>pesquisa por categoria</h3>);
+      }else {
+        return(<h3>pesquisa por categoria e titulo</h3>);
+      }
+    }
   };
 }
 
