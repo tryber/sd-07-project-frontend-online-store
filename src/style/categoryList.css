@@ -1,0 +1,15 @@
+.category-list {
+    border: 1px solid black;
+    display: flex;
+    width: 15vw;
+    height: 100%;
+    flex-wrap: wrap;
+    margin-left: 2px;
+}
+
+.category-item {
+    padding: 2px 0;
+    width: 100%;
+    margin-left: 10px;
+    list-style-type: none;
+}
