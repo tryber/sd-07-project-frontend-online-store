@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/api'
 
-class Category extends React.Component {
+class Category extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -11,28 +11,27 @@ class Category extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchCategory;
+    this.fetchCategory();
   }
 
   async fetchCategory() {
-    this.setState(
-      async () => {
-        const RequestReturn = await api.getCategories;
-        this.setState({
-          categories: RequestReturn,
-        });
-      });
-  }
+    const RequestReturn = await api.getCategories();
+    this.setState({
+      categories: RequestReturn,
+    });
+    console.log(RequestReturn);
+  };
 
   render() {
     const { categories } = this.state;
-    const { id, name } = this.state.categories
     return (
-      <div data-testid="category">
-        <select>
-        {/* {categories.map((category) => <option key={id} value={`${id}`} >  {`${name}`} </option>)} */}
-        </select>
+      <div>
+        <label>
+          {categories.map((category) => <label><input data-testid="category" type="checkbox" key={category.id} value={`${category.id}`} />{`${category.name}`}<br /></label> )}
+        </label>
       </div>
     );
   }
 }
+
+export default Category;
