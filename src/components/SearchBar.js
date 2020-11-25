@@ -6,10 +6,14 @@ class SearchBar extends Component {
     return (
       <div>
         <label>
-          <button>Botão de pesquisa</button>
+          <button type="button">Botão de pesquisa</button>
           <input type="text"/>
         </label>
-        <Link to="/shoppingCart"><button>Carrinho de compras</button></Link>
+        <Link to="/shoppingCart">
+          <button type="button" data-testid="shopping-cart-button">
+            Carrinho de compras
+          </button>
+        </Link>
       </div>
     );
   }
