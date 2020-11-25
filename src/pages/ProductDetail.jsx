@@ -17,8 +17,14 @@ class ProductDetail extends React.Component {
 
   async searchQueryProducts() {
     const ListProducts = await API.getProductsFromCategoryAndQuery(this.props.match.params.id, undefined);
+    const { results } = ListProducts;
+    if (results !== undefined) {
+      const { id, title, attributes, thumbnail, price } = results[0];
+      return this.setState({ id, attributes, title, thumbnail, price });
+    }
     const { id, attributes, title, thumbnail, price } = ListProducts;
-    return this.setState({ attributes, title, thumbnail, price });
+    console.log(ListProducts);
+    return this.setState({ id, attributes, title, thumbnail, price });
   }
 
   componentDidMount() {
@@ -26,10 +32,10 @@ class ProductDetail extends React.Component {
   }
 
   render() {
-    const { title, price, thumbnail } = this.state;
+    const { id, title, price, thumbnail } = this.state;
     return (
       <div>
-        <h3 className='product-detail-name'>{title}</h3>
+        <h3 data-testid='product-detail-name'>{title}</h3>
         <div>{price}</div>
         <img src={thumbnail} alt={title} />
         <div>

@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import * as API from '../services/api';
-import CategoriesList from '../components/CategoriesList';
-import Logo from '../shoppingCartImage.png';
-import Product from './Product';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import * as API from "../services/api";
+import CategoriesList from "../components/CategoriesList";
+import Logo from "../shoppingCartImage.png";
+import ShowProducts from "../components/ShowProducts";
 
 class ProductsList extends Component {
   constructor() {
     super();
-    this.showProducts = this.showProducts.bind(this);
     this.showMessage = this.showMessage.bind(this);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
+    this.categoryChoice = this.categoryChoice.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
+      category: undefined,
       categories: undefined,
-      products: [],
-      search: '',
+      products: undefined,
+      search: "",
     };
   }
 
@@ -29,67 +30,54 @@ class ProductsList extends Component {
   }
 
   async searchQueryProducts() {
-    const ListProducts = await API.getProductsFromCategoryAndQuery(
-      undefined,
-      this.state.search
-    );
-    if (ListProducts === '') return <span>Nenhum produto foi encontrado</span>;
+    const ListProducts = await API.getProductsFromCategoryAndQuery(this.state.category, this.state.search);
+    if (ListProducts === "") return <span>Nenhum produto foi encontrado</span>;
     const { results } = ListProducts;
-    return this.setState({ products: results });
-  }
-
-  showProducts() {
-    return (
-      <div>
-        {this.state.products.map((element) => {
-          return (
-            <Product
-              key={element.id}
-              id={element.id}
-              title={element.title}
-              price={element.price}
-              thumbnail={element.thumbnail}
-            />
-          );
-        })}
-      </div>
-    );
+    return (this.setState({ products: results }));
   }
 
   showMessage() {
     return (
-      <h1 data-testid='home-initial-message'>
+      <h1 data-testid="home-initial-message">
         Digite algum termo de pesquisa ou escolha uma categoria.
       </h1>
     );
   }
 
-  handleChange(event) {
-    this.setState({
-      search: event.target.value,
-    });
+  categoryChoice({ target }) {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+    this.searchQueryProducts();
   }
 
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  }
+  
   render() {
     const { categories, products } = this.state;
 
     return (
       <div>
         <div>
-          {categories ? <CategoriesList categories={categories} /> : null}
+          {categories ? categories.map((categorie) => <CategoriesList
+            key={categorie.id}
+            categorie={categorie}
+            onCategoryChoice={this.categoryChoice} />
+          ) : null }
         </div>
         <div>
           <input
-            type='text'
-            data-testid='query-input'
+            name="search"
+            type="text"
+            data-testid="query-input"
             onChange={this.handleChange}
           />
-          <button data-testid='query-button' onClick={this.searchQueryProducts}>
-            Pesquisar
-          </button>
-          {products === [] ? this.showMessage() : this.showProducts()}
-          <Link data-testid='shopping-cart-button' to='/PageCard'>
-            <img src={Logo} alt='shoppingCart' />
+          <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
+          {products === undefined ? this.showMessage() : <ShowProducts products={products} />}
+          <Link data-testid="shopping-cart-button" to="/PageCard">
+            <img src={Logo} alt="shoppingCart" />
           </Link>
         </div>
       </div>
