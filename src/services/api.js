@@ -18,6 +18,7 @@ export async function getProductsFromCategoryAndQuery(ID, query) {
       return myReturn;
     }
     const url = `https://api.mercadolibre.com/sites/MLB/search?category=$${ID}`;
+
     const myReturn = await makeRequest(url);
     return myReturn;
   }
@@ -29,6 +30,7 @@ export async function getProductsFromCategoryAndQuery(ID, query) {
   }
 
   const url = `https://api.mercadolibre.com/sites/MLB/search?category=$${ID}&q=$${query}`;
+
   const myReturn = await makeRequest(url);
   return myReturn;
 }
