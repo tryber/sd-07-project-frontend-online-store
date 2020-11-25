@@ -25,22 +25,12 @@ export default class ProductDetails extends Component {
 
   render() {
     const { product } = this.state;
-    const { title, price, thumbnail, attributes} = product;
+    const { title, price, thumbnail } = product;
     return (
       <div className="product-details" data-testid="product-detail-name">
         <h1>{ title }</h1>
         <h2>{ price }</h2>
         <img src={ thumbnail } alt={`${title}`} />
-        <div>
-          <h3>Especificações</h3>
-          <ul>
-            <li>ex 1</li>
-            <li>ex 2</li>
-            <li>ex 3</li>
-            <li>ex 4</li>
-            <li>ex 5</li>
-          </ul>
-        </div>
       </div>
     );
   }
