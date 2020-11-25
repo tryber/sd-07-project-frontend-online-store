@@ -11,8 +11,7 @@ class Categories extends Component {
   }
 
   componentDidMount() {
-    api
-      .getCategories()
+    api.getCategories()
       .then((categories) => this.setState({ categories }))
       .catch((error) => console.log(error));
   }
