@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 // import { Link } from 'react-router-dom';
-import * as api from "../services/api";
+import * as api from '../services/api';
 
 class Categories extends React.Component {
   constructor(props) {
@@ -9,11 +9,14 @@ class Categories extends React.Component {
       categories: [],
     };
   }
+
   async componentDidMount() {
-    const categoriesRequi = await api.getCategories().then((result) => {
+    const categoriesRequi = await api.getCategories();
+    categoriesRequi.then((result) => {
       this.setState({ categories: result });
     });
   }
+
   render() {
     const { categories } = this.state;
     if (categories.length < 1) {
@@ -22,9 +25,7 @@ class Categories extends React.Component {
     return (
       <div>
         <select id="categories">
-          {categories.map((category) => {
-            return <option value={category.name}>{category.name}</option>;
-          })}
+          {categories.map((category) => <option key={category.id} value={category.name}>{category.name}</option>)}
         </select>
       </div>
     );

@@ -11,7 +11,7 @@ class ShoppinCart extends React.Component {
           Seu carrinho está vazio
         </h3>
         <Link to="/">
-        <img className="voltar" src={ voltar } alt="imagem-Voltar"/>
+          <img className="voltar" src={ voltar } alt="imagem-Voltar" />
         </Link>
       </div>
     );
