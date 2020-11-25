@@ -19,6 +19,7 @@ class CategoryList extends Component {
     return (
       <div className="category-list">
         <select onChange={ (event) => console.log(event.target.value) }>
+          <option defaultValue value="" name="categoryId">Selecione uma categoria</option>
           {category.map((item) => (
             <option
               data-testid="category"
