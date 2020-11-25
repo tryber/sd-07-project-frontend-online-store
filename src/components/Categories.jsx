@@ -31,7 +31,7 @@ class Categories extends Component {
               id={category.name}
               type="radio"
               name="category"
-              value={category.name}
+              value={category.id}
               onChange={onChange}
             />
             <label data-testid="category" htmlFor={category.name}>{category.name}</label>

@@ -30,7 +30,7 @@ class Home extends React.Component {
 
   atualizar() {
     const { searchValue, category } = this.state;
-    if(searchValue !== "") {
+    if(searchValue !== "" || category !== "") {
       this.buscaCategoryAndQuery(category, searchValue);
     } else {
       this.setState({ list: {} })
@@ -43,6 +43,7 @@ class Home extends React.Component {
 
   async select(event) {
     await this.setState({ category: event.target.value })
+    this.atualizar();
   }
 
   render() {
