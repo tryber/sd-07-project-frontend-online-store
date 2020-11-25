@@ -7,7 +7,6 @@ import ShoppingCart from './components/ShoppingCart'
 function App() {
 
   return (
-
     <Router>
       <Link to="/">Search Bar</Link>
       <Link to="/cart">Cart</Link>
