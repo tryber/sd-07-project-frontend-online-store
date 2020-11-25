@@ -7,7 +7,7 @@ class ProductsList extends Component {
   constructor() {
     super();
     this.state = {
-      productsToRender: [],
+      productsToRender: undefined,
       inputSearchValue: '',
     };
     this.fetchByQuery = this.fetchByQuery.bind(this);
@@ -16,9 +16,12 @@ class ProductsList extends Component {
 
   async fetchByQuery() {
     const { inputSearchValue } = this.state;
-    const fetchResult = await api.getProductsFromCategoryAndQuery(false , inputSearchValue);
+    const fetchResult = await api.getProductsFromCategoryAndQuery(
+      false,
+      inputSearchValue,
+    );
     this.setState({
-      productsToRender: [fetchResult.results],
+      productsToRender: fetchResult.results,
     });
   }
 
@@ -33,7 +36,11 @@ class ProductsList extends Component {
     const { productsToRender, inputSearchValue } = this.state;
     return (
       <div>
-        <SearchBar onSearch={ this.fetchByQuery } inputValue={ inputSearchValue } inputChange={ this.updateInputSearch } />
+        <SearchBar
+          onSearch={ this.fetchByQuery }
+          inputValue={ inputSearchValue }
+          inputChange={ this.updateInputSearch }
+        />
         <FilteredProductsList allProducts={ productsToRender } />
       </div>
     );
