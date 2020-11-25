@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
     this.state = {
       arrayOfCategories: [],
       loading: true,
-      parameterSearch: '',
+      searchParameter: '',
     }
   }
 
@@ -30,13 +30,21 @@ class SearchBar extends React.Component {
 
   getInputString(){
     this.setState({
-      parameterSearch: valeu
+      searchParameter: valeu
     })
   }
 
   async getApiInfo() {
-    // https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}.json();
-    // onClick query == input
+    this.setState(
+      { loading: true },
+      async () => {
+        const categoriesFromApi = await mlAPI.getProductsFromCategoryAndQuery(categoryId, searchParameter);
+        this.setState({
+          loading: false,
+          arrayOfCategories: categoriesFromApi,
+        });
+      });
+      console.log(parameterSearch)
   }
 
   componentDidMount() {
