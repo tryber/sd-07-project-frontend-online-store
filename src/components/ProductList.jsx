@@ -16,11 +16,27 @@ class ProductList extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFetch = this.handleFetch.bind(this);
+    this.handleRadioChange = this.handleRadioChange.bind(this);
   }
 
   handleInputChange({ target }) {
     const { name, value } = target;
     this.setState({ [name]: value });
+  }
+
+  handleRadioChange({ target }) {
+    const { value } = target;
+    this.setState({ idValue: value }, () => {
+      const { queryValue, idValue } = this.state;
+      api
+        .getProductsFromCategoryAndQuery(idValue, queryValue)
+        .then((response) => {
+          this.setState({
+            loading: false,
+            products: response.results,
+          });
+        });
+    });
   }
 
   handleFetch(event) {
@@ -48,9 +64,7 @@ class ProductList extends React.Component {
 
     return (
       <div className="product-list">
-        <CategoryList
-          onChange={ this.handleInputChange }
-        />
+        <CategoryList onChange={ this.handleRadioChange } />
 
         <div className="container">
           <form className="first-input">

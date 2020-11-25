@@ -9,8 +9,9 @@ class ProductDetails extends React.Component {
 
     this.fetch = this.fetch.bind(this);
 
+    const initialIndex = 0;
     this.state = {
-      productId: id.substring(0, id.indexOf('&')),
+      productId: id.substring(initialIndex, id.indexOf('&')),
       filterId: id.substring(id.indexOf('&') + 1, id.length),
       product: undefined,
       loading: true,

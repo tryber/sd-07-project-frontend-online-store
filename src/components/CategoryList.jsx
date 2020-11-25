@@ -44,12 +44,13 @@ class CategoryList extends React.Component {
       <div className="category-list">
         Categorias:
         {categories.map((element) => (
-          <label htmlFor="idValue" data-testid="category" key={ element.id }>
+          <label htmlFor="idValue" key={ element.id }>
             <input
               name="idValue"
               value={ element.id }
               onChange={ onChange }
-              type="checkbox"
+              type="radio"
+              data-testid="category"
             />
             {element.name}
           </label>
@@ -62,6 +63,5 @@ class CategoryList extends React.Component {
 CategoryList.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
-
 
 export default CategoryList;
