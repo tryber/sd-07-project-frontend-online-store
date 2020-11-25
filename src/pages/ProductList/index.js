@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Card from '../../components/Card';
 import CartButton from '../../components/CartButton';
+import CategoryList from '../../components/CategoryList';
 
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 
@@ -53,8 +54,13 @@ class ProductList extends Component {
           </h4>
         </header>
         <main>
-          {results.map((result) => <Card key={ result.id } data={ result } />)}
-          {!results.length && <p>Nenhum produto foi encontrado</p>}
+          <aside>
+            <CategoryList />
+          </aside>
+          <section>
+            {results.map((result) => <Card key={ result.id } data={ result } />)}
+            {!results.length && <p>Nenhum produto foi encontrado</p>}
+          </section>
         </main>
       </section>
     );
