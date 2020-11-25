@@ -27,11 +27,14 @@ class ProductsList extends Component {
     const categoriesList = await API.getCategories();
     this.setState({ categories: categoriesList });
   }
+
   async searchQueryProducts() {
-    const ListProducts = await API.getQuery(this.state.search);
+    const ListProducts = await API.getProductsFromCategoryAndQuery(undefined, this.state.search);
     if (ListProducts === "") return <span>Nenhum produto foi encontrado</span>;
-    return (this.setState({ products: ListProducts }));
+    const { results } = ListProducts;
+    return (this.setState({ products: results }));
   }
+
   showProducts() {
     return (
       <div>
@@ -46,6 +49,7 @@ class ProductsList extends Component {
       </div>
     );
   }
+
   showMessage() {
     return (
       <h1 data-testid="home-initial-message">
@@ -53,11 +57,13 @@ class ProductsList extends Component {
       </h1>
     );
   }
+
   handleChange(event) {
     this.setState({
       search: event.target.value
     });
   }
+  
   render() {
     const { categories, products } = this.state;
 

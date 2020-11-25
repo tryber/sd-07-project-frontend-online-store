@@ -1,23 +1,5 @@
 // faz a chamada da API
 const makeRequest = (url) => fetch(url).then((response) => response.json());
-const makeSearchRequest = (url) =>
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => data.results);
-
-export async function getQuery(query) {
-  const url = `https://api.mercadolibre.com/sites/MLB/search?q=$${query}`;
-  const myReturn = makeSearchRequest(url);
-  await myReturn;
-  return myReturn;
-}
-
-export async function getQuery(query) {
-  const url = `https://api.mercadolibre.com/sites/MLB/search?q=$${query}`;
-  const myReturn = makeRequest(url);
-  await myReturn;
-  return myReturn;
-}
 
 export async function getCategories() {
   // Implemente aqui
@@ -31,6 +13,13 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   // Implemente aqui! Quando o fizer, descomente os parâmetros que essa função recebe
   if (query === undefined) {
     const url = `https://api.mercadolibre.com/sites/MLB/search?category=$${categoryId}`;
+    const myReturn = makeRequest(url);
+    await myReturn;
+    return myReturn;
+  }
+
+  if (categoryId === undefined) {
+    const url = `https://api.mercadolibre.com/sites/MLB/search?q=$${query}`;
     const myReturn = makeRequest(url);
     await myReturn;
     return myReturn;
