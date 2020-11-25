@@ -73,6 +73,7 @@ class ProductList extends React.Component {
               Digite algum termo de pesquisa ou escolha uma categoria.
             </label>
             <br />
+
             <button
               type="button"
               data-testid="query-button"
@@ -92,6 +93,8 @@ class ProductList extends React.Component {
                   title={ product.title }
                   thumbnail={ product.thumbnail }
                   price={ product.price }
+                  id={ product.id }
+                  filterId={ product.category_id }
                 />
               ))
             )}
