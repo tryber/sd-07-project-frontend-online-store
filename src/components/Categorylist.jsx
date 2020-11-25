@@ -18,7 +18,6 @@ class Categorylist extends React.Component {
     const { category } = this.state;
     return (
       <select>
-        <option disabled="disabled" selected="selected">Categorias</option>
         {category.map(({ id, name }) => (
           <option data-testid="category" key={id}>
             {name}
