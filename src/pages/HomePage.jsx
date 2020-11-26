@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
-import SearchBar from '../components/SearchBar/SearchBar';
 import ProductList from '../components/ProductList/ProductList';
+import ShoppingCartButton from '../components/ShoppingCartButton/ShoppingCartButton';
+import CategoryList from '../components/CategoryList/CategoryList';
 
 class HomePage extends Component {
-  // constructor(props) {
+// constructor(props) {
   //   super(props);
   //   this.setState = {
   //     category: 'xablau',
   //   };
   // }
-
+  
   render() {
-    // const { category } = this.state;
     return (
+      // const { category } = this.state;
       <div>
+        <ShoppingCartButton />
         <ProductList categoryId="MLB5672" />
+        <CategoryList onChangeCategory={ this.onChangeCategory } />
       </div>
     );
   }
