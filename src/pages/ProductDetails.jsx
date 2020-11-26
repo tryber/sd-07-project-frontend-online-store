@@ -5,7 +5,8 @@ import ProductReview from '../components/productDetails/ProductReview';
 
 class ProductDetails extends React.Component {
   productNamePrice() {
-    const { title, price } = this.props.location.details.product;
+    const { location: { details: { product: { title, price } } } } = this.props;
+    // const { title, price } = this.props.location.details.product;
     return (
       <div className="product-details-name">
         <h1 data-testid="product-detail-name">{title}</h1>
@@ -16,7 +17,8 @@ class ProductDetails extends React.Component {
   }
 
   productPhoto() {
-    const { title, thumbnail } = this.props.location.details.product;
+    const { location: { details: { product: { title, thumbnail } } } } = this.props;
+    // const { title, thumbnail } = this.props.location.details.product;
     return (
       <div className="product-details-photo">
         <img src={ thumbnail } alt={ `Foto do ${title}` } />
