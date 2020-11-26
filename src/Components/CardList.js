@@ -8,13 +8,13 @@ class CardList extends React.Component {
     return (
       <div>
         {products.map((product) => (
-          <CardProduct key={product.id} product={product} />
+          <CardProduct key={ product.id } product={ product } />
         ))}
       </div>
     );
   }
 }
 
-CardList.propTypes = { product: PropTypes.arrayOf(PropTypes.objectOf).isRequired };
+CardList.propTypes = { products: PropTypes.arrayOf(PropTypes.objectOf).isRequired };
 
 export default CardList;
