@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cartIcon from '../../images/cart-icon.png';
 
@@ -22,7 +23,7 @@ class SumCart extends React.Component {
 }
 
 SumCart.propTypes = {
-  num: PropTypes.number,
-}
+  num: PropTypes.number.isRequired,
+};
 
 export default SumCart;

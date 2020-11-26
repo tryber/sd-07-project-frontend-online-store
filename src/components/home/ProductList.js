@@ -6,7 +6,7 @@ import './ProductList.css';
 class ProductList extends React.Component {
   render() {
     // const { query, api, num, onClick } = this.props;
-    const { api, onClick } = this.props;
+    const { api, num, onClick } = this.props;
     const products = api;
     if (api.results.length < 1) {
       return (
@@ -18,7 +18,7 @@ class ProductList extends React.Component {
     return (
       <div className="productList">
         {products.results.map((prod) => (<ProductCard
-          // num={ num }
+          num={ num }
           // query={ query }
           key={ prod.id }
           product={ prod }
@@ -32,7 +32,7 @@ class ProductList extends React.Component {
 ProductList.propTypes = {
   // query: PropTypes.string.isRequired,
   api: PropTypes.objectOf(PropTypes.array).isRequired,
-  // num: PropTypes.number.isRequired,
+  num: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

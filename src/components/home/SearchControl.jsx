@@ -5,7 +5,7 @@ import ProductList from './ProductList';
 class SearchControl extends React.Component {
   searchControl() {
     // const { search, query, answer, onClick, num } = this.props;
-    const { search, answer, onClick } = this.props;
+    const { search, answer, onClick, num } = this.props;
     if (!search) {
       return (
         <p data-testid="home-initial-message">
@@ -15,7 +15,7 @@ class SearchControl extends React.Component {
     }
     return (
       // <ProductList num={num} onClick={onClick} query={query} api={answer} />
-      <ProductList onClick={ onClick } api={ answer } />
+      <ProductList num={num} onClick={ onClick } api={ answer } />
     );
   }
 
@@ -32,6 +32,7 @@ SearchControl.propTypes = {
   search: PropTypes.string.isRequired,
   answer: PropTypes.objectOf(PropTypes.array).isRequired,
   onClick: PropTypes.func.isRequired,
-}
+  num: PropTypes.number.isRequired,
+};
 
 export default SearchControl;

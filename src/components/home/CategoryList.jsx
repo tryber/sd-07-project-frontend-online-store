@@ -29,6 +29,6 @@ class CategoryList extends React.Component {
 CategoryList.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   check: PropTypes.func.isRequired,
-}
+};
 
 export default CategoryList;
