@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
+import EvaluationForm from '../components/EvaluationForm'
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -20,9 +21,7 @@ class ProductDetails extends Component {
     this.setState(
       { loading: true },
       async () => {
-        // const { id } = this.props.match.params;
-        const id = 'MLB1689813027';
-        const id2= 'MLB1532299476';
+        const { id } = this.props.match.params;        
         const productID = await api.fetchAPIByID(id);
         console.log(productID);
         this.setState({
@@ -54,7 +53,8 @@ class ProductDetails extends Component {
         <ul className="container-list">
           {attributes.map(({ name, value_name, id }) => 
           <li key ={id}>{name}: {value_name}</li>)}
-        </ul>        
+        </ul>
+        <EvaluationForm />
       </div>
     );
   }
