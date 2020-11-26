@@ -7,7 +7,7 @@ class ProductDetail extends Component {
     super();
 
     this.getProduct = this.getProduct.bind(this);
-    
+    this.callingFirst = this.callingFirst.bind(this);
     this.state = {
       name: 'Teste',
       imagePath : '',
@@ -16,11 +16,14 @@ class ProductDetail extends Component {
     };
   }
 
+  async callingFirst() {
+    await this.getProduct();
+  }
+
   async getProduct() {
     const { id, category_id, title } = this.props.match.params;
     const { results } = await api.getProductsFromCategoryAndQuery(category_id, title);
-
-    const productDetail = results.filter( result => result.id === id);
+    const productDetail = results.filter( result => result.id === id);    
 
     this.setState( { 
       name: productDetail[0].title,
@@ -28,20 +31,21 @@ class ProductDetail extends Component {
       price: productDetail[0].price,
       details: productDetail[0].attributes,
     });
-    //console.log(productDetail);
+    console.log(this.state);    
   }
 
   componentDidMount() {
-    this.getProduct();
+    this.callingFirst();
+    //console.log(this.state);
   }
 
   render() {
     const { name, imagePath, price, details } = this.state;
     return (      
-      <div>
+      <div data-testid="product-detail-name">
         <Link to="/">Home</Link>
         <h1>Product Detail</h1>
-          <p>Name: <span data-testid="product-detail-name">{name}</span></p>
+          <p>Name: <span>{name}</span></p>
           <img src={imagePath} alt={name} />
           <p>Price: <span>{price}</span> </p>
           <div>Details: {

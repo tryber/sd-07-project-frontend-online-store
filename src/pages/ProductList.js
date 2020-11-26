@@ -56,7 +56,7 @@ class ProductList extends Component {
       <div className="main-list">
         <div className="side-bar">
           { categories.map((category) => (<ProductItem
-            key={ category }
+            key={ category.id }
             category={ category }
           />))}
         </div>
