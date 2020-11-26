@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+}
+.CategoryList {
+  float: left;
+  margin-left: 10px;
+  margin-right: 8px;
+  margin-top: -10px;
+  width: 60%;
+}
+.SearchBar {
+  float: right;
+  width: 100%;
+}
+h3 {
+  border: 2px solid blue;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 40px;
+  justify-content: center;
+}
