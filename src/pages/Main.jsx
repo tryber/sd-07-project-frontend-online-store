@@ -37,7 +37,8 @@ class Main extends React.Component {
 
   productsList() {
     return this.state.products.map(({ title, id, thumbnail, price}) => (
-      <ProductList title={title} image={thumbnail} price={price} key={id} />
+
+      <ProductList key={id} title={title} image={thumbnail} price={price} id={id} />
     ));
   }
 
