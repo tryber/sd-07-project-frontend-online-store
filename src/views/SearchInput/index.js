@@ -6,7 +6,7 @@ import * as icon from '../../components/Icons';
 class SearchInput extends Component {
   render() {
     return (
-      <css.ctnCenter>
+      <css.ctnCenter className='teste'>
         <div className='ctn-search-bar'>
           <cp.Input className='input' />
           <icon.Search className='icon-search' />
