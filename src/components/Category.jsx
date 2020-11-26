@@ -1,13 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as api from '../services/api';
 
 class Category extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      categories: [],
+    };
+  }
+
+  componentDidMount() { this.fetchCategories(); }
+
+  async fetchCategories() {
+    this.setState({ categories: await api.getCategories() });
+  }
+
   mapCategories() {
-    const { categories } = this.props;
-    const lis = categories.map(
+    return this.state.categories.map(
       ({ id, name }) => <li key={ id } data-testid="category" id={ id }>{name}</li>,
     );
-    return lis;
   }
 
   render() {
@@ -20,9 +32,5 @@ class Category extends React.Component {
     );
   }
 }
-
-Category.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
 
 export default Category;
