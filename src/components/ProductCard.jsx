@@ -27,9 +27,10 @@ class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
     const { thumbnail, title, price } = product;
+    const subtitle = title.substring(0, 8);
     return (
       <div>
-        <Link data-testid="product-detail-link" to={ `/detail/${title}` }>
+        <Link data-testid="product-detail-link" to={ `/detail/${subtitle}` }>
           <div data-testid="product">
             <img src={ thumbnail } alt="Imagem do produto" />
             <h4>{title}</h4>

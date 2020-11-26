@@ -26,11 +26,13 @@ class KartList extends React.Component {
 
   render() {
     const { message, itensStorage } = this.state;
-    const messageEmptyKart = <h1 data-testid="shopping-cart-empty-message">{message}</h1>;
-    const renderProducts = <KartItens itensStorage={ itensStorage } />;
     return (
       <div className="kart">
-        {itensStorage.length ? renderProducts : messageEmptyKart}
+        {itensStorage ? (
+          <KartItens itensStorage={ itensStorage } />
+        ) : (
+          <h1 data-testid="shopping-cart-empty-message">{message}</h1>
+        )}
       </div>
     );
   }
