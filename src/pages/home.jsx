@@ -25,6 +25,16 @@ class Home extends React.Component {
     this.localStorageCart();
   }
 
+  async onClick(texto) {
+    await this.setState({ searchValue: texto });
+    this.atualizar();
+  }
+
+  async select(event) {
+    await this.setState({ category: event.target.value });
+    this.atualizar();
+  }
+  
   atualizar() {
     const { searchValue, category } = this.state;
     if (searchValue !== '' || category !== '') {
@@ -39,16 +49,6 @@ class Home extends React.Component {
       const cartItemsStorage = [];
       localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
     }
-  }
-
-  async onClick(texto) {
-    await this.setState({ searchValue: texto });
-    this.atualizar();
-  }
-
-  async select(event) {
-    await this.setState({ category: event.target.value });
-    this.atualizar();
   }
 
   async buscaCategoryAndQuery(category, query) {
