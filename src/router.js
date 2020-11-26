@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import ProductDetails from './pages/ProductDetails';
 import ShoppingCart from './pages/ShoppingCart';
 
 class Router extends Component {
@@ -10,6 +11,7 @@ class Router extends Component {
         <Switch>
           <Route exact path="/" component={ HomePage } />
           <Route path="/shoppingcart" component={ ShoppingCart } />
+          <Route path="/product_details/:category_id/:id" component={ ProductDetails } />
         </Switch>
       </BrowserRouter>
     );
