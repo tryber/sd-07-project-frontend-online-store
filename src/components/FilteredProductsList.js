@@ -34,6 +34,7 @@ class FilteredProductsList extends Component {
 
 FilteredProductsList.propTypes = {
   allProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addShoppingCartItems: PropTypes.func.isRequired,
 };
 
 export default FilteredProductsList;

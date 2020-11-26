@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
-import { addProductInLocalStorage, recoveryProductsFromLocalStorage } from '../services/cartFunctions';
+import {
+  addProductInLocalStorage,
+  recoveryProductsFromLocalStorage,
+} from '../services/cartFunctions';
 import SearchBar from '../components/SearchBar';
 import FilteredProductsList from '../components/FilteredProductsList';
 import ListCategory from '../components/ListCategory';
+
 class ProductsList extends Component {
   constructor() {
     super();
@@ -61,7 +65,10 @@ class ProductsList extends Component {
           inputValue={ inputSearchValue }
           inputChange={ this.updateInputSearch }
         />
-        <FilteredProductsList allProducts={ productsToRender } addShoppingCartItems={ this.addShoppingCartItems } />
+        <FilteredProductsList
+          allProducts={ productsToRender }
+          addShoppingCartItems={ this.addShoppingCartItems }
+        />
         <ListCategory />
       </div>
     );
