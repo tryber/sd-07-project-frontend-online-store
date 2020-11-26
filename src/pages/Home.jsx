@@ -88,7 +88,7 @@ class Home extends React.Component {
               onClick={ this.fetchQueryAndCategoryId }
               data-testid="query-button"
             >
-              <img alt="Buscar" src="https://assets.stickpng.com/thumbs/585e4ad1cb11b227491c3391.png" />
+              <img alt="Buscar" src="images/lupa.png" />
             </button>
             <h3 data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.

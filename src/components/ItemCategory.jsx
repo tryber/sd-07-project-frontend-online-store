@@ -21,7 +21,7 @@ class Item extends React.Component {
 
 Item.propTypes = {
   name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
