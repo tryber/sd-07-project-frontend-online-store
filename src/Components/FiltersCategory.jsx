@@ -21,7 +21,7 @@ class FiltersCategory extends React.Component {
       <aside className="side-bar">
         <h3>Categories:</h3>
         {apiCategories.map((category) => (
-          <div key={ category.id }>
+          <div key={ category.id } className="container-filter">
             <input
               type="radio"
               name="categories"
