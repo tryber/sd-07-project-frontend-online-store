@@ -6,8 +6,7 @@ const styledIconGlobal = css`
   color: dodgerblue;
   transform: scale(0.8);
   transition: all ease 0.2s;
-  margin: 50px;
-
+  
   :hover {
     transform: scale(1);
 
