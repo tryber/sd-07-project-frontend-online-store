@@ -4,10 +4,11 @@ import ShoppingCartButton from './ShoppingCartButton';
 
 class Header extends React.Component {
   render() {
+    const { handlerSubmit, state } = this.props;
     return (
       <div>
         {/* logo */}
-        <SearchBar />
+        <SearchBar handlerSubmit={handlerSubmit} state={state}/>
         {/* filtro */}
         <ShoppingCartButton />
       </div>
