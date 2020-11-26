@@ -34,6 +34,12 @@ export default class Home extends React.Component {
     this.findProduct();
   }
 
+  updateValue(event) {
+    const { value } = event.target;
+    this.setState({ categoryId: value });
+    this.findProduct();
+  }
+
   render() {
     const { searchText, products } = this.state;
     return (
@@ -46,7 +52,7 @@ export default class Home extends React.Component {
         </div>
         <Link data-testid="shopping-cart-button" to="/pages/shoppingcart">
           <img src="https://image.flaticon.com/icons/png/512/34/34562.png" alt="icone-carrinho" />
-        </Link>     
+        </Link>
 
         <div data-testid="home-initial-message">
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
