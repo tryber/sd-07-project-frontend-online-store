@@ -1,17 +1,36 @@
 import React from 'react';
-import ShoppingCartButton from './ShoppingCartButton';
+import PropTypes from 'prop-types';
+
+import ProductCard from './ProductCard';
+
 
 class ProductsList extends React.Component {
   render() {
-    return (
-      <div>
-        <ShoppingCartButton />
+    const { products } = this.props;
+
+    if (!products.length) {
+      return (
         <div data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </div>
+      );
+    }
+
+    return (
+      <div>
+        {
+          products.map((product) => (
+            <ProductCard key={ product.id } product={ product } />
+          ))
+        }
       </div>
     );
   }
 }
+
+
+ProductsList.propTypes = {
+  products: PropTypes.arrayOf.isRequired,
+};
 
 export default ProductsList;
