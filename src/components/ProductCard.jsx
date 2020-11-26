@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 class ProductCard extends React.Component {
     render() {
       const { product } = this.props

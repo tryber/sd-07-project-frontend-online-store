@@ -6,7 +6,16 @@ class ShoppingCart extends React.Component {
     return (
       <div>
         <Link to="/">Voltar</Link>
-        <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+        <p data-testid="shopping-cart-empty-message">
+          Seu carrinho está vazio
+        </p>
+        <h2 data-testid="shopping-cart-product-name">{title}</h2>
+        <p data-testid="shopping-cart-product-quantity">Quantidade:</p>
+        <Link
+          to="/"
+        >
+          <button type="button">Voltar</button>
+        </Link>
       </div>
     );
   }
