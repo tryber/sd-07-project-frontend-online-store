@@ -1,13 +1,13 @@
 import React from 'react';
 import * as cp from './components';
+import GlobalStyle from './style/global';
 
 function App() {
   
   
   return (
     <div>
-      <cp.Input width='450px' />
-      <cp.Input width='100px' />
+      < GlobalStyle />
     </div>
   );
 
