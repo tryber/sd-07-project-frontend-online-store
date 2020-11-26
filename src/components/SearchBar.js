@@ -70,9 +70,10 @@ class SearchBar extends React.Component {
           <div className="search">
             <div className="search-bar-content">
               <button className="query-button" data-testid="query-button" onClick={ this.fetchApiByQuery }>
-                <img className="search-icon"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJTOvaCRMvUxPy8OR3W53CXP_eLOKV3QBaw&usqp=CAU"
-                alt="search icon"
+                <img 
+                  className="search-icon"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJTOvaCRMvUxPy8OR3W53CXP_eLOKV3QBaw&usqp=CAU"
+                  alt="search icon"
                 />
               </button>
               <input
@@ -91,9 +92,11 @@ class SearchBar extends React.Component {
 
           <Router>
             <Link to="/cart" data-testid="shopping-cart-button">
-            <img className="shopping-cart-icon"
-            alt="Shopping cart icon" src={ shoppingCart }
-            />
+              <img 
+                className="shopping-cart-icon"
+                alt="Shopping cart icon"
+                src={ shoppingCart }
+              />
             </Link>
           </Router>
         </header>
