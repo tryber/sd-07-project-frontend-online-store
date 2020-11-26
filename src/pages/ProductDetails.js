@@ -41,12 +41,12 @@ class ProductDetails extends Component {
     if (loading === true) return <Loading />;
 
     return (
-      <div>
-        <div>
-          <h1 data-testid="product-detail-link">{title} - R${price}</h1>
-          <img src={thumbnail} alt={`imagem do produto ${title}`}/>
+      <div className="product-detail">
+        <div className="container-title-image">
+          <h1 data-testid="product-detail-name">{title} - R${price}</h1>
+          <img className="product-detail-image" src={thumbnail} alt={`imagem do produto ${title}`}/>
         </div>        
-        <ul>
+        <ul className="container-list">
           {attributes.map(({ name, value_name, id }) => 
           <li key ={id}>{name}: {value_name}</li>)}
         </ul>
