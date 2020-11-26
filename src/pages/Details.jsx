@@ -1,30 +1,15 @@
 import React from 'react';
-import * as api from '../services/api';
-
 
 class Details extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      product:'',
-    }
-  }
-
-  async fetchProduct() {
-    const { params: { id }} = this.props.match
-    console.log(id)
-    const request = await api.getProductsFromCategoryAndQuery(id, id)
-    console.log(request)
-  }
-  componentDidMount() {
-    this.fetchProduct()
-  }
+  
   render() {
-    return(
+    const { location: { state: { title } } } = this.props;
+
+    return (
       <div>
-        <div data-testid="product-detail-name"></div>
+        <h2 data-testid="product-detail-name">{title}</h2>
       </div>
-    )
+    );
   }
 }
 
