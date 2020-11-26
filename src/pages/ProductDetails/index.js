@@ -17,8 +17,9 @@ class ProductDetails extends Component {
   }
 
   async componentDidMount() {
-    const { match: { params: { id, categoryID } } } = this.props;
-    const { results } = await getProductsFromCategoryAndQuery(categoryID, undefined);
+    const { match: { params: { id, categoryID, searchInput } } } = this.props;
+    const query = (searchInput === 'false') ? undefined : searchInput;
+    const { results } = await getProductsFromCategoryAndQuery(categoryID, query);
     const product = results.find(({ id: productID }) => productID === id);
     this.handleState(product);
   }
@@ -60,6 +61,7 @@ ProductDetails.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
       categoryID: PropTypes.string.isRequired,
+      searchInput: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };

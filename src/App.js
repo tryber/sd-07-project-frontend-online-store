@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Route exact path="/" component={ ProductList } />
       <Route path="/cart" component={ ShoppingCart } />
-      <Route path="/product/:id/:categoryID" component={ ProductDetails } />
+      <Route path="/product/:id/:categoryID/:searchInput" component={ ProductDetails } />
     </BrowserRouter>
   );
 }

@@ -41,10 +41,6 @@ class ProductList extends Component {
 
   render() {
     const { results, searchInput, categoryID } = this.state;
-    const searchObj = {
-      searchInput,
-      categoryID,
-    };
     return (
       <section>
         <header>
@@ -73,7 +69,12 @@ class ProductList extends Component {
           </aside>
           <section>
             {results.map((result) => (
-              <Card key={ result.id } data={ result } search={ searchObj } />
+              <Card
+                key={ result.id }
+                data={ result }
+                categoryID={ categoryID }
+                searchInput={ searchInput }
+              />
             ))}
             {!results.length && <p>Nenhum produto foi encontrado</p>}
           </section>

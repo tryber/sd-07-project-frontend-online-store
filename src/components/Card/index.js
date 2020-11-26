@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 
 class Card extends Component {
   render() {
+    let { searchInput } = this.props;
     const {
-      search: { categoryID },
+      categoryID,
       data: { title, thumbnail, price, id },
     } = this.props;
+    searchInput = (searchInput !== '') ? searchInput : false;
     return (
       <article data-testid="product">
         <header>
@@ -19,7 +21,7 @@ class Card extends Component {
         <footer>
           <p>{`R$ ${price}`}</p>
           <Link
-            to={ `/product/${id}/${categoryID}` }
+            to={ `/product/${id}/${categoryID}/${searchInput}` }
             data-testid="product-detail-link"
           >
             Detalhes do produto
@@ -37,10 +39,8 @@ Card.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
-  search: PropTypes.shape({
-    searchInput: PropTypes.string.isRequired,
-    categoryID: PropTypes.string.isRequired,
-  }).isRequired,
+  categoryID: PropTypes.string.isRequired,
+  searchInput: PropTypes.string.isRequired,
 };
 
 export default Card;
