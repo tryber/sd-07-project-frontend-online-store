@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CategoryList, SearchBar, ProductList } from '../../components';
 import * as api from '../../services/api';
 import './Home.css';
@@ -10,14 +11,25 @@ class Home extends Component {
       query: '',
       categoryId: '',
       products: [],
+      purchasedProducts: [],
     };
     this.fetchProducts = this.fetchProducts.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.purchasedProducts = this.purchasedProducts.bind(this);
   }
 
   componentDidMount() {
     this.fetchProducts();
+  }
+
+  purchasedProducts(product) {
+    this.setState((state) => {
+      const list = [...state.purchasedProducts, product];
+      return {
+        purchasedProducts: list,
+      };
+    });
   }
 
   fetchProducts() {
@@ -37,7 +49,7 @@ class Home extends Component {
   }
 
   render() {
-    const { products } = this.state;
+    const { products, purchasedProducts } = this.state;
     return (
       <div className="main-container">
         <aside className="categories-container">
@@ -47,12 +59,28 @@ class Home extends Component {
           <SearchBar
             handleChange={ this.handleChange }
             handleClick={ this.handleClick }
+            purchasedProducts={ purchasedProducts }
           />
-          <ProductList products={ products } />
+          <ProductList
+            products={ products }
+            purchasedProducts={ this.purchasedProducts }
+          />
         </section>
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  location: PropTypes.shape({
+    purchasedProducts: PropTypes.array,
+  }),
+};
+
+Home.defaultProps = {
+  location: {
+    purchasedProducts: [],
+  },
+};
 
 export default Home;

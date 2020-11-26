@@ -5,7 +5,9 @@ import './ProductCard.css';
 
 class ProductCard extends Component {
   render() {
+    const { product } = this.props;
     const { product: { title, thumbnail, price } } = this.props;
+    const { purchasedProducts } = this.props;
     return (
       <div
         className="product-card"
@@ -33,6 +35,15 @@ class ProductCard extends Component {
             Mais Detalhes
           </Link>
         </div>
+        <div>
+          <button
+            type="submit"
+            data-testid="product-add-to-cart"
+            onClick={ () => purchasedProducts(product) }
+          >
+            Adicionar ao Carrinho
+          </button>
+        </div>
       </div>
     );
   }
@@ -45,6 +56,7 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
+  purchasedProducts: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

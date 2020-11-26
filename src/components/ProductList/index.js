@@ -4,12 +4,16 @@ import ProductCard from '../ProductCard';
 
 class ProductList extends Component {
   render() {
-    const { products } = this.props;
+    const { products, purchasedProducts } = this.props;
     return (
       <div className="products-content">
         {products.length
           ? products.map((product) => (
-            <ProductCard key={ product.id } product={ product } />
+            <ProductCard
+              key={ product.id }
+              product={ product }
+              purchasedProducts={ purchasedProducts }
+            />
           )) : (<p> Nenhum produto foi encontrado </p>)}
       </div>
     );
@@ -25,6 +29,7 @@ ProductList.propTypes = {
       price: PropTypes.number.isRequired,
     }),
   ).isRequired,
+  purchasedProducts: PropTypes.func.isRequired,
 };
 
 export default ProductList;
