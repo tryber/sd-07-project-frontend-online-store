@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import Reviews from '../components/Reviews';
 
 import * as cartAPI from '../services/cartAPI';
 
 class ProductDetail extends Component {
+  constructor(props) {
+    super()
+    this.state = {
+      product: props.location.state.product,
+    }
+  }
+
   render() {
-    const product = this.props.location.state.test;
+
+    const { product } = this.state;
+    console.log(product)
     const specifications = product.attributes;
     return (
       <div>
@@ -32,6 +42,7 @@ class ProductDetail extends Component {
         >
           Me adicione ao carrinho :)
         </button>
+        <Reviews />
       </div>
     );
   }

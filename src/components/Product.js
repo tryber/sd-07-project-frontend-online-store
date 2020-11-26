@@ -9,7 +9,7 @@ class Product extends React.Component {
         <Link data-testid="product-detail-link" to= {{
           pathname: "/product_Detail",
           search: `${product.title}`,
-          state: { test: product }
+          state: { product }
         }}>
           <p>{product.title}</p>
           <img src={product.thumbnail} />
