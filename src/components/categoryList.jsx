@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../services/api'
+import CategoryItems from './categorysItems';
 
 class Category extends Component {
   constructor(props) {
@@ -24,11 +25,11 @@ class Category extends Component {
 
   render() {
     const { categories } = this.state;
+    const { handleSearchChange } = this.props;
     return (
       <div>
-        <label>
-          {categories.map((category) => <label><input data-testid="category" type="checkbox" key={category.id} value={`${category.id}`} />{`${category.name}`}<br /></label> )}
-        </label>
+        {categories.map((category) => <CategoryItems key={category.name} category={category} handleSearchChange={handleSearchChange} />)}
+        {/* {categories.map((category) => <label><input onChange={handleSearchChange} data-testid="category" type="checkbox" key={category.id} value={`${category.id}`} />{`${category.name}`}<br /></label> )} */}
       </div>
     );
   }
