@@ -4,7 +4,7 @@ import lupa from '../images/lupa.png';
 
 class SearchBar extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
     this.textImput = this.textImput.bind(this);
     this.inputChange = this.inputChange.bind(this);
 
@@ -16,14 +16,20 @@ class SearchBar extends Component {
   inputChange(event) {
     this.setState({ inputValue: event.target.value });
   }
-
-  textImput() {
+  onClickFunction() {
     const { query } = this.props;
     const { inputValue } = this.state;
+            query(inputValue);
+            // fetchProducts(); 
+  }
+
+  textImput() {
+    // const { query } = this.props;
+    // const { inputValue } = this.state;
     return (
       <label htmlFor="searchBar" className="searchbar">
         <button
-          onClick={ () => query(inputValue) }
+          onClick={ () => this.onClickFunction() }
           type="button"
           data-testid="query-button"
         >

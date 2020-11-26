@@ -6,9 +6,9 @@ import * as API from './services/api';
 class FilterList extends Component {
   constructor() {
     super();
+    this.fetchCategories = this.fetchCategories.bind(this);
     this.state = {
       categoriesList: [],
-      loading: false,
     };
   }
 
@@ -16,22 +16,21 @@ class FilterList extends Component {
     this.fetchCategories();
   }
 
-  fetchCategories() {
-    this.setState({ loading: true }, async () => {
+  async fetchCategories() {
+    console.log('entrou no fetch');
       const data = await API.getCategories();
-      this.setState({ categoriesList: data, loading: false });
-    });
+      console.log(data);
+      this.setState({ categoriesList: data });
+
   }
 
   render() {
-    const { categoriesList, loading } = this.state;
+    const { categoriesList } = this.state;
     const { changeSelected } = this.props;
-    let option;
-    if (loading) {
-      option = <p>Carregando...</p>;
-    } else {
-      option = (
-        <div>
+
+    return (
+      <div className="getCategories">
+       <div>
           <h3>Filtre por categoria:</h3>
           {categoriesList.map(({ id, name }) => (
             <div key={ id } data-testid="category">
@@ -41,17 +40,12 @@ class FilterList extends Component {
                 name="category"
                 value={ id }
                 onChange={ () => changeSelected(id) }
-
               />
               <label htmlFor={ id }>{ name }</label>
               <br />
             </div>
           ))}
-        </div>);
-    }
-    return (
-      <div className="getCategories">
-        {option}
+        </div>
       </div>
     );
   }

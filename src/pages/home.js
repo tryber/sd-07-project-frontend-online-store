@@ -12,30 +12,30 @@ class home extends Component {
     this.changeSelected = this.changeSelected.bind(this);
     this.inputEvent = this.inputEvent.bind(this);
     this.state = {
-      category: '$CATEGORY_ID',
-      query: '$QUERY',
+      category: '',
+      query: '',
       products: [],
     };
   }
 
   componentDidMount() {
-    this.fecthProducts();
+    this.fetchProducts();
   }
 
   async changeSelected(id) {
     await this.setState({ category: id });
-    this.fecthProducts();
+    this.fetchProducts();
   }
 
-  async fecthProducts() {
+  async fetchProducts() {
     const { category, query } = this.state;
-    const { results } = await getProductsFromCategoryAndQuery(category, query);
-    this.setState({ products: results });
+    const response = await getProductsFromCategoryAndQuery(category, query);
+    this.setState({ products: response?.results || [] });
   }
 
   async inputEvent(value) {
     await this.setState({ query: value });
-    this.fecthProducts();
+    this.fetchProducts();
   }
 
   render() {
@@ -46,7 +46,7 @@ class home extends Component {
           <h2 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h2>
-          <SearchBar query={ this.inputEvent } />
+          <SearchBar query={ this.inputEvent } fetchProducts={this.fetchProducts} />
           <Link to="/shoppingCart">
             <img
               src={ CartIcon }
