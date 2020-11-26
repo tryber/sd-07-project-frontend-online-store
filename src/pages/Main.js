@@ -10,13 +10,13 @@ class Main extends React.Component {
     return (
       <section>
         <div className="container">
-          <img className="lupa" src={lupa} alt="lupa" />
+          <img className="lupa" src={ lupa } alt="lupa" />
           <input className="searchInput" type="search" />
           <h3 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h3>
           <Link to="/shoppingCart" data-testid="shopping-cart-button">
-            <img className="chartImg" src={chart} alt="carrinho-de-compras" />
+            <img className="chartImg" src={ chart } alt="carrinho-de-compras" />
           </Link>
         </div>
         <div className="container">
