@@ -9,8 +9,22 @@ export function getCartList() {
 }
 
 export function addToCart(product) {
+  const newProduct = {
+    ...product,
+    cartQuantity: 1,
+  };
   const currentList = JSON.parse(localStorage.getItem('cart'));
-  localStorage.setItem('cart', JSON.stringify([...currentList, product]));
+  if (currentList.find((item) => item.id === newProduct.id) !== undefined) {
+    const newCart = currentList.map((currentItem) => {
+      if (currentItem.id === newProduct.id) {
+        currentItem.cartQuantity += 1;
+      }
+      return currentItem;
+    });
+    localStorage.setItem('cart', JSON.stringify(newCart));
+  } else {
+    localStorage.setItem('cart', JSON.stringify([...currentList, newProduct]));
+  }
 }
 
 export function removeFromCart(product) {

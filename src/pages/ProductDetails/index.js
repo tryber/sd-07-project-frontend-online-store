@@ -31,7 +31,6 @@ class ProductDetails extends Component {
   handleState(product) {
     this.setState({ product });
   }
-  
 
   render() {
     const { product } = this.state;
@@ -52,7 +51,13 @@ class ProductDetails extends Component {
         </header>
         <div>{`R$ ${price}`}</div>
         <CartButton />
-        <button onClick={ () => addToCart(product) }>Adicionar ao carrinho</button>
+        <button
+          type="button"
+          onClick={ () => addToCart(product) }
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar ao carrinho
+        </button>
       </article>
     );
   }
