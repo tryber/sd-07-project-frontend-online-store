@@ -26,7 +26,7 @@ class ProductDetails extends React.Component {
   }
 
   handleClick() {
-    const { id, title, price } = this.state.itemRecived;
+    const { id, title, price, thumbnail } = this.state.itemRecived;
     const qtd = 1;
     //console.log(id, title, price, qtd)
     console.log('clicou');
@@ -36,7 +36,7 @@ class ProductDetails extends React.Component {
       if (cartitemId.id === id ) {
         console.log('igual na posição', i);
       } else {
-        cartItemsStorage.push({ id, title, price, qtd });
+        cartItemsStorage.push({ id, title, price, qtd, thumbnail });
         localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
       }
     });
