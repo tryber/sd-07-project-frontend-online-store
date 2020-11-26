@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import shoppingCartIcon from '../img/shopping-cart.png';
 import searchBarIcon from '../img/search-bar-icon.png';
+import CategoryList from './CategoryList';
 
 export default class HomeBeforeSearch extends Component {
   constructor() {
@@ -21,10 +22,12 @@ export default class HomeBeforeSearch extends Component {
     this.fetchProducts();
   }
 
-  fetchProducts() {
+  async fetchProducts() {
     const { categoryId, query } = this.state;
-    api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((result) => this.setState({ productList: result.results }));
+    // api.getProductsFromCategoryAndQuery(categoryId, query)
+    //   .then((result) => this.setState({ productList: result.results }));
+    const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    this.setState({ productList: products.results })
   }
 
   handleChange({ target }) {
@@ -40,7 +43,7 @@ export default class HomeBeforeSearch extends Component {
   render() {
     const { productList } = this.state;
     return (
-      <div data-testid="home-initial-message">
+      <div>
         <div className="nav-bar">
           <div className="search-bar">
             <img src={ searchBarIcon } className="search-bar-icon" alt="searchBarIcon"/>
@@ -50,7 +53,7 @@ export default class HomeBeforeSearch extends Component {
         <Link to="/ShoppingCart">
           <img data-testid="shopping-cart-button" src={ shoppingCartIcon } className="shopping-cart-icon" alt="shoppingCartImg"/>
         </Link>
-        <div>
+        <div data-testid="home-initial-message">
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
         </div>
         <button
@@ -60,6 +63,7 @@ export default class HomeBeforeSearch extends Component {
         >
           Pesquisar
         </button>
+        <CategoryList />
         <ul>
           {productList.length
             ? productList.map(({ id, title, thumbnail, price }) => (
