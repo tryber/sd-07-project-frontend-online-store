@@ -2,6 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      product: this.props,
+      quantity: 0,
+    };
+  }
+
+  addToCart() {
+
+  }
+
   render() {
     // const { product } = this.props;
     const { product: { title, thumbnail, price } } = this.props;
@@ -18,6 +31,7 @@ class ProductCard extends React.Component {
           <footer>
             <p>{`R$ ${price}`}</p>
           </footer>
+          <button type="button" onClick={this.addToCart} data-testid="product-detail-add-to-cart">Adicionar ao carrinho</button>
         </article>
       </div>
     );
