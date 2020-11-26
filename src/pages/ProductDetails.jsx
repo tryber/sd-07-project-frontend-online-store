@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ProductDetails.css';
 import ProductReview from '../components/productDetails/ProductReview';
 
@@ -18,11 +19,10 @@ class ProductDetails extends React.Component {
     const { title, thumbnail } = this.props.location.details.product;
     return (
       <div className="product-details-photo">
-        <img src={ thumbnail } alt={`Foto do ${title}`} />
+        <img src={ thumbnail } alt={ `Foto do ${title}` } />
       </div>
     );
   }
-  
   render() {
     return (
       <div className="product-detail-container">
