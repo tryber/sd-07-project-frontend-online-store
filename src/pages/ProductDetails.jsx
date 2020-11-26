@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ProductReview from '../components/ProductReview';
 
@@ -32,6 +33,16 @@ class ProductDetails extends Component {
         <h1>{ title }</h1>
         <h2>{ price }</h2>
         <img src={ thumbnail } alt="Imagem do produto" />
+        <Link
+          to={ {
+            pathname: '/shopping-cart',
+            state: {
+              title,
+            },
+          } }
+        >
+          Adicionar ao carrinho
+        </Link>
         <ProductReview />
       </div>
     );
