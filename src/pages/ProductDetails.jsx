@@ -6,7 +6,6 @@ import ProductReview from '../components/productDetails/ProductReview';
 class ProductDetails extends React.Component {
   productNamePrice() {
     const { location: { details: { product: { title, price } } } } = this.props;
-    // const { title, price } = this.props.location.details.product;
     return (
       <div className="product-details-name">
         <h1 data-testid="product-detail-name">{title}</h1>
@@ -18,7 +17,6 @@ class ProductDetails extends React.Component {
 
   productPhoto() {
     const { location: { details: { product: { title, thumbnail } } } } = this.props;
-    // const { title, thumbnail } = this.props.location.details.product;
     return (
       <div className="product-details-photo">
         <img src={ thumbnail } alt={ `Foto do ${title}` } />
@@ -41,6 +39,18 @@ class ProductDetails extends React.Component {
       </div>
     );
   }
+}
+
+ProductDetails.propTypes = {
+  location: PropTypes.shape({
+    details: PropTypes.shape({
+      product: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        thumbnail: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
 }
 
 export default ProductDetails;
