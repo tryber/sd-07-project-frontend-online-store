@@ -37,12 +37,14 @@ class Main extends React.Component {
 
   productsList() {
     return this.state.products.map(({ title, id, thumbnail, price}) => (
+
       <ProductList key={id} title={title} image={thumbnail} price={price} id={id} />
     ));
   }
 
   render() {
     const { inputValue, requested, selected, selectedId } = this.state;
+
     return (
       <div>
         <input type="text" data-testid="query-input" onChange={this.handleSearch} />

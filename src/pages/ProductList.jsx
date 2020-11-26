@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class ProductList extends Component {
   render() {
     const { title, image, price, id } = this.props;
-
+    
     return (
       <div data-testid="product">
         <h2>{title}</h2>
