@@ -11,7 +11,6 @@ class ShoppingCart extends Component {
   
   render() {
     const { products } = this.state;
-    console.log(products);
     if (products === null)
       return (
         <span data-testid="shopping-cart-empty-message">
