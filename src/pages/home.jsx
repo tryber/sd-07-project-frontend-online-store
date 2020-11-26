@@ -5,13 +5,18 @@ import SearchBar from '../components/searchBar';
 
 class Home extends React.Component {
   render() {
-    return(
+    return (
       <div>
         <SearchBar />
         <Category />
-        <Link to="/shoppingCart" data-testid="shopping-cart-button">Carrinho de compras</Link>
+        <Link
+          to="/shoppingCart"
+          data-testid="shopping-cart-button"
+        >
+          Carrinho de compras
+        </Link>
       </div>
-    )
+    );
   }
 }
 
