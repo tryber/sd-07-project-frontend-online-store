@@ -61,22 +61,22 @@ class Home extends React.Component {
     return (
       <div>
         <div className="sidebar">
-          <SideBar onClick={this.upQuery} />
-          <SumCart num={buy} />
+          <SideBar onClick={ this.upQuery } />
+          <SumCart num={ buy } />
         </div>
         <div className="product">
           <div className="product-list-category">
             <CategoryList
-              check={this.upCategoryId}
-              categories={categories}
+              check={ this.upCategoryId }
+              categories={ categories }
             />
             <div className="productsList">
               <SearchControl
-                num={buy}
-                onClick={this.addToCart}
-                search={search}
-                answer={result}
-                query={query}
+                num={ buy }
+                onClick={ this.addToCart }
+                search={ search }
+                answer={ result }
+                query={ query }
               />
             </div>
           </div>

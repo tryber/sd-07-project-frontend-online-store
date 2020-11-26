@@ -8,7 +8,7 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
     // https://stackoverflow.com/questions/55328748/how-to-store-and-retrieve-shopping-cart-items-in-localstorage
-    this.state = { items: JSON.parse(localStorage.getItem('cart')) };
+    // this.state = { items: JSON.parse(localStorage.getItem('cart')) };
     this.removeItem = this.removeItem.bind(this);
   }
 
@@ -17,18 +17,18 @@ class Cart extends React.Component {
   }
 
   render() {
-    const { items } = this.state;
+    // const { items } = this.state;
     return (
       <div>
         <header>
           <Link to="/">
-            <img src={returnIcon} className="return-button" alt="Return Button" />
+            <img src={ returnIcon } className="return-button" alt="Return Button" />
           </Link>
         </header>
         <div className="cart-icon-name">
           <img
             data-testid="shopping-cart-button"
-            src={cartIcon}
+            src={ cartIcon }
             className="cart-icon"
             alt="Icon of a Cart"
           />
