@@ -19,8 +19,7 @@ class Category extends Component {
     const RequestReturn = await api.getCategories();
     this.setState({
       categories: RequestReturn,
-    });
-    console.log(RequestReturn);
+    });    
   };
 
   render() {
