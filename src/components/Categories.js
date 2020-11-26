@@ -17,14 +17,11 @@ class Categories extends React.Component {
   }
 
   async getApi() {
-    let categorias = [];
+    const categorias = [];
     api.getCategories().then((result) => {
-    result.map((category) => {
-      return categorias.push(category);
-    })
-    this.setState({ categories: categorias });
+      result.map((category) => categorias.push(category));
+      this.setState({ categories: categorias });
     });
-    
   }
 
   render() {
