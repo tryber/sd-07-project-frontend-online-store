@@ -10,17 +10,23 @@ class ProductReview extends Component {
     };
   }
 
+  async componentDidMount() {
+    const review = JSON.parse(localStorage.getItem('review'));
+    this.setState(review);
+  }
+
   addComment(newComment) {
     const { review } = this.state;
     const added = review.concat(newComment);
     this.setState({ review: added });
+    localStorage.setItem('review', JSON.stringify(this.state));
   }
 
   render() {
     const { review } = this.state;
     return (
       <div>
-        <RatingForm addComment={ this.addComment } />
+        <RatingForm addComment={ this.addComment } review={ review } />
         {review
           ? review.map((userReview, index) => (
             <div key={ index }>
@@ -36,5 +42,4 @@ class ProductReview extends Component {
 
 export default ProductReview;
 
-// TODO: Adicionar uma condicional verificando se o review está vazio E corresponde ao id da url.
-//       Se ambos forem true, carrega o map do review.
+// TODO: Adicionar as estrelinhas(via css)

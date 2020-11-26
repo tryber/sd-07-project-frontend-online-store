@@ -9,7 +9,6 @@ class RatingForm extends Component {
       email: '',
       rating: '',
       comment: '',
-      commentId: 0,
     };
   }
 
