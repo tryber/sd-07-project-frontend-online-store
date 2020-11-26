@@ -6,23 +6,24 @@ class Itens extends React.Component {
     const { itens: { title, thumbnail, price, qtt } } = this.props;
     return (
       <div>
-        <h1 data-testid="shopping-cart-product-name">{title}</h1>
+        <h1 data-testid="shopping-cart-product-name">{ title }</h1>
         <img src={ thumbnail } alt={ title } />
         <span data-testid="shopping-cart-product-quantity">
           {`Quantidade: ${qtt}`}
         </span>
-        <span>{price}</span>
+        <span>{`Preço: ${price}`}</span>
       </div>
     );
   }
 }
 
-Itens.defaultProps = {
-  itensStorage: [],
-};
-
 Itens.propTypes = {
-  itensStorage: PropTypes.arrayOf(PropTypes.object),
+  itens: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    qtt: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default Itens;

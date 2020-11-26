@@ -1,5 +1,5 @@
-export async function getProductsStorage() {
-  const getProduct = await localStorage.getItem('cart');
+export function getProductsStorage() {
+  const getProduct = localStorage.getItem('cart');
   const productReturn = JSON.parse(getProduct);
   return productReturn;
 }

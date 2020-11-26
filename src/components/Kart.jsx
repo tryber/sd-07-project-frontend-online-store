@@ -20,12 +20,14 @@ class KartList extends React.Component {
   }
 
   async getStorageItens() {
-    const itens = await storageServices.getProductsStorage();
-    this.setState({ itensStorage: itens });
+    const itensStorage = await storageServices.getProductsStorage();
+    this.setState({ itensStorage });
   }
 
   render() {
-    const { message, itensStorage } = this.state;
+    let { itensStorage } = this.state;
+    const { message } = this.state;
+    if (!itensStorage) itensStorage = storageServices.getProductsStorage();
     return (
       <div className="kart">
         {itensStorage ? (
