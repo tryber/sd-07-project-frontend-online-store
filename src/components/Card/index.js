@@ -16,7 +16,12 @@ class Card extends Component {
         </main>
         <footer>
           <p>{`R$ ${price}`}</p>
-          <Link to={`/product/${id}`} data-testid="product-detail-link">Detalhes do produto</Link>
+          <Link
+            to={ `/product/${id}` }
+            data-testid="product-detail-link"
+          >
+            Detalhes do produto
+          </Link>
         </footer>
       </article>
     );
