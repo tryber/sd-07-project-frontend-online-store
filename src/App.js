@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       < GlobalStyle />
-      < cp.Header />
+    
 
     </div>
   );
