@@ -20,7 +20,6 @@ class ProductDetails extends Component {
     const { match: { params: { id, categoryID } } } = this.props;
     const { results } = await getProductsFromCategoryAndQuery(categoryID, undefined);
     const product = results.find(({ id: productID }) => productID === id);
-    console.log(product);
     this.handleState(product);
   }
 
