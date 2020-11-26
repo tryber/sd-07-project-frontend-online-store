@@ -4,7 +4,6 @@
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
-  display: flex;
 }
 .category-iten {
  list-style: none;
@@ -19,7 +18,7 @@ body {
 }
 .category-list {
   list-style: none;
-  width: 40%;
+  width: 15%;
   height: 100%;
   background-color: aliceblue;
   display: flex;
@@ -30,7 +29,7 @@ body {
 .category-list h1 {
   padding: 05px 15px;
 }
-.conteudo{
+.conteudo {
   display: flex;
 }
 .items {
@@ -44,7 +43,7 @@ body {
   overflow: hidden;
   width: 200px;
 }
-.items-list {
+.item-list {
   display: flex;
   flex-flow: row wrap;
   padding: 48px 30px;

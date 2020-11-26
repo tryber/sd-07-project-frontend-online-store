@@ -10,11 +10,12 @@ class Home extends React.Component {
     super();
     this.updateSearchValue = this.updateSearchValue.bind(this);
     this.searchProduct = this.searchProduct.bind(this);
+    this.onLoadProducts = this.onLoadProducts.bind(this);
     this.state = {
       search:'',
       products: [],
       categoryID: '',
-      showProduct: false,
+      showInitialMessage: true,
     };
   }
 
@@ -23,7 +24,7 @@ class Home extends React.Component {
     const products = await api.getProductsFromCategoryAndQuery(categoryID, search);
     this.setState({
       products: products.results,
-      showProduct: true,
+      showInitialMessage: false,
     });
   }
 
@@ -31,24 +32,17 @@ class Home extends React.Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
+
+  async onLoadProducts(products = []) {
+    console.log('hey', products, this);
+    this.setState({
+      products,
+      showInitialMessage: false
+    });
+  }
     
   render() {
-    let conteudo;
-    if(this.state.showProduct) {
-      conteudo = 
-      <div className="items-list">
-         {this.state.products
-            .map((product) => 
-              <Item
-                key={product.id}
-                title={product.title}
-                thumbnail={product.thumbnail}
-                price={product.price} />)}
-        </div>
-    } else if (this.state.showProduct === false) {
-      conteudo = <InitialMessage />
-    } 
-   return ( 
+    return ( 
       <div>
         <header>
           <input
@@ -69,8 +63,14 @@ class Home extends React.Component {
           <ButtonShop />
         </header>
         <div className="conteudo">
-        <CategoryList />
-        {conteudo}
+          <CategoryList onLoadProducts={this.onLoadProducts} />
+          {this.state.showInitialMessage && <InitialMessage />}
+          {!this.state.showInitialMessage &&
+            <div className="item-list">
+              {this.state.products
+                  .map((product) =>
+                    <Item key={product.id} {...product} />)}
+            </div>}
         </div>
       </div>
     );
