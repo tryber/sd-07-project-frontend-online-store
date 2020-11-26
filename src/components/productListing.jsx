@@ -15,28 +15,33 @@ class ProductListing extends Component {
     };
   }
 
-
   async queryProducts() {
-    console.log(this.props.categoryId)
+    console.log(this.props.categoryId);
     let queryReturn;
     if (this.props.categoryId) {
       this.setState({ loading: true }, async () => {
         queryReturn = await api
-          .getProductsFromCategoryAndQuery(this.props.categoryId, this.state.searchText)
+          .getProductsFromCategoryAndQuery(
+            this.props.categoryId,
+            this.state.searchText,
+          )
           .then((r) => r.results);
+        this.setState({
+          products: queryReturn,
+          loading: false,
+        });
       });
-    }
-    else {
+    } else {
       this.setState({ loading: true }, async () => {
         queryReturn = await api
-          .getProductsFromQuery(this.props.categoryId, this.state.searchText)
+          .getProductsFromQuery(this.state.searchText)
           .then((r) => r.results);
+        this.setState({
+          products: queryReturn,
+          loading: false,
+        });
       });
     }
-    this.setState({
-      products: queryReturn,
-      loading: false,
-    });
   }
 
   handleChange({ target }) {
@@ -45,7 +50,6 @@ class ProductListing extends Component {
   }
 
   render() {
-    const { handleChange, queryProducts } = this.props;
     return (
       <div>
         <input
