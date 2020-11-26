@@ -1,11 +1,11 @@
 import React from 'react';
 import * as API from '../services/api';
+import PageCard from './PageCard';
 
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
-
     this.state = {
       id: '',
       attributes: [],
@@ -23,14 +23,37 @@ class ProductDetail extends React.Component {
       return this.setState({ id, attributes, title, thumbnail, price });
     }
     const { id, attributes, title, thumbnail, price } = ListProducts;
-    console.log(ListProducts);
+    // console.log(ListProducts);
     return this.setState({ id, attributes, title, thumbnail, price });
   }
 
   componentDidMount() {
     this.searchQueryProducts();
   }
+  LoadItemsToLocalStorage = () => {
+    const id = this.state.id;
+    const title = this.state.title;
+    const price = this.state.price;
+    const thumbnail = this.state.thumbnail;
+    const number = 1;
+    if (Storage) {
+      const getItemSaved = JSON.parse(localStorage.getItem('cart'));
+      const values = (getItemSaved === null ? [] : getItemSaved);
+      let repeatedProduct = false;
+      values.forEach(value => {
+        if (value.id === id) {
+          value.number += 1;
+          value.price += price;
+          repeatedProduct = true;
+        } 
+      })
+      if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values))
+      values.push({id, title, price, thumbnail, number});
+      localStorage.setItem('cart', JSON.stringify(values));
+    }
 
+    
+  }
   render() {
     const { id, title, price, thumbnail } = this.state;
     return (
@@ -50,6 +73,7 @@ class ProductDetail extends React.Component {
             })}
           </ul>
         </div>
+        <button data-testid='product-detail-add-to-cart' onClick={this.LoadItemsToLocalStorage}>Adicionar</button>
       </div>
     );
   }
