@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Product from './Product';
 
-
-
 export default class ProductList extends Component {
   render() {
     const { results } = this.props;
@@ -15,18 +13,18 @@ export default class ProductList extends Component {
         {results.map(({ title, thumbnail, price, id }) => (
           <Product title={ title } thumbnail={ thumbnail } price={ price } key={ id } />
         ))}
-        <h1 data-testid="product-detail-name">{ product }</h1>
+        <h1 data-testid="product-detail-name">{ product.title }</h1>
         <img src={ product.thumbnail } alt="Products" />
         <p>{ product.price }</p>
           <Link
           data-testid="product-detail-link"
-            to={ {
-            pathname: '/productdetail',
+        to={ {
+          pathname: '/productdetail',
           state: { product },
         } }
-              >
-                Mais Detalhes
-              </Link>
+          >
+            Mais Detalhes
+          </Link>
       </div>
     );
   }
