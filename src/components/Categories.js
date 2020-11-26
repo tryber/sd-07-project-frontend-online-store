@@ -17,9 +17,12 @@ class Categories extends React.Component {
   }
 
   async getApi() {
-    const categoriesArray = await api.getCategories();
+    let categoriesArray = [];
+    await api.getCategories()
+    .then((response) => {
+      categoriesArray = response.map(category => {return category})
+    })
     this.setState({ categories: categoriesArray });
-    console.log(categoriesArray)
   }
 
   render() {
@@ -33,7 +36,7 @@ class Categories extends React.Component {
           {categories.map((category) => {
             const { id, name } = category;
             return (
-              <option key={ id } value={ name }>
+              <option data-testid="category" key={ id } value={ name }>
                 {name}
               </option>
             );
