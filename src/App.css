@@ -6,12 +6,13 @@
 }
 
 .home-aside-container {
-  /* position: fixed; */
-  padding: 20px;
+  position: fixed;
   height: 100vh;
-  background-color: rgb(53, 53, 53);
+  padding: 20px;
+  margin-right: 20px;
   color: white;
-  overflow-y: hidden;
+  font-size: clamp(0.8rem, 0.8rem, 1rem);
+  background-color: rgb(53, 53, 53);
 }
 .home-aside-container h1 {
   width: 200px;
@@ -21,7 +22,8 @@
   font-style: italic;
 }
 .home-search-container {
-  flex: 0.8 1;
+  flex: 0.7 1;
+  padding-left: clamp(20vw, 25vw, 40vw);
   margin: auto;
   min-height: 100vh;
   /* background-color: gray; */
