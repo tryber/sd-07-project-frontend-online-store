@@ -4,6 +4,20 @@
 
 .btImg {
   text-align: center;
-  height: 80px;
+  height: 30px;
   width: auto;
+}
+
+.btBox {
+  text-align: center;
+  height: 100px;
+  width: auto;
+}
+
+.conteinerForm {
+display: flex;
+flex-direction: row wrap;
+ height: 768px ;
+ width: 1066px;
+ margin-left: 300px;
 }

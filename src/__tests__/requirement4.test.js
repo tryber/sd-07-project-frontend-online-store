@@ -9,7 +9,7 @@ api.getCategories.mockImplementation(() => Promise.resolve(mockedCategoriesResul
 
 describe(`Listar as categorias de produtos disponíveis via API na
           página principal`, () => {
-  it.skip(`Exibe as categorias retornadas pela API na página de listagem de
+  it(`Exibe as categorias retornadas pela API na página de listagem de
       produtos`, async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());

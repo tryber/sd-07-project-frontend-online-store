@@ -7,7 +7,7 @@ class ProductsList extends Component {
   render() {
     const value = '';
     return (
-      <div>
+      <div className="ContainerForm">
         <form>
           <div>
             <label htmlFor="inputHome">

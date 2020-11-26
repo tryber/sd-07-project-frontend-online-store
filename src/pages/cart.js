@@ -10,8 +10,8 @@ class Cart extends React.Component {
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         </div>
         <div>
-          <img 
-            className="btImg"
+          <img
+            className="btBox"
             src={ box }
             alt="Caixa Vazia"
           />
