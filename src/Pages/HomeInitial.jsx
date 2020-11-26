@@ -10,6 +10,7 @@ class HomeInitial extends Component {
     super();
     this.searchEventHandler = this.searchEventHandler.bind(this);
     this.searchOnChange = this.searchOnChange.bind(this);
+    this.clickChange = this.clickChange.bind(this);
     this.state = {
       productArr: [],
       searchBarValue: '',
@@ -19,13 +20,24 @@ class HomeInitial extends Component {
   getProductList() {
     const { productArr } = this.state;
     return productArr.map(
-      (product) => <li data-testid="product" key={ product.id }><ProductCard product={ product } /></li>,
+      (product) => (
+        <li
+          data-testid="product"
+          key={ product.id }
+        >
+          <ProductCard product={ product } />
+        </li>
+      ),
     );
-
   }
 
   searchOnChange(event) {
     this.setState({ searchBarValue: event.target.value });
+  }
+
+  async clickChange(value) {
+    this.setState({ searchBarValue: value });
+    await this.searchEventHandler();
   }
 
   async searchEventHandler() {
@@ -46,7 +58,9 @@ class HomeInitial extends Component {
     const { productArr } = this.state;
     return (
       <div className="home-page">
-        <CategoryList />
+        <CategoryList
+          clickChange={ this.clickChange }
+        />
         <ShoppingCartButton className="shopping-cart-button" />
         <span data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
@@ -56,7 +70,8 @@ class HomeInitial extends Component {
           searchOnChange={ this.searchOnChange }
         />
         <ul>
-          {productArr !== undefined ? this.getProductList() : <p>Nenhum produto foi encontrado</p>}
+          {productArr !== undefined ? this.getProductList()
+            : <p>Nenhum produto foi encontrado</p>}
         </ul>
       </div>
     );
