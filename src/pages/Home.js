@@ -15,6 +15,7 @@ export default class Home extends Component {
       query: '',
     };
 
+    this.handleRadioClick = this.handleRadioClick.bind(this);
     this.getProdutsByQuery = this.getProdutsByQuery.bind(this);
     this.onSearchText = this.onSearchText.bind(this);
   }
@@ -27,6 +28,11 @@ export default class Home extends Component {
     const { categoryId, query } = this.state;
     const searchResult = await api.getProductsFromCategoryAndQuery(categoryId, query);
     this.setState({ products: searchResult.results });
+  }
+
+  async handleRadioClick({ target: { name, id } }) {
+    await this.setState({ [name]: id });
+    this.getProdutsByQuery();
   }
 
   render() {
@@ -42,8 +48,7 @@ export default class Home extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-
-        <CategoriesList />
+        <CategoriesList onClick={ this.handleRadioClick } />
         <ProductList products={ products } />
       </div>
     );
