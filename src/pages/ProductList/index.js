@@ -71,7 +71,7 @@ class ProductList extends Component {
             {results.map((result) => (
               <Card
                 key={ result.id }
-                data={ result }
+                product={ result }
                 categoryID={ categoryID }
                 searchInput={ searchInput }
               />

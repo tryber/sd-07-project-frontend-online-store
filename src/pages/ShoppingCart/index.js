@@ -1,45 +1,32 @@
 import React, { Component } from 'react';
+
 import { getCartList } from '../../services/cartApi';
 import CartItem from '../../components/CartItem';
 
 class ShoppingCart extends Component {
   constructor() {
     super();
-
-    this.handleStateUpdate = this.handleStateUpdate.bind(this);
     this.state = {
-      cartItens: [],
+      cart: [],
     };
   }
 
   componentDidMount() {
-    const storageList = getCartList();
-    this.handleStateUpdate(storageList);
+    this.updateCart();
   }
 
-  handleStateUpdate(storageList) {
-    this.setState({
-      cartItens: storageList,
-    });
+  updateCart() {
+    this.setState({ cart: getCartList() });
   }
 
   render() {
-    const { cartItens } = this.state;
-
-    if (!cartItens.length) {
-      return (
-        <div>
-          <h4 data-testid="shopping-cart-empty-message">
-            Seu carrinho está vazio.
-          </h4>
-        </div>
-      );
-    }
-
-
+    const { cart } = this.state;
     return (
       <div>
-        { cartItens.map((item) => <CartItem key={ item.id } data={ item } />) }
+        <h4 data-testid="shopping-cart-empty-message">
+          {!cart.length && <p>Seu carrinho está vazio.</p> }
+          {cart.map((cartItem) => <CartItem key={ cartItem.id } data={ cartItem } />)}
+        </h4>
       </div>
     );
   }
