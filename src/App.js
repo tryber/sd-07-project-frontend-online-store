@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './style/categoryList.css';
 /* import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined'; */
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 /* import SearchBar from './components/SearchBar';

@@ -29,16 +29,16 @@ class CategoryList extends Component {
     return (
       <div className="category-list">
         {category.map((item) => (
-          <input
-            type="button"
-            data-testid="category"
-            name="categoryId"
-            value={ item.id }
-            key={ item.id }
-            className="category-item"
-            onClick={ (event) => this.filterCategory(event) }
-          />
-
+          <label htmlFor={ item.id } key={ item.id } className="category-item">
+            {item.name}
+            <input
+              type="radio"
+              data-testid="category"
+              name="categoryId"
+              value={ item.id }
+              onClick={ (event) => this.filterCategory(event) }
+            />
+          </label>
         ))}
       </div>
     );
