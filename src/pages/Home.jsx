@@ -40,7 +40,7 @@ class Home extends React.Component {
           categoryId,
           searchKey,
         );
-        console.log(response.results);
+        // console.log(response.results);
         this.setState({
           loading: false,
           searchProducts: [...response.results],
@@ -60,11 +60,11 @@ class Home extends React.Component {
   }
 
   render() {
-    const { searchKey, categoryId, searchProducts, loading } = this.state;
+    const { searchKey, searchProducts, loading } = this.state;
     return (
       <div className="home-container">
         <div className="home-aside-container">
-          <ListCategory sendCategoryId={this.sendCategoryId} />
+          <ListCategory sendCategoryId={ this.sendCategoryId } />
         </div>
         <div className="home-search-container">
           <div className="search-subcontainer">
@@ -79,16 +79,16 @@ class Home extends React.Component {
             <input
               name="searchKey"
               type="text"
-              value={searchKey}
-              onChange={this.handleSearchChange}
+              value={ searchKey }
+              onChange={ this.handleSearchChange }
               data-testid="query-input"
             />
             <button
               type="button"
-              onClick={this.fetchQueryAndCategoryId}
+              onClick={ this.fetchQueryAndCategoryId }
               data-testid="query-button"
             >
-              <img alt="Buscar" src="https://assets.stickpng.com/thumbs/585e4ad1cb11b227491c3391.png" />
+              <img alt="Buscar" src="images/lupa.png" />
             </button>
             <h3 data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
@@ -99,10 +99,8 @@ class Home extends React.Component {
               ) : (
                 searchProducts.map((item) => (
                   <CardProduct
-                    key={item.id}
-                    item={item}
-                    categoryId={categoryId}
-                    data-testid="product-detail-link"
+                    key={ item.id }
+                    item={ item }
                   />
                 ))
               )}

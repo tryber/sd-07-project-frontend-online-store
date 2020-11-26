@@ -1,33 +1,27 @@
 import React from 'react';
-import * as api from '../services/api';
+import PropTypes from 'prop-types';
 
 class ProductDetails extends React.Component {
-  constructor() {
-    super()
-
-    this.fetchQueryAndCategoryId = this.fetchQueryAndCategoryId.bind(this);
-
-    this.state = {
-
-    }
-  }
-
-  async fetchQueryAndCategoryId() {
-    const { id } = match.params
-    const response = await api.getProductsFromCategoryAndQuery()
-  }
-
-  componentDidMount() {
-    this.fetchQueryAndCategoryId()
-  }
-
   render() {
+    const { location } = this.props;
+    const { product } = location;
+    const { item } = product;
     return (
       <div>
-        <h1>oi</h1>
+        <h1 data-testid="product-detail-name">{item.title}</h1>
       </div>
-    )
+    );
   }
 }
+
+ProductDetails.propTypes = {
+  location: PropTypes.shape({
+    product: PropTypes.shape({
+      item: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default ProductDetails;
