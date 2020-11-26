@@ -26,6 +26,7 @@ class CategoryList extends Component {
   render() {
     const { categories } = this.state;
     const { handleCategoryChange } = this.props;
+
     return (
       <div>
         <span>Categorias</span>
@@ -37,10 +38,10 @@ class CategoryList extends Component {
             >
               <input
                 name="category"
-                value={ category.name }
+                value={ category.id }
                 type="radio"
                 data-testid="category"
-                onChange={ handleCategoryChange }
+                onClick={ handleCategoryChange }
               />
               {category.name}
             </label>
