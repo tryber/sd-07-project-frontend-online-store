@@ -10,9 +10,9 @@ export async function getCategories() {
 
 export async function getProductsFromCategoryAndQuery(ID, query) {
   // Implemente aqui! Quando o fizer, descomente os parâmetros que essa função recebe
-
+  const idLength = 8;
   if (query === undefined) {
-    if (ID.length > 8) {
+    if (ID.length > idLength) {
       const url = `https://api.mercadolibre.com/items/${ID}`;
       const myReturn = await makeRequest(url);
       return myReturn;

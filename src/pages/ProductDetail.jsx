@@ -8,6 +8,7 @@ class ProductDetail extends Component {
   constructor(props) {
     super(props);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
+    this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
     this.state = {
       id: '',
       attributes: [],
@@ -33,7 +34,7 @@ class ProductDetail extends Component {
     this.searchQueryProducts();
   }
 
-  addItemToLocalStorage = () => {
+  addItemToLocalStorage() {
     const id = this.state.id;
     const title = this.state.title;
     const price = this.state.price;
