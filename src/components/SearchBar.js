@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CategoryList from './CategoryList';
-
 class SearchBar extends React.Component {
   constructor() {
     super();
@@ -28,7 +26,6 @@ class SearchBar extends React.Component {
     return (
       <div>
         Barra de busca
-        <CategoryList />
         <input onChange={ this.handleQuery } data-testid="query-input" />
         <button
           type="button"

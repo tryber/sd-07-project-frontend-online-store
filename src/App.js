@@ -3,12 +3,14 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Products from './pages/Products';
 import ShoppingCart from './pages/ShoppingCart';
+import CategoryList from './components/CategoryList';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <CategoryList />
       <BrowserRouter>
         <Switch>
           <Route path="/shopping-cart" component={ ShoppingCart } />
