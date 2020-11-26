@@ -9,7 +9,13 @@ export default class ProductList extends Component {
     return (
       <div>
         {results.map(({ title, thumbnail, price, id }) => (
-          <Product title={ title } thumbnail={ thumbnail } price={ price } key={ id } />
+          <Product
+            title={ title }
+            thumbnail={ thumbnail }
+            price={ price }
+            key={ id }
+            id={ id }
+          />
         ))}
       </div>
     );
@@ -25,4 +31,5 @@ ProductList.propTypes = {
       id: PropTypes.string.isRequired,
     }),
   ).isRequired,
+
 };
