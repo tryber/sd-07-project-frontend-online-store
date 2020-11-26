@@ -18,12 +18,15 @@ class SearchBar extends Component {
   }
 
   textImput() {
-    const { query } = this.props;
+    const { query, fetchProducts } = this.props;
     const { inputValue } = this.state;
     return (
       <label htmlFor="searchBar" className="searchbar">
         <button
-          onClick={ () => query(inputValue) }
+          onClick={ () => {
+            query(inputValue);
+            fetchProducts();
+          } }
           type="button"
           data-testid="query-button"
         >

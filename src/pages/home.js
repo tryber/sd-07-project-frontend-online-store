@@ -18,9 +18,9 @@ class home extends Component {
     };
   }
 
-  componentDidMount() {
-    this.fecthProducts();
-  }
+  // componentDidMount() {
+  //   this.fecthProducts();
+  // }
 
   async changeSelected(id) {
     await this.setState({ category: id });
@@ -46,7 +46,7 @@ class home extends Component {
           <h2 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h2>
-          <SearchBar query={ this.inputEvent } />
+          <SearchBar query={ this.inputEvent } fetchProducts={this.fetchProducts} />
           <Link to="/shoppingCart">
             <img
               src={ CartIcon }
