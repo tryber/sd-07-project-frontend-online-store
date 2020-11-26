@@ -10,10 +10,12 @@ class Home extends Component {
     super();
 
     this.handleSearchKey = this.handleSearchKey.bind(this);
+    this.handleCategory = this.handleCategory.bind(this);
     this.fetchAPI = this.fetchAPI.bind(this);
 
     this.state = {
       searchKey: '',
+      category: '',
       results: [],
     };
   }
@@ -25,12 +27,19 @@ class Home extends Component {
   }
 
   async fetchAPI() {
-    const { searchKey } = this.state;
-    const request = await api.getProductsFromCategoryAndQuery('', searchKey);
+    const { searchKey, category } = this.state;
+    const request = await api.getProductsFromCategoryAndQuery(category, searchKey);
 
     this.setState({
       results: request.results,
     });
+  }
+
+  async handleCategory(category) {
+    this.setState({
+      category,
+    });
+    await this.fetchAPI();
   }
 
   render() {
@@ -51,7 +60,7 @@ class Home extends Component {
           </Link>
         </header>
         <ProductList results={ results } />
-        <Categories />
+        <Categories filterCategory={ this.handleCategory } />
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>

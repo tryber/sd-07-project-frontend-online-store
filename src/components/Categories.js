@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class Categories extends Component {
@@ -7,8 +8,11 @@ class Categories extends Component {
 
     this.state = {
       categories: [],
+      selectedCategory: '',
       loading: true,
     };
+
+    this.selectCategory = this.selectCategory.bind(this);
   }
 
   componentDidMount() {
@@ -19,19 +23,53 @@ class Categories extends Component {
       }));
   }
 
+  selectCategory({ target: { key } }) {
+    const { filterCategory } = this.props;
+    this.setState({ selectedCategory: key });
+    filterCategory(key);
+  }
+
   render() {
-    const { loading, categories } = this.state;
+    const { loading, categories, selectedCategory } = this.state;
     if (loading) {
       return (<aside>Carregando...</aside>);
     }
     return (
       <aside>
         <ol>
-          {categories.map(({ id, name }) => (
-            <li data-testid="category" key={ id }>{name}</li>))}
+          {categories.map(({ id, name }) => {
+            if (selectedCategory === id) {
+              return (
+                <li
+                  className="selected"
+                  data-testid="category"
+                  key={ id }
+                >
+                  {name}
+                </li>);
+            }
+            return (
+              <li
+                key={ id }
+              >
+                <button
+                  type="button"
+                  data-testid="category"
+                  onClick={ this.selectCategory }
+                  key={ id }
+                >
+                  {name}
+                </button>
+              </li>
+            );
+          })}
         </ol>
       </aside>);
   }
 }
+
+Categories.propTypes = ({
+  filterCategory: PropTypes.func,
+}).isRequired;
 
 export default Categories;
