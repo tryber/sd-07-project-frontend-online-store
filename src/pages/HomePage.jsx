@@ -4,11 +4,19 @@ import ShoppingCartButton from '../components/ShoppingCartButton/ShoppingCartBut
 import CategoryList from '../components/CategoryList/CategoryList';
 
 class HomePage extends Component {
+// constructor(props) {
+  //   super(props);
+  //   this.setState = {
+  //     category: 'xablau',
+  //   };
+  // }
+  
   render() {
     return (
+      // const { category } = this.state;
       <div>
         <ShoppingCartButton />
-        <ProductList />
+        <ProductList categoryId="MLB5672" />
         <CategoryList onChangeCategory={ this.onChangeCategory } />
       </div>
     );
