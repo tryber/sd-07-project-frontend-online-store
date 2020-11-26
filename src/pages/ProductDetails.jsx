@@ -37,8 +37,6 @@ class ProductDetails extends React.Component {
   handleClick() {
     const { id, title, price, thumbnail } = this.state.itemRecived;
     const qtd = 1;
-    //console.log(id, title, price, qtd)
-    //console.log('clicou');
     let cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
     if (this.checkCartOnAdd(id)) {
       console.log('entrou');
