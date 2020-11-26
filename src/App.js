@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-
-import * as api from './services/api';
 import Home from './pages/Home';
 import CartList from './pages/CartList';
 import './App.css';
 import ProductDetail from './pages/ProductDetail';
 
 class App extends Component {
-  componentDidMount() {
-    // exemplos de utilização da API
-    api.getCategories().then((categories) => console.log(categories));
-    api
-      .getProductsFromCategoryAndQuery('MLB5672', 'Pneu')
-      .then((result) => console.log(result));
-  }
-
   render() {
     return (
       <div className="App">
@@ -25,9 +15,9 @@ class App extends Component {
             CART
           </Link>
           <Switch>
-            <Route path="/product_Detail" component={ProductDetail} />
-            <Route path="/cart" component={CartList} />
-            <Route exact path="/" component={Home} />
+            <Route path="/product_Detail" component={ ProductDetail } />
+            <Route path="/cart" component={ CartList } />
+            <Route exact path="/" component={ Home } />
           </Switch>
         </Router>
       </div>
