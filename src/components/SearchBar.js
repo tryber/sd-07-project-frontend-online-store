@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import GoToShoppingCart from './GoToShoppingCart';
 
 class SearchBar extends Component {
   render() {
@@ -23,11 +23,7 @@ class SearchBar extends Component {
             data-testid="query-input"
           />
         </label>
-        <Link to="/shoppingCart">
-          <button type="button" data-testid="shopping-cart-button">
-            Carrinho de compras
-          </button>
-        </Link>
+        <GoToShoppingCart />
       </div>
     );
   }
