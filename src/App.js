@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { InitialScreen, Kart } from './components';
+import { InitialScreen, Kart, ProductDetail } from './components';
 import './App.css';
 
 class App extends React.Component {
@@ -10,6 +10,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={ InitialScreen } />
           <Route exact path="/kart" component={ Kart } />
+          <Route exact path="/detail/:id" component={ ProductDetail } />
         </Switch>
       </BrowserRouter>
     );
