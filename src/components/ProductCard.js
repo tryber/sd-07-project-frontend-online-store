@@ -13,7 +13,7 @@ class ProdoctCard extends React.Component {
         <h2>{ title }</h2>
         <h2>{ price }</h2>
         <Link
-          to={`/product/${ categoryId }/${ id }`}
+          to={ `/product/${categoryId}/${id}` }
           data-testid="product-detail-link"
         >
           Ver mais detalhes...
