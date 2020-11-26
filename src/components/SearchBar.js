@@ -16,8 +16,8 @@ class SearchBar extends React.Component {
 
   showProducts() {
     const { query } = this.state;
-    getProductsFromCategoryAndQuery('', query).then(({ products.result }) =>
-      this.setState({ products });
+    getProductsFromCategoryAndQuery('', query).then(({ products }) =>
+      this.setState({ products.result })
     );
   }
 

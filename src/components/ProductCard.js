@@ -12,18 +12,26 @@ class ProductCard extends React.Component {
   }
 
   addToCart() {
-
+    const { product, quantity } = this.state;
+    if (localStorage.getItem(product.title)){
+      console.log('ele existe')
+    }
+    else{
+      console.log('não existe')
+    }
   }
 
   render() {
     // const { product } = this.props;
-    const { product: { title, thumbnail, price } } = this.props;
+    const {
+      product: { title, thumbnail, price },
+    } = this.props;
 
     return (
       <div>
         <article data-testid="product">
           <header>
-            <h2>{title}</h2>
+            <h2>{ title }</h2>
           </header>
           <main>
             <img alt="product thumbnail" src={ thumbnail } />
@@ -31,7 +39,12 @@ class ProductCard extends React.Component {
           <footer>
             <p>{`R$ ${price}`}</p>
           </footer>
-          <button type="button" onClick={this.addToCart} data-testid="product-detail-add-to-cart">Adicionar ao carrinho</button>
+          <button
+            type="button"
+            onClick={ this.addToCart }
+            data-testid="product-detail-add-to-cart">
+            Adicionar ao carrinho
+          </button>
         </article>
       </div>
     );
