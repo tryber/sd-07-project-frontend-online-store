@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import * as api from '../services/api';
 import Loading from '../components/Loading/Loading';
 
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
-    this.renderProduct = this.renderProduct.bind(this);
+    this.renderDetails = this.renderDetails.bind(this);
+    this.fetchProduct = this.fetchProduct.bind(this);
     this.state = {
       isLoading: true,
+      productSelected: {},
     };
   }
 
-  renderProduct(product) {
-    const { name, price, thumbnail, attributes } = product;
+  componentDidMount() {
+    const { category_id, id } = this.props.match.params;
+    this.fetchProduct(category_id, id);
+  }
+
+  fetchProduct(category, id) {
+    this.setState({ isLoading: true }, () => {
+      api.getProductsFromCategoryAndQuery(category, '')
+        .then((obj) => {
+          const product = obj.results.find((item) => item.id === id);
+          this.setState({
+            isLoading: false,
+            productSelected: product,
+          });
+        });
+    });
+  }
+
+  renderDetails(product) {
+    const { title, price, thumbnail, attributes } = product;
     return (
       <div className="product-details">
-        <h2 data-testid="product-detail-name">{`${name} - R$${price}`}</h2>
+        <h2 data-testid="product-detail-name">{`${title} - R$${price}`}</h2>
         <div className="details">
           <img src={ thumbnail } alt="" />
           <ul className="details__specifications">
@@ -31,10 +51,10 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, productSelected } = this.state;
     return (
       <div>
-        {isLoading ? <Loading /> : this.renderProduct()}
+        {isLoading ? <Loading /> : this.renderDetails(productSelected)}
       </div>
     );
   }

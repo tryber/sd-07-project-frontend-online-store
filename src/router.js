@@ -11,7 +11,7 @@ class Router extends Component {
         <Switch>
           <Route exact path="/" component={ HomePage } />
           <Route path="/shoppingcart" component={ ShoppingCart } />
-          <Route path="/product-details/:id" component={ ProductDetails } />
+          <Route path="/product_details/:category_id/:id" component={ ProductDetails } />
         </Switch>
       </BrowserRouter>
     );
