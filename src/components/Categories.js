@@ -41,7 +41,7 @@ class Categories extends React.Component {
               <br />
             </div>
           );
-          })}
+        })}
       </div>
     );
   }
