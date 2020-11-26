@@ -34,33 +34,20 @@ export default class Home extends React.Component {
     this.findProduct();
   }
 
-  updateValue(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  }
-
   render() {
     const { searchText, products } = this.state;
     return (
       <div>
         <div>
-          <CategorieFilter
-            updateValueCategory={ this.updateValueCategory }
-          />
-        </div>
-        <div>
-          <SearchBar
-            searchText={ searchText }
-            onChange={ this.updateValue }
-            onClick={ this.findProduct }
-          />
+          <CategorieFilter />
         </div>
         <div>
           <ProductList products={ products } />
         </div>
         <Link data-testid="shopping-cart-button" to="/pages/shoppingcart">
           <img src="https://image.flaticon.com/icons/png/512/34/34562.png" alt="icone-carrinho" />
-        </Link>
+        </Link>     
+
         <div data-testid="home-initial-message">
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
         </div>
