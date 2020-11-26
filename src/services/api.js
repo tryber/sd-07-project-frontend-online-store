@@ -16,7 +16,9 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     .then((response) => response.json());
 }
 
-localStorage.setItem('cart', JSON.stringify({}));
+if (!localStorage['cart']) {
+  localStorage.setItem('cart', JSON.stringify({}));
+}
 
 export const readCart = () => JSON.parse(localStorage.getItem('cart'));
 
