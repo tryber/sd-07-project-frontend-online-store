@@ -20,7 +20,7 @@ class Categories extends React.Component {
     let categoriesArray = [];
     await api.getCategories()
       .then((response) => {
-        categoriesArray = response.map((category) =>{ return category; });
+        categoriesArray = response.map((category) => {return category;} );
       });
     this.setState({ categories: categoriesArray });
   }
