@@ -22,6 +22,10 @@ class SearchBar extends React.Component {
     this.productListLoaded = this.productListLoaded.bind(this);
   }
 
+  componentDidMount() {
+    this.filterCategoryAndQuery();
+  }
+
   handleSearchChange({ target }) {
     const { name, value } = target;
     this.setState({[name]: value});
