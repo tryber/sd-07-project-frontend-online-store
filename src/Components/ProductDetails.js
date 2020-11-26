@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import { Loading } from './components';
@@ -20,7 +20,7 @@ class ProductDetails extends Component {
 
   getProduct() {
     this.setState({ loading: true }, async () => {
-      const id = this.props.match.params.id;
+      const { match: { params: { id } } } = this.props;
       const pegaproduct = await api.getProductsFromCategoryAndQuery();
       this.setState({ loading: false, product: pegaproduct });
     });
@@ -35,8 +35,8 @@ class ProductDetails extends Component {
           <Loading />
         ) : (
           <div className="movie-card-details" data-testid="product-detail-add-to-cart">
-            <img alt="Movie Cover" src={`../${imagePath}`} />
-            <p data-testid="shopping-cart-product-name" >{name}</p>
+            <img alt="Movie Cover" src={ `../${imagePath}` } />
+            <p data-testid="shopping-cart-product-name">{name}</p>
             <p data-testid="shopping-cart-product-quantity">{quantity}</p>
           </div>
         )}
@@ -50,3 +50,4 @@ ProductDetails.propTypes = {
 };
 
 export default ProductDetails;
+ */
