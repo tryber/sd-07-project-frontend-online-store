@@ -17,12 +17,17 @@ class ProductDetail extends Component {
     };
   }
 
-  async getProduct() {    
-    const { id, categoryId } = this.props.match.params;
-    const { results } = await api.getProductsFromCategoryAndQuery(categoryId, '');
-    const productDetail = results.filter(result => result.id === id);
+  componentDidMount() {
+    this.callingFirst();
+  }
 
-    this.setState( {
+  async getProduct() {
+    const { match } = this.props;
+    const { id, categoryId } = match.params;
+    const { results } = await api.getProductsFromCategoryAndQuery(categoryId, '');
+    const productDetail = results.filter((result) => result.id === id);
+
+    this.setState({
       name: productDetail[0].title,
       imagePath: productDetail[0].thumbnail,
       price: productDetail[0].price,
@@ -30,12 +35,9 @@ class ProductDetail extends Component {
     });
   }
 
+
   async callingFirst() {
     await this.getProduct();
-  }
-
-  componentDidMount() {
-    this.callingFirst();
   }
 
   render() {
@@ -45,21 +47,33 @@ class ProductDetail extends Component {
         <Link to="/">Home</Link>
         <h1>Product Detail</h1>
         <p>
-          Name: <span>{name}</span>
+          Name:
+          {' '}
+          <span>{name}</span>
         </p>
         <img src={ imagePath } alt={ name } />
         <p>
-          Price: <span>{price}</span> 
+          Price:
+          {' '}
+          <span>{price}</span>
         </p>
         <div>
-          Details: {
-            details.map((element) => 
-              <div key={element.id}>{element.name} - <span>{element.value_name}</span>
-              </div>)
-          },
+          Details:
+          {' '}
+          {
+            details.map((element) => (
+              <div key={ element.id }>
+                {element.name}
+                {' '}
+                -
+                {' '}
+                <span>{element.value_name}</span>
+              </div>))
+          }
+          ,
         </div>
       </div>
-    )
+    );
   }
 }
 
