@@ -48,7 +48,7 @@ class Home extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="home">
         <Caregories onChange={this.select} />
         <div>
           <div>

@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
         />
         <input
           data-testid="query-button"
-          type="submit" value="pesquisar"
+          type="button" value="pesquisar"
           onClick={() => onClick(texto)}
         />
       </label>
