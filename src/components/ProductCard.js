@@ -13,8 +13,6 @@ class ProductCard extends React.Component {
     };
   }
 
-
-
   componentDidMount() {
     this.handleProduct();
   }
@@ -27,6 +25,7 @@ class ProductCard extends React.Component {
   render() {
     // const { product } = this.props;
     const { product: { title, thumbnail, price } } = this.props;
+    const { product } = this.state;
     // const { title, thumbnail, price } = this.state.product;
     return (
       <div>
@@ -46,7 +45,7 @@ class ProductCard extends React.Component {
           to={ {
             pathname: '/product-details',
             state: {
-              product: this.props.product,
+              product,
             },
           } }
         >
@@ -67,9 +66,3 @@ ProductCard.propTypes = {
 };
 
 export default ProductCard;
-
-
-{/* <Link to={{
-  pathname='/product-details',
-  state
-}} /> */}
