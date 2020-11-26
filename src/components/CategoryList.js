@@ -8,14 +8,20 @@ class CategoryList extends React.Component {
     super();
 
     this.fetchCategoryList = this.fetchCategoryList.bind(this);
+    this.radioHandler = this.radioHandler.bind(this);
 
     this.state = {
       categories: [],
+      selectedCategoryId: '',
     };
   }
 
   componentDidMount() {
     this.fetchCategoryList();
+  }
+
+  radioHandler({ target: { id } }) {
+    this.setState({ selectedCategoryId: id });
   }
 
   async fetchCategoryList() {
@@ -26,13 +32,18 @@ class CategoryList extends React.Component {
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories, selectedCategoryId } = this.state;
 
     return (
-      <div>
-        {categories.map(
-          (category) => <ItemCategory key={ category.id } category={ category } />,
-        )}
+      <div onChange={ this.radioHandler }>
+        {categories.map((category) => (
+          <ItemCategory
+            onChange={ this.radioHandler }
+            checked={ selectedCategoryId === category.id }
+            key={ category.id }
+            category={ category }
+          />
+        ))}
       </div>
     );
   }
