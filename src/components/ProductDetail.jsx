@@ -8,7 +8,7 @@ class ProductDetail extends React.Component {
     this.fetchDetails = this.fetchDetails.bind(this);
     this.state = {
       dataDetail: [],
-      loading: false,
+      loading: true,
     };
   }
 
@@ -17,42 +17,47 @@ class ProductDetail extends React.Component {
   }
 
   async fetchDetails() {
-    const {
-      match: {
-        params: { id },
-      },
-    } = this.props;
-    const getDetail = await api.getSpecsFromProduct(id);
-    this.setState({
-      dataDetail: getDetail,
+    this.setState({ loading: true }, async () => {
+      const {
+        match: {
+          params: { id },
+        },
+      } = this.props;
+      const getDetail = await api.getProductsFromCategoryAndQuery('', id);
+      this.setState({
+        dataDetail: getDetail.results[0],
+        loading: false,
+      });
     });
   }
 
   render() {
-    const { dataDetail } = this.state;
-    console.log(dataDetail);
-    let renderDetails = '';
-    if (dataDetail !== [] || dataDetail) {
-      renderDetails = (
-        <div>
-          <h3 data-testid="product-detail-name">{`${dataDetail.title} - R$ ${dataDetail.price}`}</h3>
-          <img src={dataDetail.thumbnail} alt="Imagem do produto" />
-          <div>
-            <ul>
-              <li>Especificação 01</li>
-              <li>Especificação 02</li>
-              <li>Especificação 03</li>
-              <li>Especificação 04</li>
-              <li>Especificação 05</li>
-              <li>Especificação 06</li>
-              <li>Especificação 07</li>
-            </ul>
-          </div>
-        </div>
-      );
-    }
+    const { dataDetail, loading } = this.state;
+    const { title, price, thumbnail } = dataDetail;
 
-    return <div>{renderDetails !== '' ? renderDetails : 'Loading'}</div>;
+    return (
+      <div>
+        {loading ? (
+          'Teste'
+        ) : (
+          <div>
+            <h3 data-testid="product-detail-name">{`${title} - R$ ${price}`}</h3>
+            <img src={ thumbnail } alt="Imagem do produto" />
+            <div>
+              <ul>
+                <li>Especificação 01</li>
+                <li>Especificação 02</li>
+                <li>Especificação 03</li>
+                <li>Especificação 04</li>
+                <li>Especificação 05</li>
+                <li>Especificação 06</li>
+                <li>Especificação 07</li>
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    );
   }
 }
 

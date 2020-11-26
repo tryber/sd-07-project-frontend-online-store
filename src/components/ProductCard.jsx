@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
-    const { thumbnail, title, price, id } = product;
+    const { thumbnail, title, price } = product;
     return (
-      <Link data-testid="product-detail-link" to={ `/detail/${id}` }>
+      <Link data-testid="product-detail-link" to={ `/detail/${title}` }>
         <div data-testid="product">
           <img src={ thumbnail } alt="Imagem do produto" />
           <h4>{title}</h4>
