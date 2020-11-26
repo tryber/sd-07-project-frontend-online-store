@@ -40,4 +40,5 @@ class ProductsList extends Component {
 // Button.propTypes = {
 //   onChange: PropTypes.func.isRequired,
 // };
+
 export default ProductsList;
