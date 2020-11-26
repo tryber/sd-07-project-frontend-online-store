@@ -16,26 +16,28 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     .then((response) => response.json());
 }
 
-if (!localStorage['cart']) {
-  localStorage.setItem('cart', JSON.stringify({}));
-}
-
 export const readCart = () => JSON.parse(localStorage.getItem('cart'));
 
 export const saveCart = (cart) => { localStorage.setItem('cart', JSON.stringify(cart))};
 
 export const addToCart = (product) => {
   let cart = readCart();
-  if (cart[product.id]){
-    cart[product.id].qtd += 1;
-  } else {
-    cart[product.id] = { 
-      qtd: product.qtd = 1,
-      thumbnail: product.thumbnail,
-      title: product.title,
-      price: product.price,
-      id: product.id,
+  if (!cart) cart = [];
+  const item = {
+    id: product.id,
+    title: product.title,
+    price: product.price,
+    thumbnail: product.thumbnail,
+    amount: 1,
+  };
+  let unique = false;
+  cart.forEach((element) => {
+    if (item.id === element.id) {
+      element.amount += 1;
+      unique = true;
     }
-  }
+  });
+
+  if (!unique) cart.push(item);
   saveCart(cart);
-}
+};

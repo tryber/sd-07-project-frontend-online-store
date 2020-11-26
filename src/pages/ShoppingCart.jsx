@@ -5,22 +5,22 @@ export default class ShoppingCart extends Component {
   constructor() {
     super();
     this.productsList = this.productsList.bind(this);
+    this.updateState = this.updateState.bind(this);
 
     this.state = {
-      cart: []
+      cart: [],
     };
   }
 
   componentDidMount() {
-    const cart = api.readCart()
-    console.log(cart)
-    this.setState({
-      cart: Object.values(cart)
-    }, () => {
-      console.log(this.state.cart)
-    })
+    this.updateState();
   }
-  
+
+  updateState() {
+    const cart = api.readCart();
+    console.log(cart)
+    this.setState({ cart });
+  }
 
   emptyMessage() {
     return (
@@ -29,26 +29,36 @@ export default class ShoppingCart extends Component {
       </p>
     );
   }
+
   productsList() {
-  const { cart }   = this.state;
-  return (
-    <div className="cart-products">
-      { cart.map(({ thumbnail, qtd, title, price, id }) => (
-        <div className="product" key={id}>
-          <p className="product-title" data-testid="shopping-cart-product-name">{title}</p>
-        </div>
-      ))}
-    </div>
-  );
-  }
+    const { cart } = this.state;
+    return (
+      <div className="cart-products">
+        { cart.map(({ thumbnail, qtd, title, price, id }) => (
+          <div className="product" key={id}>
+            <p
+              className="product-title"
+              data-testid="shopping-cart-product-name"
+            >
+              {title}
+            </p>
+          </div>
+        ))}
+      </div>
+    );
+    }
   render() {
-    const cartItemsLength = Object.keys(this.state.cart).length;
+    const { cart } = this.state;
+    let cartItemsLength;
+    if (cart) {
+      cartItemsLength = this.state.cart.length;
+    } else cartItemsLength = 0;
+    
     if (cartItemsLength) {
       return (this.productsList())
     }
     return (
         this.emptyMessage()
-      
     )
   }
 }
