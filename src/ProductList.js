@@ -4,7 +4,7 @@ import Products from './Products';
 import CategoryList from './CategoryList';
 
 
-import { Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class ProductList extends React.Component {
   constructor() {
@@ -84,11 +84,9 @@ class ProductList extends React.Component {
             <p>Nenhum produto foi encontrado</p>
           </div>
           <button type="button">
-          <BrowserRouter>
             <Link data-testid="shopping-cart-button" to="/ShoppingCart">
               Carrinho de compras
             </Link>
-          </BrowserRouter>
         </button>
         <CategoryList />
         </div>
@@ -112,11 +110,9 @@ class ProductList extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         <button type="button">
-          <BrowserRouter>
             <Link data-testid="shopping-cart-button" to="/ShoppingCart">
               Carrinho de compras
             </Link>
-          </BrowserRouter>
         </button>
         <CategoryList />
       </div>
