@@ -39,6 +39,8 @@ class SearchBar extends Component {
 
   render() {
     const { product, loading } = this.state;
+    const message = 'Digite algum termo de pesquisa ou escolha uma categoria.';
+    const loadingMessage = <p data-testid="home-initial-message">{message}</p>;
     return (
       <div>
         <label htmlFor="search-bar">
@@ -57,9 +59,7 @@ class SearchBar extends Component {
           </button>
         </label>
         {loading
-          ? (<p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-             </p>)
+          ? loadingMessage
           : product.map((item) => <ProductList key={ item.id } product={ item } />)}
         <CategoryList
           handleChange={ this.handleChange }
