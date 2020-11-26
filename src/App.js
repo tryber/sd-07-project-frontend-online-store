@@ -11,10 +11,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={ProductsList} />
-          <Route 
-            exact path='/ShoppingCart'
-            render={(props) => <ShoppingCart {...props} />}
-          />
+          <Route exact path='/ShoppingCart' component={ShoppingCart} />
           <Route
             exact path='/ProductDetail/:id'
             render={(props) => <ProductDetail {...props} />}
