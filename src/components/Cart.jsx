@@ -13,7 +13,7 @@ class Cart extends React.Component {
 
   handleClick({ target }) {
     const { products } = this.state;
-
+    const zero = 0;
     if (target.classList.contains('button-increase')) {
       products.forEach((element, index) => {
         if (target.id.includes(index)) {
@@ -24,7 +24,8 @@ class Cart extends React.Component {
     } else {
       products.forEach((element, index) => {
         if (target.id.includes(index)) {
-          element.qtd -= 1;
+          if (element.qtd === zero) element.qtd = 0;
+          else element.qtd -= 1;
         }
         this.setState({ products });
       });

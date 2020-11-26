@@ -37,3 +37,12 @@
   height: 25px;
   margin-left: 10px;
 }
+
+.form-details{
+  margin: 20px;
+}
+
+.comments{
+  margin: 20px;
+  border: 1px black solid;
+}
