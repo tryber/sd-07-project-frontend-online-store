@@ -20,7 +20,7 @@ jobs:
         uses: betrybe/react-scripts-evaluator-action@v3
         with:
           repository-test-name: 'betrybe/sd-0x-block15-project-frontend-online-store-tests'
-          repository-test-branch: 'master'
+          repository-test-branch: 'test-branch'
       - name: Store evaluation step
         uses: betrybe/store-evaluation-action@v2
         with:
