@@ -1,5 +1,4 @@
 import React from 'react';
-import ItemCategory from './ItemCategory';
 
 import * as productsAPI from '../services/api';
 
@@ -31,7 +30,10 @@ class CategoryList extends React.Component {
     return (
       <div>
         {categories.map(
-          (category) => <ItemCategory key={ category.id } category={ category } />,
+          (category) => (
+            <div data-testid="category" key={ category.id }>
+              { category.name }
+            </div>),
         )}
       </div>
     );
