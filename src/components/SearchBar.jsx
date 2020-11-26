@@ -21,22 +21,20 @@ class SearchBar extends React.Component {
     const { texto } = this.state;
     return (
       <div>
-        <label>
-          <input
-            data-testid="query-input"
-            type="text"
-            value={ texto }
-            onChange={ this.atualizarTexto }
-          />
-        </label>
+        <input
+          data-testid="query-input"
+          type="text"
+          value={ texto }
+          onChange={ this.atualizarTexto }
+        />
         <input
           data-testid="query-button"
           type="submit" value="pesquisar"
-          onClick={() => onClick(texto)}
+          onClick={ () => onClick(texto) }
         />
       </div>
     );
-  };
+  }
 }
 
 export default SearchBar;
