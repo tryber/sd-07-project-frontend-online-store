@@ -7,14 +7,11 @@ import Home from './pages/home';
 function App() {
   return (
     <div className="App">
-      Hello Trybers
-      {/* <Header /> */}
       <Router>
         <Switch>
           <Route exact path="/shoppingCart" component={ ShoppingCart } />
           <Route exact path="/" component={ Home } />
-          <Route exact path="/productDetail/:id" component={ ProductDetail} />
-          {/* <Route component={NotFound} /> */}
+          <Route exact path="/productDetail/:id" component={ ProductDetail } />
         </Switch>
       </Router>
     </div>
