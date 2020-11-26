@@ -12,14 +12,14 @@ class SearchBar extends React.Component {
     this.handleQuery = this.handleQuery.bind(this);
   }
 
+  handleQuery({ target }) {
+    this.setState({ query: target.value });
+  }
+
   sendQuerySearch() {
     const { query } = this.state;
     const { getQuerySearch } = this.props;
     getQuerySearch(query);
-  }
-
-  handleQuery({ target }) {
-    this.setState({ query: target.value });
   }
 
   render() {
