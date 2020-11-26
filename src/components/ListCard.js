@@ -26,15 +26,15 @@ class ListCard extends React.Component {
 
   render() {
       const { product } = this.state;
-    return (
-      <div>
-        {product.map((prod) => {
-          return (
-            <ItemCard title={prod.title} foto={prod.thumbnail} preco={prod.price} />  
-          )
-        })}
+    return (<p>teste</p>
+      // <div>
+      //   {product.map((prod) => {
+      //     return (
+      //       <ItemCard title={prod.title} foto={prod.thumbnail} preco={prod.price} />  
+      //     )
+      //   })}
               
-      </div>
+      // </div>
     );
   }
 }

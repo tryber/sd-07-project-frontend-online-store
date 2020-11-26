@@ -9,6 +9,7 @@ import ListCard from '../components/ListCard';
 class Main extends React.Component {
   constructor(props) {
     super()
+    this.handleValue = this.handleValue.bind(this);
     this.state = {
       search:'',
     }
@@ -16,15 +17,14 @@ class Main extends React.Component {
 
   handleValue(event) {
     const { value } = event.target;
-    this.setState({
-      search: value,
-    });
+    this.setState({ search: value });
+    console.log(this.state.search);
   }
 
   render() {
     const { search } = this.state;
     return (
-      <section>
+      <section className="main-container">
         <div className="container">
           <img className="lupa" src={ lupa } alt="lupa" />
           <input data-testid="query-input" onChange={this.handleValue} className="searchInput" type="search" />

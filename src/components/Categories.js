@@ -22,7 +22,6 @@ class Categories extends React.Component {
 
   render() {
     const { categories } = this.state;
-    console.log(categories);
     return (
       <div>
         {categories.map((category) => {
