@@ -8,20 +8,26 @@ class FiltersCategory extends React.Component {
     this.state = {
       apiCategories: [],
     };
+
+    this.requestCategoryApi = this.requestCategoryApi.bind(this);
   }
 
   componentDidMount() {
-    api.getCategories()
-      .then((categories) => this.setState({ apiCategories: categories }));
+    this.requestCategoryApi();
+  }
+
+  async requestCategoryApi() {
+    const categories = await api.getCategories();
+    this.setState({ apiCategories: categories });
   }
 
   render() {
     const { apiCategories } = this.state;
     return (
       <aside className="side-bar">
-        <h3>Categories:</h3>
+        <h3>Categorias:</h3>
         {apiCategories.map((category) => (
-          <div key={ category.id } className="container-filter">
+          <div key={ category.id } className="container-filter" data-testid="category">
             <input
               type="radio"
               name="categories"
