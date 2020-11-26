@@ -34,7 +34,7 @@ class Home extends React.Component {
     await this.setState({ category: event.target.value });
     this.atualizar();
   }
-  
+
   atualizar() {
     const { searchValue, category } = this.state;
     if (searchValue !== '' || category !== '') {
