@@ -5,13 +5,9 @@ export default class ProductItem extends Component {
   render() {
     const { category, onClick } = this.props;
     return (
-      <div className="class-name">
-        <li data-testid="category">
-          <button type="button" onClick={ onClick } data-testid='category'>
-            { category.name }
-          </button>
-        </li>
-      </div>
+      <button type="button" onClick={ onClick } data-testid="category">
+        { category.name }
+      </button>
     );
   }
 }
