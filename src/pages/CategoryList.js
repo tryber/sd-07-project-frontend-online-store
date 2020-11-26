@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 import * as api from '../services/api';
 
 export default class CategoryList extends React.Component {
@@ -24,8 +25,12 @@ export default class CategoryList extends React.Component {
   }
 
   getCategoryId(categoryId) {
-    const { fetchByCategory } = this.props
-    this.setState({ categoryId: categoryId }, () => fetchByCategory(categoryId));
+    const { fetchByCategory } = this.props;
+    this.setState({ categoryId },
+      () => {
+        const { state } = this;
+        fetchByCategory(state.categoryId);
+      });
   }
 
   render() {
@@ -39,9 +44,10 @@ export default class CategoryList extends React.Component {
               <li
                 data-testid="category"
                 key={ category.id }
-                onClick={()=> this.getCategoryId(category.id)}
+                onClick={ () => { this.getCategoryId(category.id); } }
+                aria-hidden="true"
               >
-                {category.name}
+                { category.name }
               </li>))}
           </ul>
         </div>
@@ -49,3 +55,7 @@ export default class CategoryList extends React.Component {
     );
   }
 }
+
+CategoryList.propTypes = {
+  fetchByCategory: PropType.func.isRequired,
+};

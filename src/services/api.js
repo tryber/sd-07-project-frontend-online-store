@@ -33,5 +33,3 @@ export async function getProductsFromCategory(categoryId) {
     resolve(fetchByItem);
   });
 }
-
-

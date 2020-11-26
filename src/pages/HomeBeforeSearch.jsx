@@ -43,7 +43,7 @@ export default class HomeBeforeSearch extends Component {
     const res = await api.getProductsFromCategory(categoryId);
     console.log(res.results);
     const products = res.results
-    this.setState({ productList: products })
+    this.setState({ productList: products });
   }
 
 
