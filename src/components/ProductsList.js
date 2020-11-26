@@ -62,9 +62,9 @@ class ProductsList extends React.Component {
           >
             Digite algum termo de pesquisa ou escolha uma categoria.
           </span>
-            <Link to="/shopping-cart" data-testid="shopping-cart-button">
-              Carrinho de compras
-            </Link>
+          <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            Carrinho de compras
+          </Link>
           <br />
           <ul>
             {productList.length
