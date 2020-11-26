@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
 
-export default class Details extends Component {
+class Details extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,7 +16,9 @@ export default class Details extends Component {
   }
 
   async fetchAPI() {
-    const { id} = this.props.match.params;
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
     const resp = await api.getProductsFromCategoryAndQuery(id, undefined);
     this.setState({
       loading: false,
@@ -38,3 +40,13 @@ export default class Details extends Component {
     );
   }
 }
+
+Details.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};
+
+export default Details;
