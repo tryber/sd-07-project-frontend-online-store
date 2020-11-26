@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../services/api';
 import SearchBar from '../components/SearchBar';
 import FilteredProductsList from '../components/FilteredProductsList';
-
+import ListCategory from '../components/ListCategory';
 class ProductsList extends Component {
   constructor() {
     super();
@@ -42,6 +42,7 @@ class ProductsList extends Component {
           inputChange={ this.updateInputSearch }
         />
         <FilteredProductsList allProducts={ productsToRender } />
+        <ListCategory />
       </div>
     );
   }
