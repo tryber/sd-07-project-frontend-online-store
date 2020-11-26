@@ -25,6 +25,25 @@ class ProductDetails extends React.Component {
     this.setState({ itemRecived: productRecived[0] });
   }
 
+  handleClick() {
+    const { id, title, price } = this.state.itemRecived;
+    const qtd = 1;
+    //console.log(id, title, price, qtd)
+    console.log('clicou');
+    let cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+
+    cartItemsStorage.forEach((cartitemId, i) => {
+      if (cartitemId.id === id ) {
+        console.log('igual na posição', i);
+      } else {
+        cartItemsStorage.push({ id, title, price, qtd });
+        localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+      }
+    });
+    // cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+    // console.log(cartItemsStorage[0].qtd);
+  }
+
   componentDidMount() { 
     const { category } = this.props.match.params;
     this.apiRequest(category);
@@ -42,6 +61,7 @@ class ProductDetails extends React.Component {
         <div>
           <h1 data-testid="product-detail-name">{title}</h1>
           <h3>R$: {price}</h3>
+          <button onClick={() => this.handleClick()} data-testid="product-detail-add-to-cart">Adicionar ao Carrinho</button>
         </div>
       </div>
     )
