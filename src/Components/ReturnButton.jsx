@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './ReturnButton.css';
-
 
 class ReturnButton extends Component {
   render() {
@@ -17,5 +17,9 @@ class ReturnButton extends Component {
     );
   }
 }
+
+ReturnButton.propTypes = {
+  path: PropTypes.string.isRequired,
+};
 
 export default ReturnButton;
