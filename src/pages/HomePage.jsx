@@ -10,7 +10,7 @@ class HomePage extends Component {
   //     category: 'xablau',
   //   };
   // }
-  
+
   render() {
     return (
       // const { category } = this.state;

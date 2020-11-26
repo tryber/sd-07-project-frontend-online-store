@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import * as api from "../../services/api";
+import React, { Component } from 'react';
+import './Categories.css';
+import * as api from '../../services/api';
 
 class CategoryList extends Component {
   constructor() {
     super();
     this.state = {
       categoriesList: [],
-      categoryIdSelected: "",
+      categoryIdSelected: '',
     };
     this.fecthList = this.fecthList.bind(this);
   }
@@ -25,7 +26,7 @@ class CategoryList extends Component {
     const { categoriesList } = this.state;
     const { onChangeCategory } = this.props;
     return (
-      <div>
+      <div className="categories-container">
         <span>Categorias:</span>
         <div>
           {categoriesList.map((category) => (
