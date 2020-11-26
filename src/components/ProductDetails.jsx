@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
@@ -8,6 +9,7 @@ class ProductDetails extends React.Component {
     const { id } = props.match.params;
 
     this.fetch = this.fetch.bind(this);
+    this.addToCart = this.addToCart.bind(this);
 
     const initialIndex = 0;
     this.state = {
@@ -44,6 +46,29 @@ class ProductDetails extends React.Component {
     );
   }
 
+  addToCart() {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const { product } = this.state;
+    const { title, price } = product;
+    let flag = true;
+    const size = 0;
+
+    if (products.length === size) {
+      products.push({ title, price, qtd: 1 });
+    } else {
+      products.forEach((element, index, array) => {
+        if (element.title === title) {
+          element.qtd += 1;
+          flag = false;
+        } else if (index === array.length - 1 && flag) {
+          products.push({ title, price, qtd: 1 });
+        }
+      });
+    }
+
+    localStorage.setItem('products', JSON.stringify(products));
+  }
+
   render() {
     const { product, loading } = this.state;
 
@@ -57,6 +82,21 @@ class ProductDetails extends React.Component {
           R$
           {product.price}
         </p>
+        <button
+          type="button"
+          onClick={ this.addToCart }
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar ao carrinho
+        </button>
+
+        <Link data-testid="shopping-cart-button" to="/cart">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdCYOcz2do9rQylt8XnMawcSwL1a-qaEfXxQ&usqp=CAU"
+            alt=""
+            className="cart-image"
+          />
+        </Link>
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import ProductList from './components/ProductList';
-import CartButton from './components/CartButton';
+import Cart from './components/Cart';
 import ProductDetails from './components/ProductDetails';
 
 // Vamo que vamo
@@ -13,7 +13,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ ProductList } />
-          <Route exact path="/cart" component={ CartButton } />
+          <Route exact path="/cart" component={ Cart } />
           <Route
             exact
             path="/:id"
