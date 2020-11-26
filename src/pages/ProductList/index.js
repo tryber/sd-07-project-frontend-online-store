@@ -13,6 +13,7 @@ class ProductList extends Component {
     this.state = {
       results: [],
       searchInput: '',
+      categoryID: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -35,10 +36,11 @@ class ProductList extends Component {
     const { searchInput } = this.state;
     getProductsFromCategoryAndQuery(categoryID, searchInput)
       .then(({ results }) => this.setState({ results }));
+    this.setState({ categoryID });
   }
 
   render() {
-    const { results, searchInput } = this.state;
+    const { results, searchInput, categoryID } = this.state;
     return (
       <section>
         <header>
@@ -66,7 +68,14 @@ class ProductList extends Component {
             <CategoryList onChange={ this.handleChangeCategory } />
           </aside>
           <section>
-            {results.map((result) => <Card key={ result.id } data={ result } />)}
+            {results.map((result) => (
+              <Card
+                key={ result.id }
+                data={ result }
+                categoryID={ categoryID }
+                searchInput={ searchInput }
+              />
+            ))}
             {!results.length && <p>Nenhum produto foi encontrado</p>}
           </section>
         </main>
