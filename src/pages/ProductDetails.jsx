@@ -46,11 +46,19 @@ class ProductDetails extends React.Component {
     cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
   }
 
+<<<<<<< HEAD
+    cartItemsStorage.forEach((cartitemId, i) => {
+      if (cartitemId.id === id ) {
+        console.log('igual na posição', i);
+      } else {
+        cartItemsStorage.push({ id, title, price, qtd, thumbnail });
+=======
   checkCartOnAdd(idItem) {
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
     for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
       if (cartItemsStorage[i].id === idItem) {
         cartItemsStorage[i].qtd += 1;
+>>>>>>> e7953a05e103e4c07cb64bacd451d0beb11055d8
         localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
         return false;
       }
