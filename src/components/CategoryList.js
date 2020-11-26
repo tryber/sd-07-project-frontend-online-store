@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ItemCategory from './ItemCategory';
 
@@ -21,7 +22,9 @@ class CategoryList extends React.Component {
   }
 
   radioHandler({ target: { id } }) {
+    const { handleCategory: sendCategoryId } = this.props;
     this.setState({ selectedCategoryId: id });
+    sendCategoryId(id);
   }
 
   async fetchCategoryList() {
@@ -35,7 +38,7 @@ class CategoryList extends React.Component {
     const { categories, selectedCategoryId } = this.state;
 
     return (
-      <div onChange={ this.radioHandler }>
+      <div>
         {categories.map((category) => (
           <ItemCategory
             onChange={ this.radioHandler }
@@ -48,5 +51,7 @@ class CategoryList extends React.Component {
     );
   }
 }
+
+CategoryList.propTypes = { handleCategory: PropTypes.func.isRequired };
 
 export default CategoryList;

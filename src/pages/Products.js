@@ -13,12 +13,16 @@ class Products extends React.Component {
     this.state = {
       products: [],
       loading: false,
+      querySearch: '',
     };
+    this.handleSelectedCategory = this.handleSelectedCategory.bind(this);
   }
 
-  async showProducts(querySearch) {
-    this.setState({ loading: true }, async () => {
-      const response = await api.getProductsFromCategoryAndQuery('', querySearch);
+  async showProducts(querySearch, selectedCategory) {
+    this.setState({ loading: true, querySearch }, async () => {
+      const response = await api.getProductsFromCategoryAndQuery(
+        selectedCategory, querySearch,
+      );
       const productsResponse = response.results;
       this.setState({
         products: productsResponse,
@@ -28,18 +32,24 @@ class Products extends React.Component {
   }
 
 
+  handleSelectedCategory(selectedCategoryId) {
+    const { querySearch } = this.state;
+    this.showProducts(querySearch, selectedCategoryId);
+  }
+
   render() {
     const { loading } = this.state;
 
     if (loading) return '';
 
     const { products } = this.state;
+
     return (
       <div>
         <SearchBar getQuerySearch={ this.showProducts } />
         <ShoppingCartButton />
         <ProductsList products={ products } />
-        <CategoryList />
+        <CategoryList handleCategory={ this.handleSelectedCategory } />
       </div>
     );
   }
