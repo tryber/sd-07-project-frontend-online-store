@@ -10,12 +10,15 @@ class Main extends React.Component {
 
     this.handleSelected = this.handleSelected.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+
     this.state = {
       inputValue: '',
       products: [],
       selected: 'Mais Categorias',
       selectedId: 'MLB1953',
       requested: false,
+      cartProduct:''
     }
   }
 
@@ -35,21 +38,26 @@ class Main extends React.Component {
     return this.setState({ products, requested: true })
   }
 
+  addToCart({ target }) {
+    this.setState({ cartProduct: target.value });
+  }
+
   productsList() {
     return this.state.products.map(({ title, id, thumbnail, price}) => (
 
-      <ProductList key={id} title={title} image={thumbnail} price={price} id={id} />
+      <ProductList key={id} title={title} image={thumbnail} price={price} id={id} buttonValue={this.addToCart} />
+      
     ));
   }
 
   render() {
-    const { inputValue, requested, selected, selectedId } = this.state;
+    const { inputValue, requested, selected, selectedId ,cartProduct } = this.state;
 
     return (
       <div>
         <input type="text" data-testid="query-input" onChange={this.handleSearch} />
         <button type="button" data-testid="query-button" onClick={() => this.searchProducts(inputValue, selectedId)}>Pesquisar</button>
-        <Link data-testid="shopping-cart-button" to="/cart">
+        <Link data-testid="shopping-cart-button" to={{ pathname: "/cart", state: { cartProduct }}}>
             <i className="fas fa-shopping-cart" />
         </Link>
         <p data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</p>

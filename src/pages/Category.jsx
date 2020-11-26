@@ -25,16 +25,16 @@ class Category extends React.Component {
     return (
       <div>
         {category.map(({ name, id }) => (
-          <div key={id}>
+          <div key={ id }>
             <label>
               <input
                 type="radio"
                 name="category-option"
-                id={id}
-                value={name}
-                checked={selected === name}
+                id={ id }
+                value={ name }
+                checked={selected === name }
                 data-testid="category"
-                onChange={handleSelected}
+                onChange={ handleSelected }
               />
               {name}
             </label>
