@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ProductCard extends Component {
@@ -6,11 +7,13 @@ class ProductCard extends Component {
     const { product } = this.props;
     const { title, thumbnail, price } = product;
     return (
-      <div data-testid="product">
-        <h3>{title}</h3>
-        <img src={ thumbnail } alt="" />
-        <h3>{price}</h3>
-      </div>
+      <Link to={ `/product-details/${product.id}` } data-testid="product-detail-link">
+        <div data-testid="product">
+          <h3>{title}</h3>
+          <img src={ thumbnail } alt="" />
+          <h3>{price}</h3>
+        </div>
+      </Link>
     );
   }
 }
