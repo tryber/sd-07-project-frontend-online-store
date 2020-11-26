@@ -4,6 +4,7 @@ import * as api from '../services/api';
 import shoppingCartIcon from '../img/shopping-cart.png';
 import searchBarIcon from '../img/search-bar-icon.png';
 import CategoryList from './CategoryList';
+import ProductsList from './ProductsList';
 
 export default class HomeBeforeSearch extends Component {
   constructor() {
@@ -13,21 +14,9 @@ export default class HomeBeforeSearch extends Component {
       categoryId: '',
       productList: [],
     };
-    this.fetchProducts = this.fetchProducts.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchProducts();
-  }
-
-  async fetchProducts() {
-    const { categoryId, query } = this.state;
-    // api.getProductsFromCategoryAndQuery(categoryId, query)
-    //   .then((result) => this.setState({ productList: result.results }));
-    const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
-    this.setState({ productList: products.results })
+    this.fetchProducts = this.fetchProducts.bind(this);
   }
 
   handleChange({ target }) {
@@ -40,8 +29,13 @@ export default class HomeBeforeSearch extends Component {
     this.fetchProducts();
   }
 
+  async fetchProducts() {
+    const { categoryId, query } = this.state;
+    const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    this.setState({ productList: products.results })
+  }
+
   render() {
-    const { productList } = this.state;
     return (
       <div>
         <div className="nav-bar">
@@ -64,19 +58,7 @@ export default class HomeBeforeSearch extends Component {
           Pesquisar
         </button>
         <CategoryList />
-        <ul>
-          {productList.length
-            ? productList.map(({ id, title, thumbnail, price }) => (
-              <li
-                key={ id }
-                data-testid="product"
-              >
-                <h4>{ title }</h4>
-                <img src={ thumbnail } alt="Product" />
-                <p>{ price }</p>
-              </li>
-            )) : (<li> Nenhum produto foi encontrado </li>)}
-        </ul>
+        <ProductsList productList={this.state.productList}/>
       </div>
     );
   }
