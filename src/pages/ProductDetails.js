@@ -22,6 +22,7 @@ class ProductDetails extends Component {
       async () => {
         // const { id } = this.props.match.params;
         const id = 'MLB1689813027';
+        const id2= 'MLB1532299476';
         const productID = await api.fetchAPIByID(id);
         console.log(productID);
         this.setState({
@@ -34,7 +35,7 @@ class ProductDetails extends Component {
 
   render() {
     const { product, loading } = this.state;
-    const { title, price, thumbnail, attributes } = product;    
+    const { title, price, pictures, attributes } = product;    
 
     console.log(product);
 
@@ -43,8 +44,8 @@ class ProductDetails extends Component {
     return (
       <div className="product-detail">
         <div className="container-title-image">
-          <h1 data-testid="product-detail-name">{title} - R${price}</h1>
-          <img className="product-detail-image" src={thumbnail} alt={`imagem do produto ${title}`}/>
+          <h2 data-testid="product-detail-name">{title} - R${price}</h2>
+          <img className="product-detail-image" src={pictures[0].url} alt={`imagem do produto ${title}`}/>
         </div>        
         <ul className="container-list">
           {attributes.map(({ name, value_name, id }) => 
