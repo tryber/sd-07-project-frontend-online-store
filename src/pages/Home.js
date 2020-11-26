@@ -13,7 +13,7 @@ class Home extends Component {
   componentDidMount() { this.fetchCategories(); }
 
   async fetchCategories() {
-    const categoriesArr = await api.getCategories().then((categories) => categories);
+    const categoriesArr = await api.getCategories();
     this.setState({ categories: categoriesArr });
   }
 
