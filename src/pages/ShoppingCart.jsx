@@ -12,8 +12,10 @@ export default class ShoppingCart extends Component {
   }
 
   componentDidMount() {
+    const cart = api.readCart()
+    console.log(cart)
     this.setState({
-      cart: Object.values(api.readCart())
+      cart: Object.values(cart)
     }, () => {
       console.log(this.state.cart)
     })
