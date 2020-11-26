@@ -13,7 +13,6 @@ export default class Home extends React.Component {
       products: [],
       categoryId: '',
     };
-
     this.findProduct = this.findProduct.bind(this);
     this.updateValue = this.updateValue.bind(this);
     this.updateValueCategory = this.updateValueCategory.bind(this);
@@ -35,9 +34,8 @@ export default class Home extends React.Component {
   }
 
   updateValue(event) {
-    const { value } = event.target;
-    this.setState({ categoryId: value });
-    this.findProduct();
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   render() {
@@ -45,7 +43,16 @@ export default class Home extends React.Component {
     return (
       <div>
         <div>
-          <CategorieFilter />
+          <CategorieFilter
+            updateValueCategory={ this.updateValueCategory }
+          />
+        </div>
+        <div>
+          <SearchBar
+            searchText={ searchText }
+            onChange={ this.updateValue }
+            onClick={ this.findProduct }
+          />
         </div>
         <div>
           <ProductList products={ products } />
@@ -53,7 +60,6 @@ export default class Home extends React.Component {
         <Link data-testid="shopping-cart-button" to="/pages/shoppingcart">
           <img src="https://image.flaticon.com/icons/png/512/34/34562.png" alt="icone-carrinho" />
         </Link>
-
         <div data-testid="home-initial-message">
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
         </div>
