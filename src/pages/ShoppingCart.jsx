@@ -5,12 +5,13 @@ class PageCard extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      products: [],
+      products: [ ],
     };
   }
   
   render() {
-    const { loading, products } = this.state;
+    const { loading } = this.state;
+    const { products } = this.props;
     if (loading)
       return (
         <span data-testid="shopping-cart-empty-message">

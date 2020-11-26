@@ -12,11 +12,13 @@ class ProductsList extends Component {
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
     this.categoryChoice = this.categoryChoice.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.addToCart = this.addToCart.bind(this);
     this.state = {
       category: undefined,
       categories: undefined,
       products: undefined,
       search: "",
+      cart: [],
     };
   }
 
@@ -33,7 +35,6 @@ class ProductsList extends Component {
     const ListProducts = await API.getProductsFromCategoryAndQuery(this.state.category, this.state.search);
     if (ListProducts === "") return <span>Nenhum produto foi encontrado</span>;
     const { results } = ListProducts;
-    console.log(results);
     return (this.setState({ products: results }));
   }
 
@@ -55,9 +56,25 @@ class ProductsList extends Component {
     const { name, value } = target;
     this.setState({ [name]: value });
   }
+
+  addToCart({ target }) {
+    const { name} = target;
+    const product = document.getElementById(`${name}`)
+    const title = product.firstChild.innerText;
+    const image = product.firstChild.nextSibling.src;
+    const price = product.firstChild.nextSibling.nextSibling.innerText;
+    const productDetails = { 
+      title: title,
+      imagePath: image,
+      price: price,
+    }
+    this.setState(prevState => ({
+      cart: [...prevState.cart, productDetails ]
+    }))
+  }
   
   render() {
-    const { categories, products } = this.state;
+    const { categories, products, cart } = this.state;
 
     return (
       <div>
@@ -76,8 +93,8 @@ class ProductsList extends Component {
             onChange={this.handleChange}
           />
           <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
-          {products === undefined ? this.showMessage() : <ShowProducts products={products} />}
-          <Link data-testid="shopping-cart-button" to="/PageCard">
+          {products === undefined ? this.showMessage() : <ShowProducts products={products} buttonFunction={this.addToCart} />}
+          <Link data-testid="shopping-cart-button" to="/ShoppingCart" params={cart}>
             <img src={Logo} alt="shoppingCart" />
           </Link>
         </div>

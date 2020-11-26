@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 
 class Product extends Component {
   render() {
-    const { id, title, price, thumbnail } = this.props;
+    const { id, title, price, thumbnail, buttonFunction } = this.props;
     return (
-      <div data-testid="product">
+      <div data-testid="product" id={id}>
         <span>{title}</span>
         <img src={thumbnail} alt={title} />
         <span>{price}</span>
+        <button
+          data-testid="product-add-to-cart"
+          name={id}
+          onClick={buttonFunction}>Adicionar ao carrinho</button>
         <Link data-testid="product-detail-link" to={`/ProductDetail/${id}`}>Detalhes do produto</Link>
       </div>
     );
