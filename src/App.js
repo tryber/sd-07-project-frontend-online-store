@@ -1,15 +1,19 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Cart from './components/Cart';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Cart from './pages/Cart';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
-        <Route exact path="/" component={ Home } />
-        <Route path="/cart" component={ Cart } />
-      </BrowserRouter>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={ Home } />
+          <Route path="/cart" component={ Cart } />
+          <Route path="/product/:id" component={ ProductDetails } />
+        </Switch>
+      </Router>
     </div>
   );
 }
