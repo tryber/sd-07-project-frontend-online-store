@@ -1,6 +1,5 @@
 import React from 'react';
 import * as mlAPI from '../services/api';
-
 class Categories extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +42,7 @@ class Categories extends React.Component {
                 onChange={handleChange}
               />
               {name}
+            <br />
             </label>
           ),
         )}
@@ -52,5 +52,3 @@ class Categories extends React.Component {
 }
 
 export default Categories;
-
-

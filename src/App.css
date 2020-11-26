@@ -92,3 +92,7 @@ textarea:focus, input:focus, select:focus {
   padding: 10px;
   width: 20vw;
 }
+
+.cardProduct {
+  background-color: rgb(175, 205, 219);
+}
