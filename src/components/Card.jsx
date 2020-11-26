@@ -9,7 +9,8 @@ class Card extends React.Component {
         <img src={thumbnail} alt={title} />
         <h4>R$: {price}</h4>
         <div>
-          <Link to={`product-details/${id}/${category_id}`}>Detalhes do produto</Link>
+          <Link data-testid="product-detail-link"
+          to={`product-details/${id}/${category_id}`}>Detalhes do produto</Link>
         </div>
       </div>   
     );
