@@ -13,6 +13,7 @@ export default class Home extends React.Component {
       products: [],
       categoryId: '',
     };
+
     this.findProduct = this.findProduct.bind(this);
     this.updateValue = this.updateValue.bind(this);
   }
@@ -26,24 +27,32 @@ export default class Home extends React.Component {
     console.log(products);
   }
 
+  updateValueCategory(event) {
+    const { value } = event.target;
+    this.setState({ categoryId: value });
+    this.findProduct();
+  }
+
   updateValue(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    this.findProduct();
   }
 
-    render() {
+  render() {
     const { searchText, products } = this.state;
     return (
       <div>
         <div>
           <CategorieFilter
-          onClickEvent={ this.findProduct }/>
+            updateValueCategory={ this.updateValue }
+          />
         </div>
         <div>
           <SearchBar
             searchText={ searchText }
             onChange={ this.updateValue }
-            onClickEvent={ this.findProduct }
+            onClick={ this.findProduct }
           />
         </div>
         <div>

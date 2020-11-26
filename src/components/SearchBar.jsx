@@ -4,14 +4,14 @@ export default class SearchBar extends React.Component {
   render() {
     const {
       searchText,
-      onSearchTextChange,
-      onClickEvent,
+      onChange,
+      onClick,
     } = this.props;
     return (
       <div>
         <input
           data-testid="query-input"
-          onChange={ onSearchTextChange }
+          onChange={ onChange }
           type="text"
           value={ searchText }
           name="searchText"
@@ -19,7 +19,7 @@ export default class SearchBar extends React.Component {
         <button
           data-testid="query-button"
           type="button"
-          onClick={ onClickEvent }
+          onClick={ onClick }
         >
           Search
         </button>
