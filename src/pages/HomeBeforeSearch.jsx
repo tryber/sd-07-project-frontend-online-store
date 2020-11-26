@@ -33,17 +33,15 @@ export default class HomeBeforeSearch extends Component {
 
   async fetchProducts() {
     const { query } = this.state;
-    const products = await api.getProductsFromQuery(query);
+    const products = await api.getProductsFromCategoryAndQuery(false, query);
     this.setState({ productList: products.results })
   }
 
 
   async fetchByCategory(categoryId) {
     console.log(categoryId);
-    const res = await api.getProductsFromCategory(categoryId);
-    console.log(res.results);
-    const products = res.results
-    this.setState({ productList: products });
+    const products = await api.getProductsFromCategoryAndQuery(categoryId, false);
+    this.setState({ productList: products.results });
   }
 
 
