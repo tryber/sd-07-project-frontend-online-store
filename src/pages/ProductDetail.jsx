@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import * as API from '../services/api';
 import { Link } from 'react-router-dom';
 
+
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
-
     this.state = {
       id: '',
       attributes: [],
@@ -24,7 +24,7 @@ class ProductDetail extends Component {
       return this.setState({ id, attributes, title, thumbnail, price });
     }
     const { id, attributes, title, thumbnail, price } = ListProducts;
-    console.log(ListProducts);
+    // console.log(ListProducts);
     return this.setState({ id, attributes, title, thumbnail, price });
   }
 
@@ -60,9 +60,11 @@ class ProductDetail extends Component {
 
     return (
       <div>
-        <h3 data-testid='product-detail-name'>{title}</h3>
-        <div>{price}</div>
-        <img src={thumbnail} alt={title} />
+        <div>
+          <h3 data-testid='product-detail-name'>{title}</h3>
+          <div>{price}</div>
+          <img src={thumbnail} alt={title} />
+        </div>
         <div>
           Especificações Técnicas
           <ul>
@@ -79,6 +81,24 @@ class ProductDetail extends Component {
           data-testid='product-detail-add-to-cart'
           onClick={this.addItemToLocalStorage}>Adicionar</button>
         <Link data-testid="shopping-cart-button" to="/ShoppingCart">Ir para o carrinho</Link>
+        <div>
+          <form>
+            <label htmlFor="input-email">
+              <input type="text" id="input-email" placeholder="Email" />
+            </label>
+            <select htmlFor="input-select">
+              <option value="1" id="input-select">1</option>
+              <option value="2" id="input-select">2</option>
+              <option value="3" id="input-select">3</option>
+              <option value="4" id="input-select">4</option>
+              <option value="5" id="input-select">5</option>
+            </select>
+            <label htmlFor="">
+            <textarea data-testid="product-detail-evaluation" placeholder="Mensagem (opcional)" />
+            </label>
+            <button>Avaliar</button>
+          </form>
+        </div>
       </div>
     );
   }
