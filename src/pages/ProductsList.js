@@ -10,15 +10,17 @@ export default class ProductsList extends React.Component {
         {productList.length
           ? productList.map(({ id, title, thumbnail, price }) => (
             <Link
-              to={{
-                pathname: "/Product",
+              to={ {
+                pathname: '/Product',
                 state: {
                   productName: title,
                   productImg: thumbnail,
-                  productPrice: price
-                }
-              }}
-              data-testid='product-detail-link' key={ `${title} ${id}` }>
+                  productPrice: price,
+                },
+              } }
+              data-testid="product-detail-link"
+              key={ `${title} ${id}` }
+            >
               <li
                 key={ id }
                 data-testid="product"

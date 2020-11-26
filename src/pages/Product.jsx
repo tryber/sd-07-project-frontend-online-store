@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import goBackArrow from '../img/back-arrow.png';
-import * as api from '../services/api';
-
-
 
 export default class Product extends Component {
   render() {
