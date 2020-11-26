@@ -5,7 +5,8 @@ import goBackArrow from '../img/back-arrow.png';
 
 export default class ShoppingCart extends Component {
   render() {
-    const { productName } = this.props.location.state;
+    const { teste } = this.props.location;
+    const { productName, productImg, productPrice } = this.props.location.state;
     return (
       <div>
         <Link to="/">
@@ -17,6 +18,9 @@ export default class ShoppingCart extends Component {
         <div>
         <span data-testid="shopping-cart-product-quantity">Quantidade: 1</span>
         <p data-testid="shopping-cart-product-name">{productName}</p>
+        <img src={productImg}/>
+        <br/>
+        <span> R$ { productPrice } </span>
         </div>
       </div>
     );
