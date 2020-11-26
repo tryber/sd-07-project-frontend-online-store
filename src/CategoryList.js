@@ -21,7 +21,7 @@ class CategoryList extends Component {
         <div>
           {categories.map((category) => (
             <label htmlFor="input-check" data-testid="category" key={ category.id }>
-              <input id="input-check" type="checkbox" />
+              <input id="input-check" type="checkbox" onChange={ this.targetOfInput } />
               {category.name}
             </label>
           ))}
