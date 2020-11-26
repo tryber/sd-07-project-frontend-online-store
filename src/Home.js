@@ -33,6 +33,6 @@ class ProductsList extends Component {
   }
 }
 Button.propTypes = {
-  onClhange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 export default ProductsList;
