@@ -3,16 +3,20 @@ import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 import CartButton from '../../components/CartButton';
 
+import { addToCart } from '../../services/cartApi';
+
 class ProductDetails extends Component {
   constructor() {
     super();
 
     this.handleState = this.handleState.bind(this);
     this.state = {
-      title: '',
-      price: 0,
-      thumbnail: '',
-      availableQuantity: 0,
+      product: {
+        title: '',
+        price: 0,
+        thumbnail: '',
+        availableQuantity: 0,
+      },
     };
   }
 
@@ -24,17 +28,14 @@ class ProductDetails extends Component {
     this.handleState(product);
   }
 
-  handleState({ title, price, thumbnail, available_quantity: availableQuantity }) {
-    this.setState({
-      title,
-      price,
-      thumbnail,
-      availableQuantity,
-    });
+  handleState(product) {
+    this.setState({ product });
   }
+  
 
   render() {
-    const { title, price, thumbnail, availableQuantity } = this.state;
+    const { product } = this.state;
+    const { title, price, thumbnail, available_quantity: availableQuantity } = product;
 
     return (
       <article>
@@ -51,6 +52,7 @@ class ProductDetails extends Component {
         </header>
         <div>{`R$ ${price}`}</div>
         <CartButton />
+        <button onClick={ () => addToCart(product) }>Adicionar ao carrinho</button>
       </article>
     );
   }
