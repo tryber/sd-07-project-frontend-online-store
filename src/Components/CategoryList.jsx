@@ -25,14 +25,20 @@ class CategoryList extends Component {
 
   render() {
     const { categories } = this.state;
+    const { clickChange } = this.props;
     return (
       <div>
         <span>Categorias</span>
         <ul>
           {categories.map((category) => (
-            <li data-testid="category" key={ category.id }>
+            <button
+              onClick={ () => clickChange(category.name) }
+              type="button"
+              data-testid="category"
+              key={ category.id }
+            >
               {category.name}
-            </li>
+            </button>
           ))}
         </ul>
       </div>
