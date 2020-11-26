@@ -4,3 +4,5 @@ export { default as Kart } from './Kart';
 export { default as ProductCard } from './ProductCard';
 export { default as Header } from './Header';
 export { default as ProductDetail } from './ProductDetail';
+export { default as ProductSpecs } from './ProductSpecs';
+export { default as FormRating } from './FormRating';
