@@ -50,11 +50,6 @@
   left: 0;
   width: 35px;
   margin: 10px 15px 10px 10px;
-  transition: 0.2s ease-in-out;
-}
-
-.shopping-cart-icon-2:hover {
-  transform: scale(1.1);
 }
 
 .shopping-cart-text {

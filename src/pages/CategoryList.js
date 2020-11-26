@@ -5,9 +5,11 @@ export default class CategoryList extends React.Component {
   constructor() {
     super();
     this.state = {
+      categoryId: '',
       categories: [],
     };
     this.setCategories = this.setCategories.bind(this);
+    this.getCategoryId = this.getCategoryId.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +23,11 @@ export default class CategoryList extends React.Component {
     });
   }
 
+  getCategoryId(categoryId) {
+    const { fetchByCategory } = this.props
+    this.setState({ categoryId: categoryId }, () => fetchByCategory(categoryId));
+  }
+
   render() {
     const { categories } = this.state;
     return (
@@ -32,6 +39,7 @@ export default class CategoryList extends React.Component {
               <li
                 data-testid="category"
                 key={ category.id }
+                onClick={()=> this.getCategoryId(category.id)}
               >
                 {category.name}
               </li>))}

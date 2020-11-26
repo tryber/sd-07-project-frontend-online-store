@@ -17,10 +17,12 @@ export default class HomeBeforeSearch extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.fetchProducts = this.fetchProducts.bind(this);
+    this.fetchByCategory = this.fetchByCategory.bind(this);
   }
 
   handleChange({ target }) {
     const { name, value } = target;
+    
     this.setState({ [name]: value });
   }
 
@@ -30,10 +32,20 @@ export default class HomeBeforeSearch extends Component {
   }
 
   async fetchProducts() {
-    const { categoryId, query } = this.state;
-    const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    const { query } = this.state;
+    const products = await api.getProductsFromQuery(query);
     this.setState({ productList: products.results })
   }
+
+
+  async fetchByCategory(categoryId) {
+    console.log(categoryId);
+    const res = await api.getProductsFromCategory(categoryId);
+    console.log(res.results);
+    const products = res.results
+    this.setState({ productList: products })
+  }
+
 
   render() {
     return (
@@ -41,7 +53,7 @@ export default class HomeBeforeSearch extends Component {
         <div className="nav-bar">
           <div className="search-bar">
             <img src={ searchBarIcon } className="search-bar-icon" alt="searchBarIcon"/>
-            <input className="search-bar-input" type="text" data-testid="query-input" onChange={ this.handleChange }/>
+            <input name="query" className="search-bar-input" type="text" data-testid="query-input" onChange={ this.handleChange }/>
           </div>
         </div>
         <Link to="/ShoppingCart">
@@ -57,7 +69,7 @@ export default class HomeBeforeSearch extends Component {
         >
           Pesquisar
         </button>
-        <CategoryList />
+        <CategoryList fetchByCategory={this.fetchByCategory}/>
         <ProductsList productList={this.state.productList}/>
       </div>
     );
