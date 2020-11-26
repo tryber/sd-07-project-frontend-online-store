@@ -9,7 +9,7 @@ import QuantityControl from './QuantityControl';
 import SearchBar from './SearchBar';
 import ShoppingCartList from './ShoppingCartList';
 
-export { 
+export {
   CategoryList,
   EvaluationForm,
   EvaluationList,
