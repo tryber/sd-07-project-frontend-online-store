@@ -9,27 +9,38 @@ export default class ProductsList extends React.Component {
       <ul>
         {productList.length
           ? productList.map(({ id, title, thumbnail, price }) => (
-            <Link
-              to={ {
-                pathname: '/Product',
-                state: {
-                  productName: title,
-                  productImg: thumbnail,
-                  productPrice: price,
-                },
-              } }
-              data-testid="product-detail-link"
-              key={ `${title} ${id}` }
+            <li
+              key={ id }
+              data-testid="product"
             >
-              <li
-                key={ id }
-                data-testid="product"
-              >
+              <Link
+                to={ {
+                  pathname: '/Product',
+                  state: {
+                    productName: title,
+                    productImg: thumbnail,
+                    productPrice: price,
+                  },
+                } }
+                data-testid="product-detail-link"
+                key={ `${title} ${id}` }
+              />
+              <div data-testid="product-add-to-cart">
                 <h4>{ title }</h4>
                 <img src={ thumbnail } alt="Product" />
                 <p>{ price }</p>
-              </li>
-            </Link>
+                <Link
+                  to={ {
+                    pathname: '/ShoppingCart',
+                    state: {
+                      productName: title,
+                    },
+                  } }
+                >
+                  Adicionar ao carrinho
+                </Link>
+              </div>
+            </li>
           )) : (<li> Nenhum produto foi encontrado </li>)}
       </ul>
     );

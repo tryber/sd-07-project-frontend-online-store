@@ -12,10 +12,21 @@ export default class Product extends Component {
             <img src={ goBackArrow } className="go-back-arrow-icon" alt="goBackArrow"/>
           </Link>
         </div>
-        <div>
+        <div data-testid="product-detail-add-to-cart">
           <h1 data-testid="product-detail-name">{ productName }</h1>
           <img src={ productImg } alt="productImg"/>
           <p>{ productPrice }</p>
+          <Link
+            data-testid="shopping-cart-button"
+            to={ {
+              pathname: '/ShoppingCart',
+              state: {
+                productName,
+              },
+            }}
+          >
+            Adicionar ao carrinho
+          </Link>
         </div>
       </div>
     );
