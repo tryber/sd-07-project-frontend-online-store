@@ -3,13 +3,13 @@ import './ProductDetails.css';
 import ProductReview from '../components/productDetails/ProductReview';
 
 class ProductDetails extends React.Component {
-  
   productNamePrice() {
     const { title, price } = this.props.location.details.product;
     return (
       <div className="product-details-name">
         <h1 data-testid="product-detail-name">{title}</h1>
-        <h2>{`R$ ${Number(price).toFixed(2)}`}</h2>
+        {/* <h2>{`R$ ${Number(price).toFixed(2)}`}</h2> */}
+        <h2>{`R$ ${Number(price).toFixed()}`}</h2>
       </div>
     );
   }
@@ -18,13 +18,11 @@ class ProductDetails extends React.Component {
     const { title, thumbnail } = this.props.location.details.product;
     return (
       <div className="product-details-photo">
-        <img src={thumbnail} alt={`Foto do ${title}`} />
+        <img src={ thumbnail } alt={`Foto do ${ title }`} />
       </div>
     );
   }
-
   render() {
-
     return (
       <div className="product-detail-container">
         <div>

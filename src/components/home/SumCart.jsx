@@ -10,7 +10,7 @@ class SumCart extends React.Component {
         <Link to="/cart">
           <img
             data-testid="shopping-cart-button"
-            src={cartIcon}
+            src={ cartIcon }
             className="cartIcon"
             alt="Cart Icon"
           />
@@ -19,6 +19,10 @@ class SumCart extends React.Component {
       </div>
     );
   }
+}
+
+SumCart.propTypes = {
+  num: PropTypes.number,
 }
 
 export default SumCart;
