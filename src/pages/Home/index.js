@@ -13,7 +13,7 @@ class Home extends Component {
     };
     this.fetchProducts = this.fetchProducts.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.searchClick = this.searchClick.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class Home extends Component {
     this.setState({ [name]: value });
   }
 
-  handleClick(event) {
+  searchClick(event) {
     event.preventDefault();
     this.fetchProducts();
   }
@@ -46,9 +46,11 @@ class Home extends Component {
         <section className="products-container">
           <SearchBar
             handleChange={ this.handleChange }
-            handleClick={ this.handleClick }
+            handleClick={ this.searchClick }
           />
-          <ProductList products={ products } />
+          <ProductList
+            products={ products }
+          />
         </section>
       </div>
     );

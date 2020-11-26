@@ -5,7 +5,8 @@ import './ProductCard.css';
 
 class ProductCard extends Component {
   render() {
-    const { product: { title, thumbnail, price } } = this.props;
+    const { product } = this.props;
+    const { title, thumbnail, price } = product;
     return (
       <div
         className="product-card"
@@ -28,7 +29,10 @@ class ProductCard extends Component {
           <p>{ price }</p>
           <Link
             data-testid="product-detail-link"
-            to="/productdetail"
+            to={ {
+              pathname: '/productdetail',
+              state: { product },
+            } }
           >
             Mais Detalhes
           </Link>
