@@ -4,7 +4,7 @@ import IndividualCard from './IndividualCard';
 
 class FilteredProductsList extends Component {
   render() {
-    const { allProducts } = this.props;
+    const { allProducts, addShoppingCartItems } = this.props;
 
     if (allProducts === undefined) {
       return (
@@ -24,6 +24,7 @@ class FilteredProductsList extends Component {
             title={ product.title }
             price={ product.price }
             image={ product.thumbnail }
+            addShoppingCartItems={ addShoppingCartItems }
           />
         ))}
       </div>

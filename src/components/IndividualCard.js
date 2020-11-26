@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class IndividualCard extends Component {
   render() {
-    const { key, price, image, title, id } = this.props;
+    const { key, price, image, title, id, addShoppingCartItems } = this.props;
     return (
       <div key={ key } data-testid="product">
         <h4>{ title }</h4>
@@ -12,7 +12,7 @@ class IndividualCard extends Component {
         <p>{ price }</p>
         <Link to={ `/product/${id}` }><button type="button">Ver detalhes</button></Link>
         <br />
-        <button type="button">Adicionar ao carrinho</button>
+        <button type="button" id={ id } onClick={ addShoppingCartItems }>Adicionar ao carrinho</button>
       </div>
     );
   }
