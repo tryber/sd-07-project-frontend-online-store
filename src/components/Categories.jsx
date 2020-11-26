@@ -25,6 +25,16 @@ class Categories extends Component {
     return (
       <div>
         <h2>Categorias</h2>
+        <div>
+          <input
+            type="radio"
+            id="semcategoria"
+            name="category"
+            value=""
+            onChange={onChange}
+          />
+          <label htmlFor="semcategoria">Sem categoria</label>
+        </div>
         {categories.map((category) =>
           <div key={category.name}>
             <input

@@ -5,7 +5,7 @@ import Home from './pages/home';
 import NotFound from './pages/NotFoud';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
-// Comentário 3
+
 function App() {
   return (
     <div className="App">
