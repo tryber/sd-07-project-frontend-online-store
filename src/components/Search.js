@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Cards from './Cards';
 
@@ -6,9 +7,17 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { searchTerms: '', products: [] };
+    this.state = { searchTerms: '', products: [], alreadySelected: '' };
     this.handleSearchTerms = this.handleSearchTerms.bind(this);
     this.fetchAPI = this.fetchAPI.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { alreadySelected } = this.state;
+    const { selectedCategory } = this.props;
+    if (selectedCategory !== alreadySelected) {
+      this.fetchCategory();
+    }
   }
 
   handleSearchTerms({ target }) {
@@ -17,9 +26,17 @@ class Search extends React.Component {
 
   async fetchAPI(event) {
     event.preventDefault();
+    const { selectedCategory } = this.props;
     const { searchTerms } = this.state;
-    const { results } = await api.getProductsFromCategoryAndQuery('', searchTerms);
+    const category = selectedCategory || '';
+    const { results } = await api.getProductsFromCategoryAndQuery(category, searchTerms);
     this.setState({ products: results });
+  }
+
+  async fetchCategory() {
+    const { selectedCategory } = this.props;
+    const { results } = await api.getProductsFromCategoryAndQuery(selectedCategory, '');
+    this.setState({ products: results, alreadySelected: selectedCategory });
   }
 
   render() {
@@ -51,5 +68,9 @@ class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  selectedCategory: PropTypes.string.isRequired,
+};
 
 export default Search;

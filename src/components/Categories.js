@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { getCategories } from '../services/api';
 
@@ -22,6 +21,7 @@ class Categories extends React.Component {
   }
 
   render() {
+    const { selectCategory } = this.props;
     const { categories } = this.state;
 
     const notCategoriesLength = 0;
@@ -37,7 +37,15 @@ class Categories extends React.Component {
         <ul>
           {categories.map(({ id, name }) => (
             <li key={ id }>
-              <Link data-testid="category" to={ `category/${id}` }>{ name }</Link>
+              <label htmlFor={ id } data-testid="category">
+                {name}
+                <input
+                  onChange={ selectCategory }
+                  type="radio"
+                  name="category"
+                  id={ id }
+                />
+              </label>
             </li>
           ))}
         </ul>
@@ -45,5 +53,9 @@ class Categories extends React.Component {
     );
   }
 }
+
+Categories.propTypes = {
+  selectCategory: PropTypes.func.isRequired,
+};
 
 export default Categories;
