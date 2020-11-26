@@ -5,12 +5,17 @@ class ProductReview extends Component {
   constructor() {
     super();
     this.addComment = this.addComment.bind(this);
+    this.restoreState = this.restoreState.bind(this);
     this.state = {
       review: [],
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.restoreState();
+  }
+
+  restoreState() {
     const review = JSON.parse(localStorage.getItem('review'));
     this.setState(review);
   }
@@ -28,8 +33,8 @@ class ProductReview extends Component {
       <div>
         <RatingForm addComment={ this.addComment } review={ review } />
         {review
-          ? review.map((userReview, index) => (
-            <div key={ index }>
+          ? review.map((userReview) => (
+            <div key={ userReview.email }>
               <input defaultValue={ userReview.email } readOnly required />
               <input defaultValue={ userReview.rating } readOnly required />
               <input defaultValue={ userReview.comment } readOnly />
