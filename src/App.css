@@ -10,6 +10,9 @@ body {
   background-color: #343a40;
   display: flex;
   height: 100px;
-  justify-content: center;
+  justify-content: space-around;
 }
 
+.kart-icon {
+  width: 78px;
+}
