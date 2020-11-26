@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import * as cartApi from '../services/api'
 
 class ProductList extends React.Component {
   render() {
@@ -8,7 +9,9 @@ class ProductList extends React.Component {
     return (
       <div>
         { products.map(({ id, title, thumbnail, price }) => (
-          <Link to={ `/${id}` } data-testid="product-detail-link" key={ id }>
+          <div key={ id }>
+          <button data-testid="product-add-to-cart" onClick={() => cartApi.addToCart({ id, title, thumbnail, price }) }>Add to Cart</button>
+          <Link to={ `/${id}` } data-testid="product-detail-link">
             <div className="card" data-testid="product">
               <h4>
                 { title }
@@ -19,6 +22,7 @@ class ProductList extends React.Component {
               </p>
             </div>
           </Link>
+          </div>
         ))}
       </div>
     );
