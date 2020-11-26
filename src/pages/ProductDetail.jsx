@@ -3,6 +3,7 @@ import * as API from '../services/api';
 import { Link } from 'react-router-dom';
 
 
+
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +82,49 @@ class ProductDetail extends Component {
           data-testid='product-detail-add-to-cart'
           onClick={this.addItemToLocalStorage}>Adicionar</button>
         <Link data-testid="shopping-cart-button" to="/ShoppingCart">Ir para o carrinho</Link>
-        <div>
+        <div>  addItemToLocalStorage = () => {
+    const id = this.state.id;
+    const title = this.state.title;
+    const price = this.state.price;
+    const thumbnail = this.state.thumbnail;
+    const number = 1;
+    if (Storage) {
+      const getItemSaved = JSON.parse(localStorage.getItem('cart'));
+      const values = (getItemSaved === null ? [] : getItemSaved);
+      let repeatedProduct = false;
+      values.forEach(value => {
+        if (value.id === id) {
+          value.number += 1;
+          value.price += price;
+          repeatedProduct = true;
+        } 
+      })
+      if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values))
+      values.push({id, title, price, thumbnail, number});
+      localStorage.setItem('cart', JSON.stringify(values));
+    }
+  }  addItemToLocalStorage = () => {
+    const id = this.state.id;
+    const title = this.state.title;
+    const price = this.state.price;
+    const thumbnail = this.state.thumbnail;
+    const number = 1;
+    if (Storage) {
+      const getItemSaved = JSON.parse(localStorage.getItem('cart'));
+      const values = (getItemSaved === null ? [] : getItemSaved);
+      let repeatedProduct = false;
+      values.forEach(value => {
+        if (value.id === id) {
+          value.number += 1;
+          value.price += price;
+          repeatedProduct = true;
+        } 
+      })
+      if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values))
+      values.push({id, title, price, thumbnail, number});
+      localStorage.setItem('cart', JSON.stringify(values));
+    }
+  }
           <form>
             <label htmlFor="input-email">
               <input type="text" id="input-email" placeholder="Email" />
