@@ -3,13 +3,19 @@ import PropTypes from 'prop-types';
 
 class Categories extends React.Component {
   render() {
-    const { categories } = this.props;
+    const { categories, handlerSelectCategory } = this.props;
     return (
       <div>
         {categories.map((category) => (
-          <p data-testid="category" key={ category.id }>
+          <label htmlFor={ category.id } key={ category.id }>
+            <input
+              id={ category.id }
+              type="radio"
+              data-testid="category"
+              onClick={ () => handlerSelectCategory(category.id) }
+            />
             {category.name}
-          </p>
+          </label>
         ))}
       </div>
     );
@@ -18,6 +24,7 @@ class Categories extends React.Component {
 
 Categories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handlerSelectCategory: PropTypes.func.isRequired,
 };
 
 export default Categories;
