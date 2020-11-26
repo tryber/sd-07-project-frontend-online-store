@@ -1,4 +1,5 @@
 import React from 'react';
+import FiltersCategory from './FiltersCategory';
 import Header from './Header';
 import ProductList from './ProductList';
 
@@ -8,6 +9,7 @@ class Home extends React.Component {
       <div>
         <Header />
         <ProductList />
+        <FiltersCategory />
       </div>
     );
   }
