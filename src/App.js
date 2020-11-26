@@ -8,14 +8,15 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ ProductsList } />
-        {/* <Route path="/product/:id" render={ (props) => <ProductDetails { ...props } /> } /> */}
-        <Route path="/productDetails" component={ ProductDetails } />
+        <Route
+          path="/product/:id"
+          render={ (props) => <ProductDetails { ...props } /> }
+        />
         <Route path="/shoppingCart" component={ ShoppingCart } />
         <Route path="/Checkout" component={ Checkout } />
         <Route path="*" component={ NotFound } />
       </Switch>
     </BrowserRouter>
-
   );
 }
 
