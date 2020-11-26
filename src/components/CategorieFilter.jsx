@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 export default class CategorieFilter extends React.Component {
@@ -23,20 +24,32 @@ export default class CategorieFilter extends React.Component {
 
   render() {
     const { categories } = this.state;
+    const { updateValueCategory } = this.props;
     return (
       <div>
-        { categories.map((categorie) => (
+        {categories.map((categorie) => (
           <div key={ categorie.id }>
-            <label htmlFor={ categorie.id }>{ categorie.name }</label>
-            <input
-              type="radio"
-              data-testid="category"
-              name={ categorie.name }
-              value={ categorie.name }
-            />
+            <label htmlFor={ categorie.id }>
+              { categorie.name }
+              <input
+                type="radio"
+                data-testid="category"
+                name="categoryId"
+                value={ categorie.id }
+                onChange={ updateValueCategory }
+              />
+            </label>
           </div>
         ))}
       </div>
     );
   }
 }
+
+CategorieFilter.propTypes = {
+  categorie: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  updateValueCategory: PropTypes.func.isRequired,
+};
