@@ -1,19 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import * as storageServices from '../services/storageServices';
 
 class ProductCard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.addProductCart = this.addProductCart.bind(this);
+  }
+
+  async addProductCart() {
+    const { product } = this.props;
+    const { thumbnail, title, price, id } = product;
+    const addItem = {
+      id,
+      title,
+      thumbnail,
+      price,
+      qtt: 1,
+    };
+
+    await storageServices.setProductsStorage(addItem);
+  }
+
   render() {
     const { product } = this.props;
     const { thumbnail, title, price } = product;
     return (
-      <Link data-testid="product-detail-link" to={ `/detail/${title}` }>
-        <div data-testid="product">
-          <img src={ thumbnail } alt="Imagem do produto" />
-          <h4>{title}</h4>
-          <h3>{price}</h3>
-        </div>
-      </Link>
+      <div>
+        <Link data-testid="product-detail-link" to={ `/detail/${title}` }>
+          <div data-testid="product">
+            <img src={ thumbnail } alt="Imagem do produto" />
+            <h4>{title}</h4>
+            <h3>{price}</h3>
+          </div>
+        </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          id={ product }
+          onClick={ this.addProductCart }
+        >
+          Adicionar ao Carrinho
+        </button>
+      </div>
     );
   }
 }
