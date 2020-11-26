@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import * as API from '../services/api';
 
-class ProductDetail extends React.Component {
+class ProductDetail extends Component {
   constructor(props) {
     super(props);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
@@ -31,8 +31,32 @@ class ProductDetail extends React.Component {
     this.searchQueryProducts();
   }
 
+  addItemToLocalStorage = () => {
+    const id = this.state.id;
+    const title = this.state.title;
+    const price = this.state.price;
+    const thumbnail = this.state.thumbnail;
+    const number = 1;
+    if (Storage) {
+      const getItemSaved = JSON.parse(localStorage.getItem('cart'));
+      const values = (getItemSaved === null ? [] : getItemSaved);
+      let repeatedProduct = false;
+      values.forEach(value => {
+        if (value.id === id) {
+          value.number += 1;
+          value.price += price;
+          repeatedProduct = true;
+        } 
+      })
+      if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values))
+      values.push({id, title, price, thumbnail, number});
+      localStorage.setItem('cart', JSON.stringify(values));
+    }
+  }
+
   render() {
-    const { id, title, price, thumbnail } = this.state;
+    const { title, price, thumbnail } = this.state;
+
     return (
       <div>
         <h3 data-testid='product-detail-name'>{title}</h3>
@@ -50,6 +74,9 @@ class ProductDetail extends React.Component {
             })}
           </ul>
         </div>
+        <button
+          data-testid='product-detail-add-to-cart'
+          onClick={this.addItemToLocalStorage}>Adicionar</button>
       </div>
     );
   }

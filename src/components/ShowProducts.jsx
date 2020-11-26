@@ -3,7 +3,7 @@ import Product from './Product';
 
 class ShowProducts extends Component {
   render() {
-    const { products, buttonFunction } = this.props;
+    const { products } = this.props;
 
     return (
       <div>
@@ -13,7 +13,6 @@ class ShowProducts extends Component {
           title={product.title}
           price={product.price}
           thumbnail={product.thumbnail}
-          buttonFunction={buttonFunction}
         />)}
       </div>
     );

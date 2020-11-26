@@ -5,14 +5,13 @@ class ShoppingCart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
-      products: [],
+      products: JSON.parse(localStorage.getItem('cart')),
     };
   }
   
   render() {
-    const { shoppingCartProps } = this.props.location;
-    if (shoppingCartProps === undefined)
+    const { products } = this.state;
+    if (products === null)
       return (
         <span data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
@@ -20,8 +19,8 @@ class ShoppingCart extends Component {
       );
     return (
       <div>
-          {shoppingCartProps.map((product) => <CartItem
-            key={product.title}
+          {products.map((product) => <CartItem
+            key={product.id}
             title={product.title}
             price={product.price}
             image={product.imagePath} />
