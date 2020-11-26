@@ -64,7 +64,7 @@ class Home extends React.Component {
     return (
       <div className="home-container">
         <div className="home-aside-container">
-          <ListCategory sendCategoryId={this.sendCategoryId} />
+          <ListCategory sendCategoryId={ this.sendCategoryId } />
         </div>
         <div className="home-search-container">
           <div className="search-subcontainer">
@@ -79,13 +79,13 @@ class Home extends React.Component {
             <input
               name="searchKey"
               type="text"
-              value={searchKey}
-              onChange={this.handleSearchChange}
+              value={ searchKey }
+              onChange={ this.handleSearchChange }
               data-testid="query-input"
             />
             <button
               type="button"
-              onClick={this.fetchQueryAndCategoryId}
+              onClick={ this.fetchQueryAndCategoryId }
               data-testid="query-button"
             >
               <img alt="Buscar" src="https://assets.stickpng.com/thumbs/585e4ad1cb11b227491c3391.png" />
@@ -99,8 +99,8 @@ class Home extends React.Component {
               ) : (
                 searchProducts.map((item) => (
                   <CardProduct
-                    key={item.id}
-                    item={item}
+                    key={ item.id }
+                    item={ item }
                   />
                 ))
               )}
