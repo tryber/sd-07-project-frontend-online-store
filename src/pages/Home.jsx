@@ -55,13 +55,13 @@ class Home extends React.Component {
               onClick={ this.fetchQuery }
               data-testid="query-button"
             >
-              BUSCAR
+              Buscar
             </button>
             <h3 data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </h3>
             <Link to="/Cart" data-testid="shopping-cart-button">Carrinho</Link>
-            <div>
+            <div className="item-cards-container">
               {
                 searchProducts.map((item) => <CardProduct key={ item.id } item={ item } />)
               }

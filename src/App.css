@@ -28,7 +28,15 @@
   background-color: white;
   border: 1px solid #d3e2e5;
   border-radius: 2rem;
-  box-shadow: 5px 5px 10px black;
+  box-shadow: px 1px 5px rgb(100, 100, 100);
+
+}
+
+.search-subcontainer button {
+  margin-left: 8px;
+  color: rgb(53, 53, 53);
+  font-size: 15px;
+  padding: 3px 8px 3px 8px;
 }
 
 .search-subcontainer input {
@@ -36,4 +44,43 @@
   width: 80%;
   padding: 10px;
   margin: 10px 0;
+}
+
+.empty-cart {
+  text-align: center;
+}
+
+.item-cards-container {
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-card {
+  border: 1px solid rgb(53, 53, 53);
+  height: 250px;
+  width: 220px;
+  margin: 9px 20px 9px 0;
+  flex-grow: 1;
+  border-radius: 2%;
+  object-fit: contain;
+}
+
+.item-card p {
+  text-align: center;
+  color: rgb(53, 53, 53);
+  bottom: 0px;
+}
+
+.item-card h4 {
+  color: rgb(53, 53, 53);
+  font-size: 15px;
+  text-align: left;
+  padding: 8px;
+  font-weight: 400;
+}
+
+.card-image {
+  height: 50%;
+  flex-grow: 1;
 }
