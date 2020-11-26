@@ -1,7 +1,10 @@
 import React from 'react';
 import * as api from './services/api';
 import Products from './Products';
-import { Link } from 'react-router-dom';
+import CategoryList from './CategoryList';
+
+
+import { Link, BrowserRouter } from 'react-router-dom';
 
 class ProductList extends React.Component {
   constructor() {
@@ -53,6 +56,12 @@ class ProductList extends React.Component {
             {productsArray
               .map((prod) => (<div key={ prod.id }><Products product={ prod } /></div>))}
           </div>
+          <button type="button">
+            <Link data-testid="shopping-cart-button" to="/ShoppingCart">
+              Carrinho de compras
+            </Link>
+        </button>
+        <CategoryList />
         </div>
       );
     }
@@ -74,6 +83,14 @@ class ProductList extends React.Component {
           <div>
             <p>Nenhum produto foi encontrado</p>
           </div>
+          <button type="button">
+          <BrowserRouter>
+            <Link data-testid="shopping-cart-button" to="/ShoppingCart">
+              Carrinho de compras
+            </Link>
+          </BrowserRouter>
+        </button>
+        <CategoryList />
         </div>
       );
     }
@@ -95,10 +112,13 @@ class ProductList extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         <button type="button">
+          <BrowserRouter>
             <Link data-testid="shopping-cart-button" to="/ShoppingCart">
               Carrinho de compras
             </Link>
-          </button>
+          </BrowserRouter>
+        </button>
+        <CategoryList />
       </div>
     );
   }
