@@ -1,31 +1,11 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import * as api from '../services/api';
 import ProductCard from '../components/ProductCard.jsx'
 import '../App.css'
 
 export default class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.hendleSubmit = this.hendleSubmit.bind(this);
-    this.state = {
-      searchItems: '',
-      itemsFindOut: [],
-      loading: false,
-    }
-  }
-
-
-
-  hendleSubmit() {
-    api.getProductsFromCategoryAndQuery(this.state.searchItems)
-    .then(products => this.setState({ itemsFindOut: products, loading:true }))
-    .catch(error => console.log(error))
-    if (this.state.loading === false) { return <Redirect to="/pages/ProductNotFound.jsx" /> }
-    
-  }
   render() {
-    const { itemsFindOut } = this.state;
+    const { handleSubmit, handleTextInput } = this.props;
+    const { itemsFindOut, loading } = this.props.parentState;
     return (
     <main>
       <div className="item-inputsearch">
@@ -34,7 +14,7 @@ export default class SearchBar extends Component {
           type="text"
           name="input-text"
           id="input-text"
-          onChange={(event) => this.setState({ searchItems: event.target.value })}
+          onChange={handleTextInput}
         />
         <hr />
         <label htmlFor="input-text" data-testid="home-initial-message">
@@ -43,14 +23,14 @@ export default class SearchBar extends Component {
         <button
           data-testid="query-button"
           type="button" 
-          onClick={this.hendleSubmit}
+          onClick={handleSubmit}
         >
         Pesquisar
         </button>
       </div>
       <div className="grid">
          <div className="item">
-            {this.state.loading ? itemsFindOut.results.map((item) => {
+            {loading ? itemsFindOut.results.map((item) => {
               const { id } = item;
               return <ProductCard key={id} item={item} />
             }) : ''}
