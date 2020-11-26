@@ -1,20 +1,52 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
-export default class ProductItem extends Component {
+class ProductItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      imagePath: '',
+      name: '',
+      amount: 0,
+      total: 'XXX,XX',
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  }
+
+  addAmount() {
+    let { amount } = this.state;
+    amount += 1;
+    this.setState({ amount });
+  }
+
+  lessAmount() {
+    let { amount }
+  }
+
   render() {
-    const { category, onClick } = this.props;
+    const { imagePath, name, amount, total } = this.state;
     return (
-      <button type="button" onClick={ onClick } data-testid="category">
-        { category.name }
-      </button>
+      <div>
+        <img src={ imagePath } alt="Imagem do Produto" />
+        <p>{ name }</p>
+        <button
+          type="button"
+          onClick={ this.handleChange }
+          name="amount"
+          value={ amount }
+        >
+          -
+        </button>
+        <p>{amount}</p>
+        <button type="button">+</button>
+        <p>{`R$ ${total}`}</p>
+      </div>
     );
   }
 }
 
-ProductItem.propTypes = {
-  category: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  onClick: PropTypes.func.isRequired,
-};
+export default ProductItem;
