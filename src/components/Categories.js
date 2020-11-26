@@ -25,11 +25,10 @@ class Categories extends React.Component {
     console.log(categories);
     return (
       <div>
-        {categories.map(category => {
+        {categories.map((category) => {
           return (
-            <div>
+            <div key={ category.name }>
               <input
-                key={ category.name }
                 data-testid="category"
                 type="radio"
                 id="male"
@@ -41,7 +40,8 @@ class Categories extends React.Component {
               <br />
             </div>
           );
-        })}
+        })
+        }
       </div>
     );
   }
