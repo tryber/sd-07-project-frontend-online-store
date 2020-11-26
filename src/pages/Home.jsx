@@ -30,46 +30,54 @@ class Home extends React.Component {
   }
 
   fetchQueryAndCategoryId() {
-    this.setState({
-      loading: true,
-    },
-    async () => {
-      const { searchKey, categoryId } = this.state;
-      const response = await api.getProductsFromCategoryAndQuery(categoryId, searchKey);
-      this.setState({
-        loading: false,
-        searchProducts: [...response.results],
-      });
-    });
+    this.setState(
+      {
+        loading: true,
+      },
+      async () => {
+        const { searchKey, categoryId } = this.state;
+        const response = await api.getProductsFromCategoryAndQuery(
+          categoryId,
+          searchKey,
+        );
+        console.log(response.results);
+        this.setState({
+          loading: false,
+          searchProducts: [...response.results],
+        });
+      },
+    );
   }
 
   sendCategoryId({ target }) {
-    this.setState({
-      loading: true,
-      categoryId: target.id,
-    },
-    () => this.fetchQueryAndCategoryId());
+    this.setState(
+      {
+        loading: true,
+        categoryId: target.id,
+      },
+      () => this.fetchQueryAndCategoryId(),
+    );
   }
 
   render() {
-    const { searchKey, searchProducts, loading } = this.state;
+    const { searchKey, categoryId, searchProducts, loading } = this.state;
     return (
       <div className="home-container">
         <div className="home-aside-container">
-          <ListCategory sendCategoryId={ this.sendCategoryId } />
+          <ListCategory sendCategoryId={this.sendCategoryId} />
         </div>
         <div className="home-search-container">
           <div className="search-subcontainer">
             <input
               name="searchKey"
               type="text"
-              value={ searchKey }
-              onChange={ this.handleSearchChange }
+              value={searchKey}
+              onChange={this.handleSearchChange}
               data-testid="query-input"
             />
             <button
               type="button"
-              onClick={ this.fetchQueryAndCategoryId }
+              onClick={this.fetchQueryAndCategoryId}
               data-testid="query-button"
             >
               BUSCAR
@@ -85,7 +93,12 @@ class Home extends React.Component {
                 <Loading />
               ) : (
                 searchProducts.map((item) => (
-                  <CardProduct key={ item.id } item={ item } />
+                  <CardProduct
+                    key={item.id}
+                    item={item}
+                    categoryId={categoryId}
+                    data-testid="product-detail-link"
+                  />
                 ))
               )}
             </div>
