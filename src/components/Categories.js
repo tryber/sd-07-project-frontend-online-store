@@ -18,6 +18,7 @@ class Categories extends React.Component {
     this.setState({
       categories: await api.getCategories(),
     });
+    console.log(this.state.categories)
   }
 
   render() {
@@ -27,13 +28,14 @@ class Categories extends React.Component {
         {categories.map((category) => {
           console.log('');
           return (
-            <div key={ category.name }>
+            <div key={ category.id }>
               <input
                 data-testid="category"
                 type="radio"
-                id="male"
+                id={category.id}
                 name="gender"
                 value={ category.name }
+                onChange={this.props.handleCatChange}
               />
               {category.name}
               <br />
