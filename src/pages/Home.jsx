@@ -43,6 +43,14 @@ class Home extends React.Component {
         </div>
         <div className="home-search-container">
           <div className="search-subcontainer">
+            <div className="search-subcontainer-top-bar">
+              <Link to="/Cart" data-testid="shopping-cart-button">
+                <img
+                  alt="Carrinho"
+                  src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG37.png"
+                />
+              </Link>
+            </div>
             <input
               name="searchKey"
               type="text"
@@ -55,12 +63,11 @@ class Home extends React.Component {
               onClick={ this.fetchQuery }
               data-testid="query-button"
             >
-              Buscar
+              <img alt="Buscar" src="https://assets.stickpng.com/thumbs/585e4ad1cb11b227491c3391.png" />
             </button>
             <h3 data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </h3>
-            <Link to="/Cart" data-testid="shopping-cart-button">Carrinho</Link>
             <div className="item-cards-container">
               {
                 searchProducts.map((item) => <CardProduct key={ item.id } item={ item } />)
