@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReturnButton from '../Components/ReturnButton';
 
 class ShoppingCart extends React.Component {
