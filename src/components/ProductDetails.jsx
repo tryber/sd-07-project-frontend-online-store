@@ -53,21 +53,26 @@ class ProductDetails extends React.Component {
     const { title, price } = product;
     let flag = true;
     const size = 0;
+    let soma = parseFloat(localStorage.getItem('soma')) || size;
 
     if (products.length === size) {
       products.push({ title, price, qtd: 1 });
+      soma += price;
     } else {
       products.forEach((element, index, array) => {
         if (element.title === title) {
           element.qtd += 1;
           flag = false;
+          soma += price;
         } else if (index === array.length - 1 && flag) {
           products.push({ title, price, qtd: 1 });
+          soma += price;
         }
       });
     }
 
     localStorage.setItem('products', JSON.stringify(products));
+    localStorage.setItem('soma', soma);
   }
 
   render() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Cart extends React.Component {
   constructor() {
@@ -8,32 +9,44 @@ class Cart extends React.Component {
 
     this.state = {
       products: JSON.parse(localStorage.getItem('products')) || [],
+      soma: parseFloat(localStorage.getItem('soma')),
     };
   }
 
   handleClick({ target }) {
     const { products } = this.state;
+    let { soma } = this.state;
     const zero = 0;
+
     if (target.classList.contains('button-increase')) {
       products.forEach((element, index) => {
         if (target.id.includes(index)) {
           element.qtd += 1;
+          soma += element.price;
         }
-        this.setState({ products });
+        this.setState({ products, soma });
+        localStorage.setItem('products', JSON.stringify(products));
+        localStorage.setItem('soma', soma);
       });
     } else {
       products.forEach((element, index) => {
         if (target.id.includes(index)) {
-          if (element.qtd === zero) element.qtd = 0;
-          else element.qtd -= 1;
+          if (element.qtd === zero) {
+            element.qtd = 0;
+          } else {
+            element.qtd -= 1;
+            soma -= element.price;
+          }
         }
-        this.setState({ products });
+        this.setState({ products, soma });
+        localStorage.setItem('products', JSON.stringify(products));
+        localStorage.setItem('soma', soma);
       });
     }
   }
 
   render() {
-    const { products } = this.state;
+    const { products, soma } = this.state;
     const size = 0;
     if (products.length === size) {
       return (
@@ -85,7 +98,11 @@ class Cart extends React.Component {
           </div>
         ))}
         <br />
-        <button type="button">FINALIZAR A COMPRA</button>
+        <p>
+          Valor total:
+          {soma}
+        </p>
+        <Link to="/cart/purchase">FINALIZAR A COMPRA</Link>
       </div>
     );
   }

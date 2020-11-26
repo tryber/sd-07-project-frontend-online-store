@@ -4,6 +4,7 @@ import './App.css';
 import ProductList from './components/ProductList';
 import Cart from './components/Cart';
 import ProductDetails from './components/ProductDetails';
+import Purchase from './components/Purchase';
 
 // Vamo que vamo
 // prettier-ignore
@@ -20,6 +21,7 @@ class App extends React.Component {
             render={ (props) => <ProductDetails { ...props } /> }
           />
         </Switch>
+        <Route exact path="/cart/purchase" component={ Purchase } />
       </BrowserRouter>
     );
   }
