@@ -3,12 +3,20 @@ import React from "react";
 class PageCard extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       loading: true,
       products: [],
     };
   }
-  
+  componentDidMount(){
+    this.retrieveItemsSavedBeforeFromLocalStorage()
+  }  
+  retrieveItemsSavedBeforeFromLocalStorage = () => {
+    const getItemsFromLocalStorage = JSON.parse(localStorage.getItem('cart'));
+    console.log(getItemsFromLocalStorage);
+  }
+
   render() {
     const { loading, products } = this.state;
     if (loading)
