@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import * as api from "../services/api";
-import "./SearchBar.css";
-import CastegoryList from "./CategoryList";
+import React, { Component } from 'react';
+import * as api from '../services/api';
+import './SearchBar.css';
+import CastegoryList from './CategoryList';
 
 export default class SearchBar extends Component {
   constructor() {
@@ -10,8 +10,8 @@ export default class SearchBar extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       listOfProducts: [],
-      query: "",
-      category: "",
+      query: '',
+      category: '',
     };
   }
 
@@ -23,25 +23,22 @@ export default class SearchBar extends Component {
   }
 
   async handleClick() {
-    const getProductsFromCategoryOrQuery = await api.getProductsFromCategoryAndQuery(
-      this.state.query,
-      this.state.category
-    );
+    const { query, category } = this.state;
+    const getProductsFromCategoryOrQuery = await api
+      .getProductsFromCategoryAndQuery(query, category);
 
-    const retrieveProductsFromCategoryOrQuery =
-      getProductsFromCategoryOrQuery.results;
-    this.setState({
-      listOfProducts: retrieveProductsFromCategoryOrQuery,
-    });
+    const retrieveProductsFromCategoryOrQuery = getProductsFromCategoryOrQuery.results;
+    this.setState({ listOfProducts: retrieveProductsFromCategoryOrQuery });
   }
 
   render() {
+    const { listOfProducts } = this.state;
     return (
       <div>
         <div>
           <CastegoryList
-            handleClick={this.handleClick}
-            handleChange={this.handleChange}
+            handleClick={ this.handleClick }
+            handleChange={ this.handleChange }
           />
         </div>
 
@@ -49,39 +46,41 @@ export default class SearchBar extends Component {
           <input
             name="query"
             className="query-input"
-            onChange={this.handleChange}
+            onChange={ this.handleChange }
             data-testid="query-input"
             type="text"
             id="list"
-          ></input>
+          />
 
           <button
             className="query-button"
             data-testid="query-button"
             type="button"
-            onClick={this.handleClick}
+            onClick={ this.handleClick }
           >
             Pesquisar
           </button>
         </div>
 
-        <label
+        <p
           className="home-initial-message"
-          htmlFor="list"
           data-testid="home-initial-message"
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
-        </label>
+        </p>
         <div className="containerCard">
-          {this.state.listOfProducts.map((itens) => (
-            <div className="product-card" data-testid="product" key={itens.id}>
+          {listOfProducts.map((itens) => (
+            <div className="product-card" data-testid="product" key={ itens.id }>
               <img
                 className="thumbnail-card"
-                src={itens.thumbnail}
-                alt={itens.title}
+                src={ itens.thumbnail }
+                alt={ itens.title }
               />
               <h1 className="title-card">{itens.title}</h1>
-              <span className="price-card">R$ {itens.price}</span>
+              <span className="price-card">
+                R$
+                {itens.price}
+              </span>
               <a className="details-link" href="http://www.google.com">
                 Ver detalhes
               </a>
