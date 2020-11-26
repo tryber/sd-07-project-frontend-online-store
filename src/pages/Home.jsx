@@ -16,6 +16,7 @@ export default class Home extends React.Component {
 
     this.findProduct = this.findProduct.bind(this);
     this.updateValue = this.updateValue.bind(this);
+    this.updateValueCategory = this.updateValueCategory.bind(this);
   }
 
   async findProduct() {
@@ -36,7 +37,6 @@ export default class Home extends React.Component {
   updateValue(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    this.findProduct();
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class Home extends React.Component {
       <div>
         <div>
           <CategorieFilter
-            updateValueCategory={ this.updateValue }
+            updateValueCategory={ this.updateValueCategory }
           />
         </div>
         <div>

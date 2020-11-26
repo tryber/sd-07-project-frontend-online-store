@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 export default class CategorieFilter extends React.Component {
@@ -44,3 +45,11 @@ export default class CategorieFilter extends React.Component {
     );
   }
 }
+
+CategorieFilter.propTypes = {
+  categorie: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  updateValueCategory: PropTypes.func.isRequired,
+};
