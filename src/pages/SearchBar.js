@@ -21,7 +21,7 @@ class SearchBar extends Component {
     const { query } = this.props;
     const { inputValue } = this.state;
     return (
-      <label htmlFor="searchBar">
+      <label htmlFor="searchBar" className="searchbar">
         <button
           onClick={ () => query(inputValue) }
           type="button"
@@ -34,6 +34,7 @@ class SearchBar extends Component {
           data-testid="query-input"
           name="searchBar"
           onChange={ this.inputChange }
+          placeholder="Digite aqui..."
         />
       </label>
     );

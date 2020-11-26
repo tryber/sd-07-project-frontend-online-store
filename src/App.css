@@ -28,6 +28,40 @@
 
 .getCategories {
   border: 2px black solid;
+  border-radius: 10px;
   width: fit-content;
-  padding: 10px
+  height: fit-content;
+  padding: 15px;
+  margin: 10px;
+}
+
+.productList {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  width: 200px;
+  height: 200px;
+}
+
+.productSection {
+  display: flex;
+}
+
+.cabecalho {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.searchbar {
+  align-content: center;
+  padding: 10px;
 }

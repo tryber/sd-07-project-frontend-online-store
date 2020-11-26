@@ -17,14 +17,13 @@ class home extends Component {
       products: [],
     };
   }
-  
-  changeSelected(item) {
-    const { category } = this.state;
-    this.setState({ category: item });
-    console.log(category);
-  }
 
-  componentDidMount() {
+  // componentDidMount() {
+  //   this.fecthProducts();
+  // }
+
+  async changeSelected(id) {
+    await this.setState({ category: id });
     this.fecthProducts();
   }
 
@@ -40,29 +39,37 @@ class home extends Component {
   }
 
   render() {
+    this.fecthProducts()
     const { products } = this.state;
     return (
       <div>
-        <h2 data-testid="home-initial-message">
+        <section className="cabecalho">
+          <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
         <SearchBar query={ this.inputEvent } />
         <Link to="/shoppingCart">
           <img
             src={ CartIcon }
-            width="70"
-            height="70"
+            width="50"
+            height="50"
             alt="shopping-cart-icon"
             data-testid="shopping-cart-button"
           />
         </Link>
-        <FilterList changeSelected={ this.changeSelected } />
-        <div>
+        </section>
+        
+        <section className="productSection">
+            <FilterList changeSelected={ this.changeSelected } />
+        <div className="productList">
           {
             products
               .map((product) => <ProductCard key={ product.id } product={ product } />)
           }
         </div>
+        </section>
+
+      
       </div>
     );
   }
