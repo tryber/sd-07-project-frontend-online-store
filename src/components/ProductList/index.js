@@ -9,17 +9,20 @@ class ProductList extends Component {
     return (
       <ul>
         {products.length
-          ? products.map(({ id, title, thumbnail, price }) => (
+          ? products.map((product) => (
             <li
-              key={ id }
+              key={ product.id }
               data-testid="product"
             >
-              <h3 data-testid="product-detail-name">{ title }</h3>
-              <img src={ thumbnail } alt="Product" />
-              <p>{ price }</p>
+              <h3 data-testid="product-detail-name">{ product.title }</h3>
+              <img src={ product.thumbnail } alt="Product" />
+              <p>{ product.price }</p>
               <Link
                 data-testid="product-detail-link"
-                to="/productdetail"
+                to={ {
+                  pathname: '/productdetail',
+                  state: { product },
+                } }
               >
                 Mais Detalhes
               </Link>
