@@ -1,6 +1,9 @@
 import React from 'react';
 import * as api from './services/api';
 import Products from './Products';
+import CategoryList from './CategoryList';
+
+
 import { Link } from 'react-router-dom';
 
 class ProductList extends React.Component {
@@ -53,6 +56,12 @@ class ProductList extends React.Component {
             {productsArray
               .map((prod) => (<div key={ prod.id }><Products product={ prod } /></div>))}
           </div>
+          <button type="button">
+            <Link data-testid="shopping-cart-button" to="/ShoppingCart">
+              Carrinho de compras
+            </Link>
+        </button>
+        <CategoryList />
         </div>
       );
     }
@@ -74,6 +83,12 @@ class ProductList extends React.Component {
           <div>
             <p>Nenhum produto foi encontrado</p>
           </div>
+          <button type="button">
+            <Link data-testid="shopping-cart-button" to="/ShoppingCart">
+              Carrinho de compras
+            </Link>
+        </button>
+        <CategoryList />
         </div>
       );
     }
@@ -98,7 +113,8 @@ class ProductList extends React.Component {
             <Link data-testid="shopping-cart-button" to="/ShoppingCart">
               Carrinho de compras
             </Link>
-          </button>
+        </button>
+        <CategoryList />
       </div>
     );
   }
