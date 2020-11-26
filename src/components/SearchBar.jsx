@@ -57,11 +57,9 @@ class SearchBar extends Component {
           </button>
         </label>
         {loading
-          ? <p
-            data-testid="home-initial-message"
-          >
+          ? (<p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
+             </p>)
           : product.map((item) => <ProductList key={ item.id } product={ item } />)}
         <CategoryList
           handleChange={ this.handleChange }
