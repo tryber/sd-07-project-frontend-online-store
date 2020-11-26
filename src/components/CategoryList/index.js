@@ -18,16 +18,16 @@ class CategoryList extends Component {
     this.fetchCategories();
   }
 
+  handleChangeCategory(categoryID) {
+    const { onChange } = this.props;
+    onChange(categoryID);
+  }
+
   async fetchCategories() {
     const categoriesFromApi = await api.getCategories();
     this.setState({
       categories: categoriesFromApi,
     });
-  }
-
-  handleChangeCategory(categoryID) {
-    const { onChange } = this.props;
-    onChange(categoryID);
   }
 
   render() {
