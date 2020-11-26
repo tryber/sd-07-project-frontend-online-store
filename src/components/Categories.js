@@ -1,12 +1,12 @@
 import React from 'react';
-import * as api from '../services/api'
+import * as api from '../services/api';
 
 class Categories extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       categories: [],
-    }
+    };
     this.requestApiCategories = this.requestApiCategories.bind(this);
   }
 
@@ -15,24 +15,31 @@ class Categories extends React.Component {
   }
 
   async requestApiCategories() {
-      this.setState({
-        categories: await api.getCategories(),
-      })         
+    this.setState({
+      categories: await api.getCategories(),
+    });
   }
 
   render() {
     const { categories } = this.state;
-    console.log(categories)
+    console.log(categories);
     return (
       <div>
         {categories.map((category) => {
-         return <div>
-            <input data-testid="category" type="radio" id="male" 
-              name="gender" value={category.name} />{category.name}
-            <br/> 
-            <br/>  
-          </div>
-                  
+          return (
+            <div>
+              <input
+                data-testid="category"
+                type="radio"
+                id="male"
+                name="gender"
+                value={category.name}
+              />
+              {category.name}
+              <br />
+              <br />
+            </div>
+          );
         })}
       </div>
     );
