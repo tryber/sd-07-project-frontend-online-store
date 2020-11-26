@@ -58,9 +58,11 @@ class ProductDetail extends React.Component {
     const { id, title, price, thumbnail } = this.state;
     return (
       <div>
-        <h3 data-testid='product-detail-name'>{title}</h3>
-        <div>{price}</div>
-        <img src={thumbnail} alt={title} />
+        <div>
+          <h3 data-testid='product-detail-name'>{title}</h3>
+          <div>{price}</div>
+          <img src={thumbnail} alt={title} />
+        </div>
         <div>
           Especificações Técnicas
           <ul>
@@ -73,7 +75,25 @@ class ProductDetail extends React.Component {
             })}
           </ul>
         </div>
-        <button data-testid='product-detail-add-to-cart' onClick={this.LoadItemsToLocalStorage}>Adicionar</button>
+        <div>
+          <button data-testid='product-detail-add-to-cart' onClick={this.LoadItemsToLocalStorage}>Adicionar</button>
+        </div>
+          <form>
+            <label htmlFor="input-email">
+              <input type="text" id="input-email" placeholder="Email" />
+            </label>
+            <select htmlFor="input-select">
+              <option value="1" id="input-select">1</option>
+              <option value="2" id="input-select">2</option>
+              <option value="3" id="input-select">3</option>
+              <option value="4" id="input-select">4</option>
+              <option value="5" id="input-select">5</option>
+            </select>
+            <label htmlFor="">
+            <textarea data-testid="product-detail-evaluation" placeholder="Mensagem (opcional)" />
+            </label>
+            <button>Avaliar</button>
+          </form>
       </div>
     );
   }
