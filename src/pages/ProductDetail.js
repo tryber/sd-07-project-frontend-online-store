@@ -21,27 +21,25 @@ class ProductDetail extends Component {
   }
 
   async getProduct() {
-    const { id, category_id, title } = this.props.match.params;
-    const { results } = await api.getProductsFromCategoryAndQuery(category_id, title);
-    const productDetail = results.filter( result => result.id === id);    
+    const { id, category_id } = this.props.match.params;
+    const { results } = await api.getProductsFromCategoryAndQuery(category_id, '');
+    const productDetail = results.filter( result => result.id === id);
 
-    this.setState( { 
+    this.setState( {
       name: productDetail[0].title,
       imagePath: productDetail[0].thumbnail,
       price: productDetail[0].price,
       details: productDetail[0].attributes,
     });
-    console.log(this.state);    
   }
 
   componentDidMount() {
-    this.callingFirst();
-    //console.log(this.state);
+    this.callingFirst();    
   }
 
   render() {
     const { name, imagePath, price, details } = this.state;
-    return (      
+    return (
       <div data-testid="product-detail-name">
         <Link to="/">Home</Link>
         <h1>Product Detail</h1>
@@ -52,7 +50,7 @@ class ProductDetail extends Component {
             details.map( element => <div key={element.id}>{element.name} - <span>{element.value_name}</span></div>)
             }
           </div>
-      </div>      
+      </div>
     )
   }
 }
