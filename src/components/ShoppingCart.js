@@ -18,7 +18,7 @@ class ShoppingCart extends Component {
   }
 
   getProductsFromLocalStorage() {
-    const products = localStorageFunctions.getFromLocalStorage();
+    const products = localStorageFunctions.picksUpItemsFromTheCartInLocalStorage();
     this.setState({
       cartProducts: products,
     });

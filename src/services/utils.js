@@ -1,12 +1,12 @@
 localStorage.setItem('products', JSON.stringify([]));
 
-export const updateLocalStorate = (data) => {
+export const saveProductIntoShoppingCart = (itemCart) => {
   let products = JSON.parse(localStorage.getItem('products'));
-  products = [...products, data];
+  products = [...products, itemCart];
   localStorage.setItem('products', JSON.stringify(products));
 };
 
-export const getFromLocalStorage = () => {
+export const picksUpItemsFromTheCartInLocalStorage = () => {
   const products = JSON.parse(localStorage.getItem('products'));
   return products;
 };

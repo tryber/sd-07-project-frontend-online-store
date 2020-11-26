@@ -18,7 +18,7 @@ class ProductList extends Component {
     this.updateState = this.updateState.bind(this);
     this.textValueChange = this.textValueChange.bind(this);
     this.handleClickCategory = this.handleClickCategory.bind(this);
-    this.adicionarAoCarrinho = this.adicionarAoCarrinho.bind(this);
+    this.AddProductToCart = this.AddProductToCart.bind(this);
   }
 
   textValueChange({ target }) {
@@ -37,8 +37,8 @@ class ProductList extends Component {
     });
   }
 
-  adicionarAoCarrinho(produto) {
-    localStorageFunctions.updateLocalStorate(produto);
+  AddProductToCart(product) {
+    localStorageFunctions.saveProductIntoShoppingCart(product);
   }
 
   handleClickCategory({ target }) {
@@ -78,7 +78,7 @@ class ProductList extends Component {
             <ProductCard
               key={ product.id }
               product={ product }
-              updatecart={ this.adicionarAoCarrinho }
+              updatecart={ this.AddProductToCart }
             />
           ))}
           {!products.length && search && <p>Nenhum produto foi encontrado</p>}

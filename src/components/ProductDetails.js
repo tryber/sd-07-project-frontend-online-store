@@ -12,8 +12,8 @@ class ProductDetails extends Component {
     this.addToCart = this.addToCart.bind(this);
   }
 
-  addToCart(produto) {
-    localStorageFunctions.updateLocalStorate(produto);
+  addToCart(product) {
+    localStorageFunctions.saveProductIntoShoppingCart(product);
   }
 
   render() {
