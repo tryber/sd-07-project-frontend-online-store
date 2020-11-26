@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cart from './images/cart.png';
 import './App.css';
+import Categories from './components/Categories';
 
 class ProductsList extends Component {
   render() {
@@ -34,6 +35,7 @@ class ProductsList extends Component {
               </Link>
             </div>
           </div>
+          <Categories />
         </form>
       </div>
     );
