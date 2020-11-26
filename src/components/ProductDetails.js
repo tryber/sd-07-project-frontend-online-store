@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import ProductSpec from './ProductSpec';
+import ProductEvaluationForm from './ProductEvaluationForm';
 
 class ProductDetails extends Component {
   render() {
@@ -25,6 +26,7 @@ class ProductDetails extends Component {
             <ProductSpec key={ attribute.id } spec={ attribute } />
           ))}
         </div>
+        <ProductEvaluationForm />
       </div>
     );
   }
