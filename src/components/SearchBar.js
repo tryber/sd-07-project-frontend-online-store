@@ -36,7 +36,7 @@ class SearchBar extends React.Component {
           loading: false,
           arrayOfCategories: categoriesFromApi,
         });
-      }
+      },
     );
   }
 
@@ -50,7 +50,7 @@ class SearchBar extends React.Component {
           loading: false,
           arrayOfItemByInputedText: [...segmentedItens.results],
         });
-      }
+      },
     );
   }
 
@@ -106,7 +106,7 @@ class SearchBar extends React.Component {
         </header>
         <section className="categories-list">
           { loading ? loadingElement : arrayOfCategories.map(
-            (categorie) => <Categories key={ categorie.id } categorie={ categorie } />
+            (categorie) => <Categories key={ categorie.id } categorie={ categorie } />,
           )}
         </section>
         <div>
