@@ -4,18 +4,21 @@ import * as api from '../services/api';
 import ListCategory from '../components/ListCategory';
 import CardProduct from '../components/CardProduct';
 import '../App.css';
+import Loading from '../components/Loading';
 
 class Home extends React.Component {
   constructor() {
     super();
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.fetchQuery = this.fetchQuery.bind(this);
+    this.fetchQueryAndCategoryId = this.fetchQueryAndCategoryId.bind(this);
+    this.sendCategoryId = this.sendCategoryId.bind(this);
 
     this.state = {
       searchKey: '',
       searchProducts: [],
-      category: '',
+      categoryId: '',
+      loading: false,
     };
   }
 
@@ -26,33 +29,55 @@ class Home extends React.Component {
     });
   }
 
-  async fetchQuery() {
-    const { searchKey, category } = this.state;
-    const response = await api.getProductsFromCategoryAndQuery(category, searchKey);
-    this.setState({
-      searchProducts: [...response.results],
-    });
+  fetchQueryAndCategoryId() {
+    this.setState(
+      {
+        loading: true,
+      },
+      async () => {
+        const { searchKey, categoryId } = this.state;
+        const response = await api.getProductsFromCategoryAndQuery(
+          categoryId,
+          searchKey,
+        );
+        console.log(response.results);
+        this.setState({
+          loading: false,
+          searchProducts: [...response.results],
+        });
+      },
+    );
+  }
+
+  sendCategoryId({ target }) {
+    this.setState(
+      {
+        loading: true,
+        categoryId: target.id,
+      },
+      () => this.fetchQueryAndCategoryId(),
+    );
   }
 
   render() {
-    const { searchKey, searchProducts } = this.state;
+    const { searchKey, categoryId, searchProducts, loading } = this.state;
     return (
       <div className="home-container">
         <div className="home-aside-container">
-          <ListCategory />
+          <ListCategory sendCategoryId={this.sendCategoryId} />
         </div>
         <div className="home-search-container">
           <div className="search-subcontainer">
             <input
               name="searchKey"
               type="text"
-              value={ searchKey }
-              onChange={ this.handleSearchChange }
+              value={searchKey}
+              onChange={this.handleSearchChange}
               data-testid="query-input"
             />
             <button
               type="button"
-              onClick={ this.fetchQuery }
+              onClick={this.fetchQueryAndCategoryId}
               data-testid="query-button"
             >
               BUSCAR
@@ -60,11 +85,22 @@ class Home extends React.Component {
             <h3 data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </h3>
-            <Link to="/Cart" data-testid="shopping-cart-button">Carrinho</Link>
+            <Link to="/Cart" data-testid="shopping-cart-button">
+              Carrinho
+            </Link>
             <div>
-              {
-                searchProducts.map((item) => <CardProduct key={ item.id } item={ item } />)
-              }
+              {loading ? (
+                <Loading />
+              ) : (
+                searchProducts.map((item) => (
+                  <CardProduct
+                    key={item.id}
+                    item={item}
+                    categoryId={categoryId}
+                    data-testid="product-detail-link"
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>

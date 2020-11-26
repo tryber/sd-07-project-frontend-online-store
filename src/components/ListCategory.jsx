@@ -37,10 +37,11 @@ class ListCategory extends React.Component {
 
   render() {
     const { loading, categories } = this.state;
+    const { sendCategoryId } = this.props;
     if (loading) return <Loading />;
     return (
       <div>
-        {categories.map(({ id, name }) => <Item key={id} name={name} id={id} />)}
+        {categories.map(({ id, name }) => <Item key={id} name={name} id={id} onClick={ sendCategoryId } />)}
       </div>
     );
   }
