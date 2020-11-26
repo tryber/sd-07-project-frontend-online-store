@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ProductsList from './Home';
 import Cart from './pages/cart';
+import './App.css';
+
 
 function App() {
   return (

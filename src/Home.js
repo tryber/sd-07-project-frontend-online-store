@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cart from './images/cart.png';
+import './App.css';
 
 class ProductsList extends Component {
   render() {
@@ -25,6 +26,7 @@ class ProductsList extends Component {
             <div>
               <Link to="./pages/cart">
                 <img
+                  className="btImg"
                   data-testid="shopping-cart-button"
                   src={ cart }
                   alt="Carrinho de Compras"

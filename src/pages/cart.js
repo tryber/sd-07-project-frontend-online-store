@@ -1,6 +1,6 @@
 import React from 'react';
 import box from '../images/box.png';
-
+import '../App.css';
 
 class Cart extends React.Component {
   render() {
@@ -10,7 +10,11 @@ class Cart extends React.Component {
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         </div>
         <div>
-          <img src={ box } alt="Caixa Vazia" />
+          <img 
+            className="btImg"
+            src={ box }
+            alt="Caixa Vazia"
+          />
         </div>
       </div>
     );
