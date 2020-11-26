@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import * as api from './services/api.js';
-import Products from './Products.jsx';
+import React from 'react';
+import * as api from './services/api';
+import Products from './Products';
 
-class ProductList extends Component {
+class ProductList extends React.Component {
   constructor() {
     super();
     this.state = {
       inputValue: '',
+      categoryId: '',
       productsArray: [],
       click: false,
     };
@@ -19,8 +20,9 @@ class ProductList extends Component {
   }
 
   async responseGetProducts() {
-    // const resultCategory = await api.getCategories();
-    const resultApiProduct = await api.getProduct(this.state.inputValue);
+    const { categoryId, inputValue } = this.state;
+    const resultApiProduct = await api
+      .getProductsFromCategoryAndQuery(categoryId, inputValue);
     const { results } = resultApiProduct;
     this.setState({
       productsArray: results,
@@ -29,21 +31,45 @@ class ProductList extends Component {
   }
 
   render() {
-    if (this.state.productsArray.length > 0) {
+    const { productsArray, inputValue, click } = this.state;
+    const emptyArray = 0;
+    if (productsArray.length > emptyArray) {
       return (
         <div>
-          <input data-testid="query-input" value={this.state.inputValue} onChange={this.stateActual} />
-          <button data-testid="query-button"onClick={this.responseGetProducts}>Pesquisar</button>
+          <input
+            data-testid="query-input"
+            value={ inputValue }
+            onChange={ this.stateActual }
+          />
+          <button
+            type="button"
+            data-testid="query-button"
+            onClick={ this.responseGetProducts }
+          >
+            Pesquisar
+          </button>
           <div>
-            {this.state.productsArray.map(product => <div key={product.id}> <Products product={product} /> </div>)}
+            {productsArray
+              .map((prod) => (<div key={ prod.id }><Products product={ prod } /></div>))}
           </div>
         </div>
       );
-    } else if (this.state.click) {
+    }
+    if (click) {
       return (
         <div>
-          <input data-testid="query-input" value={this.state.inputValue} onChange={this.stateActual} />
-          <button data-testid="query-button"onClick={this.responseGetProducts}>Pesquisar</button>
+          <input
+            data-testid="query-input"
+            value={ inputValue }
+            onChange={ this.stateActual }
+          />
+          <button
+            type="button"
+            data-testid="query-button"
+            onClick={ this.responseGetProducts }
+          >
+            Pesquisar
+          </button>
           <div>
             <p>Nenhum produto foi encontrado</p>
           </div>
@@ -52,19 +78,24 @@ class ProductList extends Component {
     }
     return (
       <div>
-        <input data-testid="query-input" value={this.state.inputValue} onChange={this.stateActual} />
-        <button data-testid="query-button"onClick={this.responseGetProducts}>Pesquisar</button>
+        <input
+          data-testid="query-input"
+          value={ inputValue }
+          onChange={ this.stateActual }
+        />
+        <button
+          type="button"
+          data-testid="query-button"
+          onClick={ this.responseGetProducts }
+        >
+          Pesquisar
+        </button>
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
       </div>
     );
-<<<<<<< HEAD
-    
-  }  
-=======
   }
->>>>>>> b44d9e71794f0e7b7674d4b43707daef9e750dcb
 }
 
 export default ProductList;
