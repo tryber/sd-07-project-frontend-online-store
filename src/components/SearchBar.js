@@ -69,7 +69,11 @@ class SearchBar extends React.Component {
           </Link>
           <div className="search">
             <div className="search-bar-content">
-              <button className="query-button" data-testid="query-button" onClick={ this.fetchApiByQuery }>
+              <button
+                className="query-button"
+                data-testid="query-button"
+                onClick={ this.fetchApiByQuery }
+              >
                 <img 
                   className="search-icon"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJTOvaCRMvUxPy8OR3W53CXP_eLOKV3QBaw&usqp=CAU"
@@ -101,12 +105,13 @@ class SearchBar extends React.Component {
           </Router>
         </header>
         <section className="categories-list">
-          {loading ? loadingElement : arrayOfCategories
-            .map((categorie) => <Categories key={categorie.id} categorie={ categorie } />)}
+          { loading ? loadingElement : arrayOfCategories.map((categorie) =>
+            <Categories key={categorie.id} categorie={ categorie } />
+          ) }
         </section>
         <div>
-          {arrayOfItemByInputedText
-            .map((item) => <Card key={ item.id } products={ item } />)}
+          { arrayOfItemByInputedText
+            .map((item) => <Card key={ item.id } products={ item } />) }
         </div>
       </div>
     );
