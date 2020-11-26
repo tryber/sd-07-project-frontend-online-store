@@ -14,7 +14,6 @@ export function addToCart(product) {
     cartQuantity: 1,
   };
   const currentList = JSON.parse(localStorage.getItem('cart'));
-
   if (currentList.find((item) => item.id === newProduct.id) !== undefined) {
     const newCart = currentList.map((currentItem) => {
       if (currentItem.id === newProduct.id) {
