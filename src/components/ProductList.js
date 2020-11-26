@@ -5,7 +5,7 @@ import Product from './Product';
 
 export default class ProductList extends Component {
   render() {
-    const { results, category } = this.props;
+    const { results } = this.props;
     return (
       <div>
         {results.map(({ title, thumbnail, price, id }) => (
@@ -15,7 +15,6 @@ export default class ProductList extends Component {
             price={ price }
             key={ id }
             id={ id }
-            category={ category }
           />
         ))}
       </div>
@@ -32,5 +31,5 @@ ProductList.propTypes = {
       id: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  category: PropTypes.string.isRequired,
+
 };

@@ -16,8 +16,8 @@ export default class Details extends Component {
   }
 
   async fetchAPI() {
-    const { id, searchTerm } = this.props.match.params;
-    const resp = await api.getProductsFromCategoryAndQuery('', searchTerm);
+    const { id} = this.props.match.params;
+    const resp = await api.getProductsFromCategoryAndQuery(id, undefined);
     this.setState({
       loading: false,
       product: resp.results.find((product) => product.id === id),
