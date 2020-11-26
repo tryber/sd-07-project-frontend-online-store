@@ -9,7 +9,7 @@ import Card from './Card';
 
 class SearchBar extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       arrayOfCategories: [],
@@ -36,19 +36,22 @@ class SearchBar extends React.Component {
           loading: false,
           arrayOfCategories: categoriesFromApi,
         });
-      });
+      }
+    );
   }
 
   async fetchApiByQuery() {
     this.setState(
       { loading: true },
       async () => {
-        const segmentedItens = await mlAPI.getProductsFromCategoryAndQuery(this.state.category, this.state.searchElement);
+        const segmentedItens = await mlAPI
+          .getProductsFromCategoryAndQuery(this.state.category, this.state.searchElement);
         this.setState({
           loading: false,
           arrayOfItemByInputedText: [...segmentedItens.results],
         });
-      });
+      }
+    );
   }
 
   changeStateValue(event) {
@@ -66,12 +69,12 @@ class SearchBar extends React.Component {
           </Link>
           <div className="search">
             <div className="search-bar-content">
-            <button className="query-button" data-testid="query-button" onClick={this.fetchApiByQuery}>
+              <button className="query-button" data-testid="query-button" onClick={this.fetchApiByQuery}>
               <img className="search-icon"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJTOvaCRMvUxPy8OR3W53CXP_eLOKV3QBaw&usqp=CAU"
                 alt="search icon"
               />
-            </button>
+              </button>
               <input
                 data-testid="query-input"
                 className="search-bar"
@@ -86,14 +89,15 @@ class SearchBar extends React.Component {
             </div>
           </div>
 
-        <Router>
-          <Link to="/cart" data-testid="shopping-cart-button">
+          <Router>
+            <Link to="/cart" data-testid="shopping-cart-button">
             <img className="shopping-cart-icon" alt="Shopping cart icon" src={ shoppingCart } />
-          </Link>
-        </Router>
+            </Link>
+          </Router>
         </header>
         <section className="categories-list">
-          {loading ? loadingElement : arrayOfCategories.map((categorie) => <Categories key={categorie.id} categorie={ categorie } />)}
+          {loading ? loadingElement : arrayOfCategories
+            .map((categorie) => <Categories key={categorie.id} categorie={ categorie } />)}
         </section>
         <div>
           {arrayOfItemByInputedText.map((item) => <Card key={ item.id } products={ item } />)}
