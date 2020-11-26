@@ -5,7 +5,7 @@ import '../App.css';
 import Categories from './Categories';
 import logo from '../images/logo.svg';
 import shoppingCart from '../images/shopping-cart.png';
-import Card from './Card'
+import Card from './Card';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class SearchBar extends React.Component {
       searchElement: '',
       category: '',
       loading: true,
-    }
+    };
     this.changeStateValue = this.changeStateValue.bind(this);
     this.fetchApiByQuery = this.fetchApiByQuery.bind(this);
   }
@@ -88,17 +88,17 @@ class SearchBar extends React.Component {
 
         <Router>
           <Link to="/cart" data-testid="shopping-cart-button">
-            <img className="shopping-cart-icon" alt="Shopping cart icon" src={shoppingCart} />
+            <img className="shopping-cart-icon" alt="Shopping cart icon" src={ shoppingCart } />
           </Link>
         </Router>
-        </header >
+        </header>
         <section className="categories-list">
-          {loading ? loadingElement : arrayOfCategories.map((categorie) => <Categories key={categorie.id} categorie={categorie} />)}
+          {loading ? loadingElement : arrayOfCategories.map((categorie) => <Categories key={categorie.id} categorie={ categorie } />)}
         </section>
         <div>
-          {arrayOfItemByInputedText.map((item) => <Card key={item.id} products={item} />)}
+          {arrayOfItemByInputedText.map((item) => <Card key={ item.id } products={ item } />)}
         </div>
-      </div >
+      </div>
     );
   }
 }

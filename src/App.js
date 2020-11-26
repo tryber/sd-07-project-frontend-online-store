@@ -5,13 +5,12 @@ import ShoppingCart from './components/ShoppingCart';
 import Home from './pages/Home';
 
 function App() {
-
   return (
     <div>
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact="/cart" component={ShoppingCart} />
+          <Route exact path="/" component={ Home } />
+          <Route path="/cart" component={ ShoppingCart } />
         </Switch>
       </Router>
     </div>
