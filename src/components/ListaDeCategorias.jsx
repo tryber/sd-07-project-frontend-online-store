@@ -13,7 +13,7 @@ class ListaDeCategorias extends React.Component {
   }
 
   componentDidMount() {
-    const allCategories = api.getCategories().then(response => {
+    api.getCategories().then(response => {
       this.setState({
         categories: response,
       })
@@ -22,10 +22,8 @@ class ListaDeCategorias extends React.Component {
   }
   render() {
     const { categories } = this.state;
-    console.log(categories)
     return (
       <ul>
-        
         {categories.map((category) =>
           <Categoria
             key={category.name}
