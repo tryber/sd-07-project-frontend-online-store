@@ -31,7 +31,7 @@ class ProductDetails extends Component {
     return (
       <div data-testid="product-detail-name">
         <h1>{ title }</h1>
-        <h2>{ price }</h2>
+        <h2>{`R$ ${price}`}</h2>
         <img src={ thumbnail } alt="Imagem do produto" />
         <Link
           to={ {
