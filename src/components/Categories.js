@@ -26,6 +26,7 @@ class Categories extends React.Component {
     return (
       <div>
         {categories.map((category) => {
+          console.log('');
           return (
             <div key={ category.name }>
               <input
@@ -40,8 +41,7 @@ class Categories extends React.Component {
               <br />
             </div>
           );
-        })
-        }
+          })}
       </div>
     );
   }
