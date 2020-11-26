@@ -4,10 +4,17 @@ class RatingForm extends React.Component {
   constructor() {
     super();
 
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.state = {
       email: '',
       textRate: '',
     };
+  }
+
+  handleSubmit() {
+    const { onSubmit } = this.props;
+    onSubmit(this.state);
   }
 
   updateInput(field, newValue) {
@@ -22,7 +29,7 @@ class RatingForm extends React.Component {
           placeholder="Email."
           type="text"
           value={ email }
-          onChange={ (event) => this.updateMovie('email', event.target.value) }
+          onChange={ (event) => this.updateInput('email', event.target.value) }
         />
       </div>
     );
@@ -36,8 +43,21 @@ class RatingForm extends React.Component {
           placeholder="Mensagem (opcional)"
           type="text"
           value={ textRate }
-          onChange={ (event) => this.updateMovie('textRate', event.target.value) }
+          onChange={ (event) => this.updateInput('textRate', event.target.value) }
         />
+      </div>
+    );
+  }
+
+  renderSubmitButton() {
+    return (
+      <div>
+        <button
+          type="button"
+          onClick={ this.handleSubmit }
+        >
+          Submit
+        </button>
       </div>
     );
   }
@@ -48,6 +68,7 @@ class RatingForm extends React.Component {
         <form>
           { this.renderEmailInput() }
           { this.renderTextRateInput()}
+          { this.renderSubmitButton() }
         </form>
 
       </div>
