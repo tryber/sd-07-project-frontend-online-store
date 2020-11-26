@@ -1,11 +1,19 @@
 import React from 'react';
+import CardProduct from './Card';
 
-class ListCard extends React.Component {
+class ListCards extends React.Component {
   render() {
+    const { products } = this.props;
+    const {} = products;
+
     return (
-      <div>Xablau</div>
-    )
+      <div data-testid="movie-list" className="movie-list">
+        {products.map((product) => <CardProduct key={product.title} image={product.image} price={product.price} />)}
+      </div>
+    );
   }
 }
 
-export default ListCard;
+//ListCards.propTypes = { products: PropTypes.ArrayOf(PropTypes.object).isRequired }
+
+export default ListCards;
