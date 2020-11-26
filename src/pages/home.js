@@ -18,9 +18,9 @@ class home extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.fecthProducts();
-  // }
+  componentDidMount() {
+    this.fecthProducts();
+  }
 
   async changeSelected(id) {
     await this.setState({ category: id });
@@ -39,37 +39,36 @@ class home extends Component {
   }
 
   render() {
-    this.fecthProducts()
     const { products } = this.state;
     return (
       <div>
         <section className="cabecalho">
           <h2 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h2>
-        <SearchBar query={ this.inputEvent } />
-        <Link to="/shoppingCart">
-          <img
-            src={ CartIcon }
-            width="50"
-            height="50"
-            alt="shopping-cart-icon"
-            data-testid="shopping-cart-button"
-          />
-        </Link>
-        </section>
-        
-        <section className="productSection">
-            <FilterList changeSelected={ this.changeSelected } />
-        <div className="productList">
-          {
-            products
-              .map((product) => <ProductCard key={ product.id } product={ product } />)
-          }
-        </div>
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </h2>
+          <SearchBar query={ this.inputEvent } />
+          <Link to="/shoppingCart">
+            <img
+              src={ CartIcon }
+              width="50"
+              height="50"
+              alt="shopping-cart-icon"
+              data-testid="shopping-cart-button"
+            />
+          </Link>
         </section>
 
-      
+        <section className="productSection">
+          <FilterList changeSelected={ this.changeSelected } />
+          <div className="productList">
+            {
+              products
+                .map((product) => <ProductCard key={ product.id } product={ product } />)
+            }
+          </div>
+        </section>
+
+
       </div>
     );
   }

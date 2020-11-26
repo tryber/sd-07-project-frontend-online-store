@@ -16,8 +16,8 @@ class FilterList extends Component {
     this.fetchCategories();
   }
 
-  async fetchCategories() {
-    this.setState({ loading: true },async () => {
+  fetchCategories() {
+    this.setState({ loading: true }, async () => {
       const data = await API.getCategories();
       this.setState({ categoriesList: data, loading: false });
     });
