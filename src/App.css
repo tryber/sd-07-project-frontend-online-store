@@ -4,18 +4,13 @@
   justify-content: center;
 }
 
-.header {
+.header-container {
   background-color: rgb(255, 241, 115);
   color: gray;
   display: flex;
   height: 48px;
   justify-content: center;
   padding: 15px;
-}
-
-.header-container {
-  align-items: flex-start;
-  display: flex;
 }
 
 .logo {
@@ -37,6 +32,8 @@
   background-color: white;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.164);
   border-radius: 25px;
+  display: flex;
+  align-items: center;
   padding-left: 10px;
 }
 
@@ -49,7 +46,7 @@
   border-radius: 25px;
   font-size: 20px;
   height: 30px;
-  width: 40vw;
+  width: 100%;
 }
 
 textarea:focus, input:focus, select:focus {
@@ -58,11 +55,6 @@ textarea:focus, input:focus, select:focus {
   outline: 0;
 } 
 
-.search-icon {
-  height: 15px;
-  margin-right: 5px;
-}
-
 .home-initial-message {
   align-items: center;
   display: flex;
@@ -70,4 +62,33 @@ textarea:focus, input:focus, select:focus {
   justify-content: center;
   height: 18px;
   margin-top: 5px;
+}
+
+.query-button{
+  background: none;
+  border: none;
+  height: 20px;
+  left: -5px;
+  position: relative;
+  width: 20px;
+  }
+
+.query-button.okay{
+  border: none;
+}
+
+.search-icon {
+  height: 100%;
+}
+
+.search-icon:hover {
+  height: 105%;
+}
+
+.categories-list {
+  background-color: rgb(214, 214, 214);
+  border-radius: 25px;
+  margin: 3vw 8vw;
+  padding: 10px;
+  width: 20vw;
 }

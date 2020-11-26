@@ -5,9 +5,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <header className="header">
-          <SearchBar />
-        </header>
+        <SearchBar />
       </div>
     )
   }
