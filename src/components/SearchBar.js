@@ -74,7 +74,7 @@ class SearchBar extends React.Component {
                 data-testid="query-button"
                 onClick={ this.fetchApiByQuery }
               >
-                <img 
+                <img
                   className="search-icon"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJTOvaCRMvUxPy8OR3W53CXP_eLOKV3QBaw&usqp=CAU"
                   alt="search icon"
@@ -96,7 +96,7 @@ class SearchBar extends React.Component {
 
           <Router>
             <Link to="/cart" data-testid="shopping-cart-button">
-              <img 
+              <img
                 className="shopping-cart-icon"
                 alt="Shopping cart icon"
                 src={ shoppingCart }
@@ -105,9 +105,9 @@ class SearchBar extends React.Component {
           </Router>
         </header>
         <section className="categories-list">
-          { loading ? loadingElement : arrayOfCategories.map((categorie) =>
-            <Categories key={categorie.id} categorie={ categorie } />
-          ) }
+          { loading ? loadingElement : arrayOfCategories.map(
+            (categorie) => <Categories key={ categorie.id } categorie={ categorie } />
+          )}
         </section>
         <div>
           { arrayOfItemByInputedText
