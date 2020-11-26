@@ -7,7 +7,6 @@ export async function getCategories() {
   });
 }
 
-
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const CATEGORY_ID = categoryId;
   const searchItem = query;
