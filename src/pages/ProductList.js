@@ -30,6 +30,7 @@ class ProductList extends Component {
 
   async getProducts(categoryId, query) {
     const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    console.log(products);
     return products;
   }
 
@@ -38,6 +39,16 @@ class ProductList extends Component {
     const categoryId = 'ALL';
     const { results } = await this.getProducts(categoryId, query);
     this.setState({ object: results });
+  }
+
+  async SearchProductForCategory(object) {
+    const { query } = this.state;
+    const categoryId = object.id;
+    console.log(query, categoryId);
+    const { results } = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    console.log(results);
+    this.setState({ object: results });
+    console.log(this.state);
   }
 
 
@@ -57,7 +68,9 @@ class ProductList extends Component {
         <div className="side-bar">
           { categories.map((category) => (<ProductItem
             key={ category.id }
+            query={ query }
             category={ category }
+            onClick={ () => this.SearchProductForCategory(category) }
           />))}
         </div>
         <div className="main">

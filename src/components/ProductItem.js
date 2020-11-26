@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 export default class ProductItem extends Component {
   render() {
-    const { category } = this.props;
+    const { category, onClick } = this.props;
     return (
-      <div className="class-name">
-        <li data-testid="category">
-          { category.name }
-        </li>
-      </div>
+      <button type="button" onClick={ onClick } data-testid="category">
+        { category.name }
+      </button>
     );
   }
 }
@@ -18,4 +16,5 @@ ProductItem.propTypes = {
   category: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
