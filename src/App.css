@@ -19,6 +19,21 @@ input, select {
   width: 350px;
 }
 
+.category-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 30vw;
+}
+
+.category-input {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.category-input label, .category-input input {
+  width: auto;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 150px 1;
