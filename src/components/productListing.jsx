@@ -16,15 +16,32 @@ class ProductListing extends Component {
   }
 
   async queryProducts() {
-    this.setState({ loading: true }, async () => {
-      const queryReturn = await api
-        .getProductsFromQuery(this.state.searchText)
-        .then((r) => r.results);
-      this.setState({
-        products: queryReturn,
-        loading: false,
+    console.log(this.props.categoryId);
+    let queryReturn;
+    if (this.props.categoryId) {
+      this.setState({ loading: true }, async () => {
+        queryReturn = await api
+          .getProductsFromCategoryAndQuery(
+            this.props.categoryId,
+            this.state.searchText,
+          )
+          .then((r) => r.results);
+        this.setState({
+          products: queryReturn,
+          loading: false,
+        });
       });
-    });
+    } else {
+      this.setState({ loading: true }, async () => {
+        queryReturn = await api
+          .getProductsFromQuery(this.state.searchText)
+          .then((r) => r.results);
+        this.setState({
+          products: queryReturn,
+          loading: false,
+        });
+      });
+    }
   }
 
   handleChange({ target }) {
