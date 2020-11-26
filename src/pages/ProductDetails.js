@@ -45,13 +45,16 @@ class ProductDetails extends Component {
       <div className="product-detail">
         <div className="container-title-image">
           <h2 data-testid="product-detail-name">{title} - R${price}</h2>
-          <img className="product-detail-image" src={pictures[0].url} alt={`imagem do produto ${title}`}/>
+          <img 
+            className="product-detail-image" 
+            src={pictures[0].url} 
+            alt={`imagem do produto ${title}`}
+          />
         </div>        
         <ul className="container-list">
           {attributes.map(({ name, value_name, id }) => 
           <li key ={id}>{name}: {value_name}</li>)}
-        </ul>
-        
+        </ul>        
       </div>
     );
   }
