@@ -14,6 +14,7 @@ class Home extends React.Component {
       search:'',
       products: [],
       categoryID: '',
+      showProduct: false,
     };
   }
 
@@ -22,6 +23,7 @@ class Home extends React.Component {
     const products = await api.getProductsFromCategoryAndQuery(categoryID, search);
     this.setState({
       products: products.results,
+      showProduct: true,
     });
   }
 
@@ -31,7 +33,22 @@ class Home extends React.Component {
   }
     
   render() {
-    return ( 
+    let conteudo;
+    if(this.state.showProduct) {
+      conteudo = 
+      <div className="items-list">
+         {this.state.products
+            .map((product) => 
+              <Item
+                key={product.id}
+                title={product.title}
+                thumbnail={product.thumbnail}
+                price={product.price} />)}
+        </div>
+    } else if (this.state.showProduct === false) {
+      conteudo = <InitialMessage />
+    } 
+   return ( 
       <div>
         <header>
           <input
@@ -51,16 +68,9 @@ class Home extends React.Component {
           </button>
           <ButtonShop />
         </header>
-        <InitialMessage />
+        <div className="conteudo">
         <CategoryList />
-        <div>
-          {this.state.products
-            .map((product) => 
-              <Item
-                key={product.id}
-                title={product.title}
-                thumbnail={product.thumbnail}
-                price={product.price} />)}
+        {conteudo}
         </div>
       </div>
     );

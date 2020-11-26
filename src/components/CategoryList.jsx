@@ -25,8 +25,8 @@ export default class CategoryList extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <div>
-        <div className="category-list">
+      <div className="category-list">
+        <div>
           <h1>Categorias</h1>
           {categories.map((category) => 
              <CategoryItem
