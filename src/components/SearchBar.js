@@ -65,23 +65,23 @@ class SearchBar extends React.Component {
       <div>
         <header className="header-container">
           <Link to="/">
-            <img className="logo" src={logo} alt="logo-react" />
+            <img className="logo" src={ logo } alt="logo-react" />
           </Link>
           <div className="search">
             <div className="search-bar-content">
-              <button className="query-button" data-testid="query-button" onClick={this.fetchApiByQuery}>
-              <img className="search-icon"
+              <button className="query-button" data-testid="query-button" onClick={ this.fetchApiByQuery }>
+                <img className="search-icon"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJTOvaCRMvUxPy8OR3W53CXP_eLOKV3QBaw&usqp=CAU"
                 alt="search icon"
-              />
+                />
               </button>
               <input
                 data-testid="query-input"
                 className="search-bar"
                 type="text"
-                value={this.state.searchElement}
+                value={ this.state.searchElement }
                 name="searchElement"
-                onChange={this.changeStateValue}
+                onChange={ this.changeStateValue }
               />
             </div>
             <div className="home-initial-message" data-testid="home-initial-message">
@@ -91,7 +91,9 @@ class SearchBar extends React.Component {
 
           <Router>
             <Link to="/cart" data-testid="shopping-cart-button">
-            <img className="shopping-cart-icon" alt="Shopping cart icon" src={ shoppingCart } />
+            <img className="shopping-cart-icon"
+            alt="Shopping cart icon" src={ shoppingCart }
+            />
             </Link>
           </Router>
         </header>
@@ -100,7 +102,8 @@ class SearchBar extends React.Component {
             .map((categorie) => <Categories key={categorie.id} categorie={ categorie } />)}
         </section>
         <div>
-          {arrayOfItemByInputedText.map((item) => <Card key={ item.id } products={ item } />)}
+          {arrayOfItemByInputedText
+            .map((item) => <Card key={ item.id } products={ item } />)}
         </div>
       </div>
     );
