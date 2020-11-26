@@ -11,12 +11,14 @@ class ProductsList extends Component {
           <div>
             <label htmlFor="inputHome">
               <div>
-                <input
+                <input 
+                  data-testid="query-input"
                   value={ value }
                   className="inputHome"
                   type="text"
                   onChange={ onChange }
                 />
+                <button data-testid="query-button">PESQUISAR</button>
                 <span data-testid="home-initial-message">
                   Digite algum termo de pesquisa ou escolha uma categoria.
                 </span>
