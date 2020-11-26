@@ -15,16 +15,20 @@ class Cart extends React.Component {
     const { products } = this.state;
 
     if (target.classList.contains('button-increase')) {
-      console.log(target.parentElement.previousElementSibiling);
-      const text = target.parentElement.previousElementSibiling;
-      products.forEach((element) => {
-        if (element.title.includes(text)) {
+      products.forEach((element, index) => {
+        if (target.id.includes(index)) {
           element.qtd += 1;
         }
+        this.setState({ products });
+      });
+    } else {
+      products.forEach((element, index) => {
+        if (target.id.includes(index)) {
+          element.qtd -= 1;
+        }
+        this.setState({ products });
       });
     }
-
-    this.setState({ products });
   }
 
   render() {
@@ -40,7 +44,7 @@ class Cart extends React.Component {
     // prettier-ignore
     return (
       <div>
-        {products.map((element) => (
+        {products.map((element, index) => (
           <div key={ element.price }>
             <p>
               <button type="button">X</button>
@@ -59,17 +63,20 @@ class Cart extends React.Component {
                 data-testid="product-increase-quantity"
                 className="button-increase"
                 onClick={ this.handleClick }
+                id={ `buttonUp${index}` }
               >
                 +
               </button>
+              Quantidade:
               <span data-testid="shopping-cart-product-quantity">
-                Quantidade:
                 {element.qtd}
               </span>
               <button
                 type="button"
                 data-testid="product-decrease-quantity"
                 className="button-decrease"
+                onClick={ this.handleClick }
+                id={ `buttonDown${index}` }
               >
                 -
               </button>
