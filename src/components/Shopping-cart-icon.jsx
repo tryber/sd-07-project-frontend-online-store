@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import cart from './img/shopping.png';
 
+
 class ShoppingCartIcon extends React.Component {
   render() {
     return (

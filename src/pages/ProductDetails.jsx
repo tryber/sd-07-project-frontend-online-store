@@ -8,6 +8,7 @@ class ProductDetails extends React.Component {
     super()
     this.apiRequest = this.apiRequest.bind(this);
     this.handleFitered = this.handleFitered.bind(this);
+    this.checkCartOnAdd = this.checkCartOnAdd.bind(this);
     this.state = {
       itemRecived: {},
     }
@@ -26,22 +27,29 @@ class ProductDetails extends React.Component {
   }
 
   handleClick() {
-    const { id, title, price } = this.state.itemRecived;
+    const { id, title, price, thumbnail } = this.state.itemRecived;
     const qtd = 1;
     //console.log(id, title, price, qtd)
-    console.log('clicou');
+    //console.log('clicou');
     let cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+    if (this.checkCartOnAdd(id)) {
+      console.log('entrou');
+      cartItemsStorage.push({ id, title, price, thumbnail, qtd });
+      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+    }
+    cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+  }
 
-    cartItemsStorage.forEach((cartitemId, i) => {
-      if (cartitemId.id === id ) {
-        console.log('igual na posição', i);
-      } else {
-        cartItemsStorage.push({ id, title, price, qtd });
+  checkCartOnAdd(idItem) {
+    const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
+      if (cartItemsStorage[i].id === idItem) {
+        cartItemsStorage[i].qtd += 1;
         localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+        return false;
       }
-    });
-    // cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
-    // console.log(cartItemsStorage[0].qtd);
+    }
+    return true;
   }
 
   componentDidMount() { 
