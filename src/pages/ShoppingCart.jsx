@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import QuantifyProducts from '../components/QuantifyPorducts'
 
 class ShoppingCart extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class ShoppingCart extends React.Component {
         <p data-testid='shopping-cart-empty-message'>
           'Seu carrinho está vazio'
         </p>
+        <QuantifyProducts />
       </div>
       
     )
