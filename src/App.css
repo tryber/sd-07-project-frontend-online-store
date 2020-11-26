@@ -4,14 +4,13 @@
   justify-content: center;
 }
 
-header {
+.header {
   background-color: rgb(255, 241, 115);
   color: gray;
   display: flex;
   height: 48px;
   justify-content: center;
   padding: 15px;
-  width: 100vw;
 }
 
 .header-container {
@@ -21,6 +20,11 @@ header {
 
 .logo {
   height: 35px;
+}
+
+.shopping-cart-icon {
+  height: 35px;
+  margin-left: 10px;
 }
 
 .search {

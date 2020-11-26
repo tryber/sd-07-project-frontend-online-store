@@ -1,10 +1,11 @@
 import React from 'react';
-import logo from '../logo.svg';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import * as mlAPI from '../services/api';
+import '../App.css';
 import Categories from './Categories';
+import logo from '../images/logo.svg';
+import shoppingCart from '../images/shopping-cart.png';
 import Card from './Card'
-
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -87,7 +88,12 @@ class SearchBar extends React.Component {
         <div>
           {arrayOfItemByInputedText.map((item) => <Card key={item.id} products={item} />)}
         </div>
-      </div>
+        <Router>
+          <Link to="/cart">
+            <img className="shopping-cart-icon" alt="Shopping cart icon" src={shoppingCart} />
+          </Link>
+        </Router>
+      </div >
     );
   }
 }
