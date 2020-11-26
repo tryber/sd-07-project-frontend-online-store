@@ -8,6 +8,12 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <header data-testid="home-initial-message">
+          <form>
+            <input />
+          </form>
+          <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
+        </header>
         <div>
           <Link data-testid="shopping-cart-button" to="/shoppingcart">
             <FontAwesomeIcon icon={ faShoppingCart } />
