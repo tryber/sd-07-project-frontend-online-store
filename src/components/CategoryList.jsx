@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import * as api from "../services/api";
-import "./CategoryList.css";
+import React, { Component } from 'react';
+import * as api from '../services/api';
+import './CategoryList.css';
 
 export default class CategoryList extends Component {
   constructor() {
@@ -21,15 +21,17 @@ export default class CategoryList extends Component {
       category: Fetch,
     });
   }
+
   async filterCategory(event) {
     const { handleChange, handleClick } = this.props;
     await handleChange(event);
     handleClick(event);
   }
+
   render() {
     return (
       <div className="container-lists-category">
-        {this.state.category.map((categoria) => (
+        {this.state.category.map(( categoria ) => (
           <label htmlFor={categoria.id} key={categoria.id}>
             {categoria.name}
             <input
