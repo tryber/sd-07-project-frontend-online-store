@@ -20,6 +20,7 @@ class FilteredProductsList extends Component {
         {allProducts.map((product) => (
           <IndividualCard
             key={ product.id }
+            id={ product.id }
             title={ product.title }
             price={ product.price }
             image={ product.thumbnail }
