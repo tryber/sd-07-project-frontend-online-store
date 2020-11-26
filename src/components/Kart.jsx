@@ -20,17 +20,21 @@ class KartList extends React.Component {
   }
 
   async getStorageItens() {
-    const itens = await storageServices.getProductsStorage();
-    this.setState({ itensStorage: itens });
+    const itensStorage = await storageServices.getProductsStorage();
+    this.setState({ itensStorage });
   }
 
   render() {
-    const { message, itensStorage } = this.state;
-    const messageEmptyKart = <h1 data-testid="shopping-cart-empty-message">{message}</h1>;
-    const renderProducts = <KartItens itensStorage={ itensStorage } />;
+    let { itensStorage } = this.state;
+    const { message } = this.state;
+    if (!itensStorage) itensStorage = storageServices.getProductsStorage();
     return (
       <div className="kart">
-        {itensStorage.length ? renderProducts : messageEmptyKart}
+        {itensStorage ? (
+          <KartItens itensStorage={ itensStorage } />
+        ) : (
+          <h1 data-testid="shopping-cart-empty-message">{message}</h1>
+        )}
       </div>
     );
   }
