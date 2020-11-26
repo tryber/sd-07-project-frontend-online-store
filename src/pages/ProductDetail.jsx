@@ -1,6 +1,5 @@
 import React from 'react';
 import * as API from '../services/api';
-import PageCard from './PageCard';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -30,7 +29,8 @@ class ProductDetail extends React.Component {
   componentDidMount() {
     this.searchQueryProducts();
   }
-  LoadItemsToLocalStorage = () => {
+
+  addItemToLocalStorage = () => {
     const id = this.state.id;
     const title = this.state.title;
     const price = this.state.price;
@@ -51,9 +51,8 @@ class ProductDetail extends React.Component {
       values.push({id, title, price, thumbnail, number});
       localStorage.setItem('cart', JSON.stringify(values));
     }
-
-    
   }
+    
   render() {
     const { id, title, price, thumbnail } = this.state;
     return (
@@ -76,7 +75,8 @@ class ProductDetail extends React.Component {
           </ul>
         </div>
         <div>
-          <button data-testid='product-detail-add-to-cart' onClick={this.LoadItemsToLocalStorage}>Adicionar</button>
+          <button data-testid='product-detail-add-to-cart' onClick={this.addItemToLocalStorage}>Adicionar</button>
+          <Link data-testid="shopping-cart-button" to="/ShoppingCart">Ir para o carrinho</Link>
         </div>
           <form>
             <label htmlFor="input-email">

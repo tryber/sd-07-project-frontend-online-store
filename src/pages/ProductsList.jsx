@@ -76,7 +76,7 @@ class ProductsList extends Component {
           />
           <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
           {products === undefined ? this.showMessage() : <ShowProducts products={products} />}
-          <Link data-testid="shopping-cart-button" to="/PageCard">
+          <Link data-testid="shopping-cart-button" to="/ShoppingCart">
             <img src={Logo} alt="shoppingCart" />
           </Link>
         </div>
