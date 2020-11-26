@@ -34,7 +34,6 @@ export default class QuantifyProducts extends Component {
           >
             +
           </button>
-
           <button
             onClick={ () => { this.decrease(); } }
             type="button"
