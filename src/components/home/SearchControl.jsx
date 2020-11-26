@@ -29,8 +29,8 @@ class SearchControl extends React.Component {
 }
 
 SearchControl.propTypes = {
-  search: PropTypes.string.isRequired,
-  answer: PropTypes.objectOf(PropTypes.array).isRequired,
+  search: PropTypes.bool.isRequired,
+  answer: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   num: PropTypes.number.isRequired,
 };

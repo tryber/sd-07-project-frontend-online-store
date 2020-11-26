@@ -24,6 +24,7 @@ class ProductDetails extends React.Component {
     );
   }
   render() {
+
     return (
       <div className="product-detail-container">
         <div>
@@ -51,6 +52,6 @@ ProductDetails.propTypes = {
       }).isRequired,
     }).isRequired,
   }).isRequired,
-}
+};
 
 export default ProductDetails;
