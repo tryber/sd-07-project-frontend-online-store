@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Card extends React.Component {
@@ -8,9 +9,8 @@ class Card extends React.Component {
   }
 
   addToCart() {
-    const p = this.props;
-    const { title, price, thumbnail, id } = p.produto;
-    const { productAdd } = p;
+    const { title, price, thumbnail, id } = this.props.produto;
+    const { productAdd } = this.props;
     const product = {
       id,
       price,
@@ -22,8 +22,7 @@ class Card extends React.Component {
   }
 
   render() {
-    const p = this.props
-    const { thumbnail, title, price, id, category_id } = p.produto;
+    const { thumbnail, title, price, id, category_id } = this.props.produto;
     return (
       <div data-testid="product">
         <h3>{title}</h3>
@@ -48,5 +47,6 @@ class Card extends React.Component {
     );
   };
 }
+
 
 export default Card;

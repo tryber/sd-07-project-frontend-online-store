@@ -14,10 +14,10 @@ class Home extends React.Component {
     this.atualizar = this.atualizar.bind(this);
     this.localStorageCart = this.localStorageCart.bind(this);
     this.state = {
-      category: "",
-      searchValue: "",
+      category: '',
+      searchValue: '',
       list: {},
-    }
+    };
   }
 
   componentDidMount() {
@@ -32,10 +32,10 @@ class Home extends React.Component {
 
   atualizar() {
     const { searchValue, category } = this.state;
-    if(searchValue !== '' || category !== '') {
+    if (searchValue !== '' || category !== '') {
       this.buscaCategoryAndQuery(category, searchValue);
     } else {
-      this.setState({ list: {} })
+      this.setState({ list: {} });
     }
   }
 
@@ -57,15 +57,16 @@ class Home extends React.Component {
   }
 
   render() {
-    return(
+    const { list } = this.state
+    return (
       <div>
-        <Caregories onChange={this.select} />
+        <Caregories onChange={ this.select } />
         <div>
           <div>
-            <SearchBar onClick={this.onClick} />
+            <SearchBar onClick={ this.onClick } />
             <ShoppingCartIcon />
           </div>
-          <List lista={this.state.list} />
+          <List lista={ list } />
         </div>
       </div>
     );
