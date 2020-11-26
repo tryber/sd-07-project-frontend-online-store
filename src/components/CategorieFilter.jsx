@@ -23,16 +23,18 @@ export default class CategorieFilter extends React.Component {
 
   render() {
     const { categories } = this.state;
+    const { onClickEvent } = this.props;
     return (
       <div>
-        { categories.map((categorie) => (
+        {categories.map((categorie) => (
           <div key={ categorie.id }>
             <label htmlFor={ categorie.id }>{ categorie.name }</label>
             <input
               type="radio"
               data-testid="category"
               name={ categorie.name }
-              value={ categorie.name }
+              value={ categorie.id }
+              onClick={ onClickEvent }
             />
           </div>
         ))}
