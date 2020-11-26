@@ -9,13 +9,10 @@ class ProductDetails extends React.Component {
     super()
     this.apiRequest = this.apiRequest.bind(this);
     this.handleFitered = this.handleFitered.bind(this);
-<<<<<<< HEAD
     this.checkCartOnAdd = this.checkCartOnAdd.bind(this);
-=======
     this.getnota = this.getnota.bind(this);
     this.butfunc = this.butfunc.bind(this);
     this.inputs =this.inputs.bind(this);
->>>>>>> b9c5b65bf663914b2e306ddced55f5ca57020117
     this.state = {
       itemRecived: {},
       Email: "",
