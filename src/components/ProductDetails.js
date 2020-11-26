@@ -5,7 +5,6 @@ import ProductSpec from './ProductSpec';
 
 class ProductDetails extends Component {
   render() {
-    console.log(this.props);
     const { location } = this.props;
     const { thumbnail, title, price, attributes } = location.product;
 

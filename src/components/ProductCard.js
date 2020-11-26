@@ -6,7 +6,6 @@ class ProductCard extends Component {
   render() {
     const { product } = this.props;
     const { thumbnail, title, price } = product;
-    // inserir um link para a página de detalhes do produto com o id.
     return (
       <div data-testid="product">
         <Link data-testid="product-detail-link" to={ { pathname: '/product', product } }>
