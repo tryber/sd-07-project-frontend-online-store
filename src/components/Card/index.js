@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 
 class Card extends Component {
   render() {
-    const { data } = this.props;
-    const { title, thumbnail, price, id } = data;
+    const {
+      search: { categoryID },
+      data: { title, thumbnail, price, id },
+    } = this.props;
     return (
       <article data-testid="product">
         <header>
@@ -16,7 +18,12 @@ class Card extends Component {
         </main>
         <footer>
           <p>{`R$ ${price}`}</p>
-          <Link to={`/product/${id}`} data-testid="product-detail-link">Detalhes do produto</Link>
+          <Link
+            to={ `/product/${id}/${categoryID}` }
+            data-testid="product-detail-link"
+          >
+            Detalhes do produto
+          </Link>
         </footer>
       </article>
     );
@@ -29,6 +36,10 @@ Card.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
+  }).isRequired,
+  search: PropTypes.shape({
+    searchInput: PropTypes.string.isRequired,
+    categoryID: PropTypes.string.isRequired,
   }).isRequired,
 };
 
