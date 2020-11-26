@@ -1,7 +1,6 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Button from './components/Button';
+import { Link } from 'react-router-dom';
+import cart from './images/cart.png';
 
 class ProductsList extends Component {
   render() {
@@ -24,7 +23,13 @@ class ProductsList extends Component {
               </div>
             </label>
             <div>
-              <Button />
+              <Link to="./pages/cart">
+                <img
+                  data-testid="shopping-cart-button"
+                  src={ cart }
+                  alt="Carrinho de Compras"
+                />
+              </Link>
             </div>
           </div>
         </form>
@@ -32,7 +37,7 @@ class ProductsList extends Component {
     );
   }
 }
-Button.propTypes = {
-  onClhange: PropTypes.func.isRequired,
-};
+// Button.propTypes = {
+//   onChange: PropTypes.func.isRequired,
+// };
 export default ProductsList;
