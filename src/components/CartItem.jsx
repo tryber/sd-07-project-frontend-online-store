@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 class CartItem extends Component {
   render() {
-    const { title, price, image } = this.props;
+    const { title, price, image, number } = this.props;
     return (
-      <div data-testid="shopping-cart-product-name" >
+      <div >
         <img src={image} alt={title} />
-        <span>{title}</span>
+        <span data-testid="shopping-cart-product-name">{title}</span>
         <h2>-</h2>
-        <span data-testid="shopping-cart-product-quantity">Quantidade</span>
+        <span data-testid="shopping-cart-product-quantity">{number}</span>
         <h2>+</h2>
         <span>{price}</span>
       </div>

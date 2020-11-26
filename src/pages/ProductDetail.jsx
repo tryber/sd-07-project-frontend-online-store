@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as API from '../services/api';
+import { Link } from 'react-router-dom';
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class ProductDetail extends Component {
     const id = this.state.id;
     const title = this.state.title;
     const price = this.state.price;
-    const thumbnail = this.state.thumbnail;
+    const imagePath = this.state.thumbnail;
     const number = 1;
     if (Storage) {
       const getItemSaved = JSON.parse(localStorage.getItem('cart'));
@@ -49,7 +50,7 @@ class ProductDetail extends Component {
         } 
       })
       if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values))
-      values.push({id, title, price, thumbnail, number});
+      values.push({id, title, price, imagePath, number});
       localStorage.setItem('cart', JSON.stringify(values));
     }
   }
@@ -77,6 +78,7 @@ class ProductDetail extends Component {
         <button
           data-testid='product-detail-add-to-cart'
           onClick={this.addItemToLocalStorage}>Adicionar</button>
+        <Link data-testid="shopping-cart-button" to="/ShoppingCart">Ir para o carrinho</Link>
       </div>
     );
   }

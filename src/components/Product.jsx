@@ -4,31 +4,33 @@ import { Link } from 'react-router-dom';
 class Product extends Component {
 
   addItemToLocalStorage({ target }) {
-    const { name } = target;
-    const product = document.getElementById(`${name}`)
-    const title = product.firstChild.innerText;
+    const id = target.name;
+    const product = document.getElementById(`${id}`)
+    const title = product.firstChild.innerHTML;
     const imagePath = product.firstChild.nextSibling.src;
-    const price = product.firstChild.nextSibling.nextSibling.innerText;
+    const price = product.firstChild.nextSibling.nextSibling.innerHTML;
     const number = 1;
     if (Storage) {
       const getItemSaved = JSON.parse(localStorage.getItem('cart'));
       const values = (getItemSaved === null ? [] : getItemSaved);
       let repeatedProduct = false;
       values.forEach(value => {
-        if (value.id === name) {
+        if (value.id === id) {
           value.number += 1;
           value.price += price;
           repeatedProduct = true;
         } 
       })
       if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values))
-      values.push({name, title, price, imagePath, number});
+      values.push({id, title, price, imagePath, number});
       localStorage.setItem('cart', JSON.stringify(values));
     }
   }
 
   render() {
     const { id, title, price, thumbnail } = this.props;
+    console.log(title);
+    console.log(price);
     return (
       <div data-testid="product" id={id}>
         <span>{title}</span>
@@ -38,7 +40,7 @@ class Product extends Component {
           data-testid="product-add-to-cart"
           name={id}
           onClick={this.addItemToLocalStorage}>Adicionar ao carrinho</button>
-        <Link data-testid="product-detail-link" to={`/ProductDetail/${id}`} />
+        <Link data-testid="product-detail-link" to={`/ProductDetail/${id}`}>Detalhes do produto</Link>
       </div>
     );
   }

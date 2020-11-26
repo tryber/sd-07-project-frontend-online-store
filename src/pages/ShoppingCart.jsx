@@ -11,6 +11,7 @@ class ShoppingCart extends Component {
   
   render() {
     const { products } = this.state;
+    console.log(products);
     if (products === null)
       return (
         <span data-testid="shopping-cart-empty-message">
@@ -23,7 +24,8 @@ class ShoppingCart extends Component {
             key={product.id}
             title={product.title}
             price={product.price}
-            image={product.imagePath} />
+            image={product.imagePath}
+            number={product.number} />
           )}
         </div>
       )
