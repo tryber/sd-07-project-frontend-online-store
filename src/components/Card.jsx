@@ -1,26 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as mlAPI from '../services/api';
 
 class CardProduct extends React.Component {
     render() {
-        const { produts } = this.props;
-        const { title, image, price } = produts;
+        const { products } = this.props;
+        const { title, thumbnail, price } = products;
 
-        return(
+        return (
             <div data-testid="product">
-                <h3>{title}</h3>
-                <img src={image}/>
-                <spam>{price}</spam>
+                <h1>{title}</h1>
+                <img src={thumbnail} alt="product item" />
+                <h2>{price}</h2>
             </div>
         )
     }
 }
 
 CardProduct.propTypes = {
-    produts: PropTypes.shape({
+    products: PropTypes.shape({
         title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
+        thumbnail: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
     }).isRequired,
 };
