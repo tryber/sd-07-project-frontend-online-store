@@ -7,10 +7,9 @@ class Listagem extends Component {
   render() {
     return (
       <div className="main">
-        <div className="CategoryList">
+        {/* <div className="CategoryList">
           <h3>Categorias</h3>
-          <CategoryList />
-          </div>
+           </div> */}
           <div className="SearchBar">
           <SearchBar />
         </div>
