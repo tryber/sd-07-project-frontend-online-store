@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import * as StorageServices from '../services/storageServices';
 
 class ProductDetail extends React.Component {
   constructor() {
     super();
     this.fetchDetails = this.fetchDetails.bind(this);
+    this.fetchLocalStorage = this.fetchLocalStorage.bind(this);
     this.state = {
       dataDetail: [],
       loading: true,
@@ -31,14 +33,19 @@ class ProductDetail extends React.Component {
     });
   }
 
+  async fetchLocalStorage(item) {
+    await StorageServices.setProductsStorage(item);
+  }
+
   render() {
     const { dataDetail, loading } = this.state;
-    const { title, price, thumbnail } = dataDetail;
+    const { id, title, price, thumbnail } = dataDetail;
+    // const productToKart = { id, title, price, qtt: 1 }
 
     return (
       <div>
         {loading ? (
-          'Teste'
+          'Loading...'
         ) : (
           <div>
             <h3 data-testid="product-detail-name">{`${title} - R$ ${price}`}</h3>
@@ -56,6 +63,17 @@ class ProductDetail extends React.Component {
             </div>
           </div>
         )}
+        <div data-testid="product-detail-add-to-cart">
+          <button
+            data-testid="shopping-cart-button"
+            type="submit"
+            onClick={
+              () => this.fetchLocalStorage({ title, thumbnail, price, id, qtt: 1 })
+            }
+          >
+            Adicionar ao Carrinho
+          </button>
+        </div>
       </div>
     );
   }
