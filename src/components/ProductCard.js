@@ -2,6 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  addToCart() {
+    const { product } = this.props;
+    const initialQuantity = 1;
+    if (localStorage.getItem(product.title)) {
+      const value = localStorage.getItem(product.title);
+      localStorage.setItem(product.title, parseInt(value, 10) + 1);
+    } else {
+      localStorage.setItem(product.title, initialQuantity);
+    }
+  }
+
   render() {
     // const { product } = this.props;
     const { product: { title, thumbnail, price } } = this.props;
@@ -18,6 +35,7 @@ class ProductCard extends React.Component {
           <footer>
             <p>{`R$ ${price}`}</p>
           </footer>
+          <button type="button" onClick={ this.addToCart }>ADICIONAR AO CARRINHO</button>
         </article>
       </div>
     );
