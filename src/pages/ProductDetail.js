@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class ProductDetail extends Component {
@@ -10,8 +11,8 @@ class ProductDetail extends Component {
     this.callingFirst = this.callingFirst.bind(this);
     this.state = {
       name: 'Teste',
-      imagePath : '',
-      price : 0,
+      imagePath: '',
+      price: 0,
       details: []
     };
   }
@@ -21,9 +22,10 @@ class ProductDetail extends Component {
   }
 
   async getProduct() {
-    const { id, category_id } = this.props.match.params;
-    const { results } = await api.getProductsFromCategoryAndQuery(category_id, '');
-    const productDetail = results.filter( result => result.id === id);
+    console.log(this.props.match);
+    const { id, categoryId } = this.props.match.params;
+    const { results } = await api.getProductsFromCategoryAndQuery(categoryId, '');
+    const productDetail = results.filter(result => result.id === id);
 
     this.setState( {
       name: productDetail[0].title,
@@ -34,7 +36,7 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    this.callingFirst();    
+    this.callingFirst();
   }
 
   render() {
@@ -43,16 +45,27 @@ class ProductDetail extends Component {
       <div data-testid="product-detail-name">
         <Link to="/">Home</Link>
         <h1>Product Detail</h1>
-          <p>Name: <span>{name}</span></p>
-          <img src={imagePath} alt={name} />
-          <p>Price: <span>{price}</span> </p>
-          <div>Details: {
-            details.map( element => <div key={element.id}>{element.name} - <span>{element.value_name}</span></div>)
-            }
-          </div>
+        <p>Name: <span>{name}</span></p>
+        <img src={ imagePath } alt={ name } />
+        <p>Price: <span>{price}</span> </p>
+        <div>Details: {
+          details.map( element => 
+            <div key={element.id}>{element.name} - <span>{element.value_name}</span>
+          </div>)
+          },
+        </div>
       </div>
     )
   }
 }
+
+ProductDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+      categoryId: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default ProductDetail;
