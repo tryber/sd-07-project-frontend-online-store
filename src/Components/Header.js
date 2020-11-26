@@ -5,11 +5,11 @@ import ShoppingCartButton from './ShoppingCartButton';
 
 class Header extends React.Component {
   render() {
-    const { handlerSubmit, state } = this.props;
+    const { handlerSearch, state } = this.props;
     return (
       <div>
         {/* logo */}
-        <SearchBar handlerSubmit={ handlerSubmit } state={ state } />
+        <SearchBar handlerSearch={ handlerSearch } state={ state } />
         {/* filtro */}
         <ShoppingCartButton />
       </div>
@@ -19,7 +19,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   state: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handlerSubmit: PropTypes.func.isRequired,
+  handlerSearch: PropTypes.func.isRequired,
 };
 
 export default Header;

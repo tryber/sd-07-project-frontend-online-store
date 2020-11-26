@@ -7,7 +7,7 @@ import * as api from '../services/api';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.handlerSubmit = this.handlerSubmit.bind(this);
+    this.handlerSearch = this.handlerSearch.bind(this);
     this.handlerSelectCategory = this.handlerSelectCategory.bind(this);
 
     this.state = {
@@ -22,7 +22,7 @@ class Home extends React.Component {
     this.fetchCategories();
   }
 
-  handlerSubmit(text) {
+  handlerSearch(text) {
     this.setState({
       input: text,
     }, () => {
@@ -55,7 +55,7 @@ class Home extends React.Component {
     const { products, categories } = this.state;
     return (
       <div>
-        <Header handlerSubmit={ this.handlerSubmit } state={ this.state } />
+        <Header handlerSearch={ this.handlerSearch } state={ this.state } />
         <Products products={ products } />
         <Categories
           categories={ categories }

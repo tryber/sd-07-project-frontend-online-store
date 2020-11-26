@@ -4,9 +4,11 @@ import ProductCard from './ProductCard';
 
 class Products extends React.Component {
   render() {
+    const empty = 0;
     const { products } = this.props;
     const { results } = products;
     if (results) {
+      if (results.length === empty) return <p>Nenhum produto foi encontrado</p>;
       return (
         <div>
           {results.map((result) => <ProductCard key={ result.id } product={ result } />)}

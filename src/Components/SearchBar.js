@@ -6,16 +6,16 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.teste = this.teste.bind(this);
+    this.searchButton = this.searchButton.bind(this);
     this.state = {
       searchText: '',
     };
   }
 
-  teste() {
-    const { handlerSubmit } = this.props;
+  searchButton() {
+    const { handlerSearch } = this.props;
     const { searchText } = this.state;
-    handlerSubmit(searchText);
+    handlerSearch(searchText);
   }
 
   handleChange({ target }) {
@@ -35,7 +35,7 @@ class SearchBar extends React.Component {
         <button
           type="button"
           data-testid="query-button"
-          onClick={ this.teste }
+          onClick={ this.searchButton }
         >
           Buscar
         </button>
@@ -45,7 +45,7 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  handlerSubmit: PropTypes.func.isRequired,
+  handlerSearch: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
