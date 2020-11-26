@@ -10,8 +10,4 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const end2 = await end.json();
 
   return end2;
-
-
-
-  
 }
