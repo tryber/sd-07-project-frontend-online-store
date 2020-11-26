@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import CategoryList from './CategoryList';
 import ProductCard from './ProductCard';
 import * as api from '../services/api';
 
 class ProductList extends Component {
   constructor() {
     super();
-
     this.state = {
       textValue: '',
       products: [],
       search: false,
+      category: '',
     };
 
     this.updateState = this.updateState.bind(this);
     this.textValueChange = this.textValueChange.bind(this);
+    this.handleClickCategory = this.handleClickCategory.bind(this);
   }
 
   textValueChange({ target }) {
@@ -25,12 +27,18 @@ class ProductList extends Component {
   }
 
   async updateState() {
-    const { textValue } = this.state;
-    const products = await api.getProductsFromCategoryAndQuery('', textValue);
+    const { textValue, category } = this.state;
+    const products = await api.getProductsFromCategoryAndQuery(category, textValue);
     this.setState({
       products: products.results,
       search: true,
     });
+  }
+
+  handleClickCategory({ target }) {
+    this.setState({
+      category: target.value,
+    }, () => this.updateState());
   }
 
   render() {
@@ -41,6 +49,7 @@ class ProductList extends Component {
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
+        <CategoryList handleClickCategory={ this.handleClickCategory } />
         <Link data-testid="shopping-cart-button" to="/carrinho">
           Carrinho
         </Link>
@@ -50,7 +59,7 @@ class ProductList extends Component {
         />
         <button
           data-testid="query-button"
-          onClick={ () => this.updateState() }
+          onClick={ this.updateState }
           type="button"
         >
           Procurar
