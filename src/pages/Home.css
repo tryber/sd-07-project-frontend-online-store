@@ -1,0 +1,47 @@
+.sidebar {
+  align-content: center;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  padding-top: 10px;
+  position: fixed;
+  width: 100%;
+}
+
+.cartIcon {
+  height: 40px;
+  width: auto;
+}
+
+.cartIconQnt {
+  display: flex;
+  flex-direction: row;
+}
+
+.category-list {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.searchBar {
+  border-radius: 5px;
+  height: 20px;
+  width: 400px;
+}
+
+.product-list-category {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 100px;
+}
+
+.productsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-left: 40px;
+  width: 1000px;
+}

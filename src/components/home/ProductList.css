@@ -1,0 +1,5 @@
+.productList {
+  color: darkblue;
+  display: flex;
+  flex-wrap: wrap;
+}
