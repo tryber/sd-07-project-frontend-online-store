@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-// import ProductCard from '../ProductCard';
+import ProductCard from '../ProductCard';
 
 class ProductList extends Component {
   render() {
     const { products } = this.props;
     return (
-      <ul>
+      <div className="products-content">
         {products.length
-          ? products.map(({ id, title, thumbnail, price }) => (
-            <li
-              key={ id }
-              data-testid="product"
-            >
-              <h3 data-testid="product-detail-name">{ title }</h3>
-              <img src={ thumbnail } alt="Product" />
-              <p>{ price }</p>
-              <Link
-                data-testid="product-detail-link"
-                to="/productdetail"
-              >
-                Mais Detalhes
-              </Link>
-            </li>
-          )) : (<li> Nenhum produto foi encontrado </li>)}
-      </ul>
+          ? products.map((product) => (
+            <ProductCard key={ product.id } product={ product } />
+          )) : (<p> Nenhum produto foi encontrado </p>)}
+      </div>
     );
   }
 }
