@@ -43,7 +43,7 @@ class Home extends Component {
   }
 
   render() {
-    const { results } = this.state;
+    const { results, searchKey } = this.state;
     return (
       <div>
         <header>
@@ -59,7 +59,7 @@ class Home extends Component {
             Carrinho de compras
           </Link>
         </header>
-        <ProductList results={ results } />
+        <ProductList results={ results } category={ searchKey } />
         <Categories filterCategory={ this.handleCategory } />
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.

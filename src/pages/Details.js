@@ -16,8 +16,8 @@ export default class Details extends Component {
   }
 
   async fetchAPI() {
-    const { id } = this.props.match.params;
-    const resp = await api.getProductsFromCategoryAndQuery(id, null);
+    const { id, searchTerm } = this.props.match.params;
+    const resp = await api.getProductsFromCategoryAndQuery('', searchTerm);
     this.setState({
       loading: false,
       product: resp.results.find((product) => product.id === id),
@@ -31,8 +31,8 @@ export default class Details extends Component {
     }
     return (
       <div>
-        <h1 data-testid="product-detail-name">{product.title}</h1>
-        <img src={ product.thumbnail } alt="asa"></img>
+        <h2 data-testid="product-detail-name">{product.title}</h2>
+        <img src={ product.thumbnail } alt="thumb" />
         <p>{product.price}</p>
       </div>
     );

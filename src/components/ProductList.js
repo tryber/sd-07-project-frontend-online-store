@@ -5,11 +5,18 @@ import Product from './Product';
 
 export default class ProductList extends Component {
   render() {
-    const { results } = this.props;
+    const { results, category } = this.props;
     return (
       <div>
         {results.map(({ title, thumbnail, price, id }) => (
-          <Product title={ title } thumbnail={ thumbnail } price={ price } key={ id } id={ id } />
+          <Product
+            title={ title }
+            thumbnail={ thumbnail }
+            price={ price }
+            key={ id }
+            id={ id }
+            category={ category }
+          />
         ))}
       </div>
     );
@@ -25,4 +32,5 @@ ProductList.propTypes = {
       id: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  category: PropTypes.string.isRequired,
 };
