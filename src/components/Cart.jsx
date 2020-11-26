@@ -4,9 +4,27 @@ class Cart extends React.Component {
   constructor() {
     super();
 
+    this.handleClick = this.handleClick.bind(this);
+
     this.state = {
       products: JSON.parse(localStorage.getItem('products')) || [],
     };
+  }
+
+  handleClick({ target }) {
+    const { products } = this.state;
+
+    if (target.classList.contains('button-increase')) {
+      console.log(target.parentElement.previousElementSibiling);
+      const text = target.parentElement.previousElementSibiling;
+      products.forEach((element) => {
+        if (element.title.includes(text)) {
+          element.qtd += 1;
+        }
+      });
+    }
+
+    this.setState({ products });
   }
 
   render() {
@@ -24,19 +42,42 @@ class Cart extends React.Component {
       <div>
         {products.map((element) => (
           <div key={ element.price }>
-            <p data-testid="shopping-cart-product-name">
+            <p>
+              <button type="button">X</button>
               Produto:
-              {element.title}
-              |
+              <span data-testid="shopping-cart-product-name">
+                {element.title}
+              </span>
               Preço:
-              {element.price}
+              <span>
+                {element.price}
+              </span>
             </p>
-            <p data-testid="shopping-cart-product-quantity">
-              Quantidade:
-              {element.qtd}
-            </p>
+            <div>
+              <button
+                type="button"
+                data-testid="product-increase-quantity"
+                className="button-increase"
+                onClick={ this.handleClick }
+              >
+                +
+              </button>
+              <span data-testid="shopping-cart-product-quantity">
+                Quantidade:
+                {element.qtd}
+              </span>
+              <button
+                type="button"
+                data-testid="product-decrease-quantity"
+                className="button-decrease"
+              >
+                -
+              </button>
+            </div>
           </div>
         ))}
+        <br />
+        <button type="button">FINALIZAR A COMPRA</button>
       </div>
     );
   }
