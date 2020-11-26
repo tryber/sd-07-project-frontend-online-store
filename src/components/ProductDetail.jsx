@@ -1,11 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import * as api from '../services/api';
+import React from "react";
+import PropTypes from "prop-types";
+import * as api from "../services/api";
+import * as StorageServices from "../services/storageServices";
 
 class ProductDetail extends React.Component {
   constructor() {
     super();
     this.fetchDetails = this.fetchDetails.bind(this);
+    this.fetchLocalStorage = this.fetchLocalStorage.bind(this);
     this.state = {
       dataDetail: [],
       loading: true,
@@ -23,7 +25,7 @@ class ProductDetail extends React.Component {
           params: { id },
         },
       } = this.props;
-      const getDetail = await api.getProductsFromCategoryAndQuery('', id);
+      const getDetail = await api.getProductsFromCategoryAndQuery("", id);
       this.setState({
         dataDetail: getDetail.results[0],
         loading: false,
@@ -31,18 +33,23 @@ class ProductDetail extends React.Component {
     });
   }
 
+  async fetchLocalStorage(item) {
+    await StorageServices.setProductsStorage(item);
+  }
+
   render() {
     const { dataDetail, loading } = this.state;
-    const { title, price, thumbnail } = dataDetail;
+    const { id, title, price, thumbnail } = dataDetail;
+    // const productToKart = { id, title, price, qtt: 1 }
 
     return (
       <div>
         {loading ? (
-          'Teste'
+          "Teste"
         ) : (
           <div>
             <h3 data-testid="product-detail-name">{`${title} - R$ ${price}`}</h3>
-            <img src={ thumbnail } alt="Imagem do produto" />
+            <img src={thumbnail} alt="Imagem do produto" />
             <div>
               <ul>
                 <li>Especificação 01</li>
@@ -56,6 +63,17 @@ class ProductDetail extends React.Component {
             </div>
           </div>
         )}
+        <div data-testid="product-detail-add-to-cart">
+          <button
+            data-testid="shopping-cart-button"
+            type="submit"
+            onClick={
+              () => this.fetchLocalStorage({ title, thumbnail, price, id, qtt: 1 })
+            }
+          >
+            Adicionar ao Carrinho
+          </button>
+        </div>
       </div>
     );
   }
