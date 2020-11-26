@@ -40,7 +40,7 @@ class Home extends React.Component {
           categoryId,
           searchKey,
         );
-        console.log(response.results);
+        // console.log(response.results);
         this.setState({
           loading: false,
           searchProducts: [...response.results],
@@ -60,7 +60,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { searchKey, categoryId, searchProducts, loading } = this.state;
+    const { searchKey, searchProducts, loading } = this.state;
     return (
       <div className="home-container">
         <div className="home-aside-container">
@@ -101,8 +101,6 @@ class Home extends React.Component {
                   <CardProduct
                     key={item.id}
                     item={item}
-                    categoryId={categoryId}
-                    data-testid="product-detail-link"
                   />
                 ))
               )}
