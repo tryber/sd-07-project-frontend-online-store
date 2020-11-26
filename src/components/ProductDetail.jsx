@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import * as api from "../services/api";
-import * as StorageServices from "../services/storageServices";
+import React from 'react';
+import PropTypes from 'prop-types';
+import * as api from '../services/api';
+import * as StorageServices from '../services/storageServices';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -25,7 +25,7 @@ class ProductDetail extends React.Component {
           params: { id },
         },
       } = this.props;
-      const getDetail = await api.getProductsFromCategoryAndQuery("", id);
+      const getDetail = await api.getProductsFromCategoryAndQuery('', id);
       this.setState({
         dataDetail: getDetail.results[0],
         loading: false,
@@ -45,11 +45,11 @@ class ProductDetail extends React.Component {
     return (
       <div>
         {loading ? (
-          "Teste"
+          'Loading...'
         ) : (
           <div>
             <h3 data-testid="product-detail-name">{`${title} - R$ ${price}`}</h3>
-            <img src={thumbnail} alt="Imagem do produto" />
+            <img src={ thumbnail } alt="Imagem do produto" />
             <div>
               <ul>
                 <li>Especificação 01</li>
