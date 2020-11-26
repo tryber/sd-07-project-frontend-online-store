@@ -19,7 +19,7 @@ class Header extends React.Component {
           Buscar
         </button>
         <Link data-testid="shopping-cart-button" to="/kart">
-          <img src={ KartImg } alt="Botão carrinho de compras" />
+          <img src={ KartImg } className="kart-icon" alt="Botão carrinho de compras" />
         </Link>
       </header>
     );
