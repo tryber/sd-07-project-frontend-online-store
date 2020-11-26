@@ -13,16 +13,11 @@ class ProductDetail extends Component {
       name: 'Teste',
       imagePath: '',
       price: 0,
-      details: []
+      details: [],
     };
   }
 
-  async callingFirst() {
-    await this.getProduct();
-  }
-
-  async getProduct() {
-    console.log(this.props.match);
+  async getProduct() {    
     const { id, categoryId } = this.props.match.params;
     const { results } = await api.getProductsFromCategoryAndQuery(categoryId, '');
     const productDetail = results.filter(result => result.id === id);
@@ -35,6 +30,10 @@ class ProductDetail extends Component {
     });
   }
 
+  async callingFirst() {
+    await this.getProduct();
+  }
+
   componentDidMount() {
     this.callingFirst();
   }
@@ -45,13 +44,18 @@ class ProductDetail extends Component {
       <div data-testid="product-detail-name">
         <Link to="/">Home</Link>
         <h1>Product Detail</h1>
-        <p>Name: <span>{name}</span></p>
+        <p>
+          Name: <span>{name}</span>
+        </p>
         <img src={ imagePath } alt={ name } />
-        <p>Price: <span>{price}</span> </p>
-        <div>Details: {
-          details.map( element => 
-            <div key={element.id}>{element.name} - <span>{element.value_name}</span>
-          </div>)
+        <p>
+          Price: <span>{price}</span> 
+        </p>
+        <div>
+          Details: {
+            details.map((element) => 
+              <div key={element.id}>{element.name} - <span>{element.value_name}</span>
+              </div>)
           },
         </div>
       </div>
