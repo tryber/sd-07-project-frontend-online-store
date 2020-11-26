@@ -14,7 +14,12 @@ class ProductList extends Component {
     this.state = {
       searchInput: '',
       productList: [],
+      categoryId: '',
     };
+  }
+
+  componentDidMount() {
+    this.onSubmit();
   }
 
   onSearchInput({ target }) {
@@ -34,8 +39,9 @@ class ProductList extends Component {
 
   render() {
     const { searchInput, productList } = this.state;
+    const { categoryId } = this.props;
 
-    if (searchInput === '') {
+    if (searchInput === '' && categoryId === '') {
       return (
         <div>
           <SearchBar
@@ -44,6 +50,23 @@ class ProductList extends Component {
             onSubmit={ this.onSubmit }
           />
           <InitialMessage />
+        </div>
+      );
+    }
+
+    if (searchInput === '' && categoryId !== '') {
+      return (
+        <div>
+          <SearchBar
+            searchInput={ searchInput }
+            onSearchInput={ this.onSearchInput }
+            onSubmit={ this.onSubmit }
+          />
+          <div>
+            {productList.map((product) => (
+              <ProductCard product={ product } key={ product.id } />
+            ))}
+          </div>
         </div>
       );
     }
