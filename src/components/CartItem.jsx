@@ -63,14 +63,14 @@ class CartItem extends Component {
     return (
       <div>
         <img src={ image } alt={ title } />
-        <span data-testid="shopping-cart-product-name">
+          <span data-testid="shopping-cart-product-name">
         Descrição:
-        { title }
+          { title }
         -
-        </span>
+          </span>
         <span data-testid="shopping-cart-product-quantity">
         Qtd:
-        { number }
+          { number }
         -
         </span>
         <span>
@@ -78,13 +78,13 @@ class CartItem extends Component {
           { price }
         </span>
       </div>
-    )
+    );
   }
 
 
   render() {
     const { sumItem } = this.props;
-    if(sumItem) {
+    if (sumItem) {
       return this.showItem();
     }
     return this.showSimpleItem();

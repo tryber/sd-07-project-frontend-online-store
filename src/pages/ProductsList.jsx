@@ -158,8 +158,7 @@ class ProductsList extends Component {
             Pesquisar
           </button>
           {products === undefined ? this.showMessage()
-            :
-            <ShowProducts
+            : <ShowProducts
               products={ products }
               actualizeCart={ this.addItemToLocalStorage }
             />}
