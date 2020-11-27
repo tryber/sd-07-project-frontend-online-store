@@ -6,7 +6,7 @@ class CommentsList extends Component {
     const { comments } = this.props;
     return (
       <>
-        <h1>Listagem de Comentários</h1>
+        <h1>What others have said</h1>
         { comments.map((comment) => (
           <div key={ comment.text }>
             <p>
