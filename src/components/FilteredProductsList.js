@@ -9,20 +9,22 @@ class FilteredProductsList extends Component {
     if (allProducts === undefined) {
       return (
         <div>
-          <ul  data-testid="home-initial-message">
+          <ul data-testid="home-initial-message">
             <span className="fontzero">Digite algum termo de pesquisa ou escolha uma categoria.</span>
           </ul>
         </div>
       );
     }
     return (
-      <div>
+      <div  className="main-category-result-container">
+        <h1 className="main-category-title">Resultado da pesquisa</h1>
         {allProducts.map((product) => (
           <IndividualCard
-            key={ product.id }
-            title={ product.title }
-            price={ product.price }
-            image={ product.thumbnail }
+            key={product.id}
+            id={product.id}
+            title={product.title}
+            price={product.price}
+            image={product.thumbnail}
           />
         ))}
       </div>

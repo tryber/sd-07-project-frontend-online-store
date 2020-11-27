@@ -37,14 +37,16 @@ class ProductsList extends Component {
     return (
       <div className="main-search">
         <section className="main-search-container">
-        <SearchBar
-          onSearch={ this.fetchByQuery }
-          inputValue={ inputSearchValue }
-          inputChange={ this.updateInputSearch }
-        />
+          <SearchBar
+            onSearch={this.fetchByQuery}
+            inputValue={inputSearchValue}
+            inputChange={this.updateInputSearch}
+          />
         </section>
-        <FilteredProductsList allProducts={ productsToRender } />
-        <ListCategory />
+        <section className="main-category-container">
+          <ListCategory />
+          <FilteredProductsList allProducts={productsToRender} />
+        </section>
       </div>
     );
   }

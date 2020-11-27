@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import GoToShoppingCart from './GoToShoppingCart';
+import LogoTipo from './LogoTipo';
+import IconeSearch from './IconeSearch';
+
 
 class SearchBar extends Component {
   render() {
     const { onSearch, inputChange, inputValue } = this.props;
     return (
       <div className="main-search-content">
+        <div className="main-search-content-logotipo">
+          <LogoTipo />
+        </div>
+
         <div className="main-search-content-search">
+          <div className="main-search-content-iconesearch">
+            <IconeSearch />
+          </div>
           <label htmlFor="searchButton">
             <button
               className="bt-search"
@@ -30,11 +40,7 @@ class SearchBar extends Component {
           </label>
         </div>
         <div className="main-search-container-but">
-          <Link to="/shoppingCart">
-            <button className="bt-but" type="button" data-testid="shopping-cart-button">
-              Comprar
-          </button>
-          </Link>
+          <GoToShoppingCart />
         </div>
       </div>
     );
