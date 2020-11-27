@@ -15,12 +15,10 @@ class ItemCard extends React.Component {
           alt="foto-produto"
           className="card-image"
         />
-        <span data-testi="product" className="card-price">
-          R$ { price }
-        </span>
+        <span data-testi="product" className="card-price">R$ { price }</span>
         <Link
           data-testid="product-detail-link"
-          to={{ pathname: `detailsProduct/${id}`, state: { product } }}
+          to={ { pathname: `detailsProduct/${id}`, state: { product } } }
           className="card-price"
         >
           Detalhes

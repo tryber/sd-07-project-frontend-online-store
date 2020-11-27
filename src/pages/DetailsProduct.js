@@ -16,13 +16,17 @@ class DetailsProduct extends React.Component {
           <img className="voltar" src={ voltar } alt="imagem-Voltar" />
         </Link>
         <div>
-          <h2 data-testid="product-detail-name">{ title } </h2>
+          <h2 data-testid="product-detail-name">
+            { title }
+          </h2>
           <div>
             <img src={ thumbnail } alt="Imagem detalhada" />
           </div>
           <div>
             <p>Descrição Técnica</p>
-            <p>R$ { price }</p>
+            <p>
+              R$ { price }
+            </p>
           </div>
         </div>
       </div>

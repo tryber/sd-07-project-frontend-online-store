@@ -36,10 +36,10 @@ class Categories extends React.Component {
               <input
                 data-testid="category"
                 type="radio"
-                id={category.id}
+                id={ category.id }
                 name="gender"
                 value={ category.name }
-                onChange={handleCatChange}
+                onChange={ handleCatChange }
               />
               {category.name}
               <br />

@@ -8,15 +8,15 @@ import * as api from '../services/api';
 import Loading from '../components/Loading';
 
 class Main extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
     this.handleValue = this.handleValue.bind(this);
     this.handleCatChange = this.handleCatChange.bind(this);
     this.handleApiRequest = this.handleApiRequest.bind(this);
     this.state = {
-      search: "",
-      catID: "",
-      message: "Digite algum termo de pesquisa ou escolha uma categoria",
+      search: '',
+      catID: '',
+      message: 'Digite algum termo de pesquisa ou escolha uma categoria',
       product: [],
       loading: false,
     };
@@ -43,10 +43,10 @@ class Main extends React.Component {
     this.setState({ loading: true });
     const { catID, search } = this.state;
     this.setState({
-      catID: "",
+      catID: '',
       loading: false,
       message:
-        search !== "" || catID !== "" ? "" : "Nenhum produto foi encontrado",
+        search !== '' || catID !== '' ? '' : 'Nenhum produto foi encontrado',
       product: await api.getProductsFromCategoryAndQuery(catID, search),
     });
   }
@@ -58,39 +58,38 @@ class Main extends React.Component {
         <div className="input-1">
           <input
             data-testid="query-input"
-            onChange={this.handleValue}
+            onChange={ this.handleValue }
             className="searchInput"
             type="search"
           />
           <h3 data-testid="home-initial-message">{message}</h3>
           <div>
-            {loading ? <Loading /> : ""}
+            { loading ? <Loading /> : '' }
             <ListCard
-              search={search}
-              category={catID}
-              product={product.results}
+              search={ search }
+              category={ catID }
+              product={ product.results }
             />
           </div>
         </div>
 
         <div className="linkToCart-2">
           <Link to="/shoppingCart" data-testid="shopping-cart-button">
-            <img className="chartImg" src={chart} alt="carrinho-de-compras" />
+            <img className="chartImg" src={ chart } alt="carrinho-de-compras" />
           </Link>
         </div>
 
         <div className="categories-3">
-          <Categories handleCatChange={this.handleCatChange} />
+          <Categories handleCatChange={ this.handleCatChange } />
         </div>
 
         <div className="buttonFetch-4">
           <button
             className="buttonFetch"
             data-testid="query-button"
-            onClick={this.handleApiRequest}
+            onClick={ this.handleApiRequest }
           >
-            {" "}
-            Buscar{" "}
+            Buscar
           </button>
         </div>
       </div>
