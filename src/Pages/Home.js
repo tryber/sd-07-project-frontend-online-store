@@ -12,11 +12,24 @@ class Home extends React.Component {
     this.searchProduct = this.searchProduct.bind(this);
     this.onLoadProducts = this.onLoadProducts.bind(this);
     this.state = {
-      search:'',
+      search: '',
       products: [],
       categoryID: '',
       showInitialMessage: true,
     };
+  }
+
+  async onLoadProducts(products = []) {
+    console.log('hey', products, this);
+    this.setState({
+      products,
+      showInitialMessage: false,
+    });
+  }
+
+  updateSearchValue(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   async searchProduct() {
@@ -28,21 +41,9 @@ class Home extends React.Component {
     });
   }
 
-  updateSearchValue(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  }
-
-  async onLoadProducts(products = []) {
-    console.log('hey', products, this);
-    this.setState({
-      products,
-      showInitialMessage: false
-    });
-  }
-    
   render() {
-    return ( 
+    const { products, search, showInitialMessage } = this.state;
+    return (
       <div>
         <header>
           <input
@@ -51,25 +52,25 @@ class Home extends React.Component {
             type="text"
             name="search"
             className="search_bar"
-            value={this.state.search}
-            onChange={this.updateSearchValue}
+            value={ search }
+            onChange={ this.updateSearchValue }
           />
           <button
+            type="button"
             data-testid="query-button"
-            onClick={this.searchProduct}
+            onClick={ this.searchProduct }
           >
             Search
           </button>
           <ButtonShop />
         </header>
         <div className="conteudo">
-          <CategoryList onLoadProducts={this.onLoadProducts} />
-          {this.state.showInitialMessage && <InitialMessage />}
-          {!this.state.showInitialMessage &&
-            <div className="item-list">
-              {this.state.products
-                  .map((product) =>
-                    <Item key={product.id} {...product} />)}
+          <CategoryList onLoadProducts={ this.onLoadProducts } />
+          {showInitialMessage && <InitialMessage /> }
+          {!showInitialMessage
+          && <div className="item-list">
+            {products
+              .map((product) => <Item key={ product.id } { ...product } />) }
             </div>}
         </div>
       </div>
@@ -79,5 +80,5 @@ class Home extends React.Component {
 
 export default Home;
 
-/*Lógica de atualização do status usada foi retirado do 
+/* Lógica de atualização do status usada foi retirado do
 projeto sd-07-project-movie-card-library-crud, arquivo MovieForm */
