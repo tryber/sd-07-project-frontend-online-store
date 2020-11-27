@@ -13,7 +13,9 @@ export class Home extends Component {
 
           <div className='ctn-displayCard'>
             <view.SearchInput />
-            <div className='displayCard'></div>
+            <div className='displayCard'>
+              <cp.CardProduct />
+            </div>
           </div>
         </div>
       </css.CtnCenter>
