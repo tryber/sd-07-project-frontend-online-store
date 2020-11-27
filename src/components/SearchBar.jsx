@@ -32,8 +32,8 @@ class SearchBar extends Component {
     this.setState({ [name]: value });
   }
 
-  handleClick(event) {
-    event.preventDefault();
+  handleClick(e) {
+    e.persist();
     this.handleSearch();
   }
 
