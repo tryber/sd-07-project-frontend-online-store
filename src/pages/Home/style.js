@@ -32,10 +32,15 @@ export const CtnCenter = styled.div`
 
       .displayCard {
         /* background-color: blueviolet; */
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
         width: 95%;
         height: 95vh;
         box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.68);
         border: 1px solid black;
+        overflow-y: auto;
       }
     }
   }
