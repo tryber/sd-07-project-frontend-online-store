@@ -24,7 +24,11 @@ class Home extends Component {
 
   handleChange({ target }) {
     const { name, value } = target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => {
+      if (target.type === 'radio') {
+        this.fetchProducts();
+      }
+    });
   }
 
   searchClick(event) {
