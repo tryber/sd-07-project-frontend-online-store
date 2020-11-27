@@ -33,7 +33,7 @@ class ItemCard extends React.Component {
 
 export default ItemCard;
 
-ItemCard.PropTypes = {
+ItemCard.propTypes = {
   id: PropTypes.string,
   product: PropTypes.shape({}),
   title: PropTypes.string,

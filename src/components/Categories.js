@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from './Loading';
-import PropTypes from 'prop-types';
 
 class Categories extends React.Component {
   constructor(props) {
@@ -55,9 +55,10 @@ class Categories extends React.Component {
 
 export default Categories;
 
-Categories.PropTypes = {
+Categories.propTypes = {
   handleCatChange: PropTypes.func.isRequired,
-}
+};
+
 Categories.defaultProps = {
   handleCatChange: PropTypes.func.isRequired,
-}
+};

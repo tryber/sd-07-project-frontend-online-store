@@ -38,19 +38,19 @@ class DetailsProduct extends React.Component {
 
 export default DetailsProduct;
 
-DetailsProduct.PropTypes = {
+DetailsProduct.propTypes = {
   state: PropTypes.shape({}),
   product: PropTypes.shape({}),
   location: PropTypes.shape({}),
-  title: Prop.string,
-  thumbnail: Prop.string,
+  title: PropTypes.string,
+  thumbnail: PropTypes.string,
   price: PropTypes.number,
 };
 DetailsProduct.defaultProps = {
   state: PropTypes.shape({}),
   product: PropTypes.shape({}),
   location: PropTypes.shape({}),
-  title: Prop.string,
-  thumbnail: Prop.string,
+  title: PropTypes.string,
+  thumbnail: PropTypes.string,
   price: PropTypes.number,
 };

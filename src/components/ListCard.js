@@ -9,7 +9,6 @@ class ListCard extends React.Component {
     return (
       <div className="list-card-product">
         {products.map((prod) => {
-          console.log();
           return (
             <ItemCard
               key={ prod.id }
@@ -28,9 +27,10 @@ class ListCard extends React.Component {
 
 export default ListCard;
 
-ListCard.PropTypes = {
-  product: PropTypes.shape({}),
-}
+ListCard.propTypes = {
+  product: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
 ListCard.defaultProps = {
-  product: PropTypes.shape({}),
-}
+  product: PropTypes.arrayOf(PropTypes.shape({})),
+};

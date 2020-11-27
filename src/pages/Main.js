@@ -53,6 +53,12 @@ class Main extends React.Component {
 
   render() {
     const { search, catID, product, message, loading } = this.state;
+    let array = [];
+    if (product.length === 0) {
+
+    } else {
+      array = product.results;
+    }
     return (
       <div className="container">
         <div className="input-1">
@@ -68,7 +74,7 @@ class Main extends React.Component {
             <ListCard
               search={ search }
               category={ catID }
-              product={ product.results }
+              product={ array }
             />
           </div>
         </div>
@@ -85,7 +91,7 @@ class Main extends React.Component {
 
         <div className="buttonFetch-4">
           <button
-            type=""
+            type="botao"
             className="buttonFetch"
             data-testid="query-button"
             onClick={ this.handleApiRequest }
