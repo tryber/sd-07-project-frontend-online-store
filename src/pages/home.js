@@ -29,7 +29,7 @@ class home extends Component {
 
   async fecthProducts() {
     const { category, query } = this.state;
-    const { results } = await getProductsFromCategoryAndQuery(category, query, 0);
+    const { results } = await getProductsFromCategoryAndQuery(category, query);
     this.setState({ products: results });
   }
 

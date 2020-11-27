@@ -17,16 +17,9 @@ class ProductDetail extends Component {
   }
 
   async fecthProducts() {
-    const { category_id } = this.props.match.params;
-    let product = undefined;
-    for(let index = 0; product === undefined; index += 50){
-      console.log(index);
-      let { results } = await getProductsFromCategoryAndQuery(category_id, undefined, index);
-      product = results.find(({ id }) => id === this.props.match.params.id);
-    }
-    console.log(product);
-    this.setState({
-      product,
+    const result = await getProductsFromCategoryAndQuery(undefined, undefined, this.props.match.params.id);
+    await this.setState({
+      product: result[0] ? result[0].body : result.results[0],
       loading: false,
     });
   }

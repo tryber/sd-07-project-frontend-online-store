@@ -8,7 +8,7 @@ class ProductCard extends Component {
     const { title, thumbnail, price, id, category_id } = product;
     return (
       <div>
-        <Link data-testid="product-detail-link" to={`/product/${category_id}/${id}`}>
+        <Link data-testid="product-detail-link" to={`/product/${id}`}>
           <div data-testid="product" className="product">
             <img alt="Products" src={thumbnail} />
             <div>
