@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import goBackArrow from '../img/back-arrow.png';
+import CartButton from './CartButton';
 
 export default class Product extends Component {
   render() {
@@ -16,19 +17,7 @@ export default class Product extends Component {
           <h1 data-testid="product-detail-name">{ productName }</h1>
           <img src={ productImg } alt="productImg"/>
           <p>{ productPrice }</p>
-          <Link
-            data-testid="shopping-cart-button"
-            to={ {
-              pathname: '/ShoppingCart',
-              state: {
-                productName,
-                productImg,
-                productPrice,
-              },
-            }}
-          >
-            Adicionar ao carrinho
-          </Link>
+          <CartButton productName={ productName } />
         </div>
       </div>
     );

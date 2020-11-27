@@ -22,7 +22,6 @@ export default class HomeBeforeSearch extends Component {
 
   handleChange({ target }) {
     const { name, value } = target;
-    
     this.setState({ [name]: value });
   }
 
@@ -54,8 +53,8 @@ export default class HomeBeforeSearch extends Component {
             <input name="query" className="search-bar-input" type="text" data-testid="query-input" onChange={ this.handleChange }/>
           </div>
         </div>
-        <Link to="/ShoppingCart">
-          <img data-testid="shopping-cart-button" src={ shoppingCartIcon } className="shopping-cart-icon" alt="shoppingCartImg"/>
+        <Link to="/ShoppingCart" data-testid="shopping-cart-button">
+          <img src={ shoppingCartIcon } className="shopping-cart-icon" alt="shoppingCartImg"/>
         </Link>
         <div data-testid="home-initial-message">
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import CartButton from './CartButton';
 
 export default class ProductsList extends React.Component {
   render() {
@@ -29,16 +30,7 @@ export default class ProductsList extends React.Component {
                 <h4>{ title }</h4>
                 <img src={ thumbnail } alt="Product" />
                 <p>{ price }</p>
-                <Link
-                  to={ {
-                    pathname: '/ShoppingCart',
-                    state: {
-                      productName: title,
-                    },
-                  } }
-                >
-                  Adicionar ao carrinho
-                </Link>
+                <CartButton productName={ title } />
               </div>
             </li>
           )) : (<li> Nenhum produto foi encontrado </li>)}
