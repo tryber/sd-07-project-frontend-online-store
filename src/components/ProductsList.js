@@ -47,12 +47,12 @@ class ProductsList extends React.Component {
             type="text"
             name="query"
             data-testid="query-input"
-            onChange={ this.handleTypeChange }
+            onChange={this.handleTypeChange}
           />
           <button
             type="submit"
             data-testid="query-button"
-            onClick={ this.handleClick }
+            onClick={this.handleClick}
           >
             Pesquisar
           </button>
@@ -70,23 +70,24 @@ class ProductsList extends React.Component {
             {productList.length
               ? productList.map(({ id, title, thumbnail, price }) => (
                 <li
-                  key={ id }
+                  key={id}
                   data-testid="product"
                 >
-                  <h3>{ title }</h3>
-                  <img src={ thumbnail } alt="Product" />
-                  <p>{ price }</p>
-                  <Link to={ {
-                    pathname: '/product-details',
-                    state: {
-                      productName: title,
-                      productImg: thumbnail,
-                      productPrice: price,
-                    },
-                  } }
-                data-testid="product-detail-link"
-                key={ `${title} ${id}` }>
-                  Ver detalhes
+                  <h3>{title}</h3>
+                  <img src={thumbnail} alt="Product" />
+                  <p>{price}</p>
+                  <Link
+                    to={{
+                      pathname: '/product-details',
+                      state: {
+                        productName: title,
+                        productImg: thumbnail,
+                        productPrice: price,
+                      },
+                    }}
+                    data-testid="product-detail-link"
+                    key={`${title} ${id}`}>
+                    Ver detalhes
                   </Link>
                 </li>
               )) : (<li> Nenhum produto foi encontrado </li>)}
