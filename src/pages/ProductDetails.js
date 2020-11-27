@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import ShoppingCartIcon from '../components/Shopping-cart-icon';
@@ -144,5 +145,7 @@ class ProductDetails extends React.Component {
     );
   }
 }
+
+ProductDetails.propTypes = { match: PropTypes.arrayOf(Object).isRequired };
 
 export default ProductDetails;

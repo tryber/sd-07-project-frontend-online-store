@@ -49,7 +49,7 @@ class States extends React.Component {
   render() {
     const { brStates } = this.state;
     return (
-      brStates.map((allStates) =>(
+      brStates.map((allStates) => (
         <option
           key={ allStates }
           value={ allStates }

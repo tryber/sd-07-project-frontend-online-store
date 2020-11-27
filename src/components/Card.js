@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Card extends React.Component {
@@ -8,8 +9,8 @@ class Card extends React.Component {
   }
 
   addToCart() {
-    const { title, price, thumbnail, id } = this.props.produto;
-    const { productAdd } = this.props;
+    const { productAdd, produto } = this.props;
+    const { title, price, thumbnail, id } = produto;
     const product = {
       id,
       price,
@@ -26,19 +27,19 @@ class Card extends React.Component {
     return (
       <div data-testid="product">
         <h3>{title}</h3>
-        <img src={thumbnail} alt={title} />
-        <h4>R$: {price}</h4>
+        <img src={ thumbnail } alt={ title } />
+        <h4>{`R$: ${price}`}</h4>
         <div>
           <input
             data-testid="product-detail-add-to-cart"
             type="button"
-            onClick={this.addToCart}
+            onClick={ this.addToCart }
             data-testid="product-add-to-cart"
             value="Adicionar ao Carrinho"
           />
           <Link
             data-testid="product-detail-link"
-            to={`product-details/${id}/${category_id}`}
+            to={ `product-details/${id}/${category_id}` }
           >
             Detalhes do produto
           </Link>
@@ -47,5 +48,10 @@ class Card extends React.Component {
     );
   }
 }
+
+Card.propTypes = {
+  produto: PropTypes.objectOf(PropTypes.object).isRequired,
+  productAdd: PropTypes.func.isRequired,
+};
 
 export default Card;
