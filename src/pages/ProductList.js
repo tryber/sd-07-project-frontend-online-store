@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import * as cartApi from '../services/api';
+import * as cartApi from '../services/localStorage';
 
 class ProductList extends React.Component {
   render() {

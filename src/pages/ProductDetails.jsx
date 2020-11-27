@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as api from '../services/api';
 
 export default class ProductDetails extends Component {
   constructor() {
@@ -31,7 +30,7 @@ export default class ProductDetails extends Component {
       <div className="product-details" data-testid="product-detail-name">
         <h1>{ title }</h1>
         <h2>{ price }</h2>
-        <img src={ thumbnail } alt={`${title}`} />
+        <img src={ thumbnail } alt={ `${title}` } />
       </div>
     );
   }

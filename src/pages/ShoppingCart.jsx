@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import * as api from '../services/api';
+import React, { Component } from 'react';
+import * as localStorage from '../services/localStorage';
 
 export default class ShoppingCart extends Component {
   constructor() {
@@ -8,7 +8,7 @@ export default class ShoppingCart extends Component {
     this.updateState = this.updateState.bind(this);
 
     this.state = {
-      cart: [],
+      cart: localStorage.readCart(),
     };
   }
 
@@ -17,8 +17,7 @@ export default class ShoppingCart extends Component {
   }
 
   updateState() {
-    const cart = api.readCart();
-    console.log(cart)
+    const cart = localStorage.readCart();
     this.setState({ cart });
   }
 
@@ -34,32 +33,39 @@ export default class ShoppingCart extends Component {
     const { cart } = this.state;
     return (
       <div className="cart-products">
-        { cart.map(({ thumbnail, qtd, title, price, id }) => (
-          <div className="product" key={id}>
+        { cart.map(({ amount, title, id }) => (
+          <div className="product" key={ id }>
             <p
               className="product-title"
               data-testid="shopping-cart-product-name"
             >
-              {title}
+              { title }
+            </p>
+            <p
+              className="product-qtd"
+              data-testid="shopping-cart-product-quantity"
+            >
+              { amount }
             </p>
           </div>
         ))}
       </div>
     );
-    }
+  }
+
   render() {
     const { cart } = this.state;
+    const zero = 0;
     let cartItemsLength;
     if (cart) {
-      cartItemsLength = this.state.cart.length;
-    } else cartItemsLength = 0;
-    
+      cartItemsLength = cart.length;
+    } else cartItemsLength = zero;
+
     if (cartItemsLength) {
-      return (this.productsList())
+      return (this.productsList());
     }
     return (
-        this.emptyMessage()
-    )
+      this.emptyMessage()
+    );
   }
 }
-
