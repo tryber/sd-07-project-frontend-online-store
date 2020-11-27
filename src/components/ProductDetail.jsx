@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import * as StorageServices from '../services/storageServices';
+import ProductSpecs from './ProductSpecs';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -25,10 +26,10 @@ class ProductDetail extends React.Component {
           params: { id },
         },
       } = this.props;
+
       const indexOne = 0;
       const indexTwo = 8;
       const name = id.substring(indexOne, indexTwo);
-      console.log(name);
       const getDetail = await api.getProductsFromCategoryAndQuery('', name);
       this.setState({
         dataDetail: getDetail.results[0],
@@ -51,29 +52,14 @@ class ProductDetail extends React.Component {
         {loading ? (
           'Loading...'
         ) : (
-          <div>
-            <h3 data-testid="product-detail-name">{`${title} - R$ ${price}`}</h3>
-            <img src={ thumbnail } alt="Imagem do produto" />
-            <div>
-              <ul>
-                <li>Especificação 01</li>
-                <li>Especificação 02</li>
-                <li>Especificação 03</li>
-                <li>Especificação 04</li>
-                <li>Especificação 05</li>
-                <li>Especificação 06</li>
-                <li>Especificação 07</li>
-              </ul>
-            </div>
-          </div>
+          <ProductSpecs title={ title } price={ price } thumbnail={ thumbnail } />
         )}
         <div data-testid="product-detail-add-to-cart">
           <button
             data-testid="shopping-cart-button"
             type="submit"
-            onClick={
-              () => this.fetchLocalStorage({ title, thumbnail, price, id, qtt: 1 })
-            }
+            onClick={ () => this
+              .fetchLocalStorage({ title, thumbnail, price, id, qtt: 1 }) }
           >
             Adicionar ao Carrinho
           </button>
