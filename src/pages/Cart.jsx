@@ -3,42 +3,72 @@ import React from 'react';
 class Cart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      quantity: 1,
-    };
+    const cartProduct = JSON.parse(sessionStorage.getItem('item'));
+
     this.increase = this.increase.bind(this);
     this.decrease = this.decrease.bind(this);
+
+    this.state = {
+      products: cartProduct,
+    };
   }
 
-  increase() {
-    this.setState((previous) => {
-      quantity: previous + 1,
-    });
+  componentDidUpdate() {
+    const { products } = this.state;
+    sessionStorage.setItem('item', JSON.stringify(products));
   }
 
-  decrease() {
-    const reset = 0
-    const { quantity } = this.state;
-    const result = quantity - 1;
-    result < 0 ? this.setState({ quantity: reset }) : this.setState({ quantity: result });
+  increase(index) {
+    const { products } = this.state;
+
+    this.setState({ products: products.map((product, i) => {
+      if (index === i) return { ...product, quantity: product.quantity + 1 };
+      return product;
+    }) });
+  }
+
+  decrease(index) {
+    const { products } = this.state;
+
+    this.setState({ products: products.map((product, i) => {
+      if (index === i) return { ...product, quantity: product.quantity - 1 };
+      return product;
+    }) });
   }
 
   render() {
-    const { quantity } = this.state;
-    const cartProduct = sessionStorage.getItem('item');
-    if (!cartProduct) {
+    const { products } = this.state;
+
+    if (!products) {
       return <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>;
     }
 
     return (
-      <div>
-        <span data-testid="shopping-cart-product-name">{cartProduct}</span>
-        <p>
-          Quantidade:
-        <span data-testid="shopping-cart-product-quantity">{quantity}</span>
-        <button data-testid="product-increase-quantity" onClick={this.increase}><i className="fas fa-plus"></i></button>
-        <button data-testid="product-decrease-quantity" onClick={this.decrease}><i className="fas fa-minus"></i></button>
-        </p>
+      <div id="cart-items">
+        {products.map(({ title, quantity }, index) => (
+          <div id="cart-item" key={ title }>
+            <span data-testid="shopping-cart-product-name">{ title }</span>
+            <p>
+              Quantidade:
+              <span data-testid="shopping-cart-product-quantity">{ quantity }</span>
+              <button
+                type="button"
+                data-testid="product-increase-quantity"
+                onClick={ () => this.increase(index) }
+              >
+                <i className="fas fa-plus" />
+              </button>
+              <button
+                type="button"
+                data-testid="product-decrease-quantity"
+                onClick={ () => this.decrease(index) }
+                disabled={ quantity === 1 }
+              >
+                <i className="fas fa-minus" />
+              </button>
+            </p>
+          </div>
+        ))}
       </div>
     );
   }
