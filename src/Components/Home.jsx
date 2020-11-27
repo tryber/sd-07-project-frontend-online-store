@@ -8,8 +8,10 @@ class Home extends React.Component {
     return (
       <div>
         <Header />
-        <ProductList />
-        <FiltersCategory />
+        <div className="container-body">
+          <FiltersCategory />
+          <ProductList />
+        </div>
       </div>
     );
   }
