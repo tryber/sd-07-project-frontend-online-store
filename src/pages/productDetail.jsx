@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import * as api from '../services/api'
+// import { Link } from 'react-router-dom';
+import * as api from '../services/api';
 
 class ProductDetail extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.fetchProduct = this.fetchProduct.bind(this);
     this.state = {
       product: [],
       loading: true,
-    }
+    };
   }
 
   componentDidMount() {
@@ -22,25 +22,27 @@ class ProductDetail extends React.Component {
     this.setState({
       product: RequestReturn,
       loading: false,
-    });    
-  };
+    });
+  }
 
   render() {
-    const { loading } = this.state;
-    const { title, price, thumbnail, attributes} = this.state.product;
-    console.log(attributes);
+    const { loading, product } = this.state;
+    const { id, title, price, thumbnail, attributes} = product;
     return (
       <div data-testid="product-detail-name">
-      { loading ? <div></div> :
-      <div>
-        <h4>{`PRODUTO ${title} - R$${price}`}</h4>        
-        <img alt="product Cover" src={thumbnail} />
-        <ul>
-          {attributes.map((attribute) => <li>{attribute.name}: {attribute.value_name}</li>)}
-        </ul>
-        </div>}
+        {loading ?
+          <div />
+          :<div>
+            <h4>{`PRODUTO ${ title } - R$${ price }`}</h4>        
+            <img alt="product Cover" src={ thumbnail } />
+            <ul>
+              {attributes.map((attribute) =>
+                <li key={ id }>{`${ attribute.name }: ${ attribute.value_name }`}</li>
+              )}
+            </ul>
+          </div>}
       </div>
-    )
+    );
   }
 }
 
