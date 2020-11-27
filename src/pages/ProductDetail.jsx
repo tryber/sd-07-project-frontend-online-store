@@ -8,6 +8,9 @@ class ProductDetail extends Component {
   constructor(props) {
     super(props);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
+    this.removeLastItem = this.removeLastItem.bind(this);
+    this.removeZero = this.removeZero.bind(this);
+    this.roundNumber = this.roundNumber.bind(this);
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
     this.state = {
       id: '',
@@ -34,10 +37,37 @@ class ProductDetail extends Component {
     this.searchQueryProducts();
   }
 
+  removeLastItem(string) {
+    let stringNumber = string;
+    if (stringNumber[stringNumber.length - 1] === '0' || stringNumber[stringNumber.length - 1] === '.') {
+      stringNumber = stringNumber.slice(0, (stringNumber.length - 1));
+    }
+    return stringNumber;
+  };
+
+  removeZero(string) {
+    let stringNumber = string;
+    if (stringNumber[0] === '0') {
+      stringNumber = '0';
+      return stringNumber;
+    }
+    stringNumber = this.removeLastItem(stringNumber);
+    stringNumber = this.removeLastItem(stringNumber);
+    stringNumber = this.removeLastItem(stringNumber);
+    return stringNumber;
+  };
+
+  roundNumber(string) {
+    let stringNumber = string.toFixed(2);
+    const number = this.removeZero(stringNumber);
+    return number;
+  };
+
   addItemToLocalStorage() {
     const id = this.state.id;
     const title = this.state.title;
     const price = this.state.price;
+    const totalPrice = this.state.price;
     const imagePath = this.state.thumbnail;
     const number = 1;
     if (Storage) {
@@ -47,12 +77,13 @@ class ProductDetail extends Component {
       values.forEach(item => {
         if (item.id === id) {
           item.number += 1;
-          // item.price = parseFloat(price) + parseFloat(price);
+          item.totalPrice = parseFloat(totalPrice, 10) + parseFloat(price, 10);
+          item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
         } 
       })
       if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values))
-      values.push({id, title, price, imagePath, number});
+      values.push({id, title, price, imagePath, number, totalPrice});
       localStorage.setItem('cart', JSON.stringify(values));
     }
   }
