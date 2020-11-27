@@ -85,7 +85,7 @@ class Cart extends Component {
               name={item.id} alt="Remover item"
               onClick={this.delet}
             />
-            <img src={item.thumbnail} alt={item.title} />
+            <img src={ item.thumbnail } alt={ item.title } />
             <p data-testid="shopping-cart-product-name">{item.title}</p>
             <img
               data-testid="product-decrease-quantity"
