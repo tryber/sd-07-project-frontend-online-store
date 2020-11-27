@@ -23,7 +23,9 @@ export default class SearchBar extends Component {
   componentDidMount() {
     const local = JSON.parse(localStorage.getItem('cart'));
     // eslint-disable-next-line no-unused-expressions
-    local === null ? (this.arrayEmpty()) : (this.getLocalStorage());
+    local === null
+      ? (this.arrayEmpty())
+      : (this.getLocalStorage());
   }
 
   getLocalStorage() {
@@ -74,7 +76,7 @@ export default class SearchBar extends Component {
     const index = array.findIndex((elemento) => elemento.id === newId);
     const num = -1;
     // eslint-disable-next-line no-unused-expressions
-    (index === num)
+    index === num
       ? (array.push({ id: newId, quantidade: 1 }))
       : (array[index].quantidade += 1);
     localStorage.setItem('cart', JSON.stringify(array));
