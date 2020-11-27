@@ -6,10 +6,13 @@ export async function getCategories() {
   return response;
 }
 
-export async function getProductsFromCategoryAndQuery(categoryId = '', query = '', id_item) {
-  
-  if(id_item != undefined){
-    const endpoint = `https://api.mercadolibre.com/items?ids=${id_item}`;
+export async function getProductsFromCategoryAndQuery(
+  categoryId = '',
+  query = '',
+  idItem,
+) {
+  if (idItem !== undefined) {
+    const endpoint = `https://api.mercadolibre.com/items?ids=${idItem}`;
     const request = await fetch(endpoint);
     const response = request.json();
     console.log(response);

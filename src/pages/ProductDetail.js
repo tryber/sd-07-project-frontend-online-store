@@ -1,6 +1,5 @@
-import { render } from '@testing-library/react';
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class ProductDetail extends Component {
@@ -17,7 +16,14 @@ class ProductDetail extends Component {
   }
 
   async fecthProducts() {
-    const result = await getProductsFromCategoryAndQuery(undefined, undefined, this.props.match.params.id);
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+    const result = await getProductsFromCategoryAndQuery(
+      undefined,
+      undefined,
+      id,
+    );
     await this.setState({
       product: result[0] ? result[0].body : result.results[0],
       loading: false,
@@ -27,13 +33,13 @@ class ProductDetail extends Component {
 
   render() {
     const { loading, product } = this.state;
-    if(loading){
-      return <h1>Carregando</h1>
+    if (loading) {
+      return <h1>Carregando</h1>;
     }
     return (
       <div>
         <div data-testid="product" className="product">
-          <img alt="Products" src={product.thumbnail} />
+          <img alt="Products" src={ product.thumbnail } />
           <div>
             <h4 data-testid="product-detail-name">
               {product.title}
@@ -46,6 +52,12 @@ class ProductDetail extends Component {
   }
 }
 
-
-
 export default ProductDetail;
+
+ProductDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
