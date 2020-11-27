@@ -23,7 +23,14 @@ export default class SearchBar extends Component {
   componentDidMount() {
     const local = JSON.parse(localStorage.getItem('cart'));
     // eslint-disable-next-line no-unused-expressions
-    local === null ? this.arrayEmpty() : this.getLocalStorage();
+    local === null ? (this.arrayEmpty()) : (this.getLocalStorage());
+  }
+
+  getLocalStorage() {
+    const saveObj = JSON.parse(localStorage.getItem('cart'));
+    this.setState({
+      objeto: saveObj,
+    });
   }
 
   // eslint-disable-next-line react/sort-comp
@@ -68,17 +75,11 @@ export default class SearchBar extends Component {
     const num = -1;
     // eslint-disable-next-line no-unused-expressions
     (index === num)
-      ? array.push({ id: newId, quantidade: 1 })
-      : array[index].quantidade += 1;
+      ? (array.push({ id: newId, quantidade: 1 }))
+      : (array[index].quantidade += 1);
     localStorage.setItem('cart', JSON.stringify(array));
   }
 
-  getLocalStorage() {
-    const saveObj = JSON.parse(localStorage.getItem('cart'));
-    this.setState({
-      objeto: saveObj,
-    });
-  }
 
   arrayEmpty() {
     this.setState({ objeto: [] });
