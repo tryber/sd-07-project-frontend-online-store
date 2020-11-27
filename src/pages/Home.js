@@ -50,7 +50,8 @@ class Home extends Component {
   }
 
   render() {
-    const { inputValue, products } = this.state;
+    const { inputValue, products, categories } = this.state;
+    const message = 'Digite algum termo de pesquisa ou escolha uma categoria.';
     return (
       <div className="home">
         <div>
@@ -67,8 +68,8 @@ class Home extends Component {
               Carrinho de compras
             </Link>
           </div>
-          {(category !== '' || search !== '')
-            ? <ProductList data={ products } />
+          {(categories !== '' || inputValue !== '')
+            ? <ProductsList data={ products } />
             : <p data-testid="home-initial-message">{message}</p>}
         </div>
       </div>
