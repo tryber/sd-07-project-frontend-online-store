@@ -38,23 +38,24 @@ class ProductsList extends Component {
     return (
       <div>
         {(status) ? <ProductCard products={ products } /> : false}
-        {(products.length === '') ?  <span>Nenhum produto foi encontrado</span> : false}
+        {(products.length === '') ? <span>Nenhum produto foi encontrado</span> : false}
         <div className="ContainerForm">
           <div>
             <label htmlFor="inputHome">
               <div>
                 <input
-                    data-testid="query-input"
-                    name="demand"
-                    className="inputHome"
-                    type="text"
-                    onChange={ this.change }
+                  data-testid="query-input"
+                  name="demand"
+                  className="inputHome"
+                  type="text"
+                  onChange={ this.change }
                 />
                 <button
                   data-testid="query-button"
                   type="button"
                   onClick={ this.fecthProducts }
-                >PESQUISAR</button>
+                >
+                PESQUISAR</button>
                 <span data-testid="home-initial-message">
                 Digite algum termo de pesquisa ou escolha uma categoria.
                 </span>

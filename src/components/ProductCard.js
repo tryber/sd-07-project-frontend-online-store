@@ -15,8 +15,8 @@ class ProductCard extends Component {
               <h2>{ title }</h2>
               <img src={ thumbnail } alt="products" />
               <p>{ price }</p>
-            </div>          
-    );
+            </div>
+          );
           })}
       </div>
     );
