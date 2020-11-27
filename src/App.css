@@ -7,3 +7,39 @@
   width: 85px;
   height: 85px;
 }
+
+.input-search {
+  font-size: medium;
+  margin: 30px;
+  border-radius: 5px;
+  border: 2px solid #daa000;
+  width: 800px;
+  height: 40px;
+}
+
+
+.button-search {
+  font-size: medium;
+  margin: 30px;
+  border-radius: 5px;
+  border: 2px solid #daa000;
+  width: 80px;
+  height: 40px;
+}
+
+
+.movie-card {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  margin: 5px;
+  overflow: hidden;
+  width: 300px;
+}
+
+.movie-card-image {
+  width: 50%;
+}
