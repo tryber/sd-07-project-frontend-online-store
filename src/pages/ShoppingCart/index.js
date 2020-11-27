@@ -17,6 +17,19 @@ class ShoppingCart extends Component {
     this.updateCart();
   }
 
+  handleCartItem(product, buttonId) {
+    if (buttonId === 'add') {
+      cartApi.addToCart(product);
+    }
+    if (buttonId === 'sub') {
+      cartApi.decreaseToCart(product);
+    }
+    if (buttonId === 'remove') {
+      cartApi.removeFromCart(product);
+    }
+    this.updateCart();
+  }
+
   getTotalValue(total, product) {
     return total + product.price * product.cartQuantity;
   }
@@ -29,19 +42,6 @@ class ShoppingCart extends Component {
       cart,
       cartTotal,
     });
-  }
-
-  handleCartItem(product, buttonId) {
-    if (buttonId === 'add') {
-      cartApi.addToCart(product);
-    }
-    if (buttonId === 'sub') {
-      cartApi.decreaseToCart(product);
-    }
-    if (buttonId === 'remove') {
-      cartApi.removeFromCart(product);
-    }
-    this.updateCart();
   }
 
   render() {

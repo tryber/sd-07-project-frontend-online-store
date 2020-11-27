@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 import CartButton from '../../components/CartButton';
 
-import AvaluationForm from '../../components/AvaluationForm';
+import EvaluationList from '../../components/EvaluationList';
+import EvaluationForm from '../../components/EvaluationForm';
 import { addToCart } from '../../services/cartApi';
 
 class ProductDetails extends Component {
   constructor() {
     super();
 
-    this.handleState = this.handleState.bind(this);
     this.state = {
       product: {
         title: '',
@@ -19,6 +19,8 @@ class ProductDetails extends Component {
         availableQuantity: 0,
       },
     };
+
+    this.handleState = this.handleState.bind(this);
   }
 
   async componentDidMount() {
@@ -62,7 +64,8 @@ class ProductDetails extends Component {
             Adicionar ao carrinho
           </button>
         </section>
-        <AvaluationForm productID={ id }/>
+        <EvaluationList productID={ id } />
+        <EvaluationForm productID={ id } onSubmit={ this.handleNewSubmit } />
       </section>
     );
   }

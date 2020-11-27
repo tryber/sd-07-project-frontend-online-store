@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AvaluationList from '../AvaluationList';
 
-import { addAvaluation } from '../../services/avaluationAPI';
+import { addEvaluation } from '../../services/evaluationAPI';
 
-class AvaluationForm extends Component {
+class EvaluationForm extends Component {
   constructor() {
     super();
     this.state = {
-      evaluation: {
-        email: '',
-        text: '',
-        stars: 0,
-      },
-      send: false,
+      email: '',
+      text: '',
+      stars: 0,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,54 +19,52 @@ class AvaluationForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { productID } = this.props;
-    addAvaluation(this.state.evaluation, productID);
-    this.setState({ send: true });
+    addEvaluation(this.state, productID);
   }
 
   handleInputChange({ target }) {
     const { name, value } = target;
-    this.setState({ evaluation: { [name]: value } });
+    this.setState({ [name]: value });
   }
 
   render() {
-    const { productID } = this.props;
-    const { evaluation: { email, text, stars } } = this.state;
-    return(
+    const { email, text, stars } = this.state;
+    return (
       <section>
-        <AvaluationList productID={ productID } />
         <form onSubmit={ this.handleSubmit }>
           <label htmlFor="email">
-          Email:
+            Email:
             <input
               id="email"
               type="email"
               name="email"
-              required={true}
-              value={email}
+              required
+              value={ email }
               onChange={ (e) => this.handleInputChange(e) }
             />
           </label>
-          <label>
+          <label htmlFor="text">
             Mensagem:
-            <input
+            <textarea
               type="text"
               id="text"
               name="text"
-              value={text}
-              onChange={(e) => this.handleInputChange(e)}
+              data-testid="product-detail-evaluation"
+              value={ text }
+              onChange={ (e) => this.handleInputChange(e) }
             />
           </label>
-          <label>
+          <label htmlFor="stars">
             Avaliação:
             <input
               type="range"
-              min={0}
-              max={5}
-              step={1}
-              value={stars}
+              min={ 0 }
+              max={ 5 }
+              step={ 1 }
+              value={ stars }
               name="stars"
-              required={true}
-              onChange={(e) => this.handleInputChange(e)}
+              required
+              onChange={ (e) => this.handleInputChange(e) }
             />
           </label>
           <button type="submit">Avaliar</button>
@@ -80,8 +74,8 @@ class AvaluationForm extends Component {
   }
 }
 
-AvaluationForm.propTypes = {
+EvaluationForm.propTypes = {
   productID: PropTypes.string.isRequired,
-}
+};
 
-export default AvaluationForm;
+export default EvaluationForm;
