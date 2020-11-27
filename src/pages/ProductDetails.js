@@ -11,14 +11,13 @@ class ProductDetails extends React.Component {
   }
 
   handleClick({ id, title, price }) {
-    const cartItem = { [id]: { title, price } };
+    const cartItem = { id, title, price };
     if (!localStorage.cartItems) {
-      localStorage.setItem('cartItems', JSON.stringify(cartItem));
+      localStorage.setItem('cartItems', JSON.stringify([cartItem]));
     } else {
       const itemsInStorage = localStorage.getItem('cartItems');
-      const retrievedItems = JSON.parse(itemsInStorage);
-      const newItemsList = { ...retrievedItems, ...cartItem };
-      localStorage.setItem('cartItems', JSON.stringify(newItemsList));
+      const parsedItems = JSON.parse(itemsInStorage);
+      localStorage.setItem('cartItems', JSON.stringify(parsedItems.concat(cartItem)));
     }
   }
 
