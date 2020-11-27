@@ -18,15 +18,8 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
 
 localStorage.setItem('cart', JSON.stringify({}));
 
-const readCart = () => JSON.parse(localStorage.getItem('cart'));
-
 const saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
 
-export const addToCartFromDetails = (product, evaluation, feedback) => {
-  let cart = readCart();
-  
-  if (feedback) {
-
-  }
-}
-
+export const addToCartFromDetails = (product) => {
+  saveCart(product);
+};

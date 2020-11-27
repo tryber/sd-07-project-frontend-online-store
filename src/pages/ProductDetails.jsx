@@ -13,7 +13,7 @@ export default class ProductDetails extends Component {
     };
 
     this.handleMessage = this.handleMessage.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -36,8 +36,8 @@ export default class ProductDetails extends Component {
   }
 
   onSubmit() {
-    const { product, feedback, evaluation } = this.state;
-    api.addToCartFromDetails(product, evaluation, feedback);
+    const { product } = this.state;
+    api.addToCartFromDetails(product);
   }
 
   render() {
@@ -67,7 +67,7 @@ export default class ProductDetails extends Component {
             required
           />
         </div>
-        <button>Salvar</button>
+        <button onClick={this.onSubmit}>Salvar</button>
       </div>
     );
   }
