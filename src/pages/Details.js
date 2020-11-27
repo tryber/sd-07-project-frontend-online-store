@@ -41,7 +41,7 @@ class Details extends Component {
           <form>
             <label htmlFor="type">
               adicione sua avaliação
-              <textarea type="text" id="type" />
+              <textarea data-testid="product-detail-evaluation" type="text" id="type" />
             </label>
           </form>
         </div>
