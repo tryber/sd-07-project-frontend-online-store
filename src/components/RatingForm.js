@@ -39,10 +39,13 @@ class RatingForm extends React.Component {
     const { textRate } = this.state;
     return (
       <div>
-        <input
+        <textarea
+          data-testid="product-detail-evaluation"
           placeholder="Mensagem (opcional)"
-          type="text"
           value={ textRate }
+          rows={ 5 }
+          cols={ 50 }
+          maxLength={ 250 }
           onChange={ (event) => this.updateInput('textRate', event.target.value) }
         />
       </div>
