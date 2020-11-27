@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './ReturnButton.css';
 
-
 class ReturnButton extends Component {
   render() {
     const { path } = this.props;
