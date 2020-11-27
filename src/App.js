@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <GlobalStyle />
-
+      <page.Home />
 
     </div>
   );
