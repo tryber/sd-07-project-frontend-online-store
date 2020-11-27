@@ -40,8 +40,7 @@ class Home extends Component {
   async handleCategory(category) {
     this.setState({
       category,
-    });
-    await this.fetchAPI();
+    }, await this.fetchAPI());
   }
 
   render() {

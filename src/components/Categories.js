@@ -8,7 +8,6 @@ class Categories extends Component {
 
     this.state = {
       categories: [],
-      selectedCategory: '',
       loading: true,
     };
 
@@ -16,60 +15,40 @@ class Categories extends Component {
   }
 
   componentDidMount() {
-    api.getCategories()
-      .then((categories) => this.setState({
-        loading: false,
-        categories,
-      }));
+    api.getCategories().then((categories) => this.setState(
+      { loading: false, categories },
+    ));
   }
 
-  selectCategory({ target: { key } }) {
+  selectCategory(event) {
     const { filterCategory } = this.props;
-    this.setState({ selectedCategory: key });
-    filterCategory(key);
+    const { value } = event.target;
+    filterCategory(value);
   }
 
   render() {
-    const { loading, categories, selectedCategory } = this.state;
+    const { loading, categories } = this.state;
     if (loading) {
-      return (<aside>Carregando...</aside>);
+      return <aside>Carregando...</aside>;
     }
     return (
       <aside>
-        <ol>
-          {categories.map(({ id, name }) => {
-            if (selectedCategory === id) {
-              return (
-                <li
-                  className="selected"
-                  data-testid="category"
-                  key={ id }
-                >
-                  {name}
-                </li>);
-            }
-            return (
-              <li
-                key={ id }
-              >
-                <button
-                  type="button"
-                  data-testid="category"
-                  onClick={ this.selectCategory }
-                  key={ id }
-                >
-                  {name}
-                </button>
-              </li>
-            );
-          })}
-        </ol>
-      </aside>);
+        <form onChange={ this.selectCategory }>
+          {categories.map(({ id, name }) => (
+            <div key={ id }>
+              <input type="radio" id={ name } name="category" value={ id } />
+              <label data-testid="category" htmlFor={ name }>{name}</label>
+            </div>
+          ))}
+        </form>
+      </aside>
+    );
   }
 }
 
-Categories.propTypes = ({
+
+Categories.propTypes = {
   filterCategory: PropTypes.func,
-}).isRequired;
+}.isRequired;
 
 export default Categories;
