@@ -22,7 +22,6 @@ export const Cart = styled(icon.FaCartPlus)`
 export const Plus = styled(icon.FaPlus)`
   ${styledIconGlobal}
 
-
 `;
 
   transform: scale(1);
@@ -35,13 +34,16 @@ export const Plus = styled(icon.FaPlus)`
 export const Minus = styled(icon.FaMinus)`
   ${styledIconGlobal}
 
+  font-size: 1em;
 
-`;
 
 
   transform: scale(1);
   :active {
     transform: scale(1.1);
+  }
+
+
   }
 
 
@@ -54,8 +56,29 @@ export const Search = styled(icon.FaSearch)`
 
 export const Star = styled(icon.FaStar)`
   ${styledIconGlobal};
+  font-size: 1em;
+  margin: 0 5px;
   transform: scale(1);
-  color: ${(props) => props.color};
+  ${({ modeview, setcolor }) => {
+    switch (modeview) {
+      case 'input':
+        return css`
+          color: ${setcolor};
+          cursor: pointer;
+          :hover {
+            transform: scale(1.3);
+          }
+        `;
+      case 'card':
+        return css`
+          color: ${setcolor};
+        `;
+        break;
+
+      default:
+        break;
+    }
+  }}
 `;
 
 export const Back = styled(icon.FaArrowLeft)`
