@@ -11,8 +11,8 @@ class EvaluationList extends Component {
 
     return (
       <div className="formlist-container">
-        { ratedProduct.map((rated, id) =>
-          (<div key={ id } className="singleAvaliation">
+        { ratedProduct.map((rated) => (
+          <div key={ rated.email } className="singleAvaliation">
             <span>
               email:
               { rated.email }
@@ -30,7 +30,8 @@ class EvaluationList extends Component {
               Mensagem:
               { rated.mesage }
             </span>
-          </div>)) }
+          </div>
+        )) }
       </div>
     );
   }
