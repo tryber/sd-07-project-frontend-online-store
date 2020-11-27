@@ -21,6 +21,10 @@ class ProductsList extends Component {
     this.addShoppingCartItems = this.addShoppingCartItems.bind(this);
   }
 
+  componentDidMount() {
+    recoveryProductsFromLocalStorage();
+  }
+
   async fetchByQuery() {
     const { inputSearchValue } = this.state;
     const fetchResult = await api.getProductsFromCategoryAndQuery(
@@ -56,7 +60,6 @@ class ProductsList extends Component {
   }
 
   render() {
-    console.log(JSON.parse(localStorage.getItem('shoppingCartItem')));
     const { productsToRender, inputSearchValue } = this.state;
     return (
       <div>
