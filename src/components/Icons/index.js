@@ -7,6 +7,7 @@ const styledIconGlobal = css`
   transform: scale(0.8);
   transition: all ease 0.2s;
 
+
   :hover {
     transform: scale(1);
   }
@@ -18,18 +19,24 @@ export const Cart = styled(icon.FaCartPlus)`
 
 export const Plus = styled(icon.FaPlus)`
   ${styledIconGlobal}
+`;
   transform: scale(1);
   :active {
     transform: scale(1.1);
   }
+
 `;
 
 export const Minus = styled(icon.FaMinus)`
   ${styledIconGlobal}
+
+
+`;
+
   transform: scale(1);
   :active {
     transform: scale(1.1);
-  }
+
 `;
 
 export const Search = styled(icon.FaSearch)`
