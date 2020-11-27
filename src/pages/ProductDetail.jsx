@@ -48,7 +48,7 @@ class ProductDetail extends Component {
     let stringNumber = string;
     if (stringNumber[stringNumber.length - 1] === '0'
     || stringNumber[stringNumber.length - 1] === '.') {
-      const index = 0
+      const index = 0;
       stringNumber = stringNumber.slice(index, (stringNumber.length - 1));
     }
     return stringNumber;

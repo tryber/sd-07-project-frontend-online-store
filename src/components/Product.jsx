@@ -18,7 +18,7 @@ class Product extends Component {
           Adicionar ao carrinho
         </button>
         <Link
-          data-testid="product-detail-link" 
+          data-testid="product-detail-link"
           to={ `/ProductDetail/${id}` }
         >
           Detalhes do produto

@@ -50,8 +50,8 @@ class CartItem extends Component {
         >
           +
         </button>
-        <span> 
-          R$ 
+        <span>
+          R$
           { price }
         </span>
       </div>
@@ -63,12 +63,20 @@ class CartItem extends Component {
     return (
       <div>
         <img src={ image } alt={ title } />
-        <span data-testid="shopping-cart-product-name"> 
-        Descrição: { title } - </span>
-        <span data-testid="shopping-cart-product-quantity"> 
-        Qtd: { number } -</span>
-        <span> 
-          R$ { price }</span>
+        <span data-testid="shopping-cart-product-name">
+        Descrição:
+        { title }
+        -
+        </span>
+        <span data-testid="shopping-cart-product-quantity">
+        Qtd:
+        { number }
+        -
+        </span>
+        <span>
+          R$
+          { price }
+        </span>
       </div>
     )
   }

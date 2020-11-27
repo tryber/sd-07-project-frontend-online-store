@@ -31,8 +31,8 @@ class Checkout extends Component {
 
   render() {
     const { products, name, email, cpf, phone, cep, address } = this.state;
-    let totalSum = "0";
-    totalSum = parseInt(totalSum);
+    let totalSum = '0';
+    totalSum = parseInt(totalSum, 10);
     return (
       <div>
         <Link to="/">Retornar</Link>
