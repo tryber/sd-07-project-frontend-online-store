@@ -26,7 +26,7 @@ class ProductDetails extends React.Component {
     const { location: { details: { product: { title, thumbnail } } } } = this.props;
     return (
       <div className="product-details-photo">
-        <img src={ thumbnail } alt={`Foto do ${ title }`} />
+        <img src={ thumbnail } alt={ `Foto do ${title}` } />
       </div>
     );
   }
@@ -42,19 +42,6 @@ class ProductDetails extends React.Component {
       localStorage.setItem('cart', JSON.stringify(parsedItems.concat(productInfo)));
     }
   }
-
-
-  /* addItemToCart() {
-    const { location: { details: { product: { title, price, thumbnail } } } } = this.props;
-    const oldProducts = JSON.parse(localStorage.getItem('productsArray')) || [];
-    const newProduct = {
-      'productName': title,
-      'productImg': thumbnail,
-      'productPrice': price,
-    };
-    oldProducts.push(newProduct); localStorage.setItem('productsArray', JSON.stringify(oldProducts));
-  }*/
-
 
   render() {
     return (
@@ -87,6 +74,7 @@ ProductDetails.propTypes = {
   location: PropTypes.shape({
     details: PropTypes.shape({
       product: PropTypes.shape({
+        id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
         thumbnail: PropTypes.string.isRequired,
