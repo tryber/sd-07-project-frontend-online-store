@@ -40,7 +40,7 @@ class Card extends React.Component {
           />
           <Link data-testid="product-detail-link"
             to={ `product-details/${id}/${category_id}` }>
-              Detalhes do produto
+            Detalhes do produto
           </Link>
         </div>
       </div>
@@ -48,11 +48,11 @@ class Card extends React.Component {
   }
 }
 
-// Card.propTypes = { 
+// Card.propTypes = {
 //   thumbnail: PropTypes.img.isRequired,
 //   title: PropTypes.string.isRequired,
 //   price: PropTypes.string.isRequired,
 //   id: PropTypes.string.isRequired,
-//   category_id: PropTypes.string.isRequired, };
+//   category_id: PropTypes.string.isRequired};
 
 export default Card;
