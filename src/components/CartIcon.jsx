@@ -11,7 +11,7 @@ class CartIcon extends Component {
       <div>
         <img alt="cart icon"></img>
         <span data-testid="shopping-cart-size">{quantity}</span>
-      </div>;
+      </div>
     );
   }
 }

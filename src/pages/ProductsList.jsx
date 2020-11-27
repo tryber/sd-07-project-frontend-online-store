@@ -72,7 +72,7 @@ class ProductsList extends Component {
 
   removeLastItem(string) {
     let stringNumber = string;
-    if (stringNumber[stringNumber.length - 1] === '0' 
+    if (stringNumber[stringNumber.length - 1] === '0'
     || stringNumber[stringNumber.length - 1] === '.') {
       const index = 0;
       stringNumber = stringNumber.slice(index, (stringNumber.length - 1));
@@ -94,14 +94,14 @@ class ProductsList extends Component {
 
   roundNumber(string) {
     const roundNumber = 2;
-    let stringNumber = string.toFixed(roundNumber);
+    const stringNumber = string.toFixed(roundNumber);
     const number = this.removeZero(stringNumber);
     return number;
   }
 
   addItemToLocalStorage({ target }) {
     const id = target.name;
-    const product = document.getElementById(`${id}`)
+    const product = document.getElementById(`${id}`);
     const title = product.firstChild.innerHTML;
     const imagePath = product.firstChild.nextSibling.src;
     const price = product.firstChild.nextSibling.nextSibling.innerHTML;
@@ -150,15 +150,17 @@ class ProductsList extends Component {
             onChange={ this.handleChange }
           />
           <CartIcon cartItens={ JSON.parse(localStorage.getItem('cart')) } />
-          <button 
+          <button
             data-testid="query-button"
             type="button"
             onClick={ this.searchQueryProducts }
-          >Pesquisar</button>
-          {products === undefined ? this.showMessage() : 
-            <ShowProducts 
-              products= { products } 
-              actualizeCart={ this.addItemToLocalStorage } 
+          >
+            Pesquisar
+          </button>
+          {products === undefined ? this.showMessage() 
+          : <ShowProducts
+              products={ products }
+              actualizeCart={ this.addItemToLocalStorage }
             />}
           <Link data-testid="shopping-cart-button" to="/ShoppingCart">
             <img src={ Logo } alt="shoppingCart" />

@@ -31,7 +31,8 @@ class Checkout extends Component {
 
   render() {
     const { products, name, email, cpf, phone, cep, address } = this.state;
-    let totalSum = 0;
+    let totalSum = "0";
+    totalSum = parseInt(totalSum);
     return (
       <div>
         <Link to="/">Retornar</Link>
@@ -51,7 +52,7 @@ class Checkout extends Component {
             );
           })}
           <div>
-            Preço Total: 
+            Preço Total:
             {totalSum}
           </div>
         </section>

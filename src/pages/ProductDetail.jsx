@@ -46,9 +46,10 @@ class ProductDetail extends Component {
 
   removeLastItem(string) {
     let stringNumber = string;
-    if (stringNumber[stringNumber.length - 1] === '0' 
+    if (stringNumber[stringNumber.length - 1] === '0'
     || stringNumber[stringNumber.length - 1] === '.') {
-      stringNumber = stringNumber.slice(0, (stringNumber.length - 1));
+      const index = 0
+      stringNumber = stringNumber.slice(index, (stringNumber.length - 1));
     }
     return stringNumber;
   }
@@ -88,7 +89,7 @@ class ProductDetail extends Component {
           item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
         }
-      })
+      });
       if (repeatedProduct) {
         localStorage.setItem('cart', JSON.stringify(values));
         return this.changeQuantityState();
@@ -110,14 +111,14 @@ class ProductDetail extends Component {
           <div>{ price }</div>
           <img src={ thumbnail } alt={ title } />
         </div>
-        <CartIcon cartItens={JSON.parse(localStorage.getItem('cart'))} />
+        <CartIcon cartItens={ JSON.parse(localStorage.getItem('cart')) } />
         <div>
           Especificações Técnicas
           <ul>
             {attributes.map((element) => {
               return (
                 <li key={ element.id }>
-                  {`${ element.name } --- ${ element.value_name }`}
+                  {`${element.name} --- ${element.value_name}`}
                 </li>
               );
             })}
@@ -127,11 +128,15 @@ class ProductDetail extends Component {
           data-testid="product-detail-add-to-cart"
           type="button"
           onClick={ this.addItemToLocalStorage }
-        >Adicionar</button>
+        >
+          Adicionar
+        </button>
         <Link
-          data-testid="shopping-cart-button" 
+          data-testid="shopping-cart-button"
           to="/ShoppingCart"
-        >Ir para o carrinho</Link>
+        >
+          Ir para o carrinho
+        </Link>
         <div>
           <form>
             <label htmlFor="input-email">
@@ -145,8 +150,8 @@ class ProductDetail extends Component {
               <option value="5" id="input-select">5</option>
             </select>
             <label htmlFor="product-evaluation">
-              <textarea 
-                data-testid="product-detail-evaluation" 
+              <textarea
+                data-testid="product-detail-evaluation"
                 placeholder="Mensagem (opcional)"
               />
             </label>

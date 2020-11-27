@@ -14,11 +14,15 @@ class Product extends Component {
           type="button"
           name={ id }
           onClick={ actualizeCart }
-        >Adicionar ao carrinho</button>
-        <Link 
+        >
+          Adicionar ao carrinho
+        </button>
+        <Link
           data-testid="product-detail-link" 
-          to={`/ProductDetail/${ id }`}
-        >Detalhes do produto</Link>
+          to={ `/ProductDetail/${id}` }
+        >
+          Detalhes do produto
+        </Link>
       </div>
     );
   }
