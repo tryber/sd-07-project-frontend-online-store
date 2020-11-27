@@ -9,15 +9,17 @@ class Stars extends React.Component {
     this.estrelaCadente = this.estrelaCadente.bind(this);
     this.state = {
       constelação: [],
-    }
+    };
   }
+
   componentDidMount() {
     this.estrelaCadente(1);
   }
+
   brilhaEstrlinha(not) {
-    let ceu = []
-    for (let estrela = 0; estrela < 5; estrela += 1) {
-      let notinha = estrela + 1;
+    const ceu = [];
+    for (const estrela = 0; estrela < 5; estrela += 1) {
+      const notinha = estrela + 1;
       if (estrela < not) {
         ceu.push({ img: StarFull, index: notinha })
       } else {
