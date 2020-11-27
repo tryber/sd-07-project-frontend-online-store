@@ -32,7 +32,6 @@ class CartItem extends Component {
 
   showSimpleItem() {
     const { title, price, image, number} = this.props;
-    console.log(number);
     return (
       <div>
         <img src={image} alt={title} />
