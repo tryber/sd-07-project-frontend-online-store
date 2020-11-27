@@ -21,8 +21,6 @@ export const readCart = () => JSON.parse(localStorage.getItem('cart'));
 export const saveCart = (cart) => { localStorage.setItem('cart', JSON.stringify(cart))};
 
 export const addToCart = (product) => {
-  let cart = readCart();
-  if (!cart) cart = [];
   const item = {
     id: product.id,
     title: product.title,
