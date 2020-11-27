@@ -32,19 +32,26 @@ class ListCategory extends Component {
     if (loading === true) return <Loading />;
 
     return (
-      <section className="main-category">
-        <h1>Category</h1>
+      <section className="main-category-content">
+        <h1 className="main-category-title">Categorias</h1>
 
         {products.map((objItem) => (
-          <div key={ objItem.id } data-testid="category">
-            <label htmlFor={ objItem.name }>
+          <div
+            key={ objItem.id }
+            data-testid="category"
+            className="main-category-content-flex"
+          >
+            <label
+              htmlFor={ objItem.name }
+              className="main-category-content-flexItem"
+            >
               <input
                 type="radio"
                 value={ objItem.name }
                 name="Category"
                 id={ objItem.name }
               />
-              {objItem.name}
+              { objItem.name }
             </label>
           </div>
         ))}
