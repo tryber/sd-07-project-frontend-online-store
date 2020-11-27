@@ -4,6 +4,7 @@ import * as api from '../services/api';
 import Loading from '../components/Loading/Loading';
 import AddByDetails from '../components/AddByDetails/AddByDetails';
 
+
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
