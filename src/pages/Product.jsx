@@ -37,9 +37,11 @@ export default class Product extends Component {
 }
 
 Product.propTypes = {
-  state: PropTypes.shape({
-    productName: PropTypes.string.isRequired,
-    productImg: PropTypes.string.isRequired,
-    productPrice: PropTypes.string.isRequired,
-  }),
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      productName: PropTypes.string.isRequired,
+      productImg: PropTypes.string.isRequired,
+      productPrice: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
