@@ -8,7 +8,7 @@ import Loading from '../components/Loading/Loading';
 import InitialMessage from '../components/InitialMessage/InitialMessage';
 
 class HomePage extends Component {
- constructor(props) {
+  constructor(props) {
     super(props);
     this.fetchProducts = this.fetchProducts.bind(this);
     this.onChangeCategory = this.onChangeCategory.bind(this);
@@ -20,26 +20,27 @@ class HomePage extends Component {
       loading: false,
     };
   }
-  
+
+  onChangeCategory({ target }) {
+    this.setState({
+      loading: true,
+      categoryId: target.id,
+    }, () => this.fetchProducts());
+  }
+
   fetchProducts() {
     const { searchInput, categoryId } = this.state;
     this.setState({ loading: true }, async () => {
-      const filteredProducts = await api.getProductsFromCategoryAndQuery(categoryId, searchInput);
+      const filteredProducts = await api
+        .getProductsFromCategoryAndQuery(categoryId, searchInput);
       this.setState({
         loading: false,
         productList: filteredProducts.results,
-      })
+      });
     });
   }
-  
-  onChangeCategory({ target }) {
-    this.setState({ 
-      loading: true,
-      categoryId: target.id,
-    }, () => this.fetchProducts())
-  }
-  
-  onChangeSearchInput({ target }){
+
+  onChangeSearchInput({ target }) {
     this.setState({ searchInput: target.value });
   }
 
@@ -48,15 +49,15 @@ class HomePage extends Component {
     return (
       <div>
         <SearchBar
-          onSearchInput={this.onChangeSearchInput}
-          searchInput={searchInput}
-          onSubmit={this.fetchProducts}
+          onSearchInput={ this.onChangeSearchInput }
+          searchInput={ searchInput }
+          onSubmit={ this.fetchProducts }
         />
         <CategoryList onChangeCategory={ this.onChangeCategory } />
         <ShoppingCartButton />
         <InitialMessage />
         {loading ? <Loading /> : productList
-        .map((product) => <ProductCard product={product} key={product.id}/>)}
+          .map((product) => <ProductCard product={ product } key={ product.id } />)}
       </div>
     );
   }
