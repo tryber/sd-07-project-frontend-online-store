@@ -93,6 +93,41 @@ textarea:focus, input:focus, select:focus {
   width: 20vw;
 }
 
+.shopping-cart-title {
+  display: flex;
+}
+
 .cardProduct {
   background-color: rgb(175, 205, 219);
+}
+
+.cart-item {
+  align-items: center;
+  display: flex;
+}
+
+.cart-item button {
+  background: none;
+  border: none;
+  outline:none;
+}
+
+.cart-item-quantity {
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+}
+
+.quantity-buttons {
+  height: 2.5em;
+  width: 2.5em;
+}
+
+.quantity-buttons:hover {
+  height: 2.6em;
+  width: 2.6em;
 }
