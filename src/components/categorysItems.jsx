@@ -1,19 +1,22 @@
-// import React from 'react';
+// import React from "react";
 
 // class CategoryItems extends React.Component {
 //   render() {
-//     const { category: { name, id } } = this.props;
+//     const {
+//       category: { name, id },
+//     } = this.props;
 //     return (
-//       <div>
+//       <div key={category.id}>
 //         <input
-//           data-testid="category"
 //           type="checkbox"
-//           id={ name }
-//           value={ id }
-//           onClick={ (event) => this.filterCategory(event)}
+//           data-testid="category"
+//           id={category.id}
 //           name="categoryId"
+//           value={category.id}
+//           key={category.id}
+//           onClick={(event) => this.filterCategory(event)}
 //         />
-//         <label htmlFor={ name }>{ name }</label>
+//         <label htmlFor={category.id}>{category.name}</label>
 //       </div>
 //     );
 //   }

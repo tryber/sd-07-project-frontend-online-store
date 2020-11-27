@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class Category extends Component {
@@ -8,7 +9,7 @@ class Category extends Component {
       categories: [],
     };
     this.fetchCategory = this.fetchCategory.bind(this);
-    this.filterCategory = this.filterCategory.bind(this)
+    this.filterCategory = this.filterCategory.bind(this);
   }
 
   componentDidMount() {
@@ -23,9 +24,9 @@ class Category extends Component {
   }
 
   async filterCategory(event) {
-    const { handleSearchChange, handleClickChange } = this.props;
+    const { handleSearchChange, handleChangeCategory } = this.props;
     await handleSearchChange(event);
-    handleClickChange(event);
+    await handleChangeCategory()
   }
 
   render() {
@@ -33,15 +34,15 @@ class Category extends Component {
     return (
       <div>
         {categories.map((category) => (
-          <div>
+          <div key={ category.id }>
             <input
               type="checkbox"
               data-testid="category"
-              id={category.id}
+              id={ category.id }
               name="categoryId"
-              value={category.id}
-              key={category.id}
-              onClick={(event) => this.filterCategory(event)}
+              value={ category.id }
+              key={ category.id }
+              onClick={ (event) => this.filterCategory(event) }
             />
             <label htmlFor={ category.id }>{ category.name }</label>
           </div>
@@ -50,5 +51,10 @@ class Category extends Component {
     );
   }
 }
+
+Category.propTypes = {
+  handleSearchChange: PropTypes.func.isRequired,
+  handleChangeCategory: PropTypes.func.isRequired,
+};
 
 export default Category;

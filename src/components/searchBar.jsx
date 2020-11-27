@@ -13,11 +13,12 @@ class SearchBar extends React.Component {
       query: '',
       categoryId: '',
       products: [],
-      notFound: true,
+      // notFound: true,
     };
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClickChange = this.handleClickChange.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.filterCategoryAndQuery = this.filterCategoryAndQuery.bind(this);
     this.productListLoaded = this.productListLoaded.bind(this);
   }
@@ -36,12 +37,16 @@ class SearchBar extends React.Component {
     this.filterCategoryAndQuery();
   }
 
+  async handleChangeCategory() {
+    await this.filterCategoryAndQuery();
+  }
+
   async filterCategoryAndQuery() {
     const { categoryId, query } = this.state;
     const filterProduct = await api.getProductsFromCategoryAndQuery(categoryId, query);
     this.setState({
       products: filterProduct.results,
-      notFound: false,
+      // notFound: false,
     });
   }
 
@@ -71,18 +76,18 @@ class SearchBar extends React.Component {
               type="text"
             />
           </label>
-          <button 
+          <button
             data-testid="query-button"
             type="submit"
             onClick={ this.handleClickChange }
-            >
-              Buscar
-            </button>
+          >
+            Buscar
+          </button>
         </form>
         <div>{products.length ? this.productListLoaded() : <NotFound />}</div>
-        <Category 
+        <Category
           handleSearchChange={ this.handleSearchChange }
-          handleClickChange={this.handleClickChange}
+          handleChangeCategory={ this.handleChangeCategory }
         />
       </div>
     );
@@ -94,4 +99,4 @@ class SearchBar extends React.Component {
 //   handleSearchChange: PropTypes.func.isRequired,
 // };
 
-export default SearchBar; 
+export default SearchBar;
