@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import * as StorageServices from '../services/storageServices';
 import ProductSpecs from './ProductSpecs';
+import FormRating from './FormRating';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -49,21 +50,24 @@ class ProductDetail extends React.Component {
 
     return (
       <div>
-        {loading ? (
-          'Loading...'
-        ) : (
-          <ProductSpecs title={ title } price={ price } thumbnail={ thumbnail } />
-        )}
-        <div data-testid="product-detail-add-to-cart">
-          <button
-            data-testid="shopping-cart-button"
-            type="submit"
-            onClick={ () => this
-              .fetchLocalStorage({ title, thumbnail, price, id, qtt: 1 }) }
-          >
-            Adicionar ao Carrinho
-          </button>
+        <div>
+          {loading ? (
+            'Loading...'
+          ) : (
+            <ProductSpecs title={ title } price={ price } thumbnail={ thumbnail } />
+          )}
+          <div data-testid="product-detail-add-to-cart">
+            <button
+              data-testid="shopping-cart-button"
+              type="submit"
+              onClick={ () => this
+                .fetchLocalStorage({ title, thumbnail, price, id, qtt: 1 }) }
+            >
+              Adicionar ao Carrinho
+            </button>
+          </div>
         </div>
+        <FormRating />
       </div>
     );
   }
