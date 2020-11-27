@@ -8,14 +8,11 @@ class ListaDeCategorias extends React.Component {
     return (
       <ul>
         {
-          categories.map((category) =>
-            (
-            <Categoria
+          categories.map((category) => (<Categoria
               key={ category.name }
               name={ category.name }
               id={ category.id }
-            />)
-            )
+            />))
         }
       </ul>
     );
