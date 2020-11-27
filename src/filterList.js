@@ -17,9 +17,7 @@ class FilterList extends Component {
   }
 
   async fetchCategories() {
-    console.log('entrou no fetch');
     const data = await API.getCategories();
-    console.log(data);
     this.setState({ categoriesList: data });
   }
 

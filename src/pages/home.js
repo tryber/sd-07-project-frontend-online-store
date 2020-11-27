@@ -11,10 +11,12 @@ class home extends Component {
     super(props);
     this.changeSelected = this.changeSelected.bind(this);
     this.inputEvent = this.inputEvent.bind(this);
+    this.addCartEvent = this.addCartEvent.bind(this);
     this.state = {
       category: '',
       query: '',
       products: [],
+      cart: [],
     };
   }
 
@@ -38,6 +40,12 @@ class home extends Component {
     this.fetchProducts();
   }
 
+  async addCartEvent(product){
+    await this.setState({
+      cart: [...this.state.cart, product],
+    });
+  }
+
   render() {
     const { products } = this.state;
     return (
@@ -47,7 +55,7 @@ class home extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h2>
           <SearchBar query={ this.inputEvent } fetchProducts={ this.fetchProducts } />
-          <Link to="/shoppingCart">
+          <Link to={ {pathname: "/shoppingCart", state: this.state.cart} }>
             <img
               src={ CartIcon }
               width="50"
@@ -63,7 +71,7 @@ class home extends Component {
           <div className="productList">
             {
               products
-                .map((product) => <ProductCard key={ product.id } product={ product } />)
+                .map((product) => <ProductCard key={ product.id } product={ product } event={this.addCartEvent}/>)
             }
           </div>
         </section>

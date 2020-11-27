@@ -33,6 +33,7 @@ class ProductDetail extends Component {
 
   render() {
     const { loading, product } = this.state;
+
     if (loading) {
       return <h1>Carregando</h1>;
     }
