@@ -15,8 +15,9 @@ class AddShoppingcart extends Component {
 
   addCartItem() {
     const { product } = this.state;
+    const previosProduts = JSON.parse(localStorage.getItem('cart')) || [] ;
     this.setState(
-      (products) => ({ listProducts: [...products.listProducts, product] }),
+      () => ({ listProducts: [...previosProduts, product] }),
       () =>
         localStorage.setItem("cart", JSON.stringify(this.state.listProducts))
     );
@@ -24,7 +25,7 @@ class AddShoppingcart extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.onClick} data-testid="product-add-to-cart">
+        <button onClick={this.addCartItem} data-testid="product-add-to-cart">
           Adicionar ao Carrinho
         </button>
       </div>

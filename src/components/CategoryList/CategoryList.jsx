@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import * as api from "../../services/api";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import * as api from '../../services/api';
 
 class CategoryList extends Component {
   constructor() {
     super();
     this.state = {
       categoriesList: [],
-      categoryIdSelected: "",
     };
     this.fecthList = this.fecthList.bind(this);
   }
@@ -46,5 +46,9 @@ class CategoryList extends Component {
     );
   }
 }
+
+CategoryList.propTypes = {
+  onChangeCategory: PropTypes.func.isRequired,
+};
 
 export default CategoryList;
