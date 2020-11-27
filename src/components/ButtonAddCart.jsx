@@ -7,11 +7,11 @@ class ButtonAddCart extends Component {
   }
 
   saveItem() {
-    const { product } = this.props;
-    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
-    items.push(product);
-    product(product);
-    localStorage.setItem('itemsCart', JSON.stringify(items));
+    // const { product } = this.props;
+    // const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
+    // items.push(product);
+    // product(product);
+    // localStorage.setItem('itemsCart', JSON.stringify(items));
   }
 
   render() {
