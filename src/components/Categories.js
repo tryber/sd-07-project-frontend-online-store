@@ -52,4 +52,4 @@ class Categories extends Component {
   }
 }
 
-export default Categories; 
+export default Categories;

@@ -12,33 +12,43 @@ class Home extends React.Component {
     this.select = this.select.bind(this);
     this.buscaCategoryAndQuery = this.buscaCategoryAndQuery.bind(this);
     this.atualizar = this.atualizar.bind(this);
+    this.localStorageCart = this.localStorageCart.bind(this);
     this.state = {
-      category: "",
-      searchValue: "",
+      category: '',
+      searchValue: '',
       list: {},
-    }
+    };
   }
 
   componentDidMount() {
     this.atualizar();
+    this.localStorageCart();
+  }
+
+  async onClick(texto) {
+    await this.setState({ searchValue: texto });
+    this.atualizar();
+  }
+
+  localStorageCart() {
+    if (!localStorage.getItem('cartItems')) {
+      const cartItemsStorage = [];
+      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+    }
   }
 
   async buscaCategoryAndQuery(category, query) {
-    const lista = await api.getProductsFromCategoryAndQuery(category, query)
+    const lista = await api.getProductsFromCategoryAndQuery(category, query);
     this.setState({ list: lista });
   }
 
   atualizar() {
     const { searchValue, category } = this.state;
-    if(searchValue !== '' || category !== '') {
+    if (searchValue !== '' || category !== '') {
       this.buscaCategoryAndQuery(category, searchValue);
     } else {
-      this.setState({ list: {} })
+      this.setState({ list: {} });
     }
-  }
-  async onClick(texto) {
-    await this.setState({ searchValue: texto });
-    this.atualizar();
   }
 
   async select(event) {
@@ -47,15 +57,22 @@ class Home extends React.Component {
   }
 
   render() {
+<<<<<<< HEAD:src/pages/home.jsx
     return(
       <div className="home">
         <Caregories onChange={this.select} />
+=======
+    const { list } = this.state;
+    return (
+      <div>
+        <Caregories onChange={ this.select } />
+>>>>>>> main-group-38-backup:src/pages/home.js
         <div>
           <div>
-            <SearchBar onClick={this.onClick} />
+            <SearchBar onClick={ this.onClick } />
             <ShoppingCartIcon />
           </div>
-          <List lista={this.state.list} />
+          <List lista={ list } />
         </div>
       </div>
     );
