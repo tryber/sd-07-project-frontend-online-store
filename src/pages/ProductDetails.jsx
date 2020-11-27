@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-import * as localStorage from "../services/localStorage";
+import * as cartApi from '../services/localStorage';
 
 export default class ProductDetails extends Component {
   constructor() {
     super();
     this.state = {
       product: [],
-      feedback: "",
+      feedback: '',
       evaluation: 0,
     };
 
@@ -23,6 +24,17 @@ export default class ProductDetails extends Component {
     this.fetchProduct(id);
   }
 
+  handleMessage({ target: { name, value } }) {
+    this.setState({ [name]: value });
+  }
+
+  onSubmit() {
+    const { product, evaluation, feedback } = this.state;
+    product.evaluation = evaluation;
+    product.feedback = feedback;
+    cartApi.addToCart(product);
+  }
+
   async fetchProduct(id) {
     const { feedback, evaluation } = this.state;
     const endpoint = `https://api.mercadolibre.com/items/${id}`;
@@ -31,45 +43,51 @@ export default class ProductDetails extends Component {
     this.setState({ product: { ...fetchedProduct, feedback, evaluation } });
   }
 
-  handleMessage({ target: { name, value } }) {
-    this.setState({ [name]: value });
-  }
-
-  onSubmit() {
-    let { product, evaluation, feedback } = this.state;
-    product = { evaluation, feedback };
-    localStorage.addToCart(product);
-  }
-
   render() {
-
     const { product } = this.state;
     const { title, price, thumbnail } = product;
     return (
-      <div className="product-details" data-testid="product-detail-name">
-        <h1>{ title }</h1>
-        <h2>{ price }</h2>
-        <img src={ thumbnail } alt={ `${title}` } />
+      <div>
+        <Link data-testid="shopping-cart-button" to="/pages/shopping-cart">
+          Carrinho
+        </Link>
+        <div className="product-details" data-testid="product-detail-name">
+          <h1>{ title }</h1>
+          <h2>{ price }</h2>
+          <img src={ thumbnail } alt={ `${title}` } />
 
-        <div className="rating">
-          <textarea
-            type="text"
-            name="feedback"
-            id="feedback-input"
-            data-testid="product-detail-evaluation"
-            onChange={this.handleMessage}
-          ></textarea>
+          <div className="rating">
+            <textarea
+              type="text"
+              name="feedback"
+              id="feedback-input"
+              data-testid="product-detail-evaluation"
+              onChange={ this.handleMessage }
+            />
 
-          <input
-            type="number"
-            name="evaluation"
-            id="evaluation-input"
-            onChange={this.handleMessage}
-            max="5"
-            required
-          />
+            <input
+              type="number"
+              name="evaluation"
+              id="evaluation-input"
+              onChange={ this.handleMessage }
+              max="5"
+              required
+            />
+          </div>
+          <button
+            type="button"
+            onClick={ () => { this.onSubmit(); } }
+          >
+            Salvar
+          </button>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => cartApi.addToCart(product) }
+          >
+            Add to Cart
+          </button>
         </div>
-        <button onClick={() => {console.log(this.state); this.onSubmit()}}>Salvar</button>
       </div>
     );
   }
