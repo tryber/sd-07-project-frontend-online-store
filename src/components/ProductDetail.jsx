@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as mlAPI from '../services/api';
 import { Link } from 'react-router-dom';
+import Rating from './Rating';
+import RatingAndComment from '../components/RatingAndComment';
 
 class ProductDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
             itemDetails: '',
-            loading: true
+            loading: true,
+            rating: 0,
         }
         this.fetchApiById = this.fetchApiById.bind(this);
     }
@@ -44,7 +48,7 @@ class ProductDetail extends Component {
     }
 
     render() {
-        const { loading, itemDetails } = this.state;
+        const { loading, itemDetails, rating } = this.state;
         const { id ,title, price, thumbnail, attributes } = itemDetails;;
         const loadingElement = <span>Carregando...</span>;
         return (
@@ -77,9 +81,21 @@ class ProductDetail extends Component {
                         </div>
                     )}
                 </div>
+                <Rating rating={rating} />
+                <RatingAndComment />
             </div>
         )
     }
+}
+
+ProductDetail.propTypes = {
+    product: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        itemDetails: PropTypes.string.isRequired,
+        loading: PropTypes.bool.isRequired,
+        rating: PropTypes.number.isRequired,
+        imagePath: PropTypes.string.isRequired,
+      }).isRequired,
 }
 
 export default ProductDetail;
