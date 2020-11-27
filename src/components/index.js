@@ -1,8 +1,7 @@
-export { default as InitialScreen } from './InitialScreen';
-export { default as SideBar } from './SideBar';
-export { default as Kart } from './Kart';
-export { default as ProductCard } from './ProductCard';
-export { default as Header } from './Header';
-export { default as ProductDetail } from './ProductDetail';
-export { default as ProductSpecs } from './ProductSpecs';
-export { default as FormRating } from './FormRating';
+import SideBar from './SideBar';
+import Kart from './Kart';
+import ProductCard from './ProductCard';
+import Header from './Header';
+import ProductDetail from './ProductDetail';
+
+export { SideBar, ProductDetail, Header, Kart, ProductCard };
