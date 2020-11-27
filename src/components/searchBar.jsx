@@ -1,5 +1,5 @@
 import React from 'react';
-import * as api from '../services/api'
+import * as api from '../services/api';
 import Category from './categoryList';
 import NotFound from './notFound';
 import ProductCard from './productCard';
@@ -46,10 +46,11 @@ class SearchBar extends React.Component {
   }
 
   productListLoaded() {
-    return (
+    const { products } = this.state
+    return (      
       <div>
-        {this.state.products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+        {products.map((product) => (
+          <ProductCard key={ product.id } product={ product } />
         ))}
       </div>
     );
@@ -66,15 +67,15 @@ class SearchBar extends React.Component {
               data-testid="query-input"
               id="text-input"
               name="query"
-              value={query}
-              onChange={this.handleSearchChange}
+              value={ query }
+              onChange={ this.handleSearchChange }
               type="text"
             />
           </label>
-          <button data-testid="query-button" onClick={this.handleClickChange}>Buscar</button>
+          <button data-testid="query-button" onClick={ this.handleClickChange }>Buscar</button>
         </form>
         <div>{products.length ? this.productListLoaded() : <NotFound />}</div>
-        <Category handleSearchChange={this.handleSearchChange}/>
+        <Category handleSearchChange={ this.handleSearchChange }/>
       </div>
     );
   }
