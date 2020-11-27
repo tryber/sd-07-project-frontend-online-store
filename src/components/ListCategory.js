@@ -44,7 +44,7 @@ class ListCategory extends Component {
             {objItem.name}
           </label>
         </div>)}
-      </section>
+    </section>
     );
   }
 };

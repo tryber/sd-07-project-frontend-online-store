@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -34,5 +35,120 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+/* page ProductsList */
+.main-search{
+  background-color:rgb(231, 231, 231);
+}
+.main-search-container{
+  background-color: black;
+  padding: 20px;  
+}
+.main-search-content{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.main-search-content-search{
+  flex-basis: 70%;
+}
+.main-search-container-but{
+  flex-basis: 30%;
+  text-align: right;
+}
+
+.main-category{
+  width: 35%;
+  padding: 20px;
+  border-radius: 0px 25px 25px 0px;
+}
+
+
+.bt-search{
+background-color: rgb(1, 104, 173);
+color:white;
+padding: 10px;
+border:0px;
+border-radius: 25px 0 0 25px;
+font-size: 0.8rem;
+transition: 1s;
+font-weight: 900;
+}
+
+.bt-search:hover{
+  background-color: rgb(6, 56, 90);
+  cursor: pointer;
+}
+
+input.b-search{
+  width: 400px;
+  padding: 10px;
+  font-size: 0.8rem;
+  border:0px;
+  transition: 1s;
+ }
+
+.bt-but{
+  background-color:rgb(6, 56, 90);
+  color:white;
+  padding: 10px;
+  border:0px;
+  font-size: 0.8rem;
+  transition: 1s;
+  font-weight: 900;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.bt-but:hover{
+  background-color:white;
+  color: black;
+}
+
+
+.fontzero{
+  font-size: 0px;
+}
+
+/* responsivel barra de pesquisa */
+@media(max-width: 48.5em){
+  .main-search-container{
+    padding: 0;
+  }
+  .main-search-content-search{
+    flex-basis:100%;
+    margin-top:15px;
+    text-align: center;
+  }
+  .main-search-container-but{
+    flex-basis:100%;
+    text-align: center;
+    margin-top:15px;
+  }
+  .bt-search{
+      border-radius: 0px;
+  }
+  .bt-but{
+    width: 200px;
+    margin-bottom: 15px;
+    border-radius: 0px;
+  }
+
+}
+@media(max-width: 36.87em){
+  .bt-search{
+    border-radius: 0px;
+    width: 100%;
+  }
+  input.b-search{
+    width: 100%;
+  }
+    .bt-but{
+    width: 100%;
+    border-radius: 0px;
+    
   }
 }

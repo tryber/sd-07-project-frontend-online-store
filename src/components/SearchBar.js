@@ -6,28 +6,36 @@ class SearchBar extends Component {
   render() {
     const { onSearch, inputChange, inputValue } = this.props;
     return (
-      <div>
-        <label htmlFor="searchButton">
-          <button
-            id="searchButton"
-            type="button"
-            onClick={ onSearch }
-            data-testid="query-button"
-          >
-            Botão de pesquisa
+      <div className="main-search-content">
+        <div className="main-search-content-search">
+          <label htmlFor="searchButton">
+            <button
+              className="bt-search"
+              id="searchButton"
+              type="button"
+              onClick={onSearch}
+              data-testid="query-button"
+
+            >
+              Pesquisar
           </button>
-          <input
-            type="text"
-            onChange={ inputChange }
-            value={ inputValue }
-            data-testid="query-input"
-          />
-        </label>
-        <Link to="/shoppingCart">
-          <button type="button" data-testid="shopping-cart-button">
-            Carrinho de compras
+            <input
+              className="b-search"
+              type="text"
+              onChange={inputChange}
+              value={inputValue}
+              data-testid="query-input"
+              placeholder="Digite algum termo de pesquisa ou escolha uma categoria"
+            />
+          </label>
+        </div>
+        <div className="main-search-container-but">
+          <Link to="/shoppingCart">
+            <button className="bt-but" type="button" data-testid="shopping-cart-button">
+              Comprar
           </button>
-        </Link>
+          </Link>
+        </div>
       </div>
     );
   }

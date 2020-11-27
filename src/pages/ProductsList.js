@@ -35,12 +35,14 @@ class ProductsList extends Component {
   render() {
     const { productsToRender, inputSearchValue } = this.state;
     return (
-      <div>
+      <div className="main-search">
+        <section className="main-search-container">
         <SearchBar
           onSearch={ this.fetchByQuery }
           inputValue={ inputSearchValue }
           inputChange={ this.updateInputSearch }
         />
+        </section>
         <FilteredProductsList allProducts={ productsToRender } />
         <ListCategory />
       </div>
