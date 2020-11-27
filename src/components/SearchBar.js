@@ -1,40 +1,31 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
-  constructor() {
-    super();
-
-    this.getHandle = this.getHandle.bind(this);
-
-    this.state = {
-      search: '',
-    };
-  }
-
-  getHandle({ target }) {
-    const { name, value } = target;
-    this.setState(() => ({ [name]: value }));
-  }
-
   render() {
-    const { search } = this.state;
-    const { onClick } = this.props;
-
+    const { inputValue, handleChange, handleSubmitAPI } = this.props;
     return (
-      <div className="searchBar">
-        <input name="search" onChange={ this.getHandle } value={ search } />
-        <button type="submit" name="search" onClick={ onClick }>
-          Buscar
+      <div>
+        <input
+          data-testid="query-input"
+          value={ inputValue }
+          onChange={ handleChange }
+        />
+        <button
+          type="button"
+          data-testid="query-button"
+          onClick={ handleSubmitAPI }
+        >
+          BUSCAR
         </button>
-      </div>
-    );
+      </div>);
   }
 }
 
-SearchBar.propTypes = { onClick: PropTypes.func.isRequired };
+SearchBar.propTypes = {
+  inputValue: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmitAPI: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
