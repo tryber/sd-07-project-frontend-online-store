@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import CommentsList from '../components/CommentsList';
 
 class ProductDetail extends Component {
   constructor() {
@@ -43,36 +44,39 @@ class ProductDetail extends Component {
   render() {
     const { name, imagePath, price, details } = this.state;
     return (
-      <div data-testid="product-detail-name">
-        <Link to="/">Home</Link>
-        <h1>Product Detail</h1>
-        <p>
-          Name:
-          {' '}
-          <span>{name}</span>
-        </p>
-        <img src={ imagePath } alt={ name } />
-        <p>
-          Price:
-          {' '}
-          <span>{price}</span>
-        </p>
-        <div>
-          Details:
-          {' '}
-          {
-            details.map((element) => (
-              <div key={ element.id }>
-                {element.name}
-                {' '}
-                -
-                {' '}
-                <span>{element.value_name}</span>
-              </div>))
-          }
-          ,
+      <>
+        <div data-testid="product-detail-name">
+          <Link to="/">Home</Link>
+          <h1>Product Detail</h1>
+          <p>
+            Name:
+            {' '}
+            <span>{name}</span>
+          </p>
+          <img src={ imagePath } alt={ name } />
+          <p>
+            Price:
+            {' '}
+            <span>{price}</span>
+          </p>
+          <div>
+            Details:
+            {' '}
+            {
+              details.map((element) => (
+                <div key={ element.id }>
+                  {element.name}
+                  {' '}
+                  -
+                  {' '}
+                  <span>{element.value_name}</span>
+                </div>))
+            }
+            ,
+          </div>
         </div>
-      </div>
+        <CommentsList />
+      </>
     );
   }
 }
