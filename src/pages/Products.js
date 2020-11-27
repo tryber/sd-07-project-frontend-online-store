@@ -7,7 +7,7 @@ import * as api from '../services/api';
 class Products extends React.Component {
   constructor() {
     super();
-  
+
     this.showProducts = this.showProducts.bind(this);
     this.state = {
       products: [],
