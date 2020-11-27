@@ -15,7 +15,7 @@ export class RatingStar extends Component {
   async eventHandleClick(name, value) {
     const { onClick } = this.props;
     await this.setState({ [name]: value });
-    onClick(this.state.rating);
+    // onClick(this.state.rating);
   }
 
   setColorModeView(numberStar) {
