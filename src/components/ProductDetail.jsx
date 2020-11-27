@@ -4,6 +4,7 @@ import * as api from '../services/api';
 import * as StorageServices from '../services/storageServices';
 import ProductSpecs from './ProductSpecs';
 import FormRating from './FormRating';
+import Header from './Header';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -49,15 +50,17 @@ class ProductDetail extends React.Component {
 
     return (
       <div>
+        <Header />
         <div>
           {loading ? (
             'Loading...'
           ) : (
             <ProductSpecs title={ title } price={ price } thumbnail={ thumbnail } />
           )}
-          <div data-testid="product-detail-add-to-cart">
+          <div>
             <button
-              data-testid="shopping-cart-button"
+              // data-testid="shopping-cart-button"
+              data-testid="product-detail-add-to-cart"
               type="submit"
               onClick={ () => this
                 .fetchLocalStorage({ title, thumbnail, price, id, qtt: 1 }) }
