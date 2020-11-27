@@ -25,8 +25,19 @@ class Header extends React.Component {
             <h1>Shopping</h1>
           </div>
           <div className="input-serch">
-            <input type="text" placeholder="Buscar" className="input" id="search-input" data-testid="query-input" />
-            <button className="btn-search" type="submit" onClick={ this.getProducts } data-testid="query-button" >
+            <input 
+            type="text" 
+            placeholder="Buscar" 
+            className="input" 
+            id="search-input" 
+            data-testid="query-input"
+             />
+            <button 
+            className="btn-search"
+            type="submit" 
+            onClick={ this.getProducts } 
+            data-testid="query-button"
+             >
               <img src={ iconSearch } alt="Search-icon" />
             </button>
           </div>
