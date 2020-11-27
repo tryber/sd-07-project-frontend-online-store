@@ -17,21 +17,21 @@ class ProductCard extends Component {
               <img src={ thumbnail } alt="products" />
               <p>{ price }</p>
             </div>
-        );
-          })}
+          );
+        })}
       </div>
     );
   }
 }
 
-ProductCard.PropTypes = {
-    match: PropTypes.shape({
-        id:PropTypes.string.isRequired,
-        products: PropTypes.array.isRequired,
-        title: PropTypes.string.isRequired,
-        thumbnail: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-    })
+ProductCard.propTypes = {
+  match: PropTypes.shape({
+    id:PropTypes.string.isRequired,
+    products: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }),
 };
 
 export default ProductCard;
