@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
-import ListagemDeProdutos from './pages/ListagemDeProdutos'
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './Routes';
 
 function App() {
   return (
-    <div>
-      <ListagemDeProdutos />
-    </div>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 
