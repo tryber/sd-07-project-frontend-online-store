@@ -61,3 +61,17 @@
   margin: 5px;
   width: 100%;
 }
+
+.product {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.buttons-link {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}

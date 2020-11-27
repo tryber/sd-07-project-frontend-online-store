@@ -11,9 +11,13 @@ class App extends Component {
         <header className="App-header">TrybeLibre Online Store</header>
         <BrowserRouter>
           <Switch>
+            <Route path="/cart" component={ ShoppingCart } />
+            <Route
+              path="/productdetails/:id"
+              render={(props) =>
+                <ProductDetails id={props.match.params.id} />}
+            />
             <Route exact path="/" component={ Home } />
-            <Route path="/shoppingcart" component={ ShoppingCart } />
-            <Route path="/productdetails/:id" component={ ProductDetails } />
           </Switch>
         </BrowserRouter>
       </div>

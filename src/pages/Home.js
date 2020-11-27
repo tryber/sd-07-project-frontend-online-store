@@ -40,7 +40,7 @@ class Home extends Component {
         <div className="SearchBar-products">
           <div className="searchBar-car">
             <SearchBar onClick={ this.getHandle } />
-            <Link data-testid="shopping-cart-button" to="/shoppingcart">
+            <Link data-testid="shopping-cart-button" to="/cart">
               <FontAwesomeIcon icon={ faShoppingCart } />
             </Link>
           </div>
