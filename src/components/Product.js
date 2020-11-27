@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import addToCart from '../services/addToCart';
 
 class Product extends Component {
+  constructor(props) {
+    super(props);
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  addToCart() {
+    const { title, thumbnail, price, id, category, searchKey } = this.props;
+    addToCart({ title, thumbnail, price, id, category, searchKey });
+  }
+
   render() {
     const { title, thumbnail, price, id, category, searchKey } = this.props;
     return (
@@ -18,6 +29,13 @@ class Product extends Component {
         >
           Detalhes
         </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ this.addToCart }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
