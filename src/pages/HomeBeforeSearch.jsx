@@ -44,6 +44,7 @@ export default class HomeBeforeSearch extends Component {
 
 
   render() {
+    const { productList } = this.state
     return (
       <div>
         <div className="nav-bar">
@@ -76,7 +77,7 @@ export default class HomeBeforeSearch extends Component {
           Pesquisar
         </button>
         <CategoryList fetchByCategory={ this.fetchByCategory } />
-        <ProductsList productList={ this.state.productList } />
+        <ProductsList productList={ productList } />
       </div>
     );
   }

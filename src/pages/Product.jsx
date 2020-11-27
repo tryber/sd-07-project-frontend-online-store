@@ -7,7 +7,7 @@ import shoppingCartIcon from '../img/shopping-cart.png';
 
 export default class Product extends Component {
   render() {
-    const { productName, productImg, productPrice } = this.props.location.state;
+    const { location: { state: { productName, productImg, productPrice } } } = this.props;
     return (
       <div>
         <div>
@@ -37,7 +37,11 @@ export default class Product extends Component {
 }
 
 Product.propTypes = {
-  productName: PropTypes.string.isRequired,
-  productImg: PropTypes.string.isRequired,
-  productPrice: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      productName: PropTypes.string.isRequired,
+      productImg: PropTypes.string.isRequired,
+      productPrice: PropTypes.string.isRequired,
+    })
+  })
 };
