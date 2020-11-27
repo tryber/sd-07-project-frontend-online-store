@@ -20,10 +20,10 @@ class ProductsList extends React.Component {
   //   this.fetchProducts();
   // }
 
-  fetchProducts() {
+  async fetchProducts() {
     const { categoryId, query } = this.state;
-    api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((result) => this.setState({ productList: result.results }));
+    const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    this.setState({ productList: products.results });
   }
 
   handleTypeChange({ target }) {
@@ -73,9 +73,23 @@ class ProductsList extends React.Component {
                   key={ id }
                   data-testid="product"
                 >
-                  <h3>{ title }</h3>
+                  <h3>{title}</h3>
                   <img src={ thumbnail } alt="Product" />
-                  <p>{ price }</p>
+                  <p>{price}</p>
+                  <Link
+                    to={ {
+                      pathname: '/product-details',
+                      state: {
+                        productName: title,
+                        productImg: thumbnail,
+                        productPrice: price,
+                      },
+                    } }
+                    data-testid="product-detail-link"
+                    key={ `${title} ${id}` }
+                  >
+                    Ver detalhes
+                  </Link>
                 </li>
               )) : (<li> Nenhum produto foi encontrado </li>)}
           </ul>
