@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardProduct from './CardProduct';
 
+
 class CardList extends React.Component {
   render() {
     const { products,termo } = this.props;
