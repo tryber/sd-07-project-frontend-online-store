@@ -31,12 +31,18 @@ class Search extends React.Component {
     const category = selectedCategory || '';
     const { results } = await api.getProductsFromCategoryAndQuery(category, searchTerms);
     this.setState({ products: results });
+    const { products } = this.state;
+    const { updateProducts } = this.props;
+    updateProducts(products);
   }
 
   async fetchCategory() {
     const { selectedCategory } = this.props;
     const { results } = await api.getProductsFromCategoryAndQuery(selectedCategory, '');
     this.setState({ products: results, alreadySelected: selectedCategory });
+    const { products } = this.state;
+    const { updateProducts } = this.props;
+    updateProducts(products);
   }
 
   render() {
@@ -71,6 +77,7 @@ class Search extends React.Component {
 
 Search.propTypes = {
   selectedCategory: PropTypes.string.isRequired,
+  updateProducts: PropTypes.func.isRequired,
 };
 
 export default Search;
