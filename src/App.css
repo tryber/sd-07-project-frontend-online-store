@@ -1,38 +1,81 @@
-.App {
-  text-align: center;
+body {
+  background-color: #EBEBEB;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input:focus, .search-bar-button {
+  border: 0 none;
+  box-shadow: 0 0 0 0;
+  outline: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.home {
+  align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+.header {
   align-items: center;
+  background-color: #FFF158;
+  display: flex;
+  height: 100px;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.logo-area {
+  align-items: center;
+  display: flex;
+  height: 100px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 30%;
 }
 
-.App-link {
-  color: #61dafb;
+.site-logo {
+  background-image: url("./Images/ml-logo.png");
+  background-size: cover;
+  height: 70px;
+  width: 250px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header-content {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+}
+
+.search-bar {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  height: 40px;
+  width: 500px;
+}
+
+.search-bar-input {
+  border: none;
+  height: 25px;
+  padding-left: 15px;
+  width: 460px;
+}
+
+.search-bar-button {
+  background-image: url("./Images/search.png");
+  background-size: cover;
+  border: none;
+  height: 20px;
+  margin-right: 10px;
+  width: 20px;
+}
+
+.search-bar-button img {
+  display: none;
+}
+
+.cart-icon {
+  background-image: url("./Images/shopping-cart-empty.png");
+  background-size: cover;
+  height: 30px;
+  width: 35px;
 }
