@@ -8,13 +8,21 @@ export default class SearchBar extends Component {
     super();
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+    this.getLocalStorage = this.getLocalStorage.bind(this);
     this.state = {
       listOfProducts: [],
       query: '',
       category: '',
+      objeto: [],
     };
   }
 
+  componentDidMount() {
+    this.getLocalStorage();
+  }
+
+  // eslint-disable-next-line react/sort-comp
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({
@@ -29,6 +37,32 @@ export default class SearchBar extends Component {
 
     const retrieveProductsFromCategoryOrQuery = getProductsFromCategoryOrQuery.results;
     this.setState({ listOfProducts: retrieveProductsFromCategoryOrQuery });
+  }
+
+  async addToCart(event) {
+    const id = event.target.name;
+    const capturingID = await fetch(`https://api.mercadolibre.com/items/${id}`);
+    const item = await capturingID.json();
+    const { title, price, thumbnail } = item;
+    const { objeto } = this.state;
+    const objItem = {
+      id,
+      title,
+      price,
+      thumbnail,
+    };
+    const newState = [...objeto, objItem];
+    this.setState({
+      objeto: newState,
+    });
+    localStorage.setItem('cart', JSON.stringify(newState));
+  }
+
+  getLocalStorage() {
+    const saveObj = JSON.parse(localStorage.getItem('cart'));
+    this.setState({
+      objeto: saveObj,
+    });
   }
 
   render() {
@@ -84,6 +118,15 @@ export default class SearchBar extends Component {
               <a className="details-link" href="http://www.google.com">
                 Ver detalhes
               </a>
+              <button
+                type="button"
+                name={ itens.id }
+                className="details-link"
+                data-testid="product-add-to-cart"
+                onClick={ (event) => this.addToCart(event) }
+              >
+                Adicionar ao carrinho
+              </button>
             </div>
           ))}
         </div>
