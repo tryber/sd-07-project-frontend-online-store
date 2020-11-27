@@ -30,7 +30,7 @@ class ProductList extends Component {
 
   async getProducts(categoryId, query) {
     const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
-    console.log(products);
+
     return products;
   }
 
@@ -44,11 +44,8 @@ class ProductList extends Component {
   async SearchProductForCategory(object) {
     const { query } = this.state;
     const categoryId = object.id;
-    console.log(query, categoryId);
     const { results } = await api.getProductsFromCategoryAndQuery(categoryId, query);
-    console.log(results);
     this.setState({ object: results });
-    console.log(this.state);
   }
 
 

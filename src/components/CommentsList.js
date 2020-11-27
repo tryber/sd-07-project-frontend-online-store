@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 class CommentsList extends Component {
   render() {
-    console.log(this.props);
     const { comments } = this.props;
     return (
       <>
         <h1>Listagem de Comentários</h1>
         { comments.map((comment) => (
-          <div key={ comment.id }>
+          <div key={ comment.text }>
             <p>
               Name:
               {' '}
@@ -23,7 +22,7 @@ class CommentsList extends Component {
             <p>
               Comment:
               {' '}
-              { comment.comment }
+              { comment.text }
             </p>
             {' '}
           </div>
@@ -35,10 +34,9 @@ class CommentsList extends Component {
 
 CommentsList.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    comment: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
   })).isRequired,
 };
 

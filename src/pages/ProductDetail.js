@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import CommentsList from '../components/CommentsList';
+import CommentForm from '../components/CommentForm';
 
 class ProductDetail extends Component {
   constructor() {
@@ -10,11 +11,15 @@ class ProductDetail extends Component {
 
     this.getProduct = this.getProduct.bind(this);
     this.callingFirst = this.callingFirst.bind(this);
+    this.commentSubmit = this.commentSubmit.bind(this);
+    this.getLocalStorage = this.getLocalStorage.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
     this.state = {
-      name: 'Teste',
+      name: '',
       imagePath: '',
       price: 0,
       details: [],
+      comments: [],
     };
   }
 
@@ -36,17 +41,39 @@ class ProductDetail extends Component {
     });
   }
 
+  getLocalStorage() {
+    const { name } = this.state;
+
+    if (localStorage.getItem(`${name}`)) {
+      this.setState({ comments: JSON.parse(localStorage.getItem(`${name}`)) });
+    }
+  }
+
+  setLocalStorage(commentObject) {
+    const { name } = this.state;
+
+    const arrayOfComments = localStorage.getItem(`${name}`)
+      ? JSON.parse(localStorage.getItem(`${name}`))
+      : [];
+
+    arrayOfComments.push(commentObject);
+
+    localStorage.setItem(`${name}`, JSON.stringify(arrayOfComments));
+
+    this.setState({ comments: JSON.parse(localStorage.getItem(`${name}`)) });
+  }
+
+  commentSubmit(comment) {
+    this.setLocalStorage(comment);
+  }
 
   async callingFirst() {
     await this.getProduct();
+    this.getLocalStorage();
   }
 
   render() {
-    const { name, imagePath, price, details } = this.state;
-    const arrayOfComments = [
-      { id: 0, name: 'John Snow', rating: 4, comment: 'That was dope!' },
-      { id: 1, name: 'Arya Stark', rating: 2, comment: 'Not good enough for me.' },
-    ];
+    const { name, imagePath, price, details, comments } = this.state;
     return (
       <>
         <div data-testid="product-detail-name">
@@ -79,7 +106,8 @@ class ProductDetail extends Component {
             ,
           </div>
         </div>
-        <CommentsList comments={ arrayOfComments } />
+        <CommentForm onClick={ this.commentSubmit } />
+        <CommentsList comments={ comments } />
       </>
     );
   }
