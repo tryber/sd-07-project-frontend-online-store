@@ -24,7 +24,7 @@ class List extends React.Component {
     const PA = cartItemsStorage.filter((item) => item.id === idItem);
     if (PA.length === 1) {
       const item = PA[0];
-      item.qtd += 1
+      item.qtd += 1;
       localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
       return false;
     }
