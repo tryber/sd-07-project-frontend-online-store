@@ -24,14 +24,14 @@ class SearchBar extends React.Component {
         <input
           data-testid="query-input"
           type="text"
-          value={texto}
-          onChange={this.atualizarTexto}
+          value={ texto }
+          onChange={ this.atualizarTexto }
         />
         <input
           data-testid="query-button"
           type="button"
           value="pesquisar"
-          onClick={() => onClick(texto)}
+          onClick={ () => onClick(texto) }
         />
       </div>
     );

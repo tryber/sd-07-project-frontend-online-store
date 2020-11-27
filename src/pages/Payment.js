@@ -3,7 +3,7 @@ import States from '../components/States';
 
 class Payment extends React.Component {
   render() {
-    return(
+    return (
       <div>
         <section>
           <h3>Revise seus produtos</h3>
@@ -12,15 +12,15 @@ class Payment extends React.Component {
         <section>
           <h3>Informações do Comprador</h3>
           <form>
-            <input placeholder="Nome Completo" type="text"/>
-            <input placeholder="CPF" type="text"/>
-            <input placeholder="Email" type="text"/>
-            <input placeholder="Telefone" type="text"/>
-            <input placeholder="CEP" type="text"/>
-            <input placeholder="Endereço" type="text"/>
-            <input placeholder="Complemento" type="text"/>
-            <input placeholder="Numero" type="text"/>
-            <input placeholder="Cidade" type="text"/>
+            <input placeholder="Nome Completo" type="text" />
+            <input placeholder="CPF" type="text" />
+            <input placeholder="Email" type="text" />
+            <input placeholder="Telefone" type="text" />
+            <input placeholder="CEP" type="text" />
+            <input placeholder="Endereço" type="text" />
+            <input placeholder="Complemento" type="text" />
+            <input placeholder="Numero" type="text" />
+            <input placeholder="Cidade" type="text" />
             <select>
               <States />
             </select>
@@ -29,9 +29,9 @@ class Payment extends React.Component {
         <section>
           <h3>Método de Pagamento</h3>
         </section>
-        <button>Comprar</button>
+        <input type="button" valeu="Comprar" />
       </div>
-    )
+    );
   }
 }
 

@@ -67,7 +67,7 @@ class Cart extends Component {
   sumCart() {
     const cartitems = JSON.parse(localStorage.getItem('cartItems'));
     let summ = 0;
-    cartitems.forEach((sum) => summ += sum.qtd * sum.price);
+    cartitems.forEach((sum) => { summ += (sum.qtd * sum.price); });
     this.setState({ sumCart: summ });
   }
 

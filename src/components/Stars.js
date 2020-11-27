@@ -28,7 +28,8 @@ class Stars extends React.Component {
   }
 
   estrelaCadente(not) {
-    this.props.astronomo(not);
+    const { astronomo } = this.props;
+    astronomo(not);
     this.brilhaEstrlinha(not);
   }
 
@@ -36,13 +37,14 @@ class Stars extends React.Component {
     const { constelação } = this.state;
     return (
       <div>
-        {constelação.map((estrela) => 
-        <img 
-          key={estrela.index}
-          src={estrela.img}
-          alt={`nota ${estrela.index}`}
-          onClick={() => this.estrelaCadente(estrela.index)}
-        />)}
+        {constelação.map((estrela) =>(
+          <img 
+            key={estrela.index}
+            src={estrela.img}
+            alt={`nota ${estrela.index}`}
+            onClick={() => this.estrelaCadente(estrela.index)}
+          />
+        ))}
       </div>
     );
   }

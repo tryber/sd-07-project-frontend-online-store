@@ -98,7 +98,7 @@ class ProductDetails extends React.Component {
             <input
               data-testid="product-detail-add-to-cart"
               type="button"
-              onClick={() => this.handleClick()}
+              onClick={ () => this.handleClick() }
               data-testid="product-detail-add-to-cart"
               value="Adicionar ao Carrinho"
             />

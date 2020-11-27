@@ -27,25 +27,24 @@ class List extends React.Component {
       item.qtd += 1
       localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 
   render() {
     const { lista } = this.props;
+    const { results } = lista;
     if (Object.keys(lista).length >= 1) {
       return (
-        lista.results.map((resultado) => 
+        results.map((resultado) => (
           <Card
-            productAdd={this.updateCart}
-            key={resultado.id}
-            produto={resultado}
+            productAdd={ this.updateCart }
+            key={ resultado.id }
+            produto={ resultado }
           />
-        )
+        ))
       );
-    };
-    
+    }
     return (
       <h3 data-testid="home-initial-message">
         Digite algum termo de pesquisa ou escolha uma categoria.
