@@ -16,9 +16,9 @@ class ProductsList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchProducts();
-  }
+  // componentDidMount() {
+  //   this.fetchProducts();
+  // }
 
   fetchProducts() {
     const { categoryId, query } = this.state;
@@ -62,7 +62,9 @@ class ProductsList extends React.Component {
           >
             Digite algum termo de pesquisa ou escolha uma categoria.
           </span>
-          <Link to="/shopping-cart" data-testid="shopping-cart-button" />
+          <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            Carrinho de compras
+          </Link>
           <br />
           <ul>
             {productList.length
