@@ -18,5 +18,5 @@ class Produto extends React.Component {
 export default Produto;
 
 Produto.propTypes = {
-  product: PropTypes.arrayOf(PropTypes.object).isRequired,
+  product: PropTypes.object.isRequired,
 };
