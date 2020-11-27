@@ -13,7 +13,7 @@ class SearchControl extends React.Component {
       );
     }
     return (
-      <ProductList num={num} onClick={onClick} query={query} api={answer} />
+      <ProductList num={ num } onClick={ onClick } query={ query } api={ answer } />
     );
   }
 

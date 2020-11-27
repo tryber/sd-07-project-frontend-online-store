@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import cartIcon from '../../images/cart-icon.png';
 
-class SumCart extends React.Component{
+class SumCart extends React.Component {
   render() {
     const { num } = this.props;
     return (

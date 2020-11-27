@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class FreeShipping extends React.Component {
-
   freeShipping() {
     const { shipping } = this.props;
     if (shipping) {
@@ -9,7 +9,7 @@ class FreeShipping extends React.Component {
         <p data-testid="free-shipping">Free Shipping!</p>
       );
     }
-    return ("");
+    return ('');
   }
 
   render() {
@@ -19,6 +19,10 @@ class FreeShipping extends React.Component {
       </div>
     );
   }
+}
+
+FreeShipping.propTypes = {
+  shipping = PropTypes.number.isRequired,
 }
 
 export default FreeShipping;
