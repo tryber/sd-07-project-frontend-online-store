@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { addCartItem } from '../services/localStorageHandler';
 import ProductAttributes from '../components/ProductAttributes';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 
@@ -12,13 +12,7 @@ class ProductDetails extends React.Component {
 
   handleClick({ id, title, price }) {
     const cartItem = { id, title, price };
-    if (!localStorage.cartItems) {
-      localStorage.setItem('cartItems', JSON.stringify([cartItem]));
-    } else {
-      const itemsInStorage = localStorage.getItem('cartItems');
-      const parsedItems = JSON.parse(itemsInStorage);
-      localStorage.setItem('cartItems', JSON.stringify(parsedItems.concat(cartItem)));
-    }
+    addCartItem(cartItem);
   }
 
   render() {

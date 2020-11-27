@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ShowCartItems from '../components/ShowCartItems';
+import { getCartItems } from '../services/localStorageHandler';
 
 class ShoppingCart extends Component {
   constructor() {
@@ -15,9 +16,7 @@ class ShoppingCart extends Component {
   }
 
   retrieveItemsFromStorage() {
-    const itemsInStorage = localStorage.getItem('cartItems');
-    const retrievedItems = JSON.parse(itemsInStorage);
-    console.log(retrievedItems);
+    const retrievedItems = getCartItems();
     this.setState({
       cartItems: retrievedItems,
     });
