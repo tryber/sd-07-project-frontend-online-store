@@ -17,8 +17,10 @@ class Home extends Component {
       searchKey: '',
       category: '',
       results: [],
+
     };
   }
+
 
   handleSearchKey({ target }) {
     this.setState({
@@ -43,15 +45,11 @@ class Home extends Component {
   }
 
   render() {
-    const { results } = this.state;
+    const { results,category,searchKey } = this.state;
     return (
       <div>
         <header>
-          <input
-            data-testid="query-input"
-            type="text"
-            onChange={ this.handleSearchKey }
-          />
+          <input data-testid="query-input" type="text" onChange={ this.handleSearchKey } />
           <button type="submit" data-testid="query-button" onClick={ this.fetchAPI }>
             Search
           </button>
@@ -59,7 +57,7 @@ class Home extends Component {
             Carrinho de compras
           </Link>
         </header>
-        <ProductList results={ results } />
+        <ProductList results={ results } category={ category } searchKey={ searchKey } />
         <Categories filterCategory={ this.handleCategory } />
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.

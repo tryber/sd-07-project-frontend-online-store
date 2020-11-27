@@ -20,8 +20,8 @@ class Details extends Component {
   async fetchAPI() {
     const { match } = this.props;
     const { params } = match;
-    const { id } = params;
-    const resp = await api.getProductsFromCategoryAndQuery(id, undefined);
+    const {category, searchKey, id } = params;
+    const resp = await api.getProductsFromCategoryAndQuery(category, searchKey);
     this.setState({
       loading: false,
       product: resp.results.find((product) => product.id === id),
