@@ -1,0 +1,41 @@
+.left{
+    width: 20%;   
+    height: auto;
+    float: left;
+}
+
+.top{
+    width: 80%;
+    height: 80px;
+    float: left;
+}
+.center{
+    width: 80%;
+    height: auto;
+    float: left;
+}
+
+
+.header-query-input input{
+   width: 80%;
+   height: 40px;
+   font-size: 20px;
+   color: #333;
+   float: left; 
+}
+.header-query-button button{
+    width: 10%;
+   height: 40px;
+   float: left; 
+}
+
+.header-link-cart{
+    width: 5%;
+    height: 20px;
+    float: left;
+}
+
+
+.header-initial-message{  
+    clear: both;
+}
