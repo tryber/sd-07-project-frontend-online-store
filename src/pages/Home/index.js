@@ -10,6 +10,7 @@ class Home extends Component {
       query: '',
       categoryId: '',
       products: [],
+      purchasedProducts: [],
     };
     this.fetchProducts = this.fetchProducts.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -37,7 +38,7 @@ class Home extends Component {
   }
 
   render() {
-    const { products } = this.state;
+    const { products, purchasedProducts } = this.state;
     return (
       <div className="main-container">
         <aside className="categories-container">
@@ -47,6 +48,7 @@ class Home extends Component {
           <SearchBar
             handleChange={ this.handleChange }
             handleClick={ this.searchClick }
+            purchasedProducts={ purchasedProducts }
           />
           <ProductList
             products={ products }

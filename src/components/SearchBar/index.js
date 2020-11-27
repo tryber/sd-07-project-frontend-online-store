@@ -28,8 +28,14 @@ class SearchBar extends Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </span>
-        <Link to="/shoppingcart" data-testid="shopping-cart-button">
-          <img src={ shoppingCartLogo } alt="icon shopping cart" />
+        <Link
+          to="/shoppingcart"
+          data-testid="shopping-cart-button"
+        >
+          <img
+            src={ shoppingCartLogo }
+            alt="icon shopping cart"
+          />
         </Link>
       </div>
     );

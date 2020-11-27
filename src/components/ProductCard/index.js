@@ -9,6 +9,11 @@ class ProductCard extends Component {
     lsapi.setSelectedProduct(product);
   }
 
+  addToCart(product) {
+    const DEFAULT_QUANTITY_PER_CLICK = 1;
+    lsapi.addToShoppingCartList(product, DEFAULT_QUANTITY_PER_CLICK);
+  }
+
   render() {
     const { product } = this.props;
     const { title, thumbnail, price } = product;
@@ -39,6 +44,15 @@ class ProductCard extends Component {
           >
             Mais Detalhes
           </Link>
+        </div>
+        <div>
+          <button
+            type="submit"
+            data-testid="product-add-to-cart"
+            onClick={ (e) => { e.preventDefault(); this.addToCart(product); } }
+          >
+            Adicionar ao Carrinho
+          </button>
         </div>
       </div>
     );

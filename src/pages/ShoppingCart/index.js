@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { ShoppingCartList } from '../../components';
+import * as lsapi from '../../services/lsapi';
 
-class ShoppingCartList extends React.Component {
+class ShoppingCart extends Component {
   render() {
+    const purchasedProducts = lsapi.getShoppingCartList();
     return (
-      <div data-testid="shopping-cart-empty-message">
-        Seu carrinho está vazio
+      <div className="cart-list-container">
+        <ShoppingCartList
+          purchasedProducts={ purchasedProducts }
+        />
       </div>
     );
   }
 }
-export default ShoppingCartList;
+
+export default ShoppingCart;
