@@ -7,8 +7,15 @@ class ButtonCart extends React.Component {
     this.addCart = this.addCart.bind(this);
   }
 
-  addCart({ target }) {
-    sessionStorage.setItem('item', target.value);
+  addCart({ target: { value } }) {
+    const items = JSON.parse(sessionStorage.getItem('item'));
+    if (items) {
+      const arrays = JSON.stringify([...items, { title: value, quantity: 1 }]);
+      sessionStorage.setItem('item', arrays);
+    } else {
+      const array = JSON.stringify([{ title: value, quantity: 1 }]);
+      sessionStorage.setItem('item', array);
+    }
   }
 
   render() {
