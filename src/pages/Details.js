@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
-
 class Details extends Component {
   constructor() {
     super();
@@ -38,6 +37,14 @@ class Details extends Component {
         <h2 data-testid="product-detail-name">{product.title}</h2>
         <img src={ product.thumbnail } alt="thumb" />
         <p>{product.price}</p>
+        <div className="evaluation">
+          <form>
+            <label htmlFor="type">
+              adicione sua avaliação
+              <textarea type="text" id="type" />
+            </label>
+          </form>
+        </div>
       </div>
     );
   }
