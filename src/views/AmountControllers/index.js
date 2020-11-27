@@ -16,7 +16,7 @@ export class AmountControllers extends Component {
   async increaseAmount() {
     const { onClick } = this.props;
     await this.setState({ amount: this.state.amount + 1 });
-    onClick(this.state.amount);
+    // onClick(this.state.amount);
   }
 
   async decreaseAmount() {
@@ -24,7 +24,7 @@ export class AmountControllers extends Component {
     const { onClick } = this.props;
     if (amount > 1) {
       await this.setState({ amount: this.state.amount - 1 });
-      onClick(this.state.amount);
+      // onClick(this.state.amount);
     }
   }
 

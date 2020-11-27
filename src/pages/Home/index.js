@@ -4,19 +4,27 @@ import * as view from '../../views';
 import * as css from './style';
 
 export class Home extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      products: [],
+    };
+  }
+
   render() {
     return (
       <css.CtnCenter>
         <cp.Header />
-        <div className='ctn-main'>
-          <div className='ctn-sidebar'>
-            <view.SideBar />
-          </div>
+        <div className="ctn-main">
+          <div className="ctn-sidebar"></div>
 
-          <div className='ctn-displayCard'>
+          <div className="ctn-displayCard">
             <view.SearchInput />
-            <div className='displayCard'>
-              <cp.CardProduct />
+            <div className="displayCard">
+              <p data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>
             </div>
           </div>
         </div>
