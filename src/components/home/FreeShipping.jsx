@@ -22,7 +22,7 @@ class FreeShipping extends React.Component {
 }
 
 FreeShipping.propTypes = {
-  shipping = PropTypes.number.isRequired,
+  shipping: PropTypes.number.isRequired,
 }
 
 export default FreeShipping;
