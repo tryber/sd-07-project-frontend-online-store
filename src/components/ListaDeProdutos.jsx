@@ -1,12 +1,13 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import Produto from './Produto';
 
 class ListaDeProdutos extends React.Component {
   render() {
-    const arrResultFetch = this.props.onFetchProducts;
+    const { onFetchProducts } = this.props;
     return (
       <div>
-        { arrResultFetch
+        { onFetchProducts
           .map((product) => <Produto key={ product.id } product={ product } />) }
       </div>
     );
@@ -14,3 +15,7 @@ class ListaDeProdutos extends React.Component {
 }
 
 export default ListaDeProdutos;
+
+ListaDeProdutos.propTypes = {
+  onFetchProducts: Proptypes.arrayOf(Proptypes.object),
+}

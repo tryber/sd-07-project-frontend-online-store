@@ -20,4 +20,4 @@ export default Categoria;
 Categoria.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-}
+};

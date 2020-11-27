@@ -10,7 +10,9 @@ class CarrinhoDeCompras extends React.Component {
   }
 
   render() {
-    if (this.state.cart === 0) {
+    const { cart } = this.state
+    const numberToComper = 0;
+    if (cart === numberToComper) {
       return (
         <div>
           <button type="button">

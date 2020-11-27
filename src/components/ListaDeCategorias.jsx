@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Categoria from './Categoria';
 
 class ListaDeCategorias extends React.Component {
@@ -8,8 +9,7 @@ class ListaDeCategorias extends React.Component {
       <ul>
         {
           categories.map((category) =>
-            <Categoria
-              key={ category.name }
+            <Categoria key={ category.name }
               name={ category.name }
               id={ category.id }
             />)
@@ -20,3 +20,7 @@ class ListaDeCategorias extends React.Component {
 }
 
 export default ListaDeCategorias;
+
+ListaDeCategorias.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object),
+}

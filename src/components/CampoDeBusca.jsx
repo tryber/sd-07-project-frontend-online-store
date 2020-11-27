@@ -17,6 +17,7 @@ class CampoDeBusca extends React.Component {
   }
   render() {
     const { query, handleInputChange } = this.props;
+    
     const { search } = this.state;
 
     return (
@@ -45,5 +46,4 @@ export default CampoDeBusca;
 CampoDeBusca.propTypes = {
   query: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  
-}
+};

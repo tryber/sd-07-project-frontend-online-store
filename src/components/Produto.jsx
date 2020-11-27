@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Produto extends React.Component {
   render() {
-    const { title, price, thumbnail } = this.props.product;
+    const { product } = this.props;
+    const { title, price, thumbnail } = product;
     return (
       <div data-testid="product">
         <h1>{ title }</h1>
@@ -14,3 +16,7 @@ class Produto extends React.Component {
 }
 
 export default Produto;
+
+Produto.propTypes = {
+  product: PropTypes.arrayOf(PropTypes.object),
+}
