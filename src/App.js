@@ -15,6 +15,7 @@ function App() {
       <GlobalStyle />
       <Switch>
         <Route exact path="/" component={page.Home} />
+        <Route path="/shopcart" component={page.ShopCart} />
       </Switch>
     </BrowserRouter>
   );
