@@ -12,7 +12,7 @@ class ProductCard extends Component {
         <img src={ thumbnail } alt="" />
         <h3>{price}</h3>
         <Link to={ `/product_details/${category_id}/${id}` }>
-          <button type="button">VER DETALHES</button>
+          <button data-testid="product-detail-link" type="button">VER DETALHES</button>
         </Link>
       </div>
     );
@@ -24,8 +24,9 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    categoryId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
-  onCardClick: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
