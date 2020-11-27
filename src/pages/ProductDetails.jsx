@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import * as api from '../services/api';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import PropTypes from "prop-types";
+import * as localStorage from "../services/localStorage";
 
 export default class ProductDetails extends Component {
   constructor() {
@@ -13,7 +13,7 @@ export default class ProductDetails extends Component {
     };
 
     this.handleMessage = this.handleMessage.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ export default class ProductDetails extends Component {
 
   onSubmit() {
     const { product } = this.state;
-    api.addToCartFromDetails(product);
+    localStorage.addToCartFromDetails(product);
   }
 
   render() {
@@ -46,9 +46,10 @@ export default class ProductDetails extends Component {
     const { title, price, thumbnail } = product;
     return (
       <div className="product-details" data-testid="product-detail-name">
-        <h1>{title}</h1>
-        <h2>{price}</h2>
-        <img src={thumbnail} alt={`${title}`} />
+        <h1>{ title }</h1>
+        <h2>{ price }</h2>
+        <img src={ thumbnail } alt={ `${title}` } />
+
         <div className="rating">
           <textarea
             type="text"
