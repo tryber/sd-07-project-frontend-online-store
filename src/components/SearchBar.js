@@ -29,12 +29,8 @@ class SearchBar extends React.Component {
         />
         <input
           data-testid="query-button"
-<<<<<<< HEAD:src/components/SearchBar.jsx
-          type="button" value="pesquisar"
-=======
           type="button"
           value="pesquisar"
->>>>>>> main-group-38-backup:src/components/SearchBar.js
           onClick={() => onClick(texto)}
         />
       </div>

@@ -57,16 +57,10 @@ class Home extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD:src/pages/home.jsx
-    return(
-      <div className="home">
-        <Caregories onChange={this.select} />
-=======
     const { list } = this.state;
     return (
       <div>
         <Caregories onChange={ this.select } />
->>>>>>> main-group-38-backup:src/pages/home.js
         <div>
           <div>
             <SearchBar onClick={ this.onClick } />
