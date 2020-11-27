@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ProductReview from '../components/ProductReview';
 
 class ProductDetails extends Component {
   constructor() {
@@ -31,6 +32,7 @@ class ProductDetails extends Component {
         <h1>{ title }</h1>
         <h2>{ price }</h2>
         <img src={ thumbnail } alt="Imagem do produto" />
+        <ProductReview />
       </div>
     );
   }
