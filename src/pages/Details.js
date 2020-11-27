@@ -20,7 +20,7 @@ class Details extends Component {
   async fetchAPI() {
     const { match } = this.props;
     const { params } = match;
-    const {category, searchKey, id } = params;
+    const { category, searchKey, id } = params;
     const resp = await api.getProductsFromCategoryAndQuery(category, searchKey);
     this.setState({
       loading: false,
@@ -47,6 +47,8 @@ Details.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      searchKey: PropTypes.string.isRequired,
     }),
   }).isRequired,
 };

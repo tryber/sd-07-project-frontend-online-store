@@ -31,12 +31,12 @@ ProductList.propTypes = {
       thumbnail: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       id: PropTypes.string.isRequired,
-      category: PropTypes.string,
-      searchKey: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  category: PropTypes.string,
+  searchKey: PropTypes.string.isRequired,
 };
 
-Product.defaultProps = {
+ProductList.defaultProps = {
   category: undefined,
 };

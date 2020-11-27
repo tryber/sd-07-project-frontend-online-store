@@ -45,11 +45,15 @@ class Home extends Component {
   }
 
   render() {
-    const { results,category,searchKey } = this.state;
+    const { results, category, searchKey } = this.state;
     return (
       <div>
         <header>
-          <input data-testid="query-input" type="text" onChange={ this.handleSearchKey } />
+          <input
+            data-testid="query-input"
+            type="text"
+            onChange={ this.handleSearchKey }
+          />
           <button type="submit" data-testid="query-button" onClick={ this.fetchAPI }>
             Search
           </button>
