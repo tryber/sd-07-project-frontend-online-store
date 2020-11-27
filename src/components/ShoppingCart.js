@@ -17,8 +17,8 @@ class ShoppingCart extends Component {
     await this.getProductsFromLocalStorage();
     const { cartProducts } = this.state;
     if (!cartProducts.length) return this.state;
-    cartProducts.forEach((element) => {
-      this.setState({ [element.id]: 1 });
+    cartProducts.forEach((itemCart) => {
+      this.setState({ [itemCart.id]: 1 });
     });
   }
 
