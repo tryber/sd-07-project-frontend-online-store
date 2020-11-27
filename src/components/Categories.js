@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import * as categoryAPI from '../services/api';
 
@@ -27,6 +28,7 @@ class Categories extends Component {
 
   render() {
     const { categories, loading } = this.state;
+    const { callback } = this.props;
 
     if (loading) return <Loading />;
 
@@ -39,10 +41,10 @@ class Categories extends Component {
               <li key={ id }>
                 <input
                   type="radio"
-                  id={ id }
+                  value={ id }
                   name="category"
                   data-testid="category"
-                  /* onClick={ (event) => handleChangeCategory(event) } */
+                  onClick={ callback }
                 />
                 <label htmlFor={ id }>
                   { name }
@@ -54,5 +56,7 @@ class Categories extends Component {
     );
   }
 }
+
+Categories.propTypes = { callback: PropTypes.func.isRequired };
 
 export default Categories;

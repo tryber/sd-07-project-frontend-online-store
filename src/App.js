@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Home, ShoppingCart } from './components/index';
+import { ShoppingCart, ProductDetails } from './pages/index';
+import Home from './pages/Home';
 
 class App extends Component {
   render() {
@@ -10,8 +11,9 @@ class App extends Component {
         <header className="App-header">TrybeLibre Online Store</header>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/shoppingcart" component={ ShoppingCart } />
             <Route exact path="/" component={ Home } />
+            <Route path="/shoppingcart" component={ ShoppingCart } />
+            <Route path="/productdetails/:id" component={ ProductDetails } />
           </Switch>
         </BrowserRouter>
       </div>
