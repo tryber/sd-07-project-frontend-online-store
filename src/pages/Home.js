@@ -20,6 +20,11 @@ export default class Home extends Component {
     this.onSearchText = this.onSearchText.bind(this);
   }
 
+  async handleRadioClick({ target: { name, id } }) {
+    await this.setState({ [name]: id });
+    this.getProdutsByQuery();
+  }
+
   onSearchText({ target: { name, value } }) {
     this.setState({ [name]: value });
   }
@@ -30,13 +35,8 @@ export default class Home extends Component {
     this.setState({ products: searchResult.results });
   }
 
-  async handleRadioClick({ target: { name, id } }) {
-    await this.setState({ [name]: id });
-    this.getProdutsByQuery();
-  }
-
   render() {
-    const { query, products } = this.state;
+    const { products, query } = this.state;
     return (
       <div className="busca">
         <SearchBar

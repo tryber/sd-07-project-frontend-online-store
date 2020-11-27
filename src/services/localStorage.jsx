@@ -14,7 +14,10 @@ export const addToCart = (product) => {
     price: product.price,
     thumbnail: product.thumbnail,
     amount: 1,
+    evaluation: product.evaluation,
+    feedback: product.feedback,
   };
+
   let unique = false;
   cart.forEach((element) => {
     if (item.id === element.id) {
