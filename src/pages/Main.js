@@ -16,7 +16,7 @@ class Main extends React.Component {
     this.state = {
       search: '',
       catID: '',
-      message: 'Digite algum termo de pesquisa ou escolha uma categoria',
+      message: 'Digite algum termo de pesquisa ou escolha uma categoria.',
       product: [],
       loading: false,
     };
