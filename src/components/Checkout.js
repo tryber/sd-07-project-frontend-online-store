@@ -1,19 +1,19 @@
 import React from 'react';
-import BuyerInformation from './checkout/BuyerInformation'
-import PaymentMethod from './checkout/PaymentMethod'
-import ReviewProducts from './checkout/ReviewProducts'
-import * as utils from '../services/utils'
+import BuyerInformation from './checkout/BuyerInformation';
+import PaymentMethod from './checkout/PaymentMethod';
+import ReviewProducts from './checkout/ReviewProducts';
+import * as utils from '../services/utils';
 
 class Checkout extends React.Component {
   constructor() {
     super();
     this.state = {
       products: [],
-    }
+    };
   }
 
   componentDidMount() {
-    const productsFromCart = utils.picksUpItemsFromTheCartInLocalStorage()
+    const productsFromCart = utils.picksUpItemsFromTheCartInLocalStorage();
     this.setState({
       products: productsFromCart,
     });

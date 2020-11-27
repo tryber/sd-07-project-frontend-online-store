@@ -10,27 +10,26 @@ class ReviewProducts extends React.Component {
     this.renderProducts = this.renderProducts.bind(this);
   }
 
-  componentDidMount() {
-    // { products, totalPrice } = this.props;
-  }
-
-  renderProducts() {
-  /* { products } = this.state;
-    products.map((product) => {
-      <div>
-        <img src={product.img} alt="" />
-        <p>{product.title}</p>
-        <p>{product.price}</p>
-      </div>
-    }); */
+  renderProducts(products) {
+    return products.map((product) => {
+      const { thumbnail, title, price } = product
+      return (
+        <div key={title}>
+          <img src={thumbnail} alt="" />
+          <p>{title}</p>
+          <p>{price}</p>
+        </div>
+      );
+    })
   }
 
   render() {
+    const { products, totalPrice } = this.props
     return (
       <div>
         <h2>Revise Seus produtos</h2>
-        { /* renderProducts() */ }
-        <p>Total: R${/* totalPrice */}</p>
+        { this.renderProducts(products) }
+        <p>Total: R${totalPrice}</p>
       </div>
     );
   }

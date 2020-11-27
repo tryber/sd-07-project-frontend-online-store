@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/checkout" component= { Checkout }/>
+        <Route path="/checkout" component={ Checkout } />
         <Route path="/carrinho" component={ ShoppingCart } />
         <Route path="/product" component={ ProductDetails } />
         <Route exact path="/" component={ ProductList } />
