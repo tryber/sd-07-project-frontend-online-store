@@ -10,14 +10,9 @@ class Checkout extends React.Component {
     this.state = {
       products: [],
     }
-    this.getProductsFromlocalStorage = this.getProductsFromlocalStorage.bind(this);
   }
 
-  componentWillMount() {
-    // localStorage.setItem()
-  }
-
-  getProductsFromlocalStorage() {
+  componentDidMount() {
     const productsFromCart = utils.picksUpItemsFromTheCartInLocalStorage()
     this.setState({
       products: productsFromCart,
@@ -25,10 +20,11 @@ class Checkout extends React.Component {
   }
 
   render() {
-    // { products } = this.state;
+    const { totalPrice } = this.props.location;
+    const { products } = this.state;
     return (
       <div>
-        {{/* <ReviewProducts products={products} /> */}}
+        <ReviewProducts products={products} totalPrice={totalPrice} />
         <BuyerInformation />
         <PaymentMethod />
         <button>Comprar</button>
