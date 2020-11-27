@@ -16,8 +16,11 @@ class ProductDetails extends Component {
   }
 
   componentDidMount() {
-    const { category_id, id } = this.props.match.params;
-    this.fetchProduct(category_id, id);
+    const { match } = this.props;
+    const { params } = match;
+    const categoryId = params.category_id;
+    const { id } = params;
+    this.fetchProduct(categoryId, id);
   }
 
   fetchProduct(category, id) {
