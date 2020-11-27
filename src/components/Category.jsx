@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Category extends React.Component {
   mapCategories(categories) {
-    return categories.map(({ id, name }) => {<p key={ id }>
+    return categories.map(({ id, name }) => (<p key={ id }>
       <label htmlFor={ id }>
         <input
           type="radio"
@@ -14,7 +14,7 @@ class Category extends React.Component {
         />
         {name}
       </label>
-  </p>});
+  </p>),);
   }
 
   render() {
