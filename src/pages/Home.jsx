@@ -49,8 +49,8 @@ class Home extends React.Component {
         { onFetchProducts.length !== numberToComper
           ? <ListaDeProdutos onFetchProducts={ onFetchProducts } />
           : <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>}
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>}
         <ListaDeCategorias
           categories={ categories }
         />
