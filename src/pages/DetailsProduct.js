@@ -27,7 +27,8 @@ class DetailsProduct extends React.Component {
           <div>
             <p>Descrição Técnica</p>
             <p>
-              R$ { price }
+              R$
+              { price }
             </p>
           </div>
         </div>
@@ -39,18 +40,24 @@ class DetailsProduct extends React.Component {
 export default DetailsProduct;
 
 DetailsProduct.propTypes = {
-  state: PropTypes.shape({}),
-  product: PropTypes.shape({}),
-  location: PropTypes.shape({}),
-  title: PropTypes.string,
-  thumbnail: PropTypes.string,
-  price: PropTypes.number,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      product: PropTypes.shape({
+        title: PropTypes.string,
+        thumbnail: PropTypes.string,
+        price: PropTypes.number,
+      }),
+    }),
+  }),
 };
 DetailsProduct.defaultProps = {
-  state: PropTypes.shape({}),
-  product: PropTypes.shape({}),
-  location: PropTypes.shape({}),
-  title: PropTypes.string,
-  thumbnail: PropTypes.string,
-  price: PropTypes.number,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      product: PropTypes.shape({
+        title: PropTypes.string,
+        thumbnail: PropTypes.string,
+        price: PropTypes.number,
+      }),
+    }),
+  }),
 };

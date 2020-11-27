@@ -59,6 +59,4 @@ Categories.propTypes = {
   handleCatChange: PropTypes.func.isRequired,
 };
 
-Categories.defaultProps = {
-  handleCatChange: PropTypes.func.isRequired,
-};
+Categories.defaultProps = {};

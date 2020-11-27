@@ -54,9 +54,8 @@ class Main extends React.Component {
   render() {
     const { search, catID, product, message, loading } = this.state;
     let array = [];
-    if (product.length === 0) {
-
-    } else {
+    if (product.length === 0) {} 
+    else {
       array = product.results;
     }
     return (
@@ -91,7 +90,7 @@ class Main extends React.Component {
 
         <div className="buttonFetch-4">
           <button
-            type="botao"
+            type="button"
             className="buttonFetch"
             data-testid="query-button"
             onClick={ this.handleApiRequest }

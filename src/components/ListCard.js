@@ -1,6 +1,6 @@
 import React from 'react';
-import ItemCard from './ItemCard';
 import PropTypes from 'prop-types';
+import ItemCard from './ItemCard';
 
 class ListCard extends React.Component {
   render() {
@@ -9,6 +9,7 @@ class ListCard extends React.Component {
     return (
       <div className="list-card-product">
         {products.map((prod) => {
+          console.log();
           return (
             <ItemCard
               key={ prod.id }

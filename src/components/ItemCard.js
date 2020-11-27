@@ -17,7 +17,8 @@ class ItemCard extends React.Component {
           className="card-image"
         />
         <span data-testi="product" className="card-price">
-          R$ { price }
+          R$
+          { price }
         </span>
         <Link
           data-testid="product-detail-link"
@@ -39,11 +40,12 @@ ItemCard.propTypes = {
   title: PropTypes.string,
   image: PropTypes.string,
   price: PropTypes.number,
-}
+};
+
 ItemCard.defaultProps = {
   id: PropTypes.string,
   product: PropTypes.shape({}),
   title: PropTypes.string,
   image: PropTypes.string,
   price: PropTypes.number,
-}
+};
