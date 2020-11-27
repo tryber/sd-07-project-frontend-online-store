@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import AddReview from './AddReview';
 
 class ProductDetails extends Component {
   render() {
@@ -17,6 +18,9 @@ class ProductDetails extends Component {
           <h2 data-testid="product-detail-name">{productName}</h2>
           <h3>{`R$ ${productPrice}`}</h3>
           <img alt="product" src={ productImg } />
+        </div>
+        <div>
+          <AddReview />
         </div>
       </div>
     );

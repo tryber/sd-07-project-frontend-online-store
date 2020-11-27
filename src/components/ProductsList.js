@@ -80,6 +80,7 @@ class ProductsList extends React.Component {
                     to={ {
                       pathname: '/product-details',
                       state: {
+                        id,
                         productName: title,
                         productImg: thumbnail,
                         productPrice: price,
