@@ -18,6 +18,10 @@ class ShoppinCart extends React.Component {
     this.loadStorage();
   }
 
+  componentWillUnmount() {
+    this.unloadStorage();
+  }
+
   unloadStorage() {
     const { cartItem } = this.state;
     cartItem.forEach((item) => {
@@ -25,19 +29,15 @@ class ShoppinCart extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    this.unloadStorage();
-  }
-
   loadStorage() {
-    for (const count = 0; count < localStorage.length; count += 1) {
+    for (let count = 0; count < localStorage.length; count += 1) {
       const item = {
         name: localStorage.key(count),
         price: localStorage.getItem(localStorage.key(count)),
       };
       const { cartItem } = this.state;
       cartItem.push(item);
-      this.setState({ cartItem: cartItem });
+      this.setState({ cartItem: cartItem, });
     }
     localStorage.clear();
   }
