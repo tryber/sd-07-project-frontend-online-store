@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as api from '../services/api';
-import { CategoriesList, ProductList, SearchBar } from '../components'
+import { CategoriesList, ProductList, SearchBar, AddToCart } from '../components'
 
 class Home extends React.Component {
   constructor(props) {
