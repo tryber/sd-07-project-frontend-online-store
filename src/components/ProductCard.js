@@ -8,17 +8,16 @@ class ProductCard extends Component {
         {products.map((product) => {
           const { id, title, thumbnail, price } = product;
           return (
-            <div 
-            key={ id } 
-            data-testid="product"
+            <div
+              key={ id }
+              data-testid="product"
             >
               <h2>{ title }</h2>
               <img src={ thumbnail } alt="products" />
               <p>{ price }</p>
-            </div>
-                
+            </div>          
     );
-        })}
+          })}
       </div>
     );
   }

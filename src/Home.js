@@ -39,43 +39,43 @@ class ProductsList extends Component {
       <div>
         {(status) ? <ProductCard products={ products } /> : false}
         {(products.length === '') ?  <span>Nenhum produto foi encontrado</span> : false}
-          <div className="ContainerForm">
-            <div>
-              <label htmlFor="inputHome">
-                <div>
-                  <input
-                  data-testid="query-input"
-                  name="demand"
-                  className="inputHome"
-                  type="text"
-                  onChange={ this.change }
-                 />
-            <button 
-            data-testid="query-button"
-            type="button"
-            onClick={ this.fecthProducts }>PESQUISAR</button>
-            <span data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </span>
+        <div className="ContainerForm">
+          <div>
+            <label htmlFor="inputHome">
+              <div>
+                <input
+                    data-testid="query-input"
+                    name="demand"
+                    className="inputHome"
+                    type="text"
+                    onChange={ this.change }
+                />
+                <button
+                  data-testid="query-button"
+                  type="button"
+                  onClick={ this.fecthProducts }
+                >PESQUISAR</button>
+                <span data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+                </span>
+              </div>
+            </label>
           </div>
-          </label>
+          <div>
+            <Link to="./pages/cart">
+              <img
+                className="btImg"
+                data-testid="shopping-cart-button"
+                src={ cart }
+                alt="Carrinho de Compras"
+              />
+            </Link>
+          </div>
         </div>
-        <div>
-          <Link to="./pages/cart">
-            <img
-              className="btImg"
-              data-testid="shopping-cart-button"
-              src={ cart }
-              alt="Carrinho de Compras"
-            />
-          </Link>
-        </div>
-        </div>
-          <Categories />
+        <Categories />
       </div>
     );
   }
 }
 
 export default ProductsList;
-
