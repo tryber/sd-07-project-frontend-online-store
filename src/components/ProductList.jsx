@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ButtonAddCart from './ButtonAddCart';
 import '../style/productList.css';
 
 class ProductList extends Component {
   constructor(props) {
     super(props);
-    this.addCart = this.addCart.bind(this);
-
-    this.state = {
-      productItem: {},
-    };
+    this.saveItem = this.saveItem.bind(this);
   }
 
-  addCart() {
-    const { productItem } = this.state;
-    // const { id, title, thumbnail, price } = productItem;
+  saveItem() {
     const { product } = this.props;
-    const { id, title, thumbnail, price } = product;
+    const { id, title, price } = product;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
 
-    // console.log(product);
-    this.setState({ productItem: product });
-    localStorage.setItem('key', id);
+    const itemsIndex = items.findIndex((element) => element.id === id);
+    const flag = -1;
+    if (itemsIndex === flag) {
+      items.push({ id, title, price, qtd: 1 });
+    } else {
+      items[itemsIndex].qtd += 1;
+    }
+
+    localStorage.setItem('itemsCart', JSON.stringify(items));
   }
 
   render() {
@@ -40,10 +42,15 @@ class ProductList extends Component {
           </Link>
         </div>
         <div>
+          {/* <ButtonAddCart
+            data-testid="product-add-to-cart"
+            product={ this.teste }
+          /> */}
           <button
+            data-testid="product-add-to-cart"
             type="submit"
             name="button"
-            onClick={ this.addCart }
+            onClick={ this.saveItem }
           >
             Clique Aqui
           </button>
