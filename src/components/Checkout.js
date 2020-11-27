@@ -14,21 +14,21 @@ class Checkout extends React.Component {
   }
 
   componentWillMount() {
-    localStorage.setItem()
+    // localStorage.setItem()
   }
 
   getProductsFromlocalStorage() {
-    const productsFromCart = utils.getFromLocalStorage()
+    const productsFromCart = utils.picksUpItemsFromTheCartInLocalStorage()
     this.setState({
       products: productsFromCart,
     });
   }
 
   render() {
-    { products } = this.state;
+    // { products } = this.state;
     return (
       <div>
-        <ReviewProducts products={products} />
+        {{/* <ReviewProducts products={products} /> */}}
         <BuyerInformation />
         <PaymentMethod />
         <button>Comprar</button>
