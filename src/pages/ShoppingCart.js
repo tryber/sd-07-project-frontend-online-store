@@ -29,6 +29,7 @@ class ShoppingCart extends Component {
             <CartItem key={ item.id } item={ item } />
           ))
         }
+
       </div>
     );
   }
