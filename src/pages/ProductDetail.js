@@ -126,6 +126,16 @@ class ProductDetail extends Component {
         >
           Adicionar ao Carrinho
         </button>
+        <Link
+          to="/shoopingcart"
+          data-testid="shopping-cart-button"
+          className="home-initial-link"
+        >
+          <img
+            src="../../images/shopping-cart-50.png"
+            alt="Carrinho de Compras"
+          />
+        </Link>
       </>
     );
   }
