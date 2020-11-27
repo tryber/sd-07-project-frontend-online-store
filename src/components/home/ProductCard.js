@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+// import FreeShipping from './FreeShipping';
 import './ProductCard.css';
 
 class ProductCard extends React.Component {
@@ -28,6 +29,7 @@ class ProductCard extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
+        {/* <FreeShipping shipping={shipping.free_shipping} /> */}
       </div>
     );
   }
