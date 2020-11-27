@@ -3,9 +3,12 @@ import React, { Component } from 'react';
 class CartItem extends Component {
 
   render() {
-    const { id, title, price, image, number, sumItem, subtractItem } = this.props;
+    const { id, title, price, image, number, sumItem, subtractItem, removeItem } = this.props;
     return (
       <div>
+        <button
+        name={id}
+        onClick={removeItem}>X</button>
         <img src={image} alt={title} />
         <span data-testid="shopping-cart-product-name">{title}</span>
         <button 
