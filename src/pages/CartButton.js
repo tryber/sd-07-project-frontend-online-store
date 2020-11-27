@@ -8,13 +8,18 @@ class CartButton extends React.Component {
   }
 
   addItemToCart({ target }) {
-    sessionStorage.setItem('item', target.value);
+    localStorage.setItem('item', target.value);
   }
 
   render() {
     const { productName, datatestid } = this.props;
     return (
-      <button data-testid={ datatestid } type="button" value={ productName } onClick={ this.addItemToCart }>
+      <button
+        data-testid={ datatestid }
+        type="button"
+        value={ productName }
+        onClick={ this.addItemToCart }
+      >
         Adicionar ao carrinho
       </button>
     );
@@ -25,4 +30,5 @@ export default CartButton;
 
 CartButton.propTypes = {
   productName: PropTypes.string.isRequired,
+  datatestid: PropTypes.string.isRequired,
 };

@@ -5,7 +5,7 @@ import goBackArrow from '../img/back-arrow.png';
 
 export default class ShoppingCart extends Component {
   render() {
-    const cartItem = sessionStorage.getItem('item');
+    const cartItem = localStorage.getItem('item');
     if (!cartItem) {
       return (
         <div>
