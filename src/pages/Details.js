@@ -21,10 +21,10 @@ class Details extends Component {
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
-    const resp = await api.getProductsFromCategoryAndQuery(id, undefined);
+    const resp = await api.getProductsFromId(id);
     this.setState({
       loading: false,
-      product: resp.results.find((product) => product.id === id),
+      product: resp,
     });
   }
 
