@@ -16,27 +16,25 @@ export async function delProductsStorage(productDel) {
   }
 }
 
-export async function updateProductsStorage(productItem) {
+export function updateProductsStorage(productItem) {
   let updateProductAll = [];
-  const elementsLocalStorage = await getProductsStorage();
-  if (productItem) {
-    const checkIdProduct = elementsLocalStorage.find((productTarget) => {
-      if (productTarget.id === productItem.id && productTarget.qtt !== productItem.qtt) {
-        productTarget.qtt = productItem.qtt;
-        return productItem;
-      }
-      return '';
-    });
-    updateProductAll = [...elementsLocalStorage, checkIdProduct];
-  }
+  const elementsLocalStorage = getProductsStorage();
+  elementsLocalStorage.find((productTarget) => {
+    if (productTarget.id === productItem.id && productTarget.qtt !== productItem.qtt) {
+      productTarget.qtt = productItem.qtt;
+      return productItem;
+    }
+    return '';
+  });
+  updateProductAll = [...elementsLocalStorage];
 
   localStorage.setItem('cart', JSON.stringify(updateProductAll));
   updateProductAll = [];
 }
 
-export async function setProductsStorage(product) {
+export function setProductsStorage(product) {
   let setProductAll = [];
-  const elementsLocalStorage = await getProductsStorage();
+  const elementsLocalStorage = getProductsStorage();
 
   if (elementsLocalStorage !== null) {
     const checkIdProduct = elementsLocalStorage

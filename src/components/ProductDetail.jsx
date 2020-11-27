@@ -27,7 +27,6 @@ class ProductDetail extends React.Component {
           params: { id },
         },
       } = this.props;
-
       const indexOne = 0;
       const indexTwo = 8;
       const name = id.substring(indexOne, indexTwo);
