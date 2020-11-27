@@ -4,22 +4,22 @@ import add from './img/add-circle.png';
 import removeitem from './img/remove-from-basket.png';
 
 class Cart extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.sumCart = this.sumCart.bind(this);
     this.state = {
       sumCart: 0,
-    }
+    };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.sumCart();
   }
 
   sumCart() {
-    let cartitems = JSON.parse(localStorage.getItem('cartItems'));
-    let summ = 0;
-    cartitems.map((sum) => summ += sum.qtd * sum.price);
+    const cartitems = JSON.parse(localStorage.getItem('cartItems'));
+    const summ = 0;
+    cartitems.map((sum) => (summ += sum.qtd * sum.price));
     this.setState({ sumCart: summ });
     console.log(summ);
   }
@@ -27,20 +27,20 @@ class Cart extends Component {
     const cartitems = JSON.parse(localStorage.getItem('cartItems'));
     return (
       <div>
-      {cartitems.map((item) => (
-      <div>
-        <img src={removeitem} alt="Remover item" />
-        <img src={item.thumbnail} alt={item.title} />
-        <p>{item.title}</p>
-        <img src={remove} alt="retirar" />
-        <p>{item.qtd}</p>
-        <img src={add} alt="adicionar" />
-        <p>{item.qtd * item.price}</p>
+        {cartitems.map((item) => (
+          <div>
+            <img src={ removeitem } alt="Remover item" />
+            <img src={ item.thumbnail } alt={ item.title } />
+            <p>{ item.title }</p>
+            <img src={ remove } alt="retirar" />
+            <p>{ item.qtd }</p>
+            <img src={ add } alt="adicionar" />
+            <p>{ item.qtd * item.price }</p>
+          </div>
+        ))}
+        <h3>Valor Total da Compra: {this.state.sumCart}</h3>
       </div>
-    ))}
-      <h3>Valor Total da Compra: {this.state.sumCart}</h3>
-    </div>
-    )
+    );
   }
 }
 
