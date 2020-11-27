@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   constructor() {
@@ -37,5 +38,7 @@ class SearchBar extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = { onClick: PropTypes.func.isRequired };
 
 export default SearchBar;

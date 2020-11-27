@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
 
 class List extends React.Component {
@@ -52,5 +53,9 @@ class List extends React.Component {
     );
   }
 }
+
+List.propTypes = {
+  lista: PropTypes.objectOf(Object).isRequired,
+};
 
 export default List;
