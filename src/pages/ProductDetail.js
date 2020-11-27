@@ -43,6 +43,10 @@ class ProductDetail extends Component {
 
   render() {
     const { name, imagePath, price, details } = this.state;
+    const arrayOfComments = [
+      { id: 0, name: 'John Snow', rating: 4, comment: 'That was dope!' },
+      { id: 1, name: 'Arya Stark', rating: 2, comment: 'Not good enough for me.' },
+    ];
     return (
       <>
         <div data-testid="product-detail-name">
@@ -75,7 +79,7 @@ class ProductDetail extends Component {
             ,
           </div>
         </div>
-        <CommentsList />
+        <CommentsList comments={ arrayOfComments } />
       </>
     );
   }
