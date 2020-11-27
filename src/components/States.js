@@ -3,7 +3,7 @@ import React from 'react';
 class States extends React.Component {
   constructor() {
     super();
-    this.stados = this.stados.bind();
+    this.stados = this.stados.bind(this);
     this.state = {
       brStates: [],
     };
@@ -43,7 +43,7 @@ class States extends React.Component {
       'Sergipe',
       'Tocantins',
     ];
-    this.setState({ brStates: states });
+    this.setState({ brStates: [...states] });
   }
 
   render() {

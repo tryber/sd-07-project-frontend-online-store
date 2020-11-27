@@ -35,12 +35,8 @@ class Cart extends Component {
   delet(event) {
     const { name } = event.target;
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
-    for (let i = 0; i < cartItemsStorage.length; i += 1) {
-      if (cartItemsStorage[i].id === name) {
-        cartItemsStorage.splice(i, 1);
-        localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
-      }
-    }
+    const cart = cartItemsStorage.filter((cartItem)=> cartItem.id !== name);
+    localStorage.setItem('cartItems', JSON.stringify(cart));
     this.atualizar();
   }
 
@@ -65,10 +61,10 @@ class Cart extends Component {
   }
 
   sumCart() {
-    const cartitems = JSON.parse(localStorage.getItem('cartItems'));
-    let summ = 0;
-    cartitems.forEach((sum) => { summ += (sum.qtd * sum.price); });
-    this.setState({ sumCart: summ });
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    const summ = (sum, addValue) => sum + (addValue.qtd * addValue.price);
+    const cartTotal = cartItems.reduce(summ, '');
+    this.setState({ sumCart: cartTotal });
   }
 
   render() {

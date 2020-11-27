@@ -19,8 +19,8 @@ function App() {
             path="/product-details/:id/:category"
             render={ (props) => <ProductDetails { ...props } /> }
           />
-          <Route component={ NotFound } />
           <Route exact path="/payment" component={ Payment } />
+          <Route component={ NotFound } />
         </Switch>
       </BrowserRouter>
     </div>
