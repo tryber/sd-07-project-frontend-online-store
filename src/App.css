@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+header {
+  width: 100%;
+  padding: 10px;
+}
+
+header input {
+  width: 80%;
+}
+
+header a {
+  padding: 5px;
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 3px ;
+}
