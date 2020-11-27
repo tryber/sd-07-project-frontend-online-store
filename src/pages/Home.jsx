@@ -28,12 +28,12 @@ class Home extends React.Component {
   handleInputChange(search) {
     this.setState(() => ({
       query: search,
-      }), () => {
+    }), () => {
       const { categoryId, query } = this.state;
       api.getProductsFromCategoryAndQuery(categoryId, query)
-        .then(response => this.setState({
-        onFetchProducts: response.results,
-      }));
+        .then((response) => this.setState({
+          onFetchProducts: response.results,
+        }));
     });
   }
 
@@ -45,9 +45,9 @@ class Home extends React.Component {
           query={ query }
           handleInputChange={ this.handleInputChange }
         />
-        { onFetchProducts.length !== 0 ?
-          <ListaDeProdutos onFetchProducts={ onFetchProducts } /> :
-          <p
+        { onFetchProducts.length !== 0
+          ? <ListaDeProdutos onFetchProducts={ onFetchProducts } />
+          : <p
             data-testid="home-initial-message"
           >
             Digite algum termo de pesquisa ou escolha uma categoria.

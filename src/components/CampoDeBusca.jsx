@@ -14,26 +14,26 @@ class CampoDeBusca extends React.Component {
       search: target.value,
     });
   }
-render() {
-  const { query, handleInputChange } = this.props;
-  return (
+  render() {
+    const { query, handleInputChange } = this.props;
+    return (
       <div>
         <input
-          data-testid='query-input'
+          data-testid="query-input"
           type="text"
           value={ this.state.search }
-          onChange={ this.changeSearchState } 
+          onChange={ this.changeSearchState }
         />
         <button
-          data-testid='query-button'
-          type='button'
+          data-testid="query-button"
+          type="button"
           value={ query }
-          onClick={ () => handleInputChang (this.state.search) }
+          onClick={ () => handleInputChange(this.state.search) }
         >
           Pesquisar
         </button>
       </div>
-    )
+    );
   }
 }
 
