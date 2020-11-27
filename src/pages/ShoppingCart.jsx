@@ -4,12 +4,41 @@ import CartItem from "../components/CartItem";
 class ShoppingCart extends Component {
   constructor(props) {
     super(props);
+    this.removeLastItem = this.removeLastItem.bind(this);
+    this.removeZero = this.removeZero.bind(this);
+    this.roundNumber = this.roundNumber.bind(this);
     this.sumItem = this.sumItem.bind(this);
     this.subtractItem = this.subtractItem.bind(this);
     this.state = {
       products: JSON.parse(localStorage.getItem("cart")),
     };
   }
+
+  removeLastItem(string) {
+    let stringNumber = string;
+    if (stringNumber[stringNumber.length - 1] === '0' || stringNumber[stringNumber.length - 1] === '.') {
+      stringNumber = stringNumber.slice(0, (stringNumber.length - 1));
+    }
+    return stringNumber;
+  };
+
+  removeZero(string) {
+    let stringNumber = string;
+    if (stringNumber[0] === '0') {
+      stringNumber = '0';
+      return stringNumber;
+    }
+    stringNumber = this.removeLastItem(stringNumber);
+    stringNumber = this.removeLastItem(stringNumber);
+    stringNumber = this.removeLastItem(stringNumber);
+    return stringNumber;
+  };
+
+  roundNumber(string) {
+    let stringNumber = string.toFixed(2);
+    const number = this.removeZero(stringNumber);
+    return number;
+  };
 
   sumItem({ target }) {
     const id = target.name;
@@ -18,7 +47,8 @@ class ShoppingCart extends Component {
       cartArray.forEach(item => {
         if (item.id === id) {
           item.number += 1;
-          // item.price = parseFloat(item.price) + parseFloat(item.price);
+          item.totalPrice = parseFloat(item.totalPrice, 10) + parseFloat(item.price, 10);
+          item.totalPrice = this.roundNumber(item.totalPrice);
         } 
       })
       localStorage.setItem('cart', JSON.stringify(cartArray))
@@ -33,12 +63,15 @@ class ShoppingCart extends Component {
       let index = null;
       cartArray.forEach((item, itemIndex) => {
         if (item.id === id) {
-          if (item.number > 0) item.number -= 1;
+          if (item.number > 0) {
+            item.number -= 1;
+            item.totalPrice = parseFloat(item.totalPrice, 10) - parseFloat(item.price, 10);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+          }
           if (item.number === 0) {
             index = itemIndex;
             cartArray.splice(index, 1);
           }
-          // item.price = parseFloat(item.price) - parseFloat(item.price);
         } 
       })
       localStorage.setItem('cart', JSON.stringify(cartArray))
@@ -60,7 +93,7 @@ class ShoppingCart extends Component {
             key={product.id}
             id={product.id}
             title={product.title}
-            price={product.price}
+            price={product.totalPrice}
             image={product.imagePath}
             number={product.number}
             sumItem={this.sumItem}
