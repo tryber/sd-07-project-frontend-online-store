@@ -70,12 +70,12 @@ class ProductDetails extends React.Component {
     const { Email, comentario, nota, comentFix } = this.state;
     const avaliação = { Email, comentario, nota };
     if (Email !== "") {
-      this.setState({ comentFix: comentFix.concat(avaliação) })
+      this.setState({ comentFix: comentFix.concat(avaliação) });
     }
   }
 
   inputs(event) {
-    this.setState({ [event.target.name]: event.target.value })
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
@@ -92,7 +92,13 @@ class ProductDetails extends React.Component {
           <div>
             <h1 data-testid="product-detail-name">{title}</h1>
             <h3>R$: {price}</h3>
-            <button onClick={() => this.handleClick()} data-testid="product-detail-add-to-cart">Adicionar ao Carrinho</button>
+            <input
+              data-testid="product-detail-add-to-cart"
+              type="button"
+              onClick={() => this.handleClick()}
+              data-testid="product-detail-add-to-cart"
+              value="Adicionar ao Carrinho"
+            />
           </div>
         </div>
         <div>

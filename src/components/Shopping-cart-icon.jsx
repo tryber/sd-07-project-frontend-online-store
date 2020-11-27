@@ -10,7 +10,7 @@ class ShoppingCartIcon extends React.Component {
         <img src={cart} alt="Shopping Cart"/>
       </Link>
     );
-  };
   }
+}
   
-  export default ShoppingCartIcon;
+export default ShoppingCartIcon;

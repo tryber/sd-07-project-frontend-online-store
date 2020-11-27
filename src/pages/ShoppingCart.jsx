@@ -11,7 +11,6 @@ class ShoppingCart extends React.Component{
         <h3>Carrinho de compras</h3>
         </div>
         <Cart />
-        <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
       </div>
     )
   }

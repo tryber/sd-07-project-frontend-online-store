@@ -8,7 +8,7 @@ class List extends React.Component {
     this.checkCartOnAdd = this.checkCartOnAdd.bind(this);
     this.state = {
       cart: {},
-    }
+    };
   }
 
   updateCart(products) {
@@ -39,10 +39,11 @@ class List extends React.Component {
     if (Object.keys(lista).length >= 2) {
       return (lista.results.map((resultado) => <Card productAdd={this.updateCart} key={resultado.id} produto={resultado}/>));
     }
-    return (<h3 data-testid="home-initial-message">
+    return (
+    <h3 data-testid="home-initial-message">
       Digite algum termo de pesquisa ou escolha uma categoria.
     </h3>);
-  };
+  }
 }
 
 export default List;

@@ -4,16 +4,67 @@ import add from './img/add-circle.png';
 import removeitem from './img/remove-from-basket.png';
 
 class Cart extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.sumCart = this.sumCart.bind(this);
+    this.addClick = this.addClick.bind(this);
+    this.minClick = this.minClick.bind(this);
+    this.atualizar =this.atualizar.bind(this);
+    this.delet = this.delet.bind(this);
     this.state = {
       sumCart: 0,
+      compras: [],
+    };
+  }
+
+  addClick(event) {
+    const { name } = event.target;
+    const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
+      if (cartItemsStorage[i].id === name) {
+        cartItemsStorage[i].qtd += 1;
+        localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+      }
     }
+    this.atualizar();
+  }
+
+  delet (event) {
+    const { name } = event.target;
+    const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
+      if (cartItemsStorage[i].id === name) {
+        cartItemsStorage.splice(i, 1);
+        localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+      }
+    }
+    this.atualizar();
+  }
+
+  minClick(event) {
+    const { name } = event.target;
+    const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
+      if (cartItemsStorage[i].id === name) {
+        if (cartItemsStorage[i].qtd > 1) {
+          cartItemsStorage[i].qtd -= 1;
+          localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+        } else {
+          this.delet(event);
+        }
+      }
+    }
+    this.atualizar();
+  }
+
+  atualizar() {
+    const cartitems = JSON.parse(localStorage.getItem('cartItems'));
+    this.setState({ compras: cartitems });
   }
 
   componentDidMount(){
     this.sumCart();
+    this.atualizar();
   }
 
   sumCart() {
@@ -21,26 +72,45 @@ class Cart extends Component {
     let summ = 0;
     cartitems.map((sum) => summ += sum.qtd * sum.price);
     this.setState({ sumCart: summ });
-    console.log(summ);
   }
+
   render() {
-    const cartitems = JSON.parse(localStorage.getItem('cartItems'));
+    const { compras } = this.state;
+    if (compras.length < 1) {
+      return (
+        <h3 data-testid="shopping-cart-empty-message">
+          Seu carrinho está vazio
+        </h3>
+      );
+    }
     return (
       <div>
-      {cartitems.map((item) => (
-      <div>
-        <img src={removeitem} alt="Remover item" />
+      {compras.map((item) => (
+      <div key={item.id}>
+        <img src={removeitem} name={item.id} alt="Remover item" onClick={this.delet} />
         <img src={item.thumbnail} alt={item.title} />
-        <p>{item.title}</p>
-        <img src={remove} alt="retirar" />
-        <p>{item.qtd}</p>
-        <img src={add} alt="adicionar" />
+        <p data-testid="shopping-cart-product-name">{item.title}</p>
+        <img
+          data-testid="product-decrease-quantity"
+          src={remove}
+          name={item.id}
+          alt="retirar"
+          onClick={this.minClick}
+        />
+        <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
+        <img
+          data-testid="product-increase-quantity"
+          src={add}
+          name={item.id}
+          alt="adicionar"
+          onClick={this.addClick}
+        />
         <p>{item.qtd * item.price}</p>
       </div>
     ))}
       <h3>Valor Total da Compra: {this.state.sumCart}</h3>
     </div>
-    )
+    );
   }
 }
 

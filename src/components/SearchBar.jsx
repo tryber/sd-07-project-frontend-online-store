@@ -6,8 +6,8 @@ class SearchBar extends React.Component {
     super();
     this.atualizarTexto = this.atualizarTexto.bind(this);
     this.state = {
-      texto: ""
-    }
+      texto: "",
+    };
   }
 
   atualizarTexto(event) {
@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
         />
       </label>
     );
-  };
+  }
 }
 
 export default SearchBar;

@@ -17,7 +17,7 @@ class Home extends React.Component {
       category: "",
       searchValue: "",
       list: {},
-    }
+    };
   }
 
   componentDidMount() {
@@ -35,7 +35,7 @@ class Home extends React.Component {
     if(searchValue !== '' || category !== '') {
       this.buscaCategoryAndQuery(category, searchValue);
     } else {
-      this.setState({ list: {} })
+      this.setState({ list: {} });
     }
   }
 

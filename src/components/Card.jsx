@@ -18,6 +18,7 @@ class Card extends React.Component {
     };
     productAdd(product);
   }
+
   render() {
     const { thumbnail, title, price, id, category_id } = this.props.produto
     return (
@@ -26,18 +27,19 @@ class Card extends React.Component {
         <img src={thumbnail} alt={title} />
         <h4>R$: {price}</h4>
         <div>
-        <button
+        <input
+          data-testid="product-detail-add-to-cart"
+          type="button"
           onClick={this.addToCart}
           data-testid="product-add-to-cart"
-        >
-          Adicionar ao Carrinho
-        </button>
+          value="Adicionar ao Carrinho"
+        />
           <Link data-testid="product-detail-link"
           to={`product-details/${id}/${category_id}`}>Detalhes do produto</Link>
         </div>
       </div>   
     );
-  };
+  }
 }
 
 export default Card;
