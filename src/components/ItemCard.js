@@ -7,10 +7,12 @@ class ItemCard extends React.Component {
     super(props);
     this.addToCart = this.addToCart.bind(this);
   }
+  
   addToCart() {
     const { title, price } = this.props;
     localStorage.setItem(title, price);
   }
+
   render() {
     const { id, product, title, image, price } = this.props;
     return (
@@ -28,8 +30,9 @@ class ItemCard extends React.Component {
           { price }
         </span>
         <button
-        data-testid="product-add-to-cart"
-        onClick={this.addToCart}
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ this.addToCart }
         >
           Adicionar ao Carrinho
         </button>
