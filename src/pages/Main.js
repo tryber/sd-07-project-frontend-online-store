@@ -30,7 +30,7 @@ class Main extends React.Component {
       },
       async () => {
         await this.handleApiRequest();
-      }
+      },
     );
   }
 
@@ -85,6 +85,7 @@ class Main extends React.Component {
 
         <div className="buttonFetch-4">
           <button
+            type=""
             className="buttonFetch"
             data-testid="query-button"
             onClick={ this.handleApiRequest }

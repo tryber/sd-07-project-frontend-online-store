@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class ItemCard extends React.Component {
   render() {
@@ -15,7 +16,9 @@ class ItemCard extends React.Component {
           alt="foto-produto"
           className="card-image"
         />
-        <span data-testi="product" className="card-price">R$ { price }</span>
+        <span data-testi="product" className="card-price">
+          R$ { price }
+        </span>
         <Link
           data-testid="product-detail-link"
           to={ { pathname: `detailsProduct/${id}`, state: { product } } }
@@ -29,3 +32,18 @@ class ItemCard extends React.Component {
 }
 
 export default ItemCard;
+
+ItemCard.PropTypes = {
+  id: PropTypes.string,
+  product: PropTypes.shape({}),
+  title: PropTypes.string,
+  image: PropTypes.string,
+  price: PropTypes.number,
+}
+ItemCard.defaultProps = {
+  id: PropTypes.string,
+  product: PropTypes.shape({}),
+  title: PropTypes.string,
+  image: PropTypes.string,
+  price: PropTypes.number,
+}

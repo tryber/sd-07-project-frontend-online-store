@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import chart from '../icon/chart.png';
 import voltar from '../icon/voltar.png';
+import PropTypes from 'prop-types';
 
 class DetailsProduct extends React.Component {
   render() {
     const { state } = this.props.location;
-    const { title, thumbnail, price } = state.product;
+    const { product } = state;
+    const { title, thumbnail, price } = product;
     return (
       <div>
         <Link to="/shoppingCart" data-testid="shopping-cart-button">
@@ -35,3 +37,20 @@ class DetailsProduct extends React.Component {
 }
 
 export default DetailsProduct;
+
+DetailsProduct.PropTypes = {
+  state: PropTypes.shape({}),
+  product: PropTypes.shape({}),
+  location: PropTypes.shape({}),
+  title: Prop.string,
+  thumbnail: Prop.string,
+  price: PropTypes.number,
+};
+DetailsProduct.defaultProps = {
+  state: PropTypes.shape({}),
+  product: PropTypes.shape({}),
+  location: PropTypes.shape({}),
+  title: Prop.string,
+  thumbnail: Prop.string,
+  price: PropTypes.number,
+};
