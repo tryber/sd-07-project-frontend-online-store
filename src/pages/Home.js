@@ -60,12 +60,11 @@ export default class Home extends Component {
               handleTextInput={this.handleTextInput}
             />
           </div>
-          <div>Aqui Shoppingcart</div>
+          <div><ShoppingCartButton /></div>
         </header>
           <h1>Home</h1>
           <ListCategories onClickCategory={this.onClickCategory} />
-          <ShoppingCartButton />
-      </main>
+        </main>
     );
   }
 }

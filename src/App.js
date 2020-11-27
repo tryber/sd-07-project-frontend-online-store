@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
 
-
 function App() {
   return (
     <div className="App">

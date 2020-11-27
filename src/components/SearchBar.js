@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import ProductCard from '../components/ProductCard.jsx'
+import ProductCard from './ProductCard.js'
 import '../App.css'
 
 export default class SearchBar extends Component {
   render() {
+
     const { handleSubmit, handleTextInput } = this.props;
     const { itemsFindOut, loading } = this.props.parentState;
+    
     return (
     <main>
       <div className="item-inputsearch">
@@ -28,8 +30,8 @@ export default class SearchBar extends Component {
         Pesquisar
         </button>
       </div>
-      <div className="grid">
-         <div className="item">
+        <div className="grid">
+          <div className="item">
             {loading ? itemsFindOut.results.map((item) => {
               const { id } = item;
               return <ProductCard key={id} item={item} />
@@ -38,7 +40,8 @@ export default class SearchBar extends Component {
         <div>
       </div>
     </div>
-  </main>
+   
+    </main>
     );
   }
 }
