@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from '../components/Loading/Loading';
+import Rating from '../components/Rating/Rating';
 
 
 class ProductDetails extends Component {
@@ -60,6 +61,7 @@ class ProductDetails extends Component {
     return (
       <div>
         {isLoading ? <Loading /> : this.renderDetails(productSelected)}
+        <Rating />
       </div>
     );
   }
