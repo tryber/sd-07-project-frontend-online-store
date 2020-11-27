@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as categoryAPI from '../services/api';
-
 import Loading from './Loading';
 
 class Categories extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loading: true,
       categories: [],
@@ -28,12 +27,11 @@ class Categories extends Component {
 
   render() {
     const { categories, loading } = this.state;
-    const { callback } = this.props;
-
+    const { handleChangeCategory } = this.props;
     if (loading) return <Loading />;
 
     return (
-      <div className="categories">
+      <div>
         <h3>Categorias</h3>
         <ul>
           {categories
@@ -41,10 +39,11 @@ class Categories extends Component {
               <li key={ id }>
                 <input
                   type="radio"
+                  id={ id }
                   value={ id }
                   name="category"
                   data-testid="category"
-                  onClick={ callback }
+                  onClick={ (event) => handleChangeCategory(event) }
                 />
                 <label htmlFor={ id }>
                   { name }
@@ -57,6 +56,6 @@ class Categories extends Component {
   }
 }
 
-Categories.propTypes = { callback: PropTypes.func.isRequired };
+Categories.propTypes = { handleChangeCategory: PropTypes.func.isRequired };
 
 export default Categories;
