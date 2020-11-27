@@ -7,12 +7,15 @@ const styledIconGlobal = css`
   transform: scale(0.8);
   transition: all ease 0.2s;
 
+
   :hover {
     transform: scale(1);
+
   }
 `;
 
 export const Cart = styled(icon.FaCartPlus)`
+
   ${styledIconGlobal}
 `;
 
@@ -23,15 +26,18 @@ export const Plus = styled(icon.FaPlus)`
   :active {
     transform: scale(1.1);
   }
+
 `;
 
 export const Minus = styled(icon.FaMinus)`
   ${styledIconGlobal}
   font-size: 1em;
+
   transform: scale(1);
   :active {
     transform: scale(1.1);
   }
+
 `;
 
 export const Search = styled(icon.FaSearch)`
@@ -55,3 +61,4 @@ export const Close = styled(icon.FaWindowClose)`
     transform: scale(1.1);
   }
 `;
+
