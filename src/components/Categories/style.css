@@ -1,0 +1,27 @@
+.categories-container {
+  width: 25%;
+}
+
+.categories-title {
+  font-size: 34px;
+}
+
+.list {
+  list-style-type: none;
+  margin-top: 20px;
+}
+
+.item {
+  padding: 2px 1px;
+  font-size: 18px;
+}
+
+.item:hover {
+  background-color: var(--twitter-dark-hover);
+}
+
+@media(max-width: 1150px) {
+  .categories-container {
+    display: none;
+  }
+}
