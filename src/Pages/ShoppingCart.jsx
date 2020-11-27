@@ -6,7 +6,7 @@ class ShoppingCart extends React.Component {
     return (
       <div>
         <ReturnButton path="/" />
-        {localStorage.length === undefined ? (
+        {localStorage.length < 1 ? (
           <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>
         ) : (
           Object.keys(localStorage).map((key) => (
