@@ -13,7 +13,7 @@ class Home extends React.Component {
     this.state = {
       categories: [],
       products: [],
-      input: '',
+      input: undefined,
       selectCategory: '',
     };
   }
@@ -33,7 +33,7 @@ class Home extends React.Component {
   handlerSelectCategory(id) {
     this.setState({
       selectCategory: id,
-    });
+    }, () => this.fetchGetProducts());
   }
 
   async fetchCategories() {
@@ -54,13 +54,13 @@ class Home extends React.Component {
   render() {
     const { products, categories } = this.state;
     return (
-      <div>
+      <div className="home">
         <Header handlerSearch={ this.handlerSearch } state={ this.state } />
-        <Products products={ products } />
         <Categories
           categories={ categories }
           handlerSelectCategory={ this.handlerSelectCategory }
         />
+        <Products products={ products } />
       </div>
     );
   }

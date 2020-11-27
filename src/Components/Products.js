@@ -7,6 +7,7 @@ class Products extends React.Component {
     const empty = 0;
     const { products } = this.props;
     const { results } = products;
+    // console.log(results);
     if (results) {
       if (results.length === empty) return <p>Nenhum produto foi encontrado</p>;
       return (

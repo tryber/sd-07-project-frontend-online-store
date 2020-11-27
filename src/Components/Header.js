@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Logo from './Logo';
 import SearchBar from './SearchBar';
 import ShoppingCartButton from './ShoppingCartButton';
 
@@ -7,11 +8,13 @@ class Header extends React.Component {
   render() {
     const { handlerSearch, state } = this.props;
     return (
-      <div>
-        {/* logo */}
-        <SearchBar handlerSearch={ handlerSearch } state={ state } />
-        {/* filtro */}
-        <ShoppingCartButton />
+      <div className="header">
+        <Logo />
+        <div className="header-content">
+          <SearchBar handlerSearch={ handlerSearch } state={ state } />
+          {/* filtro */}
+          <ShoppingCartButton />
+        </div>
       </div>
     );
   }
