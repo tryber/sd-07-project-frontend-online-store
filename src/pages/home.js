@@ -59,7 +59,7 @@ class Home extends React.Component {
   render() {
     const { list } = this.state;
     return (
-      <div>
+      <div className="home">
         <Caregories onChange={ this.select } />
         <div>
           <div>
