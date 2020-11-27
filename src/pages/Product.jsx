@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import goBackArrow from '../img/back-arrow.png';
 import CartButton from './CartButton';
+import shoppingCartIcon from '../img/shopping-cart.png';
 
 export default class Product extends Component {
   render() {
@@ -12,12 +13,15 @@ export default class Product extends Component {
           <Link to="/">
             <img src={ goBackArrow } className="go-back-arrow-icon" alt="goBackArrow"/>
           </Link>
+          <Link to="/ShoppingCart" data-testid="shopping-cart-button">
+            <img src={ shoppingCartIcon } className="shopping-cart-icon" alt="shoppingCartImg"/>
+          </Link>
         </div>
-        <div data-testid="product-detail-add-to-cart">
+        <div>
           <h1 data-testid="product-detail-name">{ productName }</h1>
           <img src={ productImg } alt="productImg"/>
           <p>{ productPrice }</p>
-          <CartButton productName={ productName } />
+          <CartButton datatestid="product-detail-add-to-cart" productName={ productName } />
         </div>
       </div>
     );

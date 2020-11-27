@@ -12,9 +12,9 @@ class CartButton extends React.Component {
   }
 
   render() {
-    const { productName } = this.props;
+    const { productName, datatestid } = this.props;
     return (
-      <button type="button" value={ productName } onClick={ this.addItemToCart }>
+      <button data-testid={ datatestid } type="button" value={ productName } onClick={ this.addItemToCart }>
         Adicionar ao carrinho
       </button>
     );

@@ -25,13 +25,14 @@ export default class ProductsList extends React.Component {
                 } }
                 data-testid="product-detail-link"
                 key={ `${title} ${id}` }
-              />
-              <div data-testid="product-add-to-cart">
+              >
+              <div>
                 <h4>{ title }</h4>
                 <img src={ thumbnail } alt="Product" />
                 <p>{ price }</p>
-                <CartButton productName={ title } />
+                <CartButton datatestid="product-add-to-cart" productName={ title } />
               </div>
+            </Link>
             </li>
           )) : (<li> Nenhum produto foi encontrado </li>)}
       </ul>
