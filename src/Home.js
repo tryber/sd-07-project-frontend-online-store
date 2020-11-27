@@ -1,7 +1,11 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from  '../src/services/api';
 import ProductCard from '../src/components/ProductCard';
+import { Link } from 'react-router-dom';
+import cart from './images/cart.png';
+import './App.css';
+import Categories from './components/Categories';
+
 
 class ProductsList extends Component {
   constructor() {
@@ -32,11 +36,11 @@ change({ target }) {
   render() {
     const { status, products } = this.state;
     return (
+
       <div>
         {(status) ? <ProductCard  products={products} /> : false}
         {(products.length === 0 ) ?  <span>Nenhum produto foi encontrado</span> : false}
-
-
+      <div className="ContainerForm">
         
           <div>
             <label htmlFor="inputHome">
@@ -47,7 +51,7 @@ change({ target }) {
                   className="inputHome"
                   type="text"
                   onChange={this.change}
-                  
+
                 />
                 <button data-testid="query-button" onClick={this.fecthProducts}>PESQUISAR</button>
                 <span data-testid="home-initial-message">
@@ -55,8 +59,20 @@ change({ target }) {
                 </span>
               </div>
             </label>
-            
           </div>
+
+            <div>
+              <Link to="./pages/cart">
+                <img
+                  className="btImg"
+                  data-testid="shopping-cart-button"
+                  src={ cart }
+                  alt="Carrinho de Compras"
+                />
+              </Link>
+            </div>
+          </div>
+          <Categories />
       </div>
     );
   }
@@ -64,3 +80,4 @@ change({ target }) {
 
 
 export default ProductsList;
+
