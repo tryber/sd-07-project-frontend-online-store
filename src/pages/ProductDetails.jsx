@@ -34,19 +34,32 @@ class ProductDetails extends React.Component {
     );
   }
 
-  handleClick({ id, title, price }) {
-    const cartItem = { id, title, price };
-    if (!localStorage.cartItems) {
-      localStorage.setItem('cart', JSON.stringify([cartItem]));
+  handleClick() {
+    const { location: { details: { product: { id, title, price, thumbnail } } } } = this.props;
+    const productInfo = { id, title, price, thumbnail };
+    if (!localStorage.productInfo) {
+      localStorage.setItem('cart', JSON.stringify([productInfo]));
     } else {
       const itemsInStorage = localStorage.getItem('cart');
       const parsedItems = JSON.parse(itemsInStorage);
-      localStorage.setItem('cart', JSON.stringify(parsedItems.concat(cartItem)));
+      localStorage.setItem('cart', JSON.stringify(parsedItems.concat(productInfo)));
     }
   }
 
+
+ /* addItemToCart() {
+    const { location: { details: { product: { title, price, thumbnail } } } } = this.props;
+    const oldProducts = JSON.parse(localStorage.getItem('productsArray')) || [];
+    const newProduct = {
+      'productName': title,
+      'productImg': thumbnail,
+      'productPrice': price,
+    };
+    oldProducts.push(newProduct); localStorage.setItem('productsArray', JSON.stringify(oldProducts));
+  }*/
+
+
   render() {
-    const { location: { details: { product: { id, title, price } } } } = this.props;
     return (
       <div className="product-detail-container">
         <Link to="/" className="product-details-homelink">Home</Link>
@@ -63,7 +76,7 @@ class ProductDetails extends React.Component {
           <button
             type="button"
             data-testid="product-detail-add-to-cart"
-            onClick={this.handleClick({ id, title, price })}
+            onClick={this.handleClick}
           >Adicionar ao Carrinho
           </button>
         </div>
