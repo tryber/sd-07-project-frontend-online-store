@@ -137,12 +137,11 @@
 }
 
 .side-bar {
-  background-color: #c9c9c9;
+  background-color: #dddbdb;
   border: none;
-  border-radius: 15px;
   padding-bottom: 15px;
+  padding-left: 10px;
   width: 20%;
-  margin-left: 1%;
 }
 
 .container-filters {
@@ -151,9 +150,19 @@
 }
 
 .side-bar h3 {
-  text-align: center;
+  text-align: left;
+  padding-left: 10px ;
+  padding-bottom: 10px;
+  border-bottom:1px solid white;
 }
 
+.container-body {
+  display: flex;
+}
+
+.container-product {
+  width: 100%;
+  
 .input-serch img {
   display: inline;
   width: 25px;

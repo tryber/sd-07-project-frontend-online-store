@@ -13,7 +13,7 @@ class ProductList extends React.Component {
     const { listProduct } = this.state;
     const number = 0;
     return listProduct.length === number ? (
-      <p data-testid="home-initial-message">
+      <p data-testid="home-initial-message" className="container-product">
         Digite algum termo de pesquisa ou escolha uma categoria.
       </p>
     ) : (
