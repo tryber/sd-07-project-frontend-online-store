@@ -4,6 +4,7 @@ import Main from './pages/Main';
 import Cart from './pages/Cart';
 import NotFound from './pages/NotFound';
 import Details from './pages/Details';
+import Checkout from './pages/Checkout';
 
 import './App.css';
 
@@ -13,7 +14,8 @@ function App() {
       <Route exact path="/" component={ Main } />
       <Route exact path="/cart" component={ Cart } />
       <Route exact path="/erro" component={ NotFound } />
-      <Route exat path="/details/:id" component={ Details } />
+      <Route path="/details/:id" component={ Details } />
+      <Route path="/checkout" component={ Checkout } />
     </BrowserRouter>
   );
 }
