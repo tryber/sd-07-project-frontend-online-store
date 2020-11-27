@@ -6,7 +6,7 @@ import ProductNotFound from './ProductNotFound';
 import DigiteTermo from './DigiteTermo';
 
 class ListAllProducts extends React.Component {
- constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       term: '',
@@ -18,27 +18,26 @@ class ListAllProducts extends React.Component {
     this.onSearchChange = this.onSearchChange.bind(this);
   }
 
+  onSearchChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
   getProduct() {
-    this.setState( async () => {
+    this.setState(async () => {
+      const result = 0;
       const { categoryId, term } = this.state;
       const getingProduct = await api.getProductsFromCategoryAndQuery(
         categoryId,
         term,
       );
-      console.log(getingProduct)
-      if(getingProduct.results.length !== 0){
+      console.log(getingProduct);
+      if (getingProduct.results.length !== result) {
         this.setState({ products: getingProduct.results, status: 'OK' });
-      }
-      else{
+      } else {
         this.setState({ products: getingProduct.results, status: 'Fail' });
       }
-   
     });
-  } 
-
-  onSearchChange(event) {
-   const { name, value } = event.target
-   this.setState({ [name]: value });
   }
 
   render() {
@@ -60,14 +59,12 @@ class ListAllProducts extends React.Component {
           data-testid="query-button"
           onClick={ this.getProduct }
         >
-        Procurar
+          Procurar
         </button>
         <div>
-          { 
-          status === 'OK' && status !== 'Fail' ? <CardList products={ products } /> : <DigiteTermo /> }
-          {
-          status === 'Fail' ? <ProductNotFound /> : ''
-          }
+          { status === 'OK'
+          && status !== 'Fail' ? <CardList products={ products } /> : <DigiteTermo /> }
+          { status === 'Fail' ? <ProductNotFound /> : '' }
         </div>
       </div>
     );

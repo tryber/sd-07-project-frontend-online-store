@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class CategorieCard extends React.Component {
@@ -6,22 +7,22 @@ class CategorieCard extends React.Component {
     const { category } = this.props;
     return (
       <div data-testid="category">
-        <p>
+        <Link to={ `/CategoryListCards/${category.id}` }>
           { category.name }
-        </p>
+        </Link>
       </div>
     );
   }
 }
 
-export default CategorieCard;
 
 CategorieCard.propTypes = {
-  category: PropTypes.shape({
+  category: PropTypes.shape ({
     name: PropTypes.string,
-  }).isRequired,
+    id:
+  }),
 };
 
-CategorieCard.propTypes = {
-  name: PropTypes.string.isRequired,
+export default CategorieCard;
+
 };
