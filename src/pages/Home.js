@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import * as api from '../services/api';
-import NotFound from '../components/NotFound';
 import ProductCard from '../components/ProductCard';
+import NotFound from '../components/NotFound';
+
 
 class Home extends Component {
   constructor() {
@@ -59,10 +59,8 @@ class Home extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-
         {status ? <ProductCard products={ products } /> : false}
         {notFound ? <NotFound /> : false}
-
       </div>
     );
   }
