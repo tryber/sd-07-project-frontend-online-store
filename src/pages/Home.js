@@ -73,6 +73,7 @@ class Home extends React.Component {
             <div className="productsList">
               <SearchControl
                 num={ buy }
+                data-testid="product-detail-add-to-cart"
                 onClick={ this.addToCart }
                 search={ search }
                 answer={ result }
