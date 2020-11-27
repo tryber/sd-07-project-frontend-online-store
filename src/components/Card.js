@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import BotAdd from './BotAdd';
 
 class Card extends React.Component {
   constructor() {
@@ -23,23 +24,17 @@ class Card extends React.Component {
 
   render() {
     const { produto } = this.props;
-    const { thumbnail, title, price, id, category_id } = produto;
+    const { thumbnail, title, price, id, category_id: categortID } = produto;
     return (
       <div data-testid="product">
         <h3>{title}</h3>
         <img src={ thumbnail } alt={ title } />
         <h4>{`R$: ${price}`}</h4>
         <div>
-          <input
-            data-testid="product-detail-add-to-cart"
-            type="button"
-            onClick={ this.addToCart }
-            data-testid="product-add-to-cart"
-            value="Adicionar ao Carrinho"
-          />
+          <BotAdd onClick={ this.addToCart } />
           <Link
             data-testid="product-detail-link"
-            to={ `product-details/${id}/${category_id}` }
+            to={ `product-details/${id}/${categortID}` }
           >
             Detalhes do produto
           </Link>

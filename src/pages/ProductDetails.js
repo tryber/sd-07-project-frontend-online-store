@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
+import BotAdd from '../components/BotAdd';
 import ShoppingCartIcon from '../components/Shopping-cart-icon';
 import Stars from '../components/Stars';
 
@@ -96,13 +97,7 @@ class ProductDetails extends React.Component {
           <div>
             <h1 data-testid="product-detail-name">{title}</h1>
             <h3>{`R$: ${price}`}</h3>
-            <input
-              data-testid="product-detail-add-to-cart"
-              type="button"
-              onClick={ () => this.handleClick() }
-              data-testid="product-detail-add-to-cart"
-              value="Adicionar ao Carrinho"
-            />
+            <BotAdd onClick={ () => this.handleClick() } />
           </div>
         </div>
         <div>
