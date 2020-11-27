@@ -12,7 +12,9 @@ class Product extends Component {
         <p>{price}</p>
         <Link
           data-testid="product-detail-link"
-          to={ `./details/${category || 'no-defined-category'}/ ${searchKey}/${id}` }
+          to={ `./details/${category || 'no-defined-category'}/ ${
+            searchKey || 'no-defined-searchKey'
+          }/${id}` }
         >
           Detalhes
         </Link>
