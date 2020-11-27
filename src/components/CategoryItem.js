@@ -29,21 +29,22 @@ export default class CategoryList extends React.Component {
   async getCategories() {
     const categories = await api.getCategories();
     this.setState({
-      categories: categories,
+      categories,
     });
   }
 
   render() {
+    const { id, category } = this.props;
     return (
       <div className="category">
         <li
           data-testid="category"
-          key={this.props.id}
-          onClick={this.getCategoryProducts}
+          key={ id }
+          onClick={ this.getCategoryProducts }
         >
-          {this.props.category}
+          { category }
         </li>
       </div>
-    )
+    );
   }
 }
