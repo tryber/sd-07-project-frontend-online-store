@@ -11,26 +11,26 @@ class ReviewProducts extends React.Component {
   }
 
   componentDidMount() {
-    { products, totalPrice } = this.props;
+    // { products, totalPrice } = this.props;
   }
 
   renderProducts() {
-    { products } = this.state;
+  /* { products } = this.state;
     products.map((product) => {
       <div>
         <img src={product.img} alt="" />
         <p>{product.title}</p>
         <p>{product.price}</p>
       </div>
-    });
+    }); */
   }
 
   render() {
     return (
       <div>
         <h2>Revise Seus produtos</h2>
-        { renderProducts()}
-        <p>Total: R${totalPrice}</p>
+        { /* renderProducts() */ }
+        <p>Total: R${/* totalPrice */}</p>
       </div>
     );
   }
