@@ -1,21 +1,20 @@
 import React from 'react';
-import './App.css';
-import ProductList from './ProductList';
-import ShoppingCart from './ShoppingCart';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import CategoryList from './CategoryList';
+import './App.css';
+import Home from './pages/Home';
+import ShoppingCartPage from './pages/ShoppingCartPage';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ ProductList } />
-          <Route exact path="/ShoppingCart" component={ ShoppingCart } />
+          <Route exact path="/" component={ Home } />
+          <Route exact path="/shoppingCartPage" component={ ShoppingCartPage } />
+          <Route exact path="/ShoppingCartPage/Details" component={ ProductDetails } />
         </Switch>
       </BrowserRouter>
-      <ProductList />
-      <CategoryList />
     </div>
   );
 }
