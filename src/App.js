@@ -14,8 +14,7 @@ class App extends Component {
             <Route path="/cart" component={ ShoppingCart } />
             <Route
               path="/productdetails/:id"
-              render={(props) =>
-                <ProductDetails id={props.match.params.id} />}
+              render={ (props) => <ProductDetails id={ props.match.params.id } /> }
             />
             <Route exact path="/" component={ Home } />
           </Switch>
