@@ -93,6 +93,7 @@ class ProductDetail extends Component {
 
     return (
       <div>
+        <Link to="/">Retornar</Link>
         <div>
           <h3 data-testid='product-detail-name'>{title}</h3>
           <div>{price}</div>

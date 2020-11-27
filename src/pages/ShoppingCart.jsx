@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import CartItem from "../components/CartItem";
 
 class ShoppingCart extends Component {
@@ -95,12 +96,16 @@ class ShoppingCart extends Component {
     const { products } = this.state;
     if (products === null || products.length === 0)
       return (
-        <span data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio
-        </span>
+        <div>
+          <Link to="/">Retornar</Link>
+          <span data-testid="shopping-cart-empty-message">
+            Seu carrinho está vazio
+          </span>
+        </div>
       );
     return (
       <div>
+        <Link to="/">Retornar</Link>
           {products.map((product) => <CartItem
             key={product.id}
             id={product.id}
@@ -112,6 +117,7 @@ class ShoppingCart extends Component {
             subtractItem={this.subtractItem}
             removeItem={this.removeItem}
           />)}
+        <Link data-testid="checkout-products" to="/Checkout">Checkout</Link>
       </div>
     );
   }
