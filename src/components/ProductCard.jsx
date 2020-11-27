@@ -27,7 +27,9 @@ class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
     const { thumbnail, title, price } = product;
-    const subtitle = title.substring(0, 8);
+    const indexOne = 0;
+    const indexTwo = 8;
+    const subtitle = title.substring(indexOne, indexTwo);
     return (
       <div>
         <Link data-testid="product-detail-link" to={ `/detail/${subtitle}` }>

@@ -25,7 +25,9 @@ class ProductDetail extends React.Component {
           params: { id },
         },
       } = this.props;
-      const name = id.substring(0, 8);
+      const indexOne = 0;
+      const indexTwo = 8;
+      const name = id.substring(indexOne, indexTwo);
       console.log(name);
       const getDetail = await api.getProductsFromCategoryAndQuery('', name);
       this.setState({

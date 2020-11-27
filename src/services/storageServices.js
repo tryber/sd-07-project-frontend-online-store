@@ -16,19 +16,17 @@ export async function delProductsStorage(productDel) {
   }
 }
 
-export async function updateProductsStorage(productItem) {
+export function updateProductsStorage(productItem) {
   let updateProductAll = [];
-  const elementsLocalStorage = await getProductsStorage();
-  if (productItem) {
-    const checkIdProduct = elementsLocalStorage.find((productTarget) => {
-      if (productTarget.id === productItem.id && productTarget.qtt !== productItem.qtt) {
-        productTarget.qtt = productItem.qtt;
-        return productItem;
-      }
-      return '';
-    });
-    updateProductAll = [...elementsLocalStorage, checkIdProduct];
-  }
+  const elementsLocalStorage = getProductsStorage();
+  elementsLocalStorage.find((productTarget) => {
+    if (productTarget.id === productItem.id && productTarget.qtt !== productItem.qtt) {
+      productTarget.qtt = productItem.qtt;
+      return productItem;
+    }
+    return '';
+  });
+  updateProductAll = [...elementsLocalStorage];
 
   localStorage.setItem('cart', JSON.stringify(updateProductAll));
   updateProductAll = [];
