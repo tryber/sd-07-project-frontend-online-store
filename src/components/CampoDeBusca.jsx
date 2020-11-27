@@ -15,7 +15,7 @@ class CampoDeBusca extends React.Component {
       search: target.value,
     });
   }
-  
+
   render() {
     const { query, handleInputChange } = this.props;
     const { search } = this.state;
