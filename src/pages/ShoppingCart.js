@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
+import ShoppingListItem from '../components/ShoppingListItem';
 
 export default class ShoppingCart extends Component {
   render() {
@@ -15,6 +16,9 @@ export default class ShoppingCart extends Component {
           alt="Carrinho de Compras"
         />
         <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
+        <div>
+          <ShoppingListItem />
+        </div>
         <label>
           <input />
         </label>
