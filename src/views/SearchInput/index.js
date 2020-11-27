@@ -15,8 +15,11 @@ class SearchInput extends Component {
         <cp.Button>Buscar</cp.Button>
         <icon.Cart />
       </css.ctnCenter>
+
     );
   }
 }
 
+
 export default SearchInput;
+
