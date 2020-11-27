@@ -9,7 +9,9 @@ export class Home extends Component {
       <css.CtnCenter>
         <cp.Header />
         <div className='ctn-main'>
-          <div className='ctn-sidebar'></div>
+          <div className='ctn-sidebar'>
+            <view.SideBar />
+          </div>
 
           <div className='ctn-displayCard'>
             <view.SearchInput />
