@@ -25,7 +25,6 @@ class ProductListing extends Component {
 
   async getProducts() {
     const response = await api.getProductsFromCategoryAndQuery(this.props.categoryId, this.state.searchText)
-    console.log(response.results)
     this.setState({
       categorySelected: this.props.categoryId,
       products: response.results,
