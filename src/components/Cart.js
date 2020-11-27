@@ -17,7 +17,7 @@ class Cart extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.sumCart();
     this.atualizar();
   }
@@ -67,24 +67,20 @@ class Cart extends Component {
   sumCart() {
     const cartitems = JSON.parse(localStorage.getItem('cartItems'));
     let summ = 0;
-    cartitems.forEach((sum) => summ += sum.qtd * sum.price);
+    cartitems.forEach((sum) => (summ += sum.qtd * sum.price));
     this.setState({ sumCart: summ });
   }
 
   render() {
     const { compras } = this.state;
     if (compras.length < 1) {
-      return (
-        <h3 data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio
-        </h3>
-      );
+      return <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>;
     }
     return (
       <div>
         {compras.map((item) => (
-          <div key={item.id}>
-            <img src={removeitem} name={item.id} alt="Remover item" onClick={this.delet} />
+          <div key={ item.id }>
+            <img src={ removeitem } name={item.id} alt="Remover item" onClick={this.delet} />
             <img src={item.thumbnail} alt={item.title} />
             <p data-testid="shopping-cart-product-name">{item.title}</p>
             <img
@@ -105,7 +101,9 @@ class Cart extends Component {
             <p>{item.qtd * item.price}</p>
           </div>
         ))}
-        <h3>Valor Total da Compra: {this.state.sumCart}</h3>
+        <h3>
+          Valor Total da Compra: {this.state.sumCart}
+        </h3>
       </div>
     );
   }

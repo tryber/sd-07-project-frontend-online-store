@@ -31,7 +31,7 @@ class Categories extends Component {
             id="semcategoria"
             name="category"
             value=""
-            onChange={onChange}
+            onChange={ onChange }
           />
           <label htmlFor="semcategoria">Sem categoria</label>
         </div>
