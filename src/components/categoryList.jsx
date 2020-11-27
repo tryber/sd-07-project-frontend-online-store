@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
-import CategoryItems from './categorysItems';
 
 class Category extends Component {
   constructor(props) {
@@ -9,6 +8,7 @@ class Category extends Component {
       categories: [],
     };
     this.fetchCategory = this.fetchCategory.bind(this);
+    this.filterCategory = this.filterCategory.bind(this)
   }
 
   componentDidMount() {
@@ -22,16 +22,30 @@ class Category extends Component {
     });
   }
 
+  async filterCategory(event) {
+    const { handleSearchChange, handleClickChange } = this.props;
+    await handleSearchChange(event);
+    handleClickChange(event);
+  }
+
   render() {
     const { categories } = this.state;
-    const { handleSearchChange } = this.props;
     return (
       <div>
-        {categories.map((category) => <CategoryItems
-          key={ category.name } 
-          category={ category } 
-          handleSearchChange={ handleSearchChange }
-        />)}
+        {categories.map((category) => (
+          <div>
+            <input
+              type="checkbox"
+              data-testid="category"
+              id={category.id}
+              name="categoryId"
+              value={category.id}
+              key={category.id}
+              onClick={(event) => this.filterCategory(event)}
+            />
+            <label htmlFor={ category.id }>{ category.name }</label>
+          </div>
+        ))}
       </div>
     );
   }

@@ -80,7 +80,10 @@ class SearchBar extends React.Component {
             </button>
         </form>
         <div>{products.length ? this.productListLoaded() : <NotFound />}</div>
-        <Category handleSearchChange={ this.handleSearchChange }/>
+        <Category 
+          handleSearchChange={ this.handleSearchChange }
+          handleClickChange={this.handleClickChange}
+        />
       </div>
     );
   }
