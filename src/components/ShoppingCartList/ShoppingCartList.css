@@ -1,0 +1,12 @@
+.cart-list-content {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.cart-list-item {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100px;
+  justify-content: space-around;
+  align-items: center;
+}
