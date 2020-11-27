@@ -65,7 +65,7 @@ class ProductDetails extends Component {
           </button>
         </section>
         <EvaluationList productID={ id } />
-        <EvaluationForm productID={ id } onSubmit={ this.handleNewSubmit } />
+        <EvaluationForm productID={ id } />
       </section>
     );
   }
