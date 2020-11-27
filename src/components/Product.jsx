@@ -29,8 +29,6 @@ class Product extends Component {
 
   render() {
     const { id, title, price, thumbnail } = this.props;
-    console.log(title);
-    console.log(price);
     return (
       <div data-testid="product" id={id}>
         <span>{title}</span>
