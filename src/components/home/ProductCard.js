@@ -29,7 +29,7 @@ class ProductCard extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
-        <FreeShipping shipping={shipping.free_shipping} />
+        <FreeShipping shipping={ shipping.free_shipping } />
       </div>
     );
   }
@@ -41,6 +41,7 @@ ProductCard.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    shipping: PropTypes.bool,
   }).isRequired,
 };
 
