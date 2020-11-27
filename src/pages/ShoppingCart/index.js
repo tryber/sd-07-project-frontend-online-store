@@ -17,6 +17,10 @@ class ShoppingCart extends Component {
     this.updateCart();
   }
 
+  getTotalValue(total, product) {
+    return total + product.price * product.cartQuantity;
+  }
+
   handleCartItem(product, buttonId) {
     if (buttonId === 'add') {
       cartApi.addToCart(product);
@@ -28,10 +32,6 @@ class ShoppingCart extends Component {
       cartApi.removeFromCart(product);
     }
     this.updateCart();
-  }
-
-  getTotalValue(total, product) {
-    return total + product.price * product.cartQuantity;
   }
 
   updateCart() {
