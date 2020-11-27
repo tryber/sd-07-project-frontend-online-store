@@ -2,31 +2,29 @@ import React from 'react';
 
 
 class CampoDeBusca  extends React.Component {
-    constructor(props) {
-        super(props);
+    
+    constructor() {
+        super();
+        this.changeSearchState = this.changeSearchState.bind(this);
         this.state = {
-            search:''
-        };
-        this.handlerChange = this.handlerChange.bind(this);
+            search: '',
         }
+    }
 
-        handlerChange({target}) {
-            const {value} = target;
-
-            this.setState ({
-                search : value,
-            });
-        }
+    changeSearchState({ target }) {
+        this.setState({
+            search: target.value,
+        })
+    }
     render(){
-        const {search} = this.props
+        const { query, handleInputChange } = this.props;
         return (
             <div>
-                <input type="text" value={search} onChange={this.handlerChange}/>
+                <input data-testid='query-input' type="text" value={this.state.search} onChange={this.changeSearchState}/>
+                <button data-testid='query-button' type='button' value={query} onClick={() => handleInputChange(this.state.search)}>Pesquisar</button>
             </div>
         )}
 
    }
-
-
 
 export default CampoDeBusca;
