@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import QueryBar from '../components/QueryBar';
 import ProductItem from '../components/ProductItem';
@@ -59,6 +59,7 @@ class ProductList extends Component {
 
   render() {
     const { categories, object, query } = this.state;
+    const { addItem } = this.props;
 
     return (
       <div className="main-list">
@@ -78,7 +79,11 @@ class ProductList extends Component {
           />
           <section className="prodoct-cards">
             {object.map((product) => (
-              <ProductCard key={ product.id } product={ product } />
+              <ProductCard
+                key={ product.id }
+                product={ product }
+                addItem={ addItem }
+              />
             ))}
           </section>
         </div>
@@ -87,5 +92,8 @@ class ProductList extends Component {
   }
 }
 
+ProductList.propTypes = {
+  addItem: PropTypes.func.isRequired,
+};
 
 export default ProductList;

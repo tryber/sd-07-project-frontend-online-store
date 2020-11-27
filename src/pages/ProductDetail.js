@@ -14,6 +14,7 @@ class ProductDetail extends Component {
     this.commentSubmit = this.commentSubmit.bind(this);
     this.getLocalStorage = this.getLocalStorage.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
+    this.addToCart = this.addToCart.bind(this);
     this.state = {
       name: '',
       imagePath: '',
@@ -72,6 +73,16 @@ class ProductDetail extends Component {
     this.getLocalStorage();
   }
 
+  addToCart() {
+    const { match } = this.props;
+    const { name, imagePath, price } = this.state;
+    const { id } = match.params;
+    const title = name;
+    const thumbnail = imagePath;
+    const { addItem } = this.props;
+    addItem({ title, thumbnail, price, id, quantity: 1 });
+  }
+
   render() {
     const { name, imagePath, price, details, comments } = this.state;
     return (
@@ -108,6 +119,13 @@ class ProductDetail extends Component {
         </div>
         <CommentForm onClick={ this.commentSubmit } />
         <CommentsList comments={ comments } />
+        <button
+          type="submit"
+          onClick={ () => this.addToCart() }
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar ao Carrinho
+        </button>
       </>
     );
   }
@@ -120,6 +138,7 @@ ProductDetail.propTypes = {
       categoryId: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  addItem: PropTypes.func.isRequired,
 };
 
 export default ProductDetail;
