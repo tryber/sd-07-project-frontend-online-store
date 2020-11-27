@@ -7,9 +7,8 @@ class ProductDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: '$CATEGORY_ID',
-      query: '$QUERY',
       product: {},
+      loading: true,
     };
   }
 
@@ -18,25 +17,35 @@ class ProductDetail extends Component {
   }
 
   async fecthProducts() {
-    const { category, query } = this.state;
-    const { results } = await getProductsFromCategoryAndQuery(category, query);
-    const product = results.find(({ id }) => id === this.props.match.params.id);
+    const { category_id } = this.props.match.params;
+    let product = undefined;
+    for(let index = 0; product === undefined; index += 50){
+      console.log(index);
+      let { results } = await getProductsFromCategoryAndQuery(category_id, undefined, index);
+      product = results.find(({ id }) => id === this.props.match.params.id);
+    }
     console.log(product);
-    this.setState({ product: product });
+    this.setState({
+      product,
+      loading: false,
+    });
   }
 
 
   render() {
-    const { title, thumbnail, price, id } = this.state.product;
+    const { loading, product } = this.state;
+    if(loading){
+      return <h1>Carregando</h1>
+    }
     return (
       <div>
         <div data-testid="product" className="product">
-          <img alt="Products" src={thumbnail} />
+          <img alt="Products" src={product.thumbnail} />
           <div>
             <h4 data-testid="product-detail-name">
-              {title}
+              {product.title}
             </h4>
-            <h5>{price}</h5>
+            <h5>{product.price}</h5>
           </div>
         </div>
       </div>
