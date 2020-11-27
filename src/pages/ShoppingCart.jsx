@@ -9,8 +9,8 @@ class ShoppingCart extends React.Component{
         <div>
           <ShoppingCartIcon />
           <h3>Carrinho de compras</h3>
-          </div>
-          <Cart />
+        </div>
+        <Cart />
       </div>
     );
   }

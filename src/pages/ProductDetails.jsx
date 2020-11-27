@@ -128,7 +128,7 @@ class ProductDetails extends React.Component {
           </form>
           <div>
             {comentFix.map((coment) => 
-              <div>
+              <div key={coment}>
                 <h2>{coment.Email}</h2>
                 <h3>{coment.nota}</h3>
                 <p>{coment.comentario}</p>

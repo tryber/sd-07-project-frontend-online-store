@@ -83,27 +83,27 @@ class Cart extends Component {
     return (
       <div>
         {compras.map((item) => (
-        <div key={item.id}>
-          <img src={removeitem} name={item.id} alt="Remover item" onClick={this.delet} />
-          <img src={item.thumbnail} alt={item.title} />
-          <p data-testid="shopping-cart-product-name">{item.title}</p>
-          <img
-            data-testid="product-decrease-quantity"
-            src={remove}
-            name={item.id}
-            alt="retirar"
-            onClick={this.minClick}
-          />
-          <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
-          <img
-            data-testid="product-increase-quantity"
-            src={add}
-            name={item.id}
-            alt="adicionar"
-            onClick={this.addClick}
-          />
-          <p>{item.qtd * item.price}</p>
-        </div>
+          <div key={item.id}>
+            <img src={removeitem} name={item.id} alt="Remover item" onClick={this.delet} />
+            <img src={item.thumbnail} alt={item.title} />
+            <p data-testid="shopping-cart-product-name">{item.title}</p>
+            <img
+              data-testid="product-decrease-quantity"
+              src={remove}
+              name={item.id}
+              alt="retirar"
+              onClick={this.minClick}
+            />
+            <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
+            <img
+              data-testid="product-increase-quantity"
+              src={add}
+              name={item.id}
+              alt="adicionar"
+              onClick={this.addClick}
+            />
+            <p>{item.qtd * item.price}</p>
+          </div>
         ))}
         <h3>Valor Total da Compra: {this.state.sumCart}</h3>
       </div>

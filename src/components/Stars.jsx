@@ -23,7 +23,7 @@ class Stars extends React.Component {
       ceu.push({ img: StarFull, index: n });
     } else {
       ceu.push({ img: StarEmpty, index: n });
-    }})
+    }});
     this.setState({ constelação: ceu });
   }
 
@@ -36,7 +36,8 @@ class Stars extends React.Component {
     const { constelação } = this.state;
     return (
       <div>
-        {constelação.map((estrela) => <img 
+        {constelação.map((estrela) => 
+        <img 
           key={estrela.index}
           src={estrela.img}
           alt={`nota ${estrela.index}`}

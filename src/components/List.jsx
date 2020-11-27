@@ -6,9 +6,6 @@ class List extends React.Component {
     super();
     this.updateCart = this.updateCart.bind(this);
     this.checkCartOnAdd = this.checkCartOnAdd.bind(this);
-    this.state = {
-      cart: {},
-    };
   }
 
   updateCart(products) {
@@ -24,14 +21,15 @@ class List extends React.Component {
 
   checkCartOnAdd(idItem) {
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
-    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
-      if (cartItemsStorage[i].id === idItem) {
-        cartItemsStorage[i].qtd += 1;
-        localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
-        return false;
-      }
+    const PA = cartItemsStorage.filter((item) => item.id === idItem);
+    if (PA.length === 1) {
+      const item = PA[0];
+      item.qtd += 1
+      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+      return false;
+    } else {
+      return true;
     }
-    return true;
   }
 
   render() {
@@ -46,7 +44,8 @@ class List extends React.Component {
           />
         )
       );
-    }
+    };
+    
     return (
       <h3 data-testid="home-initial-message">
         Digite algum termo de pesquisa ou escolha uma categoria.
