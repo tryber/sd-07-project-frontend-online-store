@@ -27,8 +27,8 @@ class ProductDetail extends Component {
   }
 
   async searchQueryProducts() {
-    const { id } = this.props.match.params;
-    const ListProducts = await API.getProductsFromCategoryAndQuery(id);
+    const { params } = this.props.match;
+    const ListProducts = await API.getProductsFromCategoryAndQuery(params.id);
     const { results } = ListProducts;
     if (results !== undefined) {
       const { id, title, attributes, thumbnail, price } = results[0];

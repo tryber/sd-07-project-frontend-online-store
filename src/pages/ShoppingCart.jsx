@@ -18,7 +18,7 @@ class ShoppingCart extends Component {
 
   removeLastItem(string) {
     let stringNumber = string;
-    if (stringNumber[stringNumber.length - 1] === '0' 
+    if (stringNumber[stringNumber.length - 1] === '0'
     || stringNumber[stringNumber.length - 1] === '.') {
       const index = 0;
       stringNumber = stringNumber.slice(index, (stringNumber.length - 1));
@@ -122,7 +122,7 @@ class ShoppingCart extends Component {
           sumItem={ this.sumItem }
           subtractItem={ this.subtractItem }
           removeItem={ this.removeItem }
-          />))}
+        />))}
         <Link data-testid="checkout-products" to="/Checkout">Checkout</Link>
       </div>
     );

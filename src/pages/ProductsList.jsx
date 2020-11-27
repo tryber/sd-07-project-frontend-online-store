@@ -140,7 +140,7 @@ class ProductsList extends Component {
               key={ categorie.id }
               categorie={ categorie }
               onCategoryChoice={ this.categoryChoice }
-            />);) : null }
+            />)) : null }
         </div>
         <div>
           <input
