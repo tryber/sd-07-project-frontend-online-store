@@ -31,15 +31,16 @@ class ProductDetail extends React.Component {
     return (
       <div data-testid="product-detail-name">
         {loading ? (
-          <div></div>
+          <p>Loading</p>
         ) : (
           <div>
             <h4>{`PRODUTO ${title} - R$${price}`}</h4>
-            <img alt="product Cover" src={thumbnail} />
+            <img alt="product Cover" src={ thumbnail } />
             <ul>
               {attributes.map((attribute) => (
                 <li>
-                  {attribute.name}: {attribute.value_name}
+                  {attribute.name}
+                  : {attribute.value_name}
                 </li>
               ))}
             </ul>

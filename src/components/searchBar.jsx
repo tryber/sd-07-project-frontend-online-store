@@ -13,7 +13,7 @@ class SearchBar extends React.Component {
       query: '',
       categoryId: '',
       products: [],
-      notFound: true,
+      // notFound: true,
     };
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -41,7 +41,7 @@ class SearchBar extends React.Component {
     const filterProduct = await api.getProductsFromCategoryAndQuery(categoryId, query);
     this.setState({
       products: filterProduct.results,
-      notFound: false,
+      // notFound: false,
     });
   }
 
@@ -71,18 +71,18 @@ class SearchBar extends React.Component {
               type="text"
             />
           </label>
-          <button 
+          <button
             data-testid="query-button"
             type="submit"
             onClick={ this.handleClickChange }
-            >
-              Buscar
-            </button>
+          >
+            Buscar
+          </button>
         </form>
         <div>{products.length ? this.productListLoaded() : <NotFound />}</div>
-        <Category 
+        <Category
           handleSearchChange={ this.handleSearchChange }
-          handleClickChange={this.handleClickChange}
+          handleClickChange={ this.handleClickChange }
         />
       </div>
     );
@@ -94,4 +94,4 @@ class SearchBar extends React.Component {
 //   handleSearchChange: PropTypes.func.isRequired,
 // };
 
-export default SearchBar; 
+export default SearchBar;
