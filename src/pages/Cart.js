@@ -34,7 +34,8 @@ export default class Cart extends Component {
   render() {
     const { loading, cartItems } = this.state;
     const cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart === undefined || cart === []) {
+    console.log(cart);
+    if (cart === undefined || cart === [] || cart === null) {
       return (
         <div>
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
