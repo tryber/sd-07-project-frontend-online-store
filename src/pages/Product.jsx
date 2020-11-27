@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import goBackArrow from '../img/back-arrow.png';
 import CartButton from './CartButton';
 import shoppingCartIcon from '../img/shopping-cart.png';
@@ -35,8 +36,8 @@ export default class Product extends Component {
   }
 }
 
-Products.propTypes = {
+Product.propTypes = {
   productName: PropTypes.string.isRequired,
-  productName: PropTypes.img.isRequired,
-  productName: PropTypes.num.isRequired,
+  productImg: PropTypes.string.isRequired,
+  productPrice: PropTypes.string.isRequired,
 };

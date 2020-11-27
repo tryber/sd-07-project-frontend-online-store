@@ -28,7 +28,11 @@ export default class ShoppingCart extends Component {
           <img src={ goBackArrow } className="go-back-arrow-icon" alt="goBackArrow" />
         </Link>
         <img src={ shoppingCartIcon } className="shopping-cart-icon-2" alt="shoppingCartImg" />
-        <span className="shopping-cart-text">Carrinho de Compras</span>
+        <span
+          className="shopping-cart-text"
+        >
+          Carrinho de Compras
+        </span>
         <div>
           <p data-testid="shopping-cart-product-name">{cartItem}</p>
           <span
