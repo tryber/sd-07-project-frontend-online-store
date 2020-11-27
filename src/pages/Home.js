@@ -8,6 +8,7 @@ import ListaDeProdutos from '../components/ListaDeProdutos';
 class Home extends React.Component {
   constructor() {
     super();
+    this.initialMessageOrListProducts = this.initialMessageOrListProducts.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.state = {
       query: '',
@@ -19,6 +20,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     api.getCategories().then((categories) => {
+      console.log(categories)
       this.setState({
         categories,
       });
@@ -37,24 +39,28 @@ class Home extends React.Component {
     });
   }
 
+  initialMessageOrListProducts(products) {
+    const numberToComper = 0;
+    if (products.length !== numberToComper) {
+      return <ListaDeProdutos onFetchProducts={ products } />;
+    }
+    return (
+      <p data-testid="home-initial-message">
+        Digite algum termo de pesquisa ou escolha uma categoria.
+      </p>);
+  }
+
   render() {
     const { query, categories, onFetchProducts } = this.state;
-    const numberToComper = 0;
     return (
       <div>
         <CampoDeBusca
           query={ query }
           handleInputChange={ this.handleInputChange }
         />
-        { onFetchProducts.length !== numberToComper
-          ? <ListaDeProdutos onFetchProducts={ onFetchProducts } />
-          : <p data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </p>}
-        <ListaDeCategorias
-          categories={ categories }
-        />
+        { this.initialMessageOrListProducts(onFetchProducts) }
         <BotaoCarrinho />
+        <ListaDeCategorias categories={ categories } />
       </div>
     );
   }
