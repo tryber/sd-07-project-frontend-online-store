@@ -34,7 +34,6 @@ export default class Cart extends Component {
   render() {
     const { loading, cartItems } = this.state;
     const cart = JSON.parse(localStorage.getItem('cart'));
-    console.log(cart);
     if (cart === undefined || cart === [] || cart === null) {
       return (
         <div>
