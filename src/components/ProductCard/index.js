@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './ProductCard.css';
+import * as lsapi from '../../services/lsapi';
 
 class ProductCard extends Component {
+
+  selectProduct(product) {
+    console.log('set', product);
+    lsapi.setSelectedProduct(product);
+  }
+
   render() {
     const { product } = this.props;
     const { title, thumbnail, price } = product;
@@ -29,10 +36,8 @@ class ProductCard extends Component {
           <p>{ price }</p>
           <Link
             data-testid="product-detail-link"
-            to={ {
-              pathname: '/productdetail',
-              state: { product },
-            } }
+            to="/productdetail"
+            onClick={ () => this.selectProduct(product) }
           >
             Mais Detalhes
           </Link>

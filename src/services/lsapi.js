@@ -2,7 +2,7 @@ const SHOPPING_CART_LIST = 'ShoppingCartList';
 const SELECTED_PRODUCT = 'SelectedProduct';
 
 export function getShoppingCartList() {
-  return JSON.parse(localstorage.getItem(SHOPPING_CART_LIST));
+  return JSON.parse(localStorage.getItem(SHOPPING_CART_LIST));
 }
 
 export function addToShoppingCartList(product, quantity) {
@@ -20,7 +20,7 @@ export function addToShoppingCartList(product, quantity) {
 }
 
 export function getSelectedProduct() {
-  return JSON.parse(localstorage.getItem(SELECTED_PRODUCT));
+  return JSON.parse(localStorage.getItem(SELECTED_PRODUCT));
 }
 
 export function setSelectedProduct(product) {
