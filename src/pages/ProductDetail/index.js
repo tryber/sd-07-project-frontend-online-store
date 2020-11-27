@@ -42,7 +42,7 @@ class ProductDetail extends React.Component {
               Adicionar ao Carrinho
             </button>
           </div>
-          <EvaluationForm />
+          <EvaluationForm productId={product.id} />
           <EvaluationList />
         </div>
       );
