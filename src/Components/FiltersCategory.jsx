@@ -32,7 +32,6 @@ class FiltersCategory extends React.Component {
               type="radio"
               name="categories"
               id={ category.id }
-              onClick={ this.handleClick }
               data-testid="category"
             />
             <label htmlFor={ category.id }>{ category.name }</label>

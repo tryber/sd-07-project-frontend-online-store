@@ -7,14 +7,14 @@ export async function getCategories() {
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   // Implemente aqui! Quando o fizer, descomente os parâmetros que essa função recebe
-  const endPointCategory = `https://api.mercadolibre.com/sites/MLB/search?category=$${categoryId}`;
-  const endPointItensInCategory = `https://api.mercadolibre.com/sites/MLB/search?category=$CATEGORY_ID&q=$${query}`;
+  const endPointItensInCategory = `https://api.mercadolibre.com/sites/MLB/search?category=$${categoryId}&q=$${query}`;
+  const endPointSearchIten = `https://api.mercadolibre.com/sites/MLB/search?q=$${query}`;
 
-  if (categoryId) {
-    const response = (await fetch(endPointCategory)).json();
-    return response;
-  } if (query) {
+  if (categoryId && query) {
     const response = (await fetch(endPointItensInCategory)).json();
+    return response;
+  } if (!categoryId) {
+    const response = (await fetch(endPointSearchIten)).json();
     return response;
   }
 }
