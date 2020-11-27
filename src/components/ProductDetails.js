@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ProductDetails extends Component {
-
   render() {
     const { location: { state: { productName, productImg, productPrice } } } = this.props;
     return (
