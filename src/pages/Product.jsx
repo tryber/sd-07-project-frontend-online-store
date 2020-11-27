@@ -11,19 +11,32 @@ export default class Product extends Component {
       <div>
         <div>
           <Link to="/">
-            <img src={ goBackArrow } className="go-back-arrow-icon" alt="goBackArrow"/>
+            <img src={ goBackArrow } className="go-back-arrow-icon" alt="goBackArrow" />
           </Link>
           <Link to="/ShoppingCart" data-testid="shopping-cart-button">
-            <img src={ shoppingCartIcon } className="shopping-cart-icon" alt="shoppingCartImg"/>
+            <img
+              src={ shoppingCartIcon }
+              className="shopping-cart-icon"
+              alt="shoppingCartImg"
+            />
           </Link>
         </div>
         <div>
           <h1 data-testid="product-detail-name">{ productName }</h1>
-          <img src={ productImg } alt="productImg"/>
+          <img src={ productImg } alt="productImg" />
           <p>{ productPrice }</p>
-          <CartButton datatestid="product-detail-add-to-cart" productName={ productName } />
+          <CartButton
+            datatestid="product-detail-add-to-cart"
+            productName={ productName } 
+          />
         </div>
       </div>
     );
   }
 }
+
+Products.propTypes = {
+  productName: PropTypes.string.isRequired,
+  productName: PropTypes.img.isRequired,
+  productName: PropTypes.num.isRequired,
+};
