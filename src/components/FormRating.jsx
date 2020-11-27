@@ -8,6 +8,7 @@ class FormRating extends React.Component {
     this.state = {
       email: '',
       userMessage: '',
+      evaluationRate: 1,
     };
   }
 
@@ -16,7 +17,7 @@ class FormRating extends React.Component {
     this.setState({ [name]: target.value });
   }
 
-  renderForm({ changeHandler, userMessage, email }) {
+  renderForm({ changeHandler, userMessage, email, rating }) {
     return (
       <form id="form-evaluation">
         <input
@@ -28,7 +29,15 @@ class FormRating extends React.Component {
         />
         <label htmlFor="rating">
           Nota do Produto:
-          <input id="rating" type="number" value="1" min="1" max="5" />
+          <input
+            id="rating"
+            onChange={ changeHandler }
+            name="evaluationRating"
+            type="number"
+            value={ rating }
+            min="1"
+            max="5"
+          />
         </label>
         <textarea
           data-testid="product-detail-evaluation"
@@ -43,11 +52,11 @@ class FormRating extends React.Component {
   }
 
   render() {
-    const { userMessage, email } = this.state;
+    const { userMessage, email, evaluationRate } = this.state;
     return (
       <div className="form-evaluation-container">
         <h1>Avaliações</h1>
-        {this.renderForm(this.changeHandler, userMessage, email)}
+        {this.renderForm(this.changeHandler, userMessage, email, evaluationRate)}
       </div>
     );
   }
