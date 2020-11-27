@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// import FreeShipping from './FreeShipping';
+import FreeShipping from './FreeShipping';
 import './ProductCard.css';
 
 class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
-    const { id, title, thumbnail, price } = product;
+    const { id, title, thumbnail, price, shipping } = product;
     return (
       <div data-testid="product" className="productCard">
         <p>{ title }</p>
@@ -29,7 +29,7 @@ class ProductCard extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
-        {/* <FreeShipping shipping={shipping.free_shipping} /> */}
+        <FreeShipping shipping={shipping.free_shipping} />
       </div>
     );
   }
