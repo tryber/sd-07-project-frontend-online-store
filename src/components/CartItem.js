@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class CartItem extends Component {
   render() {
     const { title, thumbnail, price, id, quantity } = this.props;
-    console.log(quantity)
     return (
       <div key={ id }>
         <h2 data-testid="shopping-cart-product-name">{title}</h2>
