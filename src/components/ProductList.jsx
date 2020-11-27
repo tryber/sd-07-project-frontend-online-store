@@ -4,18 +4,51 @@ import PropTypes from 'prop-types';
 import '../style/productList.css';
 
 class ProductList extends Component {
+  constructor(props) {
+    super(props);
+    this.addCart = this.addCart.bind(this);
+
+    this.state = {
+      productItem: {},
+    };
+  }
+
+  addCart() {
+    const { productItem } = this.state;
+    // const { id, title, thumbnail, price } = productItem;
+    const { product } = this.props;
+    const { id, title, thumbnail, price } = product;
+
+    // console.log(product);
+    this.setState({ productItem: product });
+    localStorage.setItem('key', id);
+  }
+
   render() {
     const { product } = this.props;
     const { id, title, thumbnail, price } = product;
 
     return (
-      <Link to={ `/${id}` } data-testid="product-detail-link">
-        <div data-testid="product">
-          <h4>{title}</h4>
-          <img src={ thumbnail } alt="Produto listado" />
-          <p>{price}</p>
+      <div>
+        <div>
+          <Link to={ `/${id}` } data-testid="product-detail-link">
+            <div data-testid="product">
+              <h4>{title}</h4>
+              <img src={ thumbnail } alt="Produto listado" />
+              <p>{price}</p>
+            </div>
+          </Link>
         </div>
-      </Link>
+        <div>
+          <button
+            type="submit"
+            name="button"
+            onClick={ this.addCart }
+          >
+            Clique Aqui
+          </button>
+        </div>
+      </div>
     );
   }
 }
