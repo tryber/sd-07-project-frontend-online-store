@@ -6,8 +6,8 @@ class GoToShoppingCart extends Component {
     return (
       <div>
         <Link to="/shoppingCart">
-          <button type="button" data-testid="shopping-cart-button">
-            Carrinho de compras
+          <button className="bt-but" type="button" data-testid="shopping-cart-button">
+            Comprar
           </button>
         </Link>
       </div>
