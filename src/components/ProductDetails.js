@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import ProductSpec from './ProductSpec';
 import * as localStorageFunctions from '../services/utils';
+import ProductEvaluationForm from './ProductEvaluationForm';
 
 
 class ProductDetails extends Component {
@@ -47,6 +48,7 @@ class ProductDetails extends Component {
         >
           Adicionar ao Carrinho
         </button>
+        <ProductEvaluationForm />
       </div>
     );
   }
