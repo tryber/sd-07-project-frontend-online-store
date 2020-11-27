@@ -7,13 +7,28 @@ class CardProduct extends React.Component {
   constructor() {
     super();
     this.addToLocalStorage = this.addToLocalStorage.bind(this);
+    this.createLocalStorage = this.createLocalStorage.bind(this);
+    this.readLocalStorage = this.readLocalStorage.bind(this);
+  }
+
+  componentDidMount() {
+    this.createLocalStorage();
+  }
+
+  createLocalStorage() {
+    localStorage.setItem('cartItems', JSON.stringify([]));
+  }
+
+  readLocalStorage() {
+    localStorage.getItem('cartItems');
   }
 
   addToLocalStorage() {
     const { item } = this.props;
-    const { id } = item;
-    localStorage.setItem(id, JSON.stringify(item));
+    let cartItems = this.readLocalStorage();
+    localStorage.setItem('cartItems', JSON.stringify([...cartItems, item]));
   }
+
 
   render() {
     const { item } = this.props;
