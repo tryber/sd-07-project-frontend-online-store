@@ -5,7 +5,6 @@ import * as lsapi from '../../services/lsapi';
 class ProductDetail extends React.Component {
   render() {
     const product = lsapi.getSelectedProduct();
-    console.log('get', product);
     if (product) {
       return (
         <div className="detail-main-container">
