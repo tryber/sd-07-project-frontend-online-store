@@ -32,12 +32,14 @@ export default class ProductDetails extends Component {
   }
 
   handleMessage({ target: { name, value } }) {
+    console.log(name, value);
     this.setState({ [name]: value });
   }
 
   onSubmit() {
     const { product } = this.state;
-    localStorage.addToCartFromDetails(product);
+    localStorage.addToCart(product);
+    console.log(product);
   }
 
   render() {
@@ -68,7 +70,7 @@ export default class ProductDetails extends Component {
             required
           />
         </div>
-        <button onClick={this.onSubmit}>Salvar</button>
+        <button onClick={this.onSubmit} >Salvar</button>
       </div>
     );
   }
