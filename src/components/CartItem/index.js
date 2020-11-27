@@ -2,19 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class CartItem extends Component {
-  handleCartItemIncrease(product) {
-    const { addItem } = this.props;
-    addItem(product);
-  }
-
-  handleCartItemRemove(product) {
-    const { removeItem } = this.props;
-    removeItem(product);
-  }
-
-  handleCartItemDecrease(product) {
-    const { decreaseItem } = this.props;
-    decreaseItem(product);
+  handleCartItem(product, buttonId) {
+    const { onChange } = this.props;
+    onChange(product, buttonId);
   }
 
   render() {
@@ -35,20 +25,20 @@ class CartItem extends Component {
         <button
           type="button"
           data-testid="product-increase-quantity"
-          onClick={ () => this.handleCartItemIncrease(data) }
+          onClick={ () => this.handleCartItem(data, 'add') }
         >
           +
         </button>
         <button
           type="button"
           data-testid="product-decrease-quantity"
-          onClick={ () => this.handleCartItemDecrease(data) }
+          onClick={ () => this.handleCartItem(data, 'sub') }
         >
           -
         </button>
         <button
           type="button"
-          onClick={ () => this.handleCartItemRemove(data) }
+          onClick={ () => this.handleCartItem(data, 'remove') }
         >
           X
         </button>
@@ -65,9 +55,7 @@ CartItem.propTypes = {
     id: PropTypes.string.isRequired,
     cartQuantity: PropTypes.number.isRequired,
   }).isRequired,
-  addItem: PropTypes.func.isRequired,
-  removeItem: PropTypes.func.isRequired,
-  decreaseItem: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default CartItem;

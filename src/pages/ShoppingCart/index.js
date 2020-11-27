@@ -6,9 +6,7 @@ import CartItem from '../../components/CartItem';
 class ShoppingCart extends Component {
   constructor() {
     super();
-    this.handleCartItemIncrease = this.handleCartItemIncrease.bind(this);
-    this.handleCartItemRemove = this.handleCartItemRemove.bind(this);
-    this.handleCartItemDecrease = this.handleCartItemDecrease.bind(this);
+    this.handleCartItem = this.handleCartItem.bind(this);
     this.state = {
       cart: [],
       cartTotal: 0,
@@ -33,18 +31,16 @@ class ShoppingCart extends Component {
     });
   }
 
-  handleCartItemIncrease(product) {
-    cartApi.addToCart(product);
-    this.updateCart();
-  }
-
-  handleCartItemRemove(product) {
-    cartApi.removeFromCart(product);
-    this.updateCart();
-  }
-
-  handleCartItemDecrease(product) {
-    cartApi.decreaseToCart(product);
+  handleCartItem(product, buttonId) {
+    if (buttonId === 'add') {
+      cartApi.addToCart(product);
+    }
+    if (buttonId === 'sub') {
+      cartApi.decreaseToCart(product);
+    }
+    if (buttonId === 'remove') {
+      cartApi.removeFromCart(product);
+    }
     this.updateCart();
   }
 
@@ -58,9 +54,7 @@ class ShoppingCart extends Component {
             <CartItem
               key={ cartItem.id }
               data={ cartItem }
-              addItem={ this.handleCartItemIncrease }
-              removeItem={ this.handleCartItemRemove }
-              decreaseItem={ this.handleCartItemDecrease }
+              onChange={ this.handleCartItem }
             />
           ))}
         </h4>
