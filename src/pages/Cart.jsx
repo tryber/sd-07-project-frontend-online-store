@@ -9,8 +9,6 @@ class Cart extends React.Component {
     this.state = {
       listProduct: [],
     };
-
-    this.loadList = this.loadList.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +30,6 @@ class Cart extends React.Component {
         <p data-testid="shopping-cart-empty-message" className="empty-cart">
           Seu carrinho está vazio
         </p>
-
         <div>
           {listProduct.map((product) => (
             <ItemCart key={ product.id } product={ product } />

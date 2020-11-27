@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class ItemCart extends React.Component {
   constructor() {
     super();
-
     this.countAdd = this.countAdd.bind(this);
     this.countLess = this.countLess.bind(this);
     this.count = this.count.bind(this);
@@ -28,9 +27,9 @@ class ItemCart extends React.Component {
 
   count() {
     const { count } = this.state;
-    if (count < 0) {
+    if (count < 1) {
       this.setState({
-        count: 0,
+        count: 1,
       });
     }
     return count;
@@ -41,15 +40,27 @@ class ItemCart extends React.Component {
     const { title, thumbnail, price } = product;
     return (
       <div>
-        <img src={thumbnail} alt={title} />
+        <img src={ thumbnail } alt={ title } />
         <h3 data-testid="shopping-cart-product-name">{title}</h3>
         <p>{price}</p>
         <div>
-          <button onClick={this.countAdd}>+</button>
+          <button
+            data-testid="product-increase-quantity"
+            type="button"
+            onClick={ this.countAdd }
+          >
+            +
+          </button>
           <span data-testid="shopping-cart-product-quantity">
             {this.count()}
           </span>
-          <button onClick={this.countLess}>-</button>
+          <button
+            type="button"
+            data-testid="product-decreate-quantity"
+            onClick={ this.countLess }
+          >
+            -
+          </button>
         </div>
       </div>
     );
