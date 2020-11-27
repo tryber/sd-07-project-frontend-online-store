@@ -29,6 +29,7 @@ class ListCategory extends Component {
 
   render() {
     const { products, loading } = this.state;
+    const { onClickCategory } = this.props;
     if (loading === true) return <Loading />;
 
     return (
@@ -42,14 +43,15 @@ class ListCategory extends Component {
             className="main-category-content-flex"
           >
             <label
-              htmlFor={ objItem.name }
+              htmlFor={ objItem.id }
               className="main-category-content-flexItem"
             >
               <input
                 type="radio"
                 value={ objItem.name }
                 name="Category"
-                id={ objItem.name }
+                id={ objItem.id }
+                onClick={ onClickCategory }
               />
               { objItem.name }
             </label>
