@@ -47,7 +47,7 @@ class ShoppingCart extends Component {
       cartArray.forEach(item => {
         if (item.id === id) {
           item.number += 1;
-          item.totalPrice = parseFloat(item.totalPrice, 10) + parseFloat(item.price, 10);
+          item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
           item.totalPrice = this.roundNumber(item.totalPrice);
         } 
       })
@@ -65,7 +65,7 @@ class ShoppingCart extends Component {
         if (item.id === id) {
           if (item.number > 0) {
             item.number -= 1;
-            item.totalPrice = parseFloat(item.totalPrice, 10) - parseFloat(item.price, 10);
+            item.totalPrice = parseFloat(item.totalPrice) - parseFloat(item.price);
             item.totalPrice = this.roundNumber(item.totalPrice);
           }
           if (item.number === 0) {

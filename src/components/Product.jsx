@@ -7,6 +7,7 @@ class Product extends Component {
     this.removeLastItem = this.removeLastItem.bind(this);
     this.removeZero = this.removeZero.bind(this);
     this.roundNumber = this.roundNumber.bind(this);
+    this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
   }
 
   removeLastItem(string) {
@@ -50,7 +51,7 @@ class Product extends Component {
       values.forEach(item => {
         if (item.id === id) {
           item.number += 1;
-          item.totalPrice = parseFloat(totalPrice, 10) + parseFloat(price, 10);
+          item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
           item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
         } 
