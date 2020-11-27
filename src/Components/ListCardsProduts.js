@@ -15,6 +15,9 @@ class ListCardsProduts extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  handleClick() {
+  }
+
   render() {
     const { product } = this.props;
     /* const { status, products, shouldRedirect } = this.state; */
