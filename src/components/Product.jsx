@@ -14,10 +14,10 @@ class Product extends Component {
       const getItemSaved = JSON.parse(localStorage.getItem('cart'));
       const values = (getItemSaved === null ? [] : getItemSaved);
       let repeatedProduct = false;
-      values.forEach(value => {
-        if (value.id === id) {
-          value.number += 1;
-          value.price += price;
+      values.forEach(item => {
+        if (item.id === id) {
+          item.number += 1;
+          // item.price = parseFloat(price) + parseFloat(price);
           repeatedProduct = true;
         } 
       })
@@ -29,8 +29,6 @@ class Product extends Component {
 
   render() {
     const { id, title, price, thumbnail } = this.props;
-    console.log(title);
-    console.log(price);
     return (
       <div data-testid="product" id={id}>
         <span>{title}</span>
