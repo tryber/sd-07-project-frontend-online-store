@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../Components/Search';
+import CategoryList from '../Components/CategoryList';
+
 
 class Home extends React.Component {
   render() {
@@ -14,6 +16,7 @@ class Home extends React.Component {
           />
         </Link>
         <Search />
+        <CategoryList />
       </div>
     );
   }

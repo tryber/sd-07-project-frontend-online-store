@@ -6,7 +6,7 @@ import ProductNotFound from './ProductNotFound';
 import DigiteTermo from './DigiteTermo';
 
 class ListAllProducts extends React.Component {
- constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       term: '',
@@ -19,26 +19,23 @@ class ListAllProducts extends React.Component {
   }
 
   getProduct() {
-    this.setState( async () => {
+    this.setState(async () => {
       const { categoryId, term } = this.state;
       const getingProduct = await api.getProductsFromCategoryAndQuery(
         categoryId,
-        term,
+        term
       );
-      console.log(getingProduct)
-      if(getingProduct.results.length !== 0){
+      if (getingProduct.results.length !== 0) {
         this.setState({ products: getingProduct.results, status: 'OK' });
-      }
-      else{
+      } else {
         this.setState({ products: getingProduct.results, status: 'Fail' });
       }
-   
     });
-  } 
+  }
 
   onSearchChange(event) {
-   const { name, value } = event.target
-   this.setState({ [name]: value });
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   render() {
@@ -50,24 +47,22 @@ class ListAllProducts extends React.Component {
           className="input-search"
           type="text"
           name="term"
-          value={ term }
+          value={term}
           placeholder="Digite algum termo de pesquisa aqui"
-          onChange={ this.onSearchChange }
+          onChange={this.onSearchChange}
         />
         <button
           type="button"
           className="button-search"
           data-testid="query-button"
-          onClick={ this.getProduct }
+          onClick={this.getProduct}
         >
-        Procurar
+          Procurar
         </button>
         <div>
-          { 
-          status === 'OK' && status !== 'Fail' ? <CardList products={ products } /> : <DigiteTermo /> }
-          {
-          status === 'Fail' ? <ProductNotFound /> : ''
-          }
+          {status === '' ? <DigiteTermo /> : ''}
+          {status === 'OK' ? <CardList termo={term} products={products} /> : ''}
+          {status === 'Fail' ? <ProductNotFound /> : ''}
         </div>
       </div>
     );

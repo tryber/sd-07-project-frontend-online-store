@@ -4,11 +4,11 @@ import CardProduct from './CardProduct';
 
 class CardList extends React.Component {
   render() {
-    const { products } = this.props;
+    const { products,termo } = this.props;
     return (
-      <div>
+      <div className="card-list">
         {products.map((product) => (
-          <CardProduct key={product.id} product={product} />
+          <CardProduct key={product.id} termo={termo} product={product} />
         ))}
       </div>
     );

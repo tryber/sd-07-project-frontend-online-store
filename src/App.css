@@ -28,7 +28,7 @@
 }
 
 
-.movie-card {
+.product-card {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 3px;
@@ -36,10 +36,40 @@
   flex-direction: column;
   height: 300px;
   margin: 5px;
+  text-align: center;
   overflow: hidden;
   width: 300px;
 }
 
-.movie-card-image {
-  width: 50%;
+.product-card-image {
+  width: 55%;
+}
+.product-card-image-details {
+  width: 35%;
+}
+
+.product-card-image-div {
+  margin-left: 5%;
+}
+
+.category-list {
+  display: contents;
+  flex-direction: row;
+}
+
+.card-list {
+  display: grid;
+}
+
+.product-card-details {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  height: 600px;
+  margin: 25px;
+  overflow: hidden;
+  width: 900px;
 }
