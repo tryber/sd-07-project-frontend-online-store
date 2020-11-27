@@ -6,6 +6,7 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props);
 
+    this.addToCart = this.addToCart.bind(this);
     this.handleProduct = this.handleProduct.bind(this);
 
     this.state = {
@@ -20,6 +21,17 @@ class ProductCard extends React.Component {
   handleProduct() {
     const { product } = this.props;
     this.setState({ product });
+  }
+
+  addToCart() {
+    const { product } = this.props;
+    const initialQuantity = 1;
+    if (localStorage.getItem(product.title)) {
+      const value = localStorage.getItem(product.title);
+      localStorage.setItem(product.title, parseInt(value, 10) + 1);
+    } else {
+      localStorage.setItem(product.title, initialQuantity);
+    }
   }
 
   render() {
@@ -39,6 +51,13 @@ class ProductCard extends React.Component {
           <footer>
             <p>{`R$ ${price}`}</p>
           </footer>
+          <button
+            type="button"
+            onClick={ this.addToCart }
+            data-testid="product-add-to-cart"
+          >
+            ADICIONAR AO CARRINHO
+          </button>
         </article>
         <Link
           data-testid="product-detail-link"

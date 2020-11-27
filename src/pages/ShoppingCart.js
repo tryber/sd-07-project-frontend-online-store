@@ -1,49 +1,26 @@
 import React, { Component } from 'react';
-import ShowCartItems from '../components/ShowCartItems';
-import { getCartItems } from '../services/localStorageHandler';
 
 class ShoppingCart extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cartItems: [],
-    };
-    this.retrieveItemsFromStorage = this.retrieveItemsFromStorage.bind(this);
-  }
-
-  componentDidMount() {
-    this.retrieveItemsFromStorage();
-  }
-
-  retrieveItemsFromStorage() {
-    const retrievedItems = getCartItems();
-    this.setState({
-      cartItems: retrievedItems,
-    });
-  }
-
   render() {
-    const { cartItems } = this.state;
-    if (!cartItems || !cartItems.length) {
-      return (
-        <div data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio
-        </div>
-      );
+    const products = [];
+    const quantity = [];
+    const initialNumber = 0;
+    for (let i = initialNumber; i < localStorage.length; i += 1) {
+      products.push(localStorage.key(i));
+      quantity.push(localStorage.getItem(localStorage.key(i)));
     }
-
     return (
       <div>
-        {cartItems.map((item) => (
-          <ShowCartItems
-            key={ item.id }
-            item={ {
-              title: item.title,
-              price: item.price,
-              quantity: '1',
-            } }
-          />
-        ))}
+        { !localStorage.length
+          ? <div data-testid="shopping-cart-empty-message"> Seu carrinho está vazio </div>
+          : (
+            products.map((product, index) => (
+              <div key={ product.id }>
+                <div data-testid="shopping-cart-product-name">{product}</div>
+                <div data-testid="shopping-cart-product-quantity">{quantity[index]}</div>
+              </div>
+            ))
+          )}
       </div>
     );
   }
