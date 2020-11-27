@@ -135,3 +135,21 @@
   justify-content: space-between;
   margin-bottom:20px;
 }
+
+.side-bar {
+  background-color: #c9c9c9;
+  border: none;
+  border-radius: 15px;
+  padding-bottom: 15px;
+  width: 33%;
+  margin-left: 1%;
+}
+
+.container-filters {
+  margin-top: 15px;
+  text-align: left;;
+}
+
+.side-bar h3 {
+  text-align: center;
+}
