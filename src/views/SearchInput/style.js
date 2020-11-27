@@ -49,4 +49,5 @@ export const ctnCenter = styled.div`
       transform: scale(0.8);
     }
   }
+
 `;

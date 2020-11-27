@@ -3,6 +3,7 @@ import * as css from './style';
 import * as cp from '../../components';
 import * as icon from '../../components/Icons';
 
+
 class SearchInput extends Component {
   render() {
     return (
@@ -14,8 +15,11 @@ class SearchInput extends Component {
         <cp.Button>Buscar</cp.Button>
         <icon.Cart />
       </css.ctnCenter>
+
     );
   }
 }
 
 export default SearchInput;
+
+
