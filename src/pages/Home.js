@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Category from '../components/Category';
 import * as api from '../services/api';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 import ProductCard from '../components/ProductCard';
@@ -17,9 +16,16 @@ class Home extends Component {
       order: '',
       notFound: false,
     };
+    this.fetchProductList = this.fetchProductList.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
-  componentDidMount() { this.fetchCategories(); }
+  onChange({ target }) {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
+  }
 
   onChange({ target }) {
     const { name, value } = target;
