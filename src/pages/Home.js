@@ -50,28 +50,22 @@ class Home extends Component {
   }
 
   render() {
-    const { inputValue, products, categories } = this.state;
-    const message = 'Digite algum termo de pesquisa ou escolha uma categoria.';
+    const { inputValue, products } = this.state;
     return (
       <div className="home">
-        <div>
-          <Categories handleChangeCategory={ this.handleChangeCategory } />
-        </div>
-        <div className="SearchBar-products">
-          <div className="searchBar-car">
-            <SearchBar
-              inputValue={ inputValue }
-              handleChange={ this.handleChange }
-              handleSubmitAPI={ this.handleSubmitAPI }
-            />
-            <Link data-testid="shopping-cart-button" to="/cart">
-              Carrinho de compras
-            </Link>
-          </div>
-          {(categories !== '' || inputValue !== '')
-            ? <ProductsList data={ products } />
-            : <p data-testid="home-initial-message">{message}</p>}
-        </div>
+        <p data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
+        <Link to="/cart" data-testid="shopping-cart-button">
+          Carrinho de compras
+        </Link>
+        <SearchBar
+          inputValue={ inputValue }
+          handleChange={ this.handleChange }
+          handleSubmitAPI={ this.handleSubmitAPI }
+        />
+        <ProductsList products={ products } />
+        <Categories handleChangeCategory={ this.handleChangeCategory } />
       </div>
     );
   }
