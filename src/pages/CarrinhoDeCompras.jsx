@@ -13,16 +13,16 @@ class CarrinhoDeCompras extends React.Component {
     if (this.state.cart === 0) {
       return (
         <div>
-          <button type='button'>
+          <button type="button">
             <Link
-             to="/"
+              to="/"
             >
               Inicial
             </Link>
           </button>
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         </div>
-      )
+      );
     }
   }
 }

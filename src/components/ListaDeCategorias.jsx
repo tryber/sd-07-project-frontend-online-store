@@ -6,11 +6,10 @@ class ListaDeCategorias extends React.Component {
     const { categories } = this.props;
     return (
       <ul>
-        {categories.map((category) =>
-          <Categoria key={ category.name }
-            category={ category }
-          />
-         )
+        {
+        categories.map((category) =>
+          <Categoria key={ category.name } category={ category }
+          />)
         }
       </ul>
     );

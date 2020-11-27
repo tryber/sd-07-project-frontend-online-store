@@ -8,33 +8,33 @@ import ListaDeProdutos from '../components/ListaDeProdutos';
 class Home extends React.Component {
   constructor() {
     super();
-    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.state = {
       query: '',
       categoryId: '',
       categories: [],
       onFetchProducts: [],
-    }
+    };
   }
 
   componentDidMount() {
-    api.getCategories().then(categories => {
+    api.getCategories().then((categories) => {
       this.setState({
         categories,
-      })
+      });
     });
   }
 
   handleInputChange(search) {
-      this.setState(() => ({
-          query: search,
+    this.setState(() => ({
+      query: search,
       }), () => {
       const { categoryId, query } = this.state;
       api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then(response => this.setState({
+        .then(response => this.setState({
         onFetchProducts: response.results,
-      }))
-    })
+      }));
+    });
   }
 
   render() {
@@ -45,20 +45,19 @@ class Home extends React.Component {
           query={ query }
           handleInputChange={ this.handleInputChange }
         />
-        { onFetchProducts.length !== 0 ? 
+        { onFetchProducts.length !== 0 ?
           <ListaDeProdutos onFetchProducts={ onFetchProducts } /> :
           <p
-            data-testid ="home-initial-message"
+            data-testid="home-initial-message"
           >
             Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-        } 
+          </p>}
         <ListaDeCategorias
           categories={ categories }
         />
         <BotaoCarrinho />
       </div>
-    )
+    );
   }
 }
 

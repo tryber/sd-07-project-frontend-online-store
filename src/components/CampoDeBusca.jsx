@@ -5,14 +5,14 @@ class CampoDeBusca extends React.Component {
     super();
     this.changeSearchState = this.changeSearchState.bind(this);
     this.state = {
-        search: '',
+      search: '',
     };
   }
 
   changeSearchState({ target }) {
-      this.setState({
-        search: target.value,
-      });
+    this.setState({
+      search: target.value,
+    });
   }
 render() {
   const { query, handleInputChange } = this.props;

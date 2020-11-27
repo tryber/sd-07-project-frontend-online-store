@@ -5,8 +5,8 @@ class Categoria extends React.Component {
     const { id, name } = this.props.category;
     return (
       <li
-       key={ id }
-       data-testid='category'
+        key={ id }
+        data-testid="category"
       >
         { name }
       </li>
