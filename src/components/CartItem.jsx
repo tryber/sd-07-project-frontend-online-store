@@ -15,29 +15,30 @@ class CartItem extends Component {
         name={id}
         onClick={removeItem}>X</button>
         <img src={image} alt={title} />
-        <span data-testid="shopping-cart-product-name">{title}</span>
-        <button 
+        <span data-testid="shopping-cart-product-name"> {title} </span>
+        <button
           data-testid="product-decrease-quantity"
           name={id}
           onClick={subtractItem}>-</button>
-        <span data-testid="shopping-cart-product-quantity">{number}</span>
+        <span data-testid="shopping-cart-product-quantity"> {number} </span>
         <button
           data-testid="product-increase-quantity"
           name={id}
           onClick={sumItem}>+</button>
-        <span>{price}</span>
+        <span> R$ {price}</span>
       </div>
     );
   }
 
   showSimpleItem() {
     const { title, price, image, number} = this.props;
+    console.log(number);
     return (
       <div>
         <img src={image} alt={title} />
-        <span data-testid="shopping-cart-product-name">{title}</span>
-        <span data-testid="shopping-cart-product-quantity">{number}</span>
-        <span>{price}</span>
+        <span data-testid="shopping-cart-product-name">Descrição: {title} - </span>
+        <span data-testid="shopping-cart-product-quantity"> Qtd: {number} -</span>
+        <span> R$ {price}</span>
       </div>
     )
   }
@@ -45,7 +46,7 @@ class CartItem extends Component {
 
   render() {
     const { sumItem } = this.props;
-    if(!sumItem) {
+    if(sumItem) {
       return this.showItem();
     }
     return this.showSimpleItem();

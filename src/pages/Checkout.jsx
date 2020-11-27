@@ -29,18 +29,24 @@ class Checkout extends Component {
 
   render() {
     const { products } = this.state;
+    let totalSum = 0;
     return (
       <div>
         <section>
           Revise seus produtos
-          {products.map((product) => <CartItem
+          {products.map((product) => {
+          totalSum += parseFloat(product.totalPrice);
+          return(
+          <CartItem
             key={product.id}
             id={product.id}
             title={product.title}
             price={product.totalPrice}
             image={product.imagePath}
-          />)}
-        
+            number={product.number}
+          />
+          )})}
+        <div>Preço Total: {totalSum}</div>
         </section>
         <section>
           Informações do Comprador
