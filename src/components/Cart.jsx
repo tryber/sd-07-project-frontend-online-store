@@ -38,7 +38,9 @@ class Cart extends Component {
             <p>{ item.qtd * item.price }</p>
           </div>
         ))}
-        <h3>Valor Total da Compra: {this.state.sumCart}</h3>
+        <h3>
+          Valor Total da Compra: {this.state.sumCart}
+        </h3>
       </div>
     );
   }
