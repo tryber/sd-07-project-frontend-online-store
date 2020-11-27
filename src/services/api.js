@@ -10,3 +10,11 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const promisse = await getFetch(url);
   return promisse;
 }
+
+export async function getProductsFromQuery(query) {
+  const url = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
+  try {
+    const promisse = await getFetch(url);
+    return promisse;
+  } catch (err) { return 'Erro'; }
+}
