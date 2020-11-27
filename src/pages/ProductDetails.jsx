@@ -50,7 +50,6 @@ class ProductDetails extends Component {
               </li>
             ))}
           </ul>
-         
         </div>
       </div>
     );
