@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as localStorageFunctions from '../services/utils';
 
 class ShoppingCart extends Component {
@@ -50,31 +51,43 @@ class ShoppingCart extends Component {
         <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
       );
     }
-    return cartProducts.map(({ id, title }) => {
-      const result = Object.entries(this.state).find((element) => element[0] === id);
-      return (
-        <div key={ id }>
-          <p data-testid="shopping-cart-product-name">{ title }</p>
-          <p data-testid="shopping-cart-product-quantity" id={ id }>
-            { result === undefined ? '' : result[1] }
-          </p>
-          <button
-            type="button"
-            data-testid="product-increase-quantity"
-            onClick={ () => this.increaseFunc(id) }
-          >
-            +
-          </button>
-          <button
-            type="button"
-            data-testid="product-decrease-quantity"
-            onClick={ () => this.decreaseFunc(id) }
-          >
-            -
-          </button>
-        </div>
-      );
-    });
+    return (
+      <div>
+        {
+          cartProducts.map(({ id, title }) => {
+            const result = Object.entries(this.state).find((element) => element[0] === id);
+            return (
+              <div key={ id }>
+                <p data-testid="shopping-cart-product-name">{ title }</p>
+                <p data-testid="shopping-cart-product-quantity" id={ id }>
+                  { result === undefined ? '' : result[1] }
+                </p>
+                <button
+                  type="button"
+                  data-testid="product-increase-quantity"
+                  onClick={ () => this.increaseFunc(id) }
+                >
+                  +
+                </button>
+                <button
+                  type="button"
+                  data-testid="product-decrease-quantity"
+                  onClick={ () => this.decreaseFunc(id) }
+                >
+                  -
+                </button>
+              </div>
+            );
+          })
+        }
+        <Link
+          data-testid="checkout-products"
+          to="/checkout"
+        >
+          Finalizar Compra
+        </Link>
+      </div>
+    )
   }
 }
 
