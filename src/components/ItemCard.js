@@ -7,7 +7,7 @@ class ItemCard extends React.Component {
     const { id, product, title, image, price } = this.props;
     return (
       <div className="card-product" data-testid="product">
-        <span  className="card-title">
+        <span className="card-title">
           { title }
         </span>
         <img
