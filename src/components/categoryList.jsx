@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import * as api from '../services/api'
-import CategoryItems from './categorysItems';
+import * as api from '../services/api';
 
 class Category extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      categories: []
-    }
+      categories: [],
+    };
     this.fetchCategory = this.fetchCategory.bind(this);
+    this.filterCategory = this.filterCategory.bind(this)
   }
 
   componentDidMount() {
@@ -19,16 +19,33 @@ class Category extends Component {
     const RequestReturn = await api.getCategories();
     this.setState({
       categories: RequestReturn,
-    });    
-  };
+    });
+  }
+
+  async filterCategory(event) {
+    const { handleSearchChange, handleClickChange } = this.props;
+    await handleSearchChange(event);
+    handleClickChange(event);
+  }
 
   render() {
     const { categories } = this.state;
-    const { handleSearchChange } = this.props;
     return (
       <div>
-        {categories.map((category) => <CategoryItems key={category.name} category={category} handleSearchChange={handleSearchChange} />)}
-        {/* {categories.map((category) => <label><input onChange={handleSearchChange} data-testid="category" type="checkbox" key={category.id} value={`${category.id}`} />{`${category.name}`}<br /></label> )} */}
+        {categories.map((category) => (
+          <div>
+            <input
+              type="checkbox"
+              data-testid="category"
+              id={category.id}
+              name="categoryId"
+              value={category.id}
+              key={category.id}
+              onClick={(event) => this.filterCategory(event)}
+            />
+            <label htmlFor={ category.id }>{ category.name }</label>
+          </div>
+        ))}
       </div>
     );
   }

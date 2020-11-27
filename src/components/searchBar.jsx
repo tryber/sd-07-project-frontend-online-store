@@ -1,5 +1,5 @@
 import React from 'react';
-import * as api from '../services/api'
+import * as api from '../services/api';
 import Category from './categoryList';
 import NotFound from './notFound';
 import ProductCard from './productCard';
@@ -10,10 +10,10 @@ class SearchBar extends React.Component {
     super(props);
 
     this.state = {
-      query: "",
-      categoryId: "",
+      query: '',
+      categoryId: '',
       products: [],
-      notFound: false,
+      notFound: true,
     };
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
 
   handleSearchChange({ target }) {
     const { name, value } = target;
-    this.setState({[name]: value});
+    this.setState({ [name]: value });
   }
 
   handleClickChange(event) {
@@ -49,7 +49,7 @@ class SearchBar extends React.Component {
     return (
       <div>
         {this.state.products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={ product.id } product={ product } />
         ))}
       </div>
     );
@@ -66,15 +66,24 @@ class SearchBar extends React.Component {
               data-testid="query-input"
               id="text-input"
               name="query"
-              value={query}
-              onChange={this.handleSearchChange}
+              value={ query }
+              onChange={ this.handleSearchChange }
               type="text"
             />
           </label>
-          <button data-testid="query-button" onClick={this.handleClickChange}>Buscar</button>
+          <button 
+            data-testid="query-button"
+            type="submit"
+            onClick={ this.handleClickChange }
+            >
+              Buscar
+            </button>
         </form>
         <div>{products.length ? this.productListLoaded() : <NotFound />}</div>
-        <Category handleSearchChange={this.handleSearchChange}/>
+        <Category 
+          handleSearchChange={ this.handleSearchChange }
+          handleClickChange={this.handleClickChange}
+        />
       </div>
     );
   }
@@ -82,7 +91,7 @@ class SearchBar extends React.Component {
 
 // SearchBar.propTypes = {
 //   query: PropTypes.string.isRequired,
-//   handleSearchChange: PropTypes.func.isRequired, 
+//   handleSearchChange: PropTypes.func.isRequired,
 // };
 
 export default SearchBar; 
