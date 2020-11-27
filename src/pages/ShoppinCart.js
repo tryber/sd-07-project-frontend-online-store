@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import voltar from '../icon/voltar.png';
 import '../App.css';
-import ItemCart from '../components/ItemCart';
+import ItemCart from '../components/ItemCart.js';
 
 class ShoppinCart extends React.Component {
   constructor() {
@@ -37,7 +37,7 @@ class ShoppinCart extends React.Component {
       };
       const { cartItem } = this.state;
       cartItem.push(item);
-      this.setState({ cartItem: cartItem, });
+      this.setState({ cartItem: cartItem });
     }
     localStorage.clear();
   }

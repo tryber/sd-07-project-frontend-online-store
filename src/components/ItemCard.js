@@ -7,7 +7,7 @@ class ItemCard extends React.Component {
     super(props);
     this.addToCart = this.addToCart.bind(this);
   }
-  
+
   addToCart() {
     const { title, price } = this.props;
     localStorage.setItem(title, price);
