@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import CategorieFilter from '../components/CategorieFilter';
 import * as api from '../services/api';
-import ProductCard from '../components/ProductCard';
-
+import SearchBar from '../components/SearchBar';
+import ProductList from '../components/ProductList';
+import ShoppingCartButton from '../components/ShoppingCartButton';
+import EmptyProductList from '../components/EmptyProductList';
 export default class Home extends React.Component {
   constructor() {
     super();
@@ -11,58 +12,55 @@ export default class Home extends React.Component {
       searchText: '',
       products: [],
       categoryId: '',
+      isEmpty: true,
     };
-
     this.findProduct = this.findProduct.bind(this);
     this.updateValue = this.updateValue.bind(this);
+    
+    this.updateValueCategory = this.updateValueCategory.bind(this);
   }
 
   async findProduct() {
+    const { categoryId, searchText } = this.state;
     const products = await api.getProductsFromCategoryAndQuery(
-      this.state.categoryId,
-      this.state.searchText
+      categoryId,
+      searchText
     );
     this.setState({
       products: products.results,
+      isEmpty: false,
     });
   }
-
+  async updateValueCategory(event) {
+    const { value } = await event.target;
+    this.setState({ categoryId: value });
+    this.findProduct();
+  }
   updateValue(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
-
   render() {
-    const { searchText } = this.state;
-
+    const { searchText, products, isEmpty } = this.state;
     return (
-      <div>
-        <CategorieFilter  />
+      <div className="main-content">
         <div>
-          <input
-            data-testid="query-input"
-            onChange={this.updateValue}
-            type="text"
-            value={searchText}
-            name="searchText"
-          />
-          <button data-testid="query-button" onClick={this.findProduct}>
-            Search
-          </button>
+          <CategorieFilter updateValueCategory={this.updateValueCategory} />
+        </div>
+        <div className="search-bar-content">
+          <div>
+            <SearchBar
+              searchText={searchText}
+              onChange={this.updateValue}
+              onClick={this.findProduct}
+            />
+          </div>
+          <div>
+            <ShoppingCartButton />
+          </div>
         </div>
         <div>
-          {this.state.products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-        <Link data-testid="shopping-cart-button" to="/pages/shoppingcart">
-          <img
-            src="https://image.flaticon.com/icons/png/512/34/34562.png"
-            alt="icone-carrinho"
-          />
-        </Link>
-        <div data-testid="home-initial-message">
-          <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
+          {isEmpty ? <EmptyProductList /> : <ProductList products={products} />}
         </div>
       </div>
     );
