@@ -47,16 +47,18 @@
 
 .logo {
   flex:1;
+  text-align: left;
 }
 
 .input-serch {
   flex:2;
+  text-align: left;
 }
 
 .input {
   background-color: #c9c9c9;
   border: none;
-  width: 25em;
+  width: 35em;
   border-radius: 5px;
   padding: 10px; 
 }
@@ -162,6 +164,7 @@
 
 .container-product {
   width: 100%;
+
   
 .input-serch img {
   display: inline;
@@ -181,4 +184,14 @@
 
 .price-product {
   text-align: center;
+
 }
+
+.btn-search {
+  border:none;
+  border-radius: 5px;
+  color: white;
+  background-color: #179267;
+  margin-left:5px;
+  padding:10px;
+ }
