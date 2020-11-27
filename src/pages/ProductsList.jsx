@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import * as API from "../services/api";
 import CategoriesList from "../components/CategoriesList";
 import Logo from "../shoppingCartImage.png";
+import CartIcon from "../components/CartIcon";
 import ShowProducts from "../components/ShowProducts";
 
 class ProductsList extends Component {
@@ -12,11 +13,17 @@ class ProductsList extends Component {
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
     this.categoryChoice = this.categoryChoice.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.changeQuantityState = this.changeQuantityState.bind(this);
+    this.removeLastItem = this.removeLastItem.bind(this);
+    this.removeZero = this.removeZero.bind(this);
+    this.roundNumber = this.roundNumber.bind(this);
+    this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
     this.state = {
       category: undefined,
       categories: undefined,
       products: undefined,
       search: "",
+      quantity: JSON.parse(localStorage.getItem('cart')),
     };
   }
 
@@ -54,9 +61,72 @@ class ProductsList extends Component {
     const { name, value } = target;
     this.setState({ [name]: value });
   }
+
+  changeQuantityState() {
+    let quantity = 0;
+    const cartItens = JSON.parse(localStorage.getItem('cart'));
+    if (cartItens !== null) cartItens.forEach((item) => quantity += item.number);
+    this.setState({ quantity: quantity })
+  }
+
+  removeLastItem(string) {
+    let stringNumber = string;
+    if (stringNumber[stringNumber.length - 1] === '0' || stringNumber[stringNumber.length - 1] === '.') {
+      stringNumber = stringNumber.slice(0, (stringNumber.length - 1));
+    }
+    return stringNumber;
+  };
+
+  removeZero(string) {
+    let stringNumber = string;
+    if (stringNumber[0] === '0') {
+      stringNumber = '0';
+      return stringNumber;
+    }
+    stringNumber = this.removeLastItem(stringNumber);
+    stringNumber = this.removeLastItem(stringNumber);
+    stringNumber = this.removeLastItem(stringNumber);
+    return stringNumber;
+  };
+
+  roundNumber(string) {
+    let stringNumber = string.toFixed(2);
+    const number = this.removeZero(stringNumber);
+    return number;
+  };
+
+  addItemToLocalStorage({ target }) {
+    const id = target.name;
+    const product = document.getElementById(`${id}`)
+    const title = product.firstChild.innerHTML;
+    const imagePath = product.firstChild.nextSibling.src;
+    const price = product.firstChild.nextSibling.nextSibling.innerHTML;
+    const totalPrice = price;
+    const number = 1;
+    if (Storage) {
+      const getItemSaved = JSON.parse(localStorage.getItem('cart'));
+      const values = (getItemSaved === null ? [] : getItemSaved);
+      let repeatedProduct = false;
+      values.forEach(item => {
+        if (item.id === id) {
+          item.number += 1;
+          item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+          item.totalPrice = this.roundNumber(item.totalPrice);
+          repeatedProduct = true;
+        } 
+      })
+      if (repeatedProduct) {
+        localStorage.setItem('cart', JSON.stringify(values));
+        return this.changeQuantityState();
+      }
+      values.push({id, title, price, imagePath, number, totalPrice});
+      localStorage.setItem('cart', JSON.stringify(values));
+      this.changeQuantityState();
+    }
+  }
   
   render() {
-    const { categories, products } = this.state;
+    const { categories, products, quantity } = this.state;
 
     return (
       <div>
@@ -74,8 +144,9 @@ class ProductsList extends Component {
             data-testid="query-input"
             onChange={this.handleChange}
           />
+          <CartIcon quantity={quantity} />
           <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
-          {products === undefined ? this.showMessage() : <ShowProducts products={products} />}
+          {products === undefined ? this.showMessage() : <ShowProducts products={products} actualizeCart={this.addItemToLocalStorage} />}
           <Link data-testid="shopping-cart-button" to="/ShoppingCart">
             <img src={Logo} alt="shoppingCart" />
           </Link>

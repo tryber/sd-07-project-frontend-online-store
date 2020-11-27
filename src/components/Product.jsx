@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Product extends Component {
-  constructor(props) {
+  /*constructor(props) {
     super(props);
     this.removeLastItem = this.removeLastItem.bind(this);
     this.removeZero = this.removeZero.bind(this);
@@ -56,14 +56,14 @@ class Product extends Component {
           repeatedProduct = true;
         } 
       })
-      if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values))
+      if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values));
       values.push({id, title, price, imagePath, number, totalPrice});
       localStorage.setItem('cart', JSON.stringify(values));
     }
-  }
+  } */
 
   render() {
-    const { id, title, price, thumbnail } = this.props;
+    const { id, title, price, thumbnail, actualizeCart } = this.props;
     return (
       <div data-testid="product" id={id}>
         <span>{title}</span>
@@ -72,7 +72,7 @@ class Product extends Component {
         <button
           data-testid="product-add-to-cart"
           name={id}
-          onClick={this.addItemToLocalStorage}>Adicionar ao carrinho</button>
+          onClick={actualizeCart}>Adicionar ao carrinho</button>
         <Link data-testid="product-detail-link" to={`/ProductDetail/${id}`}>Detalhes do produto</Link>
       </div>
     );
