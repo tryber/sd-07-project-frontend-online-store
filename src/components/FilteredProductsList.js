@@ -10,20 +10,21 @@ class FilteredProductsList extends Component {
       return (
         <div>
           <ul data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
+            <span className="fontzero">Digite algum termo de pesquisa ou escolha uma categoria.</span>
           </ul>
         </div>
       );
     }
     return (
-      <div>
+      <div  className="main-category-result-container">
+        <h1 className="main-category-title">Resultado da pesquisa</h1>
         {allProducts.map((product) => (
           <IndividualCard
-            key={ product.id }
-            id={ product.id }
-            title={ product.title }
-            price={ product.price }
-            image={ product.thumbnail }
+            key={product.id}
+            id={product.id}
+            title={product.title}
+            price={product.price}
+            image={product.thumbnail}
           />
         ))}
       </div>

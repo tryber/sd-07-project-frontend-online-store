@@ -6,14 +6,15 @@ class IndividualCard extends Component {
   render() {
     const { key, price, image, title, id } = this.props;
     return (
-      <div key={ key } data-testid="product">
-        <h4>{ title }</h4>
-        <img src={ image } alt="titulo" />
-        <p>{ price }</p>
-        <Link to={ `/product/${id}` }><button type="button">Ver detalhes</button></Link>
-        <br />
-        <button type="button">Adicionar ao carrinho</button>
-      </div>
+      <div key={key} data-testid="product">
+        <div className="main-category-result-content">
+          <img src={image} alt="titulo" />
+          <h4>{title}</h4>
+          <p>R$ {price}</p>
+          <Link to={`/product/${id}`}><button className="bt-det" type="button">Ver detalhes</button></Link>
+          <button className="bt-add" type="button">Adicionar ao carrinho</button>
+        </div>
+      </div >
     );
   }
 }
