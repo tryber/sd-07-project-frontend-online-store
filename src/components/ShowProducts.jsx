@@ -8,12 +8,12 @@ class ShowProducts extends Component {
     return (
       <div>
         {products.map((product) => <Product
-          key={product.id}
-          id={product.id}
-          title={product.title}
-          price={product.price}
-          thumbnail={product.thumbnail}
-          actualizeCart={actualizeCart}
+          key={ product.id }
+          id={ product.id }
+          title={ product.title }
+          price={ product.price }
+          thumbnail={ product.thumbnail }
+          actualizeCart={ actualizeCart }
         />)}
       </div>
     );
