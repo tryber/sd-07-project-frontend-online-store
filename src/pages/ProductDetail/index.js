@@ -43,7 +43,7 @@ class ProductDetail extends React.Component {
             </button>
           </div>
           <EvaluationForm />
-          <EvaluationList productId={product.id} />
+          <EvaluationList productId={ product.id } />
         </div>
       );
     }

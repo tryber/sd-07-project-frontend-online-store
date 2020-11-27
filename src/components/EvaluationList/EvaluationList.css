@@ -1,3 +1,9 @@
 .formlist-container {
     border: 1px solid black;
 }
+
+.singleAvaliation {
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid;
+}

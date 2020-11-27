@@ -1,41 +1,43 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactStars from 'react-stars';
 import * as lsapi from '../../services/lsapi';
 import './EvaluationList.css';
 
 class EvaluationList extends Component {
   render() {
     const { productId } = this.props;
-    // const ratedProduct = lsapi.getEvaluationList(productId);
-    const ratedProduct = [
-      {
-        email: 'fernando@gmail',
-        evaluation: 3,
-        mesage: 'muito bom'
-      },
-      {
-        email: 'talita@hotmail',
-        evaluation: 4,
-        mesage: 'gostei'
-      },
-      {
-        email: 'davi@gmail',
-        evaluation: 5,
-        mesage: 'com certeza vou pedir mais'
-      },
-    ];
+    const ratedProduct = lsapi.getEvaluationList(productId);
+
     return (
       <div className="formlist-container">
-        { ratedProduct.map((rated) => 
-        <div>
-          <p>email: { rated.email }</p>
-          <p>Nota: {rated.evaluation}</p>
-          <p>Mensagem: {rated.mesage}</p>
-          <hr />
-        </div>
-        ) }
+        { ratedProduct.map((rated, id) =>
+          (<div key={ id } className="singleAvaliation">
+            <span>
+              email:
+              { rated.email }
+            </span>
+            <span>
+              Nota:
+              <ReactStars
+                count={ 5 }
+                value={ rated.rating }
+                edit={ false }
+                half={ false }
+              />
+            </span>
+            <span>
+              Mensagem:
+              { rated.mesage }
+            </span>
+          </div>)) }
       </div>
     );
   }
 }
+
+EvaluationList.propTypes = {
+  productId: PropTypes.string.isRequired,
+};
 
 export default EvaluationList;
