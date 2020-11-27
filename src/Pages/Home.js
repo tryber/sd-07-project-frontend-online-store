@@ -10,20 +10,20 @@ class Home extends React.Component {
     super();
     this.updateSearchValue = this.updateSearchValue.bind(this);
     this.searchProduct = this.searchProduct.bind(this);
+    this.onLoadProducts = this.onLoadProducts.bind(this);
     this.state = {
-      search:'',
+      search: '',
       products: [],
       categoryID: '',
-      showProduct: false,
+      showInitialMessage: true,
     };
   }
 
-  async searchProduct() {
-    const { categoryID, search } = this.state;
-    const products = await api.getProductsFromCategoryAndQuery(categoryID, search);
+  async onLoadProducts(products = []) {
+    console.log('hey', products, this);
     this.setState({
-      products: products.results,
-      showProduct: true,
+      products,
+      showInitialMessage: false,
     });
   }
 
@@ -31,24 +31,19 @@ class Home extends React.Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
-    
+
+  async searchProduct() {
+    const { categoryID, search } = this.state;
+    const products = await api.getProductsFromCategoryAndQuery(categoryID, search);
+    this.setState({
+      products: products.results,
+      showInitialMessage: false,
+    });
+  }
+
   render() {
-    let conteudo;
-    if(this.state.showProduct) {
-      conteudo = 
-      <div className="items-list">
-         {this.state.products
-            .map((product) => 
-              <Item
-                key={product.id}
-                title={product.title}
-                thumbnail={product.thumbnail}
-                price={product.price} />)}
-        </div>
-    } else if (this.state.showProduct === false) {
-      conteudo = <InitialMessage />
-    } 
-   return ( 
+    const { products, search, showInitialMessage } = this.state;
+    return (
       <div>
         <header>
           <input
@@ -57,20 +52,26 @@ class Home extends React.Component {
             type="text"
             name="search"
             className="search_bar"
-            value={this.state.search}
-            onChange={this.updateSearchValue}
+            value={ search }
+            onChange={ this.updateSearchValue }
           />
           <button
+            type="button"
             data-testid="query-button"
-            onClick={this.searchProduct}
+            onClick={ this.searchProduct }
           >
             Search
           </button>
           <ButtonShop />
         </header>
         <div className="conteudo">
-        <CategoryList />
-        {conteudo}
+          <CategoryList onLoadProducts={ this.onLoadProducts } />
+          {showInitialMessage && <InitialMessage /> }
+          {!showInitialMessage
+          && <div className="item-list">
+            {products
+              .map((product) => <Item key={ product.id } { ...product } />) }
+          </div>}
         </div>
       </div>
     );
@@ -79,5 +80,5 @@ class Home extends React.Component {
 
 export default Home;
 
-/*Lógica de atualização do status usada foi retirado do 
+/* Lógica de atualização do status usada foi retirado do
 projeto sd-07-project-movie-card-library-crud, arquivo MovieForm */
