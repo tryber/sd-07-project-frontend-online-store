@@ -57,22 +57,22 @@ class ShoppingCart extends React.Component {
         </header> 
          {this.readCart().map((key) => {
           const {sku, cost, name, image, quantity} = key;
-         return (
-        <section data-testid="product">
-          <p>{sku}</p>
-          <div>
-            <img alt="Product inside cart" src={image} />
-          </div>
-          <div className="info">
-            <div 
-              data-testid="shopping-cart-product-quantity"
-            >
+          return (
+          <section data-testid="product">
+              <p>{sku}</p>
+              <div>
+                <img alt="Product inside cart" src={ image } />
+              </div>
+              <div className="info">
+                <div
+                  data-testid="shopping-cart-product-quantity"
+                >
                   {this.state.quantitySameItems}
               </div>
           <div data-testid="shopping-cart-product-name">{name}</div>
           <div>{cost}</div>
           </div>
-        </section>);
+          </section>);
         })}
         <p>
           Especificações do produto...
