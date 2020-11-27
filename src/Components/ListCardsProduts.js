@@ -16,17 +16,6 @@ class ListCardsProduts extends React.Component {
   }
 
   handleClick() {
-    /*
-    const productCart = [];
-    const { product } = this.props;
-    const title = product.title;
-    const price = product.price;
-    productCart.push(title);
-    productCart.push(price);
-    console.log(productCart);
-
-    this.setState({ products: productCart, status:'bought', shouldRedirect: true });    
-    */
   }
 
   render() {
