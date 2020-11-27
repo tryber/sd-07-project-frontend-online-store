@@ -22,3 +22,9 @@ export function deleteProductFromLocalStorage(idThatYouSearch) {
 export function clearLocalStorage() {
   return localStorage.setItem('shoppingCartItem', '[]');
 }
+
+export function updateLocalStorage(productToAdd) {
+  const oldList = recoveryProductsFromLocalStorage();
+  const newList = [...oldList, productToAdd];
+  return addProductInLocalStorage(newList);
+}
