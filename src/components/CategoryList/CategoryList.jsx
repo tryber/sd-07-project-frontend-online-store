@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Categories.css';
 import * as api from '../../services/api';
 
 class CategoryList extends Component {
@@ -7,7 +6,6 @@ class CategoryList extends Component {
     super();
     this.state = {
       categoriesList: [],
-      categoryIdSelected: '',
     };
     this.fecthList = this.fecthList.bind(this);
   }
@@ -47,5 +45,9 @@ class CategoryList extends Component {
     );
   }
 }
+
+CategoryList.propTypes = {
+  onChangeCategory: PropTypes.func.isRequired
+};
 
 export default CategoryList;
