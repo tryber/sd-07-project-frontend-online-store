@@ -142,11 +142,12 @@
   border-radius: 15px;
   padding-bottom: 15px;
   width: 33%;
+  margin-left: 1%;
 }
 
-.category-container {
+.container-filters {
   margin-top: 15px;
-  text-align: left;
+  text-align: left;;
 }
 
 .side-bar h3 {
