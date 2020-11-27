@@ -14,20 +14,24 @@ class Main extends React.Component {
     this.handleCatChange = this.handleCatChange.bind(this);
     this.handleApiRequest = this.handleApiRequest.bind(this);
     this.state = {
-      search: '',
-      catID: '',
-      message: 'Digite algum termo de pesquisa ou escolha uma categoria',
+      search: "",
+      catID: "",
+      message: "Digite algum termo de pesquisa ou escolha uma categoria",
       product: [],
       loading: false,
     };
   }
-  
+
   async handleCatChange(event) {
     const selectedID = await event.target.id;
-    this.setState({
-      catID: selectedID,}, async () => {
-        await this.handleApiRequest()
-    });
+    this.setState(
+      {
+        catID: selectedID,
+      },
+      async () => {
+        await this.handleApiRequest();
+      }
+    );
   }
 
   handleValue(event) {
@@ -36,27 +40,36 @@ class Main extends React.Component {
   }
 
   async handleApiRequest() {
-    this.setState({loading: true});
-    const { catID, search } = this.state;     
-      this.setState({
-        catID: '',
-        loading: false,
-        message: search !== '' || catID !== '' ? '' : "Nenhum produto foi encontrado",
-        product: await api.getProductsFromCategoryAndQuery(catID, search),      
-      });    
+    this.setState({ loading: true });
+    const { catID, search } = this.state;
+    this.setState({
+      catID: "",
+      loading: false,
+      message:
+        search !== "" || catID !== "" ? "" : "Nenhum produto foi encontrado",
+      product: await api.getProductsFromCategoryAndQuery(catID, search),
+    });
   }
 
   render() {
     const { search, catID, product, message, loading } = this.state;
     return (
       <div className="container">
-
         <div className="input-1">
-          <input data-testid="query-input" onChange={this.handleValue} className="searchInput" type="search"/>
+          <input
+            data-testid="query-input"
+            onChange={this.handleValue}
+            className="searchInput"
+            type="search"
+          />
           <h3 data-testid="home-initial-message">{message}</h3>
           <div>
-            {loading ? <Loading /> : ''}
-            <ListCard search={search} category={catID} product={product.results} />
+            {loading ? <Loading /> : ""}
+            <ListCard
+              search={search}
+              category={catID}
+              product={product.results}
+            />
           </div>
         </div>
 
@@ -67,12 +80,18 @@ class Main extends React.Component {
         </div>
 
         <div className="categories-3">
-          <Categories handleCatChange={this.handleCatChange} />          
+          <Categories handleCatChange={this.handleCatChange} />
         </div>
 
         <div className="buttonFetch-4">
-          <button className="buttonFetch" data-testid="query-button" 
-            onClick={this.handleApiRequest} > Buscar </button>
+          <button
+            className="buttonFetch"
+            data-testid="query-button"
+            onClick={this.handleApiRequest}
+          >
+            {" "}
+            Buscar{" "}
+          </button>
         </div>
       </div>
     );
