@@ -23,7 +23,6 @@ class ProductDetails extends React.Component {
     const { location: { state: { product: { id } } } } = this.props;
     newRating.id = id;
     ratingAPI.addRating(newRating);
-
   }
 
   render() {

@@ -4,7 +4,8 @@ class ShoppingCart extends Component {
   render() {
     const products = [];
     const quantity = [];
-    for (let i = 0; i < localStorage.length; i += 1) {
+    const initialNumber = 0;
+    for (i = initialNumber; i < localStorage.length; i += 1) {
       products.push(localStorage.key(i));
       quantity.push(localStorage.getItem(localStorage.key(i)));
     }
