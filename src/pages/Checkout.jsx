@@ -58,7 +58,7 @@ class Checkout extends Component {
             <input
               type='text'
               onChange={this.handleChange}
-              data-test-id='checkout-fullname'
+              data-testid='checkout-fullname'
               name='name'
               value={this.state.name}
               placeholder='Nome completo'
@@ -66,7 +66,7 @@ class Checkout extends Component {
             <input
               type='text'
               onChange={this.handleChange}
-              data-test-id='checkout-email'
+              data-testid='checkout-email'
               name='email'
               value={this.state.email}
               placeholder='Email'
@@ -74,24 +74,24 @@ class Checkout extends Component {
             <input
               type='text'
               onChange={this.handleChange}
-              data-test-id='checkout-cpf'
+              data-testid='checkout-cpf'
               name='cpf'
               value={this.state.cpf}
               placeholder='CPF'
               maxLength='12'
             />
             <input
-              type='number'
+              type='text'
               onChange={this.handleChange}
-              data-test-id='checkout-phone'
+              data-testid='checkout-phone'
               name='phone'
               value={this.state.phone}
               placeholder='(xx) 99999-9999'
             />
             <input
-              type='number'
+              type='text'
               onChange={this.handleChange}
-              data-test-id='checkout-cep'
+              data-testid='checkout-cep'
               name='cep'
               value={this.state.cep}
               placeholder='00000-000'
@@ -99,7 +99,7 @@ class Checkout extends Component {
             <input
               type='text'
               onChange={this.handleChange}
-              data-test-id='checkout-address'
+              data-testid='checkout-address'
               name='address'
               value={this.state.address}
               placeholder='Endereço'
