@@ -54,7 +54,7 @@ class Home extends React.Component {
   render() {
     const { products, categories } = this.state;
     return (
-      <div>
+      <div className="home">
         <Header handlerSearch={ this.handlerSearch } state={ this.state } />
         <Products products={ products } />
         <Categories
