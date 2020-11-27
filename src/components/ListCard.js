@@ -32,7 +32,8 @@ class ListCard extends React.Component {
       <div className="list-card-product" >
        {teste.map((prod) => {
           return (
-          <ItemCard key={prod.id} title={prod.title} image={prod.thumbnail} price={prod.price} />  
+          <ItemCard key={prod.id} product={prod} title={prod.title} id={prod.id}
+            image={prod.thumbnail} price={prod.price} />  
          )
         })}          
       </div>
