@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './ProductDetails.css';
 import ProductReview from '../components/productDetails/ProductReview';
-import { Link } from 'react-router-dom';
-import SumCart from '../components/home/SumCart'
+import SumCart from '../components/home/SumCart';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class ProductDetails extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       product: [],
-    }
+    };
   }
 
   productNamePrice() {
@@ -29,7 +29,7 @@ class ProductDetails extends React.Component {
     const { location: { details: { product: { title, thumbnail } } } } = this.props;
     return (
       <div className="product-details-photo">
-        <img src={thumbnail} alt={`Foto do ${title}`} />
+        <img src={ thumbnail } alt={ `Foto do ${ title }` } />
       </div>
     );
   }
@@ -47,7 +47,7 @@ class ProductDetails extends React.Component {
   }
 
 
- /* addItemToCart() {
+  /* addItemToCart() {
     const { location: { details: { product: { title, price, thumbnail } } } } = this.props;
     const oldProducts = JSON.parse(localStorage.getItem('productsArray')) || [];
     const newProduct = {
@@ -76,8 +76,9 @@ class ProductDetails extends React.Component {
           <button
             type="button"
             data-testid="product-detail-add-to-cart"
-            onClick={this.handleClick}
-          >Adicionar ao Carrinho
+            onClick={ this.handleClick }
+          >
+            Adicionar ao Carrinho
           </button>
         </div>
       </div>
