@@ -5,9 +5,9 @@ class ListaDeProdutos extends React.Component {
 
     render() {
         const arrResultFetch = this.props.onFetchProducts;
-        return(
+        return (
             <div>
-              {arrResultFetch.map((product) => <Produto key={product.id} product={product} />)}
+                {arrResultFetch.map((product) => <Produto key={product.id} product={product} />)}
             </div>
         )
     }

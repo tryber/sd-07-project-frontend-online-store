@@ -6,7 +6,7 @@ class Produto extends React.Component {
         return (
             <div data-testid='product'>
                 <h1>{title}</h1>
-                <img src={thumbnail} alt=""/>
+                <img src={thumbnail} alt="" />
                 <span>{price}</span>
             </div>
         )
