@@ -54,11 +54,11 @@ class ProductsList extends Component {
                   data-testid="query-button"
                   type="button"
                   onClick={ this.fecthProducts }
-                  >
-                PESQUISAR
+                >
+                  PESQUISAR
                 </button>
-                  <span data-testid="home-initial-message">
-                Digite algum termo de pesquisa ou escolha uma categoria.
+                <span data-testid="home-initial-message">
+                  Digite algum termo de pesquisa ou escolha uma categoria.
                 </span>
               </div>
             </label>

@@ -25,13 +25,12 @@ class ProductCard extends Component {
 }
 
 ProductCard.propTypes = {
-  match: PropTypes.shape({
-    id:PropTypes.string.isRequired,
-    products: PropTypes.array.isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-  }),
+  })).isRequired,
 };
 
 export default ProductCard;
