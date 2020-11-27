@@ -38,7 +38,8 @@ class Card extends React.Component {
             data-testid="product-add-to-cart"
             value="Adicionar ao Carrinho"
           />
-          <Link data-testid="product-detail-link"
+          <Link 
+            data-testid="product-detail-link"
             to={ `product-details/${id}/${category_id}` }>
             Detalhes do produto
           </Link>
