@@ -2,7 +2,7 @@ import React from 'react';
 
 import { HomeContainer, Wrapper } from './styles';
 import Categories from '../../components/Categories';
-import Search from '../../components/Search';
+import Main from '../../components/Main';
 
 class HomePage extends React.Component {
   constructor() {
@@ -10,13 +10,7 @@ class HomePage extends React.Component {
 
     this.state = {
       selectedCategory: '',
-      products: [],
     };
-    this.updateProducts = this.updateProducts.bind(this);
-  }
-
-  updateProducts(products) {
-    this.setState({ products });
   }
 
   selectCategory({ target }) {
@@ -25,15 +19,12 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const { products, selectedCategory } = this.state;
+    const { selectedCategory } = this.state;
     return (
       <HomeContainer>
         <Wrapper>
           <Categories selectCategory={ this.selectCategory } />
-          <Search
-            selectedCategory={ selectedCategory }
-            updateProducts={ this.updateProducts }
-          />
+          <Main selectedCategory={ selectedCategory } />
         </Wrapper>
       </HomeContainer>
     );

@@ -4,7 +4,7 @@ import GlobalStyles from './GlobalStyles';
 
 // import Categories from './components/Categories';
 import Routes from './routes';
-// import Search from './components/Search';
+// import Header from './components/Header';
 // import CartButton from './components/CartButton';
 // import CartEmptyMessage from './components/Cart';
 // import CardDetails from './components/CardDetail';
@@ -41,7 +41,7 @@ class App extends React.Component {
     //         exact
     //         path="/"
     //         render={ () => (
-    //           <Search
+    //           <Header
     //             selectedCategory={ selectedCategory }
     //             updateProducts={ this.updateProducts }
     //           />

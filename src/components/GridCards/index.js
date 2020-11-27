@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Card from '../Card';
 import * as api from '../../services/api';
-import Cards from '../Cards';
 
-class Search extends React.Component {
+class GridCards extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { searchTerms: '', products: [], alreadySelected: '' };
-    this.handleSearchTerms = this.handleSearchTerms.bind(this);
+    this.state = { products: [], alreadySelected: '' };
     this.fetchAPI = this.fetchAPI.bind(this);
   }
 
@@ -31,53 +30,34 @@ class Search extends React.Component {
     const category = selectedCategory || '';
     const { results } = await api.getProductsFromCategoryAndQuery(category, searchTerms);
     this.setState({ products: results });
-    const { products } = this.state;
-    const { updateProducts } = this.props;
-    updateProducts(products);
   }
 
   async fetchCategory() {
     const { selectedCategory } = this.props;
     const { results } = await api.getProductsFromCategoryAndQuery(selectedCategory, '');
     this.setState({ products: results, alreadySelected: selectedCategory });
-    const { products } = this.state;
-    const { updateProducts } = this.props;
-    updateProducts(products);
   }
 
   render() {
-    const { searchTerms, products } = this.state;
+    const { products } = this.state;
+    const empty = 0;
     return (
-      <div data-testid="home-initial-message">
-        <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
-
-        <form>
-          <input
-            type="text"
-            data-testid="query-input"
-            value={ searchTerms }
-            onChange={ this.handleSearchTerms }
-          />
-
-          <button
-            type="button"
-            data-testid="query-button"
-            onClick={ this.fetchAPI }
-          >
-            buscar
-
-          </button>
-        </form>
-
-        <Cards products={ products } />
+      <div>
+        <p data-testid="home-initial-message">
+          {products.length === empty && (
+            'Digite algum termo de pesquisa ou escolha uma categoria.'
+          )}
+        </p>
+        {products.map((product) => product && (
+          <Card key={ product.id } productCards={ product } />
+        ))}
       </div>
     );
   }
 }
 
-Search.propTypes = {
+GridCards.propTypes = {
   selectedCategory: PropTypes.string.isRequired,
-  updateProducts: PropTypes.func.isRequired,
 };
 
-export default Search;
+export default GridCards;
