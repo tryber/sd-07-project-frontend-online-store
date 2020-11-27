@@ -7,14 +7,13 @@ class ProductList extends Component {
   render() {
     const { product } = this.props;
     const { id, title, thumbnail, price, shipping } = product;
-    const { free_shipping } = shipping;
     return (
       <Link to={ `/${id}` } data-testid="product-detail-link">
         <div data-testid="product">
           <h4>{title}</h4>
           <img src={ thumbnail } alt="Produto listado" />
           <p>{price}</p>
-          {free_shipping ? <p data-testid="free-shipping">Frete Gratis!</p> : ''}
+          {shipping.free_shipping ? <p data-testid="free-shipping">Frete Gratis!</p> : ''}
         </div>
       </Link>
     );
@@ -27,6 +26,7 @@ ProductList.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    shipping: PropTypes.object,
   }).isRequired,
 };
 
