@@ -37,18 +37,18 @@ class Categories extends Component {
             Sem categoria
           </label>
         </div>
-        {categories.map((category) =>
-          <div key={category.name}>
+        {categories.map((category) => (
+          <div key={ category.name }>
             <input
-              id={category.name}
+              id={ category.name }
               type="radio"
               name="category"
-              value={category.id}
-              onChange={onChange}
+              value={ category.id }
+              onChange={ onChange }
             />
-            <label data-testid="category" htmlFor={category.name}>{category.name}</label>
-          </div>)
-        }
+            <label data-testid="category" htmlFor={ category.name }>{category.name}</label>
+          </div>
+        ))}
       </div>
     );
   }

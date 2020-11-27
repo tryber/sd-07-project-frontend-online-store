@@ -80,7 +80,11 @@ class Cart extends Component {
       <div>
         {compras.map((item) => (
           <div key={ item.id }>
-            <img src={ removeitem } name={item.id} alt="Remover item" onClick={this.delet} />
+            <img
+              src={ removeitem }
+              name={item.id} alt="Remover item"
+              onClick={this.delet}
+            />
             <img src={item.thumbnail} alt={item.title} />
             <p data-testid="shopping-cart-product-name">{item.title}</p>
             <img
