@@ -7,10 +7,12 @@ class Categories extends React.Component {
     return (
       <div>
         {categories.map((category) => (
-          <label htmlFor={ category.id } key={ category.id }>
+          <label htmlFor={ category.name } key={ category.id }>
             <input
-              id={ category.id }
+              id={ category.name }
+              name="category"
               type="radio"
+              value={ category.name }
               data-testid="category"
               onClick={ () => handlerSelectCategory(category.id) }
             />
