@@ -65,8 +65,11 @@ export default class SearchBar extends Component {
     const array = JSON.parse(localStorage.getItem('cart'));
     const newId = id;
     const index = array.findIndex((elemento) => elemento.id === newId);
+    const num = -1;
     // eslint-disable-next-line no-unused-expressions
-    (index === -1) ? array.push({ id: newId, quantidade: 1 }) : array[index].quantidade++;
+    (index === num)
+      ? array.push({ id: newId, quantidade: 1 })
+      : array[index].quantidade += 1;
     localStorage.setItem('cart', JSON.stringify(array));
   }
 

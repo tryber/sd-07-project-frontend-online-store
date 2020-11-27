@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React from 'react';
 
 class Carrinho extends React.Component {
@@ -20,7 +21,6 @@ class Carrinho extends React.Component {
       objeto: saveObj,
     });
     const { objeto } = this.state;
-    // eslint-disable-next-line no-unused-expressions
     objeto === null ? this.setState({ empty: true }) : this.setState({ empty: false });
   }
 
