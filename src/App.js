@@ -5,6 +5,7 @@ import Home from './pages/home';
 import NotFound from './pages/NotFoud';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
+import Payment from './pages/Payment';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             render={ (props) => <ProductDetails { ...props } /> }
           />
           <Route component={ NotFound } />
+          <Route exact path="/payment" component={ Payment } />
         </Switch>
       </BrowserRouter>
     </div>
