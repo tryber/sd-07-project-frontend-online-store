@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from './Loading';
 
@@ -29,6 +30,7 @@ class ListCategory extends Component {
 
   render() {
     const { products, loading } = this.state;
+    const { onClickCategory } = this.props;
     if (loading === true) return <Loading />;
 
     return (
@@ -38,18 +40,19 @@ class ListCategory extends Component {
         {products.map((objItem) => (
           <div
             key={ objItem.id }
-            data-testid="category"
             className="main-category-content-flex"
           >
             <label
-              htmlFor={ objItem.name }
+              htmlFor={ objItem.id }
               className="main-category-content-flexItem"
             >
               <input
                 type="radio"
                 value={ objItem.name }
                 name="Category"
-                id={ objItem.name }
+                id={ objItem.id }
+                onClick={ onClickCategory }
+                data-testid="category"
               />
               { objItem.name }
             </label>
@@ -59,5 +62,9 @@ class ListCategory extends Component {
     );
   }
 }
+
+ListCategory.propTypes = {
+  onClickCategory: PropTypes.func.isRequired,
+};
 
 export default ListCategory;

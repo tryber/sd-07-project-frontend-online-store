@@ -19,10 +19,25 @@ class ProductsList extends Component {
     this.fetchByQuery = this.fetchByQuery.bind(this);
     this.updateInputSearch = this.updateInputSearch.bind(this);
     this.addShoppingCartItems = this.addShoppingCartItems.bind(this);
+    this.fetchByCategory = this.fetchByCategory.bind(this);
+    this.onClickCategory = this.onClickCategory.bind(this);
   }
 
   componentDidMount() {
     recoveryProductsFromLocalStorage();
+  }
+
+  async onClickCategory(event) {
+    const { target } = event;
+    const categoryId = target.id;
+    const { inputSearchValue } = this.state;
+    const fetchWithCategoryAndQuery = await api.getProductsFromCategoryAndQuery(
+      categoryId,
+      inputSearchValue,
+    );
+    this.setState({
+      productsToRender: fetchWithCategoryAndQuery.results,
+    });
   }
 
   async fetchByQuery() {
@@ -33,6 +48,17 @@ class ProductsList extends Component {
     );
     this.setState({
       productsToRender: fetchResult.results,
+    });
+  }
+
+  async fetchByCategory(categoryId) {
+    const { inputSearchValue } = this.state;
+    const fetchWithCategoryAndQuery = await api.getProductsFromCategoryAndQuery(
+      categoryId,
+      inputSearchValue,
+    );
+    this.setState({
+      productsToRender: fetchWithCategoryAndQuery.results,
     });
   }
 
@@ -71,7 +97,7 @@ class ProductsList extends Component {
           />
         </section>
         <section className="main-category-container">
-          <ListCategory />
+          <ListCategory onClickCategory={ this.onClickCategory } />
           <FilteredProductsList
             allProducts={ productsToRender }
             addShoppingCartItems={ this.addShoppingCartItems }
