@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from '../components/Loading/Loading';
 
+
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +50,7 @@ class ProductDetails extends Component {
               </li>
             ))}
           </ul>
+         
         </div>
       </div>
     );
