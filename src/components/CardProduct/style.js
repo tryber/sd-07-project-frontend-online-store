@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const cpnCenter = styled.div`
+
   background-color: #f5f5f5;
   border: 1px solid black;
   display: flex;
@@ -16,3 +17,4 @@ export const cpnCenter = styled.div`
     width: 80%;
   }
 `;
+
