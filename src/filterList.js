@@ -18,10 +18,9 @@ class FilterList extends Component {
 
   async fetchCategories() {
     console.log('entrou no fetch');
-      const data = await API.getCategories();
-      console.log(data);
-      this.setState({ categoriesList: data });
-
+    const data = await API.getCategories();
+    console.log(data);
+    this.setState({ categoriesList: data });
   }
 
   render() {
@@ -30,7 +29,7 @@ class FilterList extends Component {
 
     return (
       <div className="getCategories">
-       <div>
+        <div>
           <h3>Filtre por categoria:</h3>
           {categoriesList.map(({ id, name }) => (
             <div key={ id } data-testid="category">

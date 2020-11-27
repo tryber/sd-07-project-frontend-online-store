@@ -30,7 +30,7 @@ class home extends Component {
   async fetchProducts() {
     const { category, query } = this.state;
     const response = await getProductsFromCategoryAndQuery(category, query);
-    this.setState({ products: response?.results || [] });
+    this.setState({ products: response ? response.results : [] });
   }
 
   async inputEvent(value) {
@@ -46,7 +46,7 @@ class home extends Component {
           <h2 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h2>
-          <SearchBar query={ this.inputEvent } fetchProducts={this.fetchProducts} />
+          <SearchBar query={ this.inputEvent } fetchProducts={ this.fetchProducts } />
           <Link to="/shoppingCart">
             <img
               src={ CartIcon }
