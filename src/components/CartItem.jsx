@@ -63,15 +63,15 @@ class CartItem extends Component {
     return (
       <div>
         <img src={ image } alt={ title } />
-          <span data-testid="shopping-cart-product-name">
-        Descrição:
+        <span data-testid="shopping-cart-product-name">
+          Descrição:
           { title }
-        -
-          </span>
+          -
+        </span>
         <span data-testid="shopping-cart-product-quantity">
-        Qtd:
+          Qtd:
           { number }
-        -
+          -
         </span>
         <span>
           R$

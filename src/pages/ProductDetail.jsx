@@ -27,15 +27,14 @@ class ProductDetail extends Component {
     this.searchQueryProducts();
   }
 
-  getId(object) { 
-    const { id } = object;
-    const result = id;
-    return result;
+  getId() {
+    const { id } = this.props.match.params;
+    return id;
   }
 
   async searchQueryProducts() {
-    const { params } = this.props.match;
-    const ListProducts = await API.getProductsFromCategoryAndQuery(getId(params));
+    const productId = this.getId();
+    const ListProducts = await API.getProductsFromCategoryAndQuery(productId);
     const { results } = ListProducts;
     if (results !== undefined) {
       const { id, title, attributes, thumbnail, price } = results[0];
@@ -122,8 +121,7 @@ class ProductDetail extends Component {
         <div>
           Especificações Técnicas
           <ul>
-            {attributes.map((element) => {
-              return (
+            {attributes.map((element) => { return (
                 <li key={ element.id }>
                   {`${element.name} --- ${element.value_name}`}
                 </li>
