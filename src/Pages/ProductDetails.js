@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 class ProductDetails extends React.Component {
   render() {
+    const { product } = this.props;
     const { location: { state: product } } = this.props;
     const { title, thumbnail, price } = product;
     return (
@@ -11,6 +12,7 @@ class ProductDetails extends React.Component {
         <img src={ thumbnail } alt="Imagem" />
         <h4>{`R$ ${price}`}</h4>
         <p>Especificação</p>
+        <AddToCartButton product={ product } />
       </div>
     );
   }
