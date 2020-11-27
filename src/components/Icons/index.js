@@ -6,21 +6,20 @@ const styledIconGlobal = css`
   color: dodgerblue;
   transform: scale(0.8);
   transition: all ease 0.2s;
-  
+
+
   :hover {
     transform: scale(1);
-
   }
 `;
 
 export const Cart = styled(icon.FaCartPlus)`
-
-  ${ styledIconGlobal }
+  ${styledIconGlobal}
 `;
 
 export const Plus = styled(icon.FaPlus)`
-
-  ${ styledIconGlobal }
+  ${styledIconGlobal}
+`;
   transform: scale(1);
   :active {
     transform: scale(1.1);
@@ -29,40 +28,35 @@ export const Plus = styled(icon.FaPlus)`
 `;
 
 export const Minus = styled(icon.FaMinus)`
+  ${styledIconGlobal}
 
-  ${ styledIconGlobal }
+
+`;
+
   transform: scale(1);
   :active {
     transform: scale(1.1);
-  }
 
 `;
 
 export const Search = styled(icon.FaSearch)`
-
-  ${ styledIconGlobal }
+  ${styledIconGlobal}
   transform: scale(1);
-
 `;
 
 export const Star = styled(icon.FaStar)`
-
-  ${styledIconGlobal };
+  ${styledIconGlobal};
   transform: scale(1);
-  color: ${(props) => props.color}
-
+  color: ${(props) => props.color};
 `;
 
 export const Back = styled(icon.FaArrowLeft)`
-
-  ${styledIconGlobal };
+  ${styledIconGlobal};
 `;
 
 export const Close = styled(icon.FaWindowClose)`
-
-${styledIconGlobal };
-:active {
-  transform: scale(1.1);
-}
-
+  ${styledIconGlobal};
+  :active {
+    transform: scale(1.1);
+  }
 `;

@@ -6,17 +6,20 @@ import * as icon from '../../components/Icons';
 
 class SearchInput extends Component {
   render() {
-    return(
-      <css.cpnCenter >
-        <div className="search-bar">
-          <cp.Input width="100%" />
-          <icon.Search size="0.5em" className="icon-search" />
+    return (
+      <css.ctnCenter className='teste'>
+        <div className='ctn-search-bar'>
+          <cp.Input className='input' />
+          <icon.Search className='icon-search' />
         </div>
-        <cp.Button />
+        <cp.Button>Buscar</cp.Button>
         <icon.Cart />
-      </css.cpnCenter>
+      </css.ctnCenter>
+
     );
   }
 }
 
+
 export default SearchInput;
+
