@@ -5,12 +5,11 @@ import ItemCart from '../components/ItemCart';
 class Cart extends React.Component {
   constructor() {
     super();
+    this.loadList = this.loadList.bind(this);
 
     this.state = {
       listProduct: [],
     };
-
-    this.loadList = this.loadList.bind(this);
   }
 
   componentDidMount() {
@@ -33,9 +32,9 @@ class Cart extends React.Component {
           Seu carrinho está vazio
         </p>
         <div>
-          {listProduct.map((product) => (
+          { listProduct.map((product) => (
             <ItemCart key={ product.id } product={ product } />
-          ))}
+          )) }
         </div>
       </div>
     );
