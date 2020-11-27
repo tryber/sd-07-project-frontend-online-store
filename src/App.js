@@ -12,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Route exact path="/shopping-cart" component={ ShoppingCart } />
         <Route exact path="/" component={ ProductsList } />
+        <Route exact path="/product-details" component={ ProductDetails } />
       </BrowserRouter>
     </div>
   );

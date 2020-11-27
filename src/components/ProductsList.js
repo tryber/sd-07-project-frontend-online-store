@@ -16,14 +16,14 @@ class ProductsList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchProducts();
-  }
+  // componentDidMount() {
+  //   this.fetchProducts();
+  // }
 
-  fetchProducts() {
+  async fetchProducts() {
     const { categoryId, query } = this.state;
-    api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((result) => this.setState({ productList: result.results }));
+    const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
+      this.setState({ productList: products.results });
   }
 
   handleTypeChange({ target }) {
@@ -62,11 +62,13 @@ class ProductsList extends React.Component {
           >
             Digite algum termo de pesquisa ou escolha uma categoria.
           </span>
-          <Link to="/shopping-cart" data-testid="shopping-cart-button" />
+          <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            Carrinho de compras
+          </Link>
           <br />
           <ul>
             {productList.length
-              ? productList.map(({ id, title, thumbnail, price }) => (
+              ? productList.map(({ id, title, thumbnail, price }, item) => (
                 <li
                   key={ id }
                   data-testid="product"
@@ -74,6 +76,18 @@ class ProductsList extends React.Component {
                   <h3>{ title }</h3>
                   <img src={ thumbnail } alt="Product" />
                   <p>{ price }</p>
+                  <Link to={ {
+                  pathname: '/product-details',
+                  state: {
+                    productName: title,
+                    productImg: thumbnail,
+                    productPrice: price,
+                  },
+                } }
+                data-testid="product-detail-link"
+                key={ `${title} ${id}` }>
+                  Ver detalhes
+                  </Link>
                 </li>
               )) : (<li> Nenhum produto foi encontrado </li>)}
           </ul>
