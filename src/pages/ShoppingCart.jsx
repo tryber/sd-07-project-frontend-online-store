@@ -9,6 +9,7 @@ class ShoppingCart extends Component {
     this.roundNumber = this.roundNumber.bind(this);
     this.sumItem = this.sumItem.bind(this);
     this.subtractItem = this.subtractItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
     this.state = {
       products: JSON.parse(localStorage.getItem("cart")),
     };
@@ -60,7 +61,6 @@ class ShoppingCart extends Component {
     const id = target.name;
     if (Storage) {
       const cartArray = JSON.parse(localStorage.getItem('cart'));
-      let index = null;
       cartArray.forEach((item, itemIndex) => {
         if (item.id === id) {
           if (item.number > 0) {
@@ -68,10 +68,22 @@ class ShoppingCart extends Component {
             item.totalPrice = parseFloat(item.totalPrice) - parseFloat(item.price);
             item.totalPrice = this.roundNumber(item.totalPrice);
           }
-          if (item.number === 0) {
-            index = itemIndex;
-            cartArray.splice(index, 1);
-          }
+        } 
+      })
+      localStorage.setItem('cart', JSON.stringify(cartArray))
+      this.setState({ products: cartArray })
+    }
+  }
+
+  removeItem({ target }) {
+    const id = target.name;
+    if (Storage) {
+      const cartArray = JSON.parse(localStorage.getItem('cart'));
+      let index = null;
+      cartArray.forEach((item, itemIndex) => {
+        if (item.id === id) {
+          index = itemIndex;
+          cartArray.splice(index, 1);
         } 
       })
       localStorage.setItem('cart', JSON.stringify(cartArray))
@@ -98,6 +110,7 @@ class ShoppingCart extends Component {
             number={product.number}
             sumItem={this.sumItem}
             subtractItem={this.subtractItem}
+            removeItem={this.removeItem}
           />)}
       </div>
     );
