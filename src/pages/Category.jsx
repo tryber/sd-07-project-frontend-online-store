@@ -1,21 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as Api from '../services/api';
 
 class Category extends React.Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
       category: [],
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.getCategories();
+  }
+
+  async getCategories() {
     const Categorys = await Api.getCategories();
     this.setState({ category: Categorys });
   }
-
 
   render() {
     const { category } = this.state;
@@ -25,18 +28,18 @@ class Category extends React.Component {
     return (
       <div>
         {category.map(({ name, id }) => (
-          <div key={id}>
-            <label>
+          <div key={ id }>
+            <label htmlFor={ id }>
               <input
                 type="radio"
                 name="category-option"
-                id={id}
-                value={name}
-                checked={selected === name}
+                id={ id }
+                value={ name }
+                checked={ selected === name }
                 data-testid="category"
-                onChange={handleSelected}
+                onChange={ handleSelected }
               />
-              {name}
+              { name }
             </label>
           </div>
         ))}
@@ -46,3 +49,8 @@ class Category extends React.Component {
 }
 
 export default Category;
+
+Category.propTypes = {
+  selected: PropTypes.string.isRequired,
+  handleSelected: PropTypes.func.isRequired,
+};
