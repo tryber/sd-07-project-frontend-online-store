@@ -55,7 +55,7 @@ class Main extends React.Component {
     const { search, catID, product, message, loading } = this.state;
     let array = [];
     if (product.length < 1) {
-      array = [{}];
+      array = [];
     } else {
       array = product.results;
     }
