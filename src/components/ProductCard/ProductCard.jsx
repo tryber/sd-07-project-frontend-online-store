@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class ProductCard extends Component {
   render() {
@@ -9,9 +9,9 @@ class ProductCard extends Component {
     return (
       <div data-testid="product">
         <h3>{title}</h3>
-        <img src={ thumbnail } alt="" />
+        <img src={thumbnail} alt="" />
         <h3>{price}</h3>
-        <Link to={ `/product_details/${category_id}/${id}` }>
+        <Link to={`/product_details/${category_id}/${id}`}>
           <button type="button">VER DETALHES</button>
         </Link>
       </div>
