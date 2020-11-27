@@ -1,32 +1,45 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import '../App.css';
 import { Link } from 'react-router-dom';
 
-class CardProduct extends React.Component {
+class Card extends React.Component {
+    constructor(props) {
+        super(props)
+        this.addCartItem = this.addCartItem.bind(this)
+    }
+
+    addCartItem({ id, title, price }) {
+        const cartItemProperties = { id, title, price };
+        if (!localStorage.cartItems) {
+            localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
+        } else {
+            const itemsInStorage = localStorage.getItem('cartItems');
+            const parsedItems = JSON.parse(itemsInStorage);
+            localStorage.setItem('cartItems', JSON.stringify(parsedItems.concat(cartItemProperties)));
+        }
+    }
     render() {
         const { products } = this.props;
-        const { title, thumbnail, price, category_id } = products;
+        const { title, thumbnail, price, id, category_id } = products;
 
         return (
+            <div data-testid="product" className="cardProduct">
 
-                <div data-testid="product" className="cardProduct">
-                    <h1>{title}</h1>
-                    <img src={thumbnail} alt="product item" />
-                    <h2>R${price}</h2>
-                    <p>{category_id}</p>
-                    <Link to={`/details/${category_id}`}> Ver detalhes! </Link>
-                </div>
+                <h1>{title}</h1>
+                <img src={thumbnail} alt="product item" />
+                <h2>R${price}</h2>
+                <Link to={`/details/${id}/category/${category_id}`} data-testid="product-detail-link" > Ver detalhes! </Link>
+                <button
+                    type="button"
+                    name="productId"
+                    data-testid="product-add-to-cart"
+                    onClick={() => this.addCartItem({ id, title, price })}
+                >
+                    Adicionar ao carrinho
+                 </button>
+            </div>
         )
     }
 }
 
-CardProduct.propTypes = {
-    products: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        thumbnail: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-    }).isRequired,
-};
-
-export default CardProduct;
+export default Card;
