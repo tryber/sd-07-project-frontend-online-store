@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class CartItem extends Component {
+  handleCartItem(product, buttonId) {
+    const { onChange } = this.props;
+    onChange(product, buttonId);
+  }
+
   render() {
-    const { data: { title, thumbnail, price, cartQuantity } } = this.props;
+    const { data } = this.props;
+    const { title, thumbnail, price, cartQuantity } = data;
     return (
       <article>
         <header>
@@ -16,6 +22,26 @@ class CartItem extends Component {
           <p>{`R$ ${price}`}</p>
           <p data-testid="shopping-cart-product-quantity">{ cartQuantity }</p>
         </footer>
+        <button
+          type="button"
+          data-testid="product-increase-quantity"
+          onClick={ () => this.handleCartItem(data, 'add') }
+        >
+          +
+        </button>
+        <button
+          type="button"
+          data-testid="product-decrease-quantity"
+          onClick={ () => this.handleCartItem(data, 'sub') }
+        >
+          -
+        </button>
+        <button
+          type="button"
+          onClick={ () => this.handleCartItem(data, 'remove') }
+        >
+          X
+        </button>
       </article>
     );
   }
@@ -29,6 +55,7 @@ CartItem.propTypes = {
     id: PropTypes.string.isRequired,
     cartQuantity: PropTypes.number.isRequired,
   }).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default CartItem;

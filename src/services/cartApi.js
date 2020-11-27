@@ -27,8 +27,29 @@ export function addToCart(product) {
   }
 }
 
+export function decreaseToCart(product) {
+  const currentList = JSON.parse(localStorage.getItem('cart'));
+  const newCart = currentList.map((currentItem) => {
+    if (currentItem.id === product.id) {
+      if (currentItem.cartQuantity > 1) {
+        currentItem.cartQuantity -= 1;
+      }
+    }
+    return currentItem;
+  });
+  localStorage.setItem('cart', JSON.stringify(newCart));
+}
+
+/* export function removeFromCart(product) {
+  const currentList = JSON.parse(localStorage.getItem('cart'));
+  let newList = currentList.map(({ id }) => id !== product.id);
+  console.log(newList);
+  newList = (newList[0] === false) ? [] : newList;
+  localStorage.setItem('cart', JSON.stringify(newList));
+} */
+
 export function removeFromCart(product) {
   const currentList = JSON.parse(localStorage.getItem('cart'));
-  const newList = currentList.map(({ id }) => id !== product.id);
-  localStorage.setItem('cart', JSON.stringify('cart', newList));
+  currentList.splice(currentList.findIndex(({ id }) => id === product.id), 1);
+  localStorage.setItem('cart', JSON.stringify(currentList));
 }
