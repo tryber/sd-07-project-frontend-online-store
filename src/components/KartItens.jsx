@@ -10,8 +10,8 @@ class KartItens extends React.Component {
         {itensStorage.map((itens) => (
           <Itens key={ itens.id } itens={ itens } />
         ))}
-        {/* <h1>{`Valor Final da Compra: R$${2000}`}</h1>
-        <button type="button">Finalizar Compra</button> */}
+        <h1>{`Valor Final da Compra: R$${2000}`}</h1>
+        <button type="button">Finalizar Compra</button>
       </div>
     );
   }

@@ -44,12 +44,12 @@ class Itens extends React.Component {
     const { quantity } = this.state;
     return (
       <div>
-        {/* <button
+        <button
           type="button"
-          onClick={ this.deleteProduct }
+          // onClick={ this.deleteProduct }
         >
           X
-        </button> */}
+        </button>
         <h1 data-testid="shopping-cart-product-name">{ title }</h1>
         <img src={ thumbnail } alt={ title } />
         <button
