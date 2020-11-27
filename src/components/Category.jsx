@@ -14,7 +14,7 @@ class Category extends React.Component {
         />
         {name}
       </label>
-  </p>),);
+    </p>));
   }
 
   render() {
