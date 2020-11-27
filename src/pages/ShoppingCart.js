@@ -15,6 +15,10 @@ export default class ShoppingCart extends Component {
           alt="Carrinho de Compras"
         />
         <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
+        <label>
+          <input />
+        </label>
+        <button>Finalizar Compra</button>
       </div>
     );
   }
