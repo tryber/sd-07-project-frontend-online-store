@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import shoppingCartLogo from './shopping-cart.png';
 import './SearchBar.css';
 
 class SearchBar extends Component {
@@ -28,15 +26,6 @@ class SearchBar extends Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </span>
-        <Link
-          to="/shoppingcart"
-          data-testid="shopping-cart-button"
-        >
-          <img
-            src={ shoppingCartLogo }
-            alt="icon shopping cart"
-          />
-        </Link>
       </div>
     );
   }

@@ -1,13 +1,20 @@
 import React from 'react';
+import { Header } from '../../components';
 import './ProductDetail.css';
 import * as lsapi from '../../services/lsapi';
 
 class ProductDetail extends React.Component {
+  addToCart(product) {
+    const DEFAULT_QUANTITY_PER_CLICK = 1;
+    lsapi.addToShoppingCartList(product, DEFAULT_QUANTITY_PER_CLICK);
+  }
+
   render() {
     const product = lsapi.getSelectedProduct();
     if (product) {
       return (
         <div className="detail-main-container">
+          <Header />
           <div className="detail-title-content" data-testid="product-detail-name">
             <h2>{ product.title }</h2>
           </div>
@@ -25,6 +32,15 @@ class ProductDetail extends React.Component {
                 ))}
               </ul>
             </div>
+          </div>
+          <div className="detail-action-addcart">
+            <button
+              type="submit"
+              data-testid="product-detail-add-to-cart"
+              onClick={ (e) => { e.preventDefault(); this.addToCart(product); } }
+            >
+              Adicionar ao Carrinho
+            </button>
           </div>
         </div>
       );

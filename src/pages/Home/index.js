@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CategoryList, SearchBar, ProductList } from '../../components';
+import { CategoryList, SearchBar, ProductList, Header } from '../../components';
 import * as api from '../../services/api';
 import './Home.css';
 
@@ -41,6 +41,7 @@ class Home extends Component {
     const { products, purchasedProducts } = this.state;
     return (
       <div className="main-container">
+        <Header />
         <aside className="categories-container">
           <CategoryList handleChange={ this.handleChange } />
         </aside>
