@@ -23,17 +23,17 @@ class SearchBar extends Component {
               className="bt-search"
               id="searchButton"
               type="button"
-              onClick={onSearch}
+              onClick={ onSearch }
               data-testid="query-button"
 
             >
               Pesquisar
-          </button>
+            </button>
             <input
               className="b-search"
               type="text"
-              onChange={inputChange}
-              value={inputValue}
+              onChange={ inputChange }
+              value={ inputValue }
               data-testid="query-input"
               placeholder="Digite algum termo de pesquisa ou escolha uma categoria"
             />
@@ -48,7 +48,7 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  inputValue: PropTypes.func.isRequired,
+  inputValue: PropTypes.string.isRequired,
   onSearch: PropTypes.func.isRequired,
   inputChange: PropTypes.func.isRequired,
 };

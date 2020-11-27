@@ -1,13 +1,13 @@
 import React from 'react';
-import IconeSearch from './img/iconeSearch.png'
+import IconeSearch from './img/iconeSearch.png';
 
-class LogoTipo extends React.Component{
-  render(){
-    return(
+class LogoTipo extends React.Component {
+  render() {
+    return (
       <div>
-       <img src={IconeSearch} alt="search"/>
+        <img src={ IconeSearch } alt="search" />
       </div>
     );
   }
 }
-export default LogoTipo
+export default LogoTipo;
