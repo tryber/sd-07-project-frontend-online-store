@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RatingForm from '../Components/RatingForm';
 
 class ProductDetails extends React.Component {
   render() {
@@ -11,6 +12,7 @@ class ProductDetails extends React.Component {
         <img src={ thumbnail } alt="Imagem" />
         <h4>{`R$ ${price}`}</h4>
         <p>Especificação</p>
+        <RatingForm />
       </div>
     );
   }
