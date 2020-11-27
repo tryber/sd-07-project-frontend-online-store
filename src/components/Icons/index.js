@@ -44,6 +44,7 @@ export const Minus = styled(icon.FaMinus)`
     transform: scale(1.1);
   }
 
+
 `;
 
 export const Search = styled(icon.FaSearch)`
