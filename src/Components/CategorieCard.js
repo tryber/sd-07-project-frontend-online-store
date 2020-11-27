@@ -1,14 +1,22 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
 
 class CategorieCard extends React.Component {
+  constructor(props) {
+    super(props);   
+       
+  }
+  
+
   render() {
-    const { category } = this.props;
+    const { category, onclick } = this.props;
     return (
       <div data-testid="category">
-        <p>
-          { category.name }
-        </p>
+        <button onClick={onclick}>
+        { category.name }
+        </button>
+        
       </div>
     );
   }
@@ -19,9 +27,9 @@ export default CategorieCard;
 CategorieCard.propTypes = {
   category: PropTypes.shape({
     name: PropTypes.string,
-  }).isRequired,
+  }),
 };
 
 CategorieCard.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
 };
