@@ -81,5 +81,3 @@ export default class HomeBeforeSearch extends Component {
     );
   }
 }
-
-

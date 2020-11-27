@@ -27,7 +27,11 @@ export default class ShoppingCart extends Component {
         <Link to="/">
           <img src={ goBackArrow } className="go-back-arrow-icon" alt="goBackArrow" />
         </Link>
-        <img src={ shoppingCartIcon } className="shopping-cart-icon-2" alt="shoppingCartImg" />
+        <img
+          src={ shoppingCartIcon }
+          className="shopping-cart-icon-2"
+          alt="shoppingCartImg"
+        />
         <span
           className="shopping-cart-text"
         >

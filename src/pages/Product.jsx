@@ -28,7 +28,7 @@ export default class Product extends Component {
           <p>{ productPrice }</p>
           <CartButton
             datatestid="product-detail-add-to-cart"
-            productName={ productName } 
+            productName={ productName }
           />
         </div>
       </div>
