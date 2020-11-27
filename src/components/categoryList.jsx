@@ -34,7 +34,7 @@ class Category extends Component {
     return (
       <div>
         {categories.map((category) => (
-          <div>
+          <div key={ category.id }>
             <input
               type="checkbox"
               data-testid="category"
