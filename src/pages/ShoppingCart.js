@@ -24,10 +24,6 @@ class ShoppingCart extends Component {
     }
     return (
       <div>
-        <label htmlFor="checkOut">
-          <input id="checkOut" />
-        </label>
-        <button type="submit">Finalizar Compra</button>
         {
           cart.map((item) => (
             <CartItem key={ item.id } item={ item } />

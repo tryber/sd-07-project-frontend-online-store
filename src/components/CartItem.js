@@ -77,6 +77,10 @@ class CartItem extends Component {
           +
         </button>
         <h4>{ total }</h4>
+        <p>
+          {`Valor Total da Compra: ${total}`}
+        </p>
+        <button type="submit">Finalizar Compra</button>
         {console.log(title)}
       </div>
     );
