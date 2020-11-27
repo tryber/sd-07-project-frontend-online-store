@@ -6,31 +6,31 @@ import Stars from '../components/Stars';
 
 class ProductDetails extends React.Component {
   constructor() {
-    super()
+    super();
     this.apiRequest = this.apiRequest.bind(this);
     this.handleFitered = this.handleFitered.bind(this);
     this.checkCartOnAdd = this.checkCartOnAdd.bind(this);
     this.getnota = this.getnota.bind(this);
     this.butfunc = this.butfunc.bind(this);
-    this.inputs =this.inputs.bind(this);
+    this.inputs = this.inputs.bind(this);
     this.state = {
       itemRecived: {},
-      Email: "",
-      nota: "",
-      comentario: "",
+      Email: '',
+      nota: '',
+      comentario: '',
       comentFix: [],
-    }
+    };
   }
 
   async apiRequest(params) {
-    const productList = await api.getProductsFromCategoryAndQuery(params, "");
+    const productList = await api.getProductsFromCategoryAndQuery(params, '');
     this.handleFitered(productList);
   }
 
   handleFitered(productList) {
     const { id } = this.props.match.params;
     const { results } = productList;
-    const productRecived = results.filter(produc => produc.id === id);
+    const productRecived = results.filter((produc) => produc.id === id);
     this.setState({ itemRecived: productRecived[0] });
   }
 
@@ -42,19 +42,19 @@ class ProductDetails extends React.Component {
       cartItemsStorage.push({ id, title, price, thumbnail, qtd });
       localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
     }
-    cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
   }
 
   checkCartOnAdd(idItem) {
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
-    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
-      if (cartItemsStorage[i].id === idItem) {
-        cartItemsStorage[i].qtd += 1;
-        localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
-        return false;
-      }
+    const PA = cartItemsStorage.filter((item) => item.id === idItem);
+    if (PA.length === 1) {
+      const item = PA[0];
+      item.qtd += 1
+      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+      return false;
+    } else {
+      return true;
     }
-    return true;
   }
 
   componentDidMount() { 
@@ -69,7 +69,7 @@ class ProductDetails extends React.Component {
   butfunc() {
     const { Email, comentario, nota, comentFix } = this.state;
     const avaliação = { Email, comentario, nota };
-    if (Email !== "") {
+    if (Email !== '') {
       this.setState({ comentFix: comentFix.concat(avaliação) });
     }
   }
@@ -80,7 +80,7 @@ class ProductDetails extends React.Component {
 
   render() {
     const { thumbnail, title, price } = this.state.itemRecived;
-    const { Email, comentario } = this.state;
+    const { Email, comentario, comentFix } = this.state;
     return (
       <div>
         <div>
@@ -88,7 +88,7 @@ class ProductDetails extends React.Component {
             <Link to="/">Voltar icon</Link>
             <ShoppingCartIcon />
           </div>
-          <img src={thumbnail} alt={title}/>
+          <img src={thumbnail} alt={title} />
           <div>
             <h1 data-testid="product-detail-name">{title}</h1>
             <h3>R$: {price}</h3>
@@ -114,7 +114,7 @@ class ProductDetails extends React.Component {
                 onChange={this.inputs}
                 required
               />
-              <Stars astronomo={this.getnota}/>
+              <Stars astronomo={this.getnota} />
             </div>
             <textarea
               type="text"
@@ -124,14 +124,20 @@ class ProductDetails extends React.Component {
               rows={4}
               onChange={this.inputs}
             />
-            <input type="button" value="enviar" onClick={this.butfunc}/>
+            <input type="button" value="enviar" onClick={this.butfunc} />
           </form>
           <div>
-            //comentarios
+            {comentFix.map((coment) => 
+              <div>
+                <h2>{coment.Email}</h2>
+                <h3>{coment.nota}</h3>
+                <p>{coment.comentario}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

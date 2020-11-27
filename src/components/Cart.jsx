@@ -9,7 +9,7 @@ class Cart extends Component {
     this.sumCart = this.sumCart.bind(this);
     this.addClick = this.addClick.bind(this);
     this.minClick = this.minClick.bind(this);
-    this.atualizar =this.atualizar.bind(this);
+    this.atualizar = this.atualizar.bind(this);
     this.delet = this.delet.bind(this);
     this.state = {
       sumCart: 0,
@@ -17,22 +17,25 @@ class Cart extends Component {
     };
   }
 
-  addClick(event) {
-    const { name } = event.target;
-    const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
-    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
-      if (cartItemsStorage[i].id === name) {
-        cartItemsStorage[i].qtd += 1;
-        localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
-      }
-    }
+  componentDidMount(){
+    this.sumCart();
     this.atualizar();
   }
 
-  delet (event) {
+  addClick(event) {
     const { name } = event.target;
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
-    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
+    const PA = cartItemsStorage.filter((item) => item.id === name);
+    const item = PA[0];
+    item.qtd += 1;
+    localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+    this.atualizar();
+  }
+
+  delet(event) {
+    const { name } = event.target;
+    const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+    for (let i = 0; i < cartItemsStorage.length; i += 1) {
       if (cartItemsStorage[i].id === name) {
         cartItemsStorage.splice(i, 1);
         localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
@@ -44,33 +47,27 @@ class Cart extends Component {
   minClick(event) {
     const { name } = event.target;
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
-    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
-      if (cartItemsStorage[i].id === name) {
-        if (cartItemsStorage[i].qtd > 1) {
-          cartItemsStorage[i].qtd -= 1;
-          localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
-        } else {
-          this.delet(event);
-        }
-      }
+    const PA = cartItemsStorage.filter((item) => item.id === name);
+    const item = PA[0];
+    if (item.qtd === 1) {
+      this.delet(event);
+    } else {
+      item.qtd -= 1;
+      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+      this.atualizar();
     }
-    this.atualizar();
   }
 
   atualizar() {
     const cartitems = JSON.parse(localStorage.getItem('cartItems'));
     this.setState({ compras: cartitems });
-  }
-
-  componentDidMount(){
     this.sumCart();
-    this.atualizar();
   }
 
   sumCart() {
-    let cartitems = JSON.parse(localStorage.getItem('cartItems'));
+    const cartitems = JSON.parse(localStorage.getItem('cartItems'));
     let summ = 0;
-    cartitems.map((sum) => summ += sum.qtd * sum.price);
+    cartitems.forEach((sum) => summ += sum.qtd * sum.price);
     this.setState({ sumCart: summ });
   }
 
@@ -85,31 +82,31 @@ class Cart extends Component {
     }
     return (
       <div>
-      {compras.map((item) => (
-      <div key={item.id}>
-        <img src={removeitem} name={item.id} alt="Remover item" onClick={this.delet} />
-        <img src={item.thumbnail} alt={item.title} />
-        <p data-testid="shopping-cart-product-name">{item.title}</p>
-        <img
-          data-testid="product-decrease-quantity"
-          src={remove}
-          name={item.id}
-          alt="retirar"
-          onClick={this.minClick}
-        />
-        <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
-        <img
-          data-testid="product-increase-quantity"
-          src={add}
-          name={item.id}
-          alt="adicionar"
-          onClick={this.addClick}
-        />
-        <p>{item.qtd * item.price}</p>
+        {compras.map((item) => (
+        <div key={item.id}>
+          <img src={removeitem} name={item.id} alt="Remover item" onClick={this.delet} />
+          <img src={item.thumbnail} alt={item.title} />
+          <p data-testid="shopping-cart-product-name">{item.title}</p>
+          <img
+            data-testid="product-decrease-quantity"
+            src={remove}
+            name={item.id}
+            alt="retirar"
+            onClick={this.minClick}
+          />
+          <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
+          <img
+            data-testid="product-increase-quantity"
+            src={add}
+            name={item.id}
+            alt="adicionar"
+            onClick={this.addClick}
+          />
+          <p>{item.qtd * item.price}</p>
+        </div>
+        ))}
+        <h3>Valor Total da Compra: {this.state.sumCart}</h3>
       </div>
-    ))}
-      <h3>Valor Total da Compra: {this.state.sumCart}</h3>
-    </div>
     );
   }
 }

@@ -14,8 +14,8 @@ class Home extends React.Component {
     this.atualizar = this.atualizar.bind(this);
     this.localStorageCart = this.localStorageCart.bind(this);
     this.state = {
-      category: "",
-      searchValue: "",
+      category: '',
+      searchValue: '',
       list: {},
     };
   }
@@ -26,13 +26,13 @@ class Home extends React.Component {
   }
 
   async buscaCategoryAndQuery(category, query) {
-    const lista = await api.getProductsFromCategoryAndQuery(category, query)
+    const lista = await api.getProductsFromCategoryAndQuery(category, query);
     this.setState({ list: lista });
   }
 
   atualizar() {
     const { searchValue, category } = this.state;
-    if(searchValue !== '' || category !== '') {
+    if (searchValue !== '' || category !== '') {
       this.buscaCategoryAndQuery(category, searchValue);
     } else {
       this.setState({ list: {} });
@@ -57,7 +57,7 @@ class Home extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <Caregories onChange={this.select} />
         <div>

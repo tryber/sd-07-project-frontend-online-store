@@ -36,13 +36,22 @@ class List extends React.Component {
 
   render() {
     const { lista } = this.props;
-    if (Object.keys(lista).length >= 2) {
-      return (lista.results.map((resultado) => <Card productAdd={this.updateCart} key={resultado.id} produto={resultado}/>));
+    if (Object.keys(lista).length >= 1) {
+      return (
+        lista.results.map((resultado) => 
+          <Card
+            productAdd={this.updateCart}
+            key={resultado.id}
+            produto={resultado}
+          />
+        )
+      );
     }
     return (
-    <h3 data-testid="home-initial-message">
-      Digite algum termo de pesquisa ou escolha uma categoria.
-    </h3>);
+      <h3 data-testid="home-initial-message">
+        Digite algum termo de pesquisa ou escolha uma categoria.
+      </h3>
+    );
   }
 }
 

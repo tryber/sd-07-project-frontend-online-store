@@ -7,12 +7,12 @@ class ShoppingCart extends React.Component{
     return (
       <div>
         <div>
-        <ShoppingCartIcon />
-        <h3>Carrinho de compras</h3>
-        </div>
-        <Cart />
+          <ShoppingCartIcon />
+          <h3>Carrinho de compras</h3>
+          </div>
+          <Cart />
       </div>
-    )
+    );
   }
 }
 
