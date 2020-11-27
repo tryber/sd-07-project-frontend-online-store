@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import QueryBar from '../components/QueryBar';
 import ProductItem from '../components/ProductItem';
@@ -30,7 +30,7 @@ class ProductList extends Component {
 
   async getProducts(categoryId, query) {
     const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
-    console.log(products);
+
     return products;
   }
 
@@ -44,11 +44,8 @@ class ProductList extends Component {
   async SearchProductForCategory(object) {
     const { query } = this.state;
     const categoryId = object.id;
-    console.log(query, categoryId);
     const { results } = await api.getProductsFromCategoryAndQuery(categoryId, query);
-    console.log(results);
     this.setState({ object: results });
-    console.log(this.state);
   }
 
 
@@ -62,6 +59,7 @@ class ProductList extends Component {
 
   render() {
     const { categories, object, query } = this.state;
+    const { addItem } = this.props;
 
     return (
       <div className="main-list">
@@ -81,7 +79,11 @@ class ProductList extends Component {
           />
           <section className="prodoct-cards">
             {object.map((product) => (
-              <ProductCard key={ product.id } product={ product } />
+              <ProductCard
+                key={ product.id }
+                product={ product }
+                addItem={ addItem }
+              />
             ))}
           </section>
         </div>
@@ -90,5 +92,8 @@ class ProductList extends Component {
   }
 }
 
+ProductList.propTypes = {
+  addItem: PropTypes.func.isRequired,
+};
 
 export default ProductList;
