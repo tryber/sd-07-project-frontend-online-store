@@ -5,8 +5,14 @@ class BotaoCarrinho extends React.Component {
   render() {
     return (
       <div>
-        <button>
-        <Link data-testid="shopping-cart-button" to="/carrinho" >Meu Carrinho</Link></button>
+        <button type="button">
+          <Link
+            data-testid="shopping-cart-button"
+            to="/carrinho"
+          >
+            Meu Carrinho
+          </Link>
+        </button>
       </div>
     );
   }

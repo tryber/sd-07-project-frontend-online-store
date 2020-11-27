@@ -1,38 +1,26 @@
 import React from 'react';
-import * as api from '../services/api';
-import Categoria from './Categoria'
+import PropTypes from 'prop-types';
+import Categoria from './Categoria';
 
 class ListaDeCategorias extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      categories: [],
-    }
-  }
-
-  componentDidMount() {
-    api.getCategories().then(response => {
-      this.setState({
-        categories: response,
-      })
-    });
-  
-  }
   render() {
-    const { categories } = this.state;
+    const { categories } = this.props;
     return (
       <ul>
-        {categories.map((category) =>
-          <Categoria
-            key={category.name}
-            category={category}
-          />
-        )}
+        {
+          categories.map((category) => (<Categoria
+            key={ category.name }
+            name={ category.name }
+            id={ category.id }
+          />))
+        }
       </ul>
-    )
+    );
   }
 }
 
 export default ListaDeCategorias;
+
+ListaDeCategorias.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
