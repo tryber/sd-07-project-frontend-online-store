@@ -21,7 +21,8 @@ class Card extends React.Component {
   }
 
   render() {
-    const { thumbnail, title, price, id, category_id } = this.props.produto;
+    const { produto } = this.props;
+    const { thumbnail, title, price, id, category_id } = produto;
     return (
       <div data-testid="product">
         <h3>{title}</h3>

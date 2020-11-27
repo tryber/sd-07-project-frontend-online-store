@@ -22,22 +22,34 @@ class ProductDetails extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { match } = this.props;
+    const { category } = match.params;
+    this.apiRequest(category);
+  }
+
+  getnota(nota) {
+    this.setState({ nota });
+  }
+
   async apiRequest(params) {
     const productList = await api.getProductsFromCategoryAndQuery(params, '');
     this.handleFitered(productList);
   }
 
   handleFitered(productList) {
-    const { id } = this.props.match.params;
+    const { match } = this.props;
+    const { id } = match.params;
     const { results } = productList;
     const productRecived = results.filter((produc) => produc.id === id);
     this.setState({ itemRecived: productRecived[0] });
   }
 
   handleClick() {
-    const { id, title, price, thumbnail } = this.state.itemRecived;
+    const { itemRecived } = this.state;
+    const { id, title, price, thumbnail } = itemRecived;
     const qtd = 1;
-    let cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
+    const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
     if (this.checkCartOnAdd(id)) {
       cartItemsStorage.push({ id, title, price, thumbnail, qtd });
       localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
@@ -49,21 +61,11 @@ class ProductDetails extends React.Component {
     const PA = cartItemsStorage.filter((item) => item.id === idItem);
     if (PA.length === 1) {
       const item = PA[0];
-      item.qtd += 1
+      item.qtd += 1;
       localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
       return false;
-    } else {
-      return true;
     }
-  }
-
-  componentDidMount() { 
-    const { category } = this.props.match.params;
-    this.apiRequest(category);
-  }
-
-  getnota(nota) {
-    this.setState({ nota });
+    return true;
   }
 
   butfunc() {
@@ -79,7 +81,8 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { thumbnail, title, price } = this.state.itemRecived;
+    const { itemRecived } = this.state;
+    const { thumbnail, title, price } = itemRecived;
     const { Email, comentario, comentFix } = this.state;
     return (
       <div>
@@ -88,10 +91,10 @@ class ProductDetails extends React.Component {
             <Link to="/">Voltar icon</Link>
             <ShoppingCartIcon />
           </div>
-          <img src={thumbnail} alt={title} />
+          <img src={ thumbnail } alt={ title } />
           <div>
             <h1 data-testid="product-detail-name">{title}</h1>
-            <h3>R$: {price}</h3>
+            <h3>{`R$: ${price}`}</h3>
             <input
               data-testid="product-detail-add-to-cart"
               type="button"
@@ -110,30 +113,31 @@ class ProductDetails extends React.Component {
                 type="text"
                 name="Email"
                 placeholder="E-mail"
-                value={Email}
-                onChange={this.inputs}
+                value={ Email }
+                onChange={ this.inputs }
                 required
               />
-              <Stars astronomo={this.getnota} />
+              <Stars astronomo={ this.getnota } />
             </div>
             <textarea
               type="text"
               name="comentario"
               placeholder="Comentario
-              (opcional)" value={comentario}
-              rows={4}
-              onChange={this.inputs}
+              (opcional)"
+              value={ comentario }
+              rows={ 4 }
+              onChange={ this.inputs }
             />
-            <input type="button" value="enviar" onClick={this.butfunc} />
+            <input type="button" value="enviar" onClick={ this.butfunc } />
           </form>
           <div>
-            {comentFix.map((coment) => 
-              <div key={coment}>
+            {comentFix.map((coment) => (
+              <div key={ coment }>
                 <h2>{coment.Email}</h2>
                 <h3>{coment.nota}</h3>
                 <p>{coment.comentario}</p>
               </div>
-            )}
+            ))}
           </div>
         </div>
       </div>

@@ -25,6 +25,18 @@ class Home extends React.Component {
     this.localStorageCart();
   }
 
+  async onClick(texto) {
+    await this.setState({ searchValue: texto });
+    this.atualizar();
+  }
+
+  localStorageCart() {
+    if (!localStorage.getItem('cartItems')) {
+      const cartItemsStorage = [];
+      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+    }
+  }
+
   async buscaCategoryAndQuery(category, query) {
     const lista = await api.getProductsFromCategoryAndQuery(category, query);
     this.setState({ list: lista });
@@ -39,33 +51,22 @@ class Home extends React.Component {
     }
   }
 
-  localStorageCart() {
-    if (!localStorage.getItem('cartItems')) {
-      const cartItemsStorage = [];
-      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
-    }
-  }
-
-  async onClick(texto) {
-    await this.setState({ searchValue: texto });
-    this.atualizar();
-  }
-
   async select(event) {
     await this.setState({ category: event.target.value });
     this.atualizar();
   }
 
   render() {
+    const { list } = this.state;
     return (
       <div>
-        <Caregories onChange={this.select} />
+        <Caregories onChange={ this.select } />
         <div>
           <div>
-            <SearchBar onClick={this.onClick} />
+            <SearchBar onClick={ this.onClick } />
             <ShoppingCartIcon />
           </div>
-          <List lista={this.state.list} />
+          <List lista={ list } />
         </div>
       </div>
     );

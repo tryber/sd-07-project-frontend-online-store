@@ -2,7 +2,7 @@ import React from 'react';
 import ShoppingCartIcon from '../components/Shopping-cart-icon';
 import Cart from '../components/Cart';
 
-class ShoppingCart extends React.Component{
+class ShoppingCart extends React.Component {
   render() {
     return (
       <div>
