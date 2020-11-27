@@ -147,9 +147,29 @@
 
 .container-filters {
   margin-top: 15px;
-  text-align: left;;
+  text-align: left;
 }
 
 .side-bar h3 {
+  text-align: center;
+}
+
+.input-serch img {
+  display: inline;
+  width: 25px;
+  cursor: pointer;
+}
+
+.product {
+  width: 150px;
+  border-radius: 5px;
+}
+
+.header-product { 
+  font-weight: 700;
+  text-align: center;
+}
+
+.price-product {
   text-align: center;
 }
