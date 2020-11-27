@@ -6,6 +6,7 @@ import CartIcon from '../components/CartIcon';
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
+    this.getId = this.getId.bind(this);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
     this.changeQuantityState = this.changeQuantityState.bind(this);
     this.removeLastItem = this.removeLastItem.bind(this);
@@ -26,9 +27,15 @@ class ProductDetail extends Component {
     this.searchQueryProducts();
   }
 
+  getId(object) { 
+    const { id } = object;
+    const result = id;
+    return result;
+  }
+
   async searchQueryProducts() {
     const { params } = this.props.match;
-    const ListProducts = await API.getProductsFromCategoryAndQuery(params.id);
+    const ListProducts = await API.getProductsFromCategoryAndQuery(getId(params));
     const { results } = ListProducts;
     if (results !== undefined) {
       const { id, title, attributes, thumbnail, price } = results[0];
