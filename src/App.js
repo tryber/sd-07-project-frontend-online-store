@@ -5,9 +5,11 @@ import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
 
 import { initializeCart } from './services/cartApi';
+import { initializeAvaluations } from './services/avaluationAPI';
 
 function App() {
   initializeCart();
+  initializeAvaluations();
   return (
     <BrowserRouter>
       <Route exact path="/" component={ ProductList } />
