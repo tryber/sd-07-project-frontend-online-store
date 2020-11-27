@@ -25,7 +25,7 @@ class DetailsProduct extends React.Component {
                 Descrição Técnica
               </p>
               <p>
-                {price}
+                R$ {price}
               </p>
             </div>
         </div>
