@@ -9,10 +9,11 @@ class ListaDeCategorias extends React.Component {
       <ul>
         {
           categories.map((category) =>
-            <Categoria key={ category.name }
+            (<Categoria
+              key={ category.name }
               name={ category.name }
               id={ category.id }
-            />)
+            />))
         }
       </ul>
     );
@@ -22,5 +23,5 @@ class ListaDeCategorias extends React.Component {
 export default ListaDeCategorias;
 
 ListaDeCategorias.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.object),
-}
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

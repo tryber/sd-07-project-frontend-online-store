@@ -17,5 +17,5 @@ class ListaDeProdutos extends React.Component {
 export default ListaDeProdutos;
 
 ListaDeProdutos.propTypes = {
-  onFetchProducts: Proptypes.arrayOf(Proptypes.object),
-}
+  onFetchProducts: Proptypes.arrayOf(Proptypes.object).isRequired,
+};

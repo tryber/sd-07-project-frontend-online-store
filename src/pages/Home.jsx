@@ -39,19 +39,20 @@ class Home extends React.Component {
 
   render() {
     const { query, categories, onFetchProducts } = this.state;
+    const numberToComper = 0;
     return (
       <div>
         <CampoDeBusca
           query={ query }
           handleInputChange={ this.handleInputChange }
         />
-        { onFetchProducts.length !== 0
+        { onFetchProducts.length !== numberToComper
           ? <ListaDeProdutos onFetchProducts={ onFetchProducts } />
           : <p
             data-testid="home-initial-message"
-          >
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>}
+            >
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>}
         <ListaDeCategorias
           categories={ categories }
         />
