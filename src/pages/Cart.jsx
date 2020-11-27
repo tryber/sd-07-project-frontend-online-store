@@ -5,6 +5,7 @@ import ItemCart from '../components/ItemCart';
 class Cart extends React.Component {
   constructor() {
     super();
+
     this.state = {
       listProduct: [],
     };
@@ -23,7 +24,6 @@ class Cart extends React.Component {
       listProduct: [...products],
     });
   }
-
 
   render() {
     const { listProduct } = this.state;
