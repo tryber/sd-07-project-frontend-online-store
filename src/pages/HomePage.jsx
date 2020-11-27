@@ -28,6 +28,10 @@ class HomePage extends Component {
     }, () => this.fetchProducts());
   }
 
+  onChangeSearchInput({ target }) {
+    this.setState({ searchInput: target.value });
+  }
+
   fetchProducts() {
     const { searchInput, categoryId } = this.state;
     this.setState({ loading: true }, async () => {
@@ -38,10 +42,6 @@ class HomePage extends Component {
         productList: filteredProducts.results,
       });
     });
-  }
-
-  onChangeSearchInput({ target }) {
-    this.setState({ searchInput: target.value });
   }
 
   render() {

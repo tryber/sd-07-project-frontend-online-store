@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from '../components/Loading/Loading';
 
@@ -14,8 +15,11 @@ class ProductDetails extends Component {
   }
 
   componentDidMount() {
-    const { category_id, id } = this.props.match.params;
-    this.fetchProduct(category_id, id);
+    const { match } = this.props;
+    const { params } = match;
+    const categoryId = params.category_id;
+    const { id } = params;
+    this.fetchProduct(categoryId, id);
   }
 
   fetchProduct(category, id) {
