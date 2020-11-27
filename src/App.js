@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <GlobalStyle />
-      <page.Home />
+      <view.AmountControllers />
     </div>
   );
 }

@@ -18,6 +18,7 @@ export const Cart = styled(icon.FaCartPlus)`
 
 export const Plus = styled(icon.FaPlus)`
   ${styledIconGlobal}
+  font-size: 1em;
   transform: scale(1);
   :active {
     transform: scale(1.1);
@@ -26,6 +27,7 @@ export const Plus = styled(icon.FaPlus)`
 
 export const Minus = styled(icon.FaMinus)`
   ${styledIconGlobal}
+  font-size: 1em;
   transform: scale(1);
   :active {
     transform: scale(1.1);

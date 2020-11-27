@@ -1,2 +1,3 @@
 export { default as SearchInput } from './SearchInput';
 export { default as SideBar } from './SideBar';
+export { default as AmountControllers } from './AmountControllers';
