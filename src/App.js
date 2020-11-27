@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
+import ProductDetail from './pages/ProductDetail';
 
 function App() {
   return (
@@ -17,6 +18,13 @@ function App() {
           exact
           path="/pages/shoppingcart"
           component={ ShoppingCart }
+        />
+        <Route
+          exact
+          path="/details/:id"
+          render={
+            (props) => <ProductDetail { ...props } />
+          }
         />
       </Switch>
     </BrowserRouter>
