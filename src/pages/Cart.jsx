@@ -5,7 +5,7 @@ import ItemCart from '../components/ItemCart';
 class Cart extends React.Component {
   constructor() {
     super();
-    
+
     this.state = {
       listProduct: [],
     };
@@ -32,10 +32,9 @@ class Cart extends React.Component {
         <p data-testid="shopping-cart-empty-message" className="empty-cart">
           Seu carrinho está vazio
         </p>
-
         <div>
           {listProduct.map((product) => (
-            <ItemCart key={product.id} product={product} />
+            <ItemCart key={ product.id } product={ product } />
           ))}
         </div>
       </div>
