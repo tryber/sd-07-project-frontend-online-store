@@ -1,19 +1,9 @@
-body {
-  box-sizing: border-box;
-  font-size: 16px;
-  margin: 20px;
-}
-
 .product-detail {
   display: flex;
 }
 
 .container-title-image {
   width: 50%;
-}
-
-.product-detail-image {
-  width: 100%;
 }
 
 .container-list {

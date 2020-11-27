@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
-import EvaluationForm from '../components/EvaluationForm'
+import ReviewList from '../components/ReviewList';
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class ProductDetails extends Component {
 
     this.state = {
       loading: true,
-      product: {},
+      product: {},     
     }
   }
 
@@ -26,7 +26,7 @@ class ProductDetails extends Component {
         console.log(productID);
         this.setState({
           loading: false,
-          product: productID,
+          product: productID,                  
         });
       },
     );
@@ -41,7 +41,8 @@ class ProductDetails extends Component {
     if (loading === true) return <Loading />;
 
     return (
-      <div className="product-detail">
+      <div>
+        <div className="product-detail">
         <div className="container-title-image">
           <h2 data-testid="product-detail-name">{title} - R${price}</h2>
           <img 
@@ -54,7 +55,9 @@ class ProductDetails extends Component {
           {attributes.map(({ name, value_name, id }) => 
           <li key ={id}>{name}: {value_name}</li>)}
         </ul>
-        <EvaluationForm />
+        
+        </div>        
+        <ReviewList />
       </div>
     );
   }
