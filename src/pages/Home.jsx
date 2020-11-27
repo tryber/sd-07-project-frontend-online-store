@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import CategorieFilter from '../components/CategorieFilter';
 import * as api from '../services/api';
 import SearchBar from '../components/SearchBar';
 import ProductList from '../components/ProductList';
+import ShoppingCartButton from '../components/ShoppingCartButton';
+import EmptyProductList from '../components/EmptyProductList';
 
 export default class Home extends React.Component {
   constructor() {
@@ -12,6 +13,7 @@ export default class Home extends React.Component {
       searchText: '',
       products: [],
       categoryId: '',
+      isEmpty: true,
     };
     this.findProduct = this.findProduct.bind(this);
     this.updateValue = this.updateValue.bind(this);
@@ -22,13 +24,11 @@ export default class Home extends React.Component {
     const { categoryId, searchText } = this.state;
     const products = await api.getProductsFromCategoryAndQuery(categoryId, searchText);
     this.setState({
-      products: products.results,
-    });
-    console.log(products);
+      products: products.results, isEmpty: false });
   }
 
-  updateValueCategory(event) {
-    const { value } = event.target;
+  async updateValueCategory(event) {
+    const { value } = await event.target;
     this.setState({ categoryId: value });
     this.findProduct();
   }
@@ -39,29 +39,29 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { searchText, products } = this.state;
+    const { searchText, products, isEmpty } = this.state;
+
     return (
-      <div>
+      <div className="main-content">
         <div>
           <CategorieFilter
             updateValueCategory={ this.updateValueCategory }
           />
         </div>
-        <div>
-          <SearchBar
-            searchText={ searchText }
-            onChange={ this.updateValue }
-            onClick={ this.findProduct }
-          />
+        <div className="search-bar-content">
+          <div>
+            <SearchBar
+              searchText={ searchText }
+              onChange={ this.updateValue }
+              onClick={ this.findProduct }
+            />
+          </div>
+          <div>
+            <ShoppingCartButton />
+          </div>
         </div>
         <div>
-          <ProductList products={ products } />
-        </div>
-        <Link data-testid="shopping-cart-button" to="/pages/shoppingcart">
-          <img src="https://image.flaticon.com/icons/png/512/34/34562.png" alt="icone-carrinho" />
-        </Link>
-        <div data-testid="home-initial-message">
-          <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
+          {isEmpty ? <EmptyProductList /> : <ProductList products={ products } />}
         </div>
       </div>
     );

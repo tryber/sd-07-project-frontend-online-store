@@ -26,9 +26,9 @@ export default class CategorieFilter extends React.Component {
     const { categories } = this.state;
     const { updateValueCategory } = this.props;
     return (
-      <div>
+      <div className="category-filter">
         {categories.map((categorie) => (
-          <div key={ categorie.id }>
+          <div className="categorie-item" key={ categorie.id }>
             <label htmlFor={ categorie.id }>
               { categorie.name }
               <input
@@ -48,8 +48,8 @@ export default class CategorieFilter extends React.Component {
 
 CategorieFilter.propTypes = {
   categorie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
+  }),
   updateValueCategory: PropTypes.func.isRequired,
 };
