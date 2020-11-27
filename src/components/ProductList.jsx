@@ -2,7 +2,6 @@ import React from 'react';
 import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
-  
   render() {
     const { products } = this.props;
 
