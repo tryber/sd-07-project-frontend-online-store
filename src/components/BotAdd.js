@@ -6,7 +6,6 @@ class BotAdd extends React.Component {
     const { onClick } = this.props;
     return (
       <input
-        data-testid="product-detail-add-to-cart"
         type="button"
         onClick={ onClick }
         data-testid="product-detail-add-to-cart"

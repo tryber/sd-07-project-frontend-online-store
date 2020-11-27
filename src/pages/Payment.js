@@ -13,15 +13,47 @@ class Payment extends React.Component {
         <section>
           <h3>Informações do Comprador</h3>
           <form>
-            <input required placeholder="Nome Completo" type="text" />
-            <input required maxLength="11" placeholder="CPF" type="text" />
-            <input required placeholder="Email" type="text" />
-            <input required placeholder="Telefone" type="text" />
-            <input required placeholder="CEP" type="text" />
-            <input required placeholder="Endereço" type="text" />
-            <input required placeholder="Complemento" type="text" />
-            <input required placeholder="Numero" type="text" />
-            <input required placeholder="Cidade" type="text" />
+            <input
+              data-testid="checkout-fullname"
+              required
+              placeholder="Nome
+              Completo"
+              type="text"
+            />
+            <input
+              data-testid="checkout-cpf"
+              required
+              maxLength="11"
+              placeholder="CPF"
+              type="text"
+            />
+            <input
+              data-testid="checkout-email"
+              required
+              placeholder="Email"
+              type="text"
+            />
+            <input
+              data-testid="checkout-phone"
+              required
+              placeholder="Telefone"
+              type="text"
+            />
+            <input
+              data-testid="checkout-cep"
+              required
+              placeholder="CEP"
+              type="text"
+            />
+            <input
+              data-testid="checkout-address"
+              required
+              placeholder="Endereço"
+              type="text"
+            />
+            <input placeholder="Complemento" type="text" />
+            <input placeholder="Numero" type="text" />
+            <input placeholder="Cidade" type="text" />
             <select>
               <option value="">Estado</option>
               <States />

@@ -14,12 +14,12 @@ class Stars extends React.Component {
   }
 
   componentDidMount() {
-    this.estrelaCadente(1);
+    this.estrelaCadente('1');
   }
 
   brilhaEstrlinha(not) {
     const ceu = [];
-    const estrelas = [1, 2, 3, 4, 5];
+    const estrelas = ['1', '2', '3', '4', '5'];
     estrelas.forEach((n) => {
       if (n <= not) {
         ceu.push({ img: StarFull, index: n });
@@ -41,7 +41,8 @@ class Stars extends React.Component {
     return (
       <div>
         {constelação.map((estrela) => (
-          <img
+          <input
+            type="button"
             key={ estrela.index }
             src={ estrela.img }
             alt={ `nota ${estrela.index}` }

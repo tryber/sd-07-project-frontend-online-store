@@ -35,7 +35,7 @@ class Cart extends Component {
   delet(event) {
     const { name } = event.target;
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
-    const cart = cartItemsStorage.filter((cartItem)=> cartItem.id !== name);
+    const cart = cartItemsStorage.filter((cartItem) => cartItem.id !== name);
     localStorage.setItem('cartItems', JSON.stringify(cart));
     this.atualizar();
   }
@@ -76,7 +76,8 @@ class Cart extends Component {
       <div>
         {compras.map((item) => (
           <div key={ item.id }>
-            <img
+            <input
+              type="button"
               src={ removeitem }
               name={ item.id }
               alt="Remover item"
@@ -84,7 +85,8 @@ class Cart extends Component {
             />
             <img src={ item.thumbnail } alt={ item.title } />
             <p data-testid="shopping-cart-product-name">{item.title}</p>
-            <img
+            <input
+              type="button"
               data-testid="product-decrease-quantity"
               src={ remove }
               name={ item.id }
@@ -92,7 +94,8 @@ class Cart extends Component {
               onClick={ this.minClick }
             />
             <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
-            <img
+            <input
+              type="button"
               data-testid="product-increase-quantity"
               src={ add }
               name={ item.id }
