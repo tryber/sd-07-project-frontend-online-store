@@ -37,7 +37,8 @@ export default class Product extends Component {
 }
 
 Product.propTypes = {
-  productName: PropTypes.string.isRequired,
-  productImg: PropTypes.string.isRequired,
-  productPrice: PropTypes.string.isRequired,
+  productName: PropTypes.objectOf(PropTypes.String).isRequired,
+  productName: PropTypes.objectOf(PropTypes.String).isRequired,
+  productImg: PropTypes.objectOf(PropTypes.String).isRequired,
+  productPrice: PropTypes.objectOf(PropTypes.String).isRequired
 };
