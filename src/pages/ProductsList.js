@@ -31,12 +31,6 @@ class ProductsList extends Component {
     const { target } = event;
     const categoryId = target.id;
     const { inputSearchValue } = this.state;
-    // const newList = productsToRender.filter((product) => product.category_id === categoryId);
-    // this.fetchByCategory(categoryId);
-    // this.setState({
-    //   productsToRender: newList,
-    // });
-    // this.fetchByCategory(categoryId);
     const fetchWithCategoryAndQuery = await api.getProductsFromCategoryAndQuery(
       categoryId,
       inputSearchValue,
@@ -58,17 +52,7 @@ class ProductsList extends Component {
   }
 
   async fetchByCategory(categoryId) {
-    // const verifyIfInputValueIsEmpty = 0;
     const { inputSearchValue } = this.state;
-    // if (inputSearchValue.length === verifyIfInputValueIsEmpty) {
-    //   const fetchOnlyWithCategory = await api.getProductsFromCategoryAndQuery(
-    //     categoryId,
-    //     false,
-    //   );
-    //   this.setState({
-    //     productsToRender: fetchOnlyWithCategory.results,
-    //   });
-    // }
     const fetchWithCategoryAndQuery = await api.getProductsFromCategoryAndQuery(
       categoryId,
       inputSearchValue,
