@@ -23,7 +23,7 @@ class ProductsList extends React.Component {
   async fetchProducts() {
     const { categoryId, query } = this.state;
     const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
-      this.setState({ productList: products.results });
+    this.setState({ productList: products.results });
   }
 
   handleTypeChange({ target }) {
@@ -68,7 +68,7 @@ class ProductsList extends React.Component {
           <br />
           <ul>
             {productList.length
-              ? productList.map(({ id, title, thumbnail, price }, item) => (
+              ? productList.map(({ id, title, thumbnail, price }) => (
                 <li
                   key={ id }
                   data-testid="product"
@@ -77,13 +77,13 @@ class ProductsList extends React.Component {
                   <img src={ thumbnail } alt="Product" />
                   <p>{ price }</p>
                   <Link to={ {
-                  pathname: '/product-details',
-                  state: {
-                    productName: title,
-                    productImg: thumbnail,
-                    productPrice: price,
-                  },
-                } }
+                    pathname: '/product-details',
+                    state: {
+                      productName: title,
+                      productImg: thumbnail,
+                      productPrice: price,
+                    },
+                  } }
                 data-testid="product-detail-link"
                 key={ `${title} ${id}` }>
                   Ver detalhes
