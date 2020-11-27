@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import * as API from '../services/api';
 import { Link } from 'react-router-dom';
-
-
+import CartIcon from '../components/CartIcon';
 
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
+    this.changeQuantityState = this.changeQuantityState.bind(this);
     this.removeLastItem = this.removeLastItem.bind(this);
     this.removeZero = this.removeZero.bind(this);
     this.roundNumber = this.roundNumber.bind(this);
@@ -18,6 +18,7 @@ class ProductDetail extends Component {
       title: '',
       price: 0,
       thumbnail: '',
+      quantityChanged: false,
     };
   }
 
@@ -29,12 +30,17 @@ class ProductDetail extends Component {
       return this.setState({ id, attributes, title, thumbnail, price });
     }
     const { id, attributes, title, thumbnail, price } = ListProducts;
-    // console.log(ListProducts);
     return this.setState({ id, attributes, title, thumbnail, price });
   }
 
   componentDidMount() {
     this.searchQueryProducts();
+  }
+
+  changeQuantityState() {
+    const { quantityChanged } = this.state;
+    if (quantityChanged === false) this.setState({ quantityChanged: true });  
+    this.setState({ quantityChanged: false })
   }
 
   removeLastItem(string) {
@@ -82,9 +88,13 @@ class ProductDetail extends Component {
           repeatedProduct = true;
         } 
       })
-      if (repeatedProduct) return localStorage.setItem('cart', JSON.stringify(values))
+      if (repeatedProduct) {
+        localStorage.setItem('cart', JSON.stringify(values));
+        return this.changeQuantityState();
+      }
       values.push({id, title, price, imagePath, number, totalPrice});
       localStorage.setItem('cart', JSON.stringify(values));
+      this.changeQuantityState();
     }
   }
 
@@ -98,6 +108,7 @@ class ProductDetail extends Component {
           <div>{price}</div>
           <img src={thumbnail} alt={title} />
         </div>
+        <CartIcon cartItens={JSON.parse(localStorage.getItem('cart'))} />
         <div>
           Especificações Técnicas
           <ul>

@@ -23,9 +23,10 @@ class ProductsList extends Component {
       categories: undefined,
       products: undefined,
       search: "",
-      quantity: JSON.parse(localStorage.getItem('cart')),
-    };
-  }
+      quantityChanged: false,
+      };
+    }
+  
 
   componentDidMount() {
     this.requestCategories();
@@ -63,10 +64,9 @@ class ProductsList extends Component {
   }
 
   changeQuantityState() {
-    let quantity = 0;
-    const cartItens = JSON.parse(localStorage.getItem('cart'));
-    if (cartItens !== null) cartItens.forEach((item) => quantity += item.number);
-    this.setState({ quantity: quantity })
+    const { quantityChanged } = this.state;
+    if (quantityChanged === false) this.setState({ quantityChanged: true });  
+    this.setState({ quantityChanged: false })
   }
 
   removeLastItem(string) {
@@ -126,7 +126,7 @@ class ProductsList extends Component {
   }
   
   render() {
-    const { categories, products, quantity } = this.state;
+    const { categories, products } = this.state;
 
     return (
       <div>
@@ -144,7 +144,7 @@ class ProductsList extends Component {
             data-testid="query-input"
             onChange={this.handleChange}
           />
-          <CartIcon quantity={quantity} />
+          <CartIcon cartItens={JSON.parse(localStorage.getItem('cart'))} />
           <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
           {products === undefined ? this.showMessage() : <ShowProducts products={products} actualizeCart={this.addItemToLocalStorage} />}
           <Link data-testid="shopping-cart-button" to="/ShoppingCart">

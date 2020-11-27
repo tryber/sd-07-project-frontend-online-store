@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 class CartIcon extends Component {
   
   render() {
-    const { quantity } = this.props;
+    const { cartItens } = this.props;
+    let quantity = 0;
+    if (cartItens !== null) cartItens.forEach((item) => quantity += item.number);
 
     return (
       <div>
