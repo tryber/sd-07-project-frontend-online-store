@@ -6,7 +6,10 @@ import voltar from '../icon/voltar.png';
 
 class DetailsProduct extends React.Component {
   render() {
-    const { title, thumbnail, price } = this.props.location.state.product;
+    const { location } = this.props;
+    const { state } = location;
+    const { product } = state;
+    const { title, thumbnail, price } = product;
 
     return (
       <div>
