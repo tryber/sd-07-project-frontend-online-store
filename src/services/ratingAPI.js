@@ -3,7 +3,12 @@ const saveRatings = (ratings) => localStorage.setItem('ratings', JSON.stringify(
 export const getRatings = () => JSON.parse(localStorage.getItem('ratings'));
 
 export const addRating = (newRating) => {
-  let ratings = getRatings();
-  ratings = [...ratings, newRating];
+  let ratings = [];
+  if (getRatings() !== null) {
+    ratings = getRatings();
+    ratings = [...ratings, newRating];
+  } else {
+    ratings.push(newRating);
+  }
   saveRatings(ratings);
 };
