@@ -74,7 +74,6 @@ class ProductsList extends Component {
         />
         <ListCategory />
       </div>
-      
     );
   }
 }
