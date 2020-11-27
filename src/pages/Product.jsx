@@ -22,6 +22,8 @@ export default class Product extends Component {
               pathname: '/ShoppingCart',
               state: {
                 productName,
+                productImg,
+                productPrice,
               },
             }}
           >
