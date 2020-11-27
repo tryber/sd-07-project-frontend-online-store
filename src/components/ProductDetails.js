@@ -1,30 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class ProductDetails extends Component {
 
-  // constructor() {
-  //   super();
-  //   this.fetch = this.fetch.bind(this);
-
-  //   this.state = {
-  //     currentProduct: this.props.item,
-  //   };
-  // }
-
-  // componentDidMount() {
-  //   this.fetch();
-  // }
-
-  // async fetch() {
-  //   const { id } = this.props.match.params;
-  //   const fetchProduct = await api.getProductsFromCategoryAndQuery(id, '');
-  //   this.setState({
-  //     { currentProduct: fetchProduct.results }
-  //   });
-  // }
   render() {
-    const { location: {state: {productName, productImg, productPrice }}} = this.props;
+    const { location: { state: { productName, productImg, productPrice } } } = this.props;
     return (
       <div>
         <Link to="/" data-testid="shopping-cart-button">
@@ -36,7 +17,7 @@ class ProductDetails extends Component {
         <div>
           <h2 data-testid="product-detail-name">{productName}</h2>
           <h3>{`R$ ${productPrice}`}</h3>
-          <img alt="product image" src={productImg} />
+          <img alt="product" src={ productImg } />
         </div>
       </div>
     );
@@ -44,3 +25,13 @@ class ProductDetails extends Component {
 }
 
 export default ProductDetails;
+
+Product.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      productName: PropTypes.string.isRequired,
+      productImg: PropTypes.string.isRequired,
+      productPrice: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
