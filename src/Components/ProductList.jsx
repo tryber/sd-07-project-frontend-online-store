@@ -20,6 +20,17 @@ class ProductList extends React.Component {
       listProduct.map((product) => (
         <div className="product" key="product.id">
           {product}
+          <div className="container-product" data-testid="product">
+            <div className="image-product">
+              <img src={ product.thumbnail } alt="imagem do produto" />
+            </div>
+            <div className="header-product">
+              {product.title}
+            </div>
+            <div className="price-product">
+              {product.installments.amount}
+            </div>
+          </div>
         </div>
       ))
     );

@@ -148,7 +148,7 @@
 
 .container-filters {
   margin-top: 15px;
-  text-align: left;;
+  text-align: left;
 }
 
 .side-bar h3 {
@@ -164,6 +164,27 @@
 
 .container-product {
   width: 100%;
+
+  
+.input-serch img {
+  display: inline;
+  width: 25px;
+  cursor: pointer;
+}
+
+.product {
+  width: 150px;
+  border-radius: 5px;
+}
+
+.header-product { 
+  font-weight: 700;
+  text-align: center;
+}
+
+.price-product {
+  text-align: center;
+
 }
 
 .btn-search {
@@ -173,4 +194,4 @@
   background-color: #179267;
   margin-left:5px;
   padding:10px;
-}
+ }
