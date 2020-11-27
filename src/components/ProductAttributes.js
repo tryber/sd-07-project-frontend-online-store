@@ -21,7 +21,7 @@ class ProductAttributes extends React.Component {
 ProductAttributes.propTypes = {
   attribute: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    value_name: PropTypes.string.isRequired,
+    value_name: PropTypes.any.isRequired,
   }).isRequired,
 };
 
