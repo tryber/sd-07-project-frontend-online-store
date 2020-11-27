@@ -16,14 +16,10 @@ class Home extends Component {
     this.searchClick = this.searchClick.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchProducts();
-  }
-
-  fetchProducts() {
+  async fetchProducts() {
     const { categoryId, query } = this.state;
-    api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((result) => this.setState({ products: result.results }));
+    const result = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    this.setState({ products: result.results });
   }
 
   handleChange({ target }) {
