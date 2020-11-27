@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddShoppingcart extends Component {
   constructor(props) {
@@ -6,8 +7,7 @@ class AddShoppingcart extends Component {
     const { product } = this.props;
     this.state = {
       listProducts: [],
-      cont: 0,
-      product: product,
+      product,
     };
 
     this.addCartItem = this.addCartItem.bind(this);
@@ -15,17 +15,24 @@ class AddShoppingcart extends Component {
 
   addCartItem() {
     const { product } = this.state;
-    const previosProduts = JSON.parse(localStorage.getItem('cart')) || [] ;
+    const previosProduts = JSON.parse(localStorage.getItem('cart')) || [];
     this.setState(
       () => ({ listProducts: [...previosProduts, product] }),
-      () =>
-        localStorage.setItem("cart", JSON.stringify(this.state.listProducts))
+      () => {
+        const { listProducts } = this.state;
+        localStorage.setItem('cart', JSON.stringify(listProducts));
+      },
     );
   }
+
   render() {
     return (
       <div>
-        <button onClick={this.addCartItem} data-testid="product-add-to-cart">
+        <button
+          type="button"
+          onClick={ this.addCartItem }
+          data-testid="product-add-to-cart"
+        >
           Adicionar ao Carrinho
         </button>
       </div>
@@ -34,3 +41,5 @@ class AddShoppingcart extends Component {
 }
 
 export default AddShoppingcart;
+
+AddShoppingcart.propTypes = { product: PropTypes.shape({}).isRequired };

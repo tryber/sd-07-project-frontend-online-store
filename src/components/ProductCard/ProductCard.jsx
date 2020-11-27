@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import AddShoppingCart from '../AddShoppingCart/AddShoppingCart'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import AddShoppingCart from '../AddShoppingCart/AddShoppingCart';
 
 class ProductCard extends Component {
   render() {
@@ -10,13 +10,13 @@ class ProductCard extends Component {
     const { title, thumbnail, price, id } = product;
     return (
       <div data-testid="product">
-        <h3>{title}</h3>
-        <img src={thumbnail} alt="" />
-        <h3>{price}</h3>
+        <h3>{ title }</h3>
+        <img src={ thumbnail } alt="" />
+        <h3>{ price }</h3>
         <Link to={ `/product_details/${categoryId}/${id}` }>
           <button data-testid="product-detail-link" type="button">VER DETALHES</button>
         </Link>
-        <AddShoppingCart product = { product } />
+        <AddShoppingCart product={ product } />
       </div>
     );
   }
