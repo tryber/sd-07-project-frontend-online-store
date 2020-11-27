@@ -11,9 +11,9 @@ class App extends Component {
         <header className="App-header">TrybeLibre Online Store</header>
         <BrowserRouter>
           <Switch>
+            <Route path="/cart" component={ ShoppingCart } />
+            <Route path="/productDetails/:id" component={ ProductDetails } />
             <Route exact path="/" component={ Home } />
-            <Route path="/shoppingcart" component={ ShoppingCart } />
-            <Route path="/productdetails/:id" component={ ProductDetails } />
           </Switch>
         </BrowserRouter>
       </div>

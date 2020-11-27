@@ -1,53 +1,71 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-
-import { Categories, SearchBar, ProductList } from './index';
+import SearchBar from '../components/SearchBar';
+import Categories from '../components/Categories';
+import ProductsList from './ProductsList';
+import * as API from '../services/api';
 
 class Home extends Component {
-  constructor() {
-    super();
-
-    this.getHandle = this.getHandle.bind(this);
-
+  constructor(props) {
+    super(props);
     this.state = {
-      category: '',
-      search: '',
+      inputValue: '',
+      products: [],
+      categories: '',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmitAPI = this.handleSubmitAPI.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this.handleUpdateCategory = this.handleUpdateCategory.bind(this);
   }
 
-  getHandle({ target }) {
-    const { name } = target;
-    let { value } = target;
+  componentDidUpdate(prevProps, prevState) {
+    this.handleUpdateCategory(prevProps, prevState);
+  }
 
-    if (name === 'search') {
-      value = target.previousElementSibling.value;
+  async handleSubmitAPI() {
+    const { inputValue } = this.state;
+    if (inputValue) {
+      const response = await API.getProductsFromCategoryAndQuery(inputValue);
+      this.setState({ products: response.results });
     }
-    this.setState(() => ({ [name]: value }));
+    return false;
+  }
+
+  async handleUpdateCategory(prevProps, prevState) {
+    const { categories } = this.state;
+    const { getProductsFromCategoryAndQuery } = API;
+    if (prevState.categories !== categories) {
+      const categoryUpdate = await getProductsFromCategoryAndQuery(null, categories);
+      this.setState({ products: categoryUpdate.results });
+    }
+  }
+
+  handleChangeCategory(event) {
+    this.setState({ categories: event.target.value });
+  }
+
+  handleChange(event) {
+    this.setState({ inputValue: event.target.value });
   }
 
   render() {
-    const { search, category } = this.state;
-    const message = 'Digite algum termo de pesquisa ou escolha uma categoria.';
-
+    const { inputValue, products } = this.state;
     return (
-      <div className="home">
-        <div>
-          <Categories callback={ this.getHandle } />
-        </div>
-        <div className="SearchBar-products">
-          <div className="searchBar-car">
-            <SearchBar onClick={ this.getHandle } />
-            <Link data-testid="shopping-cart-button" to="/shoppingcart">
-              <FontAwesomeIcon icon={ faShoppingCart } />
-            </Link>
-          </div>
-          {(category !== '' || search !== '')
-            ? <ProductList data={ this.state } />
-            : <p data-testid="home-initial-message">{message}</p>}
-        </div>
+      <div>
+        <p data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
+        <Link to="/cart" data-testid="shopping-cart-button">
+          Carrinho de compras
+        </Link>
+        <SearchBar
+          inputValue={ inputValue }
+          handleChange={ this.handleChange }
+          handleSubmitAPI={ this.handleSubmitAPI }
+        />
+        <ProductsList products={ products } />
+        <Categories handleChangeCategory={ this.handleChangeCategory } />
       </div>
     );
   }
