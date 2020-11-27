@@ -32,9 +32,9 @@ export function updateProductsStorage(productItem) {
   updateProductAll = [];
 }
 
-export async function setProductsStorage(product) {
+export function setProductsStorage(product) {
   let setProductAll = [];
-  const elementsLocalStorage = await getProductsStorage();
+  const elementsLocalStorage = getProductsStorage();
 
   if (elementsLocalStorage !== null) {
     const checkIdProduct = elementsLocalStorage
