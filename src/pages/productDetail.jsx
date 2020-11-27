@@ -38,10 +38,10 @@ class ProductDetail extends React.Component {
             <img alt="product Cover" src={ thumbnail } />
             <ul>
               {attributes.map((attribute) => (
-                <li key={attribute.name}>
-                  {attribute.name}
+                <li key={ attribute.name }>
+                  { attribute.name }
                   :
-                  {attribute.value_name}
+                  { attribute.value_name }
                 </li>
               ))}
             </ul>

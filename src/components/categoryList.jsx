@@ -24,9 +24,9 @@ class Category extends Component {
   }
 
   async filterCategory(event) {
-    const { handleSearchChange, handleClickChange } = this.props;
+    const { handleSearchChange, handleChangeCategory } = this.props;
     await handleSearchChange(event);
-    handleClickChange(event);
+    await handleChangeCategory()
   }
 
   render() {
@@ -54,7 +54,7 @@ class Category extends Component {
 
 Category.propTypes = {
   handleSearchChange: PropTypes.func.isRequired,
-  handleClickChange: PropTypes.func.isRequired,
+  handleChangeCategory: PropTypes.func.isRequired,
 };
 
 export default Category;

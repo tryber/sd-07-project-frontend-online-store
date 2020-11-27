@@ -18,6 +18,7 @@ class SearchBar extends React.Component {
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClickChange = this.handleClickChange.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.filterCategoryAndQuery = this.filterCategoryAndQuery.bind(this);
     this.productListLoaded = this.productListLoaded.bind(this);
   }
@@ -34,6 +35,10 @@ class SearchBar extends React.Component {
   handleClickChange(event) {
     event.preventDefault();
     this.filterCategoryAndQuery();
+  }
+
+  async handleChangeCategory() {
+    await this.filterCategoryAndQuery();
   }
 
   async filterCategoryAndQuery() {
@@ -82,7 +87,7 @@ class SearchBar extends React.Component {
         <div>{products.length ? this.productListLoaded() : <NotFound />}</div>
         <Category
           handleSearchChange={ this.handleSearchChange }
-          handleClickChange={ this.handleClickChange }
+          handleChangeCategory={ this.handleChangeCategory }
         />
       </div>
     );
