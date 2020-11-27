@@ -44,7 +44,7 @@ export default class HomeBeforeSearch extends Component {
 
 
   render() {
-    const { productList } = this.state
+    const { productList } = this.state;
     return (
       <div>
         <div className="nav-bar">

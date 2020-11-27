@@ -42,6 +42,6 @@ Product.propTypes = {
       productName: PropTypes.string.isRequired,
       productImg: PropTypes.string.isRequired,
       productPrice: PropTypes.string.isRequired,
-    })
-  })
+    }),
+  }),
 };
