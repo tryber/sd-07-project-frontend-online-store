@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import CartList from './pages/CartList';
 import './App.css';
 import ProductDetail from './pages/ProductDetail';
-
+import Checkout from './pages/Checkout';
 
 class App extends Component {
   constructor() {
@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   addToCart() {}
-  
+
   render() {
     return (
       <div className="App">
@@ -26,13 +26,13 @@ class App extends Component {
             CART
           </Link>
           <Switch>
+            <Route path="/checkout" component={Checkout} />
             <Route
               path="/product_Detail"
               render={(props) => <ProductDetail {...props} />}
             />
             <Route path="/cart" component={CartList} />
             <Route exact path="/" component={Home} />
-
           </Switch>
         </Router>
       </div>

@@ -20,5 +20,12 @@ export const addItem = (newItem) => {
     };
   }
   saveCart(cart);
-  console.log(cart);
+};
+
+export const returnPrice = () => {
+  let cart = readCart();
+  const sum = Object.values(cart)
+    .map((id) => id.info.price * id.quantidade)
+    .reduce((a, b) => a + b);
+  return sum;
 };

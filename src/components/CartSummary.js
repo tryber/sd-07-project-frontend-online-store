@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import * as cartAPI from '../services/cartAPI';
-import CartItem from '../components/CartItem';
+import CartItem from './CartItem';
 
-class CartList extends React.Component {
+class CartSummary extends React.Component {
   render() {
     const itemsId = cartAPI.getCart();
     return Object.keys(itemsId).length === 0 ? (
@@ -12,16 +11,14 @@ class CartList extends React.Component {
         Seu carrinho está vazio
       </div>
     ) : (
-      <div>
+      <div className="cart-summary">
         {Object.values(itemsId).map((id) => (
           <CartItem key={Object.keys(id)} itemId={id} />
         ))}
-        <Link data-testid="checkout-products" to="/checkout">
-          Finalizar Compra
-        </Link>
+        <p>Total: R${cartAPI.returnPrice()}</p>
       </div>
     );
   }
 }
 
-export default CartList;
+export default CartSummary;

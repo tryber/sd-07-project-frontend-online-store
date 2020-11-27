@@ -14,7 +14,6 @@ class ProductDetail extends Component {
   render() {
 
     const { product } = this.state;
-    console.log(product)
     const specifications = product.attributes;
     return (
       <div>

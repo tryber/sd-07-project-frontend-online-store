@@ -5,13 +5,19 @@ class CartItem extends React.Component {
     const itemId = this.props.itemId;
     const item = itemId.info;
     return (
-      <div data-testid="shopping-cart-product-name" className="itemCart">
-        <p>{item.title}</p>
-        <img alt={item.title} src={item.thumbnail} />
-        <p>{`R$ ${item.price}`}</p>
-        <p data-testid="shopping-cart-product-quantity">
-          Quantidade {itemId.quantidade}
-        </p>
+      <div data-testid="shopping-cart-product-name" className="cart-item">
+        <div>
+          <img alt={item.title} src={item.thumbnail} />
+        </div>
+        <div>
+          <h3>{item.title}</h3>
+          <ul>
+            <li>{`R$ ${item.price}`}</li>
+            <li data-testid="shopping-cart-product-quantity">
+              Quantidade {itemId.quantidade}
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }

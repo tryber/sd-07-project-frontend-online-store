@@ -20,7 +20,7 @@
 .categorys {
   width: 25%;
   border: 1px solid black;
-  padding-right: 10%
+  padding-right: 10%;
 }
 
 .products {
@@ -33,4 +33,23 @@
   border: 1px solid black;
   margin-bottom: 20px;
   margin-right: 3%;
+}
+
+.checkout-component {
+  border: 1px solid black;
+}
+
+.buyer-inputs {
+  background-color: red;
+  display: flex;
+  margin: 2%;
+}
+
+input {
+  flex-grow: 1;
+}
+
+.cart-item {
+  display: flex;
+  flex-wrap: wrap;
 }
