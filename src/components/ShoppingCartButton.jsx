@@ -8,10 +8,10 @@ class ShoppingCartButton extends Component {
     return (
       <nav>
         <Link className="button" to="/shoppingCart" data-testid="shopping-cart-button">
-          <img className="image" src={ShoppingCartImage} alt="Carrinho de Compras" />
+          <img className="image" src={ ShoppingCartImage } alt="Carrinho de Compras" />
         </Link>
       </nav>
-    )
+    );
   }
 }
 

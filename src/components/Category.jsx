@@ -3,22 +3,19 @@ import PropTypes from 'prop-types';
 
 class Category extends React.Component {
   mapCategories(categories) {
-    return categories.map(({ id, name }) => {
-      return (
-        <p key={id}>
-          <label htmlFor={id}>
-            <input
-              type="radio"
-              data-testid="category"
-              id={id}
-              name="category"
-              value={id}
-            />
-            {name}
-          </label>
-        </p>
-      );
-    });
+    return categories.map(({ id, name }) => <p key={ id }>
+        <label htmlFor={ id }>
+          <input
+            type="radio"
+            data-testid="category"
+            id={ id }
+            name="category"
+            value={ id }
+          />
+          {name}
+        </label>
+      </p>
+    );
   }
 
   render() {
