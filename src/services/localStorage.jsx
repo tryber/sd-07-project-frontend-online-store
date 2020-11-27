@@ -1,6 +1,9 @@
 export const readCart = () => JSON.parse(localStorage.getItem('cart'));
 
-export const saveCart = (cart) => { localStorage.setItem('cart', JSON.stringify(cart)); };
+export const saveCart = (cart) => {
+  if (!cart) cart = [];
+  localStorage.setItem('cart', JSON.stringify(cart));
+};
 
 export const addToCart = (product) => {
   let cart = readCart();
