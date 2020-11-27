@@ -28,18 +28,17 @@ export default class ProductDetails extends Component {
     const endpoint = `https://api.mercadolibre.com/items/${id}`;
     const response = await fetch(endpoint);
     const fetchedProduct = await response.json();
-    this.setState({ product: {...fetchedProduct, feedback, evaluation} });
+    this.setState({ product: { ...fetchedProduct, feedback, evaluation } });
   }
 
   handleMessage({ target: { name, value } }) {
-    console.log(name, value);
     this.setState({ [name]: value });
   }
 
   onSubmit() {
-    const { product } = this.state;
+    let { product, evaluation, feedback } = this.state;
+    product = { evaluation, feedback };
     localStorage.addToCart(product);
-    console.log(product);
   }
 
   render() {
@@ -70,7 +69,7 @@ export default class ProductDetails extends Component {
             required
           />
         </div>
-        <button onClick={this.onSubmit} >Salvar</button>
+        <button onClick={() => {console.log(this.state); this.onSubmit()}}>Salvar</button>
       </div>
     );
   }
