@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
 class ShoppingCart extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.renderProducts = this.renderProducts.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+    this.renderProducts = this.renderProducts.bind(this);
+    this.state = {
+      products: [...productsList],
+    };
+  }
 
   // renderProducts() {
   //   return (

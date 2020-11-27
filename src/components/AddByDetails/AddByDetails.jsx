@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-// import ShoppingCart from '../../pages/ShoppingCart';
+import PropTypes from 'prop-types';
 
 class AddByDetails extends Component {
   render() {
-    const { id } = this.props;
+    const { product } = this.props;
     return (
       <div>
-        <Link
-          to="/shoppingcart"
+        <button
+          type="button"
           data-testid="product-detail-add-to-cart"
         >
-          Adicionar ao carrinho
-          { id }
-        </Link>
+          {product}
+        </button>
       </div>
     );
   }
 }
+
+AddByDetails.prototype = {
+  product: PropTypes.string.isRequired,
+};
+
 export default AddByDetails;
