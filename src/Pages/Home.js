@@ -71,7 +71,7 @@ class Home extends React.Component {
           && <div className="item-list">
             {products
               .map((product) => <Item key={ product.id } { ...product } />) }
-            </div>}
+          </div>}
         </div>
       </div>
     );
