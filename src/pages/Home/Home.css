@@ -1,6 +1,6 @@
 .main-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
 }
 
 .categories-container {
@@ -12,5 +12,5 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  flex-basis: 80%;
+  flex-basis: 75%;
 }
