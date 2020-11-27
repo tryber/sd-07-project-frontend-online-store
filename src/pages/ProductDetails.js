@@ -5,11 +5,28 @@ import ProductAttributes from '../components/ProductAttributes';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 
 class ProductDetails extends React.Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick({ id, title, price }) {
+    const cartItem = { [id]: { title, price } };
+    if (!localStorage.cartItems) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItem));
+    } else {
+      const itemsInStorage = localStorage.getItem('cartItems');
+      const retrievedItems = JSON.parse(itemsInStorage);
+      const newItemsList = { ...retrievedItems, ...cartItem };
+      localStorage.setItem('cartItems', JSON.stringify(newItemsList));
+    }
+  }
+
   render() {
     // const { id } = this.props.location.state.product;
     // console.log(id);
     const { location: { state: {
-      product: { title, price, thumbnail, attributes },
+      product: { id, title, price, thumbnail, attributes },
     } } } = this.props;
 
     const { history: { goBack } } = this.props;
@@ -30,6 +47,14 @@ class ProductDetails extends React.Component {
               />
             ),
           )}
+          <button
+            type="button"
+            name="productId"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => this.handleClick({ id, title, price }) }
+          >
+            Adicionar ao carrinho
+          </button>
         </div>
       </div>
     );
@@ -40,6 +65,7 @@ ProductDetails.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
       product: PropTypes.shape({
+        id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         thumbnail: PropTypes.string.isRequired,
