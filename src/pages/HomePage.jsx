@@ -27,7 +27,6 @@ class HomePage extends Component {
       categoryIdSelected: target.id
     }, () => this.renderProducts())
   }
->>>>>>> 25fe1fb8c07af36071eacdb69294476c5b915e84
 
   render() {
     const { categoryIdSelected} = this.state;
