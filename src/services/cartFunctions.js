@@ -18,3 +18,7 @@ export function deleteProductFromLocalStorage(idThatYouSearch) {
   }
   return addProductInLocalStorage(newList);
 }
+
+export function clearLocalStorage() {
+  return localStorage.setItem('shoppingCartItem', '[]');
+}
