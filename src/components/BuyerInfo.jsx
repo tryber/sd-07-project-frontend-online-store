@@ -1,6 +1,21 @@
 import React from 'react';
 
 class BuyerInfo extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      cpf: '',
+      email: '',
+      telefone: '',
+      cep: '',
+      address: '',
+      other: '',
+      number: 0,
+      city: '',
+      stateCountry: '',
+    }
+  }
   render() {
     return (
       <div className="form">
