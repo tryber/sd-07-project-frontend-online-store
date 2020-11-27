@@ -1,14 +1,18 @@
 import React from 'react';
+import ReactStars from 'react-stars';
+import PropTypes from 'prop-types';
 
 class RatingForm extends React.Component {
   constructor() {
     super();
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.ratingChanged = this.ratingChanged.bind(this);
 
     this.state = {
       email: '',
       textRate: '',
+      rating: 0,
     };
   }
 
@@ -19,6 +23,10 @@ class RatingForm extends React.Component {
 
   updateInput(field, newValue) {
     this.setState({ [field]: newValue });
+  }
+
+  ratingChanged(newRating) {
+    this.setState({ rating: newRating });
   }
 
   renderEmailInput() {
@@ -66,10 +74,19 @@ class RatingForm extends React.Component {
   }
 
   render() {
+    const { rating } = this.state;
     return (
       <div>
         <form>
           { this.renderEmailInput() }
+          <ReactStars
+            count={ 5 }
+            onChange={ this.ratingChanged }
+            size={ 24 }
+            color2="#ffd700"
+            half={ false }
+            value={ rating }
+          />
           { this.renderTextRateInput()}
           { this.renderSubmitButton() }
         </form>
@@ -78,5 +95,9 @@ class RatingForm extends React.Component {
     );
   }
 }
+
+RatingForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default RatingForm;
