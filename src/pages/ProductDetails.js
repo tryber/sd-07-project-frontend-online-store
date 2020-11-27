@@ -1,10 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as ratingAPI from '../services/ratingAPI';
+
 import ProductAttributes from '../components/ProductAttributes';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import RatingForm from '../components/RatingForm';
 
 class ProductDetails extends React.Component {
+  constructor() {
+    super();
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(newRating) {
+    const { location: { state: { product: { id } } } } = this.props;
+    newRating.id = id;
+    ratingAPI.addRating(newRating);
+  }
+
   render() {
     // const { id } = this.props.location.state.product;
     // console.log(id);
@@ -31,6 +46,8 @@ class ProductDetails extends React.Component {
             ),
           )}
         </div>
+        <h3>Avaliações</h3>
+        <RatingForm onSubmit={ this.handleSubmit } />
       </div>
     );
   }
@@ -40,6 +57,7 @@ ProductDetails.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
       product: PropTypes.shape({
+        id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         thumbnail: PropTypes.string.isRequired,
