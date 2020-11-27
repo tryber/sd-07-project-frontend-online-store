@@ -2,15 +2,64 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import AvaliationList from '../components/AvaliationList';
+import AvaliationForm from '../components/AvaliationForm';
     
 export default class ProductDetails extends Component {
-  render() {
+
+  constructor() {
+    super();
+
+    this.getProduct = this.getProduct.bind(this);
+    this.getStorage = this.getStorage.bind(this);
+    this.setStorage = this.setStorage.bind(this);
+
+    this.state = {
+      name: '',
+      thumbnail: '',
+      avaliations: []
+    };
+  }
+
+  componentDidMount() {
+    this.getProduct();
+    this.getStorage();
+  }
+
+  getProduct() {
     const { location: { state: { item } } } = this.props;
+    this.setState({
+      name: item.title,
+      thumbnail: item.thumbnail,
+    });
+  }
+
+  getStorage() {
+    const { name } = this.state;
+
+    if (localStorage.getItem(`${name}`)) {
+      this.setState({ avaliations: JSON.parse(localStorage.getItem(`${name}`)) });
+    }
+  }
+
+  setStorage(avaliations) {
+    const { name } = this.state;
+
+    const arrayOfAvaliations = localStorage.getItem(`${name}`)
+      ? JSON.parse(localStorage.getItem(`${name}`))
+      : [];
+    arrayOfAvaliations.push(avaliations);
+    localStorage.setItem(`${name}`, JSON.stringify(arrayOfAvaliations));
+    this.setState({ avaliations: JSON.parse(localStorage.getItem(`${name}`)) });
+  }
+
+  render() {
+    const { name, thumbnail } = this.state;
     return (
       <div>
         <header>
           <Link to="/">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
             </svg>
           </Link>
@@ -19,14 +68,18 @@ export default class ProductDetails extends Component {
         </header>
 
         <div data-testid="product-detail-name">
-        { item.title }
+        { name }
       </div>
 
-        <img src={item.thumbnail} alt={item.title}/>
+        <img src={thumbnail} alt={name}/>
         
         <p>
           Especificações do produto...
         </p>
+
+        <AvaliationForm form={ this.setStorage } />
+        <AvaliationList avaliations={ this.state.avaliations } />
+
       </div>
     );
   }
