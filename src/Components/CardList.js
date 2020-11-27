@@ -15,6 +15,6 @@ class CardList extends React.Component {
   }
 }
 
-CardList.propTypes = { product: PropTypes.arrayOf(PropTypes.objectOf).isRequired };
+CardList.propTypes = { products: PropTypes.arrayOf(PropTypes.objectOf).isRequired };
 
 export default CardList;

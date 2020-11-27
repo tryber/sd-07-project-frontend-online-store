@@ -18,6 +18,11 @@ class ListAllProducts extends React.Component {
     this.onSearchChange = this.onSearchChange.bind(this);
   }
 
+  onSearchChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
   getProduct() {
     this.setState(async () => {
       const { categoryId, term } = this.state;
