@@ -1,18 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addCartItem } from '../services/localStorageHandler';
+import * as ratingAPI from '../services/ratingAPI';
 import ProductAttributes from '../components/ProductAttributes';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import RatingForm from '../components/RatingForm';
 
 class ProductDetails extends React.Component {
   constructor() {
     super();
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick({ id, title, price }) {
     const cartItem = { id, title, price };
     addCartItem(cartItem);
+  }
+
+
+  handleSubmit(newRating) {
+    const { location: { state: { product: { id } } } } = this.props;
+    newRating.id = id;
+    ratingAPI.addRating(newRating);
+
   }
 
   render() {
@@ -49,6 +60,8 @@ class ProductDetails extends React.Component {
             Adicionar ao carrinho
           </button>
         </div>
+        <h3>Avaliações</h3>
+        <RatingForm onSubmit={ this.handleSubmit } />
       </div>
     );
   }
