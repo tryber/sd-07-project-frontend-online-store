@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductCard from '../components/ProductCard.jsx'
+import ProductCard from './ProductCard.js'
 import '../App.css'
 
 export default class SearchBar extends Component {
