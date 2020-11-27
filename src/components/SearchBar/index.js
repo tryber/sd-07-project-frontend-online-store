@@ -6,7 +6,7 @@ import './SearchBar.css';
 
 class SearchBar extends Component {
   render() {
-    const { handleChange, handleClick, purchasedProducts } = this.props;
+    const { handleChange, handleClick } = this.props;
     return (
       <div className="search-container">
         <input
@@ -29,10 +29,7 @@ class SearchBar extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </span>
         <Link
-          to={ {
-            pathname: '/shoppingcart',
-            purchasedProducts,
-          } }
+          to="/shoppingcart"
           data-testid="shopping-cart-button"
         >
           <img
@@ -48,7 +45,6 @@ class SearchBar extends Component {
 SearchBar.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
-  purchasedProducts: PropTypes.arrayOf.isRequired,
 };
 
 export default SearchBar;

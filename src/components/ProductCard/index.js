@@ -2,12 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './ProductCard.css';
+import * as lsapi from '../../services/lsapi';
 
 class ProductCard extends Component {
+  selectProduct(product) {
+    lsapi.setSelectedProduct(product);
+  }
+
+  addToCart(product) {
+    const DEFAULT_QUANTITY_PER_CLICK = 1;
+    lsapi.addToShoppingCartList(product, DEFAULT_QUANTITY_PER_CLICK);
+  }
+
   render() {
     const { product } = this.props;
-    const { product: { title, thumbnail, price } } = this.props;
-    const { purchasedProducts } = this.props;
+    const { title, thumbnail, price } = product;
     return (
       <div
         className="product-card"
@@ -31,6 +40,7 @@ class ProductCard extends Component {
           <Link
             data-testid="product-detail-link"
             to="/productdetail"
+            onClick={ () => this.selectProduct(product) }
           >
             Mais Detalhes
           </Link>
@@ -39,7 +49,7 @@ class ProductCard extends Component {
           <button
             type="submit"
             data-testid="product-add-to-cart"
-            onClick={ () => purchasedProducts(product) }
+            onClick={ (e) => { e.preventDefault(); this.addToCart(product); } }
           >
             Adicionar ao Carrinho
           </button>
@@ -56,7 +66,6 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
-  purchasedProducts: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

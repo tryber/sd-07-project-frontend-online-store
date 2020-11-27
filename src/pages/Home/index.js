@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { CategoryList, SearchBar, ProductList } from '../../components';
 import * as api from '../../services/api';
 import './Home.css';
@@ -15,35 +14,25 @@ class Home extends Component {
     };
     this.fetchProducts = this.fetchProducts.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.purchasedProducts = this.purchasedProducts.bind(this);
+    this.searchClick = this.searchClick.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchProducts();
-  }
-
-  purchasedProducts(product) {
-    this.setState((state) => {
-      const list = [...state.purchasedProducts, product];
-      return {
-        purchasedProducts: list,
-      };
-    });
-  }
-
-  fetchProducts() {
+  async fetchProducts() {
     const { categoryId, query } = this.state;
-    api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((result) => this.setState({ products: result.results }));
+    const result = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    this.setState({ products: result.results });
   }
 
   handleChange({ target }) {
     const { name, value } = target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => {
+      if (target.type === 'radio') {
+        this.fetchProducts();
+      }
+    });
   }
 
-  handleClick(event) {
+  searchClick(event) {
     event.preventDefault();
     this.fetchProducts();
   }
@@ -58,29 +47,16 @@ class Home extends Component {
         <section className="products-container">
           <SearchBar
             handleChange={ this.handleChange }
-            handleClick={ this.handleClick }
+            handleClick={ this.searchClick }
             purchasedProducts={ purchasedProducts }
           />
           <ProductList
             products={ products }
-            purchasedProducts={ this.purchasedProducts }
           />
         </section>
       </div>
     );
   }
 }
-
-Home.propTypes = {
-  location: PropTypes.shape({
-    purchasedProducts: PropTypes.array,
-  }),
-};
-
-Home.defaultProps = {
-  location: {
-    purchasedProducts: [],
-  },
-};
 
 export default Home;
