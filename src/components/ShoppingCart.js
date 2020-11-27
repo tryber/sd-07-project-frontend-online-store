@@ -36,8 +36,10 @@ class ShoppingCart extends Component {
   }
 
   decreaseFunc(id) {
+    const numberOne = 0;
     this.setState((previousState) => ({
-      [id]: previousState[id] - 1,
+      [id]: previousState[id] - 1 === numberOne ? previousState[id]
+        : previousState[id] - 1,
     }));
   }
 
