@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import chart from '../icon/chart.png';
 import voltar from '../icon/voltar.png';
-import PropTypes from 'prop-types';
 
 class DetailsProduct extends React.Component {
   render() {
-    const { state } = this.props.location;
-    const { product } = state;
-    const { title, thumbnail, price } = product;
+    const { title, thumbnail, price } = this.props.location.state.product;
+
     return (
       <div>
         <Link to="/shoppingCart" data-testid="shopping-cart-button">
