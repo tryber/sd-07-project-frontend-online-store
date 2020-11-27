@@ -9,9 +9,6 @@ class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-    this.state = {
-      product: [],
-    };
   }
 
   productNamePrice() {
@@ -29,7 +26,7 @@ class ProductDetails extends React.Component {
     const { location: { details: { product: { title, thumbnail } } } } = this.props;
     return (
       <div className="product-details-photo">
-        <img src={ thumbnail } alt={ `Foto do ${ title }` } />
+        <img src={ thumbnail } alt={`Foto do ${ title }`} />
       </div>
     );
   }
