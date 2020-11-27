@@ -12,30 +12,24 @@ class Home extends React.Component {
     this.select = this.select.bind(this);
     this.buscaCategoryAndQuery = this.buscaCategoryAndQuery.bind(this);
     this.atualizar = this.atualizar.bind(this);
+    this.localStorageCart = this.localStorageCart.bind(this);
     this.state = {
-      category: "",
-      searchValue: "",
+      category: '',
+      searchValue: '',
       list: {},
-    }
+    };
   }
 
   componentDidMount() {
     this.atualizar();
+    this.localStorageCart();
   }
 
   async buscaCategoryAndQuery(category, query) {
-    const lista = await api.getProductsFromCategoryAndQuery(category, query)
+    const lista = await api.getProductsFromCategoryAndQuery(category, query);
     this.setState({ list: lista });
   }
 
-  atualizar() {
-    const { searchValue, category } = this.state;
-    if(searchValue !== '' || category !== '') {
-      this.buscaCategoryAndQuery(category, searchValue);
-    } else {
-      this.setState({ list: {} })
-    }
-  }
   async onClick(texto) {
     await this.setState({ searchValue: texto });
     this.atualizar();
@@ -46,16 +40,33 @@ class Home extends React.Component {
     this.atualizar();
   }
 
+  atualizar() {
+    const { searchValue, category } = this.state;
+    if (searchValue !== '' || category !== '') {
+      this.buscaCategoryAndQuery(category, searchValue);
+    } else {
+      this.setState({ list: {} });
+    }
+  }
+
+  localStorageCart() {
+    if (!localStorage.getItem('cartItems')) {
+      const cartItemsStorage = [];
+      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+    }
+  }
+
   render() {
-    return(
+    const { list } = this.state;
+    return (
       <div>
-        <Caregories onChange={this.select} />
+        <Caregories onChange={ this.select } />
         <div>
           <div>
-            <SearchBar onClick={this.onClick} />
+            <SearchBar onClick={ this.onClick } />
             <ShoppingCartIcon />
           </div>
-          <List lista={this.state.list} />
+          <List lista={ list } />
         </div>
       </div>
     );
