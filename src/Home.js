@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
-import { getProductsFromQuery } from  '../src/services/api';
+import { getProductsFromCategoryAndQuery } from  '../src/services/api';
 import ProductCard from '../src/components/ProductCard';
-
 
 class ProductsList extends Component {
   constructor() {
@@ -19,29 +18,23 @@ class ProductsList extends Component {
 
 async fecthProducts() {
     const { demand } = this.state
-    const resultRequest = await getProductsFromQuery(demand);
-    console.log(resultRequest);
-    if(resultRequest === "") return <div>Nenhum produto foi encontrado</div>
+    const resultRequest = await getProductsFromCategoryAndQuery("", demand);
     this.setState({
         status: true,
         products: resultRequest.results,
     });
-    
 } 
 
 change({ target }) {
     const { name, value } = target;
     this.setState({ [name]: value });
 }
-
-
-
-
   render() {
     const { status, products } = this.state;
     return (
       <div>
         {(status) ? <ProductCard  products={products} /> : false}
+        {(products.length === 0 ) ?  <span>Nenhum produto foi encontrado</span> : false}
 
 
         
@@ -64,7 +57,6 @@ change({ target }) {
             </label>
             
           </div>
-    
       </div>
     );
   }
