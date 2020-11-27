@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Itens from './Itens';
 
@@ -12,7 +13,9 @@ class KartItens extends React.Component {
           <Itens key={ itens.id } itens={ itens } />
         ))}
         <h1>{`Valor Final da Compra: R$${value}`}</h1>
-        <button type="button">Finalizar Compra</button>
+        <Link data-testid="checkout-products" to="/pay">
+          Finalizar Compra
+        </Link>
       </div>
     );
   }
