@@ -8,12 +8,18 @@ class Details extends Component {
     this.state = {
       loading: true,
       product: [],
+      evaluation: '',
     };
     this.fetchAPI = this.fetchAPI.bind(this);
+    this.handleState = this.handleState.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.fetchAPI();
+    if (localStorage.getItem('evaluations') === null) {
+      localStorage.setItem('evaluations', JSON.stringify([['id', 'comentario']]));
+    }
   }
 
   async fetchAPI() {
@@ -25,6 +31,22 @@ class Details extends Component {
       loading: false,
       product: resp.results.find((product) => product.id === id),
     });
+  }
+
+  handleState(e) {
+    this.setState({
+      evaluation: e.target.value,
+    });
+  }
+
+  handleSubmit() {
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+    const { evaluation } = this.state;
+    const evaluations = JSON.parse(localStorage.getItem('evaluations'));
+    evaluations.push([id, evaluation]);
+    localStorage.setItem('evaluations', evaluations);
   }
 
   render() {
@@ -41,9 +63,17 @@ class Details extends Component {
           <form>
             <label htmlFor="type">
               adicione sua avaliação
-              <textarea data-testid="product-detail-evaluation" type="text" id="type" />
+              <textarea
+                data-testid="product-detail-evaluation"
+                type="text"
+                id="type"
+                onChange={this.handleState}
+              />
             </label>
           </form>
+          <button type="button" onClick={ this.handleSubmit }>
+            Submit
+          </button>
         </div>
       </div>
     );
