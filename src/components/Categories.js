@@ -1,11 +1,13 @@
 import React from 'react';
 import * as api from '../services/api';
+import Loading from './Loading';
 
 class Categories extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       categories: [],
+      loading: true,
     };
     this.requestApiCategories = this.requestApiCategories.bind(this);
   }
@@ -16,15 +18,17 @@ class Categories extends React.Component {
 
   async requestApiCategories() {
     this.setState({
+      loading: false,
       categories: await api.getCategories(),
     });
-    console.log(this.state.categories)
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories, loading } = this.state;
+    const { handleCatChange } = this.props;
     return (
       <div>
+        {loading ? <Loading /> : ''}
         {categories.map((category) => {
           console.log('');
           return (
@@ -35,7 +39,7 @@ class Categories extends React.Component {
                 id={category.id}
                 name="gender"
                 value={ category.name }
-                onChange={this.props.handleCatChange}
+                onChange={handleCatChange}
               />
               {category.name}
               <br />

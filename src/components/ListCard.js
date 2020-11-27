@@ -1,40 +1,41 @@
 import React from 'react';
 import ItemCard from './ItemCard';
-import * as api from '../services/api'
+//import * as api from '../services/api'
 
 class ListCard extends React.Component {
   constructor(props) {
-    super()
-    this.state = {
-      searchProd: 'games',
-      product: [],
+    super(props)
+    this.state = {    
+      //product: [],
     }
-    this.requestApi = this.requestApi.bind(this);
+    //this.requestApi = this.requestApi.bind(this);
   }
 
-  componentDidMount() {
+ /*  componentDidMount() {
     this.requestApi();
-  }
+  } */
 
-  async requestApi() {
-    const { searchProd } = this.state;
-    this.setState({
-      product: await api.getProductsFromCategoryAndQuery(searchProd), 
-    });
-    console.log(this.state.product)
-  }
+ /*  async requestApi() {
+    const { search, category } = this.props;
+    const teste = await api.getProductsFromCategoryAndQuery(category, search);
+    console.log(teste)
+      this.setState({
+        product: await api.getProductsFromCategoryAndQuery(category, search) , 
+      });   
+  } */
 
   render() {
-      const { product } = this.state;
-    return (<p>teste</p>
-      // <div>
-      //   {product.map((prod) => {
-      //     return (
-      //       <ItemCard title={prod.title} foto={prod.thumbnail} preco={prod.price} />  
-      //     )
-      //   })}
-              
-      // </div>
+      const { product } = this.props;
+      let teste = product === undefined ? [] : product;      
+      console.log(product)
+    return (
+      <div className="list-card-product" >
+       {teste.map((prod) => {
+          return (
+          <ItemCard key={prod.id} title={prod.title} image={prod.thumbnail} price={prod.price} />  
+         )
+        })}          
+      </div>
     );
   }
 }
