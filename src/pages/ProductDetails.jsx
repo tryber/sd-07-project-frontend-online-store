@@ -6,31 +6,31 @@ import Stars from '../components/Stars';
 
 class ProductDetails extends React.Component {
   constructor() {
-    super()
+    super();
     this.apiRequest = this.apiRequest.bind(this);
     this.handleFitered = this.handleFitered.bind(this);
     this.checkCartOnAdd = this.checkCartOnAdd.bind(this);
     this.getnota = this.getnota.bind(this);
     this.butfunc = this.butfunc.bind(this);
-    this.inputs =this.inputs.bind(this);
+    this.inputs = this.inputs.bind(this);
     this.state = {
       itemRecived: {},
-      Email: "",
-      nota: "",
-      comentario: "",
+      Email: '',
+      nota: '',
+      comentario: '',
       comentFix: [],
-    }
+    };
   }
 
   async apiRequest(params) {
-    const productList = await api.getProductsFromCategoryAndQuery(params, "");
+    const productList = await api.getProductsFromCategoryAndQuery(params, '');
     this.handleFitered(productList);
   }
 
   handleFitered(productList) {
     const { id } = this.props.match.params;
     const { results } = productList;
-    const productRecived = results.filter(produc => produc.id === id);
+    const productRecived = results.filter((produc) => produc.id === id);
     this.setState({ itemRecived: productRecived[0] });
   }
 
@@ -47,7 +47,7 @@ class ProductDetails extends React.Component {
 
   checkCartOnAdd(idItem) {
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
-    for (let i = 0; i  < cartItemsStorage.length; i += 1 ) {
+    for (let i = 0; i < cartItemsStorage.length; i += 1) {
       if (cartItemsStorage[i].id === idItem) {
         cartItemsStorage[i].qtd += 1;
         localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
@@ -57,7 +57,7 @@ class ProductDetails extends React.Component {
     return true;
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     const { category } = this.props.match.params;
     this.apiRequest(category);
   }
@@ -69,13 +69,13 @@ class ProductDetails extends React.Component {
   butfunc() {
     const { Email, comentario, nota, comentFix } = this.state;
     const avaliação = { Email, comentario, nota };
-    if (Email !== "") {
-      this.setState({ comentFix: comentFix.concat(avaliação) })
+    if (Email !== '') {
+      this.setState({ comentFix: comentFix.concat(avaliação) });
     }
   }
 
   inputs(event) {
-    this.setState({ [event.target.name]: event.target.value })
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
@@ -88,11 +88,19 @@ class ProductDetails extends React.Component {
             <Link to="/">Voltar icon</Link>
             <ShoppingCartIcon />
           </div>
-          <img src={thumbnail} alt={title}/>
+          <img src={ thumbnail } alt={ title } />
           <div>
             <h1 data-testid="product-detail-name">{title}</h1>
-            <h3>R$: {price}</h3>
-            <button onClick={() => this.handleClick()} data-testid="product-detail-add-to-cart">Adicionar ao Carrinho</button>
+            <h3>
+              R$:
+              {price}
+            </h3>
+            <input
+              type="button"
+              onClick={ () => this.handleClick() }
+              data-testid="product-detail-add-to-cart"
+              value="Adicionar ao Carrinho"
+            />
           </div>
         </div>
         <div>
@@ -104,28 +112,28 @@ class ProductDetails extends React.Component {
                 type="text"
                 name="Email"
                 placeholder="E-mail"
-                value={Email}
-                onChange={this.inputs}
+                value={ Email }
+                onChange={ this.inputs }
                 required
               />
-              <Stars astronomo={this.getnota}/>
+              <Stars astronomo={ this.getnota } />
             </div>
             <textarea
               type="text"
               name="comentario"
-              placeholder="Comentario
-              (opcional)" value={comentario}
-              rows={4}
-              onChange={this.inputs}
+              placeholder="Comentario(opcional)"
+              value={ comentario }
+              rows={ 4 }
+              onChange={ this.inputs }
             />
-            <input type="button" value="enviar" onClick={this.butfunc}/>
+            <input type="button" value="enviar" onClick={ this.butfunc } />
           </form>
           <div>
             //comentarios
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
