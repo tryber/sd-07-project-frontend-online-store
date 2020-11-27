@@ -10,7 +10,8 @@ class ListaDeCategorias extends React.Component {
           categories.map((category) =>
             <Categoria
               key={ category.name }
-              category={ category }
+              name={ category.name }
+              id={ category.id }
             />)
         }
       </ul>

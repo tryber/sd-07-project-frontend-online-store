@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class CampoDeBusca extends React.Component {
   constructor() {
@@ -16,19 +17,21 @@ class CampoDeBusca extends React.Component {
   }
   render() {
     const { query, handleInputChange } = this.props;
+    const { search } = this.state;
+
     return (
       <div>
         <input
           data-testid="query-input"
           type="text"
-          value={ this.state.search }
+          value={ search }
           onChange={ this.changeSearchState }
         />
         <button
           data-testid="query-button"
           type="button"
           value={ query }
-          onClick={ () => handleInputChange(this.state.search) }
+          onClick={ () => handleInputChange(search) }
         >
           Pesquisar
         </button>
@@ -38,3 +41,9 @@ class CampoDeBusca extends React.Component {
 }
 
 export default CampoDeBusca;
+
+CampoDeBusca.propTypes = {
+  query: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  
+}

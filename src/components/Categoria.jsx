@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Categoria extends React.Component {
   render() {
-    const { id, name } = this.props.category;
+    const { id, name } = this.props;
     return (
       <li
         key={ id }
@@ -15,3 +16,8 @@ class Categoria extends React.Component {
 }
 
 export default Categoria;
+
+Categoria.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+}
