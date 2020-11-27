@@ -5,7 +5,6 @@ import './ProductCard.css';
 import * as lsapi from '../../services/lsapi';
 
 class ProductCard extends Component {
-
   selectProduct(product) {
     console.log('set', product);
     lsapi.setSelectedProduct(product);
