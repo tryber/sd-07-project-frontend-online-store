@@ -48,8 +48,8 @@ class ShoppingCart extends React.Component {
         </div>
         <div>
           <div>
-          {cartItems
-            .map((item) => <CartItens key={item.id} item={item} />)}</div>
+            {cartItems.map((item) =><CartItens key={ item.id } item={ item } />)}
+          </div>
         </div>
         <h2>Valor Total da Compra:</h2>
 

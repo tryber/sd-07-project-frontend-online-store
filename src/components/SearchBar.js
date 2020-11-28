@@ -46,7 +46,7 @@ class SearchBar extends React.Component {
       <div>
         <header className="header-container">
           <Link to="/">
-            <img className="logo" src={logo} alt="logo-react" />
+            <img className="logo" src={ logo } alt="logo-react" />
           </Link>
           <div className="search">
             <div className="search-bar-content">
@@ -54,9 +54,9 @@ class SearchBar extends React.Component {
                 data-testid="query-input"
                 className="search-bar"
                 type="text"
-                value={this.state.searchElement}
+                value={ this.state.searchElement }
                 name="searchElement"
-                onChange={this.changeStateValue}
+                onChange={ this.changeStateValue }
               />
             </div>
             <div className="home-initial-message" data-testid="home-initial-message">
@@ -67,18 +67,18 @@ class SearchBar extends React.Component {
             <img
               className="shopping-cart-icon"
               alt="Shopping cart icon"
-              src={shoppingCart}
+              src={ shoppingCart }
             />
           </Link>
           <button
-            data-testid="query-button" onClick={this.fetchApiByQuery} >Buscar</button>
+            data-testid="query-button" onClick={ this.fetchApiByQuery } >Buscar</button>
         </header>
         <div>
-          <Categories handleChange={this.changeStateValue}/>
+          <Categories handleChange={ this.changeStateValue }/>
         </div>
         <div>
           {arrayOfItemByInputedText
-            .map((item) => <Card key={item.id} products={item} />)}
+            .map((item) => <Card key={ item.id } products={ item } />)}
         </div>
       </div>
     );

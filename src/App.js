@@ -11,11 +11,12 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/cart" component={ShoppingCart} />
-          <Route exact path="/cart/checkout" component={Checkout} />
-          <Route exact path="/details/:id/category/:category" render={(props) => <ProductDetail {...props} />} />
-          <Route component={() => <h1>Página não existe</h1>} />
+          <Route exact path="/" component={ Home } />
+          <Route exact path="/cart" component={ ShoppingCart } />
+          <Route exact path="/cart/checkout" component={ Checkout } />
+          <Route exact path="/details/:id/category/:category" render={ (props) =>
+            <ProductDetail { ...props } />} />
+          <Route component={ () => <h1>Página não existe</h1> } />
         </Switch>
       </Router>
     </div>
