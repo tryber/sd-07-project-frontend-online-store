@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types';
 
 class CartIcon extends Component {
   render() {
@@ -18,5 +19,7 @@ class CartIcon extends Component {
     );
   }
 }
+
+CartIcon.Proptypes = { cartItens: Proptypes.arrayOf(Proptypes.object).isRequired }
 
 export default CartIcon;

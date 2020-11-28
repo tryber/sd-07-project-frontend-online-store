@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CartItem from '../components/CartItem';
+
+import Proptypes from 'prop-types';
+
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -128,5 +130,20 @@ class ShoppingCart extends Component {
     );
   }
 }
+
+ShoppingCart.propTypes = {
+  products: Proptypes.shape({
+    key: Proptypes.number.isRequired,
+    id: Proptypes.string.isRequired,
+    title: Proptypes.string.isRequired,
+    price: Proptypes.number.isRequired,
+    image: Proptypes.string.isRequired,
+    number: Proptypes.number.isRequired,
+    sumItem: Proptypes.func.isRequired,
+    subtractItem: Proptypes.func.isRequired,
+    removeItem: Proptypes.func.isRequired,
+  }).isRequired,
+};
+
 
 export default ShoppingCart;

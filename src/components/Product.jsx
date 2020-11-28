@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Proptypes from 'prop-types';
 
 class Product extends Component {
   render() {
@@ -27,5 +28,13 @@ class Product extends Component {
     );
   }
 }
+
+Product.propTypes = {
+  id: Proptypes.string.isRequired,
+  title: Proptypes.string.isRequired,
+  price: Proptypes.number.isRequired,
+  thumbnail: Proptypes.string.isRequired,
+  actualizeCart: Proptypes.func.isRequired,
+};
 
 export default Product;
