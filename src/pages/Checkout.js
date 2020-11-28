@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CheckoutProductItem from '../components/CheckoutProductItem';
+import CheckoutBuyerForm from '../components/CheckoutBuyerForm';
 
 class Checkout extends Component {
   constructor() {
@@ -42,7 +43,7 @@ class Checkout extends Component {
           {' '}
           {cartSum}
         </p>
-        <h2>Informações do Comprador</h2>
+        <CheckoutBuyerForm />
       </div>
     );
   }
