@@ -13,7 +13,6 @@ class ProductList extends Component {
     const { product } = this.props;
     const { id, title, price } = product;
     const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
-
     const itemsIndex = items.findIndex((element) => element.id === id);
     const flag = -1;
     if (itemsIndex === flag) {
@@ -21,7 +20,6 @@ class ProductList extends Component {
     } else {
       items[itemsIndex].qtd += 1;
     }
-
     localStorage.setItem('itemsCart', JSON.stringify(items));
   }
 
