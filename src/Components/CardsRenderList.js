@@ -17,7 +17,7 @@ class CardsRenderList extends React.Component {
 }
 
 CardsRenderList.propTypes = {
-  products: PropTypes.object.isRequired,
+  products: PropTypes.objectOf.isRequired,
   termo: PropTypes.string.isRequired,
 };
 

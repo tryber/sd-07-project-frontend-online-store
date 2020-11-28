@@ -7,7 +7,7 @@ class CategorieCard extends React.Component {
     const { category, onclick } = this.props;
     return (
       <div>
-        <button className="category" data-testid="category" onClick={ onclick }>
+        <button className="category" type="button" data-testid="category" onClick={ onclick }>
           { category.name }
         </button>
       </div>

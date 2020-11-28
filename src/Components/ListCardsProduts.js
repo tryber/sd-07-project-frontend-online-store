@@ -21,12 +21,16 @@ class ListCardsProduts extends React.Component {
         <Link
           className="link-card"
           data-testid="product-detail-link"
-          to={`/product/${parametros}`}
+          to={ `/product/${parametros}` }
         >
-          <h3>{title}</h3>
-          <img src={ thumbnail } alt={`${title} sprite`} />
+          <h3>
+            { title }
+          </h3>
+          <img src={ thumbnail } alt={ `${title} sprite` } />
         </Link>
-        <h4>R$ { price }</h4>
+        <h4>R$ 
+          { price }
+        </h4>
         <button className="button-product" type="button" onClick={ this.handleClick }>
           ADICIONAR NO CARRINHO
         </button>
@@ -37,8 +41,13 @@ class ListCardsProduts extends React.Component {
 
 
 CardsRenderList.propTypes = {
-  products: PropTypes.object.isRequired,
+  products: PropTypes.objectOf.isRequired,
+  category_id: PropTypes.string.isRequired,
   termo: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  thumbnail: PropTypes.img.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
 };
 
 export default ListCardsProduts;
