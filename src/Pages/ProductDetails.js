@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RatingForm from '../Components/RatingForm';
+import AddToCartButton from '../Components/AddToCartButton';
 
 class ProductDetails extends React.Component {
   render() {
+    // const { product } = this.props;
     const { location: { state: product } } = this.props;
     const { title, thumbnail, price } = product;
     return (
@@ -13,6 +15,7 @@ class ProductDetails extends React.Component {
         <h4>{`R$ ${price}`}</h4>
         <p>Especificação</p>
         <RatingForm />
+        <AddToCartButton product={ product } />
       </div>
     );
   }
