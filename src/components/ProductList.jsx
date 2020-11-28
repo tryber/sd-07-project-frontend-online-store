@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
-
 export default class ProductList extends React.Component {
   render() {
     const { products } = this.props;
@@ -15,7 +14,6 @@ export default class ProductList extends React.Component {
     );
   }
 }
-
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

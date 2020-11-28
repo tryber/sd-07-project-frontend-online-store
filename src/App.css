@@ -6,30 +6,24 @@
   padding: 20px;
   width: 300px;
 }
-
 .product-list {
   display: flex;
   flex-direction: row;
 }
-
 .main-content {
   display: flex;
 }
-
 .category-filter {
   border: solid 1px black;
   border-radius: 3px;
   padding: 10px;
 }
-
 .categorie-item {
   margin: 10px;
 }
-
 .shopping-cart-icon {
   width: 35px;
 }
-
 .search-bar-content {
   display: flex;
   flex-direction: row;
