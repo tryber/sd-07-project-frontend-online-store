@@ -4,10 +4,54 @@ import PropTypes from 'prop-types';
 import '../style/productList.css';
 
 class ProductList extends Component {
+  constructor(props) {
+    super(props);
+    this.saveItem = this.saveItem.bind(this);
+  }
+
+  saveItem() {
+    const { product } = this.props;
+    const { id, title, price } = product;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
+
+    const itemsIndex = items.findIndex((element) => element.id === id);
+    const flag = -1;
+    if (itemsIndex === flag) {
+      items.push({ id, title, price, qtd: 1 });
+    } else {
+      items[itemsIndex].qtd += 1;
+    }
+
+    localStorage.setItem('itemsCart', JSON.stringify(items));
+  }
+
   render() {
     const { product } = this.props;
     const { id, title, thumbnail, price, shipping } = product;
     return (
+      <div>
+        <div>
+          <Link to={ `/${id}` } data-testid="product-detail-link">
+            <div data-testid="product">
+              <h4>{title}</h4>
+              <img src={ thumbnail } alt="Produto listado" />
+              <p>{price}</p>
+            </div>
+          </Link>
+        </div>
+        <div>
+          {/* <ButtonAddCart
+            data-testid="product-add-to-cart"
+            product={ this.teste }
+          /> */}
+          <button
+            data-testid="product-add-to-cart"
+            type="submit"
+            name="button"
+            onClick={ this.saveItem }
+          >
+            Clique Aqui
+          </button>
       <Link to={ `/${id}` } data-testid="product-detail-link">
         <div data-testid="product">
           <h4>{title}</h4>
@@ -15,7 +59,7 @@ class ProductList extends Component {
           <p>{price}</p>
           {shipping.free_shipping ? <p data-testid="free-shipping">Frete Gratis!</p> : ''}
         </div>
-      </Link>
+      </div>
     );
   }
 }
