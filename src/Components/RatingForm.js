@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormControlLabel, FormControl, RadioGroup, Radio, FormLabel } from '@material-ui/core';
 
 class RatingForm extends React.Component {
   constructor() {
@@ -12,14 +11,6 @@ class RatingForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // handleChange({ target }) {
-  //   const { value, checked } = target;
-  //   this.setState({ rating: value });
-  //   if (checked) this.setState({ selected: checked });
-  //   console.log(value);
-  //   console.log(checked);
-  // }
-
   handleChange({ target }) {
     const { name } = target;
     this.setState({ [name]: target.value });
@@ -29,16 +20,6 @@ class RatingForm extends React.Component {
     const { rating, email, message } = this.state;
     return (
       <div>
-        {/* <FormControl>
-          <FormLabel component="legend">Avalição</FormLabel>
-          <RadioGroup row aria-label="stars" name="star" value={ rating } onChange={ this.handleChange }>
-            <FormControlLabel value={ 1 } control={ <Radio /> } label="1" />
-            <FormControlLabel value={ 2 } control={ <Radio /> } label="2" />
-            <FormControlLabel value={ 3 } control={ <Radio /> } label="3" />
-            <FormControlLabel value={ 4 } control={ <Radio /> } label="4" />
-            <FormControlLabel value={ 5 } control={ <Radio /> } label="5" />
-          </RadioGroup>
-        </FormControl> */}
         <form>
           Anavliações
           <label htmlFor="email">
