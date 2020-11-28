@@ -23,10 +23,6 @@ class SearchBar extends React.Component {
     this.productListLoaded = this.productListLoaded.bind(this);
   }
 
-  componentDidMount() {
-    this.filterCategoryAndQuery();
-  }
-
   handleSearchChange({ target }) {
     const { name, value } = target;
     this.setState({ [name]: value });
@@ -43,9 +39,9 @@ class SearchBar extends React.Component {
 
   async filterCategoryAndQuery() {
     const { categoryId, query } = this.state;
-    const { results } = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    const filterProduct = await api.getProductsFromCategoryAndQuery(categoryId, query);
     this.setState({
-      products: results,
+      products: filterProduct.results,
       // notFound: false,
     });
   }
