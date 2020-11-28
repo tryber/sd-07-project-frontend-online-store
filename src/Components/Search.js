@@ -1,12 +1,11 @@
 import React from 'react';
-import '../App.css';
-import ListAllProducts from './ListAllProducts';
+import '../Pages/Home.css';
 
 class Search extends React.Component {
   render() {
     return (
-      <div>
-        <ListAllProducts />
+        <div className="header-link-cart">
+        {/* colocar o input, button aqui */}
       </div>
     );
   }

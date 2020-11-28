@@ -1,13 +1,12 @@
 import React from 'react';
+import '../Pages/Home.css';
 
 class ProductNotFound extends React.Component {
   render() {
     return (
-      <div>
-        <p data-testid="home-initial-message">
-          Nenhum produto foi encontrado
-        </p>
-      </div>
+      <div className="header-initial-message">
+          <p>Nenhum produto foi encontrado</p>
+     </div>
     );
   }
 }

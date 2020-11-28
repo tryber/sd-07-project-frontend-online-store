@@ -7,60 +7,54 @@ class ProductDetails extends Component {
     super();
     this.state = {
       product: {},
-      modelo: '',
-      marca: '',
-      condicoes: '',
+      modelo: 'nao informado',
+      marca: 'nao informado',
+      condicoes: 'nao informado',
     };
     this.getDetailsProduct = this.getDetailsProduct.bind(this);
   }
+
   componentDidMount() {
     this.getDetailsProduct();
   }
-  getDetailsProduct() {
-    this.setState(async () => {
-      const { match: { params: { id } } } = this.props;
-      const { match: { params: { category_id } } } = this.props;
-      const { match: { params: { termo } } } = this.props;
-      const pegaproduct = await api.getProductsFromCategoryAndQuery(category_id, termo);
-      const produto = pegaproduct.results.filter(
-        (productOne) => productOne.id === id,
-      );
-      const marca = produto[0].attributes[0].value_name;
-      const condicoes = produto[0].attributes[1].value_name;
-      const modelo = produto[0].attributes[2].value_name;
-      this.setState({ product: produto[0], marca, modelo, condicoes });
-    });
-  }
+
+  async getDetailsProduct() {
+    const parametros = this.props.match.params.parametros;
+
+    const categoria = parametros.split("-")[0];
+    const termo = parametros.split("-")[1];
+    const id = parametros.split("-")[2];
+
+    const { results } = await api.getProductsFromCategoryAndQuery(
+      categoria,
+      termo
+    );
+    const produto = results.filter(
+      (productOne) => productOne.id === id
+    );
+    const marca = produto[0].attributes[0].value_name;
+    const condicoes = produto[0].attributes[1].value_name;
+    const modelo = produto[0].attributes[2].value_name;
+    this.setState({ product: produto[0], marca, modelo, condicoes });
+ }
 
   render() {
-    const { product, marca, modelo, condicoes } = this.state;
+    const { product, marca = "Nao informado", modelo = "Nao informado", condicoes = "Nao informado" } = this.state;
     const { title, thumbnail, price } = product;
     return (
       <div className="product-card-details">
-        <p data-testid="product-detail-name">{title}</p>
+        <h1 data-testid="product-detail-name">{title}</h1>
         <div className="product-card-image-dev">
           <img
             className="product-card-image-details"
             alt="Imagem do Produto"
-            src={ `${thumbnail}` }
+            src={thumbnail}
           />
         </div>
-        <p data-testid="product-cart-product-price">
-          R$
-          {price}
-        </p>
-        <p data-testid="product-cart-product-brand">
-          Marca: 
-          {marca}
-        </p>
-        <p data-testid="product-cart-product-model">
-          Modelo: 
-          {modelo}
-        </p>
-        <p data-testid="product-cart-product-condition">
-          Condições do Produto: 
-          {condicoes}
-        </p>
+        <p>R$ {price}</p>
+        <p>Marca: {marca}</p>
+        <p>Modelo: {modelo} </p>
+        <p>Condições do Produto: {condicoes}</p>
       </div>
     );
   }

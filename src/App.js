@@ -5,8 +5,6 @@ import Cart from './Pages/Cart';
 import ProductDetails from './Pages/ProductDetails';
 import './App.css';
 
-
-
 function App() {
   return (
     <div className="App">
@@ -14,7 +12,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={ Home } />
           <Route exact path="/cartBuy" component={ Cart } />
-          <Route exact path="/product/:category_id/:termo/:id" component={ ProductDetails } />
+          <Route exact path="/product/:parametros" component={ ProductDetails } />
         </Switch>
       </BrowserRouter>
     </div>
