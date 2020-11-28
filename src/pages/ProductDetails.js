@@ -7,7 +7,7 @@ import {
   addProductInLocalStorage,
   recoveryProductsFromLocalStorage,
 } from '../services/cartFunctions';
-import {  
+import {
   recoveryReviewsFromLocalStorage,
 } from '../services/reviewsFunctions';
 
@@ -20,25 +20,25 @@ class ProductDetails extends Component {
     this.state = {
       loading: true,
       product: {},
-      shoppingCartItems: [],      
-    }
+      shoppingCartItems: [],
+    };
   }
 
   componentDidMount() {
-    this.APIquery();    
-    recoveryReviewsFromLocalStorage();    
+    this.APIquery();
+    recoveryReviewsFromLocalStorage();
   }
 
-    async APIquery() {
+  async APIquery() {
     this.setState(
       { loading: true },
       async () => {
-        const { id } = this.props.match.params;        
+        const { id } = this.props.match.params;
         const productID = await api.fetchAPIByID(id);
-        console.log(productID);
+        // console.log(productID);
         this.setState({
           loading: false,
-          product: productID,                  
+          product: productID,
         });
       },
     );
@@ -51,8 +51,8 @@ class ProductDetails extends Component {
     });
     const { target } = event;
     const { id } = target;
-    const { product} = this.state;
-    
+    const { product } = this.state;
+
     await this.setState((previousState) => ({
       shoppingCartItems: [...previousState.shoppingCartItems, product],
     }));
@@ -62,28 +62,37 @@ class ProductDetails extends Component {
 
   render() {
     const { product, loading } = this.state;
-    const { title, price, pictures, attributes } = product;    
+    const { title, price, pictures, attributes } = product;
 
-    console.log(product);
+    // console.log(product);
 
     if (loading === true) return <Loading />;
 
     return (
       <div>
         <div className="product-detail">
-        <div className="container-title-image">
-          <h2 data-testid="product-detail-name">{title} - R${price}</h2>
-          <img 
-            className="product-detail-image" 
-            src={pictures[0].url} 
-            alt={`imagem do produto ${title}`}
-          />
-        </div>        
-        <ul className="container-list">
-          {attributes.map(({ name, value_name, id }) => 
-          <li key ={id}>{name}: {value_name}</li>)}
-        </ul>
-        
+          <div className="container-title-image">
+            <h2 data-testid="product-detail-name">
+              {title}
+              {' '}
+              - R$
+              {price}
+            </h2>
+            <img
+              className="product-detail-image"
+              src={ pictures[0].url }
+              alt={ `imagem do produto ${title}` }
+            />
+          </div>
+          <ul className="container-list">
+            {attributes.map(({ name, value_name, id }) => (<li key={ id }>
+              {name}
+              :
+              {' '}
+              {value_name}
+            </li>))}
+          </ul>
+
         </div>
         <AddSpecificProduct addShoppingCartItems={ this.addShoppingCartItems } />
         <ReviewList />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ReviewForm from '../components/ReviewForm';
-import reviews from '../services/reviews';
+import ReviewForm from './ReviewForm';
+// import reviews from '../services/reviews';
 import {
   addReviewInLocalStorage,
   recoveryReviewsFromLocalStorage,
@@ -13,56 +13,64 @@ class ReviewList extends Component {
     this.onClick = this.onClick.bind(this);
 
     this.state = {
-      reviewsObj: reviews,
-    }    
+      reviewsObj: recoveryReviewsFromLocalStorage(),
+    };
   }
 
-  componentDidMount() {
-    addReviewInLocalStorage(this.state.reviewsObj);
-  } 
-
   async onClick(reviewData) {
+    const currentReviews = recoveryReviewsFromLocalStorage();
+    const comparatorLengthNumber = 0;
+    if (currentReviews.length !== comparatorLengthNumber) {
+      const nextId = currentReviews[currentReviews.length - 1].id + 1;
+      reviewData.id = nextId;
+    } else {
+      const nextId = 1;
+      reviewData.id = nextId;
+    }
+    this.setState((previousState) => ({
+      reviewsObj: [...previousState.reviewsObj, reviewData],
+    }), () => {
+      const { reviewsObj } = this.state;
+      addReviewInLocalStorage(reviewsObj);
+    });
     // const oldList = recoveryReviewsFromLocalStorage();
     // this.setState({
     //   reviewsObj: oldList,
     // })
-    // console.log(oldList);    
-    const currentReviews = this.state.reviewsObj;
-    console.log(currentReviews);
-    const nextId = currentReviews[currentReviews.length - 1].id + 1;
-    console.log(nextId);
-    const newReview = { ...reviewData, id: nextId };   
-    console.log(newReview) 
-    this.setState((previousState) => ({
-      reviewsObj: [...previousState.reviewsObj, newReview],
-    }, () => {
-      addReviewInLocalStorage(this.state.reviewsObj);
-      console.log(recoveryReviewsFromLocalStorage());
-      const newReviewsList = this.state.reviewsObj;
-      console.log(newReviewsList);
-    }));
+    // console.log(oldList);
+    // console.log(currentReviews);
+    // console.log(nextId);
+    // const newReview = { ...reviewData, id: nextId };
+    // console.log(newReview)
+    // this.setState((previousState) => ({
+    //   reviewsObj: [...previousState.reviewsObj, reviewData],
+    // }, () => {
+    //   addReviewInLocalStorage(this.state.reviewsObj);
+    //   // console.log(recoveryReviewsFromLocalStorage());
+    //   const newReviewsList = this.state.reviewsObj;
+    //   // console.log(newReviewsList);
+    // }));
     // const newReviewsList = this.state.reviewsObj
     // console.log(newReviewsList);
-    // addReviewInLocalStorage(newReviewList);    
+    // addReviewInLocalStorage(newReviewList);
   }
 
-  render() {  
+  render() {
     const { reviewsObj } = this.state;
 
-    return (      
+    return (
       <div>
-        <ReviewForm onClick={this.onClick} />
+        <ReviewForm onClick={ this.onClick } />
         <div>
-          {reviewsObj.map(({email, rating, comments, id}) =>
-            <div key={id}>
+          {reviewsObj.map(({ email, rating, comments, id }) => (
+            <div key={ id }>
               <span>{email}</span>
               <span>{rating}</span>
               <p>{comments}</p>
-            </div>
-          )}
+            </div>))}
         </div>
       </div>
-    )
+    );
   }
 }
 

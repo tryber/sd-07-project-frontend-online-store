@@ -11,7 +11,7 @@ class IndividualCard extends Component {
           <h4>{ title }</h4>
           <img src={ image } alt="titulo" />
           <p>{ price }</p>
-          <Link to={ `/product/${id}` }>
+          <Link to={ `/product/${id}` } data-testid="product-detail-link">
             <button type="button" className="bt-det">
               Ver detalhes
             </button>
