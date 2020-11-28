@@ -35,7 +35,7 @@ class ProductDetails extends React.Component {
     const {
       location: {
         details: {
-          product: { id, title, price, thumbnail } ,
+          product: { id, title, price, thumbnail },
         },
       },
     } = this.props;

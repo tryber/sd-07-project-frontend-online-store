@@ -25,14 +25,14 @@ class ProductInCart extends React.Component {
     return (
       <div>
         {products.map((product) => (
-          <div className="product" key={ product.product.id }>
+          <div className="product" key={ product.title }>
             <button type="button" onClick={ () => handleClick(product) }>X</button>
-            <img src={ product.product.thumbnail } alt="Product" />
+            <img src={ product.thumbnail } alt="Product" />
             <h3
               data-testid="shopping-cart-product-name"
               className="product-name"
             >
-              {product.product.title}
+              {product.title}
             </h3>
           </div>))}
         <p className="total-price">
