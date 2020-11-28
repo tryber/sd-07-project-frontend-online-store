@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ShoppingCartButton from '../components/ShoppingCartButton';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -19,9 +20,11 @@ class ProductDetails extends React.Component {
   render() {
     const { location } = this.props;
     const { title, thumbnail, price, attributes } = location.product;
+    console.log(attributes);
 
     return (
       <div>
+        <ShoppingCartButton />
         <div>
           <h1 data-testid="product-detail-name">
             { title }
@@ -33,7 +36,7 @@ class ProductDetails extends React.Component {
           <button
             data-testid="product-detail-add-to-cart"
             type="button"
-            onClick={() => this.addInCart(title)}
+            onClick={ () => this.addInCart(title) }
           >
             Adicionar ao Carrinho
           </button>
@@ -58,7 +61,7 @@ ProductDetails.propTypes = {
       title: PropTypes.string.isRequired,
       thumbnail: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
-      attributes: PropTypes.array.isRequired,
+      attributes: PropTypes.arrayOf(PropTypes.object).isRequired,
     }).isRequired,
   }).isRequired,
 };

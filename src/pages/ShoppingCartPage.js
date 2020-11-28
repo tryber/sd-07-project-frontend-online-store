@@ -4,6 +4,8 @@ class ShoppingCartPage extends React.Component {
   constructor() {
     super();
 
+    this.updateState = this.updateState.bind(this);
+
     this.state = {
       products: [],
       amount: [],
@@ -13,10 +15,14 @@ class ShoppingCartPage extends React.Component {
   componentDidMount() {
     const products = Object.keys(localStorage);
     const amount = Object.values(localStorage);
+    this.updateState(products, amount);
+  }
+
+  updateState(products, amount) {
     this.setState({
       products,
       amount,
-    })
+    });
   }
 
   render() {
@@ -25,7 +31,7 @@ class ShoppingCartPage extends React.Component {
     return (
       <div>
         {products.map((productName, index) => (
-          <div key={productName}>
+          <div key={ productName }>
             <p data-testid="shopping-cart-product-name">
               {productName}
             </p>
@@ -36,10 +42,7 @@ class ShoppingCartPage extends React.Component {
         ))}
         {
           !products.length
-          &&
-          <h1 data-testid="shopping-cart-empty-message">
-            Seu carrinho está vazio
-          </h1>
+          && <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
         }
       </div>
     );
