@@ -20,7 +20,6 @@ class ProductDetails extends React.Component {
           product={ product } />
         <RatingForm />
         <AddToCartButton product={ product } />
-      
       </div>
     );
   }
