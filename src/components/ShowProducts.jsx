@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Product from './Product';
 import Proptypes from 'prop-types';
+import Product from './Product';
 
 class ShowProducts extends Component {
   render() {
@@ -22,7 +22,13 @@ class ShowProducts extends Component {
 }
 
 ShowProducts.Proptypes = {
-  products: Proptypes.arrayOf(Proptypes.object).isRequired,
+  products: Proptypes.shape({
+    key: Proptypes.number.isRequired,
+    id: Proptypes.string.isRequired,
+    title: Proptypes.string.isRequired,
+    price: Proptypes.number.isRequired,
+    thumbnail: Proptypes.string.isRequired,
+  }).isRequired,
   actualizeCart: Proptypes.func.isRequired,
 };
 
