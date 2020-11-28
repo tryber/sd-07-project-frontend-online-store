@@ -13,7 +13,9 @@ class ProductDetails extends React.Component {
         <img src={ thumbnail } alt="Imagem" />
         <h4>{`R$ ${price}`}</h4>
         <p>Especificação</p>
-        <AddToCartButton product={ product } />
+        <AddToCartButton 
+         datatestid="product-detail-add-to-cart"
+         product={ product } />
       </div>
     );
   }
