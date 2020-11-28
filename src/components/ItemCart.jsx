@@ -26,10 +26,16 @@ class ItemCart extends React.Component {
   }
 
   count() {
+    const { product } = this.props;
+    const { available_quantity } = product;
     const { count } = this.state;
     if (count < 1) {
       this.setState({
         count: 1,
+      });
+    } else if (count > available_quantity) {
+      this.setState({
+        count: available_quantity,
       });
     }
     return count;
@@ -72,6 +78,7 @@ ItemCart.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    sold_quantity: PropTypes.number,
   }).isRequired,
 };
 
