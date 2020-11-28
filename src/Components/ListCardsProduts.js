@@ -12,8 +12,11 @@ class ListCardsProduts extends React.Component {
   handleClick() {}
 
   render() {
-    const { product, termo } = this.props;
-    const { category_id: category, id, title, thumbnail, price } = product;
+    const {
+      termo,
+      product: { id, title, thumbnail, price, category_id: category, id },
+    } = this.props;
+  
     const parametros = category + '-' + termo + '-' + id;
 
     return (
@@ -41,8 +44,7 @@ class ListCardsProduts extends React.Component {
 
 
 ListCardsProduts.propTypes = {
-  products: PropTypes.objectOf.isRequired,
-  category_id: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   termo: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   thumbnail: PropTypes.img.isRequired,
