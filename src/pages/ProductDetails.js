@@ -13,8 +13,8 @@ class ProductDetails extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick({ id, title, price }) {
-    const cartItem = { id, title, price };
+  handleClick({ id, title, price, initialQuantity }) {
+    const cartItem = { id, title, price, initialQuantity };
     addCartItem(cartItem);
   }
 
@@ -31,6 +31,8 @@ class ProductDetails extends React.Component {
     const { location: { state: {
       product: { id, title, price, thumbnail, attributes },
     } } } = this.props;
+
+    const initialQuantity = '1';
 
     const { history: { goBack } } = this.props;
 
@@ -54,7 +56,7 @@ class ProductDetails extends React.Component {
             type="button"
             name="productId"
             data-testid="product-detail-add-to-cart"
-            onClick={ () => this.handleClick({ id, title, price }) }
+            onClick={ () => this.handleClick({ id, title, price, initialQuantity }) }
           >
             Adicionar ao carrinho
           </button>

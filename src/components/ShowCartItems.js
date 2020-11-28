@@ -25,7 +25,7 @@ ShowCartItems.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    quantity: PropTypes.string.isRequired,
+    quantity: PropTypes.any.isRequired,
   }).isRequired,
 };
 
