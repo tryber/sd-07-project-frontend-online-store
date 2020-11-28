@@ -19,7 +19,6 @@ class Home extends React.Component {
     };
     this.upCategoryId = this.upCategoryId.bind(this);
     this.upQuery = this.upQuery.bind(this);
-    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -52,10 +51,6 @@ class Home extends React.Component {
     });
   }
 
-  addToCart() {
-
-  }
-
   render() {
     const { categories, result, query, search, buy } = this.state;
     return (
@@ -74,7 +69,6 @@ class Home extends React.Component {
               <SearchControl
                 num={ buy }
                 data-testid="product-detail-add-to-cart"
-                onClick={ this.addToCart }
                 search={ search }
                 answer={ result }
                 query={ query }

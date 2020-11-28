@@ -4,7 +4,7 @@ import ProductList from './ProductList';
 
 class SearchControl extends React.Component {
   searchControl() {
-    const { search, query, answer, onClick, num } = this.props;
+    const { search, query, answer, num } = this.props;
     if (!search) {
       return (
         <p data-testid="home-initial-message">
@@ -13,7 +13,7 @@ class SearchControl extends React.Component {
       );
     }
     return (
-      <ProductList num={ num } onClick={ onClick } query={ query } api={ answer } />
+      <ProductList num={ num } query={ query } api={ answer } />
     );
   }
 

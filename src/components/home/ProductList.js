@@ -5,7 +5,7 @@ import './ProductList.css';
 
 class ProductList extends React.Component {
   render() {
-    const { query, api, num, onClick } = this.props;
+    const { query, api, num } = this.props;
     const products = api;
     if (api.results.length < 1) {
       return (
@@ -21,7 +21,6 @@ class ProductList extends React.Component {
           query={ query }
           key={ prod.id }
           product={ prod }
-          onClick={ onClick }
         />)) }
       </div>
     );
