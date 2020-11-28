@@ -1,68 +1,57 @@
 import React, { Component } from 'react';
 import Category from '../components/Category';
 import SearchBar from '../components/SearchBar';
-import ShoppingCartButton from '../components/ShoppingCartButton';
-import * as api from '../services/api';
 import ProductCard from '../components/ProductCard';
 import NotFound from '../components/NotFound';
+import ShoppingCartButton from '../components/ShoppingCartButton';
+import * as api from '../services/api';
 
 class Home extends Component {
   constructor() {
     super();
+    this.onClick = this.onClick.bind(this);
     this.state = {
-      products: [],
+      categories: [],
+      products: {},
       status: false,
-      order: '',
-      notFound: false,
     };
-    this.fetchProductList = this.fetchProductList.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
 
-  onChange({ target }) {
-    const { name, value } = target;
-    this.setState({
-      [name]: value,
-    });
-  }
+  componentDidMount() { this.fetchCategories(); }
 
-  async fetchProductList() {
-    const { order } = this.state;
-    const requestReturn = await api.getProductsFromQuery(order);
-    const sizeListResult = requestReturn.results.length;
-    const minimumNumberOfProducts = 1;
-    console.log(sizeListResult);
-    if (sizeListResult < minimumNumberOfProducts) {
-      this.setState({ notFound: true });
+  componentDidUpdate(prevProps, prevState) {
+    const { products } = this.state;
+    if(prevState.products !== products) {
+      this.setState({ status: true })
     }
+  }
+
+  onClick(query) {
+    this.fetchProducts(query);
+  }
+
+  async fetchCategories() {
+    this.setState({ categories: await api.getCategories() });
+  }
+
+  async fetchProducts(query, categoryId = '') {
     this.setState({
-      products: requestReturn.results,
-      status: true,
+      products: await api.getProductsFromCategoryAndQuery(categoryId, query)
     });
   }
 
   render() {
-    const { products, status, notFound } = this.state;
+    const { categories, status, products } = this.state;
     return (
       <div>
-        <input
-          data-testid="query-input"
-          type="search"
-          name="order"
-          onChange={ this.onChange }
-        />
-        <button
-          data-testid="query-button"
-          type="button"
-          onClick={ this.fetchProductList }
-        >
-          BUSCAR
-        </button>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        {status ? <ProductCard products={ products } /> : false}
-        {notFound ? <NotFound /> : false}
+        <SearchBar onClick={this.onClick} />
+        <ShoppingCartButton />
+        <Category categories={ categories } />
+        {
+          status && products.results.length ?
+            <ProductCard products={products.results} /> :
+            <NotFound />
+        }
       </div>
     );
   }
