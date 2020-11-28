@@ -30,7 +30,7 @@ class KartList extends React.Component {
     if (!itensStorage) itensStorage = storageServices.getProductsStorage();
     return (
       <div className="kart">
-        {itensStorage.length ? (
+        {itensStorage ? (
           <KartItens
             itensStorage={ itensStorage }
             getStorageItens={ this.getStorageItens }
