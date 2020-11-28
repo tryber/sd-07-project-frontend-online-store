@@ -31,7 +31,6 @@ ProductList.propTypes = {
   query: PropTypes.string.isRequired,
   api: PropTypes.objectOf(PropTypes.array).isRequired,
   num: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default ProductList;
