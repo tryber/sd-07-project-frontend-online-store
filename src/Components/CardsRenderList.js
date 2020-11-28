@@ -1,5 +1,5 @@
 import React from 'react';
-import ListCardsProduts from '../Components/ListCardsProduts';
+import ListCardsProduts from './ListCardsProduts';
 import '../Pages/Home.css';
 
 class CardsRenderList extends React.Component {
@@ -8,7 +8,7 @@ class CardsRenderList extends React.Component {
     return (
       <div className="center">
         {products.map((product) => (
-          <ListCardsProduts key={product.id} product={product} termo={termo} />
+          <ListCardsProduts key={ product.id } product={ product } termo={ termo } />
         ))}
       </div>
     );
