@@ -19,8 +19,9 @@ class ProductCard extends React.Component {
           R$
           { price }
         </p>
-        <AddToCartButton product={ product } 
-          dataTestId= { "product-add-to-cart" }
+        <AddToCartButton
+          product={ product }
+          dataTestId="product-add-to-cart"
         />
       </div>
     );

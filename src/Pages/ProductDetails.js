@@ -11,13 +11,13 @@ class ProductDetails extends React.Component {
     const { title, thumbnail, price } = product;
     return (
       <div>
-      <Header />
+        <Header />
         <h4 data-testid="product-detail-name">{`${title}`}</h4>
         <img src={ thumbnail } alt="Imagem" />
         <h4>{`R$ ${price}`}</h4>
         <p>Especificação</p>
         <AddToCartButton
-          dataTestId={ "product-detail-add-to-cart" }
+          dataTestId="product-detail-add-to-cart"
           product={ product }
         />
         <RatingForm />
