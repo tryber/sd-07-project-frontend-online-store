@@ -72,11 +72,11 @@ class Home extends React.Component {
         <div className="left">
           <section>
             <div>
-              {categories.map((category) => (
+              { categories.map((category) => (
                 <CategorieCard
-                  key={category.id}
-                  category={category}
-                  onclick={() => this.SearchProductForCategory(category)}
+                  key={ category.id }
+                  category={ category }
+                  onclick={ () => this.SearchProductForCategory(category) }
                 />
               ))}
             </div>
@@ -93,8 +93,8 @@ class Home extends React.Component {
                 name="searchText"
                 placeholder="Digite algum termo de pesquisa aqui"
                 autoComplete="off"
-                value={this.state.searchText}
-                onChange={this.onSearchTextChange}
+                value={ searchText }
+                onChange={ this.onSearchTextChange }
               />
             </div>
             <div>
@@ -114,7 +114,7 @@ class Home extends React.Component {
           </header>
         </div>
         {status === 'OK' ? (
-          <CardsRenderList products={products} termo={searchText} />
+          <CardsRenderList products={ products } termo={ searchText } />
         ) : (
           ''
         )}

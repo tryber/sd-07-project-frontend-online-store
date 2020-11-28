@@ -1,5 +1,4 @@
 import React from 'react';
-import Cart from '../Pages/Cart';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
@@ -27,13 +26,13 @@ class ListCardsProduts extends React.Component {
         <Link
           className="link-card"
           data-testid="product-detail-link"
-          to={`/product/${parametros}`}
+          to={`/product/${ parametros }`}
         >
           <h3>{title}</h3>
-          <img src={thumbnail} alt={`${title} sprite`} />
+          <img src={ thumbnail } alt={`${ title } sprite`} />
         </Link>
-        <h4>R$ {price}</h4>
-        <button className="button-product" onClick={this.handleClick}>
+        <h4>R$ { price }</h4>
+        <button className="button-product" onClick={ this.handleClick }>
           ADICIONAR NO CARRINHO
         </button>
       </div>
