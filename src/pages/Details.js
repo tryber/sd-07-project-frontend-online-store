@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+import Rating from '../components/Rating';
+import DetailsForm from '../components/DetailsForm';
 
 class Details extends Component {
   constructor() {
@@ -8,18 +10,39 @@ class Details extends Component {
     this.state = {
       loading: true,
       product: [],
+      name: '',
+      rate: '',
       evaluation: '',
+      ratings: [],
     };
     this.fetchAPI = this.fetchAPI.bind(this);
     this.handleState = this.handleState.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.filterEvaluations = this.filterEvaluations.bind(this);
   }
 
   componentDidMount() {
     this.fetchAPI();
     if (localStorage.getItem('evaluations') === null) {
-      localStorage.setItem('evaluations', JSON.stringify([['id', 'comentario'], ['id', 'comentario']]));
+      localStorage.setItem(
+        'evaluations',
+        JSON.stringify([
+          ['id', 'nome', 'nota', 'comentário'],
+          ['id', 'nome', 'nota', 'comentário'],
+        ]),
+      );
     }
+    this.filterEvaluations();
+  }
+
+  filterEvaluations() {
+    const evaluations = JSON.parse(localStorage.getItem('evaluations'));
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+    this.setState({
+      ratings: evaluations.filter((rate) => rate[0] === id),
+    });
   }
 
   async fetchAPI() {
@@ -34,8 +57,9 @@ class Details extends Component {
   }
 
   handleState(e) {
+    const { name, value } = e.target;
     this.setState({
-      evaluation: e.target.value,
+      [name]: value,
     });
   }
 
@@ -43,15 +67,18 @@ class Details extends Component {
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
-    const { evaluation } = this.state;
+    const { name, rate, evaluation } = this.state;
     const evaluations = JSON.parse(localStorage.getItem('evaluations'));
     console.log(evaluations);
-    evaluations.push([id, evaluation]);
+    evaluations.push([id, name, rate, evaluation]);
     localStorage.setItem('evaluations', JSON.stringify(evaluations));
+    this.setState({
+      ratings: evaluations.filter((evalu) => evalu[0] === id),
+    });
   }
 
   render() {
-    const { loading, product } = this.state;
+    const { loading, product, ratings } = this.state;
     if (loading) {
       return <h2>LOADING</h2>;
     }
@@ -61,20 +88,13 @@ class Details extends Component {
         <img src={ product.thumbnail } alt="thumb" />
         <p>{product.price}</p>
         <div className="evaluation">
-          <form>
-            <label htmlFor="type">
-              adicione sua avaliação
-              <textarea
-                data-testid="product-detail-evaluation"
-                type="text"
-                id="type"
-                onChange={this.handleState}
-              />
-            </label>
-          </form>
-          <button type="button" onClick={ this.handleSubmit }>
-            Submit
-          </button>
+          <DetailsForm
+            handleState={ this.handleState }
+            handleSubmit={ this.handleSubmit }
+          />
+          <section>
+            <Rating ratings={ ratings } />
+          </section>
         </div>
       </div>
     );
