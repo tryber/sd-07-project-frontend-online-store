@@ -24,7 +24,7 @@
 
 .link-card {
   text-decoration: none;
-  color:  #daa000;
+  color: #daa000;
 }
 
 .product-card-image {
@@ -47,11 +47,12 @@
   background-color: rgb(44, 44, 44);
   border-radius: 3px;
   border: 2px solid #daa000;
-  color:  #daa000;
+  color: #daa000;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: medium;
   height: 700px;
   margin: 25px;
@@ -69,7 +70,8 @@
   border-radius: 5px;
   background-color: rgb(17, 17, 17);
   border: 2px solid #daa000;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: medium;
   height: 45px;
 }

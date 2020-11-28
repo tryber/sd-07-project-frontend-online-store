@@ -1,5 +1,5 @@
-.left{
-  width: 10%;   
+.left {
+  width: 10%;
   height: auto;
   float: left;
 }
@@ -9,42 +9,42 @@
   float: rigth;
 }
 
-.cartBuy{
+.cartBuy {
   margin-top: 20px;
   max-width: 40px;
   max-height: 40px;
 }
 
-.top{
+.top {
   width: 80%;
   height: 80px;
   float: left;
 }
-.center{
+.center {
   width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.header-link-cart{
+.header-link-cart {
   float: left;
   margin-left: 50px;
   margin-top: 10px;
 }
 
-
-.header-initial-message{  
+.header-initial-message {
   margin-left: 70px;
   clear: both;
 }
 
 .input-search {
   color: #333;
-  float: left; 
+  float: left;
   border-radius: 5px;
   border: 2px solid #daa000;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: medium;
   height: 40px;
   margin-left: 50px;
@@ -54,12 +54,13 @@
 
 .button-search {
   width: 10%;
-  float: left; 
+  float: left;
   border-radius: 5px;
   color: #daa000;
   background-color: rgb(17, 17, 17);
   border: 2px solid #daa000;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: medium;
   height: 45px;
   margin-left: 25px;
@@ -71,7 +72,8 @@
   border-radius: 5px;
   border: 2px solid #daa000;
   color: #daa000;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: medium;
   height: 80px;
   margin: 5px;

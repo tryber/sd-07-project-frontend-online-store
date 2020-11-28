@@ -48,10 +48,10 @@ class ProductDetails extends Component {
     return (
       <div>
         <Link to="/">
-        <img
-          alt="Voltar"
-          src="https://img.icons8.com/ios/2x/reply-arrow.png"
-        />
+          <img
+            alt="Voltar"
+            src="https://img.icons8.com/ios/2x/reply-arrow.png"
+          />
         </Link>
         <div className="product-card-details">
           <h1 data-testid="product-detail-name">{title}</h1>
@@ -66,7 +66,12 @@ class ProductDetails extends Component {
           <p>Marca: {marca}</p>
           <p>Modelo: {modelo} </p>
           <p>Condições do Produto: {condicoes}</p>
-          <button data-testid="product-detail-add-to-cart" className="button-product">ADICIONAR NO CARRINHO</button>
+          <button
+            data-testid="product-detail-add-to-cart"
+            className="button-product"
+          >
+            ADICIONAR NO CARRINHO
+          </button>
         </div>
       </div>
     );
