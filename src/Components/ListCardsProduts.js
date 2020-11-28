@@ -26,13 +26,13 @@ class ListCardsProduts extends React.Component {
         <Link
           className="link-card"
           data-testid="product-detail-link"
-          to={`/product/${ parametros }`}
+          to={`/product/${parametros}`}
         >
           <h3>{title}</h3>
-          <img src={ thumbnail } alt={`${ title } sprite`} />
+          <img src={ thumbnail } alt={`${title} sprite`} />
         </Link>
         <h4>R$ { price }</h4>
-        <button className="button-product" onClick={ this.handleClick }>
+        <button className="button-product" type="button" onClick={ this.handleClick }>
           ADICIONAR NO CARRINHO
         </button>
       </div>
