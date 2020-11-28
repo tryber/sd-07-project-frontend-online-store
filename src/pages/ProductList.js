@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import QueryBar from '../components/QueryBar';
-import ProductItem from '../components/ProductItem';
+import CategoryItem from '../components/CategoryItem';
 import * as api from '../services/api';
+import '../css/ProductList.css';
 
 class ProductList extends Component {
   constructor(props) {
@@ -64,7 +65,8 @@ class ProductList extends Component {
     return (
       <div className="main-list">
         <div className="side-bar">
-          { categories.map((category) => (<ProductItem
+          <p>Categorias</p>
+          { categories.map((category) => (<CategoryItem
             key={ category.id }
             query={ query }
             category={ category }
