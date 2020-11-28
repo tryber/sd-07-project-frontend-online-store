@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 import '../App.css';
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import * as api from '../services/api';
 
 class ProductCard extends React.Component {
@@ -60,6 +61,16 @@ class ProductCard extends React.Component {
             <div>{title}</div>
             <div>{price}</div>
           </div>
+          <Link
+            data-testid="product-detail-link"
+            to={ {
+              pathname: `/pages/ProductDetails/${id}`,
+              state: { item },
+            } }
+          >
+            Mais Detalhes
+          </Link>
+          <hr />
           <button
             data-testid="product-add-to-cart"
             value="items"
@@ -68,11 +79,10 @@ class ProductCard extends React.Component {
           >
           Cart
           </button> 
-        </section>
+      </section>
     );
   }
 }
-
 
 ProductCard.propTypes = {
   item: PropTypes.shape({
