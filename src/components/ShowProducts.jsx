@@ -21,7 +21,7 @@ class ShowProducts extends Component {
   }
 }
 
-ShowProducts.Proptypes = {
+ShowProducts.propTypes = {
   products: Proptypes.shape({
     key: Proptypes.number.isRequired,
     id: Proptypes.string.isRequired,
