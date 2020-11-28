@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { addCartItem } from '../services/localStorageHandler';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -24,15 +25,11 @@ class ProductCard extends React.Component {
   }
 
   addToCart() {
-    const { product } = this.props;
+    const { product: { id, price, title } } = this.props;
     const initialQuantity = 1;
-    if (localStorage.getItem(product.title)) {
-      const value = localStorage.getItem(product.title);
-      localStorage.setItem(product.title, parseInt(value, 10) + 1);
-    } else {
-      localStorage.setItem(product.title, initialQuantity);
-    }
+    addCartItem({ id, price, title, initialQuantity });
   }
+
 
   render() {
     // const { product } = this.props;
@@ -78,6 +75,7 @@ class ProductCard extends React.Component {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
