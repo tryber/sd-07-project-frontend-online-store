@@ -92,14 +92,7 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  condicoes: PropTypes.string.isRequired,
-  modelo: PropTypes.string.isRequired,
-  marca: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  thumbnail: PropTypes.img.isRequired,
-  title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  parametros: PropTypes.string.isRequired,
+  match: PropTypes.objectOf.isRequired,
 };
 
 export default ProductDetails;

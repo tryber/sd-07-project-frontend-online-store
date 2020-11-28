@@ -14,7 +14,7 @@ class ListCardsProduts extends React.Component {
   render() {
     const {
       termo,
-      product: { id, title, thumbnail, price, category_id: category, id },
+      product: { id, title, thumbnail, price, category_id: category },
     } = this.props;
   
     const parametros = category + '-' + termo + '-' + id;
