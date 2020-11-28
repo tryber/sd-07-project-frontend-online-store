@@ -19,7 +19,7 @@ class Checkout extends Component {
         <Link to="/">
           <button type="button">Página Inicial</button>
         </Link>
-        <ProductsInCheckoutList shoppingCartitems={shoppingCartitems} />
+        <ProductsInCheckoutList shoppingCartitems={ shoppingCartitems } />
         <CheckoutForm />
       </div>
     );

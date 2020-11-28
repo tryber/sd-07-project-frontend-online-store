@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddSpecificProduct extends Component {
   render() {
@@ -6,13 +7,17 @@ class AddSpecificProduct extends Component {
 
     return (
       <button
-        type="button"            
-        onClick={ addShoppingCartItems }        
+        type="button"
+        onClick={ addShoppingCartItems }
       >
         Adicionar ao carrinho
       </button>
-        )
-    }
+    );
+  }
 }
+
+AddSpecificProduct.propTypes = {
+  addShoppingCartItems: PropTypes.func.isRequired,
+};
 
 export default AddSpecificProduct;

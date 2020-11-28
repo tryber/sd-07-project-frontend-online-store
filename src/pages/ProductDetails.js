@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
 import ReviewList from '../components/ReviewList';
@@ -30,10 +31,12 @@ class ProductDetails extends Component {
   }
 
   async APIquery() {
+    const { match } = this.props;
+    const { params } = match;
     this.setState(
       { loading: true },
       async () => {
-        const { id } = this.props.match.params;
+        const { id } = params;
         const productID = await api.fetchAPIByID(id);
         // console.log(productID);
         this.setState({
@@ -85,12 +88,13 @@ class ProductDetails extends Component {
             />
           </div>
           <ul className="container-list">
-            {attributes.map(({ name, value_name, id }) => (<li key={ id }>
-              {name}
-              :
-              {' '}
-              {value_name}
-            </li>))}
+            {attributes.map(({ name, value_name, id }) => (
+              <li key={ id }>
+                {name}
+                :
+                {' '}
+                { value_name }
+              </li>))}
           </ul>
 
         </div>
@@ -100,6 +104,8 @@ class ProductDetails extends Component {
     );
   }
 }
+
+ProductDetails.propTypes = { match: PropTypes.func.isRequired };
 
 
 export default ProductDetails;

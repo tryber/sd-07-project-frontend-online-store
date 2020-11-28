@@ -174,7 +174,7 @@ class CheckoutForm extends React.Component {
         <label htmlFor="payment-input">
           Forma de Pagamento
           <select
-            style={{ marginLeft: 10 }}
+            style={ { marginLeft: 10 } }
             name="payment"
             onChange={ this.updateState }
             id="payment-input"

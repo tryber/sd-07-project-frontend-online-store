@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import IndividualCard from './IndividualCard';
+import CheckoutCard from './CheckoutCard';
 import * as cartFunctions from '../services/cartFunctions';
 
 class ProductsInCheckoutList extends Component {
@@ -22,7 +22,7 @@ class ProductsInCheckoutList extends Component {
         <h3>Revise seus produtos</h3>
         <div>
           {shoppingCartItems.map((product) => (
-            <IndividualCard
+            <CheckoutCard
               key={ product.id }
               id={ product.id }
               title={ product.title }

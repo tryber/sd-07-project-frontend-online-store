@@ -7,4 +7,4 @@ export function recoveryReviewsFromLocalStorage() {
 
 export function addReviewInLocalStorage(reviewToAdd) {
   return localStorage.setItem('reviewsObj', JSON.stringify(reviewToAdd));
-};
+}
