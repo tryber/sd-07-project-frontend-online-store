@@ -1,20 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ShoppingCartIcon from '../components/Shopping-cart-icon';
 import Cart from '../components/Cart';
+import voltar from '../components/img/undo.png';
 
 class ShoppingCart extends React.Component {
   render() {
     return (
       <div>
         <div>
+          <Link to="/">
+            <img className="imagem" src={ voltar } alt="voltar" />
+          </Link>
           <div>
-            <ShoppingCartIcon />
             <h3>Carrinho de compras</h3>
           </div>
           <Cart />
         </div>
-        <Link data-testid="checkout-products" to="/payment" />
+        <Link data-testid="checkout-products" to="/payment">finalizar compra</Link>
       </div>
     );
   }

@@ -60,12 +60,15 @@ class Home extends React.Component {
     const { list } = this.state;
     return (
       <div className="home">
-        <Caregories onChange={ this.select } />
-        <div>
-          <div>
+        <div className="barraH">
+          <h1>OS 4</h1>
+          <div className="ps">
             <SearchBar onClick={ this.onClick } />
             <ShoppingCartIcon />
           </div>
+        </div>
+        <div className="page">
+          <Caregories onChange={ this.select } />
           <List lista={ list } />
         </div>
       </div>

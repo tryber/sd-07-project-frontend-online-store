@@ -7,7 +7,7 @@ class ShoppingCartIcon extends React.Component {
   render() {
     return (
       <Link to="/shoppingcart" data-testid="shopping-cart-button">
-        <img src={ cart } alt="Shopping Cart" />
+        <img className="shopping" src={ cart } alt="Shopping Cart" />
       </Link>
     );
   }

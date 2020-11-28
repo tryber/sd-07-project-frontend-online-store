@@ -25,18 +25,23 @@ class Card extends React.Component {
     const { produto } = this.props;
     const { thumbnail, title, price, id, category_id: categoryId } = produto;
     return (
-      <div data-testid="product">
-        <h3>{title}</h3>
-        <img src={ thumbnail } alt={ title } />
-        <h4>{`R$: ${price}`}</h4>
-        <div>
-          <input
-            type="button"
-            onClick={ this.addToCart }
-            data-testid="product-add-to-cart"
-            value="Adicionar ao Carrinho"
-          />
+      <div className="produto" data-testid="product">
+        <div className="proI">
+          <h4>{title}</h4>
+          <img src={ thumbnail } alt={ title } />
+          <h2>{`R$: ${price}`}</h2>
+          <div className="proinput">
+            <input
+              type="button"
+              onClick={ this.addToCart }
+              data-testid="product-add-to-cart"
+              value="Adicionar ao Carrinho"
+            />
+          </div>
+        </div>
+        <div className="prolink">
           <Link
+            className="prolin"
             data-testid="product-detail-link"
             to={ `product-details/${id}/${categoryId}` }
           >

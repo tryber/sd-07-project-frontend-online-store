@@ -1,3 +1,117 @@
-.home{
+.page {
   display: flex;
+}
+
+.barraH {
+  background-color: rgb(165, 168, 217);
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+.barraH h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 2vw;
+  margin-right: 8vw;
+  font-size: 45px;
+}
+
+.ps {
+  width: 74vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pesquisa {
+  width: 25vw;
+  background-color: rgb(189, 240, 248);
+  border: 2px solid rgb(165, 196, 217);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.catop {
+  width: 100%;
+  border-top: 1px solid rgb(165, 196, 217);
+  border-radius: 10%;
+}
+
+.lista {
+  width: 75vw;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.produto {
+  border: 1px solid rgb(20, 34, 43);
+  margin: 20px;
+  width: 20vW;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.proI {
+  width: 20vW;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.proinput {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(189, 240, 248, 0.438);
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.proinput input {
+  background-color: rgba(189, 240, 248, 0);
+  appearance: none;
+  border: 0;
+  font-size: medium;
+}
+
+.produto h4 {
+  text-align: center;
+  margin: 0;
+  background-color: rgba(165, 168, 217, 0.377);
+}
+
+.prolink {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgba(195, 210, 240, 0.527);;
+}
+
+.prolin {
+  color: black;
+  text-decoration: none;
+}
+
+.produto img {
+  width: 50%;
+}
+
+.imagem {
+  width: 50px;
+}
+
+.shopping {
+  width: 50px;
 }

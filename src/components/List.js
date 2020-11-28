@@ -37,13 +37,15 @@ class List extends React.Component {
     const { results } = lista;
     if (Object.keys(lista).length >= 1) {
       return (
-        results.map((resultado) => (
-          <Card
-            productAdd={ this.updateCart }
-            key={ resultado.id }
-            produto={ resultado }
-          />
-        ))
+        <div className="lista">
+          {results.map((resultado) => (
+            <Card
+              productAdd={ this.updateCart }
+              key={ resultado.id }
+              produto={ resultado }
+            />
+          ))}
+        </div>
       );
     }
     return (

@@ -1,16 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import States from '../components/States';
+import voltar from '../components/img/undo.png';
+import bitcon from '../components/img/bitcoin.png';
+import visa from '../components/img/visa.png';
+import master from '../components/img/payment.png';
+import paypal from '../components/img/paypal.png';
+import scan from '../components/img/scan-barcode-for-payment.png';
 
 class Payment extends React.Component {
+  constructor() {
+    super();
+    this.sumCart = this.sumCart.bind(this);
+    this.state = {
+      sumCart: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.sumCart();
+  }
+
+  sumCart() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    const summ = (sum, addValue) => sum + (addValue.qtd * addValue.price);
+    const cartTotal = cartItems.reduce(summ, '');
+    this.setState({ sumCart: cartTotal });
+  }
+
   render() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    const { sumCart } = this.state;
     return (
       <div>
-        <section>
-          <h3>Revise seus produtos</h3>
-          <h3>Total:</h3>
-        </section>
-        <section>
+        <Link to="/shoppingcart"><img className="imagem" src={ voltar } alt="voltar" /></Link>
+        <div>
+          <div>
+            <h3>Revise seus produtos</h3>
+            {(cartItems.length < 1)
+              ? (<h3>Seu carrinho está vazio</h3>)
+              : (
+                cartItems.map((item) => (
+                  <div key={ item.id }>
+                    <img src={ item.thumbnail } alt={ item.title } />
+                    <p data-testid="shopping-cart-product-name">{item.title}</p>
+                    <p>{`R$ ${item.qtd * item.price}`}</p>
+                  </div>
+                )))}
+            <h3>{`total: R$ ${sumCart}`}</h3>
+          </div>
+        </div>
+        <div>
           <h3>Informações do Comprador</h3>
           <form>
             <input
@@ -51,24 +91,38 @@ class Payment extends React.Component {
               placeholder="Endereço"
               type="text"
             />
-            <input placeholder="Complemento" type="text" />
-            <input placeholder="Numero" type="text" />
-            <input placeholder="Cidade" type="text" />
             <select>
               <option value="">Estado</option>
               <States />
             </select>
-            <section>
+            <div>
               <h3>Método de Pagamento</h3>
-            </section>
-            <input type="radio" value="Finalizar" />
-            <input type="radio" value="Finalizar" />
-            <input type="radio" value="Finalizar" />
-            <input type="radio" value="Finalizar" />
-            <br />
-            <button type="submit"><Link to="/">Comprar</Link></button>
+            </div>
+            <label htmlFor="b">
+              <input id="b" type="radio" value="bitcon" name="pagamento" />
+              <img className="imagem" src={ bitcon } alt="bitcon" />
+            </label>
+            <label htmlFor="v">
+              <input id="v" type="radio" value="visa" name="pagamento" />
+              <img className="imagem" src={ visa } alt="visa" />
+            </label>
+            <label htmlFor="m">
+              <input id="m" type="radio" value="master" name="pagamento" />
+              <img className="imagem" src={ master } alt="master" />
+            </label>
+            <label htmlFor="p">
+              <input id="p" type="radio" value="paypal" name="pagamento" />
+              <img className="imagem" src={ paypal } alt="paypal" />
+            </label>
+            <label htmlFor="bo">
+              <input id="bo" type="radio" value="scan" name="pagamento" />
+              <img className="imagem" src={ scan } alt="boleto" />
+            </label>
+            <div>
+              <button type="submit"><Link to="/">Comprar</Link></button>
+            </div>
           </form>
-        </section>
+        </div>
       </div>
     );
   }

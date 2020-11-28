@@ -76,32 +76,37 @@ class Cart extends Component {
       <div>
         {compras.map((item) => (
           <div key={ item.id }>
-            <input
+            <button
               type="button"
-              src={ removeitem }
               name={ item.id }
-              alt="Remover item"
               onClick={ this.delet }
-            />
+            >
+              <img
+                name={ item.id }
+                className="imagem"
+                src={ removeitem }
+                alt="Remover item"
+              />
+            </button>
             <img src={ item.thumbnail } alt={ item.title } />
             <p data-testid="shopping-cart-product-name">{item.title}</p>
-            <input
+            <button
               type="button"
               data-testid="product-decrease-quantity"
-              src={ remove }
               name={ item.id }
-              alt="retirar"
               onClick={ this.minClick }
-            />
+            >
+              <img name={ item.id } className="imagem" src={ remove } alt="retirar" />
+            </button>
             <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
-            <input
+            <button
               type="button"
               data-testid="product-increase-quantity"
-              src={ add }
               name={ item.id }
-              alt="adicionar"
               onClick={ this.addClick }
-            />
+            >
+              <img name={ item.id } className="imagem" src={ add } alt="adicionar" />
+            </button>
             <p>{item.qtd * item.price}</p>
           </div>
         ))}

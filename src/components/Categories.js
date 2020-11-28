@@ -24,9 +24,9 @@ class Categories extends Component {
     const { onChange } = this.props;
     const { categories } = this.state;
     return (
-      <div>
+      <div className="pesquisa">
         <h2>Categorias</h2>
-        <div>
+        <div className="catop">
           <label htmlFor="semcategoria">
             <input
               type="radio"
@@ -39,7 +39,7 @@ class Categories extends Component {
           </label>
         </div>
         {categories.map((category) => (
-          <div key={ category.name }>
+          <div className="catop" key={ category.name }>
             <input
               id={ category.name }
               type="radio"

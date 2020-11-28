@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import ShoppingCartIcon from '../components/Shopping-cart-icon';
 import Stars from '../components/Stars';
+import voltar from '../components/img/undo.png';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -89,7 +90,7 @@ class ProductDetails extends React.Component {
       <div>
         <div>
           <div>
-            <Link to="/">Voltar icon</Link>
+            <Link to="/"><img className="imagem" src={ voltar } alt="voltar" /></Link>
             <ShoppingCartIcon />
           </div>
           <img src={ thumbnail } alt={ title } />
