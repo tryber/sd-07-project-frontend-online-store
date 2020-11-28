@@ -47,7 +47,9 @@ class home extends Component {
     if (localStorage.getItem('cart') === null) {
       localStorage.setItem('cart', JSON.stringify(this.state.cart));
     } else {
-      localStorage.setItem('cart', []);
+      console.log(this.state.cart)
+      // localStorage.setItem('cart', []);
+      localStorage.setItem('cart', JSON.stringify(this.state.cart));
     }
   }
 
