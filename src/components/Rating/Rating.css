@@ -1,3 +1,7 @@
-input[type="radio"] {
+.rating__field--star {
   display: none;
+}
+
+.star {
+  cursor: pointer;
 }
