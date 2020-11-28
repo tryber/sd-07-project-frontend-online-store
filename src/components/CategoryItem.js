@@ -20,7 +20,6 @@ export default class CategoryList extends React.Component {
     this.setState({
       products: products.results,
     });
-    console.log(this.state.products)
     if (this.props.onLoadProducts) {
       this.props.onLoadProducts(products.results);
     }

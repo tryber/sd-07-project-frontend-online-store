@@ -1,6 +1,5 @@
 import React from 'react';
 import CategoryItem from './CategoryItem';
-import Item from './Item';
 import * as api from '../services/api';
 
 export default class CategoryList extends React.Component {
@@ -17,18 +16,18 @@ export default class CategoryList extends React.Component {
     this.setCategories();
   }
 
+  async onLoadProducts(products = []) {
+    const { onLoadProducts } = this.props;
+    if (onLoadProducts) {
+      onLoadProducts(products);
+    }
+  }
+
   async setCategories() {
     const categories = await api.getCategories();
     this.setState({
-      categories: categories,
+      categories,
     });
-  }
-
-  async onLoadProducts(products = []) {
-      console.log(products, this.props);
-     if (this.props.onLoadProducts) {
-        this.props.onLoadProducts(products);
-     }
   }
 
   render() {
@@ -37,12 +36,14 @@ export default class CategoryList extends React.Component {
       <div className="category-list">
         <div>
           <h1>Categorias</h1>
-          {categories.map((category) => 
-             <CategoryItem
-                key={category.id} id={category.id} category={category.name} onLoadProducts={this.onLoadProducts} />)}
-          {/* {this.state.products
-            .map((product) => 
-              <Item key={product.id} {...product} />)} */}
+          {categories.map((category) =>
+            <CategoryItem
+              key={ category.id }
+              id={ category.id }
+              category={ category.name }
+              onLoadProducts={ this.onLoadProducts }
+            />)
+          }
         </div>
       </div>
     );
