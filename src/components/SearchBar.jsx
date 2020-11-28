@@ -1,26 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
 
 class SearchBar extends React.Component {
-  constructor() {
-    super();
-  }
   render() {
     const { query, onChange, onClick } = this.props;
     return (
       <header>
-        <input 
-          name="query" 
+        <input
+          name="query"
           type="text"
-          data-testid="query-input" 
-          id="search-input" 
-          value={query} 
-          onChange={onChange}
+          data-testid="query-input"
+          id="search-input"
+          value={ query }
+          onChange={ onChange }
         />
-        
-        <button onClick={onClick} data-testid="query-button">Pesquisar</button>
 
-        <Link data-testid="shopping-cart-button" to={"/pages/shopping-cart"}>
+        <button
+          type="button"
+          onClick={ onClick }
+          data-testid="query-button"
+        >
+          Pesquisar
+        </button>
+
+        <Link data-testid="shopping-cart-button" to="/pages/shopping-cart">
           Carrinho
         </Link>
       </header>
@@ -29,3 +33,9 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
+
+SearchBar.propTypes = {
+  query: propTypes.string.isRequired,
+  onClick: propTypes.func.isRequired,
+  onChange: propTypes.func.isRequired,
+};

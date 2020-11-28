@@ -15,6 +15,7 @@ export default class Home extends Component {
       query: '',
     };
 
+    this.handleRadioClick = this.handleRadioClick.bind(this);
     this.getProdutsByQuery = this.getProdutsByQuery.bind(this);
     this.onSearchText = this.onSearchText.bind(this);
   }
@@ -29,8 +30,13 @@ export default class Home extends Component {
     this.setState({ products: searchResult.results });
   }
 
+  async handleRadioClick({ target: { name, id } }) {
+    await this.setState({ [name]: id });
+    this.getProdutsByQuery();
+  }
+
   render() {
-    const { query, products } = this.state;
+    const { products, query } = this.state;
     return (
       <div className="busca">
         <SearchBar
@@ -42,8 +48,7 @@ export default class Home extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-
-        <CategoriesList />
+        <CategoriesList onClick={ this.handleRadioClick } />
         <ProductList products={ products } />
       </div>
     );

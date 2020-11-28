@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 import * as api from '../services/api';
 
@@ -13,7 +14,6 @@ class CategoriesList extends React.Component {
     this.fetchCategories();
   }
 
-
   async fetchCategories() {
     const list = await api.getCategories();
     this.setState({ list });
@@ -21,16 +21,18 @@ class CategoriesList extends React.Component {
 
   render() {
     const { list } = this.state;
+    const { onClick } = this.props;
     return (
       <div>
         Categorias de Produtos:
         {list.map(({ id, name }) => (
           <div key={ id }>
             <input
+              onClick={ onClick }
               id={ id }
               type="radio"
               value={ name }
-              name="category"
+              name="categoryId"
               data-testid="category"
             />
             <label htmlFor={ id }>{ name }</label>
@@ -42,3 +44,7 @@ class CategoriesList extends React.Component {
 }
 
 export default CategoriesList;
+
+CategoriesList.propTypes = {
+  onClick: propTypes.func.isRequired,
+};
