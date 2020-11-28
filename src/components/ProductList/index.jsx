@@ -8,7 +8,10 @@ const ProductList = ({ title, image, price, id }) => (
     <h2>{ title }</h2>
     <img src={ image } alt="" />
     <p>{ price }</p>
-    <Link to={{ pathname: `/details/${id}`, state: { title } }} data-testid="product-detail-link">
+    <Link
+      to={ { pathname: `/details/${id}`, state: { title } } }
+      data-testid="product-detail-link"
+    >
       Detalhes
     </Link>
     <ButtonCart title={ title } test="product-add-to-cart" />
