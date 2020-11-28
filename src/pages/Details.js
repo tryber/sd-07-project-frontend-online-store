@@ -18,7 +18,7 @@ class Details extends Component {
   componentDidMount() {
     this.fetchAPI();
     if (localStorage.getItem('evaluations') === null) {
-      localStorage.setItem('evaluations', JSON.stringify([['id', 'comentario']]));
+      localStorage.setItem('evaluations', JSON.stringify([['id', 'comentario'], ['id', 'comentario']]));
     }
   }
 
@@ -45,8 +45,9 @@ class Details extends Component {
     const { id } = params;
     const { evaluation } = this.state;
     const evaluations = JSON.parse(localStorage.getItem('evaluations'));
+    console.log(evaluations);
     evaluations.push([id, evaluation]);
-    localStorage.setItem('evaluations', evaluations);
+    localStorage.setItem('evaluations', JSON.stringify(evaluations));
   }
 
   render() {
