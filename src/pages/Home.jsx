@@ -61,7 +61,7 @@ class Home extends React.Component {
 
   render() {
     const { searchKey, searchProducts, loading } = this.state;
-    const products = JSON.parse(localStorage.getItem('cartItems'));
+    // const products = JSON.parse(localStorage.getItem('cartItems'));
     return (
       <div className="home-container">
         <div className="home-aside-container">
@@ -71,7 +71,7 @@ class Home extends React.Component {
           <div className="search-subcontainer">
             <div className="search-subcontainer-top-bar">
               <Link to="/Cart" data-testid="shopping-cart-button">
-                <h3 data-testid="shopping-cart-size">{ products === null ? '0' : products.length }</h3>
+                <h3 data-testid="shopping-cart-size">{}</h3>
                 <img
                   alt="Carrinho"
                   src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG37.png"
