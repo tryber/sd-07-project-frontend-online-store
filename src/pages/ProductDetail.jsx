@@ -124,7 +124,7 @@ class ProductDetail extends Component {
             {attributes.map((element) => (<li key={ element.id }>
                 {`${element.name} --- ${element.value_name}`}
               </li>
-              );
+              )
             )}
           </ul>
         </div>
