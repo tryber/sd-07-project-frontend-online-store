@@ -8,6 +8,7 @@ class Cart extends React.Component {
 
     this.state = {
       listProduct: [],
+      emptyCart: true,
     };
   }
 
@@ -16,25 +17,34 @@ class Cart extends React.Component {
   }
 
   loadList() {
-    const products = JSON.parse(localStorage.getItem('cartItems'));
-    console.log(products);
-    this.setState({
-      listProduct: [...products],
-    });
+    if(localStorage.length) {
+      const products = JSON.parse(localStorage.getItem('cartItems'));
+      this.setState({
+        emptyCart: false,
+        listProduct: [...products],
+      })
+    }
   }
 
   render() {
-    const { listProduct } = this.state;
+    const { listProduct, emptyCart } = this.state;
+    const products = localStorage.getItem('cartItems');
+    console.log(products);
+
+    if(products === '[]' || emptyCart) {
+      return (
+        <div>
+          <p data-testid="shopping-cart-empty-message" className="empty-cart">
+            Seu carrinho está vazio
+          </p>
+        </div>
+      )
+    }
     return (
       <div>
-        <p data-testid="shopping-cart-empty-message" className="empty-cart">
-          Seu carrinho está vazio
-        </p>
-        <div>
-          {listProduct.map((product) => (
-            <ItemCart key={ product.id } product={ product } />
-          ))}
-        </div>
+        {listProduct.map((product) => (
+          <ItemCart key={ product.id } product={ product } />
+        ))}
       </div>
     );
   }

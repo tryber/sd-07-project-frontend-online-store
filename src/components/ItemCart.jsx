@@ -56,7 +56,7 @@ class ItemCart extends React.Component {
           </span>
           <button
             type="button"
-            data-testid="product-decreate-quantity"
+            data-testid="product-decrease-quantity"
             onClick={ this.countLess }
           >
             -
