@@ -1,3 +1,4 @@
+import './CartItem.css';
 import React, { Component } from 'react';
 
 class CartItem extends Component {
@@ -10,22 +11,26 @@ class CartItem extends Component {
   showItem() {
     const { id, title, price, image, number, sumItem, subtractItem, removeItem } = this.props;
     return (
-      <div>
-        <button
-        name={id}
-        onClick={removeItem}>X</button>
+      <div className="container">
+        <span data-testid="shopping-cart-product-name"> Descrição: <strong> {title} </strong></span>
         <img src={image} alt={title} />
-        <span data-testid="shopping-cart-product-name"> {title} </span>
-        <button
-          data-testid="product-decrease-quantity"
-          name={id}
-          onClick={subtractItem}>-</button>
-        <span data-testid="shopping-cart-product-quantity"> {number} </span>
-        <button
-          data-testid="product-increase-quantity"
-          name={id}
-          onClick={sumItem}>+</button>
-        <span> R$ {price}</span>
+        <span> <strong>R$ {price} </strong></span>
+        <br></br>
+        <div className="btns">
+          <button
+            data-testid="product-decrease-quantity"
+            name={id}
+            onClick={subtractItem}>-</button>
+          <span data-testid="shopping-cart-product-quantity"> {number} </span>
+          <button
+            data-testid="product-increase-quantity"
+            name={id}
+            onClick={sumItem}>+</button>
+          <br></br>
+          <button
+            name={id}
+            onClick={removeItem}>X</button>
+        </div>
       </div>
     );
   }
@@ -33,7 +38,7 @@ class CartItem extends Component {
   showSimpleItem() {
     const { title, price, image, number} = this.props;
     return (
-      <div>
+      <div className="containerSimple">
         <img src={image} alt={title} />
         <span data-testid="shopping-cart-product-name">Descrição: {title} - </span>
         <span data-testid="shopping-cart-product-quantity"> Qtd: {number} -</span>

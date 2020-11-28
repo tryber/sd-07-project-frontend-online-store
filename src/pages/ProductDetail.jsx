@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import * as API from '../services/api';
-import { Link } from 'react-router-dom';
-import CartIcon from '../components/CartIcon';
+import "./ProductDetails.css";
+import React, { Component } from "react";
+import * as API from "../services/api";
+import { Link } from "react-router-dom";
+import CartIcon from "../components/CartIcon";
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -13,17 +14,20 @@ class ProductDetail extends Component {
     this.roundNumber = this.roundNumber.bind(this);
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
     this.state = {
-      id: '',
+      id: "",
       attributes: [],
-      title: '',
+      title: "",
       price: 0,
-      thumbnail: '',
+      thumbnail: "",
       quantityChanged: false,
     };
   }
 
   async searchQueryProducts() {
-    const ListProducts = await API.getProductsFromCategoryAndQuery(this.props.match.params.id, undefined);
+    const ListProducts = await API.getProductsFromCategoryAndQuery(
+      this.props.match.params.id,
+      undefined
+    );
     const { results } = ListProducts;
     if (results !== undefined) {
       const { id, title, attributes, thumbnail, price } = results[0];
@@ -39,35 +43,38 @@ class ProductDetail extends Component {
 
   changeQuantityState() {
     const { quantityChanged } = this.state;
-    if (quantityChanged === false) this.setState({ quantityChanged: true });  
-    this.setState({ quantityChanged: false })
+    if (quantityChanged === false) this.setState({ quantityChanged: true });
+    this.setState({ quantityChanged: false });
   }
 
   removeLastItem(string) {
     let stringNumber = string;
-    if (stringNumber[stringNumber.length - 1] === '0' || stringNumber[stringNumber.length - 1] === '.') {
-      stringNumber = stringNumber.slice(0, (stringNumber.length - 1));
+    if (
+      stringNumber[stringNumber.length - 1] === "0" ||
+      stringNumber[stringNumber.length - 1] === "."
+    ) {
+      stringNumber = stringNumber.slice(0, stringNumber.length - 1);
     }
     return stringNumber;
-  };
+  }
 
   removeZero(string) {
     let stringNumber = string;
-    if (stringNumber[0] === '0') {
-      stringNumber = '0';
+    if (stringNumber[0] === "0") {
+      stringNumber = "0";
       return stringNumber;
     }
     stringNumber = this.removeLastItem(stringNumber);
     stringNumber = this.removeLastItem(stringNumber);
     stringNumber = this.removeLastItem(stringNumber);
     return stringNumber;
-  };
+  }
 
   roundNumber(string) {
     let stringNumber = string.toFixed(2);
     const number = this.removeZero(stringNumber);
     return number;
-  };
+  }
 
   addItemToLocalStorage() {
     const id = this.state.id;
@@ -77,23 +84,24 @@ class ProductDetail extends Component {
     const imagePath = this.state.thumbnail;
     const number = 1;
     if (Storage) {
-      const getItemSaved = JSON.parse(localStorage.getItem('cart'));
-      const values = (getItemSaved === null ? [] : getItemSaved);
+      const getItemSaved = JSON.parse(localStorage.getItem("cart"));
+      const values = getItemSaved === null ? [] : getItemSaved;
       let repeatedProduct = false;
-      values.forEach(item => {
+      values.forEach((item) => {
         if (item.id === id) {
           item.number += 1;
-          item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+          item.totalPrice =
+            parseFloat(item.totalPrice) + parseFloat(item.price);
           item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
-        } 
-      })
+        }
+      });
       if (repeatedProduct) {
-        localStorage.setItem('cart', JSON.stringify(values));
+        localStorage.setItem("cart", JSON.stringify(values));
         return this.changeQuantityState();
       }
-      values.push({id, title, price, imagePath, number, totalPrice});
-      localStorage.setItem('cart', JSON.stringify(values));
+      values.push({ id, title, price, imagePath, number, totalPrice });
+      localStorage.setItem("cart", JSON.stringify(values));
       this.changeQuantityState();
     }
   }
@@ -102,17 +110,23 @@ class ProductDetail extends Component {
     const { title, price, thumbnail } = this.state;
 
     return (
-      <div>
+      <div className="container">
         <Link to="/">Retornar</Link>
-        <div>
-          <h3 data-testid='product-detail-name'>{title}</h3>
-          <div>{price}</div>
+        <br></br>
+        <br></br>
+        <div className="containerProduct">
+          <h3 data-testid="product-detail-name">Descrição: {title}</h3>
+          <div>R$ {price}</div>
           <img src={thumbnail} alt={title} />
         </div>
-        <CartIcon cartItens={JSON.parse(localStorage.getItem('cart'))} />
-        <div>
+        <br></br>
+        <br></br>
+        <CartIcon cartItens={JSON.parse(localStorage.getItem("cart"))} />
+        <br></br>
+        <br></br>
+        <div className="containerDetails">
           Especificações Técnicas
-          <ul>
+          <ul style={{listStyle: "none"}}>
             {this.state.attributes.map((element) => {
               return (
                 <li key={element.id}>
@@ -122,26 +136,59 @@ class ProductDetail extends Component {
             })}
           </ul>
         </div>
+        <br></br>
+        <br></br>
         <button
-          data-testid='product-detail-add-to-cart'
-          onClick={this.addItemToLocalStorage}>Adicionar</button>
-        <Link data-testid="shopping-cart-button" to="/ShoppingCart">Ir para o carrinho</Link>
-        <div>
+          data-testid="product-detail-add-to-cart"
+          onClick={this.addItemToLocalStorage}
+        >
+          Adicionar
+        </button>
+        <br></br>
+        <br></br>
+        <Link data-testid="shopping-cart-button" to="/ShoppingCart">
+          Ir para o carrinho
+        </Link>
+        <br></br>
+        <br></br>
+        <div className="containerForm">
           <form>
-            <label htmlFor="input-email">
-              <input type="text" id="input-email" placeholder="Email" />
-            </label>
-            <select htmlFor="input-select">
-              <option value="1" id="input-select">1</option>
-              <option value="2" id="input-select">2</option>
-              <option value="3" id="input-select">3</option>
-              <option value="4" id="input-select">4</option>
-              <option value="5" id="input-select">5</option>
-            </select>
-            <label htmlFor="">
-            <textarea data-testid="product-detail-evaluation" placeholder="Mensagem (opcional)" />
-            </label>
-            <button>Avaliar</button>
+            Avaliar Produto:
+            <div>
+              <label htmlFor="input-email">
+                <input type="text" id="input-email" placeholder="Email" />
+              </label>
+            </div>
+            <div>
+              <select htmlFor="input-select">
+                <option value="1" id="input-select">
+                  1
+                </option>
+                <option value="2" id="input-select">
+                  2
+                </option>
+                <option value="3" id="input-select">
+                  3
+                </option>
+                <option value="4" id="input-select">
+                  4
+                </option>
+                <option value="5" id="input-select">
+                  5
+                </option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="">
+                <textarea
+                  data-testid="product-detail-evaluation"
+                  placeholder="Mensagem (opcional)"
+                />
+              </label>
+            </div>
+            <div>
+              <button>Avaliar</button>
+            </div>
           </form>
         </div>
       </div>

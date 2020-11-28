@@ -1,3 +1,4 @@
+import './Checkout.css'
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import CartItem from "../components/CartItem";
@@ -33,28 +34,31 @@ class Checkout extends Component {
     const { products } = this.state;
     let totalSum = 0;
     return (
-      <div>
+      <div className="container">
         <Link to="/">Retornar</Link>
-        <section>
+        <br></br>
+        <section className="sectionProducts">
           Revise seus produtos
-          {products.map((product) => {
-            totalSum += parseFloat(product.totalPrice);
-            return (
-              <CartItem
-                key={product.id}
-                id={product.id}
-                title={product.title}
-                price={product.totalPrice}
-                image={product.imagePath}
-                number={product.number}
-              />
-            );
-          })}
-          <div>Preço Total: {totalSum}</div>
+          <div className="containerProducts">
+            {products.map((product) => {
+              totalSum += parseFloat(product.totalPrice);
+              return (
+                <CartItem
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  price={product.totalPrice}
+                  image={product.imagePath}
+                  number={product.number}
+                />
+              );
+            })}
+          </div>
+          <div className="price">Preço Total: R$ <strong>{totalSum}</strong></div>
         </section>
         <section>
           Informações do Comprador
-          <form>
+          <form className="form">
             <input
               type='text'
               onChange={this.handleChange}
@@ -106,9 +110,11 @@ class Checkout extends Component {
             />
           </form>
         </section>
+        <br></br>
+        <br></br>
         <section>
           Método de Pagamento
-          <div>
+          <div className="container-fpag">
             <label htmlFor='radio-button-boleto'>
               Boleto
               <input
@@ -151,6 +157,8 @@ class Checkout extends Component {
             </label>
           </div>
         </section>
+        <br></br>
+        <br></br>
         <button onSubmit={this.sucess}>Comprar</button>
       </div>
     );

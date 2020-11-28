@@ -1,3 +1,4 @@
+import './ShowProducts.css'
 import React, { Component } from 'react';
 import Product from './Product';
 
@@ -6,7 +7,7 @@ class ShowProducts extends Component {
     const { products, actualizeCart } = this.props;
 
     return (
-      <div>
+      <div className="container">
         {products.map((product) => <Product
           key={product.id}
           id={product.id}

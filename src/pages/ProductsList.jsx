@@ -1,3 +1,4 @@
+import './ProductsList.css'
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as API from "../services/api";
@@ -129,15 +130,15 @@ class ProductsList extends Component {
     const { categories, products } = this.state;
 
     return (
-      <div>
-        <div>
+      <div className="Container">
+        <div className="categories">
           {categories ? categories.map((categorie) => <CategoriesList
             key={categorie.id}
             categorie={categorie}
             onCategoryChoice={this.categoryChoice} />
           ) : null }
         </div>
-        <div>
+        <div className="otherElements">
           <input
             name="search"
             type="text"
@@ -145,10 +146,10 @@ class ProductsList extends Component {
             onChange={this.handleChange}
           />
           <CartIcon cartItens={JSON.parse(localStorage.getItem('cart'))} />
-          <button data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
+          <button className="btn" data-testid='query-button' onClick={this.searchQueryProducts}>Pesquisar</button>
           {products === undefined ? this.showMessage() : <ShowProducts products={products} actualizeCart={this.addItemToLocalStorage} />}
           <Link data-testid="shopping-cart-button" to="/ShoppingCart">
-            <img src={Logo} alt="shoppingCart" />
+            <img className="shoppingCart" src={Logo} alt="shoppingCart" />
           </Link>
         </div>
       </div>
