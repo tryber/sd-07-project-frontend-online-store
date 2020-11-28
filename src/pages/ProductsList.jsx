@@ -105,6 +105,8 @@ class ProductsList extends Component {
     const title = product.firstChild.innerHTML;
     const imagePath = product.firstChild.nextSibling.src;
     const price = product.firstChild.nextSibling.nextSibling.innerHTML;
+    const availableQuantity = product.firstChild.nextSibling.nextSibling
+      .attributes.available_quantity.value;
     const totalPrice = price;
     const number = 1;
     if (Storage) {
@@ -113,17 +115,19 @@ class ProductsList extends Component {
       let repeatedProduct = false;
       values.forEach((item) => {
         if (item.id === id) {
-          item.number += 1;
-          item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
-          item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
+          if (item.number < availableQuantity) {
+            item.number += 1;
+            item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+          }
         }
       });
       if (repeatedProduct) {
         localStorage.setItem('cart', JSON.stringify(values));
         return this.changeQuantityState();
       }
-      values.push({ id, title, price, imagePath, number, totalPrice });
+      values.push({ id, title, price, imagePath, number, totalPrice, availableQuantity });
       localStorage.setItem('cart', JSON.stringify(values));
       this.changeQuantityState();
     }

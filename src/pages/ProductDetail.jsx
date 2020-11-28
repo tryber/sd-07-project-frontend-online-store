@@ -21,6 +21,7 @@ class ProductDetail extends Component {
       title: '',
       price: 0,
       thumbnail: '',
+      availableQuantity: 0,
       quantityChanged: false,
     };
   }
@@ -41,11 +42,11 @@ class ProductDetail extends Component {
     const ListProducts = await API.getProductsFromCategoryAndQuery(productId);
     const { results } = ListProducts;
     if (results !== undefined) {
-      const { id, title, attributes, thumbnail, price } = results[0];
-      return this.setState({ id, attributes, title, thumbnail, price });
+      const { id, title, attributes, thumbnail, price, available_quantity } = results[0];
+      return this.setState({ id, attributes, title, thumbnail, price, availableQuantity: available_quantity });
     }
-    const { id, attributes, title, thumbnail, price } = ListProducts;
-    return this.setState({ id, attributes, title, thumbnail, price });
+    const { id, attributes, title, thumbnail, price, available_quantity } = ListProducts;
+    return this.setState({ id, attributes, title, thumbnail, price, availableQuantity: available_quantity });
   }
 
   changeQuantityState() {
@@ -84,7 +85,7 @@ class ProductDetail extends Component {
   }
 
   addItemToLocalStorage() {
-    const { id, title, price, thumbnail } = this.state;
+    const { id, title, price, thumbnail, availableQuantity } = this.state;
     const totalPrice = price;
     const imagePath = thumbnail;
     const number = 1;
@@ -94,10 +95,12 @@ class ProductDetail extends Component {
       let repeatedProduct = false;
       values.forEach((item) => {
         if (item.id === id) {
-          item.number += 1;
-          item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
-          item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
+          if (item.number < availableQuantity) {
+            item.number += 1;
+            item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+          }
         }
       });
       if (repeatedProduct) {

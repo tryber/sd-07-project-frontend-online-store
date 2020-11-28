@@ -4,12 +4,16 @@ import Proptypes from 'prop-types';
 
 class Product extends Component {
   render() {
-    const { id, title, price, thumbnail, actualizeCart } = this.props;
+    const { id, title, price, thumbnail, availableQuantity, actualizeCart } = this.props;
     return (
       <div data-testid="product" id={ id }>
         <span>{ title }</span>
         <img src={ thumbnail } alt={ title } />
-        <span>{ price }</span>
+        <span
+          available_quantity={ availableQuantity }
+        >
+          { price }
+        </span>
         <button
           data-testid="product-add-to-cart"
           type="button"

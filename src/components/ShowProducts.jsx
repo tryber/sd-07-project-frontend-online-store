@@ -14,6 +14,7 @@ class ShowProducts extends Component {
           title={ product.title }
           price={ product.price }
           thumbnail={ product.thumbnail }
+          availableQuantity={ product.available_quantity }
           actualizeCart={ actualizeCart }
         />))}
       </div>
@@ -24,11 +25,12 @@ class ShowProducts extends Component {
 ShowProducts.propTypes = {
   products: Proptypes.arrayOf(
     Proptypes.shape({
-      key: Proptypes.number.isRequired,
+      key: Proptypes.string.isRequired,
       id: Proptypes.string.isRequired,
       title: Proptypes.string.isRequired,
       price: Proptypes.number.isRequired,
       thumbnail: Proptypes.string.isRequired,
+      availableQuantity: Proptypes.number.isRequired,
     }),
   ).isRequired,
   actualizeCart: Proptypes.func.isRequired,

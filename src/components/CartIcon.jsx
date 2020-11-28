@@ -23,7 +23,7 @@ class CartIcon extends Component {
 CartIcon.propTypes = {
   cartItens: Proptypes.arrayOf(Proptypes.shape({
     number: Proptypes.number.isRequired,
-  })).isRequired,
+  }))
 };
 
 export default CartIcon;
