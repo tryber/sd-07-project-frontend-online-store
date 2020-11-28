@@ -28,7 +28,9 @@ class ProductDetail extends Component {
   }
 
   getId() {
-    const { id } = this.props.match.params;
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
     const result = id;
     return result;
   }
@@ -123,9 +125,9 @@ class ProductDetail extends Component {
           Especificações Técnicas
           <ul>
             {attributes.map((element) => (
-            <li key={ element.id }>
-              {`${element.name} --- ${element.value_name}`}
-            </li>
+              <li key={ element.id }>
+                {`${element.name} --- ${element.value_name}`}
+              </li>
             ))}
           </ul>
         </div>
