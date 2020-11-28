@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import EditForm from '../components/EditForm'
+
 export default class ProductDetail extends React.Component {
   render() {
     const {
@@ -14,6 +16,7 @@ export default class ProductDetail extends React.Component {
         <div>
           <p>{`Preço: $ ${product.price}`}</p>
         </div>
+        < EditForm />
       </div>
     );
   }
