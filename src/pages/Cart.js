@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import returnIcon from '../images/return.png';
 import cartIcon from '../images/cart-icon.png';
 import './Cart.css';
+import ProductInCart from '../components/cart/ProductInCart';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Cart extends React.Component {
           />
           <h3>Carrinho de Compras</h3>
           <p data-testid="shopping-cart-empty-message">
-            {items < 1 ? 'Seu carrinho está vazio' : ''}
+            {items < 1 ? 'Seu carrinho está vazio' : <ProductInCart products={ items } />}
           </p>
         </div>
       </div>

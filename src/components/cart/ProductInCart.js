@@ -9,7 +9,7 @@ class ProductInCart extends React.Component {
     super(props);
     this.state = {
       totalPrice: 0,
-      // totalQuantity: undefined,
+      totalQuantity: 1,
     };
     this.changeTotal = this.changeTotal.bind(this);
   }
@@ -20,20 +20,23 @@ class ProductInCart extends React.Component {
 
   render() {
     const { products, handleClick } = this.props;
-    const { totalPrice } = this.state;
+    const { totalPrice, totalQuantity } = this.state;
 
     return (
       <div>
         {products.map((product) => (
-          <div className="product" key={ product.product.id }>
+          <div className="product" key={ product.title }>
             <button type="button" onClick={ () => handleClick(product) }>X</button>
-            <img src={ product.product.thumbnail } alt="Product" />
+            <img src={ product.thumbnail } alt="Product" />
             <h3
               data-testid="shopping-cart-product-name"
               className="product-name"
             >
-              {product.product.title}
+              {product.title}
             </h3>
+            <p data-testid="shopping-cart-product-quantity">
+              {totalQuantity}
+            </p>
           </div>))}
         <p className="total-price">
           Valor Total da Compra: R$

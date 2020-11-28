@@ -5,6 +5,24 @@ import FreeShipping from './FreeShipping';
 import './ProductCard.css';
 
 class ProductCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  addToCart() {
+    const { product } = this.props;
+    const { id, title, price, thumbnail } = product;
+    const productInfo = { id, title, price, thumbnail };
+    if (!localStorage.cart) {
+      localStorage.setItem('cart', JSON.stringify([productInfo]));
+    } else {
+      const itemsInStorage = JSON.parse(localStorage.getItem('cart'));
+      itemsInStorage.push(productInfo);
+      localStorage.setItem('cart', JSON.stringify(itemsInStorage));
+    }
+  }
+
   render() {
     const { product } = this.props;
     const { id, title, thumbnail, price, shipping } = product;
@@ -26,6 +44,7 @@ class ProductCard extends React.Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
+          onClick={ this.addToCart }
         >
           Adicionar ao Carrinho
         </button>

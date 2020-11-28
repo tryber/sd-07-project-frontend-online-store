@@ -2,9 +2,16 @@
   margin-top: 40px;
 }
 
-.produc-details-contents {
+.product-details-contents {
   display: flex;
   flex-direction: row;
+}
+
+.product-details-homelink {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  margin-left: 10px;
 }
 
 .product-details-right {
