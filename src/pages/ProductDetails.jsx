@@ -37,7 +37,7 @@ class ProductDetails extends React.Component {
         >
           Adicionar ao carrinho
         </button>
-      <ProductDetailsEvaluation />
+        <ProductDetailsEvaluation />
       </div>
     );
   }
