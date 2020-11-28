@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class RatingAndComment extends React.Component {
   constructor(props) {
@@ -20,15 +19,35 @@ class RatingAndComment extends React.Component {
   render() {
     return(
       <form>
-        <textarea data-testid="product-detail-evaluation" placeholder="Adicione um comentário (Opcional)"></textarea>
+        <textarea
+          data-testid="product-detail-evaluation"
+          placeholder="Adicione um comentário (Opcional)">
+        </textarea>
 
-        <div onChange={this.onChangeValue}>
-          <label><input type="radio" value="0" name="rating" /> 0</label>
-          <label><input type="radio" value="1" name="rating" /> 1</label>
-          <label><input type="radio" value="2" name="rating" /> 2</label>
-          <label><input type="radio" value="3" name="rating" /> 3</label>
-          <label><input type="radio" value="4" name="rating" /> 4</label>
-          <label><input type="radio" value="5" name="rating" /> 5</label>
+        <div onChange={ this.onChangeValue }>
+          <label><input type="radio" value="0" name="rating" />
+            0
+          </label>
+          <label>
+            <input type="radio" value="1" name="rating" />
+            1
+          </label>
+          <label>
+            <input type="radio" value="2" name="rating" />
+            2
+          </label>
+          <label>
+            <input type="radio" value="3" name="rating" />
+            3
+          </label>
+          <label>
+            <input type="radio" value="4" name="rating" />
+            4
+          </label>
+          <label>
+            <input type="radio" value="5" name="rating" />
+            5
+          </label>
         </div>
       </form>
     );

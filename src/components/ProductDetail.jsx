@@ -43,13 +43,14 @@ class ProductDetail extends Component {
     } else {
       const itemsInStorage = localStorage.getItem('cartItems');
       const parsedItems = JSON.parse(itemsInStorage);
-      localStorage.setItem('cartItems', JSON.stringify(parsedItems.concat(cartItemProperties)));
+      localStorage.setItem('cartItems', JSON.stringify(parsedItems
+        .concat(cartItemProperties)));
     }
   }
 
   render() {
     const { loading, itemDetails, rating } = this.state;
-    const { id ,title, price, thumbnail, attributes } = itemDetails;;
+    const { id ,title, price, thumbnail, attributes } = itemDetails;
     const loadingElement = <span>Carregando...</span>;
     return (
       <div>
@@ -61,30 +62,30 @@ class ProductDetail extends Component {
               <h1>{ title }</h1>
               <img src={ thumbnail } alt="product" />
               <p>{ price }</p>
-                <div>
-                  {
-                    attributes.map((element) => (
-                      <div key={ element.id }>
-                        { element.name }
-                        <span>{ element.value_name }</span>
-                      </div>))
+              <div>
+                {
+                  attributes.map((element) => (
+                    <div key={ element.id }>
+                      { element.name }
+                      <span>{ element.value_name }</span>
+                    </div>))
                   }
                 </div>
-        <button
-          type="button"
-          name="productId"
-          data-testid="product-detail-add-to-cart"
-          onClick={() => this.addCartItem({ id, title, price })}
-        >
-          Adicionar ao carrinho
-        </button>
+          <button
+            type="button"
+            name="productId"
+            data-testid="product-detail-add-to-cart"
+            onClick={() => this.addCartItem({ id, title, price })}
+          >
+            Adicionar ao carrinho
+          </button>
+          </div>
+          )}
         </div>
-      )}
-      </div>
-        <Rating rating={rating} />
+        <Rating rating={ rating } />
         <RatingAndComment />
       </div>
-    )
+    );
   }
 }
 
@@ -96,6 +97,6 @@ ProductDetail.propTypes = {
     rating: PropTypes.number.isRequired,
     imagePath: PropTypes.string.isRequired,
   }).isRequired,
-}
+};
 
 export default ProductDetail;

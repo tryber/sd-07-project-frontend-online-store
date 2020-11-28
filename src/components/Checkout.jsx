@@ -1,14 +1,8 @@
 import React from 'react';
 
 class Checkout extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
-
-    return(
+    return (
       <div>
         <section>
           item + valor
@@ -25,7 +19,8 @@ class Checkout extends React.Component {
             placeholder="e-mail"
           />
           <input
-            type="text" name="cpf"
+            type="text"
+            name="cpf"
             data-testid="checkout-cpf"
             placeholder="CPF (ex.: XXX.XXX.XXX.-XX"
           />

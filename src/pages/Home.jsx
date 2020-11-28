@@ -7,7 +7,7 @@ class Home extends React.Component {
       <div>
         <SearchBar />
       </div>
-    )
+    );
   }
 }
 

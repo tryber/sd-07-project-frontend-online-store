@@ -7,12 +7,12 @@ class Rating extends React.Component {
     return (
       <div className="movie-card-rating" data-testid="rating">
         <span className="rating">
-          Avaliação: {rating}
+          Avaliação:
+          {rating}
         </span>
       </div>
     );
   }
-
 }
 
 Rating.propTypes = { rating: PropTypes.number.isRequired };

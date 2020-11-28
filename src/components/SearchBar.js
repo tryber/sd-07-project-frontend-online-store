@@ -70,11 +70,12 @@ class SearchBar extends React.Component {
               src={ shoppingCart }
             />
           </Link>
-          <button
-            data-testid="query-button" onClick={ this.fetchApiByQuery } >Buscar</button>
+          <button data-testid="query-button" onClick={ this.fetchApiByQuery } >
+            Buscar
+          </button>
         </header>
         <div>
-          <Categories handleChange={ this.changeStateValue }/>
+          <Categories handleChange={ this.changeStateValue } />
         </div>
         <div>
           {arrayOfItemByInputedText

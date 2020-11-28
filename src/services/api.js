@@ -15,4 +15,3 @@ export async function getProductsFromQuery(query) {
   const object = result.json();
   return object;
 }
-
