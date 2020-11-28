@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Rating from '../components/Rating';
 import DetailsForm from '../components/DetailsForm';
+import addToCart from '../services/addToCart';
+
 
 class Details extends Component {
   constructor() {
@@ -19,6 +22,7 @@ class Details extends Component {
     this.handleState = this.handleState.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.filterEvaluations = this.filterEvaluations.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +47,11 @@ class Details extends Component {
     this.setState({
       ratings: evaluations.filter((rate) => rate[0] === id),
     });
+  }
+
+  addToCart() {
+    const { product } = this.state;
+    addToCart(product);
   }
 
   async fetchAPI() {
@@ -84,9 +93,19 @@ class Details extends Component {
     }
     return (
       <div>
+        <Link to="/cart" data-testid="shopping-cart-button">
+          Carrinho de compras
+        </Link>
         <h2 data-testid="product-detail-name">{product.title}</h2>
         <img src={ product.thumbnail } alt="thumb" />
         <p>{product.price}</p>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.addToCart }
+        >
+          Adicionar ao carrinho
+        </button>
         <div className="evaluation">
           <DetailsForm
             handleState={ this.handleState }
