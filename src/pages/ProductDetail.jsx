@@ -31,8 +31,7 @@ class ProductDetail extends Component {
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
-    const result = id;
-    return result;
+    return id;
   }
 
   async searchQueryProducts() {
