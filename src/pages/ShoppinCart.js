@@ -30,16 +30,14 @@ class ShoppinCart extends React.Component {
   }
 
   loadStorage() {
-    for (let count = 0; count < localStorage.length; count ++) {
+    for (let count = 0; count < localStorage.length; count += 1) {
       const item = {
         name: localStorage.key(count),
         price: localStorage.getItem(localStorage.key(count)),
       };
       const { cartItem } = this.state;
       cartItem.push(item);
-      this.setState({
-        cartItem: cartItem,
-      });
+      this.setState({ cartItem: cartItem });
     }
     localStorage.clear();
   }
