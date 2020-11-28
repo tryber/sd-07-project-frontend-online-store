@@ -19,7 +19,7 @@ CartItem.propTypes = {
   title: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  quantity: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
 };
 
