@@ -5,6 +5,26 @@ import chart from '../icon/chart.png';
 import voltar from '../icon/voltar.png';
 
 class DetailsProduct extends React.Component {
+    constructor() {
+      super()
+      this.handleCart = this.handleCart.bind(this);
+    }
+
+  handleCart() {
+    const { location } = this.props;
+    const { state } = location;
+    const { product } = state;
+    const { title, price } = product;
+    let addLocalStorage = JSON.parse(localStorage.getItem('cart'));
+    if (addLocalStorage !== null) {
+      addLocalStorage.push(`${title} $${price}`);
+    } else {
+      addLocalStorage = [];
+      addLocalStorage.push(`${title} $${price}`);
+    }
+    localStorage.setItem('cart', JSON.stringify(addLocalStorage));
+  }
+
   render() {
     const { location } = this.props;
     const { state } = location;
@@ -33,6 +53,10 @@ class DetailsProduct extends React.Component {
               { price }
             </p>
           </div>
+          <button data-testid="product-detail-add-to-cart"
+            onClick={this.handleCart} >
+              Adicionar ao carrinho!
+          </button>
         </div>
       </div>
     );

@@ -2,62 +2,66 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import voltar from '../icon/voltar.png';
 import '../App.css';
-import ItemCart from '../components/ItemCart';
 
 class ShoppinCart extends React.Component {
   constructor() {
-    super();
-    this.loadStorage = this.loadStorage.bind(this);
-    this.unloadStorage = this.unloadStorage.bind(this);
+    super()
     this.state = {
-      cartItem: [],
-    };
+      totalPrice: 0,
+      productDelete: JSON.parse(localStorage.getItem('cart')),
+    }
+    this.priceTotal = this.priceTotal.bind(this);
+    this.deleteProduct = this.deleteProduct.bind(this);
   }
 
   componentDidMount() {
-    this.loadStorage();
+    this.priceTotal();
   }
 
-  componentWillUnmount() {
-    this.unloadStorage();
-  }
-
-  unloadStorage() {
-    const { cartItem } = this.state;
-    cartItem.forEach((item) => {
-      localStorage.setItem(item.name, item.price);
+  priceTotal() {
+    const price = JSON.parse(localStorage.getItem('cart'));
+    const prices = price === null ? [] : price;
+    prices.map((tot) => {
+      return this.setState((prevPrice) => ({
+        totalPrice: prevPrice.totalPrice + (parseFloat(tot.split('$')[1])), 
+      }));
     });
   }
 
-  loadStorage() {
-    for (let count = 0; count < localStorage.length; count += 1) {
-      const item = {
-        name: localStorage.key(count),
-        price: localStorage.getItem(localStorage.key(count)),
-      };
-      const { cartItem } = this.state;
-      cartItem.push(item);
-      const newArray = cartItem;
-      this.setState({ cartItem: newArray });
-    }
-    localStorage.clear();
+  deleteProduct() {
+    const product = JSON.parse(localStorage.getItem('cart'));
+    const products = product === null ? [] : product;
+    const { productDelete } = this.state;
+    products.filter((prod) => {
+      return productDelete.filter((del) => {
+      return prod.split('$')[0] !== del.split('$')[0]
+    })});    
   }
-
+  
   render() {
-    const { cartItem } = this.state;
-
+    const localNamePriceCart = JSON.parse(localStorage.getItem('cart'));
+    const localCArt = localNamePriceCart === null ? [] : localNamePriceCart;
     return (
       <div className="cart">
-        {cartItem.map((item) => {
-          const { name, price } = item;
-          return <ItemCart key={ name } name={ name } price={ price } qtde={ 1 } />;
-        })}
         <h3 data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
         </h3>
         <Link to="/">
           <img className="voltar" src={ voltar } alt="imagem-Voltar" />
         </Link>
+        <div>       
+          {localCArt.map((namePrice) => {           
+            return <div key={namePrice.split('$')[0]}>
+              <button onClick={this.deleteProduct} >X</button>
+              <span data-testid="shopping-cart-product-quantity" >Quantidade: 
+                {localCArt.length === null ? 0 : localCArt.length - (localCArt.length - 1)}
+              </span>          
+                <p data-testid="shopping-cart-product-name" >{namePrice.split('$')[0]}</p>          
+                <p>R$ {namePrice.split('$')[1]}</p>
+             </div>
+          })} 
+          <p>Valor Total: R$ {this.state.totalPrice}</p>
+        </div>        
       </div>
     );
   }

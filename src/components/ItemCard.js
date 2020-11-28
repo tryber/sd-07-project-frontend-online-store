@@ -3,14 +3,21 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ItemCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.addToCart = this.addToCart.bind(this);
+  constructor() {
+    super()
+    this.handleCart = this.handleCart.bind(this);
   }
 
-  addToCart() {
+  handleCart() {
     const { title, price } = this.props;
-    localStorage.setItem(title, price);
+    let addLocalStorage = JSON.parse(localStorage.getItem('cart'));
+    if (addLocalStorage !== null) {
+      addLocalStorage.push(`${title} $${price}`);
+    } else {
+      addLocalStorage = [];
+      addLocalStorage.push(`${title} $${price}`);
+    }
+    localStorage.setItem('cart', JSON.stringify(addLocalStorage));
   }
 
   render() {
@@ -29,12 +36,9 @@ class ItemCard extends React.Component {
           R$
           { price }
         </span>
-        <button
-          type="button"
-          data-testid="product-add-to-cart"
-          onClick={ this.addToCart }
-        >
-          Adicionar ao Carrinho
+        <button data-testid="product-add-to-cart"
+        onClick={this.handleCart} >
+          Adicionar ao carrinho!
         </button>
         <Link
           data-testid="product-detail-link"
