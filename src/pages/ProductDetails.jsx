@@ -32,12 +32,12 @@ class ProductDetails extends React.Component {
   }
 
   handleClick() {
-    const { 
-      location: { 
-        details: { 
-          product: { id, title, price, thumbnail } 
-        } 
-      } 
+    const {
+      location: {
+        details: {
+          product: { id, title, price, thumbnail } ,
+        },
+      },
     } = this.props;
     const productInfo = { id, title, price, thumbnail };
     if (!localStorage.cart) {
