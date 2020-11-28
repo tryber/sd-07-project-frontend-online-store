@@ -52,7 +52,7 @@ class ShoppingCartPage extends Component {
   render() {
     const empty = 0;
     const { shoppingCartItems } = this.state;
-    if (shoppingCartItems.length === empty) {
+    if (!shoppingCartItems) {
       return (
         <div>
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
