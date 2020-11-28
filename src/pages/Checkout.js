@@ -9,9 +9,16 @@ export default class Checkout extends React.Component {
     this.state = {
       cart: localStorage.readCart(),
       redirect: false,
+      fullName: '',
+      email: '',
+      cpf: '',
+      phone: '',
+      cep: '',
+      address: '',
     };
     this.updateState = this.updateState.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.concludeBuy = this.concludeBuy.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +32,15 @@ export default class Checkout extends React.Component {
   updateState() {
     const cart = localStorage.readCart();
     this.setState({ cart });
+  }
+
+  concludeBuy() {
+    const { fullName, email, cpf, phone, cep, address } = this.state;
+    if (fullName && email && cpf && phone && cep && address) {
+      if (Number(cpf) && Number(phone) && Number(cep)) {
+        this.setState({ redirect: true });
+      }
+    }
   }
 
   productsAndForm(cart) {
@@ -56,6 +72,8 @@ export default class Checkout extends React.Component {
               data-testid="checkout-fullname"
               id="checkout-fullname"
               value={ fullName }
+              onChange={ this.onChange }
+              required
             />
           </label>
           <label htmlFor="checkout-email">
@@ -66,6 +84,8 @@ export default class Checkout extends React.Component {
               data-testid="checkout-email"
               id="checkout-email"
               value={ email }
+              onChange={ this.onChange }
+              required
             />
           </label>
           <label htmlFor="checkout-cpf">
@@ -77,6 +97,8 @@ export default class Checkout extends React.Component {
               id="checkout-cpf"
               maxLength="11"
               value={ cpf }
+              onChange={ this.onChange }
+              required
             />
           </label>
           <label htmlFor="checkout-phone">
@@ -87,6 +109,8 @@ export default class Checkout extends React.Component {
               data-testid="checkout-phone"
               id="checkout-phone"
               value={ phone }
+              onChange={ this.onChange }
+              required
             />
           </label>
           <label htmlFor="checkout-cep">
@@ -97,6 +121,8 @@ export default class Checkout extends React.Component {
               data-testid="checkout-cep"
               id="checkout-cep"
               value={ cep }
+              onChange={ this.onChange }
+              required
             />
           </label>
           <label htmlFor="checkout-address">
@@ -107,8 +133,11 @@ export default class Checkout extends React.Component {
               data-testid="checkout-address"
               id="checkout-address"
               value={ address }
+              onChange={ this.onChange }
+              required
             />
           </label>
+          <input type="button" value="finalizar compra" onClick={ this.concludeBuy } />
         </form>
       </div>
     );
