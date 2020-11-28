@@ -12,7 +12,6 @@ class ButtonCart extends React.Component {
             src="https://img.icons8.com/ios/452/shopping-cart.png"
             alt="imagem de carrinho"
           />
-          q
         </Link>
       </div>
     );

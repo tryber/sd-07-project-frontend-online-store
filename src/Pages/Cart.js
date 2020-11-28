@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
   constructor() {
@@ -22,5 +23,9 @@ class Cart extends React.Component {
     );
   }
 }
+
+CardsRenderList.propTypes = {
+  products: PropTypes.object.isRequired,
+};
 
 export default Cart;

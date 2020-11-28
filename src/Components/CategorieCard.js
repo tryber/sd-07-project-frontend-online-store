@@ -1,6 +1,5 @@
 import React from 'react';
 import '../Pages/Home.css';
-
 import PropTypes from 'prop-types';
 
 class CategorieCard extends React.Component {
@@ -16,14 +15,14 @@ class CategorieCard extends React.Component {
   }
 }
 
-export default CategorieCard;
 
 CategorieCard.propTypes = {
   category: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
+  name: PropTypes.string.isRequired,
+  onclick: PropTypes.func.isRequired,
 };
 
-CategorieCard.propTypes = {
-  name: PropTypes.string,
-};
+
+export default CategorieCard;

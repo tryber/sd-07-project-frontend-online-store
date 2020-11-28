@@ -1,16 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
 class ListCardsProduts extends React.Component {
   constructor() {
     super();
-    this.state = {
-      status: '',
-      shouldRedirect: false,
-      products: [],
-    };
-
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -18,8 +13,8 @@ class ListCardsProduts extends React.Component {
 
   render() {
     const { product, termo } = this.props;
-    const { category_id, id, title, thumbnail, price } = product;
-    const parametros = category_id + '-' + termo + '-' + id;
+    const { category_id: category, id, title, thumbnail, price } = product;
+    const parametros = category + '-' + termo + '-' + id;
 
     return (
       <div data-testid="product" className="product-card">
@@ -39,5 +34,11 @@ class ListCardsProduts extends React.Component {
     );
   }
 }
+
+
+CardsRenderList.propTypes = {
+  products: PropTypes.object.isRequired,
+  termo: PropTypes.string.isRequired,
+};
 
 export default ListCardsProduts;
