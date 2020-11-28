@@ -1,9 +1,10 @@
 .page {
   display: flex;
+  background-color: rgb(231, 231, 231);
 }
 
 .barraH {
-  background-color: rgb(165, 168, 217);
+  background-color: rgb(194, 196, 226);
   width: 100%;
   display: flex;
   justify-content: start;
@@ -12,8 +13,8 @@
 .barraH h1 {
   margin-top: 0;
   margin-bottom: 0;
-  margin-left: 2vw;
-  margin-right: 8vw;
+  margin-left: 4vw;
+  margin-right: 6vw;
   font-size: 45px;
 }
 
