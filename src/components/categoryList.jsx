@@ -26,7 +26,7 @@ class Category extends Component {
   async filterCategory(event) {
     const { handleSearchChange, handleChangeCategory } = this.props;
     await handleSearchChange(event);
-    await handleChangeCategory()
+    await handleChangeCategory();
   }
 
   render() {
