@@ -37,12 +37,13 @@ class ShoppinCart extends React.Component {
       console.log();
       return productDelete.filter((del) => {
         console.log();
-        return prod.split("$")[0] !== del.split("$")[0];
+        return prod.split('$')[0] !== del.split('$')[0];
       });
     });
   }
 
   render() {
+    const { totalPrice } = this.state;
     const localNamePriceCart = JSON.parse(localStorage.getItem('cart'));
     const localCArt = localNamePriceCart === null ? [] : localNamePriceCart;
     return (
@@ -57,18 +58,19 @@ class ShoppinCart extends React.Component {
           {localCArt.map((namePrice) => {
             console.log();
             return (
-              <div key={namePrice.split('$')[0]}>
-                <button onClick={ this.deleteProduct }>X</button>
+              <div key={ namePrice.split('$')[0] }>
+                <button type="button" onClick={ this.deleteProduct }>X</button>
                 <span data-testid="shopping-cart-product-quantity">
                   Quantidade:
                   {localCArt.length === null
-                    ? 0
+                    ? []
                     : localCArt.length - (localCArt.length - 1)}
                 </span>
                 <p data-testid="shopping-cart-product-name">
                   {namePrice.split('$')[0]}
                 </p>
-                <p>R$ 
+                <p>
+                  R$ 
                   {namePrice.split('$')[1]}
                 </p>
               </div>
@@ -76,7 +78,7 @@ class ShoppinCart extends React.Component {
           })}
           <p>
             Valor Total: R$ 
-            { this.state.totalPrice }
+            { totalPrice }
           </p>
         </div>
       </div>
