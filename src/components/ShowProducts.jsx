@@ -29,7 +29,7 @@ ShowProducts.propTypes = {
       title: Proptypes.string.isRequired,
       price: Proptypes.number.isRequired,
       thumbnail: Proptypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   actualizeCart: Proptypes.func.isRequired,
 };
