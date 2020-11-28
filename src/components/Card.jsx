@@ -24,11 +24,11 @@ class Card extends React.Component {
 
         return (
             <div data-testid="product" className="cardProduct">
-
-                <h1>{title}</h1>
-                <img src={thumbnail} alt="product item" />
-                <h2>R${price}</h2>
-                <Link to={`/details/${id}/category/${category_id}`} data-testid="product-detail-link" > Ver detalhes! </Link>
+                <Link to={`/details/${id}/category/${category_id}`} data-testid="product-detail-link" >
+                    <h1>{title}</h1>
+                    <img src={thumbnail} alt="product item" />
+                    <h2>R${price}</h2>
+                </Link>
                 <button
                     type="button"
                     name="productId"
@@ -36,7 +36,7 @@ class Card extends React.Component {
                     onClick={() => this.addCartItem({ id, title, price })}
                 >
                     Adicionar ao carrinho
-                 </button>
+                </button>
             </div>
         )
     }

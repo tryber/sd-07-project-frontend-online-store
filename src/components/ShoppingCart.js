@@ -52,7 +52,11 @@ class ShoppingCart extends React.Component {
             .map((item) => <CartItens key={item.id} item={item} />)}</div>
         </div>
         <h2>Valor Total da Compra:</h2>
-        <button>Finalizar Compra</button>
+
+        <Link to="/cart/checkout" data-testid="checkout-products">
+          <button>Finalizar Compra</button>
+        </Link>
+
       </div>
     );
   }
