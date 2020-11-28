@@ -30,8 +30,7 @@ class ShoppinCart extends React.Component {
   }
 
   loadStorage() {
-    let count = 0
-    for (count ; count < localStorage.length; count += 1) {
+    for (let count = 0; count < localStorage.length; count += 1) {
       const item = {
         name: localStorage.key(count),
         price: localStorage.getItem(localStorage.key(count)),
