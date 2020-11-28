@@ -122,10 +122,9 @@ class ProductDetail extends Component {
           Especificações Técnicas
           <ul>
             {attributes.map((element) => (<li key={ element.id }>
-                {`${element.name} --- ${element.value_name}`}
-              </li>
-              )
-            )}
+              {`${element.name} --- ${element.value_name}`}
+            </li>
+            ))}
           </ul>
         </div>
         <button
