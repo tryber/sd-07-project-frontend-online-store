@@ -44,7 +44,14 @@ class ProductDetail extends Component {
     if (results !== undefined) {
       const { id, title, attributes, thumbnail, price } = results[0];
       const availableQuantity = results[0].available_quantity;
-      return this.setState({ id, attributes, title, thumbnail, price, availableQuantity });
+      return this.setState({
+        id,
+        attributes,
+        title,
+        thumbnail,
+        price,
+        availableQuantity
+      });
     }
     const { id, attributes, title, thumbnail, price } = ListProducts;
     const availableQuantity = results[0].available_quantity;
