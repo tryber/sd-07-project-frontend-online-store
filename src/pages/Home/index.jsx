@@ -1,14 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Category from './Category';
-import ProductList from './ProductList';
-import * as api from '../services/api';
+import * as api from '../../services/api';
+import { CategoryList, SearchPlusCart, ProductList } from '../../components';
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
+
     this.handleSelected = this.handleSelected.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.searchProducts = this.searchProducts.bind(this);
+
     this.state = {
       inputValue: '',
       products: [],
@@ -48,25 +49,16 @@ class Main extends React.Component {
   }
 
   render() {
-    const { inputValue, requested, selected, selectedId } = this.state;
+    const { inputValue, requested, selected: slc, selectedId } = this.state;
     return (
       <div>
-        <input type="text" data-testid="query-input" onChange={ this.handleSearch } />
-        <button
-          type="button"
-          data-testid="query-button"
-          onClick={ () => this.searchProducts(inputValue, selectedId) }
-        >
-          Pesquisar
-        </button>
-        <Link data-testid="shopping-cart-button" to="/cart">
-          <i className="fas fa-shopping-cart" />
-        </Link>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        <Category handleSelected={ this.handleSelected } selected={ selected } />
-        { requested ? this.productsList() : '' }
+        <SearchPlusCart
+          srchProd={ () => this.searchProducts(inputValue, selectedId) }
+          handSrch={ this.handleSearch }
+          req={ requested }
+        />
+        <CategoryList handleSelected={ this.handleSelected } selected={ slc } />
+        { requested && this.productsList() }
       </div>
     );
   }
