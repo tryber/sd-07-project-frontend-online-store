@@ -2,31 +2,34 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class ShoppingCart extends React.Component {
-    constructor(props) {
-      super(props);
-  
-      this.readCart = this.readCart.bind(this);
-      this.iterableValues = this.iterableValues.bind(this);
-  
-      this.state = {
-        quantitySameItems: 1
-      }
+  constructor(props) {
+    super(props);
+
+    this.readCart = this.readCart.bind(this);
+    this.iterableValues = this.iterableValues.bind(this);
+
+    this.state = {
+      quantitySameItems: 1
     }
-    
-    readCart() {
-      const objectValues = JSON.parse(localStorage.getItem('items'))
-      return objectValues;
-    }
-  
-    iterableValues() {
-    const arrayOfValues = [];
-    for(var i in localStorage){
-      if(localStorage.hasOwnProperty(i)){
-          arrayOfValues.push(localStorage[i]);
-      }
-   }
-   return arrayOfValues;
   }
+  
+  readCart() {
+    const objectValues = JSON.parse(localStorage.getItem('items'))
+    return objectValues;
+  }
+
+  iterableValues() {
+  const arrayOfValues = [];
+  for(var i in localStorage){
+    if(localStorage.hasOwnProperty(i)){
+        arrayOfValues.push(localStorage[i]);
+    }
+ }
+ return arrayOfValues;
+}
+
+
+  
   
   render() {
     return (
@@ -41,33 +44,33 @@ class ShoppingCart extends React.Component {
           <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
         </svg>
 
-        <h2>Carrinho de compras</h2>''
+        <h2>Carrinho de compras</h2>
         <p data-testid='shopping-cart-empty-message'>
-
-        {localStorage.length === 0 ? 'Acrescente Algum Produto' : 'Seu carrinho está vazio'}
         
+        {localStorage.length === 0 ? 'Acrescente Algum Produto' : 'Seu carrinho está vazio'}
+          
         </p>
         <header>
         <h2>Carrinho de Compras</h2>
         </header> 
          {this.readCart().map((key) => {
           const {sku, cost, name, image, quantity} = key;
-          return (
-          <section data-testid="product">
-              <p>{sku}</p>
-              <div>
-                <img alt="Product inside cart" src={ image } />
-              </div>
-              <div className="info">
-                <div
-                  data-testid="shopping-cart-product-quantity"
-                >
+         return (
+        <section data-testid="product">
+          <p>{sku}</p>
+          <div>
+            <img alt="Product inside cart" src={image} />
+          </div>
+          <div className="info">
+            <div 
+              data-testid="shopping-cart-product-quantity"
+            >
                   {this.state.quantitySameItems}
               </div>
           <div data-testid="shopping-cart-product-name">{name}</div>
           <div>{cost}</div>
           </div>
-          </section>);
+        </section>);
         })}
         <p>
           Especificações do produto...
