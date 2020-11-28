@@ -47,9 +47,9 @@ AddToCartButton.propTypes = {
     id: PropTypes.string,
     title: PropTypes.string,
     thumbnail: PropTypes.string,
-    price: PropTypes.number,
-    dataTestId: propTypes.string,
+    price: PropTypes.number,    
   }).isRequired,
+  dataTestId: propTypes.string.isRequired,
 };
 
 export default AddToCartButton;
