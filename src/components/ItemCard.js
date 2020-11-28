@@ -3,19 +3,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ItemCard extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.handleCart = this.handleCart.bind(this);
     this.cartUpdate = this.cartUpdate.bind(this);
-    this.state = {
-      cartCount: JSON.parse(localStorage.getItem('cart')),
-    }
-  }
-
-  cartUpdate() {
-    this.setState({
-      cartCount: JSON.parse(localStorage.getItem('cart')),
-    });
   }
 
   handleCart() {

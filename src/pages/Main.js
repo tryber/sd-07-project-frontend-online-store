@@ -25,7 +25,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    this.cartUpdate()
+    this.cartUpdate();
   }
 
   cartUpdate() {
@@ -64,7 +64,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const count = 0
+    const count = 0;
     const { search, catID, product, message, loading, cartCount } = this.state;
     let array = [];
     if (product.length < 1) {
@@ -88,7 +88,6 @@ class Main extends React.Component {
               search={ search }
               category={ catID }
               product={ array }
-              cartCount={ cartCount }
             />
           </div>
         </div>
@@ -99,7 +98,9 @@ class Main extends React.Component {
           </Link>
           <span 
             data-testid="shopping-cart-size"
-            className="cart-details">{ cartCount === null ? count : cartCount.length }
+            className="cart-details"
+          >
+              { cartCount === null ? count : cartCount.length }
           </span>
         </div>
 

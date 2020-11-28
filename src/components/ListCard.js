@@ -18,7 +18,6 @@ class ListCard extends React.Component {
               id={ prod.id }
               image={ prod.thumbnail }
               price={ prod.price }
-              cartCount={ cartCount }
             />
           );
         })}
