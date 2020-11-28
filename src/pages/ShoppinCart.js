@@ -70,14 +70,14 @@ class ShoppinCart extends React.Component {
                   {namePrice.split('$')[0]}
                 </p>
                 <p>
-                  R$ 
+                  R$
                   {namePrice.split('$')[1]}
                 </p>
               </div>
             );
           })}
           <p>
-            Valor Total: R$ 
+            Valor Total: R$
             { totalPrice }
           </p>
         </div>
