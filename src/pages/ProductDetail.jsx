@@ -54,7 +54,7 @@ class ProductDetail extends Component {
       });
     }
     const { id, attributes, title, thumbnail, price } = ListProducts;
-    const availableQuantity = results[0].available_quantity;
+    const availableQuantity = ListProducts.available_quantity;
     return this.setState({ id, attributes, title, thumbnail, price, availableQuantity });
   }
 
