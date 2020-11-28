@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Category from '../components/Category';
+import NotFound from '../components/NotFound';
+import ProductCard from '../components/ProductCard';
 import SearchBar from '../components/SearchBar';
 import ProductCard from '../components/ProductCard';
 import NotFound from '../components/NotFound';
@@ -54,6 +56,7 @@ class Home extends Component {
           )
         }
         <Category categories={ categories } />
+        {status ? <ProductCard products={ products } /> : false}
       </div>
     );
   }

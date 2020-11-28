@@ -27,6 +27,13 @@ class SearchBar extends Component {
           name="query"
           onChange={ (event) => this.onChange(event) }
         />
+        <button
+          data-testid="query-button"
+          type="button"
+          onClick={ onClick }
+        >
+          BUSCAR
+        </button>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
@@ -42,7 +49,7 @@ class SearchBar extends Component {
   }
 }
 
-SearchBar.propTypes = {
+SearchBar.propTypes = {  
   onClick: PropTypes.func.isRequired,
 };
 

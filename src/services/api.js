@@ -8,7 +8,7 @@ export async function getCategories() {
   } catch (err) { return 'Erro'; }
 }
 
-export async function getProductsFromCategoryAndQuery(categoryId, query = '') {
+export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const url = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
   try {
     const promisse = await getFetch(url);
