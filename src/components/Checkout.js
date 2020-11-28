@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BuyerInformation from './checkout/BuyerInformation';
 import PaymentMethod from './checkout/PaymentMethod';
 import ReviewProducts from './checkout/ReviewProducts';
@@ -10,9 +11,14 @@ class Checkout extends React.Component {
     this.state = {
       products: [],
     };
+    this.setStateToComponent = this.setStateToComponent.bind(this);
   }
 
   componentDidMount() {
+    this.setStateToComponent();
+  }
+
+  setStateToComponent() {
     const productsFromCart = utils.picksUpItemsFromTheCartInLocalStorage();
     this.setState({
       products: productsFromCart,
@@ -20,17 +26,25 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const { totalPrice } = this.props.location;
     const { products } = this.state;
+    const { location } = this.props;
+    const { totalPrice } = location;
     return (
       <div>
-        <ReviewProducts products={products} totalPrice={totalPrice} />
+        <ReviewProducts products={ products } totalPrice={ totalPrice } />
         <BuyerInformation />
         <PaymentMethod />
-        <button>Comprar</button>
+        <button type="button">Comprar</button>
       </div>
     );
   }
 }
 
 export default Checkout;
+
+Checkout.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    totalPrice: PropTypes.number.isRequired,
+  }).isRequired,
+};

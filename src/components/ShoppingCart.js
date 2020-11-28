@@ -37,8 +37,8 @@ class ShoppingCart extends Component {
 
   findaProductWithId(id) {
     const { cartProducts } = this.state;
-    const product = cartProducts.find((product) => product.id === id);
-    return product;
+    const response = cartProducts.find((product) => product.id === id);
+    return response;
   }
 
   increaseFunc(id) {
@@ -71,7 +71,8 @@ class ShoppingCart extends Component {
       <div>
         {
           cartProducts.map(({ id, title }) => {
-            const result = Object.entries(this.state).find((element) => element[0] === id);
+            const result = Object.entries(this.state)
+              .find((element) => element[0] === id);
             return (
               <div key={ id }>
                 <p data-testid="shopping-cart-product-name">{ title }</p>
@@ -103,7 +104,7 @@ class ShoppingCart extends Component {
           Finalizar Compra
         </Link>
       </div>
-    )
+    );
   }
 }
 
