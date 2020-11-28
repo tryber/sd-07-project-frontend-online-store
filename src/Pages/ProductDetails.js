@@ -15,9 +15,9 @@ class ProductDetails extends React.Component {
         <h4>{`R$ ${price}`}</h4>
         <p>Especificação</p>
 
-        <AddToCartButton 
-         datatestid="product-detail-add-to-cart"
-         product={ product } />
+        <AddToCartButton
+          datatestid="product-detail-add-to-cart"
+          product={ product } />
         <RatingForm />
         <AddToCartButton product={ product } />
       
