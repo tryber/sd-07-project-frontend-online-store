@@ -13,7 +13,6 @@ class ProductDetail extends Component {
     this.removeZero = this.removeZero.bind(this);
     this.roundNumber = this.roundNumber.bind(this);
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
-    this.renderSpecifications = this.renderSpecifications.bind(this);
     this.state = {
       id: '',
       attributes: [],
@@ -107,14 +106,6 @@ class ProductDetail extends Component {
     }
   }
 
-  renderSpecifications(id, name, value) {
-    return (
-      <li key={ id }>
-        {`${name} --- ${value}`}
-      </li>
-    )
-  }
-
   render() {
     const { title, price, thumbnail, attributes } = this.state;
 
@@ -130,9 +121,11 @@ class ProductDetail extends Component {
         <div>
           Especificações Técnicas
           <ul>
-            {attributes.map((element) => {
-              return this.renderSpecifications(element.id, element.name, element.value_name)
-            })};
+            {attributes.map((element) => (<li key={ element.id }>
+                {`${element.name} --- ${element.value_name}`}
+              </li>
+              );
+            )}
           </ul>
         </div>
         <button
