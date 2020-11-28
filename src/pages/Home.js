@@ -23,7 +23,6 @@ class Home extends Component {
 
   componentDidMount() { this.fetchCategories(); }
 
-
   onClick() {
     this.fetchProducts();
   }
@@ -48,7 +47,6 @@ class Home extends Component {
     }
   }
 
-
   handleChange({ target }) {
     const { name, value } = target;
     this.setState({ [name]: value });
@@ -56,7 +54,6 @@ class Home extends Component {
 
   render() {
     const { categories, products, status, notFound } = this.state;
-    console.log(notFound);
     return (
       <div>
         <SearchBar handleChange={ this.handleChange } onClick={ this.onClick } />
