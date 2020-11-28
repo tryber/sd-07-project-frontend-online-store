@@ -1,8 +1,10 @@
+export function recoveryReviewsFromLocalStorage() {
+  if (localStorage.getItem('reviewsObj') === null) {
+    return localStorage.setItem('reviewsObj', '[]');
+  }
+  return JSON.parse(localStorage.getItem('reviewsObj'));
+}
 
-
-localStorage.setItem('reviews', JSON.stringify(data));
-
-const readReviews = () => JSON.parse(localStorage.getItem('reviews'));
-
-const saveMovies = (reviews) => localStorage.setItem('reviews', JSON.stringify(reviews));
-
+export function addReviewInLocalStorage(reviewToAdd) {
+  return localStorage.setItem('reviewsObj', JSON.stringify(reviewToAdd));
+};

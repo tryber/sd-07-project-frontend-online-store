@@ -7,6 +7,9 @@ import {
   addProductInLocalStorage,
   recoveryProductsFromLocalStorage,
 } from '../services/cartFunctions';
+import {  
+  recoveryReviewsFromLocalStorage,
+} from '../services/reviewsFunctions';
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -22,7 +25,8 @@ class ProductDetails extends Component {
   }
 
   componentDidMount() {
-    this.APIquery();
+    this.APIquery();    
+    recoveryReviewsFromLocalStorage();    
   }
 
     async APIquery() {
