@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 class ShoppingCartButton extends Component {
   render() {
     return (
-      <div className="cart-icon">
+      <div>
         <Link
           to="/shopping-cart"
           data-testid="shopping-cart-button"
-        />
+        >
+          <div className="cart-icon" />
+        </Link>
       </div>
     );
   }
