@@ -60,12 +60,13 @@ export class RatingStar extends Component {
     });
   }
 
+  // prettier-ignore
   render() {
     const { mode } = this.props;
     return (
       <css.Ctn>
-        {mode === 'input' && this.renderModeViewInput()}
-        {mode === 'card' && this.renderModeViewCard()}
+        { mode === 'input' && this.renderModeViewInput() }
+        { mode === 'card' && this.renderModeViewCard() }
       </css.Ctn>
     );
   }

@@ -3,13 +3,12 @@ import * as css from './style';
 
 class Button extends Component {
   render() {
-      const { children, getEvent } = this.props;
-      return(
-        <css.Button { ...this.props } type='button' 
-        onClick={ (event) => getEvent(event) }>
-        { children }
-        </css.Button>
-      );
+    const { children, getEvent } = this.props;
+    return (
+      <css.Button {...this.props} type="button" onClick={(event) => getEvent(event)}>
+        {children}
+      </css.Button>
+    );
   }
 }
 
