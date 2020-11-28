@@ -9,7 +9,10 @@ class ProductList extends Component {
       <div className="products-content">
         {products.length
           ? products.map((product) => (
-            <ProductCard key={ product.id } product={ product } />
+            <ProductCard
+              key={ product.id }
+              product={ product }
+            />
           )) : (<p> Nenhum produto foi encontrado </p>)}
       </div>
     );

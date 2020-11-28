@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CategoryList, SearchBar, ProductList } from '../../components';
+import { CategoryList, SearchBar, ProductList, Header } from '../../components';
 import * as api from '../../services/api';
 import './Home.css';
 
@@ -10,6 +10,7 @@ class Home extends Component {
       query: '',
       categoryId: '',
       products: [],
+      purchasedProducts: [],
     };
     this.fetchProducts = this.fetchProducts.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -37,9 +38,10 @@ class Home extends Component {
   }
 
   render() {
-    const { products } = this.state;
+    const { products, purchasedProducts } = this.state;
     return (
       <div className="main-container">
+        <Header />
         <aside className="categories-container">
           <CategoryList handleChange={ this.handleChange } />
         </aside>
@@ -47,6 +49,7 @@ class Home extends Component {
           <SearchBar
             handleChange={ this.handleChange }
             handleClick={ this.searchClick }
+            purchasedProducts={ purchasedProducts }
           />
           <ProductList
             products={ products }
