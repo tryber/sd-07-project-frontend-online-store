@@ -21,16 +21,6 @@ class ShoppingCart extends Component {
     return total + product.price * product.cartQuantity;
   }
 
-  updateCart() {
-    const initialValue = 0;
-    const cart = cartApi.getCartList();
-    const cartTotal = cart.reduce(this.getTotalValue, initialValue);
-    this.setState({
-      cart,
-      cartTotal,
-    });
-  }
-
   handleCartItem(product, buttonId) {
     if (buttonId === 'add') {
       cartApi.addToCart(product);
@@ -42,6 +32,16 @@ class ShoppingCart extends Component {
       cartApi.removeFromCart(product);
     }
     this.updateCart();
+  }
+
+  updateCart() {
+    const initialValue = 0;
+    const cart = cartApi.getCartList();
+    const cartTotal = cart.reduce(this.getTotalValue, initialValue);
+    this.setState({
+      cart,
+      cartTotal,
+    });
   }
 
   render() {
