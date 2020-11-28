@@ -6,19 +6,19 @@ export default class ProductCard extends React.Component {
     super(props);
     this.state = {
       objeto: [],
-
     };
     this.addToCart = this.addToCart.bind(this);
   }
 
   addToCart() {
-    const {  id, title, price, thumbnail, } = this.props.product;
-    const array = JSON.parse(localStorage.getItem('items') || '[]')
-    const index = array.findIndex(elemento  => elemento.id === id);
-    (index === -1) ? array.push({  id, title, price, thumbnail, quantidade: 1}) : array[index].quantidade ++
-    localStorage.setItem('items',JSON.stringify(array))
+    const { id, title, price, thumbnail } = this.props.product;
+    const array = JSON.parse(localStorage.getItem('items') || '[]');
+    const index = array.findIndex((elemento) => elemento.id === id);
+    index === -1
+      ? array.push({ id, title, price, thumbnail, quantidade: 1 })
+      : array[index].quantidade++;
+    localStorage.setItem('items', JSON.stringify(array));
   }
-
 
   render() {
     const { product } = this.props;
