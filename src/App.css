@@ -65,3 +65,16 @@
   align-content: center;
   padding: 10px;
 }
+
+.cartItem {
+  display: flex;
+  align-items: center;
+}
+
+.cartDescription {
+  border: solid black 1px;
+  display: flex;
+}
+.thumbnail {
+  width: 100px;
+}

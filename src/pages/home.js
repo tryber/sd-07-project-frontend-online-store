@@ -26,7 +26,7 @@ class home extends Component {
     await this.setState({ category: id });
     this.fetchProducts();
   }
-
+  
   async fetchProducts() {
     const { category, query } = this.state;
     const response = await getProductsFromCategoryAndQuery(category, query);
