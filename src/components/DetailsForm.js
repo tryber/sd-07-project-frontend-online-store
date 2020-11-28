@@ -10,7 +10,6 @@ export default class DetailsForm extends Component {
           <label htmlFor="nam">
             Digite seu nome
             <input
-              data-testid="product-detail-evaluation"
               type="text"
               id="nam"
               name="name"
