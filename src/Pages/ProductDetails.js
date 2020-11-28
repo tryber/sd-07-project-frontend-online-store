@@ -63,19 +63,19 @@ class ProductDetails extends Component {
             />
           </div>
           <p>
-            R$ 
+            R$
             { price }
           </p>
           <p>
-            Marca: 
+            Marca:
             { marca }
           </p>
           <p>
-            Modelo: 
-            { modelo } 
+            Modelo:
+            { modelo }
           </p>
           <p>
-            Condições do Produto: 
+            Condições do Produto:
             { condicoes }
           </p>
           <button
@@ -91,7 +91,16 @@ class ProductDetails extends Component {
   }
 }
 
+
 ProductDetails.propTypes = {
+  products: PropTypes.objectOf.isRequired,
+  condicoes: PropTypes.string.isRequired,
+  modelo: PropTypes.string.isRequired,
+  marca: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  thumbnail: PropTypes.img.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   match: PropTypes.arrayOf.isRequired,
 };
 

@@ -7,14 +7,18 @@ class CategorieCard extends React.Component {
     const { category, onclick } = this.props;
     return (
       <div>
-        <button className="category" type="button" data-testid="category" onClick={ onclick }>
+        <button
+          className="category"
+          type="button"
+          data-testid="category"
+          onClick={ onclick }
+        >
           { category.name }
         </button>
       </div>
     );
   }
 }
-
 
 CategorieCard.propTypes = {
   category: PropTypes.shape({
@@ -23,6 +27,5 @@ CategorieCard.propTypes = {
   name: PropTypes.string.isRequired,
   onclick: PropTypes.func.isRequired,
 };
-
 
 export default CategorieCard;
