@@ -38,6 +38,7 @@ Product.propTypes = {
   title: Proptypes.string.isRequired,
   price: Proptypes.number.isRequired,
   thumbnail: Proptypes.string.isRequired,
+  availableQuantity: Proptypes.number.isRequired,
   actualizeCart: Proptypes.func.isRequired,
 };
 

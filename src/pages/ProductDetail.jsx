@@ -42,11 +42,13 @@ class ProductDetail extends Component {
     const ListProducts = await API.getProductsFromCategoryAndQuery(productId);
     const { results } = ListProducts;
     if (results !== undefined) {
-      const { id, title, attributes, thumbnail, price, available_quantity } = results[0];
-      return this.setState({ id, attributes, title, thumbnail, price, availableQuantity: available_quantity });
+      const { id, title, attributes, thumbnail, price } = results[0];
+      const availableQuantity = results[0].available_quantity;
+      return this.setState({ id, attributes, title, thumbnail, price, availableQuantity });
     }
-    const { id, attributes, title, thumbnail, price, available_quantity } = ListProducts;
-    return this.setState({ id, attributes, title, thumbnail, price, availableQuantity: available_quantity });
+    const { id, attributes, title, thumbnail, price } = ListProducts;
+    const availableQuantity = results[0].available_quantity;
+    return this.setState({ id, attributes, title, thumbnail, price, availableQuantity });
   }
 
   changeQuantityState() {
