@@ -21,14 +21,16 @@ class ShowProducts extends Component {
   }
 }
 
-ShowProducts.Proptypes = {
-  products: Proptypes.shape({
-    key: Proptypes.number.isRequired,
-    id: Proptypes.string.isRequired,
-    title: Proptypes.string.isRequired,
-    price: Proptypes.number.isRequired,
-    thumbnail: Proptypes.string.isRequired,
-  }).isRequired,
+ShowProducts.propTypes = {
+  products: Proptypes.arrayOf(
+    Proptypes.shape({
+      key: Proptypes.number.isRequired,
+      id: Proptypes.string.isRequired,
+      title: Proptypes.string.isRequired,
+      price: Proptypes.number.isRequired,
+      thumbnail: Proptypes.string.isRequired,
+    }),
+  ).isRequired,
   actualizeCart: Proptypes.func.isRequired,
 };
 

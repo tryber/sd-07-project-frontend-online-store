@@ -20,7 +20,7 @@ class CartIcon extends Component {
   }
 }
 
-CartIcon.Proptypes = {
+CartIcon.propTypes = {
   cartItens: Proptypes.arrayOf(Proptypes.shape({
     number: Proptypes.number.isRequired,
   })).isRequired,
