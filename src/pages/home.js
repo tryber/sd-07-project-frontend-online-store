@@ -44,6 +44,11 @@ class home extends Component {
     await this.setState({
       cart: [...this.state.cart, product],
     });
+    if (localStorage.getItem('cart') === null) {
+      localStorage.setItem('cart', JSON.stringify(this.state.cart));
+    } else {
+      localStorage.setItem('cart', []);
+    }
   }
 
   render() {

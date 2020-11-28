@@ -5,6 +5,7 @@ import { getProductsFromCategoryAndQuery } from '../services/api';
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
+    this.eventAddCart = this.eventAddCart.bind(this);
     this.state = {
       product: {},
       loading: true,
@@ -30,6 +31,10 @@ class ProductDetail extends Component {
     });
   }
 
+  async eventAddCart() {
+    await localStorage.setItem('cart', [localStorage.getItem('cart'), JSON.stringify(this.props.product)]);
+  }
+
 
   render() {
     const { loading, product } = this.state;
@@ -47,6 +52,7 @@ class ProductDetail extends Component {
             </h4>
             <h5>{product.price}</h5>
           </div>
+          <button data-testid="product-add-to-cart" onClick={this.eventAddCart}>Adicionar ao Carrinho</button>
         </div>
       </div>
     );
