@@ -34,11 +34,11 @@ class ProductDetails extends React.Component {
     // const { item } = product;
     return (
       <div>
-        <h1 data-testid="product-detail-name">{item.title}</h1>
+        <h1 data-testid="product-detail-name">{ item.title }</h1>
         <button
           type="button"
           data-testid="product-detail-add-to-cart"
-          onClick={this.addToLocalStorage}
+          onClick={ this.addToLocalStorage }
         >
           Adicionar ao carrinho
         </button>

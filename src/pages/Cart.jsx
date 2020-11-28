@@ -17,12 +17,12 @@ class Cart extends React.Component {
   }
 
   loadList() {
-    if(localStorage.length) {
+    if (localStorage.length) {
       const products = JSON.parse(localStorage.getItem('cartItems'));
       this.setState({
         emptyCart: false,
         listProduct: [...products],
-      })
+      });
     }
   }
 
@@ -31,14 +31,14 @@ class Cart extends React.Component {
     const products = localStorage.getItem('cartItems');
     console.log(products);
 
-    if(products === '[]' || emptyCart) {
+    if (products === '[]' || emptyCart) {
       return (
         <div>
           <p data-testid="shopping-cart-empty-message" className="empty-cart">
             Seu carrinho está vazio
           </p>
         </div>
-      )
+      );
     }
     return (
       <div>
