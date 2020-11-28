@@ -61,7 +61,7 @@ class Home extends React.Component {
     return (
       <div className="home">
         <div className="barraH">
-          <h1>OS 4</h1>
+          <h1 className="barraHh1">OS 4</h1>
           <div className="ps">
             <SearchBar onClick={ this.onClick } />
             <ShoppingCartIcon />

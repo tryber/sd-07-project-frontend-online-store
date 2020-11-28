@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
+import lupa from './img/glass.png';
 
 class SearchBar extends React.Component {
   constructor() {
@@ -21,19 +22,24 @@ class SearchBar extends React.Component {
     const { onClick } = this.props;
     const { texto } = this.state;
     return (
-      <div>
+      <div className="barrapesquisa">
         <input
+          className="textopesquisa"
           data-testid="query-input"
+          placeholder="Pesquisa"
           type="text"
           value={ texto }
           onChange={ this.atualizarTexto }
         />
-        <input
+        <button
+          className="iconpesquisa"
           data-testid="query-button"
           type="button"
           value="pesquisar"
           onClick={ () => onClick(texto) }
-        />
+        >
+          <img src={ lupa } alt="pequisar" />
+        </button>
       </div>
     );
   }

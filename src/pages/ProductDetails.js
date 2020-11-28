@@ -5,6 +5,7 @@ import * as api from '../services/api';
 import ShoppingCartIcon from '../components/Shopping-cart-icon';
 import Stars from '../components/Stars';
 import voltar from '../components/img/undo.png';
+import add from '../components/img/add-to-cart.png';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -89,53 +90,66 @@ class ProductDetails extends React.Component {
     return (
       <div>
         <div>
-          <div>
+          <div className="nave">
             <Link to="/"><img className="imagem" src={ voltar } alt="voltar" /></Link>
+            <h1>Detalhes do produto</h1>
             <ShoppingCartIcon />
           </div>
-          <img src={ thumbnail } alt={ title } />
-          <div>
-            <h1 data-testid="product-detail-name">{title}</h1>
-            <h3>{`R$: ${price}`}</h3>
-            <input
-              data-testid="product-detail-add-to-cart"
-              type="button"
-              value="Adicionar ao Carrinho"
-              onClick={ () => this.handleClick() }
-            />
+          <div className="proDeG">
+            <img src={ thumbnail } alt={ title } />
+            <div className="proDeI">
+              <h2 data-testid="product-detail-name">{title}</h2>
+              <div className="proDeP">
+                <h1>{`R$: ${price}`}</h1>
+                <button
+                  className="add"
+                  data-testid="product-detail-add-to-cart"
+                  type="button"
+                  value="Adicionar ao Carrinho"
+                  onClick={ () => this.handleClick() }
+                >
+                  <img src={ add } alt="adicionar ao carrinho" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div>
+        <div className="avaliar">
           <h2>avaliação</h2>
           <form action="">
-            <div>
+            <div className="ES">
               <textarea
                 data-testid="product-detail-evaluation"
                 type="text"
                 name="Email"
                 placeholder="E-mail"
+                rows={ 1 }
                 value={ Email }
                 onChange={ this.inputs }
                 required
               />
               <Stars astronomo={ this.getnota } />
             </div>
-            <textarea
-              type="text"
-              name="comentario"
-              placeholder="Comentario
-              (opcional)"
-              value={ comentario }
-              rows={ 4 }
-              onChange={ this.inputs }
-            />
+            <div>
+              <textarea
+                type="text"
+                name="comentario"
+                placeholder="Comentario
+                (opcional)"
+                value={ comentario }
+                rows={ 4 }
+                onChange={ this.inputs }
+              />
+            </div>
             <input type="button" value="enviar" onClick={ this.butfunc } />
           </form>
           <div>
             {comentFix.map((coment) => (
-              <div key={ coment }>
-                <h2>{coment.Email}</h2>
-                <h3>{coment.nota}</h3>
+              <div key={ coment } className="F">
+                <div className="ESF">
+                  <h2>{coment.Email}</h2>
+                  <h4>{`nota: ${coment.nota}`}</h4>
+                </div>
                 <p>{coment.comentario}</p>
               </div>
             ))}

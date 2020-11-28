@@ -45,12 +45,14 @@ class Stars extends React.Component {
       <div>
         {constelação.map((estrela) => (
           <button
+            className="ESbutton"
             type="button"
             name={ estrela.index }
             key={ estrela.index }
             onClick={ this.estrelaCadente }
           >
             <img
+              className="imagem"
               name={ estrela.index }
               src={ estrela.img }
               alt={ `nota ${estrela.index}` }
