@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RatingForm from '../Components/RatingForm';
 import AddToCartButton from '../Components/AddToCartButton';
 
 class ProductDetails extends React.Component {
@@ -13,9 +14,13 @@ class ProductDetails extends React.Component {
         <img src={ thumbnail } alt="Imagem" />
         <h4>{`R$ ${price}`}</h4>
         <p>Especificação</p>
+
         <AddToCartButton 
          datatestid="product-detail-add-to-cart"
          product={ product } />
+        <RatingForm />
+        <AddToCartButton product={ product } />
+      
       </div>
     );
   }

@@ -49,13 +49,6 @@ AddToCartButton.propTypes = {
     thumbnail: PropTypes.string,
     price: PropTypes.number,
   }).isRequired,
-  item: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    thumbnail: PropTypes.string,
-    price: PropTypes.number,
-    quantity: PropTypes.number,
-  }).isRequired,
 };
 
 export default AddToCartButton;
