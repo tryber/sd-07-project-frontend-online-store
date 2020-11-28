@@ -26,9 +26,7 @@ class Home extends Component {
     }
   }
 
-  onClick(query) {
-    this.fetchProducts(query);
-  }
+  onClick(query) { this.fetchProducts(query); }
 
   async fetchCategories() {
     this.setState({ categories: await api.getCategories() });
@@ -46,12 +44,12 @@ class Home extends Component {
       <div>
         <SearchBar onClick={this.onClick} />
         <ShoppingCartButton />
+        { status && (
+            products.results.length ?
+              <ProductCard products={products.results} /> :
+              <NotFound />
+          ) }
         <Category categories={ categories } />
-        {
-          status && products.results.length ?
-            <ProductCard products={products.results} /> :
-            <NotFound />
-        }
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class ProductCard extends Component {
   render() {
@@ -10,6 +11,12 @@ class ProductCard extends Component {
             <h2>{title}</h2>
             <img src={ thumbnail } alt="product" />
             <span>{price}</span>
+            <Link
+              data-testid="product-detail-link"
+              to={{
+                pathname: `/details/${id}`,
+            }}>
+            Details</Link>
           </div>
         ))}
       </div>
