@@ -50,7 +50,6 @@ class ShoppingCartPage extends Component {
   }
 
   render() {
-    const empty = 0;
     const { shoppingCartItems } = this.state;
     if (!shoppingCartItems) {
       return (
