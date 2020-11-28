@@ -21,7 +21,7 @@ class Assessment extends React.Component {
 Assessment.propTypes = {
   props: PropTypes.shape({
     email: PropTypes.string,
-    note: PropTypes.number,
+    note: PropTypes.string,
     message: PropTypes.string,
   }).isRequired,
 };
