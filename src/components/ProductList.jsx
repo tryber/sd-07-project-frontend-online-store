@@ -27,8 +27,7 @@ class ProductList extends Component {
 
   render() {
     const { product } = this.props;
-    const { id, title, thumbnail, price } = product;
-
+    const { id, title, thumbnail, price, shipping } = product;
     return (
       <div>
         <div>
@@ -53,6 +52,12 @@ class ProductList extends Component {
           >
             Clique Aqui
           </button>
+      <Link to={ `/${id}` } data-testid="product-detail-link">
+        <div data-testid="product">
+          <h4>{title}</h4>
+          <img src={ thumbnail } alt="Produto listado" />
+          <p>{price}</p>
+          {shipping.free_shipping ? <p data-testid="free-shipping">Frete Gratis!</p> : ''}
         </div>
       </div>
     );
@@ -65,6 +70,7 @@ ProductList.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    shipping: PropTypes.object,
   }).isRequired,
 };
 
