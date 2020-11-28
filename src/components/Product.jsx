@@ -19,21 +19,31 @@ class Product extends Component {
     if (freeShipping === false) {
       return (
         <span
-            data-testid="free-shipping"
-          >
-            Frete grátis: { this.translateFreeShipping(freeShipping) }
-          </span>
-      )
+          data-testid="free-shipping"
+        >
+          Frete grátis:
+          { this.translateFreeShipping(freeShipping) }
+        </span>
+      );
     }
     return (
       <span>
-        Frete grátis: { this.translateFreeShipping(freeShipping) }
+        Frete grátis:
+        { this.translateFreeShipping(freeShipping) }
       </span>
-    )
+    );
   }
 
   render() {
-    const { id, title, price, thumbnail, freeShipping, availableQuantity, actualizeCart } = this.props;
+    const {
+      id,
+      title,
+      price,
+      thumbnail,
+      freeShipping,
+      availableQuantity,
+      actualizeCart
+    } = this.props;
     return (
       <div data-testid="product" id={ id }>
         <span>{ title }</span>

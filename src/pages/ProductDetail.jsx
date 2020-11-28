@@ -164,7 +164,10 @@ class ProductDetail extends Component {
               </li>
             ))}
           </ul>
-            <p data-testid="free-shipping">Frete grátis: { this.translateFreeShipping() }</p>
+            <p data-testid="free-shipping">
+              Frete grátis:
+              { this.translateFreeShipping() }
+            </p>
         </div>
         <button
           data-testid="product-detail-add-to-cart"
