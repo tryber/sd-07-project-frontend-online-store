@@ -36,6 +36,8 @@ class ProductList extends Component {
               <h4>{title}</h4>
               <img src={ thumbnail } alt="Produto listado" />
               <p>{price}</p>
+              {shipping.free_shipping
+                ? <p data-testid="free-shipping">Frete Gratis!</p> : ''}
             </div>
           </Link>
         </div>
@@ -52,12 +54,6 @@ class ProductList extends Component {
           >
             Clique Aqui
           </button>
-      <Link to={ `/${id}` } data-testid="product-detail-link">
-        <div data-testid="product">
-          <h4>{title}</h4>
-          <img src={ thumbnail } alt="Produto listado" />
-          <p>{price}</p>
-          {shipping.free_shipping ? <p data-testid="free-shipping">Frete Gratis!</p> : ''}
         </div>
       </div>
     );
