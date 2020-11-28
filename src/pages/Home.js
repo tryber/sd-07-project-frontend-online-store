@@ -20,6 +20,11 @@ export default class Home extends Component {
     this.onSearchText = this.onSearchText.bind(this);
   }
 
+  async handleRadioClick({ target: { name, id } }) {
+    await this.setState({ [name]: id });
+    this.getProdutsByQuery();
+  }
+
   onSearchText({ target: { name, value } }) {
     this.setState({ [name]: value });
   }

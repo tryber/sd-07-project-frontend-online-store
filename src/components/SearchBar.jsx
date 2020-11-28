@@ -36,6 +36,6 @@ export default SearchBar;
 
 SearchBar.propTypes = {
   query: propTypes.string.isRequired,
-  onClick: propTypes.func.isRequired,
   onChange: propTypes.func.isRequired,
+  onClick: propTypes.func.isRequired,
 };
