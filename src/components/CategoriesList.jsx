@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types';
 
 class CategoriesList extends Component {
   render() {
@@ -18,5 +19,13 @@ class CategoriesList extends Component {
     );
   }
 }
+
+CategoriesList.propTypes = {
+  categorie: Proptypes.shape({
+    id: Proptypes.string.isRequired,
+    name: Proptypes.string.isRequired,
+  }).isRequired,
+  onCategoryChoice: Proptypes.func.isRequired,
+};
 
 export default CategoriesList;

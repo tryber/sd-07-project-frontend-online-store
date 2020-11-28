@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Product from './Product';
+import Proptypes from 'prop-types';
 
 class ShowProducts extends Component {
   render() {
@@ -19,5 +20,10 @@ class ShowProducts extends Component {
     );
   }
 }
+
+ShowProducts.Proptypes = {
+  products: Proptypes.arrayOf(Proptypes.object).isRequired,
+  actualizeCart: Proptypes.func.isRequired,
+};
 
 export default ShowProducts;

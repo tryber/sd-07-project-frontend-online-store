@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types';
 
 class CartItem extends Component {
   constructor() {
@@ -51,5 +52,16 @@ class CartItem extends Component {
     return this.showSimpleItem();
   }
 }
+
+CartItem.propTypes = {
+  id: Proptypes.string.isRequired,
+  title: Proptypes.string.isRequired,
+  price: Proptypes.number.isRequired,
+  image: Proptypes.string.isRequired,
+  number: Proptypes.number.isRequired,
+  sumItem: Proptypes.func.isRequired,
+  subtractItem: Proptypes.func.isRequired,
+  removeItem: Proptypes.func.isRequired,
+};
 
 export default CartItem;
