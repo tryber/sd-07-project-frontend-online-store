@@ -5,6 +5,9 @@ class ShoppingCartPage extends Component {
   constructor(props) {
     super(props);
 
+    this.increaseItem = this.increaseItem.bind(this);
+    this.decreaseItem = this.decreaseItem.bind(this);
+
     this.state = {
       shoppingCartItems: [],
     };
@@ -21,6 +24,31 @@ class ShoppingCartPage extends Component {
     });
   }
 
+  increaseItem(id) {
+    const { shoppingCartItems } = this.state;
+    shoppingCartItems.find((item) => item.id === id)
+      .quantity += 1;
+    this.setState({
+      shoppingCartItems,
+    });
+  }
+
+  decreaseItem(id) {
+    const zero = 0;
+    const { shoppingCartItems } = this.state;
+    const { quantity } = shoppingCartItems.find((item) => item.id === id);
+    if (quantity > zero) {
+      shoppingCartItems.find((item) => item.id === id)
+        .quantity -= 1;
+      this.setState({
+        shoppingCartItems,
+      });
+    }
+  }
+
+  totalPrice() {
+  }
+
   render() {
     const empty = 0;
     const { shoppingCartItems } = this.state;
@@ -35,9 +63,19 @@ class ShoppingCartPage extends Component {
       <div>
         <div>
           {shoppingCartItems.map((item) => (
-            <ProductCart key={ item.id } product={ item } />
+            <ProductCart
+              key={ item.id }
+              product={ item }
+              increaseItem={ this.increaseItem }
+              decreaseItem={ this.decreaseItem }
+            />
           ))}
         </div>
+        <div>
+          Valor Total da Compra R$
+          {/* estado total price */}
+        </div>
+        <button type="button">Finalizar Compra</button>
       </div>
     );
   }
