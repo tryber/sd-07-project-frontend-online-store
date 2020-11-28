@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RatingForm from '../Components/RatingForm';
 import AddToCartButton from '../Components/AddToCartButton';
+import Header from '../Components/Header';
 
 class ProductDetails extends React.Component {
   render() {
@@ -10,19 +11,20 @@ class ProductDetails extends React.Component {
     const { title, thumbnail, price } = product;
     return (
       <div>
+        <Header />
         <h4 data-testid="product-detail-name">{`${title}`}</h4>
         <img src={ thumbnail } alt="Imagem" />
         <h4>{`R$ ${price}`}</h4>
         <p>Especificação</p>
+        <AddToCartButton
+          dataTestId="product-detail-add-to-cart"
+          product={ product }
+        />
         <RatingForm />
-        <AddToCartButton product={ product } />
       </div>
     );
   }
 }
-
-export default ProductDetails;
-
 ProductDetails.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
@@ -32,3 +34,5 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
 };
+
+export default ProductDetails;

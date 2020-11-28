@@ -32,9 +32,9 @@ class AddToCartButton extends React.Component {
     return (
       <button
         type="button"
-        data-testid="product-add-to-cart"
         onClick={ this.handleAddToCart }
         className="btn-add-to-cart"
+        data-testid={ dataTestId }
       >
         Adicionar ao carrinho
       </button>
@@ -48,6 +48,7 @@ AddToCartButton.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    dataTestId: propTypes.string,
   }).isRequired,
 };
 
