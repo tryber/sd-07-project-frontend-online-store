@@ -29,7 +29,7 @@ class Categories extends React.Component {
     const { arrayOfCategories } = this.state;
     const { handleChange } = this.props;
     return (
-      <div>
+      <>
         { arrayOfCategories.map(
           ({ id, name }) => (
             <label>
@@ -46,7 +46,7 @@ class Categories extends React.Component {
             </label>
           ),
         )}
-      </div>
+      </>
     );
   }
 }

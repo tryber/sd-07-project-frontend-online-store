@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import * as mlAPI from '../services/api';
 import '../App.css';
 import logo from '../images/logo.svg';
-import shoppingCart from '../images/shopping-cart.png';
 import Card from './Card';
 import Categories from '../components/Categories'
+import GetIcon from './Icons';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -50,6 +50,13 @@ class SearchBar extends React.Component {
           </Link>
           <div className="search">
             <div className="search-bar-content">
+              <button
+                className="search-button"
+                data-testid="query-button"
+                onClick={this.fetchApiByQuery}
+              >
+                <GetIcon className="search-button-icon" name="SearchIcon" />
+              </button>
               <input
                 data-testid="query-input"
                 className="search-bar"
@@ -64,22 +71,17 @@ class SearchBar extends React.Component {
             </div>
           </div>
           <Link to="/cart" data-testid="shopping-cart-button">
-            <img
-              className="shopping-cart-icon"
-              alt="Shopping cart icon"
-              src={shoppingCart}
-            />
+            <GetIcon className="shopping-cart-icon" name="ShoppingCartIcon" />
           </Link>
-          <button
-            data-testid="query-button" onClick={this.fetchApiByQuery} >Buscar</button>
         </header>
-        <div>
-          <Categories handleChange={this.changeStateValue}/>
-        </div>
-        <div>
-          {arrayOfItemByInputedText
-            .map((item) => <Card key={item.id} products={item} />)}
-        </div>
+        <div className="container">
+          <section className="categories-list">
+            <Categories handleChange={this.changeStateValue}/>
+          </section>
+          <section className="product-list">
+            {arrayOfItemByInputedText
+              .map((item) => <Card key={item.id} products={item} />)}
+          </section></div>
       </div>
     );
   }
