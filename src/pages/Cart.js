@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import * as api from '../services/api';
+
 
 export default class Cart extends Component {
   constructor(props) {
@@ -8,6 +10,7 @@ export default class Cart extends Component {
     this.state = {
       loading: true,
       cartItems: [],
+      redirect: false,
     };
   }
 
@@ -17,12 +20,9 @@ export default class Cart extends Component {
     if (cart !== undefined && cart !== [] && cart !== null) {
       cart.forEach(async ({ id: idCartItem, category, searchKey, quantity }) => {
         const resp = await api.getProductsFromCategoryAndQuery(category, searchKey);
-        const {
-          title,
-          thumbnail,
-          price,
-          id,
-        } = resp.results.find((product) => product.id === idCartItem);
+        const { title, thumbnail, price, id } = resp.results.find(
+          (product) => product.id === idCartItem,
+        );
         this.setState((previus) => ({
           cartItems: [...previus.cartItems, { title, thumbnail, price, id, quantity }],
           loading: false,
@@ -42,13 +42,9 @@ export default class Cart extends Component {
       );
     }
     if (loading) {
-      return (
-        <div>
-          Carregando...
-        </div>
-      );
+      return <div>Carregando...</div>;
     }
-
+    const { redirect } = this.state;
     return (
       <div>
         {cartItems.map(({ title, thumbnail, price, id, quantity }) => (
@@ -61,6 +57,18 @@ export default class Cart extends Component {
             quantity={ quantity }
           />
         ))}
+        <div>
+          <button
+            data-testid="checkout-products"
+            type="button"
+            onClick={ () => {
+              this.setState({ redirect: true });
+            } }
+          >
+            Finalizar compras
+          </button>
+          {redirect && <Redirect to="/checkout" />}
+        </div>
       </div>
     );
   }

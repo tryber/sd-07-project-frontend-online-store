@@ -17,10 +17,8 @@ class Home extends Component {
       searchKey: '',
       category: '',
       results: [],
-
     };
   }
-
 
   handleSearchKey({ target }) {
     this.setState({
@@ -38,9 +36,12 @@ class Home extends Component {
   }
 
   async handleCategory(category) {
-    this.setState({
-      category,
-    }, () => this.fetchAPI());
+    this.setState(
+      {
+        category,
+      },
+      () => this.fetchAPI(),
+    );
   }
 
   render() {
