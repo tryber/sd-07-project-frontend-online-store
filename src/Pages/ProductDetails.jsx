@@ -6,6 +6,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const { product } = location.state;
   const { title, price, thumbnail, description } = product;
+
   const addProductToCart = (productt) => {
     if (localStorage.getItem(productt)) {
       const quantity = JSON.parse(localStorage.getItem(productt)) + 1;
@@ -14,6 +15,7 @@ const ProductDetails = () => {
       localStorage.setItem(productt, 1);
     }
   };
+
   return (
     <div>
       <ShoopingCartButton data-testid="shopping-cart-button" />

@@ -6,19 +6,54 @@ class ShoppingCart extends React.Component {
     super();
 
     this.cartListOfItems = this.cartListOfItems.bind(this);
+    this.increaseQuantity = this.increaseQuantity.bind(this);
+    this.decreaseQuantity = this.decreaseQuantity.bind(this);
+  }
+
+  increaseQuantity(event) {
+    const itemName = event.target.value;
+    const localStorageArray = JSON.parse(localStorage.getItem('products'));
+    const findInLS = localStorageArray
+      .find((productArray) => productArray.title === itemName);
+    findInLS.quantity += 1;
+    localStorage.setItem('products', JSON.stringify(localStorageArray));
+    return this.cartListOfItems();
+  }
+
+  decreaseQuantity(event) {
+    const itemName = event.target.value;
+    const localStorageArray = JSON.parse(localStorage.getItem('products'));
+    const findInLS = localStorageArray
+      .find((productArray) => productArray.title === itemName);
+    findInLS.quantity -= 1;
+    localStorage.setItem('products', JSON.stringify(localStorageArray));
   }
 
   cartListOfItems() {
     const itemsLS = JSON.parse(localStorage.getItem('products'));
+    console.log(itemsLS);
     return itemsLS.map((item) => {
       return (
         <div key={ item.title }>
           <p data-testid="shopping-cart-product-name">{item.title}</p>
-          <p>
-            Valor:
-            { (parseFloat(item.price)) }
-          </p>
-          <p data-testid="shopping-cart-product-quantity">Quantidade: { item.quantity }</p>
+          <p>{ (parseFloat(item.price)) }</p>
+          <button
+            type="button"
+            data-testid="product-increase-quantity"
+            onClick={ this.increaseQuantity }
+            value={ item.title }
+          >
+            +
+          </button>
+          <p data-testid="shopping-cart-product-quantity">{ item.quantity }</p>
+          <button
+            type="button"
+            data-testid="product-decrease-quantity"
+            onClick={ this.decreaseQuantity }
+            value={ item.title }
+          >
+            -
+          </button>
         </div>
       );
     });
