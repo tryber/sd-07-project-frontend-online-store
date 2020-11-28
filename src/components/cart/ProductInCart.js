@@ -9,7 +9,7 @@ class ProductInCart extends React.Component {
     super(props);
     this.state = {
       totalPrice: 0,
-       totalQuantity: 1,
+      totalQuantity: 1,
     };
     this.changeTotal = this.changeTotal.bind(this);
   }
@@ -20,7 +20,7 @@ class ProductInCart extends React.Component {
 
   render() {
     const { products, handleClick } = this.props;
-    const { totalPrice } = this.state;
+    const { totalPrice, totalQuantity } = this.state;
 
     return (
       <div>
@@ -34,7 +34,7 @@ class ProductInCart extends React.Component {
             >
               {product.title}
             </h3>
-        <p data-testid="shopping-cart-product-quantity">Quantidade Total:{this.state.totalQuantity}</p>
+          <p data-testid="shopping-cart-product-quantity">Quantidade Total:{totalQuantity}</p>
           </div>))}
         <p className="total-price">
           Valor Total da Compra: R$
