@@ -13,15 +13,19 @@ class ProductCard extends Component {
             <span>{price}</span>
             <Link
               data-testid="product-detail-link"
-              to={{
-                pathname: `/details/${id}`,
-            }}>
-            Details</Link>
+              to={ { pathname: `/details/${id}` } }
+            >
+              Details
+            </Link>
           </div>
         ))}
       </div>
     );
   }
 }
+
+ProductCard.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ProductCard;

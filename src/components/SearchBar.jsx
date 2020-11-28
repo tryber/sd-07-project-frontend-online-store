@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
-  constructor () {
+  constructor() {
     super();
     this.onChange = this.onChange.bind(this);
     this.state = {
       query: '',
-    }
+    };
   }
 
-  onChange({target:{ name, value, }}) {
+  onChange({ target: { name, value } }) {
     this.setState({
       [name]: value,
-    })
+    });
   }
 
   render() {
+    const { onClick } = this.props;
+    const { query } = this.state;
     return (
       <div>
         <input
@@ -30,7 +32,7 @@ class SearchBar extends Component {
         <button
           data-testid="query-button"
           type="button"
-          onClick={ () => { this.props.onClick(this.state.query)} }
+          onClick={ () => { onClick(query); } }
         >
           BUSCAR
         </button>
@@ -38,5 +40,9 @@ class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default SearchBar;

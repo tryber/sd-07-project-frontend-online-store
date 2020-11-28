@@ -19,14 +19,16 @@ class Home extends Component {
 
   componentDidMount() { this.fetchCategories(); }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { products } = this.state;
-    if(prevState.products !== products) {
-      this.setState({ status: true })
-    }
-  }
+  componentDidUpdate(prevProps, prevState) { this.StatusSet(prevState); }
 
   onClick(query) { this.fetchProducts(query); }
+
+  StatusSet() {
+    const { products } = this.state;
+    if (prevState.products !== products) {
+      this.setState({ status: true });
+    }
+  }
 
   async fetchCategories() {
     this.setState({ categories: await api.getCategories() });
@@ -34,7 +36,7 @@ class Home extends Component {
 
   async fetchProducts(query, categoryId = '') {
     this.setState({
-      products: await api.getProductsFromCategoryAndQuery(categoryId, query)
+      products: await api.getProductsFromCategoryAndQuery(categoryId, query),
     });
   }
 
@@ -42,13 +44,15 @@ class Home extends Component {
     const { categories, status, products } = this.state;
     return (
       <div>
-        <SearchBar onClick={this.onClick} />
+        <SearchBar onClick={ this.onClick } />
         <ShoppingCartButton />
-        { status && (
-            products.results.length ?
-              <ProductCard products={products.results} /> :
-              <NotFound />
-          ) }
+        {
+          status && (
+            products.results.length
+              ? <ProductCard products={ products.results } />
+              : <NotFound />
+          )
+        }
         <Category categories={ categories } />
       </div>
     );
