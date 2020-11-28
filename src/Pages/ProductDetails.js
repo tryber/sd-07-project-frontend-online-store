@@ -14,10 +14,10 @@ class ProductDetails extends React.Component {
         <img src={ thumbnail } alt="Imagem" />
         <h4>{`R$ ${price}`}</h4>
         <p>Especificação</p>
-
         <AddToCartButton
           datatestid="product-detail-add-to-cart"
-          product={ product } />
+          product={ product }
+        />
         <RatingForm />
         <AddToCartButton product={ product } />
       </div>
