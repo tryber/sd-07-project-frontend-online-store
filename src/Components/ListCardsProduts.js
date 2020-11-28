@@ -31,7 +31,8 @@ class ListCardsProduts extends React.Component {
           </h3>
           <img src={ thumbnail } alt={ `${title} sprite` } />
         </Link>
-        <h4>R$ 
+        <h4>
+          R$
           { price }
         </h4>
         <button className="button-product" type="button" onClick={ this.handleClick }>
@@ -44,10 +45,10 @@ class ListCardsProduts extends React.Component {
 
 
 ListCardsProduts.propTypes = {
-  category: PropTypes.string.isRequired,
+  product: PropTypes.objectOf.isRequired,
   termo: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  thumbnail: PropTypes.img.isRequired,
+  thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };
