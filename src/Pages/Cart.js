@@ -16,8 +16,8 @@ class Cart extends React.Component {
   }
 }
 
-CardsRenderList.propTypes = {
-  products: PropTypes.object.isRequired,
+Cart.propTypes = {
+  products: PropTypes.objectOf.isRequired,
 };
 
 export default Cart;

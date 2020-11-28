@@ -40,7 +40,7 @@ class ListCardsProduts extends React.Component {
 }
 
 
-CardsRenderList.propTypes = {
+ListCardsProduts.propTypes = {
   products: PropTypes.objectOf.isRequired,
   category_id: PropTypes.string.isRequired,
   termo: PropTypes.string.isRequired,
