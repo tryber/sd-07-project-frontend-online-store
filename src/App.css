@@ -1,38 +1,98 @@
 .App {
-  text-align: center;
+  background-color: wheat;
+  display: flex;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header-container {
+  background-color: rgb(255, 241, 115);
+  color: gray;
+  display: flex;
+  height: 48px;
+  justify-content: center;
+  padding: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo {
+  height: 35px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.shopping-cart-icon {
+  height: 35px;
+  margin-left: 10px;
+}
+
+.search {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.search-bar-content {
+  background-color: white;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.164);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.search-bar-content:hover {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.164);
+}
+
+.search-bar {
+  border: none;
+  border-radius: 25px;
+  font-size: 20px;
+  height: 30px;
+  width: 100%;
+}
+
+textarea:focus, input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+} 
+
+.home-initial-message {
+  align-items: center;
+  display: flex;
+  font-size: 15px;
+  justify-content: center;
+  height: 18px;
+  margin-top: 5px;
+}
+
+.query-button{
+  background: none;
+  border: none;
+  height: 20px;
+  left: -5px;
+  position: relative;
+  width: 20px;
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+.query-button.okay{
+  border: none;
+}
+
+.search-icon {
+  height: 100%;
+}
+
+.search-icon:hover {
+  height: 105%;
+}
+
+.categories-list {
+  background-color: rgb(214, 214, 214);
+  border-radius: 25px;
+  margin: 3vw 8vw;
+  padding: 10px;
+  width: 20vw;
+}
+
+.cardProduct {
+  background-color: rgb(175, 205, 219);
 }
