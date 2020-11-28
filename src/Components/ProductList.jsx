@@ -28,6 +28,6 @@ class ProductList extends React.Component {
   }
 }
 
-ProductList.propTypes = { products: PropTypes.array.isRequired };
+ProductList.propTypes = { products: PropTypes.arrayOf(Array).isRequired };
 
 export default ProductList;

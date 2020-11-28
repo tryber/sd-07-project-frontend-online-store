@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import icon from '../shopping-cart.svg';
 
 class Header extends React.Component {
-
   render() {
+    const { getProducts } = this.props;
     return (
       <div className="container-header">
         <div className="inner-container">
@@ -23,7 +23,7 @@ class Header extends React.Component {
             <button
               className="btn-search"
               type="submit"
-              onClick={ this.props.getProducts }
+              onClick={ getProducts }
               data-testid="query-button"
             >
               Buscar
