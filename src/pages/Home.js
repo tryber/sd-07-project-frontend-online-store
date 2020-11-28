@@ -23,7 +23,7 @@ class Home extends Component {
 
   onClick(query) { this.fetchProducts(query); }
 
-  StatusSet() {
+  StatusSet(prevState) {
     const { products } = this.state;
     if (prevState.products !== products) {
       this.setState({ status: true });
