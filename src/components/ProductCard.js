@@ -19,25 +19,32 @@ class ProdoctCard extends React.Component {
   render() {
     const { product } = this.props;
     const { thumbnail, title, price, id } = product;
+    const decimal = 2;
     const categoryId = product.category_id;
     return (
-      <div data-testid="product">
-        <img src={ thumbnail } alt="Imagem do produto" />
-        <h2>{ title }</h2>
-        <h2>{ price }</h2>
-        <Link
-          to={ `/product/${categoryId}/${id}` }
-          data-testid="product-detail-link"
-        >
-          Ver mais detalhes...
-        </Link>
-        <button
-          type="submit"
-          data-testid="product-add-to-cart"
-          onClick={ () => this.addToCart(product) }
-        >
-          Adicionar ao carrinho
-        </button>
+      <div data-testid="product" className="product-card">
+        <div className="product-card-image">
+          <img src={ thumbnail } alt="Imagem do produto" />
+        </div>
+        <p className="product-card-title">{ title }</p>
+        <p className="price">{`R$ ${price.toFixed(decimal)}`}</p>
+        <div className="product-link">
+          <button
+            className="product-link-add"
+            type="submit"
+            data-testid="product-add-to-cart"
+            onClick={ () => this.addToCart(product) }
+          >
+            Adicionar ao carrinho
+          </button>
+          <Link
+            className="product-link-detail"
+            to={ `/product/${categoryId}/${id}` }
+            data-testid="product-detail-link"
+          >
+            Ver mais detalhes...
+          </Link>
+        </div>
       </div>
     );
   }
