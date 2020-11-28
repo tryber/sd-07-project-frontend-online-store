@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -11,7 +12,6 @@ class ShoppingCart extends Component {
 
   componentDidMount() {
     this.restoreState();
-    console.log('1');
   }
 
   async restoreState() {
@@ -31,6 +31,15 @@ class ShoppingCart extends Component {
           </div>
         )) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
         {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
+        <Link
+          to={
+            { pathname: '/checkout',
+              state: { products: productsTeste } }
+          }
+          data-testid="checkout-products"
+        >
+          Fechar Carrinho
+        </Link>
       </div>
     );
   }
