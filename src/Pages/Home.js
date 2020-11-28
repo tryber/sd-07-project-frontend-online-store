@@ -49,7 +49,8 @@ class Home extends React.Component {
     const categoryId = 'ALL';
     const { results } = await this.getProducts(categoryId, searchText);
     let falha;
-    if (results.length === 0) {
+    const vazio = 0;
+    if (results.length === vazio) {
       falha = 'Fail';
     } else {
       falha = 'OK';

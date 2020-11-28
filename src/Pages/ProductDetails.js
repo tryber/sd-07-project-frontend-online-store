@@ -63,16 +63,20 @@ class ProductDetails extends Component {
             />
           </div>
           <p>
-            R$ { price }
+            R$ 
+            { price }
           </p>
           <p>
-            Marca: { marca }
+            Marca: 
+            { marca }
           </p>
           <p>
-            Modelo: { modelo } 
+            Modelo: 
+            { modelo } 
           </p>
           <p>
-            Condições do Produto: { condicoes }
+            Condições do Produto: 
+            { condicoes }
           </p>
           <button
             data-testid="product-detail-add-to-cart"

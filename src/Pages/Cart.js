@@ -2,15 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Cart extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      product: [],
-    };
-  }
-
   render() {
-    const { products } = this.props;
     return (
       <div>
         <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
