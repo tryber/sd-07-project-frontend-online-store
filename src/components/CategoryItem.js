@@ -1,5 +1,5 @@
 import React from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 export default class CategoryList extends React.Component {
@@ -37,6 +37,8 @@ export default class CategoryList extends React.Component {
   }
 }
 
-CategoryList.propType = {
-  getCategoryProducts: PropType.func,
+CategoryList.propTypes = {
+  id: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  onLoadProducts: PropTypes.func.isRequired,
 };

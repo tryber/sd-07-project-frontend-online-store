@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../App.css';
 
 export default class Item extends React.Component {
@@ -15,3 +16,10 @@ export default class Item extends React.Component {
     );
   }
 }
+
+Item.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
