@@ -3,9 +3,19 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ItemCard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleCart = this.handleCart.bind(this);
+    this.cartUpdate = this.cartUpdate.bind(this);
+    this.state = {
+      cartCount: JSON.parse(localStorage.getItem('cart')),
+    }
+  }
+
+  cartUpdate() {
+    this.setState({
+      cartCount: JSON.parse(localStorage.getItem('cart')),
+    });
   }
 
   handleCart() {
@@ -18,6 +28,7 @@ class ItemCard extends React.Component {
       addLocalStorage.push(`${title} $${price}`);
     }
     localStorage.setItem('cart', JSON.stringify(addLocalStorage));
+    this.cartUpdate();
   }
 
   render() {

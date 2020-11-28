@@ -4,7 +4,7 @@ import ItemCard from './ItemCard';
 
 class ListCard extends React.Component {
   render() {
-    const { product } = this.props;
+    const { product, cartCount } = this.props;
     const products = product === undefined ? [] : product;
     return (
       <div className="list-card-product">
@@ -18,6 +18,7 @@ class ListCard extends React.Component {
               id={ prod.id }
               image={ prod.thumbnail }
               price={ prod.price }
+              cartCount={ cartCount }
             />
           );
         })}

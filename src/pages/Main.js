@@ -13,13 +13,25 @@ class Main extends React.Component {
     this.handleValue = this.handleValue.bind(this);
     this.handleCatChange = this.handleCatChange.bind(this);
     this.handleApiRequest = this.handleApiRequest.bind(this);
+    this.cartUpdate = this.cartUpdate.bind(this);
     this.state = {
       search: '',
       catID: '',
       message: 'Digite algum termo de pesquisa ou escolha uma categoria.',
       product: [],
       loading: false,
+      cartCount: JSON.parse(localStorage.getItem('cart')),
     };
+  }
+
+  componentDidMount() {
+    this.cartUpdate()
+  }
+
+  cartUpdate() {
+    this.setState({
+      cartCount: JSON.parse(localStorage.getItem('cart')),
+    });
   }
 
   async handleCatChange(event) {
@@ -52,7 +64,8 @@ class Main extends React.Component {
   }
 
   render() {
-    const { search, catID, product, message, loading } = this.state;
+    const count = 0
+    const { search, catID, product, message, loading, cartCount } = this.state;
     let array = [];
     if (product.length < 1) {
       array = [];
@@ -75,6 +88,7 @@ class Main extends React.Component {
               search={ search }
               category={ catID }
               product={ array }
+              cartCount={ cartCount }
             />
           </div>
         </div>
@@ -83,6 +97,10 @@ class Main extends React.Component {
           <Link to="/shoppingCart" data-testid="shopping-cart-button">
             <img className="chartImg" src={ chart } alt="carrinho-de-compras" />
           </Link>
+          <span 
+            data-testid="shopping-cart-size"
+            className="cart-details">{ cartCount === null ? count : cartCount.length }
+          </span>
         </div>
 
         <div className="categories-3">

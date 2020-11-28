@@ -8,6 +8,16 @@ class DetailsProduct extends React.Component {
   constructor() {
     super();
     this.handleCart = this.handleCart.bind(this);
+    this.cartUpdate = this.cartUpdate.bind(this);
+    this.state = {
+      cartCount: JSON.parse(localStorage.getItem('cart')),
+    }
+  }
+
+  cartUpdate() {
+    this.setState({
+      cartCount: JSON.parse(localStorage.getItem('cart')),
+    });
   }
 
   handleCart() {
@@ -23,6 +33,7 @@ class DetailsProduct extends React.Component {
       addLocalStorage.push(`${title} $${price}`);
     }
     localStorage.setItem('cart', JSON.stringify(addLocalStorage));
+    this.cartUpdate();
   }
 
   render() {
@@ -30,12 +41,18 @@ class DetailsProduct extends React.Component {
     const { state } = location;
     const { product } = state;
     const { title, thumbnail, price } = product;
+    let count = 0;
+    const { cartCount } = this.state;
 
     return (
       <div>
         <Link to="/shoppingCart" data-testid="shopping-cart-button">
-          <img className="chartImg" src={ chart } alt="carrinho-de-compras" />
+          <img className="chartImg" src={ chart } alt="carrinho-de-compras" />          
         </Link>
+        <span 
+          data-testid="shopping-cart-size"
+          className="cart-details">{ cartCount === null ? count : cartCount.length }
+        </span>
         <Link to="/">
           <img className="voltar" src={ voltar } alt="imagem-Voltar" />
         </Link>
