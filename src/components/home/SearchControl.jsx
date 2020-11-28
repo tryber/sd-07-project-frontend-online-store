@@ -30,7 +30,6 @@ SearchControl.propTypes = {
   search: PropTypes.bool.isRequired,
   query: PropTypes.string.isRequired,
   answer: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
   num: PropTypes.number.isRequired,
 };
 
