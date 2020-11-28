@@ -16,7 +16,13 @@ class KartItens extends React.Component {
           <Itens key={ item.id } item={ item } getStorageItens={ getStorageItens } />
         ))}
         <h1>{`Valor Final da Compra: R$${value.toFixed(digitDotAfter)}`}</h1>
-        <Link className="button-link" to="/pay" type="button">Finalizar Compra</Link>
+        <Link
+          data-testid="checkout-products"
+          className="button-link"
+          to="/pay"
+        >
+          Finalizar Compra
+        </Link>
       </div>
     );
   }
