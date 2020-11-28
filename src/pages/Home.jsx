@@ -16,7 +16,7 @@ export default class Home extends React.Component {
     };
     this.findProduct = this.findProduct.bind(this);
     this.updateValue = this.updateValue.bind(this);
-    
+
     this.updateValueCategory = this.updateValueCategory.bind(this);
   }
 
