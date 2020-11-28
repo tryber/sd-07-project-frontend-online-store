@@ -37,7 +37,8 @@ class ShoppinCart extends React.Component {
       };
       const { cartItem } = this.state;
       cartItem.push(item);
-      this.setState({ cartItem: cartItem });
+      const newArray = cartItem;
+      this.setState({ cartItem: newArray });
     }
     localStorage.clear();
   }
