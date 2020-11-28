@@ -42,7 +42,7 @@ class Product extends Component {
       thumbnail,
       freeShipping,
       availableQuantity,
-      actualizeCart
+      actualizeCart,
     } = this.props;
     return (
       <div data-testid="product" id={ id }>
