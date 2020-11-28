@@ -15,8 +15,8 @@ class Stars extends React.Component {
 
   componentDidMount() {
     const { astronomo } = this.props;
-    astronomo('1');
-    this.brilhaEstrlinha('1');
+    astronomo('0');
+    this.brilhaEstrlinha('0');
   }
 
   brilhaEstrlinha(not) {

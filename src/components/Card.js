@@ -27,9 +27,23 @@ class Card extends React.Component {
     return (
       <div className="produto" data-testid="product">
         <div className="proI">
-          <h4>{title}</h4>
-          <img src={ thumbnail } alt={ title } />
-          <h2>{`R$: ${price}`}</h2>
+          <Link
+            className="prolin"
+            to={ `product-details/${id}/${categoryId}` }
+          >
+            <h4>{title}</h4>
+          </Link>
+          <Link
+            to={ `product-details/${id}/${categoryId}` }
+          >
+            <img className="proimg" src={ thumbnail } alt={ title } />
+          </Link>
+          <Link
+            className="prolin"
+            to={ `product-details/${id}/${categoryId}` }
+          >
+            <h2>{`R$: ${price}`}</h2>
+          </Link>
           <div className="proinput">
             <input
               type="button"

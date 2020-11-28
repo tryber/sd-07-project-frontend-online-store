@@ -114,6 +114,7 @@ class ProductDetails extends React.Component {
             </div>
           </div>
         </div>
+        <hr />
         <div className="avaliar">
           <h2>avaliação</h2>
           <form action="">
