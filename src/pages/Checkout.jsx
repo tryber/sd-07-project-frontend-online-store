@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Checkout extends Component {
   constructor() {
@@ -10,18 +12,22 @@ class Checkout extends Component {
       phone: '',
       cep: '',
       address: '',
-      payment: '',
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  emptyCart() {
+    localStorage.removeItem('itemsCart')
+  }
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
   render() {
-    const { products } = this.props.location.state;
-    const { email, cpf, fullName, phone, cep, address, payment } = this.state;
+    const { location: { state: { products } } } = this.props;
+    const { email, cpf, fullName, phone, cep, address } = this.state;
+    const magicNumber = 0;
     return (
       <div>
         <div className="checkout-cart">
@@ -36,7 +42,11 @@ class Checkout extends Component {
           ))}
           <p>
             Total:
-            {products.reduce((a, b) => a.price + b.price)}
+            {products.reduce((a, b) => {
+              a += (b.price * b.qtd);
+              return a;
+            }, magicNumber)}
+
           </p>
         </div>
         <form className="checkout-user-info">
@@ -66,7 +76,7 @@ class Checkout extends Component {
             data-testid="checkout-cpf"
           />
           <input
-            type="phone"
+            type="text"
             placeholder="Telefone"
             name="phone"
             value={ phone }
@@ -123,9 +133,15 @@ class Checkout extends Component {
             />
           </label>
         </div>
+        <Link to="/" onClick={ this.emptyCart }>Finalizar</Link>
       </div>
     );
   }
 }
 
+Checkout.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.object,
+  }).isRequired,
+};
 export default Checkout;
