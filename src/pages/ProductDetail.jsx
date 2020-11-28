@@ -15,12 +15,15 @@ class ProductDetail extends Component {
     this.removeZero = this.removeZero.bind(this);
     this.roundNumber = this.roundNumber.bind(this);
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
+    this.translateFreeShipping = this.translateFreeShipping.bind(this);
     this.state = {
       id: '',
       attributes: [],
       title: '',
       price: 0,
+      freeShipping: false,
       thumbnail: '',
+      availableQuantity: 0,
       quantityChanged: false,
     };
   }
@@ -41,11 +44,32 @@ class ProductDetail extends Component {
     const ListProducts = await API.getProductsFromCategoryAndQuery(productId);
     const { results } = ListProducts;
     if (results !== undefined) {
-      const { id, title, attributes, thumbnail, price } = results[0];
-      return this.setState({ id, attributes, title, thumbnail, price });
+      const { id, title, attributes, thumbnail, price, shipping } = results[0];
+      const availableQuantity = results[0].available_quantity;
+      const freeShipping = shipping.free_shipping;
+      return this.setState({
+        id,
+        attributes,
+        title,
+        thumbnail,
+        price,
+        freeShipping,
+        availableQuantity,
+      });
     }
-    const { id, attributes, title, thumbnail, price } = ListProducts;
-    return this.setState({ id, attributes, title, thumbnail, price });
+    const { id, attributes, title, thumbnail, price, shipping } = ListProducts;
+    const availableQuantity = ListProducts.available_quantity;
+    const freeShipping = shipping.free_shipping;
+    console.log(ListProducts);
+    return this.setState({
+      id,
+      attributes,
+      title,
+      thumbnail,
+      price,
+      freeShipping,
+      availableQuantity,
+    });
   }
 
   changeQuantityState() {
@@ -84,7 +108,7 @@ class ProductDetail extends Component {
   }
 
   addItemToLocalStorage() {
-    const { id, title, price, thumbnail } = this.state;
+    const { id, title, price, thumbnail, availableQuantity } = this.state;
     const totalPrice = price;
     const imagePath = thumbnail;
     const number = 1;
@@ -94,10 +118,12 @@ class ProductDetail extends Component {
       let repeatedProduct = false;
       values.forEach((item) => {
         if (item.id === id) {
-          item.number += 1;
-          item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
-          item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
+          if (item.number < availableQuantity) {
+            item.number += 1;
+            item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+          }
         }
       });
       if (repeatedProduct) {
@@ -108,6 +134,13 @@ class ProductDetail extends Component {
       localStorage.setItem('cart', JSON.stringify(values));
       this.changeQuantityState();
     }
+  }
+
+  translateFreeShipping() {
+    const { freeShipping } = this.state;
+    let translatedFreeShipping = 'Não';
+    if (freeShipping === true) translatedFreeShipping = 'Sim';
+    return translatedFreeShipping;
   }
 
   render() {
@@ -131,6 +164,10 @@ class ProductDetail extends Component {
               </li>
             ))}
           </ul>
+            <p data-testid="free-shipping">
+              Frete grátis:
+              { this.translateFreeShipping() }
+            </p>
         </div>
         <button
           data-testid="product-detail-add-to-cart"

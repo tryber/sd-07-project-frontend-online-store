@@ -52,9 +52,11 @@ class ShoppingCart extends Component {
       const cartArray = JSON.parse(localStorage.getItem('cart'));
       cartArray.forEach((item) => {
         if (item.id === id) {
-          item.number += 1;
-          item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
-          item.totalPrice = this.roundNumber(item.totalPrice);
+          if (item.number < item.availableQuantity) {
+            item.number += 1;
+            item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+          }
         }
       });
       localStorage.setItem('cart', JSON.stringify(cartArray));
