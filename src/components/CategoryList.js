@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CategoryItem from './CategoryItem';
 import * as api from '../services/api';
 
@@ -36,16 +37,19 @@ export default class CategoryList extends React.Component {
       <div className="category-list">
         <div>
           <h1>Categorias</h1>
-          {categories.map((category) =>
+          {categories.map((category) => (
             <CategoryItem
               key={ category.id }
               id={ category.id }
               category={ category.name }
               onLoadProducts={ this.onLoadProducts }
-            />)
-          }
+            />))}
         </div>
       </div>
     );
   }
 }
+
+CategoryList.propTypes = {
+  onLoadProducts: PropTypes.func.isRequired,
+};

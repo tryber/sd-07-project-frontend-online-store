@@ -11,6 +11,7 @@ class Home extends React.Component {
     this.updateSearchValue = this.updateSearchValue.bind(this);
     this.searchProduct = this.searchProduct.bind(this);
     this.onLoadProducts = this.onLoadProducts.bind(this);
+    this.renderProducts = this.renderProducts.bind(this);
     this.state = {
       search: '',
       products: [],
@@ -41,8 +42,17 @@ class Home extends React.Component {
     });
   }
 
+  renderProducts() {
+    const { products } = this.state;
+    return (
+      <div className="item-list">
+        {products.map((product) => <Item key={ product.id } { ...product } />)}
+      </div>
+    );
+  }
+
   render() {
-    const { products, search, showInitialMessage } = this.state;
+    const { search, showInitialMessage } = this.state;
     return (
       <div>
         <header>
@@ -67,11 +77,7 @@ class Home extends React.Component {
         <div className="conteudo">
           <CategoryList onLoadProducts={ this.onLoadProducts } />
           {showInitialMessage && <InitialMessage /> }
-          {!showInitialMessage
-          && <div className="item-list">
-            {products
-              .map((product) => <Item key={ product.id } { ...product } />) }
-          </div>}
+          {!showInitialMessage && this.renderProducts()}
         </div>
       </div>
     );

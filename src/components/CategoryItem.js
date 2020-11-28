@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 import * as api from '../services/api';
 
 export default class CategoryList extends React.Component {
@@ -6,30 +7,17 @@ export default class CategoryList extends React.Component {
     super();
     this.getCategoryProducts = this.getCategoryProducts.bind(this);
     this.state = {
-      products: [],
-      category: '',
-      categoryId: '',
-      query: ''
-    }
+      query: '',
+    };
   }
 
   async getCategoryProducts() {
-    const { id } = this.props;
+    const { id, onLoadProducts } = this.props;
     const { query } = this.state;
     const products = await api.getProductsFromCategoryAndQuery(id, query);
-    this.setState({
-      products: products.results,
-    });
-    if (this.props.onLoadProducts) {
-      this.props.onLoadProducts(products.results);
+    if (onLoadProducts) {
+      onLoadProducts(products.results);
     }
-  }
-
-  async getCategories() {
-    const categories = await api.getCategories();
-    this.setState({
-      categories,
-    });
   }
 
   render() {
@@ -40,6 +28,7 @@ export default class CategoryList extends React.Component {
           data-testid="category"
           key={ id }
           onClick={ this.getCategoryProducts }
+          role="presentation"
         >
           { category }
         </li>
@@ -47,3 +36,7 @@ export default class CategoryList extends React.Component {
     );
   }
 }
+
+CategoryList.propType = {
+  getCategoryProducts: PropType.func,
+};
