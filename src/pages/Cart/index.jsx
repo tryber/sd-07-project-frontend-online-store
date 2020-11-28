@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { EmptyCart, CartItem } from '../../components';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -9,9 +10,7 @@ class Cart extends React.Component {
     this.increase = this.increase.bind(this);
     this.decrease = this.decrease.bind(this);
 
-    this.state = {
-      products: cartProduct,
-    };
+    this.state = { products: cartProduct };
   }
 
   componentDidUpdate() {
@@ -37,39 +36,27 @@ class Cart extends React.Component {
     }) });
   }
 
+  cartItemsRenderized() {
+    const { products } = this.state;
+    return products.map(({ title, quantity }, index) => (
+      <CartItem
+        title={ title }
+        quantity={ quantity }
+        index={ index }
+        increase={ this.increase }
+        decrease={ this.decrease }
+        key={ title }
+      />
+    ));
+  }
+
   render() {
     const { products } = this.state;
-
-    if (!products) {
-      return <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>;
-    }
+    if (!products) return <EmptyCart />;
 
     return (
       <div id="cart-items">
-        {products.map(({ title, quantity }, index) => (
-          <div id="cart-item" key={ title }>
-            <span data-testid="shopping-cart-product-name">{ title }</span>
-            <p>
-              Quantidade:
-              <span data-testid="shopping-cart-product-quantity">{ quantity }</span>
-              <button
-                type="button"
-                data-testid="product-increase-quantity"
-                onClick={ () => this.increase(index) }
-              >
-                <i className="fas fa-plus" />
-              </button>
-              <button
-                type="button"
-                data-testid="product-decrease-quantity"
-                onClick={ () => this.decrease(index) }
-                disabled={ quantity === 1 }
-              >
-                <i className="fas fa-minus" />
-              </button>
-            </p>
-          </div>
-        ))}
+        {this.cartItemsRenderized()}
         <Link to="/checkout" data-testid="checkout-products">Finalizar compra</Link>
       </div>
     );
