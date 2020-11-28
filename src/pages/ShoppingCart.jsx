@@ -9,7 +9,7 @@ export default class ShoppingCart extends React.Component {
     this.recuperaLocalStorage = this.recuperaLocalStorage.bind(this);
     this.arrayEmpty = this.arrayEmpty.bind(this);
   }
-  
+
 
   arrayEmpty() {
     this.setState({ objeto: [] });
@@ -34,9 +34,9 @@ export default class ShoppingCart extends React.Component {
             <div data-testid="shopping-cart-product-name" key={product.id}>
               {product.title}
               <img src={product.thumbnail} />
+              <p data-testid="shopping-cart-product-quantity">{product.quantidade}</p>
             </div>
           ))}
-          <p data-testid="hopping-cart-product-quantity">0</p>
         </div>
       </div>
     );

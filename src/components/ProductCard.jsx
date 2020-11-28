@@ -9,25 +9,16 @@ export default class ProductCard extends React.Component {
 
     };
     this.addToCart = this.addToCart.bind(this);
-    this.quantidadeTha = this.quantidadeTha.bind(this);
-
   }
 
   addToCart() {
-    const recuperar = JSON.parse(localStorage.getItem('items') || []);
-    const { product } = this.props;
-    recuperar.push(product)
-    localStorage.setItem('items', JSON.stringify(recuperar));
+    const {  id, title, price, thumbnail, } = this.props.product;
+    const array = JSON.parse(localStorage.getItem('items') || '[]')
+    const index = array.findIndex(elemento  => elemento.id === id);
+    (index === -1) ? array.push({  id, title, price, thumbnail, quantidade: 1}) : array[index].quantidade ++
+    localStorage.setItem('items',JSON.stringify(array))
   }
 
-  quantidadeTha() {
-    const { id } = this.props.product;
-    const array = localStorage.getItem('item')
-    const newId = id 
-    const index = array.findIndex(elemento  => elemento.id === newId);
-    (index === -1) ? array.push({ id: newId, quantidade: 1}) : array[index].quantidade ++
-    console.log(this.props.quantidade)
-  }
 
   render() {
     const { product } = this.props;
