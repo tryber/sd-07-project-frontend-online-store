@@ -43,9 +43,9 @@ class SearchBar extends React.Component {
 
   async filterCategoryAndQuery() {
     const { categoryId, query } = this.state;
-    const filterProduct = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    const { results } = await api.getProductsFromCategoryAndQuery(categoryId, query);
     this.setState({
-      products: filterProduct.results,
+      products: results,
       // notFound: false,
     });
   }

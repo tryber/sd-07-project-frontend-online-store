@@ -36,7 +36,7 @@ class Category extends Component {
         {categories.map((category) => (
           <div key={ category.id }>
             <input
-              type="checkbox"
+              type="radio"
               data-testid="category"
               id={ category.id }
               name="categoryId"
