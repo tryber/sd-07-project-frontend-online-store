@@ -20,7 +20,7 @@ class ProductDetails extends Component {
   }
 
   async getDetailsProduct() {
-    const parametros = this.props.match.params.parametros;
+    const { parametros } = this.props.match.params;
 
     const categoria = parametros.split('-')[0];
     const termo = parametros.split('-')[1];
@@ -28,7 +28,7 @@ class ProductDetails extends Component {
 
     const { results } = await api.getProductsFromCategoryAndQuery(
       categoria,
-      termo
+      termo,
     );
     const produto = results.filter((productOne) => productOne.id === id);
     const marca = produto[0].attributes[0].value_name;
@@ -62,13 +62,22 @@ class ProductDetails extends Component {
               src={ thumbnail }
             />
           </div>
-          <p>R$ { price }</p>
-          <p>Marca: { marca }</p>
-          <p>Modelo: { modelo } </p>
-          <p>Condições do Produto: { condicoes }</p>
+          <p>
+            R$ { price }
+          </p>
+          <p>
+            Marca: { marca }
+          </p>
+          <p>
+            Modelo: { modelo } 
+          </p>
+          <p>
+            Condições do Produto: { condicoes }
+          </p>
           <button
             data-testid="product-detail-add-to-cart"
             className="button-product"
+            type="button"
           >
             ADICIONAR NO CARRINHO
           </button>

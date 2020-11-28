@@ -32,15 +32,14 @@ class Home extends React.Component {
   }
 
   onSearchTextChange({ target }) {
-    const { name } = target;
-    const value = target.value;
+    const { name, value } = target;
     this.setState({ [name]: value });
   }
 
   async getProducts(categoryId, query) {
     const products = await api.getProductsFromCategoryAndQuery(
       categoryId,
-      query
+      query,
     );
     return products;
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ListCardsProduts from './ListCardsProduts';
 import '../Pages/Home.css';
 
@@ -14,5 +15,10 @@ class CardsRenderList extends React.Component {
     );
   }
 }
+
+CardsRenderList.propTypes = {
+  products: PropTypes.object.isRequired,
+  termo: PropTypes.string.isRequired,
+};
 
 export default CardsRenderList;
