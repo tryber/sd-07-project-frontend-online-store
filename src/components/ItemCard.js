@@ -10,14 +10,14 @@ class ItemCard extends React.Component {
 
   handleCart() {
     const { title, price } = this.props;
-    let addLocalStorage = JSON.parse(localStorage.getItem("cart"));
+    let addLocalStorage = JSON.parse(localStorage.getItem('cart'));
     if (addLocalStorage !== null) {
       addLocalStorage.push(`${title} $${price}`);
     } else {
       addLocalStorage = [];
       addLocalStorage.push(`${title} $${price}`);
     }
-    localStorage.setItem("cart", JSON.stringify(addLocalStorage));
+    localStorage.setItem('cart', JSON.stringify(addLocalStorage));
   }
 
   render() {
@@ -39,7 +39,7 @@ class ItemCard extends React.Component {
         </button>
         <Link
           data-testid="product-detail-link"
-          to={{ pathname: `detailsProduct/${id}`, state: { product } }}
+          to={ { pathname: `detailsProduct/${id}`, state: { product } } }
           className="card-price"
         >
           Detalhes

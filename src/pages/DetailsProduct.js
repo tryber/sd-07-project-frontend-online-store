@@ -15,14 +15,14 @@ class DetailsProduct extends React.Component {
     const { state } = location;
     const { product } = state;
     const { title, price } = product;
-    let addLocalStorage = JSON.parse(localStorage.getItem("cart"));
+    let addLocalStorage = JSON.parse(localStorage.getItem('cart'));
     if (addLocalStorage !== null) {
       addLocalStorage.push(`${title} $${price}`);
     } else {
       addLocalStorage = [];
       addLocalStorage.push(`${title} $${price}`);
     }
-    localStorage.setItem("cart", JSON.stringify(addLocalStorage));
+    localStorage.setItem('cart', JSON.stringify(addLocalStorage));
   }
 
   render() {
@@ -52,6 +52,7 @@ class DetailsProduct extends React.Component {
             </p>
           </div>
           <button
+            type="button"
             data-testid="product-detail-add-to-cart"
             onClick={ this.handleCart }
           >
