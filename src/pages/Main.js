@@ -96,11 +96,11 @@ class Main extends React.Component {
           <Link to="/shoppingCart" data-testid="shopping-cart-button">
             <img className="chartImg" src={ chart } alt="carrinho-de-compras" />
           </Link>
-          <span 
+          <span
             data-testid="shopping-cart-size"
             className="cart-details"
           >
-              { cartCount === null ? count : cartCount.length }
+            { cartCount === null ? count : cartCount.length }
           </span>
         </div>
 

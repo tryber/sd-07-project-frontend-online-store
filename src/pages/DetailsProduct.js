@@ -53,7 +53,7 @@ class DetailsProduct extends React.Component {
           data-testid="shopping-cart-size"
           className="cart-details"
         >
-            { cartCount === null ? count : cartCount.length }
+          { cartCount === null ? count : cartCount.length }
         </span>
         <Link to="/">
           <img className="voltar" src={ voltar } alt="imagem-Voltar" />
