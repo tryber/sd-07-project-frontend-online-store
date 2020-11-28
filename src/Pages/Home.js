@@ -12,7 +12,7 @@ class Home extends React.Component {
     super();
     this.state = {
       searchText: '',
-      status:'',
+      status: '',
       categories: [],
       products: [],
     };
@@ -50,11 +50,11 @@ class Home extends React.Component {
     const categoryId = 'ALL';
     const { results } = await this.getProducts(categoryId, searchText);
     let falha;
-    if(results.length === 0) {
+    if (results.length === 0) {
       falha = 'Fail';
-     } else {
-      falha = 'OK'
-     }
+    } else {
+      falha = 'OK';
+    }
     this.setState({ products: results, status: falha });
   }
 
@@ -62,7 +62,7 @@ class Home extends React.Component {
     const { searchText } = this.state;
     const categoryId = object.id;
     const { results } = await this.getProducts(categoryId, searchText);
-    this.setState({ products: results, status: 'OK'});
+    this.setState({ products: results, status: 'OK' });
   }
 
   render() {
@@ -84,37 +84,40 @@ class Home extends React.Component {
         </div>
         <div className="top">
           <header>
-              <div className="header-query-input">
-                <input
+            <div className="header-query-input">
+              <input
                 className="input-search"
-                  data-testid="query-input"
-                  id="searchtext"
-                  type="text"
-                  name="searchText"
-                  placeholder="Digite algum termo de pesquisa aqui"
-                  autoComplete="off"
-                  value={this.state.searchText}
-                  onChange={this.onSearchTextChange}
-                />
-              </div>
-              <div>
-                <button
-                  type="button"
-                  onClick={() => this.SearchProduct()}
-                  className="button-search"
-                  data-testid="query-button"
-                >
-                  Procurar
-                </button>
-              </div>
+                data-testid="query-input"
+                id="searchtext"
+                type="text"
+                name="searchText"
+                placeholder="Digite algum termo de pesquisa aqui"
+                autoComplete="off"
+                value={this.state.searchText}
+                onChange={this.onSearchTextChange}
+              />
+            </div>
+            <div>
+              <button
+                type="button"
+                onClick={() => this.SearchProduct()}
+                className="button-search"
+                data-testid="query-button"
+              >
+                Procurar
+              </button>
+            </div>
 
-              <ButtonCart />
-              {status === '' ? <DigiteTermo /> : ''}
-              {status !== '' && status !== 'OK' ? <ProductNotFound /> : ''}
+            <ButtonCart />
+            {status === '' ? <DigiteTermo /> : ''}
+            {status !== '' && status !== 'OK' ? <ProductNotFound /> : ''}
           </header>
         </div>
-        {status === 'OK' ? <CardsRenderList products={products} termo={searchText} /> : ''}
-       
+        {status === 'OK' ? (
+          <CardsRenderList products={products} termo={searchText} />
+        ) : (
+          ''
+        )}
       </div>
     );
   }
