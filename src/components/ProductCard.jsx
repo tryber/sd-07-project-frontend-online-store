@@ -57,3 +57,4 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
   }).isRequired,
 };
+
