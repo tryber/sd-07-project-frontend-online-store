@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../../components';
+import { Header, EvaluationForm, EvaluationList } from '../../components';
 import './ProductDetail.css';
 import * as lsapi from '../../services/lsapi';
 
@@ -42,6 +42,8 @@ class ProductDetail extends React.Component {
               Adicionar ao Carrinho
             </button>
           </div>
+          <EvaluationForm productId={ product.id } />
+          <EvaluationList productId={ product.id } />
         </div>
       );
     }

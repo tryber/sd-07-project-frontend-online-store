@@ -57,3 +57,17 @@ export function getSelectedProduct() {
 export function setSelectedProduct(product) {
   localStorage.setItem(SELECTED_PRODUCT, JSON.stringify(product));
 }
+
+export function getEvaluationList(productId) {
+  const evaluationList = JSON.parse(localStorage.getItem(productId));
+  if (evaluationList) {
+    return evaluationList;
+  }
+  return [];
+}
+
+export function addEvaluation(productId, evaluation) {
+  const evaluationList = getEvaluationList(productId);
+  evaluationList.push(evaluation);
+  localStorage.setItem(productId, JSON.stringify(evaluationList));
+}
