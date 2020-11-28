@@ -35,7 +35,7 @@ class ProductInCart extends React.Component {
               {product.title}
             </h3>
             <p data-testid="shopping-cart-product-quantity">
-              Quantidade Total:{totalQuantity}
+              {totalQuantity}
             </p>
           </div>))}
         <p className="total-price">
