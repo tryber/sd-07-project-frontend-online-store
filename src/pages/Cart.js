@@ -35,7 +35,7 @@ class Cart extends React.Component {
           />
           <h3>Carrinho de Compras</h3>
           <p data-testid="shopping-cart-empty-message">
-            {items < 1 ? 'Seu carrinho está vazio' : <ProductInCart products={items}/>}
+            {items < 1 ? 'Seu carrinho está vazio' : <ProductInCart products={ items } />}
           </p>
         </div>
       </div>
