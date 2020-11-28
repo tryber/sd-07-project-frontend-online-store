@@ -54,18 +54,18 @@ class ProductDetails extends Component {
           />
         </Link>
         <div className="product-card-details">
-          <h1 data-testid="product-detail-name">{title}</h1>
+          <h1 data-testid="product-detail-name">{ title }</h1>
           <div className="product-card-image-dev">
             <img
               className="product-card-image-details"
               alt="Imagem do Produto"
-              src={thumbnail}
+              src={ thumbnail }
             />
           </div>
-          <p>R$ {price}</p>
-          <p>Marca: {marca}</p>
-          <p>Modelo: {modelo} </p>
-          <p>Condições do Produto: {condicoes}</p>
+          <p>R$ { price }</p>
+          <p>Marca: { marca }</p>
+          <p>Modelo: { modelo } </p>
+          <p>Condições do Produto: { condicoes }</p>
           <button
             data-testid="product-detail-add-to-cart"
             className="button-product"

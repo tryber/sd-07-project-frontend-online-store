@@ -100,7 +100,7 @@ class Home extends React.Component {
             <div>
               <button
                 type="button"
-                onClick={() => this.SearchProduct()}
+                onClick={ () => this.SearchProduct() }
                 className="button-search"
                 data-testid="query-button"
               >
