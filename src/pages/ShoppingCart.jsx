@@ -124,7 +124,9 @@ export default class ShoppingCart extends Component {
         <p>
           {`Valor Total da Compra R$:${totalPrice.toFixed(two)}`}
         </p>
-        <button type="button">Finalizar Compra</button>
+        <button type="button">
+          Finalizar Compra
+        </button>
       </div>
     );
   }
