@@ -50,7 +50,7 @@ class ProductDetail extends Component {
         title,
         thumbnail,
         price,
-        availableQuantity
+        availableQuantity,
       });
     }
     const { id, attributes, title, thumbnail, price } = ListProducts;
