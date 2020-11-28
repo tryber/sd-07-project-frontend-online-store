@@ -20,10 +20,6 @@ export default class Home extends Component {
     this.onSearchText = this.onSearchText.bind(this);
   }
 
-  onSearchText({ target: { name, value } }) {
-    this.setState({ [name]: value });
-  }
-
   async getProdutsByQuery() {
     const { categoryId, query } = this.state;
     const searchResult = await api.getProductsFromCategoryAndQuery(categoryId, query);
@@ -33,6 +29,10 @@ export default class Home extends Component {
   async handleRadioClick({ target: { name, id } }) {
     await this.setState({ [name]: id });
     this.getProdutsByQuery();
+  }
+
+  onSearchText({ target: { name, value } }) {
+    this.setState({ [name]: value });
   }
 
   render() {

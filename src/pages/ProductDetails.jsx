@@ -24,15 +24,15 @@ export default class ProductDetails extends Component {
     this.fetchProduct(id);
   }
 
+  handleMessage({ target: { name, value } }) {
+    this.setState({ [name]: value });
+  }
+
   onSubmit() {
     const { product, evaluation, feedback } = this.state;
     product.evaluation = evaluation;
     product.feedback = feedback;
     cartApi.addToCart(product);
-  }
-
-  handleMessage({ target: { name, value } }) {
-    this.setState({ [name]: value });
   }
 
   async fetchProduct(id) {
