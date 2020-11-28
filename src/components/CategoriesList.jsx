@@ -10,10 +10,10 @@ class CategoriesList extends Component {
           data-testid="category"
           type="radio"
           name="category"
-          value={id}
-          onChange={onCategoryChoice}
+          value={ id }
+          onChange={ onCategoryChoice }
         />
-        <label htmlFor={id}>{name}</label>
+        <label htmlFor={ id }>{ name }</label>
       </div>
     );
   }
