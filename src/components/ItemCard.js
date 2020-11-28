@@ -6,7 +6,6 @@ class ItemCard extends React.Component {
   constructor() {
     super();
     this.handleCart = this.handleCart.bind(this);
-    this.cartUpdate = this.cartUpdate.bind(this);
   }
 
   handleCart() {
@@ -19,7 +18,6 @@ class ItemCard extends React.Component {
       addLocalStorage.push(`${title} $${price}`);
     }
     localStorage.setItem('cart', JSON.stringify(addLocalStorage));
-    this.cartUpdate();
   }
 
   render() {
