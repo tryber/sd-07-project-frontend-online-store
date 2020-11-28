@@ -11,6 +11,7 @@ class Checkout extends React.Component {
         return(
             <div>
                 <section>
+                    item + valor
                 </section>
                 <form>
                     <input
