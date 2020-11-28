@@ -5,24 +5,24 @@ import chart from '../icon/chart.png';
 import voltar from '../icon/voltar.png';
 
 class DetailsProduct extends React.Component {
-    constructor() {
-      super()
-      this.handleCart = this.handleCart.bind(this);
-    }
+  constructor() {
+    super();
+    this.handleCart = this.handleCart.bind(this);
+  }
 
   handleCart() {
     const { location } = this.props;
     const { state } = location;
     const { product } = state;
     const { title, price } = product;
-    let addLocalStorage = JSON.parse(localStorage.getItem('cart'));
+    let addLocalStorage = JSON.parse(localStorage.getItem("cart"));
     if (addLocalStorage !== null) {
       addLocalStorage.push(`${title} $${price}`);
     } else {
       addLocalStorage = [];
       addLocalStorage.push(`${title} $${price}`);
     }
-    localStorage.setItem('cart', JSON.stringify(addLocalStorage));
+    localStorage.setItem("cart", JSON.stringify(addLocalStorage));
   }
 
   render() {
@@ -40,9 +40,7 @@ class DetailsProduct extends React.Component {
           <img className="voltar" src={ voltar } alt="imagem-Voltar" />
         </Link>
         <div>
-          <h2 data-testid="product-detail-name">
-            { title }
-          </h2>
+          <h2 data-testid="product-detail-name">{ title }</h2>
           <div>
             <img src={ thumbnail } alt="Imagem detalhada" />
           </div>
@@ -53,9 +51,11 @@ class DetailsProduct extends React.Component {
               { price }
             </p>
           </div>
-          <button data-testid="product-detail-add-to-cart"
-            onClick={this.handleCart} >
-              Adicionar ao carrinho!
+          <button
+            data-testid="product-detail-add-to-cart"
+            onClick={ this.handleCart }
+          >
+            Adicionar ao carrinho!
           </button>
         </div>
       </div>

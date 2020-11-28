@@ -5,11 +5,11 @@ import '../App.css';
 
 class ShoppinCart extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       totalPrice: 0,
-      productDelete: JSON.parse(localStorage.getItem('cart')),
-    }
+      productDelete: JSON.parse(localStorage.getItem("cart")),
+    };
     this.priceTotal = this.priceTotal.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
   }
@@ -19,27 +19,28 @@ class ShoppinCart extends React.Component {
   }
 
   priceTotal() {
-    const price = JSON.parse(localStorage.getItem('cart'));
+    const price = JSON.parse(localStorage.getItem("cart"));
     const prices = price === null ? [] : price;
     prices.map((tot) => {
       return this.setState((prevPrice) => ({
-        totalPrice: prevPrice.totalPrice + (parseFloat(tot.split('$')[1])), 
+        totalPrice: prevPrice.totalPrice + parseFloat(tot.split("$")[1]),
       }));
     });
   }
 
   deleteProduct() {
-    const product = JSON.parse(localStorage.getItem('cart'));
+    const product = JSON.parse(localStorage.getItem("cart"));
     const products = product === null ? [] : product;
     const { productDelete } = this.state;
     products.filter((prod) => {
       return productDelete.filter((del) => {
-      return prod.split('$')[0] !== del.split('$')[0]
-    })});    
+        return prod.split("$")[0] !== del.split("$")[0];
+      });
+    });
   }
-  
+
   render() {
-    const localNamePriceCart = JSON.parse(localStorage.getItem('cart'));
+    const localNamePriceCart = JSON.parse(localStorage.getItem("cart"));
     const localCArt = localNamePriceCart === null ? [] : localNamePriceCart;
     return (
       <div className="cart">
@@ -49,19 +50,30 @@ class ShoppinCart extends React.Component {
         <Link to="/">
           <img className="voltar" src={ voltar } alt="imagem-Voltar" />
         </Link>
-        <div>       
-          {localCArt.map((namePrice) => {           
-            return <div key={namePrice.split('$')[0]}>
-              <button onClick={this.deleteProduct} >X</button>
-              <span data-testid="shopping-cart-product-quantity" >Quantidade: 
-                {localCArt.length === null ? 0 : localCArt.length - (localCArt.length - 1)}
-              </span>          
-                <p data-testid="shopping-cart-product-name" >{namePrice.split('$')[0]}</p>          
-                <p>R$ {namePrice.split('$')[1]}</p>
-             </div>
-          })} 
-          <p>Valor Total: R$ {this.state.totalPrice}</p>
-        </div>        
+        <div>
+          {localCArt.map((namePrice) => {
+            return (
+              <div key={namePrice.split("$")[0]}>
+                <button onClick={ this.deleteProduct }>X</button>
+                <span data-testid="shopping-cart-product-quantity">
+                  Quantidade:
+                  {localCArt.length === null
+                    ? 0
+                    : localCArt.length - (localCArt.length - 1)}
+                </span>
+                <p data-testid="shopping-cart-product-name">
+                  {namePrice.split("$")[0]}
+                </p>
+                <p>R$ 
+                  {namePrice.split("$")[1]}
+                </p>
+              </div>
+            );
+          })}
+          <p>Valor Total: R$ 
+            { this.state.totalPrice }
+          </p>
+        </div>
       </div>
     );
   }

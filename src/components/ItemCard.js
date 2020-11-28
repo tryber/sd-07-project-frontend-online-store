@@ -4,45 +4,42 @@ import PropTypes from 'prop-types';
 
 class ItemCard extends React.Component {
   constructor() {
-    super()
+    super();
     this.handleCart = this.handleCart.bind(this);
   }
 
   handleCart() {
     const { title, price } = this.props;
-    let addLocalStorage = JSON.parse(localStorage.getItem('cart'));
+    let addLocalStorage = JSON.parse(localStorage.getItem("cart"));
     if (addLocalStorage !== null) {
       addLocalStorage.push(`${title} $${price}`);
     } else {
       addLocalStorage = [];
       addLocalStorage.push(`${title} $${price}`);
     }
-    localStorage.setItem('cart', JSON.stringify(addLocalStorage));
+    localStorage.setItem("cart", JSON.stringify(addLocalStorage));
   }
 
   render() {
     const { id, product, title, image, price } = this.props;
     return (
       <div className="card-product" data-testid="product">
-        <span className="card-title">
-          { title }
-        </span>
-        <img
-          src={ image }
-          alt="foto-produto"
-          className="card-image"
-        />
+        <span className="card-title">{ title }</span>
+        <img src={ image } alt="foto-produto" className="card-image" />
         <span className="card-price">
           R$
           { price }
         </span>
-        <button data-testid="product-add-to-cart"
-        onClick={this.handleCart} >
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ this.handleCart }
+        >
           Adicionar ao carrinho!
         </button>
         <Link
           data-testid="product-detail-link"
-          to={ { pathname: `detailsProduct/${id}`, state: { product } } }
+          to={{ pathname: `detailsProduct/${id}`, state: { product } }}
           className="card-price"
         >
           Detalhes
