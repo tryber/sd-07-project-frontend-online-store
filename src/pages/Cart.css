@@ -1,0 +1,25 @@
+.return-button {
+  height: 30px;
+  margin-left: 5px;
+  width: 30px;
+}
+
+.cart-icon-name {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+  width: 17%;
+}
+
+.cart-icon {
+  height: 40px;
+}
+
+.empty-cart {
+  text-align: center;
+}
+
+.empty-image {
+  height: 150px;
+}
