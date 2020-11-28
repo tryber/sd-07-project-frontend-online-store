@@ -14,6 +14,7 @@ class ShowProducts extends Component {
           title={ product.title }
           price={ product.price }
           thumbnail={ product.thumbnail }
+          freeShipping={ product.shipping.free_shipping }
           availableQuantity={ product.available_quantity }
           actualizeCart={ actualizeCart }
         />))}
@@ -30,6 +31,7 @@ ShowProducts.propTypes = {
       title: Proptypes.string.isRequired,
       price: Proptypes.number.isRequired,
       thumbnail: Proptypes.string.isRequired,
+      freeShipping: Proptypes.bool.isRequired,
       availableQuantity: Proptypes.number.isRequired,
     }),
   ).isRequired,
