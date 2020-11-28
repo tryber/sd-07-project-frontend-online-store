@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class ItemCart extends React.Component {
   render() {
@@ -36,4 +36,4 @@ ItemCart.defaultProps = {
   name: PropTypes.string,
   price: PropTypes.string,
   qtde: PropTypes.number,
-}
+};
