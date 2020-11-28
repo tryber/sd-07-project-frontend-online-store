@@ -29,7 +29,8 @@ class ProductDetail extends Component {
 
   getId() {
     const { id } = this.props.match.params;
-    return id;
+    const result = id;
+    return result;
   }
 
   async searchQueryProducts() {
@@ -121,7 +122,8 @@ class ProductDetail extends Component {
         <div>
           Especificações Técnicas
           <ul>
-            {attributes.map((element) => (<li key={ element.id }>
+            {attributes.map((element) => (
+            <li key={ element.id }>
               {`${element.name} --- ${element.value_name}`}
             </li>
             ))}
