@@ -12,7 +12,7 @@ class ProductCard extends React.Component {
 
   addToCart() {
     const { product } = this.props;
-    const { id, title, price, thumbnail } = product
+    const { id, title, price, thumbnail } = product;
     const productInfo = { id, title, price, thumbnail };
     if (!localStorage.cart) {
       localStorage.setItem('cart', JSON.stringify([productInfo]));
@@ -44,7 +44,7 @@ class ProductCard extends React.Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={this.addToCart}
+          onClick={ this.addToCart }
         >
           Adicionar ao Carrinho
         </button>
