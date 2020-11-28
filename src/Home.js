@@ -40,6 +40,12 @@ class ProductsList extends Component {
         {(status) ? <ProductCard products={ products } /> : false}
         {(products.length === '') ? <span>Nenhum produto foi encontrado</span> : false}
         <div className="ContainerForm">
+
+  render() {
+    const value = '';
+    return (
+      <div className="ContainerForm">
+        <form>
           <div>
             <label htmlFor="inputHome">
               <div>
@@ -57,6 +63,11 @@ class ProductsList extends Component {
                 >
                   PESQUISAR
                 </button>
+                  value={ value }
+                  className="inputHome"
+                  type="text"
+                  // onChange={ onChange }
+                />
                 <span data-testid="home-initial-message">
                   Digite algum termo de pesquisa ou escolha uma categoria.
                 </span>
@@ -75,9 +86,28 @@ class ProductsList extends Component {
           </div>
         </div>
         <Categories />
+            <div>
+              <Link to="./pages/cart">
+                <img
+                  className="btImg"
+                  data-testid="shopping-cart-button"
+                  src={ cart }
+                  alt="Carrinho de Compras"
+                />
+              </Link>
+            </div>
+          </div>
+          <Categories />
+        </form>
       </div>
     );
   }
 }
+
+
+ Button.propTypes = {
+  onChange: PropTypes.func.isRequired,
+ };
+
 
 export default ProductsList;
