@@ -20,6 +20,10 @@ class CartIcon extends Component {
   }
 }
 
-CartIcon.Proptypes = { cartItens: Proptypes.arrayOf(Proptypes.object).isRequired }
+CartIcon.Proptypes = {
+  cartItens: Proptypes.arrayOf(Proptypes.shape({
+    number: Proptypes.number.isRequired,
+  })).isRequired,
+};
 
 export default CartIcon;

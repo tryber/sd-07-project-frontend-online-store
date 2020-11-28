@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Proptypes from 'prop-types';
 import * as API from '../services/api';
 import CartIcon from '../components/CartIcon';
-import Proptypes from 'prop-types';
+
 
 class ProductDetail extends Component {
   constructor(props) {
