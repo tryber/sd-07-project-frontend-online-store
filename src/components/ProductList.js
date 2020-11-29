@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles/productList.css';
+
 import Product from './Product';
 
 export default class ProductList extends Component {
   render() {
     const { results, category, searchKey } = this.props;
     return (
-      <div>
+      <div className="div-product-list">
         {results.map(({ title, thumbnail, price, id }) => (
           <Product
             title={ title }

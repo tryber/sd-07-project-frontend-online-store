@@ -30,6 +30,7 @@ header {
 .h2-title {
   color: #cdd117;
   font-size: 28px;
+  font-weight: 700;
 }
 
 .div-searchkey {
@@ -56,7 +57,7 @@ button.button-search {
   padding: 6px 12px 6px 6px;
   display: flex;
   align-items: center;
-}
+} 
 
 .icon-search{
     color: white;
