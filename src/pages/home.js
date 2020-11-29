@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+import { CgShoppingCart, CgShoppingBag, CgSearch } from 'react-icons/cg';
 import * as api from '../services/api';
+
+import '../styles/home.css';
 
 import Categories from '../components/Categories';
 import ProductList from '../components/ProductList';
@@ -14,10 +18,14 @@ class Home extends Component {
     this.fetchAPI = this.fetchAPI.bind(this);
 
     this.state = {
-      searchKey: '',
+      searchKey: 'tecnologia',
       category: '',
       results: [],
     };
+  }
+
+  componentDidMount() {
+    this.fetchAPI();
   }
 
   handleSearchKey({ target }) {
@@ -47,22 +55,36 @@ class Home extends Component {
   render() {
     const { results, category, searchKey } = this.state;
     return (
-      <div>
+      <div className="div-body">
         <header>
-          <input
-            data-testid="query-input"
-            type="text"
-            onChange={ this.handleSearchKey }
-          />
-          <button type="submit" data-testid="query-button" onClick={ this.fetchAPI }>
-            Search
-          </button>
+          <div className="div-logo">
+            <CgShoppingBag className="icon-mall" />
+            <h2 className="h2-title">Mall</h2>
+          </div>
+          <div className="div-searchkey">
+            <input
+              data-testid="query-input"
+              type="text"
+              onChange={this.handleSearchKey}
+              placeholder="O que você procura hoje?"
+            />
+            <button
+              type="submit"
+              data-testid="query-button"
+              onClick={this.fetchAPI}
+              className="button-search"
+            >
+              <CgSearch className="icon-search" />
+            </button>
+          </div>
           <Link to="/cart" data-testid="shopping-cart-button">
-            Carrinho de compras
+            <CgShoppingCart className="icon-cart" />
           </Link>
         </header>
-        <ProductList results={ results } category={ category } searchKey={ searchKey } />
-        <Categories filterCategory={ this.handleCategory } />
+        <section className="main-sextion">
+          <Categories filterCategory={this.handleCategory} />
+          <ProductList results={results} category={category} searchKey={searchKey} />
+        </section>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
