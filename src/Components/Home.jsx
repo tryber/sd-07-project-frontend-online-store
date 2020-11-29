@@ -9,16 +9,28 @@ class Home extends React.Component {
     super();
     this.state = {
       listProduct: [],
+      selectCategory: false,
     };
     this.getProducts = this.getProducts.bind(this);
+    this.getProductsFromCategory = this.getProductsFromCategory.bind(this);
   }
 
   async getProducts() {
+    const { selectCategory } = this.state;
+    let response;
     const input = document.getElementById('search-input').value;
-    const response = await getProductsFromCategoryAndQuery(input);
+    if (selectCategory === false) {
+      response = await getProductsFromCategoryAndQuery(input);
+    } else {
+      response = await getProductsFromCategoryAndQuery(input, selectCategory);
+    }
     this.setState({ listProduct: response.results });
   }
 
+  getProductsFromCategory(event) {
+    const category = event.target.id;
+    this.setState({ selectCategory: category });
+  }
 
   render() {
     const { listProduct } = this.state;
@@ -26,7 +38,7 @@ class Home extends React.Component {
       <div>
         <Header getProducts={ this.getProducts } />
         <div className="container-body">
-          <FiltersCategory />
+          <FiltersCategory getCategory={ this.getProductsFromCategory } />
           <div className="container-allProducts">
             <ProductList products={ listProduct } />
           </div>

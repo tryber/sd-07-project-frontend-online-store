@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 class FiltersCategory extends React.Component {
@@ -23,6 +24,7 @@ class FiltersCategory extends React.Component {
 
   render() {
     const { apiCategories } = this.state;
+    const { getCategory } = this.props;
     return (
       <aside className="side-bar">
         <h3>Categorias:</h3>
@@ -33,6 +35,7 @@ class FiltersCategory extends React.Component {
               name="categories"
               id={ category.id }
               data-testid="category"
+              onChange={ getCategory }
             />
             <label htmlFor={ category.id }>{ category.name }</label>
           </div>))}
@@ -40,5 +43,9 @@ class FiltersCategory extends React.Component {
     );
   }
 }
+
+FiltersCategory.propTypes = {
+  getCategory: PropTypes.func.isRequired,
+};
 
 export default FiltersCategory;
