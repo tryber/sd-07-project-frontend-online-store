@@ -6,72 +6,72 @@ export default class CheckoutForm extends Component {
     const { handleChange, fullName, email, cpf, phoneNumber, cep, address } = this.props;
     return (
       <form>
-        <label htmlFor="tex">
+        <label htmlFor="email">
           Email
           <input
             data-testid="checkout-fullname"
             type="text"
-            id="tex"
+            id="email"
             name="email"
             value={ email }
             onChange={ handleChange }
           />
         </label>
 
-        <label htmlFor="tex2">
+        <label htmlFor="fullName">
           Nome Completo
           <input
             data-testid="checkout-email"
             type="text"
-            id="tex2"
+            id="fullName"
             name="fullName"
             value={ fullName }
             onChange={ handleChange }
           />
         </label>
 
-        <label htmlFor="tex3">
+        <label htmlFor="cpf">
           CPF
           <input
             data-testid="checkout-cpf"
             type="text"
-            id="tex3"
+            id="cpf"
             name="cpf"
             value={ cpf }
             onChange={ handleChange }
           />
         </label>
 
-        <label htmlFor="tex4">
+        <label htmlFor="phoneNumber">
           Numero Telefone
           <input
             data-testid="checkout-phone"
             type="text"
-            id="tex4"
+            id="phoneNumber"
             name="phoneNumber"
             value={ phoneNumber }
             onChange={ handleChange }
           />
         </label>
 
-        <label htmlFor="tex5">
+        <label htmlFor="cep">
           CEP
           <input
             data-testid="checkout-cep"
             type="text"
-            id="tex5"
+            id="cep"
             name="cep"
             value={ cep }
             onChange={ handleChange }
           />
         </label>
 
-        <label htmlFor="tex6">
+        <label htmlFor="address">
           Endereço
           <input
             data-testid="checkout-address"
             type="text"
-            id="tex6"
+            id="address"
             name="address"
             value={ address }
             onChange={ handleChange }
