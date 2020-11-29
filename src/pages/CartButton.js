@@ -2,23 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class CartButton extends React.Component {
-  constructor() {
-    super();
-    this.addItemToCart = this.addItemToCart.bind(this);
-  }
-
-  addItemToCart({ target }) {
-    localStorage.setItem('item', target.value);
-  }
-
   render() {
-    const { productName, datatestid } = this.props;
+    const { product, datatestid, addItemToCart } = this.props;
+
     return (
       <button
         data-testid={ datatestid }
         type="button"
-        value={ productName }
-        onClick={ this.addItemToCart }
+        onClick={ () => addItemToCart(product) }
       >
         Adicionar ao carrinho
       </button>
@@ -29,6 +20,7 @@ class CartButton extends React.Component {
 export default CartButton;
 
 CartButton.propTypes = {
-  productName: PropTypes.string.isRequired,
+  product: PropTypes.shape().isRequired,
   datatestid: PropTypes.string.isRequired,
+  addItemToCart: PropTypes.func.isRequired,
 };
