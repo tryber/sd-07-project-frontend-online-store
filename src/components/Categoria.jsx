@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 class Categoria extends React.Component {
   render() {
-    const { id, name } = this.props;
+    const { id, name, functionHandleClick } = this.props;
     return (
       <li
         key={ id }
         data-testid="category"
+        onClick={ () => functionHandleClick(id) }
+        role="presentation"
       >
         { name }
       </li>
@@ -20,4 +22,5 @@ export default Categoria;
 Categoria.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  functionHandleClick: PropTypes.func.isRequired,
 };
