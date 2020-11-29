@@ -5,9 +5,7 @@ import { ShoppingCartButton } from '../components/index';
 
 class Details extends Component {
   render() {
-    const { title, thumbnail, price } = this.props.location;
-    console.log(this.props)
-
+    const { location: { title, thumbnail, price } } = this.props;
     return (
       <div>
         <div>
@@ -17,15 +15,15 @@ class Details extends Component {
           <ShoppingCartButton />
         </div>
         <h2 data-testid="product-detail-name">
-          Produto {title} - R$ {price}
+          {`Produto ${title} - R$ ${price}`}
         </h2>
         <div>
-          <img alt={title} src={thumbnail} />
+          <img alt={ title } src={ thumbnail } />
         </div>
         <h4>Especificações técnicas</h4>
         <ul>
-          <li>{title}</li>
-          <li>{price}</li>
+          <li>{ title }</li>
+          <li>{ price }</li>
         </ul>
       </div>
     );
@@ -34,7 +32,7 @@ class Details extends Component {
 Details.propTypes = {
   location: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
 };

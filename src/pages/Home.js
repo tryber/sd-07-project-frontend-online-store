@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   Category, SearchBar, ProductCard, NotFound, ShoppingCartButton }
-from '../components/index';
+  from '../components/index';
 import * as api from '../services/api';
 
 class Home extends Component {
@@ -19,18 +19,18 @@ class Home extends Component {
 
   componentDidUpdate(prevProps, prevState) { this.StatusSet(prevState); }
 
+  onClick(query) { this.fetchProducts(query); }
+
+  async fetchCategories() {
+    this.setState({ categories: await api.getCategories() });
+  }
+
   StatusSet(prevState) {
     const { products } = this.state;
     if (prevState.products !== products) {
       this.setState({ status: true });
     }
   }
-
-  async fetchCategories() {
-    this.setState({ categories: await api.getCategories() });
-  }
-
-  onClick(query) { this.fetchProducts(query); }
 
   async fetchProducts(query, categoryId = '') {
     this.setState({
