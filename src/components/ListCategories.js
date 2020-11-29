@@ -25,24 +25,25 @@ class ListCategories extends Component {
       <section className="category-wrapper">
         {categories.map((category) => {
           return (
-          <div
-            className="category-input"
-            key={ category.id }
-          >
-            <label
-              htmlFor={ category.id }
+            <div
+              className="category-input"
+              key={ category.id }
             >
-              { category.name }
-            </label>
-            <input
-              onClick={ onClickCategory }
-              id={ category.id }
-              type="radio"
-              name="category"
-              data-testid="category"
-            />
-          </div>
-        )})}
+              <label
+                htmlFor={ category.id }
+              >
+                { category.name }
+              </label>
+              <input
+                onClick={ onClickCategory }
+                id={ category.id }
+                type="radio"
+                name="category"
+                data-testid="category"
+              />
+            </div>
+          );
+        })},
       </section>
 
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductCard from '../components/ProductCard';
+import ProductCard from './ProductCard';
 import '../App.css';
 
 class SearchBar extends Component {
@@ -24,6 +24,7 @@ class SearchBar extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </label>
           <button
+            id="input-text"
             data-testid="query-button"
             type="button"
             onClick={ handleSubmit }
