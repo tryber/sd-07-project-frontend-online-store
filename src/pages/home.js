@@ -81,7 +81,7 @@ class Home extends Component {
             <CgShoppingCart className="icon-cart" />
           </Link>
         </header>
-        <section className="main-sextion">
+        <section className="main-section">
           <Categories filterCategory={this.handleCategory} />
           <ProductList results={results} category={category} searchKey={searchKey} />
         </section>
