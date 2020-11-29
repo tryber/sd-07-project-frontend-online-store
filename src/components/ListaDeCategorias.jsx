@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Categoria from './Categoria';
 
 class ListaDeCategorias extends React.Component {
-  
   render() {
     const { categories, handleClickCategories } = this.props;
     return (
@@ -25,4 +24,5 @@ export default ListaDeCategorias;
 
 ListaDeCategorias.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleClickCategories: PropTypes.func.isRequired,
 };

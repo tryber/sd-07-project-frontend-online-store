@@ -9,7 +9,8 @@ class Categoria extends React.Component {
         key={ id }
         data-testid="category"
         onClick={ () => functionHandleClick(id) }
-        >
+        role="presentation"
+      >
         { name }
       </li>
     );
