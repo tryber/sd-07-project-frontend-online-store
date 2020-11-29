@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import CheckoutForm from '../components/CheckoutForm';
 
 export default class Checkout extends Component {
@@ -7,6 +8,7 @@ export default class Checkout extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.showCartProducts = this.showCartProducts.bind(this);
     this.treatingForm = this.treatingForm.bind(this);
+    this.redirectHandle = this.redirectHandle.bind(this);
     this.state = {
       fullName: '',
       email: '',
@@ -15,6 +17,7 @@ export default class Checkout extends Component {
       cep: '',
       address: '',
       isValid: false,
+      redirect: false,
     };
   }
 
@@ -44,22 +47,46 @@ export default class Checkout extends Component {
 
   showCartProducts() {
     const products = JSON.parse(localStorage.getItem('cart'));
+    const ZERO = 0;
+    let sum = ZERO;
     return (
       <div>
-        {products.map(({ title, thumbnail, price, quantity, id }) => (
-          <div key={ id }>
-            <p>{title}</p>
-            <img src={ thumbnail } alt="thumb" />
-            <p>{price}</p>
-            <p>{quantity}</p>
-          </div>
-        ))}
+        {products.map(({ title, thumbnail, price, quantity, id }) => {
+          sum += price * quantity;
+          return (
+            <div key={ id }>
+              <p>{title}</p>
+              <img src={ thumbnail } alt="thumb" />
+              <p>{price}</p>
+              <p>{quantity}</p>
+            </div>
+          );
+        })}
+        <h3>
+          Valor:
+          {sum}
+        </h3>
       </div>
     );
   }
 
+  redirectHandle() {
+    this.setState({
+      redirect: true,
+    });
+  }
+
   render() {
-    const { fullName, email, cpf, phoneNumber, cep, address, isValid } = this.state;
+    const {
+      fullName,
+      email,
+      cpf,
+      phoneNumber,
+      cep,
+      address,
+      isValid,
+      redirect,
+    } = this.state;
     return (
       <div>
         {this.showCartProducts()}
@@ -72,7 +99,10 @@ export default class Checkout extends Component {
           cep={ cep }
           address={ address }
         />
-        <button type="submit" disabled={ !isValid }>Finalizar Compra</button>
+        <button type="submit" disabled={ !isValid } onClick={ this.redirectHandle }>
+          Finalizar Compra
+        </button>
+        {redirect && <Redirect to="./" />}
       </div>
     );
   }
