@@ -5,6 +5,10 @@ class ShoppingCart extends React.Component {
   constructor() {
     super();
 
+    this.state = {
+      counter: 0,
+    };
+
     this.cartListOfItems = this.cartListOfItems.bind(this);
     this.increaseQuantity = this.increaseQuantity.bind(this);
     this.decreaseQuantity = this.decreaseQuantity.bind(this);
@@ -13,25 +17,30 @@ class ShoppingCart extends React.Component {
   increaseQuantity(event) {
     const itemName = event.target.value;
     const localStorageArray = JSON.parse(localStorage.getItem('products'));
-    const findInLS = localStorageArray
-      .find((productArray) => productArray.title === itemName);
-    findInLS.quantity += 1;
-    localStorage.setItem('products', JSON.stringify(localStorageArray));
-    return this.cartListOfItems();
+    if (localStorageArray !== null) {
+      const findInLS = localStorageArray
+        .find((productArray) => productArray.title === itemName);
+      findInLS.quantity += 1;
+      localStorage.setItem('products', JSON.stringify(localStorageArray));
+    }
+    this.setState({ counter: this.state.counter + 1 });
   }
 
   decreaseQuantity(event) {
     const itemName = event.target.value;
     const localStorageArray = JSON.parse(localStorage.getItem('products'));
-    const findInLS = localStorageArray
-      .find((productArray) => productArray.title === itemName);
-    findInLS.quantity -= 1;
-    localStorage.setItem('products', JSON.stringify(localStorageArray));
+    if (localStorageArray !== null) {
+      const findInLS = localStorageArray
+        .find((productArray) => productArray.title === itemName);
+      findInLS.quantity -= 1;
+      localStorage.setItem('products', JSON.stringify(localStorageArray));
+    }
+    this.setState({ counter: this.state.counter - 1 });
+
   }
 
   cartListOfItems() {
     const itemsLS = JSON.parse(localStorage.getItem('products'));
-    console.log(itemsLS);
     return itemsLS.map((item) => {
       return (
         <div key={ item.title }>
@@ -57,7 +66,6 @@ class ShoppingCart extends React.Component {
         </div>
       );
     });
-
   }
 
   render() {
