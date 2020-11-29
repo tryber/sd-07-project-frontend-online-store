@@ -1,22 +1,54 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../App.css';
+import { Link } from 'react-router-dom';
+import ProductDetailsEvaluation from '../components/ProductDetailsEvaluation';
 
 class ProductDetails extends React.Component {
-  render() {
+  constructor() {
+    super();
+    this.addToLocalStorage = this.addToLocalStorage.bind(this);
+    this.readLocalStorage = this.readLocalStorage.bind(this);
+  }
+
+  readLocalStorage() {
+    return JSON.parse(localStorage.getItem('cartItems'));
+  }
+
+  addToLocalStorage() {
     const { location } = this.props;
     const { product } = location;
     const { item } = product;
+    const cartItems = this.readLocalStorage();
+    const addItem = [...cartItems, item];
+    localStorage.setItem('cartItems', JSON.stringify(addItem));
+    console.log(this.readLocalStorage());
+  }
+
+  render() {
+    const {
+      location: {
+        product: { item },
+      },
+    } = this.props;
+    // const { product } = location;
+    // const { item } = product;
     return (
-      <div className="page-container">
-        <div className="page-sub-container">
-          <div className="product-container">
-            <img alt="Imagem do produto" src={ item.thumbnail } />
-            <h2 data-testid="product-detail-name">{ item.title }</h2>
-            <p>{ `R$ ${item.price}` }</p>
-          </div>
-        </div>
-          {/* <button >Adicionar</button> */}
+      <div>
+        <h1 data-testid="product-detail-name">{ item.title }</h1>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.addToLocalStorage }
+        >
+          Adicionar ao carrinho
+        </button>
+        <Link to="/Cart" data-testid="shopping-cart-button">
+          <img
+            alt="Carrinho"
+            src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG37.png"
+          />
+        </Link>
+        <ProductDetailsEvaluation />
       </div>
     );
   }
