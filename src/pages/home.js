@@ -65,13 +65,13 @@ class Home extends Component {
             <input
               data-testid="query-input"
               type="text"
-              onChange={this.handleSearchKey}
+              onChange={ this.handleSearchKey }
               placeholder="O que você procura hoje?"
             />
             <button
               type="submit"
               data-testid="query-button"
-              onClick={this.fetchAPI}
+              onClick={ this.fetchAPI }
               className="button-search"
             >
               <CgSearch className="icon-search" />
@@ -82,8 +82,12 @@ class Home extends Component {
           </Link>
         </header>
         <section className="main-section">
-          <Categories filterCategory={this.handleCategory} />
-          <ProductList results={results} category={category} searchKey={searchKey} />
+          <Categories filterCategory={ this.handleCategory } />
+          <ProductList
+            results={ results }
+            category={ category }
+            searchKey={ searchKey }
+          />
         </section>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.

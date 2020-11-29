@@ -18,8 +18,12 @@ class Product extends Component {
     const { title, thumbnail, price, id, category, searchKey } = this.props;
     return (
       <div data-testid="product">
-        <img src={thumbnail} alt="thumb" />
-        <button type="button" data-testid="product-add-to-cart" onClick={this.addToCarts}>
+        <img src={ thumbnail } alt="thumb" />
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ this.addToCarts }
+        >
           Adicionar ao carrinho
         </button>
         <div className="div-texts">
@@ -30,7 +34,7 @@ class Product extends Component {
           <h2>{title}</h2>
           <Link
             data-testid="product-detail-link"
-            to={`./details/${category || null}/${searchKey || null}/${id}`}
+            to={ `./details/${category || null}/${searchKey || null}/${id}` }
           >
             Detalhes
           </Link>
