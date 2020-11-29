@@ -1,17 +1,25 @@
 import React from 'react';
+import QuantifyProducts from './buttonsCart';
 
 class CartItem extends React.Component {
   render() {
-    const itemId = this.props.itemId;
+    const { itemId } = this.props;
     const item = itemId.info;
     return (
       <div data-testid="shopping-cart-product-name" className="itemCart">
-        <p>{item.title}</p>
-        <img alt={item.title} src={item.thumbnail} />
-        <p>{`R$ ${item.price}`}</p>
-        <p data-testid="shopping-cart-product-quantity">
-          Quantidade {itemId.quantidade}
-        </p>
+
+        <img
+          data-testid="imagem-product-cart"
+          alt={ item.title }
+          src={ item.thumbnail }
+        />
+        <span data-testid="title-product-cart">{ item.title }</span>
+
+        <span data-testid="shopping-cart-product-quantity">
+          <QuantifyProducts />
+        </span>
+
+        <span data-testid="price-product-cart">{ `R$ ${item.price}` }</span>
       </div>
     );
   }
