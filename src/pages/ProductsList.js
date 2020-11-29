@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CartButton from './CartButton';
-import { handleAddItemToCart } from '../services/utils';
 
 export default class ProductsList extends React.Component {
   render() {
@@ -10,32 +9,30 @@ export default class ProductsList extends React.Component {
     return (
       <ul>
         {productList.length
-          ? productList.map((product) => (
+          ? productList.map(({ id, title, thumbnail, price }) => (
             <li
-              key={ product.id }
+              key={ id }
               data-testid="product"
             >
               <Link
                 to={ {
                   pathname: '/Product',
                   state: {
-                    product,
+                    productName: title,
+                    productImg: thumbnail,
+                    productPrice: price,
                   },
                 } }
                 data-testid="product-detail-link"
-                key={ `${product.title} ${product.id}` }
+                key={ `${title} ${id}` }
               >
                 <div>
-                  <h4>{ product.title }</h4>
-                  <img src={ product.thumbnail } alt="Product" />
-                  <p>{ product.price }</p>
+                  <h4>{ title }</h4>
+                  <img src={ thumbnail } alt="Product" />
+                  <p>{ price }</p>
                 </div>
               </Link>
-              <CartButton
-                datatestid="product-add-to-cart"
-                product={ product }
-                addItemToCart={ handleAddItemToCart }
-              />
+              <CartButton datatestid="product-add-to-cart" productName={ title } />
             </li>
           )) : (<li> Nenhum produto foi encontrado </li>)}
       </ul>
