@@ -13,6 +13,7 @@ export default class Home extends Component {
     this.onClickCategory = this.onClickCategory.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTextInput = this.handleTextInput.bind(this);
+    this.handleUndefined = this.handleUndefined.bind(this);
 
     this.state = {
       searchItems: '',
@@ -27,7 +28,7 @@ export default class Home extends Component {
     const products = await api.getProductsFromCategoryAndQuery(categoryId);
     this.setState({
       itemsFindOut: products,
-      categoryId: categoryId,
+      categoryId,
       loading: true,
     });
   }
@@ -39,11 +40,17 @@ export default class Home extends Component {
   }
 
   handleSubmit() {
-    const { searchItems, loading } = this.state;
+    const { searchItems } = this.state;
     api.getProductsFromCategoryAndQuery(searchItems)
       .then((products) => this.setState({ itemsFindOut: products, loading: true }))
       .catch((error) => console.log(error));
-    if (loading === false) { return <Redirect to="/pages/ProductNotFound.jsx" />; }
+  }
+
+  handleUndefined() {
+    const { loading, itemsFindOut } = this.state;
+    if (!itemsFindOut.lenght || loading === false) {
+      return <Redirect to="./pages/ProductNotFound" />;
+    }
   }
 
   render() {
@@ -60,6 +67,7 @@ export default class Home extends Component {
               categoryId={ categoryId }
               handleSubmit={ this.handleSubmit }
               handleTextInput={ this.handleTextInput }
+              handleUndefined={ this.handleUndefined }
             />
           </div>
           <div><ShoppingCartButton /></div>

@@ -1,7 +1,7 @@
 import React from 'react';
-import '../App.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import '../App.css';
 import * as api from '../services/api';
 
 class ProductCard extends React.Component {
@@ -22,7 +22,7 @@ class ProductCard extends React.Component {
     const products = await api.getProductsFromCategoryAndQuery(categoryId);
     this.setState({
       itemsFindOut: products,
-      categoryId: categoryId,
+      categoryId,
       loading: true,
     });
   }
@@ -34,14 +34,21 @@ class ProductCard extends React.Component {
   }
 
   saveItems() {
-    const { id, available_quantity, title, price, thumbnail } = this.props.item;
+    const { item } = this.props;
+    const {
+      id,
+      available_quantity: availableQuantity,
+      title,
+      price,
+      thumbnail,
+    } = item;
     if (!localStorage.length) {
       localStorage.setItem('items',
         JSON.stringify([{
           sku: id,
           name: title,
           cost: price,
-          quantity: available_quantity,
+          quantity: availableQuantity,
           image: thumbnail,
         }]));
       return;
@@ -52,15 +59,22 @@ class ProductCard extends React.Component {
         sku: id,
         name: title,
         cost: price,
-        quantity: available_quantity,
+        quantity: availableQuantity,
         image: thumbnail,
       }]));
     console.log(objectValues);
   }
 
+  handleUndefined() {
+    const { loading, itemsFindOut, categoryId } = this.state;
+    if (!itemsFindOut.lenght || loading === false || !categoryId) {
+      return <Redirect to="./pages/ProductNotFound" />;
+    }
+  }
+
   render() {
     const { item } = this.props;
-    const { id, available_quantity, title, price, thumbnail } = item;
+    const { id, available_quantity: availableQuantity, title, price, thumbnail } = item;
     return (
       <section data-testid="product">
         <p>
@@ -70,8 +84,10 @@ class ProductCard extends React.Component {
           <img alt="Sell Product" className="card-image" src={ thumbnail } />
         </div>
         <div className="info">
-          <div>{available_quantity}</div>
           <div>{title}</div>
+          <br />
+          <div>{availableQuantity}</div>
+          <br />
           <div>{price}</div>
         </div>
         <Link
@@ -103,6 +119,7 @@ ProductCard.propTypes = {
     title: PropTypes.string,
     price: PropTypes.string,
     thumbnail: PropTypes.string,
+    available_quantity: PropTypes.number,
   }).isRequired,
 };
 
