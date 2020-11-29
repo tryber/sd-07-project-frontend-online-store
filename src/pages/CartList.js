@@ -11,10 +11,15 @@ class CartList extends React.Component {
         Seu carrinho está vazio
       </div>
     ) : (
-      <div>
+      <div data-testid="item-cart">
         {Object.values(itemsId).map((id) => (
-          <CartItem key={Object.keys(id)} itemId={id} />
+          <CartItem key={ Object.keys(id) } itemId={ id } />
         ))}
+        <p>
+          <b>Valor Total da Compra: </b>
+          XXX, XX
+        </p>
+        <button type="submit">Finalizar Compra</button>
       </div>
     );
   }

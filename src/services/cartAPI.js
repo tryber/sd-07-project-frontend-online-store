@@ -10,7 +10,7 @@ export const getCart = () => {
 };
 
 export const addItem = (newItem) => {
-  let cart = readCart();
+  const cart = readCart();
   if (cart[newItem.id]) {
     cart[newItem.id].quantidade += 1;
   } else {
@@ -20,5 +20,10 @@ export const addItem = (newItem) => {
     };
   }
   saveCart(cart);
-  console.log(cart);
+};
+
+export const increaseItem = (id) => {
+  const cart = readCart();
+  id.quantidade += 1;
+  saveCart(cart);
 };
