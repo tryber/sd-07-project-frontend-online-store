@@ -42,9 +42,8 @@ class Cart extends React.Component {
       <CartItem
         title={ title }
         quantity={ quantity }
-        index={ index }
-        increase={ this.increase }
-        decrease={ this.decrease }
+        add={ () => this.increase(index) }
+        minus={ () => this.decrease(index) }
         key={ title }
       />
     ));
