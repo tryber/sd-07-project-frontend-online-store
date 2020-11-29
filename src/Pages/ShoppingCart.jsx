@@ -4,45 +4,55 @@ import ReturnButton from '../Components/ReturnButton';
 class ShoppingCart extends React.Component {
   constructor() {
     super();
-
     this.state = {
-      counter: 0,
+      counter: 1,
+      items: JSON.parse(localStorage.getItem('products')),
+      totalPrice: 0,
     };
 
     this.cartListOfItems = this.cartListOfItems.bind(this);
     this.increaseQuantity = this.increaseQuantity.bind(this);
     this.decreaseQuantity = this.decreaseQuantity.bind(this);
+    this.sumAllPrices = this.sumAllPrices.bind(this);
+  }
+
+  componentDidMount() {
+    this.sumAllPrices();
   }
 
   increaseQuantity(event) {
     const itemName = event.target.value;
-    const localStorageArray = JSON.parse(localStorage.getItem('products'));
-    if (localStorageArray !== null) {
-      const findInLS = localStorageArray
+    const { items, counter } = this.state;
+    if (items !== null) {
+      const findInLS = items
         .find((productArray) => productArray.title === itemName);
       findInLS.quantity += 1;
-      localStorage.setItem('products', JSON.stringify(localStorageArray));
+      localStorage.setItem('products', JSON.stringify(items));
     }
-    this.setState({ counter: this.state.counter + 1 });
+    this.setState({ counter: counter + 1 });
+    this.sumAllPrices();
   }
 
   decreaseQuantity(event) {
     const itemName = event.target.value;
-    const localStorageArray = JSON.parse(localStorage.getItem('products'));
-    if (localStorageArray !== null) {
-      const findInLS = localStorageArray
+    const { items, counter } = this.state;
+    if (items !== null) {
+      const findInLS = items
         .find((productArray) => productArray.title === itemName);
-      findInLS.quantity -= 1;
-      localStorage.setItem('products', JSON.stringify(localStorageArray));
+      if (findInLS.quantity >= 1) {
+        findInLS.quantity -= 1;
+        localStorage.setItem('products', JSON.stringify(items));
+      }
     }
-    this.setState({ counter: this.state.counter - 1 });
-
+    this.setState({ counter: counter - 1 });
+    this.sumAllPrices();
   }
 
   cartListOfItems() {
-    const itemsLS = JSON.parse(localStorage.getItem('products'));
-    return itemsLS.map((item) => {
-      return (
+    const { items } = this.state;
+    console.log(items);
+    if (items) {
+      return items.map((item) => (
         <div key={ item.title }>
           <p data-testid="shopping-cart-product-name">{item.title}</p>
           <p>{ (parseFloat(item.price)) }</p>
@@ -64,11 +74,24 @@ class ShoppingCart extends React.Component {
             -
           </button>
         </div>
-      );
-    });
+      ));
+    }
+  }
+
+  sumAllPrices() {
+    const { items } = this.state;
+    if (items) {
+      items.reduce((prevPrice, currentItem) => {
+        const valuePerItem = currentItem.price * currentItem.quantity;
+        const totalValue = prevPrice + valuePerItem;
+        this.setState({ totalPrice: totalValue });
+        return totalValue;
+      }, null);
+    }
   }
 
   render() {
+    const { totalPrice } = this.state;
     return (
       <div>
         <ReturnButton path="/" />
@@ -78,7 +101,7 @@ class ShoppingCart extends React.Component {
           this.cartListOfItems()
         )}
         <p>Valor total:</p>
-        <div></div>
+        <div>{ totalPrice }</div>
       </div>
     );
   }

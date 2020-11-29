@@ -7,12 +7,25 @@ const ProductDetails = () => {
   const { product } = location.state;
   const { title, price, thumbnail, description } = product;
 
-  const addProductToCart = (productt) => {
-    if (localStorage.getItem(productt)) {
-      const quantity = JSON.parse(localStorage.getItem(productt)) + 1;
-      localStorage.setItem(productt, quantity);
-    } else {
-      localStorage.setItem(productt, 1);
+  const addItemToCart = (newTitle, newPrice) => {
+    const newProduct = {
+      title: newTitle,
+      price: newPrice,
+      quantity: 1,
+    };
+    if (localStorage.getItem('products') || []) {
+      let localStorageArray = JSON.parse(localStorage.getItem('products'));
+      if (localStorageArray === null) {
+        localStorageArray = [];
+      }
+      if (localStorageArray !== []) {
+        const existingProduct = localStorageArray
+          .find((productArray) => productArray.title === title);
+        if (existingProduct !== undefined) {
+          existingProduct.quantity += 1;
+        } else { localStorageArray.push(newProduct); }
+      }
+      return localStorage.setItem('products', JSON.stringify(localStorageArray));
     }
   };
 
@@ -26,7 +39,7 @@ const ProductDetails = () => {
       <button
         type="button"
         data-testid="product-detail-add-to-cart"
-        onClick={ () => addProductToCart(title) }
+        onClick={ () => addItemToCart(title, price) }
       >
         Adicionar ao carrinho
       </button>

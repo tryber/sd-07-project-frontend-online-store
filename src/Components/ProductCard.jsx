@@ -10,9 +10,9 @@ class ProductCard extends React.Component {
   }
 
   addItemToCart(title, price) {
-    const product = {
-      title: title,
-      price: price,
+    const newProduct = {
+      title,
+      price,
       quantity: 1,
     };
     if (localStorage.getItem('products') || []) {
@@ -25,7 +25,7 @@ class ProductCard extends React.Component {
           .find((productArray) => productArray.title === title);
         if (existingProduct !== undefined) {
           existingProduct.quantity += 1;
-        } else { localStorageArray.push(product); }
+        } else { localStorageArray.push(newProduct); }
       }
       return localStorage.setItem('products', JSON.stringify(localStorageArray));
     }
@@ -42,6 +42,7 @@ class ProductCard extends React.Component {
             state: { product },
           } }
           data-testid="product-detail-link"
+          product={ product }
         >
           <div>
             <h1>{ title }</h1>
