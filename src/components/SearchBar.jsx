@@ -4,11 +4,8 @@ class SearchBar extends Component {
   constructor() {
     super();
     this.onChange = this.onChange.bind(this);
-    this.onClick = this.onClick.bind(this);
     this.state = {
       query: '',
-      products: {},
-      status: false,
     };
   }
 

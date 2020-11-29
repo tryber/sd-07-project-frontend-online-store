@@ -7,8 +7,10 @@ import * as api from '../services/api';
 class Home extends Component {
   constructor() {
     super();
+    this.onClick = this.onClick.bind(this);
     this.state = {
       categories: [],
+      products: {},
       status: false,
     };
   }
