@@ -27,7 +27,6 @@ class ProductDetail extends React.Component {
       product: RequestReturn,
       loading: false,
     });
-    console.log(this.state.product.title);
   }
 
   productLoaded() {
