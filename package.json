@@ -10,9 +10,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
     "styled-components": "^5.2.1",
     "styled-icons": "^10.22.0"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,7 +35,6 @@
   },
   "devDependencies": {
     "@sheerun/mutationobserver-shim": "^0.3.3",
-    "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
