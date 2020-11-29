@@ -31,9 +31,9 @@ export class AmountControllers extends Component {
   render() {
     return (
       <css.Ctn>
-        <icon.Minus onClick={this.decreaseAmount} />
-        <div className="display">{this.state.amount}</div>
-        <icon.Plus onClick={this.increaseAmount} />
+        <icon.Minus onClick={ this.decreaseAmount } />
+        <div className="display">{ this.state.amount }</div>
+        <icon.Plus onClick={ this.increaseAmount } />
       </css.Ctn>
     );
   }

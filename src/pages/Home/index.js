@@ -5,14 +5,14 @@ import * as view from '../../views';
 import * as css from './style';
 
 export class Home extends Component {
-  constructor() {
+  constructor(props) {
     super();
 
     this.getCurrentCategory = this.getCurrentCategory.bind(this);
 
     this.state = {
       isLoading: false,
-      searchId: '',
+      categoryId: '',
       products: [],
       searchInput: '',
       searchResult: true,
@@ -20,7 +20,7 @@ export class Home extends Component {
   }
 
   getCurrentCategory(id) {
-    this.setState({ searchId: id, isLoading: true }, async () => {
+    this.setState({ categoryId: id, isLoading: true }, async () => {
       const object = await api.getProductsFromCategoryAndQuery(id);
       this.setState({ products: object.results, isLoading: false });
       console.log(object);
@@ -45,14 +45,14 @@ export class Home extends Component {
           <div className="ctn-displayCard">
             <view.SearchInput />
             <div className="displayCard">
-              {products.map((product) => (
+              { products.map((product) => (
                 <cp.CardProduct
-                  key={product.id}
-                  thumbnail={product.thumbnail}
-                  price={product.price}
-                  title={product.title}
+                  key={ product.id }
+                  thumbnail={ product.thumbnail }
+                  price={ product.price }
+                  title={ product.title }
                 >
-                  {product.title}
+                  { product.title }
                 </cp.CardProduct>
               ))}
             </div>

@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as css from './style';
 import * as cp from '../index';
 
 class CardProduct extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.addProductCard = this.addProductCard.bind(this);
   }
 
   addProductCard() {
     const { id, price, thumbnail, title } = this.props;
+
     const product = {
       id: id,
       price: price,
@@ -18,7 +20,9 @@ class CardProduct extends Component {
     };
   }
   render() {
-    const { id, price, productDetail, thumbnail, title } = this.props;
+
+    const { id, price, thumbnail, title } = this.props;
+
     return (
       <css.cpnCenter data-testid="product">
         <h4>{title}</h4>
@@ -31,6 +35,16 @@ class CardProduct extends Component {
       </css.cpnCenter>
     );
   }
+}
+
+CardProduct.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+  }).isRequired,
+
 }
 
 export default CardProduct;

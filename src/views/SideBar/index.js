@@ -16,6 +16,10 @@ class SideBar extends Component {
     };
   }
 
+  componentDidMount() {
+    this.fetchCategoriesApi();
+  }
+
   handlerClick({ target: { name, value } }) {
     this.setState({ [name]: value });
   }
@@ -27,10 +31,6 @@ class SideBar extends Component {
     });
   }
 
-  componentDidMount() {
-    this.fetchCategoriesApi();
-  }
-
   render() {
     const { catergories, isLoading } = this.state;
 
@@ -38,20 +38,22 @@ class SideBar extends Component {
       <css.ctnSideBar>
         {isLoading ? (
           <cp.Loading />
+
         ) : (
-          catergories.map((categorie, index) => {
-            return (
-              <div key={index} className="div-category">
-                <input
-                  data-testid="category"
-                  name="categoryId"
-                  type="radio"
-                  value={categorie.id}
-                  onClick={this.handlerClick}
-                />
-                <label htmlFor={categorie.id}>{categorie.name}</label>
-              </div>
-            );
+
+          catergories.map((categorie, index) => { return (
+
+            <div key={ index } className="div-category">
+              <input
+                data-testid="category"
+                name="categoryId"
+                type="radio"
+                value={ categorie.id }
+                onClick={ this.handlerClick }
+              />
+              <label htmlFor={ categorie.id }>{ categorie.name }</label>
+            </div>
+          );
           })
         )}
       </css.ctnSideBar>
