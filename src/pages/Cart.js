@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import * as api from '../services/api';
 import updateCartItemInLocalStorage from '../services/updateCartItem';
 import removeCartItemInLocalStorage from '../services/removeCartItem';
+
 
 export default class Cart extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ export default class Cart extends Component {
     this.state = {
       loading: true,
       cartItems: [],
+      redirect: false,
       isEmpty: true,
     };
   }
@@ -27,12 +30,9 @@ export default class Cart extends Component {
     if (cart !== undefined && cart !== [] && cart !== null) {
       cart.forEach(async ({ id: idCartItem, category, searchKey, quantity }) => {
         const resp = await api.getProductsFromCategoryAndQuery(category, searchKey);
-        const {
-          title,
-          thumbnail,
-          price,
-          id,
-        } = resp.results.find((product) => product.id === idCartItem);
+        const { title, thumbnail, price, id } = resp.results.find(
+          (product) => product.id === idCartItem,
+        );
         this.setState((previus) => ({
           cartItems: [...previus.cartItems, { title, thumbnail, price, id, quantity }],
           isEmpty: false,
@@ -79,6 +79,7 @@ export default class Cart extends Component {
         </div>
       );
     }
+
     if (isEmpty) {
       return (
         <div>
@@ -87,6 +88,7 @@ export default class Cart extends Component {
       );
     }
 
+    const { redirect } = this.state;
     return (
       <div>
         {cartItems.map(({ title, thumbnail, price, id, quantity }) => (
@@ -101,6 +103,18 @@ export default class Cart extends Component {
             removeItem={ this.removeItem }
           />
         ))}
+        <div>
+          <button
+            data-testid="checkout-products"
+            type="button"
+            onClick={ () => {
+              this.setState({ redirect: true });
+            } }
+          >
+            Finalizar compras
+          </button>
+          {redirect && <Redirect to="/checkout" />}
+        </div>
       </div>
     );
   }
