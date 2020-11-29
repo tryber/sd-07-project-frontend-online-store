@@ -50,6 +50,6 @@ Card.propTypes = {
 Card.defaultProps = {
   category: '',
   query: '',
-}
+};
 
 export default Card;

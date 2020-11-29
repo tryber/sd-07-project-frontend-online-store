@@ -9,7 +9,6 @@ import {
 
 import Card from '../Card';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
-import Categories from '../Categories';
 
 class Products extends React.Component {
   constructor(props) {
@@ -68,14 +67,14 @@ class Products extends React.Component {
   }
 }
 
-Categories.propTypes = {
+Products.propTypes = {
   category: PropTypes.string,
   query: PropTypes.string,
 };
 
-Categories.defaultProps = {
+Products.defaultProps = {
   category: '',
   query: '',
-}
+};
 
 export default Products;
