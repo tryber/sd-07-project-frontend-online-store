@@ -8,31 +8,50 @@
   width: 100%;
 }
 
-
-.search-bar-input {
+.search-bar {
   margin-top: 15px;
   border-radius: 50px;
   width: 500px;
   height: 30px;
   border: 1.7px solid black;
-  padding-left: 33px;
+}
+
+.search-bar-input {
+  position: absolute;
+  top: 17px;
+  left: 160px;
+  width: 440px;
+  height: 25px;
+  border: none;
 }
 
 .search-bar-icon {
   margin: 5px;
-  top: 10px;
   position: relative;
-  left: 32px;
-  
+  left: -235px;
 }
 
-.icons{
-    width: 25px;
+.shopping-cart-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  margin: 10px 15px 10px 10px;
+  transition: 0.2s ease-in-out;
 }
 
-.display-flex{
-  display: flex;
+.shopping-cart-icon:hover {
+  transform: scale(1.1);
 }
+
+.shopping-cart-icon-2 {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 35px;
+  margin: 10px 15px 10px 10px;
+}
+
 .shopping-cart-text {
   position: absolute;
   top: 40px;
@@ -52,52 +71,4 @@
 
 .go-back-arrow-icon:hover {
   transform: scale(1.1);
-}
-
-.cart-item-product{
-  display: flex;
-  align-items: center;
-}
-
-
-.shopping-cart-wrapper{
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-}
-.wrapper{
-  border: 0.5px solid rgb(75, 74, 74); 
-  padding: 2rem;
-  margin: 1rem;
-}
-.form-rate-product{
-  display: flex;
-  width: 50%;
-  flex-direction: column;
-}
-.form-rate-input{
-  margin-bottom: 0.5rem;
-}
-.rates-wrapper{
-  justify-content: left;
-  display: flex;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  flex-direction: column;
-  border-bottom: 0.5px solid rgb(75, 74, 74); 
-}
-.rating-wrapper{
-  margin-left: 0.5rem;
-}
-
-.rating-star{
-  border: none;
-  background-color: transparent;
-}
-.rating-header{
-  display: flex;
-  align-items: center;
-}
-.rating-header .rating-paragraph{
-  margin-right: 0.5rem;
 }
