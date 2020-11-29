@@ -24,13 +24,15 @@ class Products extends React.Component {
     const { currentIdCategory, currentWorldSearch } = this.state;
     const byCategory = category !== '' && category !== currentIdCategory;
     const byWorldSearch = query !== '' && query !== currentWorldSearch;
-    if (byCategory || byWorldSearch) {
-      this.setState({
-        currentIdCategory: category,
-        currentWorldSearch: query,
-      });
-      this.fetchAPI();
-    }
+    if (byCategory || byWorldSearch) this.updateState(category, query);
+  }
+
+  updateState(category, query) {
+    this.setState({
+      currentIdCategory: category,
+      currentWorldSearch: query,
+    });
+    this.fetchAPI();
   }
 
   async fetchAPI() {
@@ -70,5 +72,10 @@ Categories.propTypes = {
   category: PropTypes.string,
   query: PropTypes.string,
 };
+
+Categories.defaultProps = {
+  category: '',
+  query: '',
+}
 
 export default Products;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 import {
@@ -7,8 +8,6 @@ import {
   CardTitle,
   ShoppingCartIcon,
 } from './styles';
-
-import { Link } from 'react-router-dom';
 
 class CardDetails extends React.Component {
   constructor(props) {

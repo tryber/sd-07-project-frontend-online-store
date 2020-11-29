@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   ShoppingCartContainer,
   ShoppingCartContent,
   ShoppingCartEmpty,
   ShoppingCartIcon,
 } from './styles';
-import PropTypes from 'prop-types';
+
 import { getProductsFromCategoryAndQuery } from '../../services/api';
-import { Link } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -29,7 +30,6 @@ class ShoppingCart extends React.Component {
 
     if (category === '0') category = '';
     if (query === '0') query = '';
-    console.log(category, query)
 
     const { results } = await getProductsFromCategoryAndQuery(category, query);
     const product = results.find((result) => result.id === id);

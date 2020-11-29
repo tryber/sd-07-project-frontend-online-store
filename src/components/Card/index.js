@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { CardContainer, CardContent, Image, Price, Title } from './styles';
-import { Link } from 'react-router-dom';
 
 class Card extends React.Component {
   render() {
-    let { product, category, query } = this.props;
+    const { product } = this.props;
+    let { category, query } = this.props;
 
     if (category === '') category = '0';
     if (query === '') query = '0';
@@ -45,5 +46,10 @@ Card.propTypes = {
   category: PropTypes.string,
   query: PropTypes.string,
 };
+
+Card.defaultProps = {
+  category: '',
+  query: '',
+}
 
 export default Card;
