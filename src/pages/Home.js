@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Category from '../components/Category';
-import SearchBar from '../components/SearchBar';
-import ProductCard from '../components/ProductCard';
-import NotFound from '../components/NotFound';
-import ShoppingCartButton from '../components/ShoppingCartButton';
+import {
+  Category, SearchBar, ProductCard, NotFound, ShoppingCartButton }
+from '../components/index';
 import * as api from '../services/api';
 
 class Home extends Component {
@@ -21,8 +19,6 @@ class Home extends Component {
 
   componentDidUpdate(prevProps, prevState) { this.StatusSet(prevState); }
 
-  onClick(query) { this.fetchProducts(query); }
-
   StatusSet(prevState) {
     const { products } = this.state;
     if (prevState.products !== products) {
@@ -34,6 +30,8 @@ class Home extends Component {
     this.setState({ categories: await api.getCategories() });
   }
 
+  onClick(query) { this.fetchProducts(query); }
+
   async fetchProducts(query, categoryId = '') {
     this.setState({
       products: await api.getProductsFromCategoryAndQuery(categoryId, query),
@@ -42,14 +40,15 @@ class Home extends Component {
 
   render() {
     const { categories, status, products } = this.state;
+    const { results } = products;
     return (
       <div>
         <SearchBar onClick={ this.onClick } />
         <ShoppingCartButton />
         {
           status && (
-            products.results.length
-              ? <ProductCard products={ products.results } />
+            results.length
+              ? <ProductCard products={ results } />
               : <NotFound />
           )
         }
