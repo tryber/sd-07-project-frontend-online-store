@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import '../css/Header.css';
 
 export default class Header extends Component {
   render() {
-    const { text, imagePath, imagePathReply } = this.props;
+    const { text, imagePathReply, totalQuantity } = this.props;
     return (
       <header className="header">
         <Link to="/">
@@ -13,10 +14,7 @@ export default class Header extends Component {
             alt="Carrinho de Compras"
           />
         </Link>
-        <img
-          src={ imagePath }
-          alt="Carrinho de Compras"
-        />
+
         <h2>{ text }</h2>
       </header>
     );
@@ -25,6 +23,5 @@ export default class Header extends Component {
 
 Header.propTypes = {
   text: PropTypes.string.isRequired,
-  imagePath: PropTypes.string.isRequired,
   imagePathReply: PropTypes.string.isRequired,
 };

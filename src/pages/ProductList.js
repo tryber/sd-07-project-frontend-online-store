@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import QueryBar from '../components/QueryBar';
 import CategoryItem from '../components/CategoryItem';
+import CartIcon from '../components/CartIcon';
 import * as api from '../services/api';
 import '../css/ProductList.css';
 
@@ -14,16 +15,20 @@ class ProductList extends Component {
       categories: [],
       query: '',
       object: [],
+      totalQuantity: 0,
     };
     this.CategoriesList = this.CategoriesList.bind(this);
     this.onInputSearchChange = this.onInputSearchChange.bind(this);
     this.SearchProduct = this.SearchProduct.bind(this);
     this.getProducts = this.getProducts.bind(this);
+    // this.totalAmount = this.totalAmount.bind(this);
   }
 
   componentDidMount() {
     this.CategoriesList();
+    // this.totalAmount();
   }
+
 
   onInputSearchChange({ target }) {
     this.setState({ query: target.value });
@@ -49,6 +54,15 @@ class ProductList extends Component {
     this.setState({ object: results });
   }
 
+/*   totalAmount() {
+    const valueInit = 0;
+    const { cart } = this.props;
+    let { totalQuantity } = this.state;
+    totalQuantity = cart.reduce((acc, item) => acc + parseInt(item.quantity, 10),
+      valueInit);
+    this.setState({ totalQuantity });
+    console.log('TotalAmoutn PRODUCTLIST: ', totalQuantity);
+  } */
 
   CategoriesList() {
     api.getCategories()
@@ -59,8 +73,9 @@ class ProductList extends Component {
   }
 
   render() {
-    const { categories, object, query } = this.state;
+    const { categories, object, query, totalQuantity } = this.state;
     const { addItem } = this.props;
+    {console.log('ProductList: ', this.props)}
 
     return (
       <div className="main-list">
@@ -79,9 +94,11 @@ class ProductList extends Component {
             onQueryChange={ this.onInputSearchChange }
             onClick={ this.SearchProduct }
           />
+          <CartIcon totalQuantity={ totalQuantity } />
           <section className="prodoct-cards">
             {object.map((product) => (
               <ProductCard
+                onClick={ this.totalAmount }
                 key={ product.id }
                 product={ product }
                 addItem={ addItem }
