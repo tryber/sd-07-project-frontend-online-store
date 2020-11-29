@@ -4,45 +4,34 @@ import Products from './Products';
 import * as api from '../services/api';
 
 class ProductListing extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.queryProducts = this.queryProducts.bind(this);
+    this.getProducts = this.getProducts.bind(this);
     this.state = {
       loading: false,
       products: [],
       searchText: '',
+      categorySelected: ''
     };
   }
 
-  async queryProducts() {
-    console.log(this.props.categoryId);
-    let queryReturn;
-    if (this.props.categoryId) {
-      this.setState({ loading: true }, async () => {
-        queryReturn = await api
-          .getProductsFromCategoryAndQuery(
-            this.props.categoryId,
-            this.state.searchText,
-          )
-          .then((r) => r.results);
-        this.setState({
-          products: queryReturn,
-          loading: false,
-        });
-      });
-    } else {
-      this.setState({ loading: true }, async () => {
-        queryReturn = await api
-          .getProductsFromQuery(this.state.searchText)
-          .then((r) => r.results);
-        this.setState({
-          products: queryReturn,
-          loading: false,
-        });
-      });
+
+  componentDidUpdate() {
+    if (this.props.categoryId !== this.state.categorySelected) {
+      this.getProducts()
     }
   }
+
+  async getProducts() {
+    const response = await api.getProductsFromCategoryAndQuery(this.props.categoryId, this.state.searchText)
+    this.setState({
+      categorySelected: this.props.categoryId,
+      products: response.results,
+      loading: false
+    })
+  }
+
 
   handleChange({ target }) {
     const { name, value } = target;
@@ -62,7 +51,7 @@ class ProductListing extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <button onClick={this.queryProducts} data-testid="query-button">
+        <button onClick={this.getProducts} data-testid="query-button">
           DISPARA API
         </button>
         <Products products={this.state.products} />

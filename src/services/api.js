@@ -6,7 +6,7 @@ export async function getCategories() {
     const categories = await response.json();
     return categories;
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 }
 
@@ -18,7 +18,7 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
     const result = await response.json();
     return result;
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 }
 
