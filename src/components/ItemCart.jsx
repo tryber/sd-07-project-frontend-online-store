@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -78,7 +79,7 @@ ItemCart.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
-    sold_quantity: PropTypes.number,
+    available_quantity: PropTypes.number,
   }).isRequired,
 };
 
