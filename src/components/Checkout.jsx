@@ -2,10 +2,32 @@ import React from 'react';
 
 class Checkout extends React.Component {
   render() {
+    const SumOfPrices = () => {
+      const arrOfPrices = [];
+      this.props.location.state.products.map((product) => {
+        arrOfPrices.push(product.price);
+      })
+      return (arrOfPrices.reduce((a, b) => a + b, 0)).toFixed(2);
+    }
+
+    const { products } = this.props.location.state;
     return (
       <div>
         <section>
-          item + valor
+          <h2>Revise seus produtos</h2>
+          {products.map((product) => {
+            return (
+              <div>
+                <div>
+                  {product.title}
+                </div>
+                <div>
+                  {product.price}
+                </div>
+              </div>
+              )
+          })}
+        <h2>Valor Total da Compra: {SumOfPrices()}</h2>
         </section>
         <form>
           <input
