@@ -7,10 +7,17 @@ class SideBar extends Component {
   constructor() {
     super();
 
+    this.handlerClick = this.handlerClick.bind(this);
+
     this.state = {
       catergories: [],
       isLoading: false,
+      categoryId: '',
     };
+  }
+
+  handlerClick({ target: { name, value } }) {
+    this.setState({ [name]: value });
   }
 
   fetchCategoriesApi() {
@@ -37,10 +44,10 @@ class SideBar extends Component {
               <div key={index} className="div-category">
                 <input
                   data-testid="category"
-                  name="category"
+                  name="categoryId"
                   type="radio"
-                  id={categorie.id}
                   value={categorie.id}
+                  onClick={this.handlerClick}
                 />
                 <label htmlFor={categorie.id}>{categorie.name}</label>
               </div>
