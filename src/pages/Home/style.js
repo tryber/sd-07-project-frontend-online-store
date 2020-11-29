@@ -18,6 +18,10 @@ export const CtnCenter = styled.div`
       width: 35%;
       height: 85vh;
       margin-top: 45px;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .ctn-displayCard {

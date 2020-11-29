@@ -18,4 +18,3 @@ class CardProduct extends Component {
 }
 
 export default CardProduct;
-

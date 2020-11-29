@@ -1,9 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 import resetCss from './reset';
 
-export default createGlobalStyle`    
-   
-   
+export default createGlobalStyle`
+
+
     ${resetCss}
 
     body {
