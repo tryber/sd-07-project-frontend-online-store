@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
 import CartItem from '../components/CartItem';
 import * as api from '../services/api';
+import updateCartItemInLocalStorage from '../services/updateCartItem';
+import removeCartItemInLocalStorage from '../services/removeCartItem';
 
 export default class Cart extends Component {
   constructor(props) {
     super(props);
+
+    this.updateQuantity = this.updateQuantity.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+
     this.state = {
       loading: true,
       cartItems: [],
+      isEmpty: true,
     };
   }
 
   componentDidMount() {
+    this.updateCartItems();
+  }
+
+  updateCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart'));
-    // console.log(cart);
     if (cart !== undefined && cart !== [] && cart !== null) {
       cart.forEach(async ({ id: idCartItem, category, searchKey, quantity }) => {
         const resp = await api.getProductsFromCategoryAndQuery(category, searchKey);
@@ -25,26 +35,54 @@ export default class Cart extends Component {
         } = resp.results.find((product) => product.id === idCartItem);
         this.setState((previus) => ({
           cartItems: [...previus.cartItems, { title, thumbnail, price, id, quantity }],
-          loading: false,
+          isEmpty: false,
         }));
       });
     }
+    this.setState({
+      loading: false,
+    });
+  }
+
+  updateQuantity({ id: idUpdating, quantity: newQuantity }) {
+    const { cartItems } = this.state;
+    const itemIndex = cartItems.findIndex(({ id }) => id === idUpdating);
+    const {
+      title,
+      thumbnail,
+      price,
+    } = cartItems[itemIndex];
+    cartItems[itemIndex] = {
+      id: idUpdating,
+      quantity: newQuantity,
+      title,
+      thumbnail,
+      price,
+    };
+    this.setState({ cartItems });
+    updateCartItemInLocalStorage(cartItems[itemIndex]);
+  }
+
+  removeItem(idRemoving) {
+    const { cartItems } = this.state;
+    const newCartItems = cartItems.filter(({ id }) => id !== idRemoving);
+    this.setState({ cartItems: newCartItems });
+    removeCartItemInLocalStorage(idRemoving);
   }
 
   render() {
-    const { loading, cartItems } = this.state;
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart === undefined || cart === [] || cart === null) {
-      return (
-        <div>
-          <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-        </div>
-      );
-    }
+    const { loading, cartItems, isEmpty } = this.state;
     if (loading) {
       return (
         <div>
           Carregando...
+        </div>
+      );
+    }
+    if (isEmpty) {
+      return (
+        <div>
+          <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         </div>
       );
     }
@@ -59,6 +97,8 @@ export default class Cart extends Component {
             id={ id }
             key={ id }
             quantity={ quantity }
+            updateQuantity={ this.updateQuantity }
+            removeItem={ this.removeItem }
           />
         ))}
       </div>

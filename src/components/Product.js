@@ -23,7 +23,7 @@ class Product extends Component {
         <p>{price}</p>
         <Link
           data-testid="product-detail-link"
-          to={ `./details/${category || null}/ ${
+          to={ `./details/${category || null}/${
             searchKey || null
           }/${id}` }
         >
