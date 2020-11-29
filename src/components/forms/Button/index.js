@@ -5,7 +5,7 @@ class Button extends Component {
   render() {
     const { children, getEvent } = this.props;
     return (
-      <css.Button { ...this.props } type="button" onClick={ (event) => getEvent(event) }>
+      <css.Button { ...this.props } type="button" onClick={ () => getEvent() }>
         { children }
       </css.Button>
     );

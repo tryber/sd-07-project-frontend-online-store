@@ -20,14 +20,16 @@ class SideBar extends Component {
     this.fetchCategoriesApi();
   }
 
-  handlerClick({ target: { name, value } }) {
-    this.setState({ [name]: value });
+  async handlerClick({ target: { name, value } }) {
+   const { callback } = this.props;
+   await this.setState({ [name]: value });
+    callback(this.state.categoryId);
   }
 
   fetchCategoriesApi() {
     this.setState({ isLoading: true }, async () => {
-      const obj = await api.getCategories();
-      this.setState({ catergories: obj, isLoading: false });
+      const object = await api.getCategories();
+      this.setState({ catergories: object, isLoading: false });
     });
   }
 

@@ -38,12 +38,20 @@ class CardProduct extends Component {
 }
 
 CardProduct.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    thumbnail: PropTypes.string.isRequired,
-  }).isRequired,
+
+  id: PropTypes.string,
+  title: PropTypes.string,
+  price: PropTypes.number,
+  thumbnail: PropTypes.string,
+
+}
+
+CardProduct.propDefault = {
+
+  id: '',
+  title: '',
+  price: 0,
+  thumbnail: '',
 
 }
 

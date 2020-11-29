@@ -9,6 +9,7 @@ export class Home extends Component {
     super();
 
     this.getCurrentCategory = this.getCurrentCategory.bind(this);
+    this.fetchSearchButton = this.fetchSearchButton.bind(this);
 
     this.state = {
       isLoading: false,
@@ -19,31 +20,40 @@ export class Home extends Component {
     };
   }
 
+
   getCurrentCategory(id) {
     this.setState({ categoryId: id, isLoading: true }, async () => {
-      const object = await api.getProductsFromCategoryAndQuery(id);
+      const object = await api.getProductsFromCategoryAndQuery(
+        id,
+        this.state.searchInput
+      );
       this.setState({ products: object.results, isLoading: false });
-      console.log(object);
     });
   }
 
-  componentDidMount() {
-    this.getCurrentCategory();
+  fetchSearchButton(searchResult) {
+    this.setState( { searchInput: searchResult, isLoading: true }, async () => {
+      const object = await api.getProductsFromCategoryAndQuery(
+        this.state.categoryId,
+        searchResult
+      );
+    this.setState( { products: object.results, isLoading: false });
+    })
   }
 
   render() {
-    const { isLoading, products, searchResult, CardProduct } = this.state;
+    const { isLoading, products, searchResult, cardProduct } = this.state;
 
     return (
       <css.CtnCenter>
         <cp.Header />
         <div className="ctn-main">
           <div className="ctn-sidebar">
-            <view.SideBar />
+            <view.SideBar callback={this.getCurrentCategory} />
           </div>
 
           <div className="ctn-displayCard">
-            <view.SearchInput />
+            <view.SearchInput callback={this.fetchSearchButton} />
             <div className="displayCard">
               { products.map((product) => (
                 <cp.CardProduct
