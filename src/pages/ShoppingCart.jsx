@@ -1,23 +1,7 @@
 import React, { Component } from 'react';
+import EmptyCard from '../components/EmptyCard/EmptyCard';
 
 class ShoppingCart extends Component {
-  constructor(props) {
-    super(props);
-    this.renderProducts = this.renderProducts.bind(this);
-    this.state = {
-      products: [...productsList],
-    };
-  }
-
-  // renderProducts() {
-  //   return (
-  //     <div>
-  //       <span data-testid="shopping-cart-product-name"></span>
-  //       <p data-testid="shopping-cart-product-quantity"></p>
-  //     </div>
-  //   );
-  // }
-
   render() {
     const products = JSON.parse(localStorage.getItem('cart'));
     if (!products) {
@@ -38,6 +22,7 @@ class ShoppingCart extends Component {
             <p data-testid="shopping-cart-product-quantity">Qts:1</p>
           </div>
         ))}
+        <EmptyCard />
       </div>
     );
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from '../components/Loading/Loading';
 import AddByDetails from '../components/AddByDetails/AddByDetails';
+import ShoppingCartButton from '../components/ShoppingCartButton/ShoppingCartButton';
 
 
 class ProductDetails extends Component {
@@ -12,7 +13,7 @@ class ProductDetails extends Component {
     this.fetchProduct = this.fetchProduct.bind(this);
     this.state = {
       isLoading: true,
-      productSelected: {},
+      productSelected: [],
     };
   }
 
@@ -52,7 +53,7 @@ class ProductDetails extends Component {
             ))}
           </ul>
         </div>
-        <AddByDetails product={ product } />
+        <AddByDetails productSelected={ product } />
       </div>
     );
   }
@@ -62,6 +63,7 @@ class ProductDetails extends Component {
     return (
       <div>
         {isLoading ? <Loading /> : this.renderDetails(productSelected)}
+        <ShoppingCartButton />
       </div>
     );
   }
