@@ -48,6 +48,7 @@ class AddAndRemoveItem extends Component {
             {' '}
           </button>
         </div>
+        <p>Apagar depois</p>
       </div>
     );
   }
