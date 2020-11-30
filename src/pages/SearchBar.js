@@ -28,22 +28,22 @@ class SearchBar extends Component {
     // const { inputValue } = this.state;
     return (
       <div>
-      <label htmlFor="searchBar" className="searchbar">
-        <button
-          onClick={ () => this.onClickFunction() }
-          type="button"
-          data-testid="query-button"
-        >
-          <img src={ lupa } width="15" height="15" alt="imageButton" />
-        </button>
-        <input
-          type="text"
-          data-testid="query-input"
-          name="searchBar"
-          onChange={ this.inputChange }
-          placeholder="Digite aqui..."
-        />
-      </label>
+        <label htmlFor="searchBar" className="searchbar">
+          <button
+            onClick={ () => this.onClickFunction() }
+            type="button"
+            data-testid="query-button"
+          >
+            <img src={ lupa } width="15" height="15" alt="imageButton" />
+          </button>
+          <input
+            type="text"
+            data-testid="query-input"
+            name="searchBar"
+            onChange={ this.inputChange }
+            placeholder="Digite aqui..."
+          />
+        </label>
       </div>
     );
   }

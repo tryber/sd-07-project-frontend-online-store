@@ -43,7 +43,7 @@ class home extends Component {
     const object = {
       product,
       quantity: 1,
-    }
+    };
     if (localStorage.getItem('cart') === null) {
       localStorage.setItem('cart', JSON.stringify([object]));
     } else {
