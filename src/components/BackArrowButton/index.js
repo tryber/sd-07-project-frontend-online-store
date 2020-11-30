@@ -30,7 +30,11 @@ BackArrowButton.propTypes = {
   history: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
   }).isRequired,
-  visibility: PropTypes.bool.isRequired,
+  visibility: PropTypes.bool,
+};
+
+BackArrowButton.defaultProps = {
+  visibility: true,
 };
 
 const BackArrowButtonWithRouter = withRouter(BackArrowButton);

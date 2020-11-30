@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { ShoppingCartList, Header } from '../../components';
 import * as lsapi from '../../services/lsapi';
-import './ShoppingCart.css';
+import './Checkout.css';
 
-class ShoppingCart extends Component {
+class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,35 +30,26 @@ class ShoppingCart extends Component {
       currency: 'BRL',
     });
     return (
-      <div className="cart-list-container">
+      <div className="checkout-container">
         <Header pathname={ location.pathname } />
-        <h2>Carrinho de Compras</h2>
+        <h2>Revise seus Produtos</h2>
         <ShoppingCartList
           purchasedProducts={ purchasedProducts }
           handleChange={ this.updateTotalPrice }
+          hiddenbuttons="true"
         />
         <h3>
           { `Valor Total da Compra: ${formatter.format(totalPrice)}` }
         </h3>
-        <div>
-          <Link to="/checkout">
-            <button
-              type="button"
-              data-testid="checkout-products"
-            >
-              Finalizar Compra
-            </button>
-          </Link>
-        </div>
       </div>
     );
   }
 }
 
-ShoppingCart.propTypes = {
+Checkout.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default ShoppingCart;
+export default Checkout;

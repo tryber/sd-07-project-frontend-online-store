@@ -11,7 +11,7 @@ class Header extends Component {
       <div className="header-container">
         <BackArrowButton visibility={ (pathname !== '/') } />
         <h1> ONLINE STORE (Tropa de ESLint)</h1>
-        <ShoppingCartButton />
+        <ShoppingCartButton visibility={ (pathname !== '/checkout') } />
       </div>
     );
   }
