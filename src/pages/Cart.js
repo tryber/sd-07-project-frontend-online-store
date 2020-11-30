@@ -28,13 +28,13 @@ export default class Cart extends Component {
   updateCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart'));
     if (cart !== undefined && cart !== [] && cart !== null) {
-      cart.forEach(async ({ id: idCartItem, category, searchKey, quantity }) => {
+      cart.forEach(async ({ id: idCartItem, category, searchKey, quantity, availableQuantity }) => {
         const resp = await api.getProductsFromCategoryAndQuery(category, searchKey);
         const { title, thumbnail, price, id } = resp.results.find(
           (product) => product.id === idCartItem,
         );
         this.setState((previus) => ({
-          cartItems: [...previus.cartItems, { title, thumbnail, price, id, quantity }],
+          cartItems: [...previus.cartItems, { title, thumbnail, price, id, quantity, availableQuantity }],
           isEmpty: false,
         }));
       });
@@ -51,6 +51,7 @@ export default class Cart extends Component {
       title,
       thumbnail,
       price,
+      availableQuantity,
     } = cartItems[itemIndex];
     cartItems[itemIndex] = {
       id: idUpdating,
@@ -58,6 +59,7 @@ export default class Cart extends Component {
       title,
       thumbnail,
       price,
+      availableQuantity,
     };
     this.setState({ cartItems });
     updateCartItemInLocalStorage(cartItems[itemIndex]);
@@ -91,7 +93,7 @@ export default class Cart extends Component {
     const { redirect } = this.state;
     return (
       <div>
-        {cartItems.map(({ title, thumbnail, price, id, quantity }) => (
+        {cartItems.map(({ title, thumbnail, price, id, quantity, availableQuantity }) => (
           <CartItem
             title={ title }
             thumbnail={ thumbnail }
@@ -99,6 +101,7 @@ export default class Cart extends Component {
             id={ id }
             key={ id }
             quantity={ quantity }
+            availableQuantity={ availableQuantity }
             updateQuantity={ this.updateQuantity }
             removeItem={ this.removeItem }
           />
