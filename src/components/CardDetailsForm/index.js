@@ -5,14 +5,9 @@ import {
   CardDetailsFormContainer,
   CardDetailsFormContent,
   CardDetailsFormTitle,
-  ComentInput,
-  Comment,
-  Comments,
-  Email,
-  EmailInput,
-  Evaluation,
-  Form,
-  Message,
+  ComentInput, Comment,
+  Comments, Email, EmailInput,
+  Evaluation, Form, Message,
   SelectInput,
 } from "./styles";
 
