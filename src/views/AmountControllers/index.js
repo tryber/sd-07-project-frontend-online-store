@@ -3,13 +3,14 @@ import * as css from './style';
 import * as icon from '../../components/Icons';
 
 export class AmountControllers extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { amount } = this.props;
 
     this.increaseAmount = this.increaseAmount.bind(this);
     this.decreaseAmount = this.decreaseAmount.bind(this);
     this.state = {
-      amount: 1,
+      amount: amount,
     };
   }
 
