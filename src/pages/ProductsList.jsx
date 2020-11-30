@@ -42,7 +42,7 @@ class ProductsList extends Component {
     const title = string.slice(parameter, string.length);
     return title;
   }
-  
+
   getPrice(string) {
     const index = string.indexOf('$');
     const number = 2;
@@ -176,7 +176,7 @@ class ProductsList extends Component {
           return products;
         });
       }
-      return this.setState({ products: products });
+      return this.setState({ products: [products] });
     }
   }
 

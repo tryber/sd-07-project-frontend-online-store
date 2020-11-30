@@ -147,7 +147,7 @@ class ProductDetail extends Component {
       values.push({ id, title, price, imagePath, number, totalPrice, availableQuantity });
       localStorage.setItem('cart', JSON.stringify(values));
       this.changeQuantityState();
-      this.setState({ number: number });
+      this.setState({ number: [number] });
     }
   }
 
@@ -224,10 +224,10 @@ class ProductDetail extends Component {
           Especificações Técnicas
           <ul style={ { listStyle: 'none' } }>
             {attributes.map((element) => { return (
-                <li key={ element.id }>
-                  {`${element.name} --- ${element.value_name}`}
-                </li>
-              );
+              <li key={ element.id }>
+                {`${element.name} --- ${element.value_name}`}
+              </li>
+            );
             })}
           </ul>
           <p data-testid="free-shipping">
