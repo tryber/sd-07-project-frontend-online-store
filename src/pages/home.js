@@ -40,11 +40,15 @@ class home extends Component {
   }
 
   async addCartEvent(product) {
+    const object = {
+      product,
+      quantity: 1,
+    };
     if (localStorage.getItem('cart') === null) {
-      localStorage.setItem('cart', JSON.stringify([product]));
+      localStorage.setItem('cart', JSON.stringify([object]));
     } else {
       const arrayProducts = JSON.parse(localStorage.getItem('cart'));
-      arrayProducts.push(product);
+      arrayProducts.push(object);
       localStorage.setItem('cart', JSON.stringify(arrayProducts));
     }
   }

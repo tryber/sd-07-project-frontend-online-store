@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import CartIcon from '../images/CartIcon.png';
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -33,11 +35,15 @@ class ProductDetail extends Component {
 
   async eventAddCart() {
     const { product } = this.state;
+    const object = {
+      product,
+      quantity: 1,
+    };
     if (localStorage.getItem('cart') === null) {
-      localStorage.setItem('cart', JSON.stringify([product]));
+      localStorage.setItem('cart', JSON.stringify([object]));
     } else {
       const arrayProducts = JSON.parse(localStorage.getItem('cart'));
-      arrayProducts.push(product);
+      arrayProducts.push(object);
       localStorage.setItem('cart', JSON.stringify(arrayProducts));
     }
   }
@@ -67,6 +73,15 @@ class ProductDetail extends Component {
             Adicionar ao Carrinho
           </button>
         </div>
+        <Link to="/shoppingCart">
+          <img
+            src={ CartIcon }
+            width="50"
+            height="50"
+            alt="shopping-cart-icon"
+            data-testid="shopping-cart-button"
+          />
+        </Link>
       </div>
     );
   }
