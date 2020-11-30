@@ -50,7 +50,7 @@ class home extends Component {
   }
 
   render() {
-    const { products, cart } = this.state;
+    const { products } = this.state;
     return (
       <div>
         <section className="cabecalho">

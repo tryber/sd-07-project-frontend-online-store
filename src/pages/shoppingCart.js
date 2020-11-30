@@ -4,7 +4,7 @@ class shoppingCart extends Component {
   render() {
     return (
       <h1>Seu carrinho está vazio</h1>
-    )
+    );
   }
 }
 
