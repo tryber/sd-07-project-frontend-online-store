@@ -37,15 +37,14 @@ class PageListProducts extends React.Component {
   }
 
   render() {
-    const {categorys, selectedCategory} = this.state;
+    const { categorys, selectedCategory } = this.state;
     return (
       <div className="page-list-products">
-        <Categorias
-          categorys={ categorys }
-          callback={ this.categoryUpdate }
-        />
+        <Categorias categorys={ categorys } callback={ this.categoryUpdate } />
         <div className="list-products">
-          <ProductListing categoryId={ selectedCategory } />
+          <ProductListing
+            categoryId={ selectedCategory }
+          />
         </div>
       </div>
     );
