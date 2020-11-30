@@ -34,7 +34,7 @@ class Checkout extends Component {
           <ShoppingCartList
             purchasedProducts={ purchasedProducts }
             handleChange={ this.updateTotalPrice }
-            hiddenbuttons="true"
+            hiddenbuttons
           />
           <h3>
             { `Valor Total da Compra: ${formatter.format(totalPrice)}` }
