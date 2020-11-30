@@ -15,21 +15,23 @@ class ProductsList extends React.Component {
                 key={id}
                 data-testid="product"
               >
-                <Link
-                  to={{
-                    pathname: '/product-details',
-                    state: {
-                      id,
-                      productName: title,
-                      productImg: thumbnail,
-                      productPrice: price,
-                    },
-                  }}
-                  data-testid="product-detail-link"
-                  key={`${title} ${id}`}
+              <Link
+                to={{
+                  pathname: '/product-details',
+                  state: {
+                    id,
+                    productName: title,
+                    productImg: thumbnail,
+                    productPrice: price,
+                  },
+                }}
+                data-testid="product-detail-link"
+                key={`${title} ${id}`}
                 >
-                  Ver detalhes
-                  </Link>
+                  <h3>{ title }</h3>
+                  <img src={ thumbnail } alt="Product" />
+                  <p>{ price }</p>
+                </Link>
               </li>
             )) : (<li> Nenhum produto foi encontrado </li>)}
         </ul>
