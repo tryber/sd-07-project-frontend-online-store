@@ -16,7 +16,7 @@ class CardProduct extends React.Component {
   }
 
   createLocalStorage() {
-    if (!localStorage.length) {
+    if (!localStorage.getItem('cartItems')) {
       localStorage.setItem('cartItems', JSON.stringify([]));
     }
   }
