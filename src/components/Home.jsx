@@ -57,7 +57,9 @@ class Home extends Component {
             />
           </div>
         </div>
-        <Link to="/shopping-cart" data-testid="shopping-cart-button" />
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+          Carrinho de compras
+        </Link>
         <div data-testid="home-initial-message">
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
         </div>

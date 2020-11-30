@@ -17,8 +17,9 @@ class ProductsList extends React.Component {
               >
                 <Link
                   to={ {
-                    pathname: '/Product',
+                    pathname: '/product-details',
                     state: {
+                      id,
                       productName: title,
                       productImg: thumbnail,
                       productPrice: price,
