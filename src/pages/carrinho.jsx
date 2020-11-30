@@ -21,9 +21,11 @@ class Carrinho extends React.Component {
       objeto: saveObj,
     });
     const { objeto } = this.state;
-    (objeto === null)
-      ? this.setState({ empty: true })
-      : this.setState({ empty: false });
+    if (objeto === null) {
+      this.setState({ empty: true });
+    } else {
+      this.setState({ empty: false });
+    }
   }
 
   render() {

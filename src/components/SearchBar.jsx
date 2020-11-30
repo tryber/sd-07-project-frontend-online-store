@@ -23,9 +23,11 @@ export default class SearchBar extends Component {
   componentDidMount() {
     const local = JSON.parse(localStorage.getItem('cart'));
     // eslint-disable-next-line no-unused-expressions
-    (local === null)
-      ? this.arrayEmpty()
-      : this.getLocalStorage();
+    if (local === null) {
+      this.arrayEmpty();
+    } else {
+      this.getLocalStorage();
+    }
   }
 
   getLocalStorage() {
