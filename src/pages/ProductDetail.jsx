@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import * as API from '../services/api';
 import CartIcon from '../components/CartIcon';
+import './ProductDetails.css';
 
 
 class ProductDetail extends Component {
@@ -10,17 +11,25 @@ class ProductDetail extends Component {
     super(props);
     this.getId = this.getId.bind(this);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
+    this.setInitialStateNumber = this.setInitialStateNumber.bind(this);
     this.changeQuantityState = this.changeQuantityState.bind(this);
     this.removeLastItem = this.removeLastItem.bind(this);
     this.removeZero = this.removeZero.bind(this);
     this.roundNumber = this.roundNumber.bind(this);
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
+
+    this.sumItem = this.sumItem.bind(this);
+    this.subtractItem = this.subtractItem.bind(this);
+    this.translateFreeShipping = this.translateFreeShipping.bind(this);
+    
     this.state = {
       id: '',
       attributes: [],
       title: '',
       price: 0,
       thumbnail: '',
+      availableQuantity: 0,
+      number: 0,
       quantityChanged: false,
     };
   }
@@ -36,16 +45,45 @@ class ProductDetail extends Component {
     return id;
   }
 
+  setInitialStateNumber(id) {
+    const cartArray = JSON.parse(localStorage.getItem('cart'));
+    if (cartArray === null) return this.setState({ number: 0 });
+    const product = cartArray.find((item) => item.id === id);
+    this.setState({ number: product.number });
+  }
+
   async searchQueryProducts() {
     const productId = this.getId();
     const ListProducts = await API.getProductsFromCategoryAndQuery(productId);
     const { results } = ListProducts;
     if (results !== undefined) {
-      const { id, title, attributes, thumbnail, price } = results[0];
-      return this.setState({ id, attributes, title, thumbnail, price });
+      const { id, title, attributes, thumbnail, price, shipping } = results[0];
+      const availableQuantity = results[0].available_quantity;
+      const freeShipping = shipping.free_shipping;
+      this.setInitialStateNumber(id);
+      return this.setState({
+        id,
+        attributes,
+        title,
+        thumbnail,
+        price,
+        freeShipping,
+        availableQuantity,
+      });
     }
-    const { id, attributes, title, thumbnail, price } = ListProducts;
-    return this.setState({ id, attributes, title, thumbnail, price });
+    const { id, attributes, title, thumbnail, price, shipping } = ListProducts;
+    const availableQuantity = ListProducts.available_quantity;
+    const freeShipping = shipping.free_shipping;
+    this.setInitialStateNumber(id);
+    return this.setState({
+      id,
+      attributes,
+      title,
+      thumbnail,
+      price,
+      freeShipping,
+      availableQuantity,
+    });
   }
 
   changeQuantityState() {
@@ -84,13 +122,13 @@ class ProductDetail extends Component {
   }
 
   addItemToLocalStorage() {
-    const { id, title, price, thumbnail } = this.state;
+    const { id, title, price, thumbnail, availableQuantity } = this.state;
     const totalPrice = price;
     const imagePath = thumbnail;
     const number = 1;
     if (Storage) {
       const getItemSaved = JSON.parse(localStorage.getItem('cart'));
-      const values = (getItemSaved === null ? [] : getItemSaved);
+      const values = getItemSaved === null ? [] : getItemSaved;
       let repeatedProduct = false;
       values.forEach((item) => {
         if (item.id === id) {
@@ -98,72 +136,179 @@ class ProductDetail extends Component {
           item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
           item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
+          if (item.number < item.availableQuantity) {
+            item.number += 1;
+            item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+            this.setState({ number: item.number });
+          }
         }
       });
       if (repeatedProduct) {
         localStorage.setItem('cart', JSON.stringify(values));
         return this.changeQuantityState();
       }
-      values.push({ id, title, price, imagePath, number, totalPrice });
+      values.push({ id, title, price, imagePath, number, totalPrice, availableQuantity });
       localStorage.setItem('cart', JSON.stringify(values));
       this.changeQuantityState();
+      this.setState({ number: number });
     }
   }
 
+  sumItem({ target }) {
+    const id = target.name;
+    if (Storage) {
+      const cartArray = JSON.parse(localStorage.getItem('cart'));
+      if (cartArray === null) return this.addItemToLocalStorage();
+      cartArray.forEach((item) => {
+        if (item.id === id) {
+          if (item.number < item.availableQuantity) {
+            item.number += 1;
+            item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+            this.setState({ number: item.number });
+          }
+        }
+      });
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+    }
+  }
+
+  subtractItem({ target }) {
+    const id = target.name;
+    if (Storage) {
+      const cartArray = JSON.parse(localStorage.getItem('cart'));
+      cartArray.forEach((item) => {
+        if (item.id === id) {
+          const minimumNumber = 0;
+          if (item.number > minimumNumber) {
+            item.number -= 1;
+            item.totalPrice = parseFloat(item.totalPrice) - parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+            this.setState({ number: item.number });
+          }
+        }
+      });
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+    }
+  }
+
+  translateFreeShipping() {
+    const { freeShipping } = this.state;
+    let translatedFreeShipping = ' Não';
+    if (freeShipping === true) translatedFreeShipping = ' Sim';
+    return translatedFreeShipping;
+  }
+
   render() {
-    const { title, price, thumbnail, attributes } = this.state;
+    const { id, title, price, thumbnail, attributes, number } = this.state;
 
     return (
-      <div>
+      <div className="container">
         <Link to="/">Retornar</Link>
-        <div>
-          <h3 data-testid="product-detail-name">{ title }</h3>
-          <div>{ price }</div>
+        <br />
+        <br />
+        <div className="containerProduct">
+          <h3 data-testid="product-detail-name">
+            Descrição:
+            { title }
+          </h3>
+          <div>
+            R$
+            { price }
+          </div>
           <img src={ thumbnail } alt={ title } />
         </div>
+        <br />
+        <br />
         <CartIcon cartItens={ JSON.parse(localStorage.getItem('cart')) } />
-        <div>
+        <br />
+        <br />
+        <div className="containerDetails">
           Especificações Técnicas
-          <ul>
+          <ul style={ { listStyle: 'none' } }>
             {attributes.map((element) => (
               <li key={ element.id }>
                 {`${element.name} --- ${element.value_name}`}
-              </li>
-            ))}
+              </li>))}
           </ul>
+          <p data-testid="free-shipping">
+            Frete grátis:
+            { this.translateFreeShipping() }
+          </p>
         </div>
+        <br />
+        <br />
         <button
-          data-testid="product-detail-add-to-cart"
+          name={ id }
           type="button"
+          onClick={ this.subtractItem }
+        >
+          -
+        </button>
+        <span>
+          { number }
+        </span>
+        <button
+          name={ id }
+          type="button"
+          onClick={ this.sumItem }
+        >
+          +
+        </button>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
           onClick={ this.addItemToLocalStorage }
         >
           Adicionar
         </button>
-        <Link
-          data-testid="shopping-cart-button"
-          to="/ShoppingCart"
-        >
+        <br />
+        <br />
+        <Link data-testid="shopping-cart-button" to="/ShoppingCart">
           Ir para o carrinho
         </Link>
-        <div>
+        <br />
+        <br />
+        <div className="containerForm">
           <form>
-            <label htmlFor="input-email">
-              <input type="text" id="input-email" placeholder="Email" />
-            </label>
-            <select htmlFor="input-select">
-              <option value="1" id="input-select">1</option>
-              <option value="2" id="input-select">2</option>
-              <option value="3" id="input-select">3</option>
-              <option value="4" id="input-select">4</option>
-              <option value="5" id="input-select">5</option>
-            </select>
-            <label htmlFor="product-evaluation">
-              <textarea
-                data-testid="product-detail-evaluation"
-                placeholder="Mensagem (opcional)"
-              />
-            </label>
-            <button type="button">Avaliar</button>
+            Avaliar Produto:
+            <div>
+              <label htmlFor="input-email">
+                <input type="text" id="input-email" placeholder="Email" />
+              </label>
+            </div>
+            <div>
+              <select htmlFor="input-select">
+                <option value="1" id="input-select">
+                  1
+                </option>
+                <option value="2" id="input-select">
+                  2
+                </option>
+                <option value="3" id="input-select">
+                  3
+                </option>
+                <option value="4" id="input-select">
+                  4
+                </option>
+                <option value="5" id="input-select">
+                  5
+                </option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="product-evaluation">
+                <textarea
+                  name="product-evaluation"
+                  data-testid="product-detail-evaluation"
+                  placeholder="Mensagem (opcional)"
+                />
+              </label>
+            </div>
+            <div>
+              <button type="button">Avaliar</button>
+            </div>
           </form>
         </div>
       </div>

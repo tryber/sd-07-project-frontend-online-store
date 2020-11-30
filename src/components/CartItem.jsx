@@ -1,3 +1,4 @@
+import './CartItem.css';
 import React, { Component } from 'react';
 import Proptypes from 'prop-types';
 
@@ -20,41 +21,50 @@ class CartItem extends Component {
       removeItem,
     } = this.props;
     return (
-      <div>
-        <button
-          type="button"
-          name={ id }
-          onClick={ removeItem }
-        >
-          X
-        </button>
-        <img src={ image } alt={ title } />
+      <div className="container">
         <span data-testid="shopping-cart-product-name">
-          { title }
+          Descrição:
+          <strong>
+            { title }
+          </strong>
         </span>
-        <button
-          data-testid="product-decrease-quantity"
-          type="button"
-          name={ id }
-          onClick={ subtractItem }
-        >
-          -
-        </button>
-        <span data-testid="shopping-cart-product-quantity">
-          { number }
-        </span>
-        <button
-          data-testid="product-increase-quantity"
-          type="button"
-          name={ id }
-          onClick={ sumItem }
-        >
-          +
-        </button>
+        <img src={ image } alt={ title } />
         <span>
-          R$
-          { price }
+          <strong>
+            R$
+            { price }
+          </strong>
         </span>
+        <br />
+        <div className="btns">
+          <button
+            data-testid="product-decrease-quantity"
+            type="button"
+            name={ id }
+            onClick={ subtractItem }
+          >
+            -
+          </button>
+          <span data-testid="shopping-cart-product-quantity">
+            { number }
+          </span>
+          <button
+            data-testid="product-increase-quantity"
+            type="button"
+            name={ id }
+            onClick={ sumItem }
+          >
+            +
+          </button>
+          <br />
+          <button
+            name={ id }
+            type="button"
+            onClick={ removeItem }
+          >
+            X
+          </button>
+        </div>
       </div>
     );
   }
@@ -62,7 +72,7 @@ class CartItem extends Component {
   showSimpleItem() {
     const { title, price, image, number } = this.props;
     return (
-      <div>
+      <div className="containerSimple">
         <img src={ image } alt={ title } />
         <span data-testid="shopping-cart-product-name">
           Descrição:
