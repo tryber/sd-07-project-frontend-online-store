@@ -11,8 +11,8 @@ class Product extends Component {
   }
 
   translateFreeShipping(freeShipping) {
-    let translatedFreeShipping = 'Não';
-    if (freeShipping === true) translatedFreeShipping = 'Sim';
+    let translatedFreeShipping = ' Não';
+    if (freeShipping === true) translatedFreeShipping = ' Sim';
     return translatedFreeShipping;
   }
 
@@ -48,11 +48,14 @@ class Product extends Component {
     return (
       <div className="container" data-testid="product" id={id}>
         <div className="item">
-          <span><strong>Descrição: {title}</strong></span>
+          <span><strong>Descrição: { title }</strong></span>
           <br></br>
           <br></br>
           <img src={ thumbnail } alt={ title } />
-          <h5>R$ {price}</h5>
+          <span
+            available_quantity={ availableQuantity }
+          ></span>
+          <h5>R$ { price }</h5>
           { this.renderShipping(freeShipping) }
           <button
             data-testid="product-add-to-cart"

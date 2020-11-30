@@ -102,12 +102,14 @@ class ProductsList extends Component {
 
   addItemToLocalStorage({ target }) {
     const id = target.name;
-    const product = document.getElementById(`${id}`);
-    const title = product.firstChild.innerHTML;
-    const imagePath = product.firstChild.nextSibling.src;
-    const price = product.firstChild.nextSibling.nextSibling.innerHTML;
+    const product = document.getElementById(`${id}`).firstChild;
+    const title = product.firstChild.innerText;
+    const imagePath = product.firstChild.nextSibling
+      .nextSibling.nextSibling.src;
+    const price = product.firstChild.nextSibling.nextSibling
+      .nextSibling.nextSibling.nextSibling.innerHTML;
     const availableQuantity = product.firstChild.nextSibling.nextSibling
-      .attributes.available_quantity.value;
+      .nextSibling.nextSibling.attributes.available_quantity.value;
     const totalPrice = price;
     const number = 1;
     if (Storage) {
