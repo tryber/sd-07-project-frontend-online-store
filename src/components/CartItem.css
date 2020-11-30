@@ -1,0 +1,21 @@
+.container {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 1rem;
+    background-color: white;
+    align-items: baseline;
+    width: 100%;
+    justify-content: center;
+    align-content: stretch;
+}
+
+.container img {
+    width: 100px;
+}
+
+.containerSimple {
+    margin: 20px;
+    padding: 20px;
+}
