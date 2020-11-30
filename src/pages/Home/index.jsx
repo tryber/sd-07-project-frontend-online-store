@@ -45,7 +45,7 @@ class Main extends React.Component {
 
   productsList() {
     const { products } = this.state;
-    return products.map(({ title, id, thumbnail, price }) => (
+    return products.map(({ title, id, thumbnail, price, available_quantity: avQt }) => (
       <ProductList
         key={ id }
         title={ title }
@@ -53,6 +53,7 @@ class Main extends React.Component {
         price={ price }
         id={ id }
         upQty={ this.upQuantity }
+        availableQt={ avQt }
       />
     ));
   }

@@ -27,16 +27,17 @@ class ButtonCart extends React.Component {
     return isRepeated;
   }
 
-  addCart({ target: { value } }) {
-    const { upQty } = this.props;
+  addCart() {
+    const { upQty, title, availableQt } = this.props;
+
     const items = JSON.parse(sessionStorage.getItem('item'));
     if (items) {
-      if (!this.findSimilar(items, value)) {
-        const products = [...items, { title: value, quantity: 1 }];
+      if (!this.findSimilar(items, title)) {
+        const products = [...items, { title, quantity: 1, availableQt }];
         this.finalPost(products);
       }
     } else {
-      const product = [{ title: value, quantity: 1 }];
+      const product = [{ title, quantity: 1, availableQt }];
       this.finalPost(product);
     }
     upQty();
@@ -48,9 +49,9 @@ class ButtonCart extends React.Component {
   }
 
   render() {
-    const { title, test } = this.props;
+    const { test } = this.props;
     return (
-      <button type="button" data-testid={ test } value={ title } onClick={ this.addCart }>
+      <button type="button" data-testid={ test } onClick={ this.addCart }>
         Adicionar ao carrinho
       </button>
     );
@@ -59,8 +60,11 @@ class ButtonCart extends React.Component {
 
 export default ButtonCart;
 
+ButtonCart.defaultProps = { availableQt: undefined };
+
 ButtonCart.propTypes = {
   title: PropTypes.string.isRequired,
   test: PropTypes.string.isRequired,
+  availableQt: PropTypes.number,
   upQty: PropTypes.func.isRequired,
 };
