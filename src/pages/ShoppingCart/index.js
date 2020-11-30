@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import * as cartApi from '../../services/cartApi';
 import CartItem from '../../components/CartItem';
+import { Link } from 'react-router-dom';
 
 class ShoppingCart extends Component {
   constructor() {
@@ -62,6 +63,9 @@ class ShoppingCart extends Component {
           <h5>
             {`Valor total R$ ${cartTotal}`}
           </h5>
+          <div>
+            <Link data-testid="checkout-products" to="/checkout">Finalizar a compra</Link>
+          </div>
         </footer>
       </div>
     );
