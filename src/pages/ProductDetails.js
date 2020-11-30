@@ -1,4 +1,5 @@
 import React from 'react';
+import Evaluation from '../components/Evaluation';
 import PropTypes from 'prop-types';
 
 class ProductDetails extends React.Component {
@@ -23,6 +24,7 @@ class ProductDetails extends React.Component {
                 { attribute.value_name }
               </li>))}
         </ul>
+        <Evaluation />
       </div>
     );
   }
