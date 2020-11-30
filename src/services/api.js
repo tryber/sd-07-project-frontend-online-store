@@ -7,10 +7,10 @@ export async function getCategories() {
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   let API = '';
   switch (true) {
-  case (categoryId && query):
-    API = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`;
+  case (categoryId !== '' && query !== ''):
+    API = `https://api.mercadolibre.com/sites/MLB/search?q=${query}&category=${categoryId}`;
     break;
-  case (query):
+  case (query !== ''):
     API = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
     break;
   default:
@@ -19,15 +19,6 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   }
 
   const response = await fetch(API)
-    .then((r) => r.json());
-  if (response.error) {
-    throw new Error(`endpoint não existe ${response.error}`);
-  }
-  return response;
-}
-
-export async function getProductDetail(productID) {
-  const response = await fetch(`https://api.mercadolibre.com/items/${productID}`)
     .then((r) => r.json());
   if (response.error) {
     throw new Error(`endpoint não existe ${response.error}`);

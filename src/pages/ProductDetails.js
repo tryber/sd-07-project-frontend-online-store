@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-import * as categoryAPI from '../services/api';
+// import { getProductDetail } from '../services/api'
 import Loading from '../components/Loading';
 
 class ProductDetails extends Component {
@@ -16,7 +16,7 @@ class ProductDetails extends Component {
 
     this.state = {
       loading: true,
-      productDetails: {},
+      productDetail: {},
     };
   }
 
@@ -28,21 +28,24 @@ class ProductDetails extends Component {
     window.history.back();
   }
 
-  async fetchProductDetails() {
-    console.log(this.props);
-    const { id } = this.props;
-    const productDet = await categoryAPI.getProductDetail(id);
-    this.setState(() => ({
-      productDetails: productDet,
-      loading: false,
-    }));
+  fetchProductDetails() {
+    this.setState({ loading: true },
+      async () => {
+        const { id } = this.props;
+        const productDet = await fetch(`https://api.mercadolibre.com/items/${id}`);
+        this.setState(() => ({
+          productDetail: productDet,
+          loading: false,
+        }));
+      });
   }
 
   render() {
-    const { loading, productDetails } = this.state;
-    const { title, price, thumbnail } = productDetails;
+    const { loading, productDetail } = this.state;
 
     if (loading) return <Loading />;
+
+    const { title, price, thumbnail } = productDetail;
 
     return (
       <div className="product">

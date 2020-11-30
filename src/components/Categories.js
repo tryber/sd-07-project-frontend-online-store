@@ -43,7 +43,7 @@ class Categories extends Component {
                   value={ id }
                   name="category"
                   data-testid="category"
-                  onClick={ (event) => handleChangeCategory(event) }
+                  onChange={ (event) => handleChangeCategory(event) }
                 />
                 <label htmlFor={ id }>
                   { name }
