@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
   constructor() {
@@ -10,15 +9,21 @@ class SearchBar extends Component {
     };
   }
 
+  onClick() { this.fetchProducts(query); }
+
+  async fetchProducts(query, categoryId = '') {
+    this.setState({
+      products: await api.getProductsFromCategoryAndQuery(categoryId, query),
+    });
+  }
+
   onChange({ target: { name, value } }) {
     this.setState({
       [name]: value,
     });
   }
 
-  render() {
-    const { onClick } = this.props;
-    const { query } = this.state;
+  getElement() {
     return (
       <div>
         <input
@@ -30,27 +35,21 @@ class SearchBar extends Component {
         <button
           data-testid="query-button"
           type="button"
-          onClick={ onClick }
+          onClick={ () => { this.onClick(); } }
         >
           BUSCAR
         </button>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <button
-          data-testid="query-button"
-          type="button"
-          onClick={ () => { onClick(query); } }
-        >
-          BUSCAR
-        </button>
       </div>
+    )
+  }
+  render() {
+    return (
+      getElement()
     );
   }
 }
-
-SearchBar.propTypes = {  
-  onClick: PropTypes.func.isRequired,
-};
 
 export default SearchBar;
