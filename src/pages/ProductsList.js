@@ -7,6 +7,7 @@ import {
 import SearchBar from '../components/SearchBar';
 import FilteredProductsList from '../components/FilteredProductsList';
 import ListCategory from '../components/ListCategory';
+import Footer from '../components/Footer';
 
 class ProductsList extends Component {
   constructor() {
@@ -91,18 +92,19 @@ class ProductsList extends Component {
       <div className="main-search">
         <section className="main-search-container">
           <SearchBar
-            onSearch={ this.fetchByQuery }
-            inputValue={ inputSearchValue }
-            inputChange={ this.updateInputSearch }
+            onSearch={this.fetchByQuery}
+            inputValue={inputSearchValue}
+            inputChange={this.updateInputSearch}
           />
         </section>
         <section className="main-category-container">
-          <ListCategory onClickCategory={ this.onClickCategory } />
+          <ListCategory onClickCategory={this.onClickCategory} />
           <FilteredProductsList
-            allProducts={ productsToRender }
-            addShoppingCartItems={ this.addShoppingCartItems }
+            allProducts={productsToRender}
+            addShoppingCartItems={this.addShoppingCartItems}
           />
         </section>
+        <Footer />
       </div>
     );
   }
