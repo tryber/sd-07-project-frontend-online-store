@@ -1,38 +1,291 @@
-.App {
-  text-align: center;
+.page {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+}
+.page h3 {
+  margin-left: 10vw;
+  margin-top: 5vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.barraH {
+  background-color: rgb(207, 207, 207);
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.barraHh1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 2vw;
+  margin-right: 4vw;
+  font-size: 4.5vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.ps {
+  width: 82vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.a {
+  display: flex;
+  text-decoration: none;
+}
+
+.cartsize {
+  position: absolute;
+  top: -20px;
+  right: 1px;
+  background-color: rgb(247, 139, 139);
+  padding: 5px 6px;
+  border-radius: 100px;
+  color: black;
+}
+
+.pesquisa {
+  width: 25vw;
+  border-right: 2px solid rgba(126, 126, 126, 0.685);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.catop {
+  width: 100%;
+  border-radius: 10%;
+}
+
+.lista {
+  width: 75vw;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.produto {
+  border-bottom: 3px solid rgba(126, 126, 126, 0.685);
+  background-color: white;
+  margin: 20px;
+  width: 160px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.proI {
+  width: 160px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.proinput {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: rgba(164, 237, 248, 0.781);
+  width: 100%;
+  border-radius: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.proinput input {
+  background-color: rgba(255, 255, 255, 0);
+  appearance: none;
+  cursor: pointer;
+  border: 0;
+  font-size: medium;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.produto h4 {
+  text-align: center;
+  margin: 0;
+}
+
+.prolink {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.prolin {
+  color: black;
+  text-decoration: none;
+}
+
+.proimg {
+  height: 100px;
+}
+
+.barrapesquisa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconpesquisa {
+  background-color: rgb(93, 240, 203);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  appearance: none;
+  cursor: pointer;
+  border: 0;
+}
+
+.textopesquisa {
+  appearance: none;
+  height: 33px;
+  width: 250px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  font-size: 20px;
+  border-style: none;
+  border-width: 0;
+  border-image: auto;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.iconpesquisa img {
+  height: 30px;
+}
+
+.nave {
+  background-color: rgb(207, 207, 207);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nave h1 {
+  margin: 0;
+}
+
+.proDeG {
+  display: flex;
+  width: 100%;
+}
+
+.proDeG img {
+  width: 50%;
+}
+
+.proDeI {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.proDeP {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.add {
+  background-color: rgba(93, 240, 203, 0.637);
+  border-radius: 10px;
+  appearance: none;
+  cursor: pointer;
+  border: 0;
+
+}
+
+.proDeP img {
+  width: 40%;
+}
+
+.avaliar {
+  padding-left: 10px;
+}
+
+.ES {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.F {
+  border: 2px solid rgb(68, 82, 83);
+  padding: 10px;
+}
+
+.ESF {
+  display: flex;
+  flex-direction: column;
+}
+
+.ESbutton {
+  background-color: rgba(220, 249, 253, 0);
+  border-radius: 30%;
+  appearance: none;
+  cursor: pointer;
+  border: 0;
+}
+
+.ShoppingCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headerS {
+  background-color: rgb(207, 207, 207);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment {
+  text-decoration: none;
+  color: black;
+}
+
+.button {
+  background-color: rgba(220, 249, 253, 0);
+  appearance: none;
+  cursor: pointer;
+  border: 0;
+}
+.produto2 {
+  border: 3px solid rgba(126, 126, 126, 0.685);
+  margin: 20px;
+  width: 150px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carrinho {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.imagem {
+  width: 50px;
+}
+
+.shopping {
+  width: 50px;
+}
+
+button:focus {
+  outline-style: none;
+}
+
+input:focus {
+  outline-style: none;
 }
