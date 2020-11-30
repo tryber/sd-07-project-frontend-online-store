@@ -10,9 +10,14 @@ class ShoppingCart extends Component {
       cartItems: [],
     };
     this.retrieveItemsFromStorage = this.retrieveItemsFromStorage.bind(this);
+    this.updateCart = this.updateCart.bind(this);
   }
 
   componentDidMount() {
+    this.retrieveItemsFromStorage();
+  }
+
+  updateCart() {
     this.retrieveItemsFromStorage();
   }
 
@@ -39,10 +44,12 @@ class ShoppingCart extends Component {
           <ShowCartItems
             key={ item.id }
             item={ {
+              id: item.id,
               title: item.title,
               price: item.price,
-              quantity: item.initialQuantity,
+              quantity: item.quantity,
             } }
+            updateCart={ this.updateCart }
           />
         ))}
       </div>
