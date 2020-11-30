@@ -32,17 +32,17 @@ class Categories extends React.Component {
       <div>
         { arrayOfCategories.map(
           ({ id, name }) => (
-            <label>
+            <label name="category">
               <input
                 data-testid="category"
                 type="radio"
-                id={name}
+                id={ name }
                 name="categoryId"
-                value={id}
-                onChange={handleChange}
+                value={ id }
+                onChange={ handleChange }
               />
-              {name}
-            <br />
+              { name }
+              <br />
             </label>
           ),
         )}
