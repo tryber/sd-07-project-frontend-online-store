@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import ProductDetailsEvaluation from '../components/ProductDetailsEvaluation';
+import TopBar from '../components/TopBar';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -33,22 +33,26 @@ class ProductDetails extends React.Component {
     // const { product } = location;
     // const { item } = product;
     return (
-      <div>
-        <h1 data-testid="product-detail-name">{ item.title }</h1>
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          onClick={ this.addToLocalStorage }
-        >
-          Adicionar ao carrinho
-        </button>
-        <Link to="/Cart" data-testid="shopping-cart-button">
-          <img
-            alt="Carrinho"
-            src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG37.png"
-          />
-        </Link>
-        <ProductDetailsEvaluation />
+      <div className="page-container">
+        <div className="page-sub-container">
+          <TopBar />
+          <div className="product-card">
+            <img alt="Imagem do produto" src={ item.thumbnail } />
+            <div>
+              <h2 data-testid="product-detail-name">{ item.title }</h2>
+              <p>{ `R$ ${item.price}` }</p>
+              <button
+                className="add-to-cart-button"
+                type="button"
+                data-testid="product-detail-add-to-cart"
+                onClick={ this.addToLocalStorage }
+              >
+                Adicionar ao carrinho
+              </button>
+            </div>
+          </div>
+          <ProductDetailsEvaluation />
+        </div>
       </div>
     );
   }
@@ -59,6 +63,8 @@ ProductDetails.propTypes = {
     product: PropTypes.shape({
       item: PropTypes.shape({
         title: PropTypes.string.isRequired,
+        thumbnail: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
   }).isRequired,

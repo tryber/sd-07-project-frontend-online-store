@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import ItemCart from '../components/ItemCart';
+import TopBar from '../components/TopBar';
 
 class Cart extends React.Component {
   constructor() {
@@ -33,18 +34,27 @@ class Cart extends React.Component {
 
     if (products === '[]' || emptyCart) {
       return (
-        <div>
-          <p data-testid="shopping-cart-empty-message" className="empty-cart">
-            Seu carrinho está vazio
-          </p>
+        <div className="page-container">
+          <div className="page-sub-container">
+            <TopBar />
+            <h1 data-testid="shopping-cart-empty-message" className="empty-cart">
+              Seu carrinho está vazio
+            </h1>
+          </div>
         </div>
       );
     }
+
     return (
-      <div>
-        {listProduct.map((product) => (
-          <ItemCart key={ product.id } product={ product } />
-        ))}
+      <div className="page-container">
+        <div className="page-sub-container">
+          <TopBar />
+          <div className="items-card-container">
+            { listProduct.map((product) => (
+              <ItemCart key={ product.id } product={ product } />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

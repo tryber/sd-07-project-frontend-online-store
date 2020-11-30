@@ -38,25 +38,33 @@ class CardProduct extends React.Component {
     const { item } = this.props;
     const { title, price, thumbnail } = item;
     return (
-      <div>
+      <div className="product-card">
         <Link
           to={ { pathname: `/${title}`, product: { item } } }
           data-testid="product"
-          className="item-card"
         >
-          <div data-testid="product-detail-link">
-            <img src={ thumbnail } alt={ title } className="card-image" />
-            <h4>{title}</h4>
-            <p>{`R$ ${price}`}</p>
-          </div>
+          <img src={ thumbnail } alt={ title } />
         </Link>
-        <button
-          type="button"
-          data-testid="product-add-to-cart"
-          onClick={ this.addToLocalStorage }
-        >
-          Adicionar ao carrinho
-        </button>
+        <div className="product-info">
+          <Link
+            to={ { pathname: `/${title}`, product: { item } } }
+            data-testid="product"
+            className="product-link"
+          >
+            <div data-testid="product-detail-link">
+              <h4>{ title }</h4>
+            </div>
+          </Link>
+          <p>{`R$ ${price}`}</p>
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            onClick={ this.addToLocalStorage }
+            className="add-to-cart-button"
+          >
+            Adicionar ao carrinho
+          </button>
+        </div>
       </div>
     );
   }

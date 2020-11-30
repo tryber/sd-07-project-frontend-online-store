@@ -45,28 +45,30 @@ class ItemCart extends React.Component {
     const { product } = this.props;
     const { title, thumbnail, price } = product;
     return (
-      <div>
+      <div className="product-card">
         <img src={ thumbnail } alt={ title } />
-        <h3 data-testid="shopping-cart-product-name">{title}</h3>
-        <p>{price}</p>
         <div>
-          <button
-            data-testid="product-increase-quantity"
-            type="button"
-            onClick={ this.countAdd }
-          >
-            +
-          </button>
-          <span data-testid="shopping-cart-product-quantity">
-            {this.count()}
-          </span>
-          <button
-            type="button"
-            data-testid="product-decrease-quantity"
-            onClick={ this.countLess }
-          >
-            -
-          </button>
+          <h3 data-testid="shopping-cart-product-name">{title}</h3>
+          <p>{`R$ ${price}`}</p>
+          <div className="quantity-buttons">
+            <button
+              data-testid="product-increase-quantity"
+              type="button"
+              onClick={ this.countAdd }
+            >
+              +
+            </button>
+            <span data-testid="shopping-cart-product-quantity">
+              {this.count()}
+            </span>
+            <button
+              type="button"
+              data-testid="product-decrease-quantity"
+              onClick={ this.countLess }
+            >
+              -
+            </button>
+          </div>
         </div>
       </div>
     );

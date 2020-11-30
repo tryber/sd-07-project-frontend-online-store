@@ -37,10 +37,10 @@ class ProductDetailsEvaluation extends React.Component {
   render() {
     const { email, note, message, assessments } = this.state;
     return (
-      <div>
-        <h3>Avaliações</h3>
+      <div className="product-evaluation">
+        <h3 className="evaluation-title">Avaliações</h3>
         <div>
-          <div>
+          <div className="evaluation-fields">
             <input
               type="email"
               name="email"
@@ -57,7 +57,7 @@ class ProductDetailsEvaluation extends React.Component {
               max={ 5 }
             />
           </div>
-          <div>
+          <div className="evaluation-fields">
             <textarea
               name="message"
               placeholder="Mensagem (opcional)"
