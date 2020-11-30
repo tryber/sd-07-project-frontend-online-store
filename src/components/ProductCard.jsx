@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Buy from './Buy';
 
 class ProductCard extends Component {
   render() {
-    const { products } = this.props;
+    const { products, addToCard } = this.props;
     return (
       <div>
         {products.map(({ id, title, thumbnail, price }) => (
           <div key={ id } data-testid="product">
-            <h2>{title}</h2>
+            <h2>{ title }</h2>
             <img src={ thumbnail } alt="product" />
             <span>{price}</span>
             <Link
@@ -18,6 +19,13 @@ class ProductCard extends Component {
             >
               Details
             </Link>
+            <Buy
+              id={ id }
+              title={ title }
+              price={ price }
+              thumbnail={ thumbnail }
+              addToCard={ addToCard }
+            />
           </div>
         ))}
       </div>

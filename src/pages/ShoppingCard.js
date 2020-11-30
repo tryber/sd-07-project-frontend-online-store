@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import EmptyList from '../components/EmptList';
+import ShoppingCardList from '../components/ShoppingCardList';
 import ShoppingCartImage from '../images/shopping-cart.svg';
-import EmptyBox from '../images/caixa.svg';
 import './ShoppingCard.css';
 
 class ShoppingCard extends Component {
   render() {
+    const { location } = this.props;
+    const { productsInShoppingCart } = location;
+    const shoppingCardEmpty = 0;
     return (
       <div className="main">
         <div className="header">
@@ -15,18 +19,11 @@ class ShoppingCard extends Component {
           />
           <span className="title">Carrinho de Compras</span>
         </div>
-        <div className="content">
-          <img
-            className="imagem-box"
-            src={ EmptyBox }
-            alt="Carrinho de Compras"
-          />
-        </div>
-        <div className="footer">
-          <p data-testid="shopping-cart-empty-message">
-            Seu carrinho está vazio
-          </p>
-        </div>
+        {productsInShoppingCart.length === shoppingCardEmpty ? (
+          <EmptyList />
+        ) : (
+          <ShoppingCardList products={ productsInShoppingCart } />
+        )}
       </div>
     );
   }
