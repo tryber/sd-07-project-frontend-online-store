@@ -7,21 +7,30 @@ class SideBar extends Component {
   constructor() {
     super();
 
+    this.handlerClick = this.handlerClick.bind(this);
+
     this.state = {
       catergories: [],
       isLoading: false,
+      categoryId: '',
     };
-  }
-
-  fetchCategoriesApi() {
-    this.setState({ isLoading: true }, async () => {
-      const obj = await api.getCategories();
-      this.setState({ catergories: obj, isLoading: false });
-    });
   }
 
   componentDidMount() {
     this.fetchCategoriesApi();
+  }
+
+  async handlerClick({ target: { name, value } }) {
+   const { callback } = this.props;
+   await this.setState({ [name]: value });
+    callback(this.state.categoryId);
+  }
+
+  fetchCategoriesApi() {
+    this.setState({ isLoading: true }, async () => {
+      const object = await api.getCategories();
+      this.setState({ catergories: object, isLoading: false });
+    });
   }
 
   render() {
@@ -31,20 +40,22 @@ class SideBar extends Component {
       <css.ctnSideBar>
         {isLoading ? (
           <cp.Loading />
+
         ) : (
-          catergories.map((categorie, index) => {
-            return (
-              <div key={index} className="div-category">
-                <input
-                  data-testid="category"
-                  name="category"
-                  type="radio"
-                  id={categorie.id}
-                  value={categorie.id}
-                />
-                <label htmlFor={categorie.id}>{categorie.name}</label>
-              </div>
-            );
+
+          catergories.map((categorie, index) => { return (
+
+            <div key={ index } className="div-category">
+              <input
+                data-testid="category"
+                name="categoryId"
+                type="radio"
+                value={ categorie.id }
+                onClick={ this.handlerClick }
+              />
+              <label htmlFor={ categorie.id }>{ categorie.name }</label>
+            </div>
+          );
           })
         )}
       </css.ctnSideBar>
