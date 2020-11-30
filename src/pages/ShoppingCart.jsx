@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import shoppingCartIcon from '../img/shopping-cart.png';
 import goBackArrow from '../img/back-arrow.png';
 import ItensOnCart from '../components/ItensOnCart';
