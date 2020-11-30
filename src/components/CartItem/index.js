@@ -9,7 +9,14 @@ class CartItem extends Component {
 
   render() {
     const { data } = this.props;
-    const { title, thumbnail, price, cartQuantity } = data;
+    const {
+      title,
+      thumbnail,
+      price,
+      cartQuantity,
+      available_quantity: availableQuantity,
+    } = data;
+    const avaliable = !((availableQuantity > cartQuantity));
     return (
       <article>
         <header>
@@ -24,6 +31,7 @@ class CartItem extends Component {
         </footer>
         <button
           type="button"
+          disabled={ avaliable }
           data-testid="product-increase-quantity"
           onClick={ () => this.handleCartItem(data, 'add') }
         >
@@ -54,6 +62,7 @@ CartItem.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     cartQuantity: PropTypes.number.isRequired,
+    available_quantity: PropTypes.number.isRequired,
   }).isRequired,
   onChange: PropTypes.func.isRequired,
 };
