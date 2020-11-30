@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
+
 import { Link } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import * as css from './style';
 import * as cp from '../index';
@@ -29,13 +32,19 @@ class CardProduct extends Component {
   }
 
   render() {
+
     const { price, thumbnail, title } = this.props.product;
+
 
     return (
       <css.cpnCenter data-testid="product">
+
+
         <div className="ctn-title">
           <h4 className="text">{title}</h4>
         </div>
+
+
         <img src={thumbnail} alt="Product Image" />
         <p>{price}</p>
         <cp.Button
@@ -45,31 +54,47 @@ class CardProduct extends Component {
         >
           Adicionar ao Carrinho
         </cp.Button>
+
         <Link
           data-testid="product-detail-link"
           className="links"
           to={{ pathname: '/details', detailsProduct: this.state.product }}
           data-testid="product-detail-link"
         >
+
           Detalhes
         </Link>
+
+
       </css.cpnCenter>
     );
   }
 }
 
 CardProduct.propTypes = {
+
+
+
+
   id: PropTypes.string,
   title: PropTypes.string,
   price: PropTypes.number,
   thumbnail: PropTypes.string,
+
+
 };
 
+
 CardProduct.propDefault = {
+
   id: '',
   title: '',
   price: 0,
   thumbnail: '',
+
+
 };
+
+
 
 export default CardProduct;

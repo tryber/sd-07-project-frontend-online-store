@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { subTitle } from '../../style/global';
 
 export const ctnSideBar = styled.div`
+
+
   display: flex;
   flex-direction: column;
   width: 85%;
@@ -27,5 +29,7 @@ export const ctnSideBar = styled.div`
       cursor: pointer;
       margin-left: 8px;
     }
+
   }
+
 `;
