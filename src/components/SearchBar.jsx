@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 export default class SearchBar extends React.Component {
   render() {
     const { searchText, onChange, onClick } = this.props;
@@ -8,9 +7,9 @@ export default class SearchBar extends React.Component {
       <div>
         <input
           data-testid="query-input"
-          onChange={ onChange }
+          onChange={onChange}
           type="text"
-          value={ searchText }
+          value={searchText}
           name="searchText"
         />
         <button data-testid="query-button" type="button" onClick={ onClick }>
