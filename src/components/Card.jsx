@@ -11,6 +11,7 @@ class Card extends React.Component {
 
   addCartItem({ id, title, price }) {
     const cartItemProperties = { id, title, price };
+    cartItemProperties.quantity = 1;
     if (!localStorage.cartItems) {
       localStorage.setItem("cartItems", JSON.stringify([cartItemProperties]));
     } else {
@@ -21,18 +22,23 @@ class Card extends React.Component {
         JSON.stringify(parsedItems.concat(cartItemProperties))
       );
     }
+    const { onAdd } = this.props;
+    onAdd();
   }
   render() {
-    const { products } = this.props;
+    const { products, counter } = this.props;
     const { title, thumbnail, price, id, category_id } = products;
-
+  
     return (
       <div data-testid="product" className="cardProduct">
         <img src={thumbnail} alt="product item" />
         <div className="product-container">
           <Link
             className="product-detail-link"
-            to={`/details/${id}/category/${category_id}`}
+            to={{
+              pathname: `/details/${id}/category/${category_id}`,
+              counter: counter,
+            }}
             data-testid="product-detail-link"
           >
             {" "}

@@ -6,18 +6,22 @@ import logo from '../images/logo.svg';
 import Card from './Card';
 import Categories from '../components/Categories';
 import GetIcon from './Icons';
+import ProductsCartCounter from './ProductsCartCounter';
 
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
+    this.changeStateValue = this.changeStateValue.bind(this);
+    this.fetchApiByQuery = this.fetchApiByQuery.bind(this);
+    this.productsCounter = this.productsCounter.bind(this);
+    this.updateCounter = this.updateCounter.bind(this);
 
     this.state = {
       arrayOfItemByInputedText: [],
       searchElement: '',
       categoryId: '',
+      counter: this.updateCounter(),
     };
-    this.changeStateValue = this.changeStateValue.bind(this);
-    this.fetchApiByQuery = this.fetchApiByQuery.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +42,19 @@ class SearchBar extends React.Component {
 
   changeStateValue(event) {
     this.setState({ [event.target.name]: event.target.value });
+  }
+
+  updateCounter(state, update, newState) {
+    if (update) {
+      return {...state, counter: newState};
+    }
+    const productList = JSON.parse(localStorage.getItem('cartItems'));
+    return productList != null ? productList.length : 0;
+  }
+  productsCounter() {
+    const productList = JSON.parse(localStorage.getItem('cartItems'));
+    const newState = productList != null ? productList.reduce((acc, cur) => acc + cur.quantity,0) : 0;
+    this.setState(this.updateCounter(this.state, true, newState));
   }
 
   render() {
@@ -73,6 +90,7 @@ class SearchBar extends React.Component {
           <Link to="/cart" className="shopping-cart-button" data-testid="shopping-cart-button">
             <GetIcon className="shopping-cart-icon" name="ShoppingCartIcon" />
           </Link>
+          <ProductsCartCounter counter={this.state.counter} />
         </header>
         <div className="container">
           <section className="categories-list">
@@ -80,7 +98,12 @@ class SearchBar extends React.Component {
           </section>
           <section className="product-list">
             {arrayOfItemByInputedText
-              .map((item) => <Card key={item.id} products={item} />)}
+              .map((item) => <Card
+                key={item.id} 
+                products={item} 
+                onAdd={this.productsCounter}
+                counter={this.state.counter}
+              />)}
           </section></div>
       </div>
     );

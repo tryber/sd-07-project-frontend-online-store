@@ -4,6 +4,7 @@ import * as mlAPI from '../services/api';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
 import RatingAndComment from '../components/RatingAndComment';
+import ProductsCartCounter from './ProductsCartCounter';
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -51,9 +52,11 @@ class ProductDetail extends Component {
   render() {
     const { loading, itemDetails, rating } = this.state;
     const { id ,title, price, thumbnail, attributes } = itemDetails;
+    const { counter } = this.props.location;
     const loadingElement = <span>Carregando...</span>;
     return (
       <div>
+        <ProductsCartCounter counter={counter} />
         <Link to="/">Home</Link>
         <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
         <div data-testid="product-detail-name" className="cardProduct">

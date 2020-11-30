@@ -176,6 +176,7 @@ textarea:focus, input:focus, select:focus {
   background-color: rgb(0, 89, 255);
   border-radius: 50%;
   color: white;
+  cursor: pointer;
   display: flex;
   height: 25px;
   justify-content: center;
