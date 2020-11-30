@@ -7,6 +7,7 @@ import Details from './pages/Details';
 import Checkout from './pages/Checkout';
 
 function App() {
+  localStorage.setItem('cart', JSON.stringify([]));
   return (
     <Router>
       <Switch>
