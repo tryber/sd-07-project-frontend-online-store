@@ -12,8 +12,8 @@ class Home extends Component {
       categories: [],
       products: {},
       status: false,
-      categoryId: "",
-      query: "",
+      categoryId: '',
+      query: '',
     };
   }
 
@@ -23,13 +23,13 @@ class Home extends Component {
 
   onClick(key, value) {
     this.setState({
-      [key]: value
-    })  
+      [key]: value,
+    });
   }
 
   StatusSet(prevState) {
     const { categoryId, query } = this.state;
-    if (prevState.categoryId !== categoryId ||prevState.query !== query ) {
+    if (prevState.categoryId !== categoryId || prevState.query !== query) {
       this.fetchProducts();
     }
   }

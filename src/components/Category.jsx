@@ -12,7 +12,7 @@ class Category extends React.Component {
             id={ id }
             name="categoryId"
             value={ id }
-            onClick={ ({target: { name, id }}) => onClick(name, id) }
+            onClick={ ({ target: { name: key, id: value } }) => onClick(key, value) }
           />
           { name }
         </label>
@@ -21,7 +21,7 @@ class Category extends React.Component {
   }
 
   render() {
-    const { categories, onClick} = this.props;
+    const { categories, onClick } = this.props;
     return <aside>{this.mapCategories(categories, onClick)}</aside>;
   }
 }

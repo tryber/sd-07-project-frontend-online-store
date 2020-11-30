@@ -31,7 +31,7 @@ class SearchBar extends Component {
           data-testid="query-button"
           name="query"
           type="button"
-          onClick={ ({ target: { name }}) => { onClick(name, query); } }
+          onClick={ ({ target: { name } }) => { onClick(name, query); } }
         >
           BUSCAR
         </button>
