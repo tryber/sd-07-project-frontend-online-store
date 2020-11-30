@@ -28,7 +28,8 @@ module.exports = {
       listing_type_id: 'gold_pro',
       stop_time: '2037-10-08T11:20:36.000Z',
       condition: 'new',
-      permalink: 'https://produto.mercadolivre.com.br/MLB-923744806-pequeno-principe-o-_JM',
+      permalink:
+        'https://produto.mercadolivre.com.br/MLB-923744806-pequeno-principe-o-_JM',
       thumbnail: 'http://mlb-s1-p.mlstatic.com/835599-MLB26167839876_102017-I.jpg',
       accepts_mercadopago: true,
       installments: null,
@@ -153,7 +154,8 @@ module.exports = {
           eshop_id: 263849,
           eshop_locations: [],
           site_id: 'MLB',
-          eshop_logo_url: 'http://resources.mlstatic.com/eshops/207333581v804e60.png',
+          eshop_logo_url:
+            'http://resources.mlstatic.com/eshops/207333581v804e60.png',
           eshop_status_id: 1,
           seller: 207333581,
           eshop_experience: 0,
@@ -167,7 +169,8 @@ module.exports = {
       listing_type_id: 'gold_special',
       stop_time: '2040-01-18T21:32:05.000Z',
       condition: 'new',
-      permalink: 'https://produto.mercadolivre.com.br/MLB-918281211-diario-de-anne-frank-livro-novo-lacrado-com-fotos-autenticas-_JM',
+      permalink:
+        'https://produto.mercadolivre.com.br/MLB-918281211-diario-de-anne-frank-livro-novo-lacrado-com-fotos-autenticas-_JM',
       thumbnail: 'http://mlb-s2-p.mlstatic.com/761859-MLB31712575492_082019-I.jpg',
       accepts_mercadopago: true,
       installments: {
@@ -185,9 +188,7 @@ module.exports = {
       shipping: {
         free_shipping: false,
         mode: 'me2',
-        tags: [
-          'fulfillment',
-        ],
+        tags: ['fulfillment'],
         logistic_type: 'fulfillment',
         store_pick_up: false,
       },
