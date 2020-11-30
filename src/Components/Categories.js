@@ -5,20 +5,24 @@ class Categories extends React.Component {
   render() {
     const { categories, handlerSelectCategory } = this.props;
     return (
-      <div>
-        {categories.map((category) => (
-          <label htmlFor={ category.name } key={ category.id }>
-            <input
-              id={ category.name }
-              name="category"
-              type="radio"
-              value={ category.name }
-              data-testid="category"
-              onClick={ () => handlerSelectCategory(category.id) }
-            />
-            {category.name}
-          </label>
-        ))}
+      <div className="categories">
+        <div className="categories-content">
+          <h2 className="categories-title">Categorias</h2>
+          {categories.map((category) => (
+            <label htmlFor={ category.name } key={ category.id }>
+              <input
+                id={ category.name }
+                name="category"
+                type="radio"
+                value={ category.name }
+                data-testid="category"
+                onClick={ () => handlerSelectCategory(category.id) }
+                className="categories-input"
+              />
+              {category.name}
+            </label>
+          ))}
+        </div>
       </div>
     );
   }
