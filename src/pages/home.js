@@ -11,6 +11,7 @@ class home extends Component {
     super(props);
     this.changeSelected = this.changeSelected.bind(this);
     this.inputEvent = this.inputEvent.bind(this);
+    this.addCartEvent = this.addCartEvent.bind(this);
     this.state = {
       category: '',
       query: '',
@@ -38,6 +39,16 @@ class home extends Component {
     this.fetchProducts();
   }
 
+  async addCartEvent(product) {
+    if (localStorage.getItem('cart') === null) {
+      localStorage.setItem('cart', JSON.stringify([product]));
+    } else {
+      const arrayProducts = JSON.parse(localStorage.getItem('cart'));
+      arrayProducts.push(product);
+      localStorage.setItem('cart', JSON.stringify(arrayProducts));
+    }
+  }
+
   render() {
     const { products } = this.state;
     return (
@@ -63,7 +74,11 @@ class home extends Component {
           <div className="productList">
             {
               products
-                .map((product) => <ProductCard key={ product.id } product={ product } />)
+                .map((product) => (<ProductCard
+                  key={ product.id }
+                  product={ product }
+                  event={ this.addCartEvent }
+                />))
             }
           </div>
         </section>

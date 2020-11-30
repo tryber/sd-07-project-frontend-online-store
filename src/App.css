@@ -65,3 +65,17 @@
   align-content: center;
   padding: 10px;
 }
+
+.shoppingCartBody {
+
+  margin-left: 50px;
+}
+
+.cartItem {
+  border: 1px black solid;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  width: fit-content;
+  height: fit-content;
+}
