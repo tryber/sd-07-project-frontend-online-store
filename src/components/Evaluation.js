@@ -58,7 +58,6 @@ class Evaluation extends React.Component {
             type="number"
             min="0"
             max="5"
-            step="0.1"
             value={ rating }
             id="rating"
             onChange={ this.onChangeHandler }
