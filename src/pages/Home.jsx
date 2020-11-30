@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import ListCategory from '../components/ListCategory';
 import CardProduct from '../components/CardProduct';
 import '../App.css';
 import Loading from '../components/Loading';
+import TopBar from '../components/TopBar';
 
 class Home extends React.Component {
   constructor() {
@@ -64,32 +64,33 @@ class Home extends React.Component {
     return (
       <div className="home-container">
         <div className="home-aside-container">
+          <img
+            alt="logo"
+            src="https://files.slack.com/files-pri/TMDDFEPFU-F01FMBQVA3Y/clube_dos_4.png"
+            width={ 200 }
+          />
           <ListCategory sendCategoryId={ this.sendCategoryId } />
         </div>
         <div className="home-search-container">
           <div className="search-subcontainer">
-            <div className="search-subcontainer-top-bar">
-              <Link to="/Cart" data-testid="shopping-cart-button">
-                <img
-                  alt="Carrinho"
-                  src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG37.png"
-                />
-              </Link>
+            <TopBar />
+            <div className="search-bar-container">
+              <input
+                name="searchKey"
+                type="text"
+                value={ searchKey }
+                onChange={ this.handleSearchChange }
+                data-testid="query-input"
+              />
+              <button
+                className="search-button"
+                type="button"
+                onClick={ this.fetchQueryAndCategoryId }
+                data-testid="query-button"
+              >
+                <img alt="Buscar" src="https://icon-library.net//images/icon-magnifying-glass/icon-magnifying-glass-10.jpg" />
+              </button>
             </div>
-            <input
-              name="searchKey"
-              type="text"
-              value={ searchKey }
-              onChange={ this.handleSearchChange }
-              data-testid="query-input"
-            />
-            <button
-              type="button"
-              onClick={ this.fetchQueryAndCategoryId }
-              data-testid="query-button"
-            >
-              <img alt="Buscar" src="../images/lupa.png" />
-            </button>
             <h3 data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </h3>

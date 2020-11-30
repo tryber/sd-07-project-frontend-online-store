@@ -26,10 +26,16 @@ class ItemCart extends React.Component {
   }
 
   count() {
+    const { product } = this.props;
+    const { available_quantity: quantity } = product;
     const { count } = this.state;
     if (count < 1) {
       this.setState({
         count: 1,
+      });
+    } else if (count > quantity) {
+      this.setState({
+        count: quantity,
       });
     }
     return count;
@@ -39,28 +45,30 @@ class ItemCart extends React.Component {
     const { product } = this.props;
     const { title, thumbnail, price } = product;
     return (
-      <div>
+      <div className="product-card">
         <img src={ thumbnail } alt={ title } />
-        <h3 data-testid="shopping-cart-product-name">{title}</h3>
-        <p>{price}</p>
         <div>
-          <button
-            data-testid="product-increase-quantity"
-            type="button"
-            onClick={ this.countAdd }
-          >
-            +
-          </button>
-          <span data-testid="shopping-cart-product-quantity">
-            {this.count()}
-          </span>
-          <button
-            type="button"
-            data-testid="product-decrease-quantity"
-            onClick={ this.countLess }
-          >
-            -
-          </button>
+          <h3 data-testid="shopping-cart-product-name">{title}</h3>
+          <p>{`R$ ${price}`}</p>
+          <div className="quantity-buttons">
+            <button
+              data-testid="product-increase-quantity"
+              type="button"
+              onClick={ this.countAdd }
+            >
+              +
+            </button>
+            <span data-testid="shopping-cart-product-quantity">
+              {this.count()}
+            </span>
+            <button
+              type="button"
+              data-testid="product-decrease-quantity"
+              onClick={ this.countLess }
+            >
+              -
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -72,6 +80,7 @@ ItemCart.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    available_quantity: PropTypes.number,
   }).isRequired,
 };
 
