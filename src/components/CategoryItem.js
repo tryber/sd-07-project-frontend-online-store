@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class ProductItem extends Component {
+export default class CategoryItem extends Component {
   render() {
     const { category, onClick } = this.props;
     return (
-      <button type="button" onClick={ onClick } data-testid="category">
-        { category.name }
+      <button
+        type="button"
+        onClick={ onClick }
+        data-testid="category"
+        className="button-category"
+      >
+        {`> ${category.name}`}
       </button>
     );
   }
 }
 
-ProductItem.propTypes = {
+CategoryItem.propTypes = {
   category: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,

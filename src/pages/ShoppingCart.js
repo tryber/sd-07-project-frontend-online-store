@@ -25,6 +25,11 @@ class ShoppingCart extends Component {
     }
     return (
       <div>
+        <Header
+          text="Carrinho de Compras"
+          imagePath="images/shopping-cart-50.png"
+          imagePathReply="images/reply-arrow-red-50.png"
+        />
         {
           cart.map((item) => (
             <CartItem key={ item.id } item={ item } />
