@@ -13,6 +13,7 @@ export default class ProductList extends Component {
           price,
           id,
           available_quantity: availableQuantity,
+          shipping,
         }) => (
           <Product
             title={ title }
@@ -23,6 +24,7 @@ export default class ProductList extends Component {
             category={ category }
             searchKey={ searchKey }
             availableQuantity={ availableQuantity }
+            freeShipping={ shipping.free_shipping }
           />
         ))}
       </div>

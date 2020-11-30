@@ -21,9 +21,10 @@ class Product extends Component {
   }
 
   render() {
-    const { title, thumbnail, price, id, category, searchKey } = this.props;
+    const { title, thumbnail, price, id, category, searchKey, freeShipping } = this.props;
     return (
       <div data-testid="product">
+        {freeShipping ? <p data-testid="free-shipping">envio grátis</p> : null}
         <h2>{title}</h2>
         <img src={ thumbnail } alt="thumb" />
         <p>{price}</p>
@@ -55,6 +56,7 @@ Product.propTypes = {
   category: PropTypes.string,
   searchKey: PropTypes.string.isRequired,
   availableQuantity: PropTypes.number.isRequired,
+  freeShipping: PropTypes.bool.isRequired,
 };
 
 Product.defaultProps = {
