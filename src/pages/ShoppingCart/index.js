@@ -60,7 +60,7 @@ class ShoppingCart extends React.Component {
               { productQuantity }
             </span>
           )}
-          {products.map(({ id, title, price }) => (
+          {products.map(({ id, title }) => (
             <div key={ id }>
               <h3 data-testid="shopping-cart-product-name">{ title }</h3>
             </div>

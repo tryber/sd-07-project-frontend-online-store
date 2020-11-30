@@ -42,8 +42,7 @@ class CardDetails extends React.Component {
 
   render() {
     const { match } = this.props;
-    const { id } = match.params;
-    let { category, query } = match.params;
+    const { id, category, query } = match.params;
 
     const { product } = this.state;
     const { id: idProduct, title, thumbnail, price } = product;
@@ -77,8 +76,8 @@ CardDetails.propTypes = {
       id: PropTypes.string.isRequired,
       category: PropTypes.string,
       query: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+    }),
+  }),
 };
 
 CardDetails.defaultProps = {
