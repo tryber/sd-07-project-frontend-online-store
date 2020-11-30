@@ -2,6 +2,7 @@ import React from 'react';
 import EmptyCart from '../Components/EmptyCart';
 import Informations from '../Components/Informations';
 
+
 class Cart extends React.Component {
   render() {
     const carrinho = JSON.parse(localStorage.getItem('carrinho'));
