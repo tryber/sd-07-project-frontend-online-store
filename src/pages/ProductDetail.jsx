@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import EditForm from '../components/EditForm';
+import ShoppingCartButton from '../components/ShoppingCartButton';
 
 export default class ProductDetail extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class ProductDetail extends React.Component {
     const {
       location: { state: product },
     } = this.props;
-    // aqui as props estão sendo passadas pelo location 
+    // aqui as props estão sendo passadas pelo location
     // location são props advindas do react dom ?
     const { id, title, price, thumbnail } = product;
     const array = JSON.parse(localStorage.getItem('items') || '[]');
@@ -44,11 +45,12 @@ export default class ProductDetail extends React.Component {
         <button
           type="button"
           data-testid="product-detail-add-to-cart"
-          // id={id}
+          // id={product.id}
           onClick={() => this.addToCart(product)}
         >
           Adicionar ao carrinho
         </button>
+        <ShoppingCartButton />
       </div>
     );
   }
