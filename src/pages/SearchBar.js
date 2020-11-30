@@ -27,6 +27,7 @@ class SearchBar extends Component {
     // const { query } = this.props;
     // const { inputValue } = this.state;
     return (
+      <div>
       <label htmlFor="searchBar" className="searchbar">
         <button
           onClick={ () => this.onClickFunction() }
@@ -43,6 +44,7 @@ class SearchBar extends Component {
           placeholder="Digite aqui..."
         />
       </label>
+      </div>
     );
   }
 
