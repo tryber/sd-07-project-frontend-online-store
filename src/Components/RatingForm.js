@@ -19,10 +19,10 @@ class RatingForm extends React.Component {
   render() {
     const { rating, email, message } = this.state;
     return (
-      <div>
-        <form>
-          Anavliações
-          <label htmlFor="email">
+      <div className="rating-content">
+        <form className="rating-form">
+          Avaliações
+          <label htmlFor="email" className="form-label">
             Email:
             <input
               name="email"
@@ -31,7 +31,7 @@ class RatingForm extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-          <label htmlFor="email">
+          <label htmlFor="email" className="form-label">
             Avaliação (1 a 5):
             <input
               name="rating"
@@ -42,7 +42,7 @@ class RatingForm extends React.Component {
               max="5"
             />
           </label>
-          <label htmlFor="email">
+          <label htmlFor="email" className="form-label-message">
             Mensagem: (Opcional)
             <textarea
               name="message"

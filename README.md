@@ -384,7 +384,7 @@ Poder adicionar produtos ao carrinho a partir de sua tela de exibição detalhad
 
 - [Tela - Carrinho de compras com quantidades](https://github.com/tryber/sd-07-project-frontend-online-store/tree/master/wireframes/card_10.png)
 
-**Observações técnicas**
+**Observações técnicas**https://www.google.com/search?q=outlok&oq=outlok&aqs=chrome..69i57j69i60j69i65l3j69i60l2.1095j0j7&sourceid=chrome&ie=UTF-8
 
 São operações básicas de carrinho a alteração da quantidade de um determinado produto nele e a visualização de tudo o que foi adicionado, com a soma dos valores.
 
@@ -514,12 +514,7 @@ As pessoas que vendem no Mercado Livre disponibilizam frete grátis a alguns pro
 #### 20. CRIE UM SLIDER LATERAL PARA EXIBIR O CARRINHO NA TELA PRINCIPAL
 
 **PRIORIDADE 5** - Exibir o conteúdo do carrinho num slider na lateral da tela, de forma que ele possa ser exibido e escondido através da interação com botão (veja os detalhes no card).
-
-- [Tela - Listagem com carrinho populado.png](https://github.com/tryber/sd-07-project-frontend-online-store/tree/master/wireframes/bonus_slider.1.png)
-- [Tela - Listagem com carrinho vazio.png](https://github.com/tryber/sd-07-project-frontend-online-store/tree/master/wireframes/bonus_slider.1.png)
-
-#### 21. DESTAQUE, NA TELA PRINCIPAL, OS PRODUTOS JÁ ADICIONADOS AO CARRINHO
-
+https://www.google.com/search?q=outlok&oq=outlok&aqs=chrome..69i57j69i60j69i65l3j69i60l2.1095j0j7&sourceid=chrome&ie=UTF-8
 **PRIORIDADE 5** - Destacar produtos que já foram adicionados ao carrinho, diferenciando-o dos demais produtos da lista da página principal (veja os detalhes no card).
 
 - [Tela - Listagem com destaque.png](https://github.com/tryber/sd-07-project-frontend-online-store/tree/master/wireframes/bonus_marked_product.png)
