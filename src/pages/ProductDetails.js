@@ -4,20 +4,20 @@ import PropTypes from 'prop-types';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 import AvaliationList from '../components/AvaliationList';
 import AvaliationForm from '../components/AvaliationForm';
-    
-export default class ProductDetails extends Component {
 
+export default class ProductDetails extends Component {
   constructor() {
     super();
 
     this.getProduct = this.getProduct.bind(this);
     this.getStorage = this.getStorage.bind(this);
     this.setStorage = this.setStorage.bind(this);
+    this.saveItemsFromDetail = this.saveItemsFromDetail.bind(this);
 
     this.state = {
       name: '',
       thumbnail: '',
-      avaliations: []
+      avaliations: [],
     };
   }
 
@@ -53,8 +53,32 @@ export default class ProductDetails extends Component {
     this.setState({ avaliations: JSON.parse(localStorage.getItem(`${name}`)) });
   }
 
+  saveItemsFromDetail(item) {
+    if (!localStorage.length) {
+      localStorage.setItem('items',
+        JSON.stringify([{
+          sku: item.id,
+          name: item.title,
+          cost: item.price,
+          quantity: item.available_quantity,
+          image: item.thumbnail,
+        }]));
+      return;
+    }
+    const objectValues = JSON.parse(localStorage.getItem('items'));
+    localStorage.setItem('items',
+      JSON.stringify([...objectValues, {
+        sku: item.id,
+        name: item.title,
+        cost: item.price,
+        quantity: item.available_quantity,
+        image: item.thumbnail,
+      }]));
+  }
+
   render() {
-    const { name, thumbnail } = this.state;
+    const { location: { state: { item } } } = this.props;
+    const { name, thumbnail, avaliations } = this.state;
     return (
       <div>
         <header>
@@ -72,18 +96,25 @@ export default class ProductDetails extends Component {
         </header>
 
         <div data-testid="product-detail-name">
-        { name }
-      </div>
+          { name }
+        </div>
 
-        <img src={thumbnail} alt={name}/>
-        
+        <img src={ thumbnail } alt={ name } />
+
         <p>
           Especificações do produto...
         </p>
 
         <AvaliationForm form={ this.setStorage } />
-        <AvaliationList avaliations={ this.state.avaliations } />
+        <AvaliationList avaliations={ avaliations } />
 
+        <button
+          type="button"
+          onClick={ this.saveItemsFromDetail(item) }
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }

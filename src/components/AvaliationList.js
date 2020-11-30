@@ -20,7 +20,7 @@ export default class AvaliationList extends React.Component {
               { avaliation.rating }
             </p>
             <p>
-            Comentários:
+              Comentários:
               {' '}
               { avaliation.text }
             </p>
