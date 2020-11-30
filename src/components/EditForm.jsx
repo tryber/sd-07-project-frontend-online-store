@@ -12,16 +12,8 @@ export default class EditForm extends React.Component {
     };
     this.enviar = this.enviar.bind(this);
     this.atualizaEstado = this.atualizaEstado.bind(this);
-    this.restaura = this.restaura.bind(this);
 
   }
-
-
-  restaura() {
-    const review = JSON.parse(localStorage.getItem('review'));
-    this.setState(review);
-  }
-
 
   atualizaEstado(event) {
     const { name, value } = event.target;
@@ -39,7 +31,7 @@ export default class EditForm extends React.Component {
         email:'',
         radio:'',
         comentario:''
-    }) // zera tudo
+    }) // zera tudo depois de guardar para poder escrever novamente
   }
 
   render() {
