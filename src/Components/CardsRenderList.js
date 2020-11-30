@@ -1,6 +1,8 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import ListCardsProduts from './ListCardsProduts';
 import '../Pages/Home.css';
+
 
 class CardsRenderList extends React.Component {
   render() {
@@ -14,5 +16,11 @@ class CardsRenderList extends React.Component {
     );
   }
 }
+
+CardsRenderList.propTypes = {
+  product: Proptypes.shape ({
+    termo: Proptypes.string.isRequired,
+  }),
+};
 
 export default CardsRenderList;
