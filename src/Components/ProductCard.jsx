@@ -9,12 +9,25 @@ class ProductCard extends React.Component {
     this.addItemToCart = this.addItemToCart.bind(this);
   }
 
-  addItemToCart(product) {
-    if (localStorage.getItem(product)) {
-      const quantity = JSON.parse(localStorage.getItem(product)) + 1;
-      localStorage.setItem(product, quantity);
-    } else {
-      localStorage.setItem(product, 1);
+  addItemToCart(title, price) {
+    const newProduct = {
+      title,
+      price,
+      quantity: 1,
+    };
+    if (localStorage.getItem('products') || []) {
+      let localStorageArray = JSON.parse(localStorage.getItem('products'));
+      if (localStorageArray === null) {
+        localStorageArray = [];
+      }
+      if (localStorageArray !== []) {
+        const existingProduct = localStorageArray
+          .find((productArray) => productArray.title === title);
+        if (existingProduct !== undefined) {
+          existingProduct.quantity += 1;
+        } else { localStorageArray.push(newProduct); }
+      }
+      return localStorage.setItem('products', JSON.stringify(localStorageArray));
     }
   }
 
@@ -29,6 +42,7 @@ class ProductCard extends React.Component {
             state: { product },
           } }
           data-testid="product-detail-link"
+          product={ product }
         >
           <div>
             <h1>{ title }</h1>
@@ -39,7 +53,7 @@ class ProductCard extends React.Component {
         <button
           data-testid="product-add-to-cart"
           type="button"
-          onClick={ () => this.addItemToCart(title) }
+          onClick={ () => this.addItemToCart(title, price) }
         >
           Adicionar ao Carrinho
         </button>
