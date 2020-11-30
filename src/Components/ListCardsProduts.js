@@ -4,14 +4,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 class ListCardsProduts extends React.Component {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {}
-
-  render() {
+   render() {
     const {
       termo,
       product: { id, title, thumbnail, price, category_id: category },
