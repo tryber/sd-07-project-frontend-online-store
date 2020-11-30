@@ -50,7 +50,6 @@ class ShoppingCart extends React.Component {
 
   cartListOfItems() {
     const { items } = this.state;
-    console.log(items);
     if (items) {
       return items.map((item) => (
         <div key={ item.title }>
