@@ -240,3 +240,4 @@ class ProductsList extends Component {
 }
 
 export default ProductsList;
+
