@@ -54,7 +54,8 @@ class BuyerInformation extends React.Component {
             placeholder="Cidade"
           />
           <select>
-            { estados.map((estado) => <option key={ estado } value={ estado }>{ estado }</option>) }
+            { estados.map((estado) => (
+              <option key={ estado } value={ estado }>{ estado }</option>)) }
           </select>
         </form>
       </div>
