@@ -39,17 +39,22 @@ class ShoppingCartList extends Component {
                   </button>)
               }
               <img src={ product.thumbnail } alt="Imagem do produto" />
-              <span data-testid="shopping-cart-product-name">
+              <div
+                className="cart-list-item-title"
+                data-testid="shopping-cart-product-name"
+              >
                 { product.title }
-              </span>
+              </div>
               { !hiddenbuttons
                 && <QuantityControl
                   item={ { product, quantity } }
                   handleClick={ this.updateCartList }
                 /> }
-              <span>
+              <div
+                className="cart-list-item-price"
+              >
                 { formatter.format(product.price * quantity) }
-              </span>
+              </div>
             </div>
           )) : (
             <div data-testid="shopping-cart-empty-message">

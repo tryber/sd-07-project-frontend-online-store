@@ -1,12 +1,28 @@
 .cart-list-content {
   display: flex;
   flex-flow: column nowrap;
+  padding: 10px;
 }
 
 .cart-list-item {
   display: flex;
   flex-flow: row nowrap;
   height: 100px;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
+}
+
+.cart-list-item button {
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid black;  
+}
+
+.cart-list-item-title {
+  width: 400px;
+  padding: 0px 10px 0px 10px;
+}
+
+.cart-list-item-price {
+  padding: 10px;
 }
