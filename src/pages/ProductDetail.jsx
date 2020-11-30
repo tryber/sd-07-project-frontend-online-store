@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import * as API from '../services/api';
 import CartIcon from '../components/CartIcon';
+import "./ProductDetails.css";
 
 
 class ProductDetail extends Component {
@@ -17,9 +18,9 @@ class ProductDetail extends Component {
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
     this.translateFreeShipping = this.translateFreeShipping.bind(this);
     this.state = {
-      id: '',
+      id: "",
       attributes: [],
-      title: '',
+      title: "",
       price: 0,
       freeShipping: false,
       thumbnail: '',
@@ -90,8 +91,8 @@ class ProductDetail extends Component {
 
   removeZero(string) {
     let stringNumber = string;
-    if (stringNumber[0] === '0') {
-      stringNumber = '0';
+    if (stringNumber[0] === "0") {
+      stringNumber = "0";
       return stringNumber;
     }
     stringNumber = this.removeLastItem(stringNumber);
@@ -113,8 +114,8 @@ class ProductDetail extends Component {
     const imagePath = thumbnail;
     const number = 1;
     if (Storage) {
-      const getItemSaved = JSON.parse(localStorage.getItem('cart'));
-      const values = (getItemSaved === null ? [] : getItemSaved);
+      const getItemSaved = JSON.parse(localStorage.getItem("cart"));
+      const values = getItemSaved === null ? [] : getItemSaved;
       let repeatedProduct = false;
       values.forEach((item) => {
         if (item.id === id) {
@@ -127,7 +128,7 @@ class ProductDetail extends Component {
         }
       });
       if (repeatedProduct) {
-        localStorage.setItem('cart', JSON.stringify(values));
+        localStorage.setItem("cart", JSON.stringify(values));
         return this.changeQuantityState();
       }
       values.push({ id, title, price, imagePath, number, totalPrice });
@@ -147,60 +148,89 @@ class ProductDetail extends Component {
     const { title, price, thumbnail, attributes } = this.state;
 
     return (
-      <div>
+      <div className="container">
         <Link to="/">Retornar</Link>
-        <div>
-          <h3 data-testid="product-detail-name">{ title }</h3>
-          <div>{ price }</div>
+        <br></br>
+        <br></br>
+        <div className="containerProduct">
+          <h3 data-testid="product-detail-name">Descrição: { title }</h3>
+          <div>R$ { price }</div>
           <img src={ thumbnail } alt={ title } />
         </div>
-        <CartIcon cartItens={ JSON.parse(localStorage.getItem('cart')) } />
-        <div>
+        <br></br>
+        <br></br>
+        <CartIcon cartItens={ JSON.parse(localStorage.getItem("cart")) } />
+        <br></br>
+        <br></br>
+        <div className="containerDetails">
           Especificações Técnicas
-          <ul>
-            {attributes.map((element) => (
-              <li key={ element.id }>
-                {`${element.name} --- ${element.value_name}`}
-              </li>
-            ))}
+          <ul style={{ listStyle: "none" }}>
+            {attributes.map((element) => {
+              return (
+                <li key={ element.id }>
+                  {`${element.name} --- ${element.value_name}`};
+                </li>
+              );
+            })}
           </ul>
             <p data-testid="free-shipping">
               Frete grátis:
               { this.translateFreeShipping() }
             </p>
         </div>
+        <br></br>
+        <br></br>
         <button
           data-testid="product-detail-add-to-cart"
-          type="button"
           onClick={ this.addItemToLocalStorage }
         >
           Adicionar
         </button>
-        <Link
-          data-testid="shopping-cart-button"
-          to="/ShoppingCart"
-        >
+        <br></br>
+        <br></br>
+        <Link data-testid="shopping-cart-button" to="/ShoppingCart">
           Ir para o carrinho
         </Link>
-        <div>
+        <br></br>
+        <br></br>
+        <div className="containerForm">
           <form>
-            <label htmlFor="input-email">
-              <input type="text" id="input-email" placeholder="Email" />
-            </label>
-            <select htmlFor="input-select">
-              <option value="1" id="input-select">1</option>
-              <option value="2" id="input-select">2</option>
-              <option value="3" id="input-select">3</option>
-              <option value="4" id="input-select">4</option>
-              <option value="5" id="input-select">5</option>
-            </select>
-            <label htmlFor="product-evaluation">
-              <textarea
-                data-testid="product-detail-evaluation"
-                placeholder="Mensagem (opcional)"
-              />
-            </label>
-            <button type="button">Avaliar</button>
+            Avaliar Produto:
+            <div>
+              <label htmlFor="input-email">
+                <input type="text" id="input-email" placeholder="Email" />
+              </label>
+            </div>
+            <div>
+              <select htmlFor="input-select">
+                <option value="1" id="input-select">
+                  1
+                </option>
+                <option value="2" id="input-select">
+                  2
+                </option>
+                <option value="3" id="input-select">
+                  3
+                </option>
+                <option value="4" id="input-select">
+                  4
+                </option>
+                <option value="5" id="input-select">
+                  5
+                </option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="">
+                <textarea
+                  data-testid="product-detail-evaluation"
+                  placeholder="Mensagem (opcional)"
+                />
+              </label>
+            </div>
+            <div>
+              <button>Avaliar</button>
+            </div>
           </form>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
+import "./Product.css";
 
 class Product extends Component {
   constructor(props) {
@@ -45,29 +46,27 @@ class Product extends Component {
       actualizeCart
     } = this.props;
     return (
-      <div data-testid="product" id={ id }>
-        <span>{ title }</span>
-        <img src={ thumbnail } alt={ title } />
-        <span
-          available_quantity={ availableQuantity }
-        >
-          { price }
-        </span>
-        { this.renderShipping(freeShipping) }
-        <button
-          data-testid="product-add-to-cart"
-          type="button"
-          name={ id }
-          onClick={ actualizeCart }
-        >
-          Adicionar ao carrinho
-        </button>
-        <Link
-          data-testid="product-detail-link"
-          to={ `/ProductDetail/${id}` }
-        >
-          Detalhes do produto
-        </Link>
+      <div className="container" data-testid="product" id={id}>
+        <div className="item">
+          <span><strong>Descrição: {title}</strong></span>
+          <br></br>
+          <br></br>
+          <img src={thumbnail} alt={title} />
+          <h5>R$ {price}</h5>
+          { this.renderShipping(freeShipping) }
+          <button
+            data-testid="product-add-to-cart"
+            name={id}
+            onClick={actualizeCart}
+          >
+            Adicionar ao carrinho
+          </button>
+          <br></br>
+          <br></br>
+          <Link data-testid="product-detail-link" to={`/ProductDetail/${id}`}>
+            Detalhes do produto
+          </Link>
+        </div>
       </div>
     );
   }

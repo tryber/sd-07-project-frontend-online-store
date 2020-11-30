@@ -1,3 +1,4 @@
+import './ShoppingCart.css';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
@@ -106,26 +107,28 @@ class ShoppingCart extends Component {
       return (
         <div>
           <Link to="/">Retornar</Link>
-          <span data-testid="shopping-cart-empty-message">
+          <h1 data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
-          </span>
+          </h1>
         </div>
       );
     }
     return (
-      <div>
+      <div className="container">
         <Link to="/">Retornar</Link>
-        {products.map((product) => (<CartItem
-          key={ product.id }
-          id={ product.id }
-          title={ product.title }
-          price={ product.totalPrice }
-          image={ product.imagePath }
-          number={ product.number }
-          sumItem={ this.sumItem }
-          subtractItem={ this.subtractItem }
-          removeItem={ this.removeItem }
-        />))}
+          <div className="items">
+            {products.map((product) => (<CartItem
+              key={ product.id }
+              id={ product.id }
+              title={ product.title }
+              price={ product.totalPrice }
+              image={ product.imagePath }
+              number={ product.number }
+              sumItem={ this.sumItem }
+              subtractItem={ this.subtractItem }
+              removeItem={ this.removeItem }
+            />))}
+          </div>
         <Link data-testid="checkout-products" to="/Checkout">Checkout</Link>
       </div>
     );

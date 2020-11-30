@@ -5,6 +5,7 @@ import CategoriesList from '../components/CategoriesList';
 import Logo from '../shoppingCartImage.png';
 import CartIcon from '../components/CartIcon';
 import ShowProducts from '../components/ShowProducts';
+import './ProductsList.css'
 
 class ProductsList extends Component {
   constructor() {
@@ -137,8 +138,8 @@ class ProductsList extends Component {
     const { categories, products } = this.state;
 
     return (
-      <div>
-        <div>
+      <div className="Container>
+        <div className="categories">
           {categories ? categories.map((categorie) => (
             <CategoriesList
               key={ categorie.id }
@@ -146,7 +147,7 @@ class ProductsList extends Component {
               onCategoryChoice={ this.categoryChoice }
             />)) : null }
         </div>
-        <div>
+        <div className="otherElements">
           <input
             name="search"
             type="text"
@@ -155,6 +156,7 @@ class ProductsList extends Component {
           />
           <CartIcon cartItens={ JSON.parse(localStorage.getItem('cart')) } />
           <button
+            className="btn"
             data-testid="query-button"
             type="button"
             onClick={ this.searchQueryProducts }
