@@ -6,11 +6,11 @@ class FiltersCategory extends React.Component {
   constructor() {
     super();
 
+    this.requestCategoryApi = this.requestCategoryApi.bind(this);
+
     this.state = {
       apiCategories: [],
     };
-
-    this.requestCategoryApi = this.requestCategoryApi.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +29,7 @@ class FiltersCategory extends React.Component {
       <aside className="side-bar">
         <h3>Categorias:</h3>
         {apiCategories.map((category) => (
-          <div key={ category.id } className="container-filters" data-testid="category">
+          <div key={ category.id } className="container-filters">
             <input
               type="radio"
               name="categories"
