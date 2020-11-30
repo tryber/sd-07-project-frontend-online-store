@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import * as api from '../services/api';
 import ButtonCart from '../Components/ButtonCart';
+import AddCart from '../Components/AddCart';
 
 class ProductDetails extends Component {
   constructor() {
@@ -44,22 +45,7 @@ class ProductDetails extends Component {
     const {
       product,
     } = this.state;
-    const { title, thumbnail, price } = product;
-    const quantity = 1;
-    let productRepet = false;
-    const carrinho = JSON.parse(localStorage.getItem('carrinho'));
-    const valor = (carrinho === null ? [] : carrinho);
-    valor.forEach((item) => {
-      if (item.title === title) {
-        item.quantity += 1;
-        productRepet = true;
-      }
-    });
-    if (productRepet) {
-      return localStorage.setItem('carrinho', JSON.stringify(valor));
-    }
-    valor.push({ title, thumbnail, price, quantity });
-    localStorage.setItem('carrinho', JSON.stringify(valor));
+    AddCart(product);
   }
 
   render() {
@@ -105,7 +91,6 @@ class ProductDetails extends Component {
           <button
             data-testid="product-detail-add-to-cart"
             className="button-product"
-            onClick={ this.addInCart }
             type="button"
             onClick={ this.addInCart }
           >
@@ -119,7 +104,6 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  product: PropTypes.objectOf.isRequired,
   match: PropTypes.objectOf.isRequired,
 };
 
