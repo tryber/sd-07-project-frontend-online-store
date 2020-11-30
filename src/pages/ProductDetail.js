@@ -75,6 +75,7 @@ class ProductDetail extends Component {
 export default ProductDetail;
 
 ProductDetail.propTypes = {
+  product: PropTypes.shape().isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,

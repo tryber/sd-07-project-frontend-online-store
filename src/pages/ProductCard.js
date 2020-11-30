@@ -27,7 +27,6 @@ class ProductCard extends Component {
             Adicionar ao Carrinho
           </button>
         </div>
-
       </div>
     );
   }
@@ -36,6 +35,7 @@ class ProductCard extends Component {
 export default ProductCard;
 
 ProductCard.propTypes = {
+  event: PropTypes.shape().isRequired,
   product: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
