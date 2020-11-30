@@ -29,8 +29,8 @@ export class RatingStar extends Component {
     return [...Array(5)].map((_star, index) => {
       const numberStar = index + 1;
       return (
-        <div key={index}>
-          <icon.Star modeview={mode} setcolor={this.setColorModeView(numberStar)} />
+        <div key={ index }>
+          <icon.Star modeview={ mode } setcolor={ this.setColorModeView(numberStar) } />
         </div>
       );
     });
@@ -42,30 +42,31 @@ export class RatingStar extends Component {
     return [...Array(5)].map((_star, index) => {
       const numberStar = index + 1;
       return (
-        <label key={index}>
+        <label key={ index }>
           <input
             name="rating"
             className="inputRadio"
             type="radio"
-            onClick={() => this.eventHandleClick('rating', numberStar)}
+            onClick={ () => this.eventHandleClick('rating', numberStar) }
           />
           <icon.Star
-            modeview={mode}
-            setcolor={this.setColorModeView(numberStar)}
-            onMouseEnter={() => this.eventHandleClick('hoverValue', numberStar)}
-            onMouseLeave={() => this.eventHandleClick('hoverValue', null)}
+            modeview={ mode }
+            setcolor={ this.setColorModeView(numberStar) }
+            onMouseEnter={ () => this.eventHandleClick('hoverValue', numberStar) }
+            onMouseLeave={ () => this.eventHandleClick('hoverValue', null) }
           />
         </label>
       );
     });
   }
 
+  // prettier-ignore
   render() {
     const { mode } = this.props;
     return (
       <css.Ctn>
-        {mode === 'input' && this.renderModeViewInput()}
-        {mode === 'card' && this.renderModeViewCard()}
+        { mode === 'input' && this.renderModeViewInput() }
+        { mode === 'card' && this.renderModeViewCard() }
       </css.Ctn>
     );
   }

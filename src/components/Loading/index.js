@@ -3,9 +3,7 @@ import * as css from './style';
 
 class Loading extends Component {
   render() {
-    return(
-      <css.Loading />
-    );
+    return <css.Loading />;
   }
 }
 

@@ -13,11 +13,15 @@ export const CtnCenter = styled.div`
     margin: 0 auto;
 
     .ctn-sidebar {
-      /* background-color: yellow; */
-      border: 1px solid black;
-      width: 35%;
+      /* border: 1px solid black; */
+      width: 30%;
       height: 85vh;
       margin-top: 45px;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 1px 1px 1px 1px rgba(68, 68, 68, 0.68);
     }
 
     .ctn-displayCard {
@@ -26,7 +30,7 @@ export const CtnCenter = styled.div`
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      width: 65%;
+      width: 70%;
       height: 85vh;
       margin-top: 45px;
 
@@ -38,8 +42,7 @@ export const CtnCenter = styled.div`
         justify-content: center;
         width: 95%;
         height: 95vh;
-        box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.68);
-        border: 1px solid black;
+        box-shadow: 1px 1px 1px 1px rgba(68, 68, 68, 0.68);
         overflow-y: auto;
       }
     }

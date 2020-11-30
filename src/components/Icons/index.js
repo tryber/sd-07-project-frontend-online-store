@@ -62,7 +62,6 @@ export const Star = styled(icon.FaStar)`
         return css`
           color: ${setcolor};
         `;
-        break;
 
       default:
         break;

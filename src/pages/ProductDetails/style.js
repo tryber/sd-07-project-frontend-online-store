@@ -118,7 +118,7 @@ export const Ctn = styled.div`
     .subTitle {
       font-size: 22px;
       font-weight: 700;
-      padding-bottom: 10px;
+      padding-bottom: 5px;
     }
     .ctn-inputAndStar {
       /* border: 1px solid black; */
