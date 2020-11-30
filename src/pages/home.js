@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
+import {BiCart} from 'react-icons/bi'
 
 import Categories from '../components/Categories';
 import ProductList from '../components/ProductList';
@@ -49,20 +50,24 @@ class Home extends Component {
     return (
       <div>
         <header>
-          <input
-            data-testid="query-input"
-            type="text"
-            onChange={ this.handleSearchKey }
-          />
-          <button type="submit" data-testid="query-button" onClick={ this.fetchAPI }>
-            Search
-          </button>
+          <div>
+            <input
+              data-testid="query-input"
+              type="text"
+              onChange={ this.handleSearchKey }
+            />
+            <button type="submit" data-testid="query-button" onClick={this.fetchAPI}>
+              Search
+            </button>
+          </div>
           <Link to="/cart" data-testid="shopping-cart-button">
-            Carrinho de compras
+            <BiCart className="icon-cart" />
           </Link>
         </header>
-        <ProductList results={ results } category={ category } searchKey={ searchKey } />
-        <Categories filterCategory={ this.handleCategory } />
+        <div className="div-body">
+          <Categories filterCategory={ this.handleCategory } />
+          <ProductList results={ results } category={ category } searchKey={searchKey} />
+        </div>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>

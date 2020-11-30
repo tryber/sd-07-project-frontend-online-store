@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-cart {
+  width: 30px;
+  height: 30px;
+}
+
+.div-prod-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+div[data-testid='product'] {
+  width: 300px;
+  height: 500px;
+}
+
+.div-body{
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 4fr;
+}

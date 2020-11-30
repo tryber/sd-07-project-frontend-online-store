@@ -7,7 +7,7 @@ export default class ProductList extends Component {
   render() {
     const { results, category, searchKey } = this.props;
     return (
-      <div>
+      <div className="div-prod-list">
         {results.map(({ title, thumbnail, price, id }) => (
           <Product
             title={ title }
