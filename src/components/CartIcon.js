@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class CartIcon extends Component {
@@ -19,5 +20,9 @@ class CartIcon extends Component {
     );
   }
 }
+
+CartIcon.propTypes = {
+  totalQuantity: PropTypes.number.isRequired,
+};
 
 export default CartIcon;

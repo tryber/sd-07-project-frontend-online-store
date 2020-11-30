@@ -11,7 +11,6 @@ class ShoppingCart extends Component {
         <div>
           <Header
             text="Carrinho de Compras"
-            imagePath="images/shopping-cart-50.png"
             imagePathReply="images/reply-arrow-red-50.png"
           />
           <img

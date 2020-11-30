@@ -5,7 +5,7 @@ import '../css/Header.css';
 
 export default class Header extends Component {
   render() {
-    const { text, imagePathReply, totalQuantity } = this.props;
+    const { text, imagePathReply } = this.props;
     return (
       <header className="header">
         <Link to="/">

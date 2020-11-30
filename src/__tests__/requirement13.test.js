@@ -32,7 +32,6 @@ describe(`Ver junto ao ícone do carrinho a quantidade de produtos dentro dele, 
     await waitFor(() => expect(api.getProductsFromCategoryAndQuery).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('product-add-to-cart')[0]);
     fireEvent.click(screen.getAllByTestId('product-add-to-cart')[1]);
-    fireEvent.click(screen.getAllByTestId('product-detail-link')[0]);
     expect(screen.getByTestId('shopping-cart-size')).toHaveTextContent('4');
   });
 });

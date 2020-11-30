@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class QueryBar extends Component {
   render() {
-    const { query, onQueryChange, onClick, totalQuantity } = this.props;
+    const { query, onQueryChange, onClick } = this.props;
     return (
       <div className="home-initial">
         <div className="home-initial-input">
