@@ -25,7 +25,7 @@ class Informations extends React.Component {
    }
 
 
-  render(){
+  render() {
     const { product: { id, title, price, quantity, thumbnail } } = this.props;
     return (
       <div>
