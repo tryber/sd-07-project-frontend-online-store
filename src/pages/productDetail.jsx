@@ -6,7 +6,7 @@ class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.fetchProduct = this.fetchProduct.bind(this);
-    this.productLoaded = this.productLoaded.bind(this);
+    this.productLoaded = this.productLoaded.bind(this);    
     this.state = {
       loading: true,
       product: [],
@@ -27,32 +27,75 @@ class ProductDetail extends React.Component {
     this.setState({
       product: fetchedProduct,
       loading: false,
+      quantidade: 0,
     });
+  }
+
+  productAdd() {
+    const { product, quantidade } = this.state;
+    const { title } = product; 
+    // if (quantidade < 1) {this.setState({quantidade: 0})}
+    return (
+      <div>        
+        <div>
+          <button
+            data-testid=""
+            type="submit"
+            onClick={() => {
+              if (quantidade < 1) {return this.setState({quantidade: 0})}
+              this.setState({quantidade: (this.state.quantidade -= 1)}) 
+            }}
+          >
+            -
+          </button>
+          <div>
+            {quantidade}
+          </div>
+          <button
+            data-testid=""
+            type="submit"
+            onClick={() => this.setState({quantidade: (this.state.quantidade += 1)}) }
+          >
+            +
+          </button>
+        </div>
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="submit"
+          onClick={() => console.log(title + this.state.quantidade)}
+        >
+          ADICIONAR PRODUTO
+        </button>
+      </div>
+    );
   }
 
   productLoaded() {
     const { product } = this.state;
     const { title, price, thumbnail, attributes } = product;
     return (
-      <div>
-        <div data-testid="product-detail-name">
-          <h4>{ title }</h4>
-          <h3>{`R$${price}`}</h3>
-          <img alt="product Cover" src={ thumbnail } />
-          <ul>
-            {attributes.map((a) => (
-              <li key={ a.name }>{`${a.name}: ${a.value_name}`}</li>
-            ))}
-          </ul>
-        </div>
-        <Link to="/shoppingCart"> Carrinho de compras </Link>
+      <div data-testid="product-detail-name">
+        <h4>{title}</h4>
+        <h3>{`R$${price}`}</h3>
+        <img alt="product Cover" src={thumbnail} />
+        <ul>
+          {attributes.map((a) => (
+            <li key={a.name}>{`${a.name}: ${a.value_name}`}</li>
+          ))}
+        </ul>
       </div>
     );
   }
 
   render() {
     const { loading } = this.state;
-    return <div>{loading ? <p>Loading</p> : this.productLoaded()}</div>;
+    return (
+      <div>
+        {loading ? <p>Loading</p> : this.productLoaded()}
+        {loading ? <div>Loading</div> : this.productAdd()}
+        {loading ? <div>Loading</div> : <Link to="/shoppingCart"> Carrinho de compras </Link>}
+      </div>
+    );
   }
 }
 
