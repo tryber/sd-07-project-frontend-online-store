@@ -123,14 +123,15 @@ class Main extends React.Component {
         <div className="buttonFetch-4">
           <Button.Group>
             {
-                <Button rounded outlined color="black"
+              <Button rounded 
+                outlined color="black"
                 className="buttonFetch"
                 data-testid="query-button"
                 onClick={ this.handleApiRequest }
               >
                 Buscar
               </Button>
-           }
+            }
           </Button.Group>
         </div>
       </div>
