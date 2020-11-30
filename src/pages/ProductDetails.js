@@ -4,6 +4,35 @@ import PropTypes from 'prop-types';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 
 export default class ProductDetails extends Component {
+  constructor() {
+    super();
+
+    this.saveItemsFromDetail = this.saveItemsFromDetail.bind(this);
+  }
+
+  saveItemsFromDetail(item) {
+    if (!localStorage.length) {
+      localStorage.setItem('items',
+        JSON.stringify([{
+          sku: item.id,
+          name: item.title,
+          cost: item.price,
+          quantity: item.available_quantity,
+          image: item.thumbnail,
+        }]));
+      return;
+    }
+    const objectValues = JSON.parse(localStorage.getItem('items'));
+    localStorage.setItem('items',
+      JSON.stringify([...objectValues, {
+        sku: item.id,
+        name: item.title,
+        cost: item.price,
+        quantity: item.available_quantity,
+        image: item.thumbnail,
+      }]));
+  }
+
   render() {
     const { location: { state: { item } } } = this.props;
     return (
@@ -23,13 +52,20 @@ export default class ProductDetails extends Component {
         </header>
 
         <div data-testid="product-detail-name">
-          { item.title }
+          {item.title}
         </div>
 
         <img src={ item.thumbnail } alt={ item.title } />
         <p>
           Especificações do produto...
         </p>
+        <button
+          type="button"
+          onClick={ this.saveItemsFromDetail(item) }
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
