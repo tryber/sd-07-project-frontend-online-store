@@ -32,7 +32,7 @@ class ProductDetails extends Component {
     this.setState({ loading: true },
       async () => {
         const { id } = this.props;
-        const productDet = await fetch(`https://api.mercadolibre.com/items/${id}`);
+        const productDet = await fetch(`https://api.mercadolibre.com/items/${id}`).then((r) => r.json());
         this.setState(() => ({
           productDetail: productDet,
           loading: false,
@@ -46,7 +46,7 @@ class ProductDetails extends Component {
     if (loading) return <Loading />;
 
     const { title, price, thumbnail } = productDetail;
-
+    console.log(title);
     return (
       <div className="product">
         <div className="buttons-link">
@@ -59,8 +59,7 @@ class ProductDetails extends Component {
           <img src={ thumbnail } alt="imagem do produto" />
           <div className="product-information">
             <h3 data-testid="product-detail-name">
-              Item:
-              {title}
+              { title }
             </h3>
             <h3>
               Preço: R$
