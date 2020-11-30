@@ -8,20 +8,20 @@ class QuantityControl extends Component {
     return (
       <div className="quantity-container">
         <button
-          type="submit"
+          type="button"
           data-testid="product-decrease-quantity"
-          onClick={ (e) => {
-            e.preventDefault(); handleClick({ product, quantity: quantity - 1 });
+          onClick={ () => {
+            handleClick({ product, quantity: quantity - 1 });
           } }
         >
           -
         </button>
         <span data-testid="shopping-cart-product-quantity">{ quantity }</span>
         <button
-          type="submit"
+          type="button"
           data-testid="product-increase-quantity"
-          onClick={ (e) => {
-            e.preventDefault(); handleClick({ product, quantity: quantity + 1 });
+          onClick={ () => {
+            handleClick({ product, quantity: quantity + 1 });
           } }
         >
           +
