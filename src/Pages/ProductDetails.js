@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import * as api from '../services/api';
 import ButtonCart from '../Components/ButtonCart';
+
 class ProductDetails extends Component {
   constructor() {
     super();
@@ -49,16 +50,16 @@ class ProductDetails extends Component {
     const carrinho = JSON.parse(localStorage.getItem('carrinho'));
     const valor = (carrinho === null ? [] : carrinho);
     valor.forEach((item) => {
-      if(item.title === title){
+      if (item.title === title) {
         item.quantity += 1;
         productRepet = true;
       }
-    })
-    if(productRepet) {
-      return localStorage.setItem("carrinho", JSON.stringify(valor))
+    });
+    if (productRepet) {
+      return localStorage.setItem('carrinho', JSON.stringify(valor));
     }
-    valor.push({title, thumbnail, price, quantity})
-    localStorage.setItem("carrinho", JSON.stringify(valor))
+    valor.push({ title, thumbnail, price, quantity });
+    localStorage.setItem('carrinho', JSON.stringify(valor));
   }
 
   render() {
@@ -106,7 +107,7 @@ class ProductDetails extends Component {
             className="button-product"
             onClick={ this.addInCart }
             type="button"
-            onClick={this.addInCart}
+            onClick={ this.addInCart }
           >
             ADICIONAR NO CARRINHO
           </button>
