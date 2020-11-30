@@ -76,42 +76,45 @@ class Cart extends Component {
     return (
       <div>
         {compras.map((item) => (
-          <div key={ item.id } className="carrinho">
-            <button
-              className="button"
-              type="button"
-              name={ item.id }
-              onClick={ this.delet }
-            >
-              <img
+          <div key={ item.id }>
+            <div className="carrinho">
+              <button
+                className="button"
+                type="button"
                 name={ item.id }
-                className="imagem"
-                src={ removeitem }
-                alt="Remover item"
-              />
-            </button>
-            <img src={ item.thumbnail } alt={ item.title } />
-            <p data-testid="shopping-cart-product-name">{item.title}</p>
-            <button
-              className="button"
-              type="button"
-              data-testid="product-decrease-quantity"
-              name={ item.id }
-              onClick={ this.minClick }
-            >
-              <img name={ item.id } className="imagem" src={ remove } alt="retirar" />
-            </button>
-            <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
-            <button
-              className="button"
-              type="button"
-              data-testid="product-increase-quantity"
-              name={ item.id }
-              onClick={ this.addClick }
-            >
-              <img name={ item.id } className="imagem" src={ add } alt="adicionar" />
-            </button>
-            <p>{item.qtd * item.price}</p>
+                onClick={ this.delet }
+              >
+                <img
+                  name={ item.id }
+                  className="imagem"
+                  src={ removeitem }
+                  alt="Remover item"
+                />
+              </button>
+              <img src={ item.thumbnail } alt={ item.title } />
+              <p data-testid="shopping-cart-product-name">{item.title}</p>
+              <button
+                className="button"
+                type="button"
+                data-testid="product-decrease-quantity"
+                name={ item.id }
+                onClick={ this.minClick }
+              >
+                <img name={ item.id } className="imagem" src={ remove } alt="retirar" />
+              </button>
+              <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
+              <button
+                className="button"
+                type="button"
+                data-testid="product-increase-quantity"
+                name={ item.id }
+                onClick={ this.addClick }
+              >
+                <img name={ item.id } className="imagem" src={ add } alt="adicionar" />
+              </button>
+              <p>{item.qtd * item.price}</p>
+            </div>
+            <hr />
           </div>
         ))}
         <h3>

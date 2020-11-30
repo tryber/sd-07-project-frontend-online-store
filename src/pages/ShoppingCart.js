@@ -13,11 +13,19 @@ class ShoppingCart extends React.Component {
     };
   }
 
+  componentDidMount() {
+    setInterval(() => this.atualizar(), '10');
+  }
+
   async atualizar() {
+    const { cart } = this.state;
     const comp = [];
     const cartitems = JSON.parse(localStorage.getItem('cartItems'));
-    if (cartitems.length > comp.length && this.state === false) {
+    if (cartitems.length > comp.length && cart === false) {
       await this.setState({ cart: true });
+    }
+    if (cartitems.length === comp.length && cart === true) {
+      await this.setState({ cart: false });
     }
   }
 
@@ -44,7 +52,9 @@ class ShoppingCart extends React.Component {
               </Link>
             )
             : (
-              'finalizar compra'
+              <Link className="payment" data-testid="checkout-products" to="/">
+                voltar as compras
+              </Link>
             ) }
         </button>
       </div>

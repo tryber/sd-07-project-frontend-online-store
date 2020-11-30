@@ -8,23 +8,28 @@ class ShoppingCartIcon extends React.Component {
     super();
     this.atualizar = this.atualizar.bind(this);
     this.state = {
-      numeroItens: 2,
+      numeroItens: 0,
     };
   }
 
-  async atualizar(cartTotal) {
-    await this.setState({ numeroItens: cartTotal });
+  componentDidMount() {
+    setInterval(() => (this.atualizar()), '10');
   }
 
-  render() {
+  async atualizar() {
     const { numeroItens } = this.state;
     const len = [];
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     const summ = (sum, addValue) => sum + (addValue.qtd);
     const cartTotal = cartItems.reduce(summ, len.length);
-    if (numeroItens < cartTotal) {
-      this.atualizar(cartTotal);
+    if (numeroItens !== cartTotal) {
+      await this.setState({ numeroItens: cartTotal });
     }
+  }
+
+  render() {
+    const { numeroItens } = this.state;
+    this.atualizar();
     return (
       <Link className="a" to="/shoppingcart" data-testid="shopping-cart-button">
         <img className="shopping" src={ cart } alt="Shopping Cart" />
