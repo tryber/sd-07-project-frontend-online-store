@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 class CartItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      quantity: props.item.quantity,
-    };
 
     this.addAmount = this.addAmount.bind(this);
     this.lessAmount = this.lessAmount.bind(this);
