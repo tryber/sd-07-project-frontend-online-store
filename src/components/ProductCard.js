@@ -62,7 +62,6 @@ class ProductCard extends React.Component {
         quantity: availableQuantity,
         image: thumbnail,
       }]));
-    console.log(objectValues);
   }
 
   handleUndefined() {
@@ -76,7 +75,7 @@ class ProductCard extends React.Component {
     const { item } = this.props;
     const { id, available_quantity: availableQuantity, title, price, thumbnail } = item;
     return (
-      <section>
+      <section data-testid="product">
         <img className="card-image" alt="" src={ thumbnail } />
         <div className="info">
           <h3 className="title">{title}</h3>
