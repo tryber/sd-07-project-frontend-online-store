@@ -6,7 +6,17 @@ import * as cp from '../../components';
 import * as view from '../../views';
 
 export class ProductDetails extends Component {
+  constructor() {
+    super();
+    this.state = {
+      productDetails: [],
+    };
+  }
+
+  componentDidMount() {}
+
   render() {
+    const { title, price, thumbnail, amount } = this.props.location.detailsProduct;
     return (
       <css.Ctn>
         <div className="ctn-icons">
@@ -14,20 +24,20 @@ export class ProductDetails extends Component {
             <icon.Back />
           </Link>
           <div className="title">
-            <h1>Kit Controle Alcon Teste Ph + Acid + Alcali + Anticlor Full</h1>
+            <h1 data-testid="product-detail-name">{title}</h1>
           </div>
           <icon.Cart />
         </div>
         <div className="ctn-main">
           <div className="ctn-display">
-            <img
-              src="http://mlb-s1-p.mlstatic.com/818042-MLB31127088377_062019-I.jpg"
-              alt="Product"
-            />
+            <img src={thumbnail} alt="Product" />
             <div className="ctn-inputs">
               <div className="ctn-amount">
                 <h4 className="amount">Quantidade</h4>
-                <view.AmountControllers className="controller-Amount" amount={1} />
+                <view.AmountControllers
+                  className="controller-Amount"
+                  amount={amount}
+                />
               </div>
               <cp.Button className="button">Adicionar ao carrinho</cp.Button>
             </div>
@@ -41,7 +51,7 @@ export class ProductDetails extends Component {
               exercitationem. nesciunt a quia, possimus natus amet adipisci.
               Molestiae quod quae exercitationem.
             </p>
-            <h4 className="text">Preço: R$ 150</h4>
+            <h4 className="text">{`Preço: R$ ${price}`}</h4>
             <h4 className="text">Quantidade disponível: 104</h4>
           </div>
         </div>

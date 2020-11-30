@@ -5,23 +5,31 @@ import * as css from './style';
 import * as cp from '../index';
 
 class CardProduct extends Component {
-  constructor() {
-    super();
-    this.addProductCard = this.addProductCard.bind(this);
-  }
+  constructor(props) {
+    super(props);
 
-  addProductCard() {
-    const { id, price, thumbnail, title } = this.props;
+    const { id, price, title, thumbnail } = this.props.product;
+    const { amount } = this.props;
+    this.addProductCart = this.addProductCart.bind(this);
 
-    const product = {
-      id: id,
-      price: price,
-      thumbnail: thumbnail,
-      title: title,
+    this.state = {
+      product: {
+        id: id,
+        price: price,
+        thumbnail: thumbnail,
+        title: title,
+        amount: amount,
+      },
     };
   }
+
+  addProductCart() {
+    const { addToCart } = this.props;
+    addToCart(this.state.product);
+  }
+
   render() {
-    const { id, price, thumbnail, title } = this.props;
+    const { price, thumbnail, title } = this.props.product;
 
     return (
       <css.cpnCenter data-testid="product">
@@ -30,10 +38,19 @@ class CardProduct extends Component {
         </div>
         <img src={thumbnail} alt="Product Image" />
         <p>{price}</p>
-        <cp.Button data-testid="product-add-to-cart" className="button">
+        <cp.Button
+          getEvent={this.addProductCart}
+          data-testid="product-add-to-cart"
+          className="button"
+        >
           Adicionar ao Carrinho
         </cp.Button>
-        <Link className="links" to="/details" data-testid="product-detail-link">
+        <Link
+          data-testid="product-detail-link"
+          className="links"
+          to={{ pathname: '/details', detailsProduct: this.state.product }}
+          data-testid="product-detail-link"
+        >
           Detalhes
         </Link>
       </css.cpnCenter>

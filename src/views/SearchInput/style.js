@@ -8,6 +8,22 @@ export const ctnCenter = styled.div`
 
   /* background-color: red; */
 
+  .ctn-badge {
+    position: relative;
+  }
+  .badge {
+    position: absolute;
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 5px;
+    top: 0;
+    left: 30px;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 10px;
+    transform: scale(1.2);
+  }
+
   .ctn-search-bar {
     /* background-color: gray; */
     position: relative;
