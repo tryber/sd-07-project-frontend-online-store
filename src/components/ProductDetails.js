@@ -5,7 +5,6 @@ import ProductSpec from './ProductSpec';
 import * as localStorageFunctions from '../services/utils';
 import ProductEvaluationForm from './ProductEvaluationForm';
 
-
 class ProductDetails extends Component {
   constructor() {
     super();
@@ -19,7 +18,12 @@ class ProductDetails extends Component {
 
   render() {
     const { location } = this.props;
-    const { thumbnail, title, price, attributes } = location.product;
+    const {
+      thumbnail,
+      title,
+      price,
+      attributes,
+      shipping: { free_shipping: freeSheeping } } = location.product;
 
     return (
       <div>
@@ -34,6 +38,7 @@ class ProductDetails extends Component {
             { ` O produto ${title} possui o preço ${price}`}
           </h2>
           <img src={ thumbnail } alt="imagem do produto" />
+          { freeSheeping && <span data-testid="free-shipping">Frete Grátis</span> }
         </div>
         <div>
           <h3>Especificações Técnicas</h3>
@@ -61,6 +66,9 @@ ProductDetails.propTypes = {
       thumbnail: Proptypes.string.isRequired,
       title: Proptypes.string.isRequired,
       price: Proptypes.number.isRequired,
+      shipping: Proptypes.shape({
+        free_shipping: Proptypes.bool.isRequired,
+      }).isRequired,
     }).isRequired,
   }).isRequired,
 };
