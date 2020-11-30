@@ -1,0 +1,34 @@
+.product-detail-container {
+  margin-top: 40px;
+}
+
+.product-details-contents {
+  display: flex;
+  flex-direction: row;
+}
+
+.product-details-homelink {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+.product-details-right {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 2px;
+}
+
+.product-details-name {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.product-details-photo {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 2px;
+}
