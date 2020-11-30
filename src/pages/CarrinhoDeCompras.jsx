@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 class CarrinhoDeCompras extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +26,7 @@ class CarrinhoDeCompras extends React.Component {
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         </div>
       );
-    }
+    } 
   }
 }
 
