@@ -34,15 +34,17 @@ class App extends React.Component {
   handleTotalQuantity(op, item) {
     let { totalQuantity } = this.state;
     const { cart } = this.state;
+    const sizeCart = Object.keys(cart).length;
     const zero = 0;
     if (op === '+') {
       totalQuantity += 1;
-    } else if (op === '-') {
+    } else if (op === '-' && totalQuantity > sizeCart) {
       totalQuantity -= 1;
     }
-    for (let index = zero; index < Object.keys(cart); index += 1) {
+    for (let index = zero; index < Object.keys(cart).length; index += 1) {
       if (cart[index].id === item.id) {
         cart[index].quantity += 1;
+        console.log(cart[index].quantity);
         this.setState({
           cart,
           totalQuantity,

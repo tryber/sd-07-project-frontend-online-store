@@ -7,8 +7,12 @@ import CartItem from '../components/CartItem';
 
 class ShoppingCart extends Component {
   render() {
-    const { cart, handleTotalQuantity } = this.props;
-    if (!cart.length) {
+    const { handleTotalQuantity } = this.props;
+    let { cart } = this.props;
+
+    {console.log('SHOPPINGCART', cart)}
+
+    if (!Object.keys(cart).length) {
       return (
         <div>
           <Header

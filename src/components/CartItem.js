@@ -11,7 +11,6 @@ class CartItem extends Component {
 
   addAmount() {
     const { item, handleTotalQuantity } = this.props;
-    item.quantity += 1;
     handleTotalQuantity('+', item);
   }
 
@@ -19,7 +18,6 @@ class CartItem extends Component {
     const { item, handleTotalQuantity } = this.props;
     const lowerLimit = 0;
     if (item.quantity > lowerLimit) {
-      item.quantity -= 1;
       handleTotalQuantity('-', item);
     }
   }
