@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ProductPage extends React.Component {
   render() {
@@ -6,8 +7,8 @@ class ProductPage extends React.Component {
     return(
       <div>
         <h1 data-testid="product-detail-name">{title}</h1>
-      </div>)
-    ;
+      </div>
+    );
   }
 }
 
