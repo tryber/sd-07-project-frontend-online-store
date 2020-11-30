@@ -22,7 +22,7 @@ class ProductDetails extends Component {
   }
 
   async getDetailsProduct() {
-    const parametros = this.props.match.params.parametros;
+    const { match: { params: { parametros } } } = this.props;
 
     const categoria = parametros.split('-')[0];
     const termo = parametros.split('-')[1];
@@ -63,12 +63,11 @@ class ProductDetails extends Component {
 
   render() {
     const {
-      product,
+      product: { title, thumbnail, price },
       marca = 'Nao informado',
       modelo = 'Nao informado',
       condicoes = 'Nao informado',
     } = this.state;
-    const { title, thumbnail, price } = product;
     return (
       <div>
         <Link to="/">
@@ -105,6 +104,7 @@ class ProductDetails extends Component {
           <button
             data-testid="product-detail-add-to-cart"
             className="button-product"
+            type="button"
             onClick={this.addInCart}
           >
             ADICIONAR NO CARRINHO
@@ -117,7 +117,7 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  match: PropTypes.arrayOf.isRequired,
+  match: PropTypes.objectOf.isRequired,
 };
 
 export default ProductDetails;

@@ -11,8 +11,8 @@
 
 .cartBuy {
   margin-top: 20px;
-  max-width: 40px;
-  max-height: 40px;
+  max-width: 35px;
+  max-height: 35px;
 }
 
 .top {
@@ -20,6 +20,7 @@
   height: 80px;
   float: left;
 }
+
 .center {
   width: 80%;
   display: flex;
@@ -29,13 +30,30 @@
 
 .header-link-cart {
   float: left;
-  margin-left: 50px;
-  margin-top: 10px;
+  margin-left: 15px;
+  margin-top: 7px;
 }
 
 .header-initial-message {
   margin-left: 70px;
   clear: both;
+}
+
+.paragraph {
+  display: flex;
+  justify-content: center;
+  padding-top: auto;
+}
+
+.paragraph-termo {
+  display: flex;
+  justify-content: center;
+}
+
+.paragraph-home {
+  display: flex;
+  justify-content: center;
+  padding: 5%;
 }
 
 .input-search {
@@ -46,7 +64,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: medium;
-  height: 40px;
+  height: 30px;
   margin-left: 50px;
   margin-top: 30px;
   width: 70%;
@@ -62,20 +80,23 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: medium;
-  height: 45px;
-  margin-left: 25px;
+  height: 35px;
+  margin-left: 15px;
   margin-top: 30px;
 }
 
 .category {
+  align-items: center;
   background-color: rgb(17, 17, 17);
   border-radius: 5px;
   border: 2px solid #daa000;   
   color: #daa000;
+  display: flex;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: medium;
-  height: 80px;
+  font-size: small;
+  height: 40px;
+  justify-content: space-evenly;
   margin: 5px;
-  width: 130px;
+  width: 120px;
 }
