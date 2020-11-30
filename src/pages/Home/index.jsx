@@ -45,17 +45,22 @@ class Main extends React.Component {
 
   productsList() {
     const { products } = this.state;
-    return products.map(({ title, id, thumbnail, price, available_quantity: avQt }) => (
-      <ProductList
-        key={ id }
-        title={ title }
-        image={ thumbnail }
-        price={ price }
-        id={ id }
-        upQty={ this.upQuantity }
-        availableQt={ avQt }
-      />
-    ));
+    return products.map((product) => {
+      const { title, id, thumbnail, price, available_quantity: avQt } = product;
+      const { shipping: { free_shipping: fs } } = product;
+      return (
+        <ProductList
+          key={ id }
+          title={ title }
+          image={ thumbnail }
+          price={ price }
+          id={ id }
+          upQty={ this.upQuantity }
+          availableQt={ avQt }
+          fs={ fs }
+        />
+      );
+    });
   }
 
   render() {

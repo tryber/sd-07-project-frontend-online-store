@@ -18,7 +18,7 @@ class Details extends React.Component {
   }
 
   render() {
-    const { location: { state: { title } } } = this.props;
+    const { location: { state: { title, fs } } } = this.props;
     const { totalQty } = this.state;
     const { upQty } = this;
 
@@ -30,6 +30,7 @@ class Details extends React.Component {
           </i>
         </Link>
         <h2 data-testid="product-detail-name">{ title }</h2>
+        { fs && <p data-testid="free-shipping">Frete grátis</p>}
         <ButtonCart title={ title } upQty={ upQty } test="product-detail-add-to-cart" />
         <Evaluation />
       </div>
@@ -43,6 +44,7 @@ Details.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
       title: PropTypes.string,
+      fs: PropTypes.bool,
     }).isRequired,
   }).isRequired,
 };

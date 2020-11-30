@@ -30,10 +30,12 @@ const CartItem = ({ title, quantity, add, minus, availableQt }) => (
 
 export default CartItem;
 
+CartItem.defaultProps = { availableQt: undefined };
+
 CartItem.propTypes = {
   title: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
-  availableQt: PropTypes.number.isRequired,
+  availableQt: PropTypes.number,
   add: PropTypes.func.isRequired,
   minus: PropTypes.func.isRequired,
 };

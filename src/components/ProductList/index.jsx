@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ButtonCart from '../ButtonCart';
 
-const ProductList = ({ title, image, price, id, upQty, availableQt }) => (
+const ProductList = ({ title, image, price, id, upQty, availableQt, fs }) => (
   <div data-testid="product">
     <h2>{ title }</h2>
     <img src={ image } alt="" />
     <p>{ price }</p>
+    { fs && <p data-testid="free-shipping">Frete grátis</p>}
     <Link
-      to={ { pathname: `/details/${id}`, state: { title } } }
+      to={ { pathname: `/details/${id}`, state: { title, fs } } }
       data-testid="product-detail-link"
     >
       Detalhes
@@ -31,5 +32,6 @@ ProductList.propTypes = {
   price: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   availableQt: PropTypes.number.isRequired,
+  fs: PropTypes.bool.isRequired,
   upQty: PropTypes.func.isRequired,
 };
