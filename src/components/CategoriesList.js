@@ -1,51 +1,63 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropType from 'prop-types';
 import * as api from '../services/api';
-import Loading from './Loading';
-
-
-class CategoriesList extends Component {
+// code idea based on <GP-7><Thx!>
+class CategoriesList extends React.Component {
   constructor() {
     super();
-
     this.state = {
+      categoryId: '',
       categories: [],
-      loading: true,
-
     };
+    this.setCategories = this.setCategories.bind(this);
+    this.getCategoryId = this.getCategoryId.bind(this);
   }
 
   componentDidMount() {
-    this.listCategories();
+    this.setCategories();
   }
 
-  listCategories() {
-    this.setState(async () => {
-      const requestedCategories = await api.getCategories();
-      this.setState({ categories: requestedCategories, loading: false });
+  async setCategories() {
+    const categories = await api.getCategories();
+    this.setState({
+      categories,
     });
   }
 
-  render() {
-    const { loading, categories } = this.state;
+  getCategoryId(categoryId) {
+    const { fetchByCategory } = this.props;
+    this.setState({ categoryId },
+      () => {
+        const { state } = this;
+        fetchByCategory(state.categoryId);
+      });
+  }
 
+  render() {
+    const { categories } = this.state;
     return (
       <div>
-        {loading ? (
-          <Loading />
-        ) : (
-          <div>
+        <div>
+          <h1>Categorias</h1>
+          <ul>
             {categories.map((category) => (
-              <p data-testid="category" key={ category.id }>
-                {category.name}
-              </p>
-            ))}
-          </div>
-        )}
+              <li
+                data-testid="category"
+                key={ category.id }
+                onClick={ () => { this.getCategoryId(category.id); } }
+                aria-hidden="true"
+              >
+                { category.name }
+              </li>))}
+          </ul>
+        </div>
       </div>
-
-
     );
   }
 }
+
+CategoriesList.propTypes = {
+  fetchByCategory: PropType.func.isRequired,
+};
 
 export default CategoriesList;
