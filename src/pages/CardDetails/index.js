@@ -14,7 +14,7 @@ import {
   ShoppingCartIcon,
 } from './styles';
 
-import CardDetailsForm from "../../components/CardDetailsForm";
+import CardDetailsForm from '../../components/CardDetailsForm';
 
 class CardDetails extends React.Component {
   constructor(props) {
