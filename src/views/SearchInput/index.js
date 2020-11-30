@@ -4,10 +4,9 @@ import * as css from './style';
 import * as cp from '../../components';
 import * as icon from '../../components/Icons';
 
-
 class SearchInput extends Component {
   constructor() {
-    super()
+    super();
 
     this.handlerEvent = this.handlerEvent.bind(this);
     this.handlerEventClick = this.handlerEventClick.bind(this);
@@ -19,24 +18,37 @@ class SearchInput extends Component {
 
   handlerEvent({ target: { name, value } }) {
     this.setState({ [name]: value });
-   }
+  }
 
   handlerEventClick() {
     const { callback } = this.props;
-    callback( this.state.searchInputValue );
+    callback(this.state.searchInputValue);
   }
 
   render() {
-
+    const { amountCart, productCart } = this.props;
     return (
-      <css.ctnCenter className="teste">
+      <css.ctnCenter>
         <div className="ctn-search-bar">
-          <cp.Input data-testid="query-input" name="searchInputValue" value={this.state.searchInputValue} getEvent={ this.handlerEvent } className="input" />
+          <cp.Input
+            data-testid="query-input"
+            name="searchInputValue"
+            value={this.state.searchInputValue}
+            getEvent={this.handlerEvent}
+            className="input"
+          />
 
           <icon.Search className="icon-search" />
         </div>
-        <cp.Button getEvent={ this.handlerEventClick } data-testid="query-button">Buscar</cp.Button>
-        <Link data-testid="shopping-cart-button" to="/shopcart">
+        <cp.Button getEvent={this.handlerEventClick} data-testid="query-button">
+          Buscar
+        </cp.Button>
+        <Link
+          className="ctn-badge"
+          data-testid="shopping-cart-button"
+          to={{ pathname: '/shopcart', productItem: productCart }}
+        >
+          <div className="badge">{amountCart}</div>
           <icon.Cart />
         </Link>
       </css.ctnCenter>

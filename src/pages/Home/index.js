@@ -10,6 +10,7 @@ export class Home extends Component {
 
     this.getCurrentCategory = this.getCurrentCategory.bind(this);
     this.fetchSearchButton = this.fetchSearchButton.bind(this);
+    this.addTocart = this.addTocart.bind(this);
 
     this.state = {
       isLoading: false,
@@ -17,13 +18,20 @@ export class Home extends Component {
       products: [],
       searchInput: '',
       searchResult: true,
+      productsItemsCart: [],
     };
+  }
+
+  addTocart(product) {
+    this.setState((prev) => ({
+      productsItemsCart: [...prev.productsItemsCart, product],
+    }));
   }
 
   getCurrentCategory(id) {
     this.setState({ categoryId: id, isLoading: true }, async () => {
       const object = await api.getProductsFromCategoryAndQuery(
-        id,
+        this.state.categoryId,
         this.state.searchInput
       );
       this.setState({ products: object.results, isLoading: false });
@@ -42,7 +50,7 @@ export class Home extends Component {
   }
 
   render() {
-    const { isLoading, products, searchResult, cardProduct } = this.state;
+    const { isLoading, products, productsItemsCart } = this.state;
 
     return (
       <css.CtnCenter>
@@ -53,10 +61,16 @@ export class Home extends Component {
           </div>
 
           <div className="ctn-displayCard">
-            <view.SearchInput callback={this.fetchSearchButton} />
+            <view.SearchInput
+              productCart={productsItemsCart}
+              amountCart={productsItemsCart.length}
+              callback={this.fetchSearchButton}
+            />
             <div className="displayCard">
               {products.length === 0 && !isLoading && (
-                <div>Digite algum termo de pesquisa ou escolha uma categoria.</div>
+                <div data-testid="home-initial-message">
+                  Digite algum termo de pesquisa ou escolha uma categoria.
+                </div>
               )}
               {isLoading ? (
                 <cp.Loading />
@@ -64,24 +78,14 @@ export class Home extends Component {
                 products.map((product) => (
                   <cp.CardProduct
                     key={product.id}
-                    thumbnail={product.thumbnail}
-                    price={product.price}
-                    title={product.title}
+                    product={product}
+                    amount={1}
+                    addToCart={this.addTocart}
                   >
                     {product.title}
                   </cp.CardProduct>
                 ))
               )}
-              {/* {products.map((product) => (
-                <cp.CardProduct
-                  key={product.id}
-                  thumbnail={product.thumbnail}
-                  price={product.price}
-                  title={product.title}
-                >
-                  {product.title}
-                </cp.CardProduct>
-              ))} */}
             </div>
           </div>
         </div>
