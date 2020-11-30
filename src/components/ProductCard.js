@@ -12,6 +12,7 @@ class ProductCard extends React.Component {
 
     this.state = {
       product: {},
+      totalQuantity: localStorage.getItem('totalQuantity') ? parseInt(localStorage.getItem('totalQuantity')) : 0,
     };
   }
 
@@ -27,7 +28,9 @@ class ProductCard extends React.Component {
   addToCart() {
     const { product: { id, price, title } } = this.props;
     const initialQuantity = 1;
-    addCartItem({ id, price, title, initialQuantity });
+    const { totalQuantity } = this.state;
+    this.setState({ totalQuantity: totalQuantity + 1})
+    addCartItem({ id, price, title, initialQuantity }, totalQuantity);
   }
 
 
