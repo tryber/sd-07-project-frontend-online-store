@@ -175,7 +175,7 @@ class ProductsList extends Component {
             return 1;
           }
           return products;
-        })
+        });
       }
     return this.setState({ products: products });
     }
