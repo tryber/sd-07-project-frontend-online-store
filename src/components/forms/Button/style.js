@@ -13,6 +13,7 @@ export const Button = styled.button`
     background-color: #f5f5f5;
     border: 1px solid dodgerblue;
     box-shadow: 0 0 5px 0 dodgerblue;
+    cursor: pointer;
   }
   :active {
     border: 1px solid green;
