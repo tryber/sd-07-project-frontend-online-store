@@ -225,9 +225,7 @@ class ProductDetail extends Component {
           <ul style={ { listStyle: 'none' } }>
             {attributes.map((element) => (<li key={ element.id }>
                 {`${element.name} --- ${element.value_name}`}
-              </li>
-            );
-            })}
+              </li>))}
           </ul>
           <p data-testid="free-shipping">
             Frete grátis:
