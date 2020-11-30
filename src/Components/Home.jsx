@@ -10,9 +10,11 @@ class Home extends React.Component {
     this.state = {
       listProduct: [],
       selectCategory: false,
+      searchBar: false,
     };
     this.getProducts = this.getProducts.bind(this);
     this.getProductsFromCategory = this.getProductsFromCategory.bind(this);
+    this.getSerchText = this.getSerchText.bind(this);
   }
 
   async getProducts() {
@@ -27,16 +29,25 @@ class Home extends React.Component {
     this.setState({ listProduct: response.results });
   }
 
-  getProductsFromCategory(event) {
+  // Bug aguardar o state ser alterado para só assim continuar.
+  async getProductsFromCategory(event) {
     const category = event.target.id;
     this.setState({ selectCategory: category });
+    const { searchBar } = this.state;
+    console.log(category);
+    const response = await getProductsFromCategoryAndQuery(searchBar, category);
+    this.setState({ listProduct: response.results });
+  }
+
+  getSerchText(event) {
+    this.setState({ searchBar: event.target.value });
   }
 
   render() {
     const { listProduct } = this.state;
     return (
       <div>
-        <Header getProducts={ this.getProducts } />
+        <Header getProducts={ this.getProducts } searchBar={ this.getSerchText } />
         <div className="container-body">
           <FiltersCategory getCategory={ this.getProductsFromCategory } />
           <div className="container-allProducts">
