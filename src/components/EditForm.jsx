@@ -19,6 +19,7 @@ export default class EditForm extends React.Component {
       [name]: value,
     });
   }
+
   //  const array = JSON.parse(localStorage.getItem('items') || '[]');
 
   enviar(event) {

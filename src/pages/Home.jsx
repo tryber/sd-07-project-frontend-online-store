@@ -5,7 +5,6 @@ import SearchBar from '../components/SearchBar';
 import ProductList from '../components/ProductList';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 import EmptyProductList from '../components/EmptyProductList';
-
 export default class Home extends React.Component {
   constructor() {
     super();
@@ -32,18 +31,15 @@ export default class Home extends React.Component {
       isEmpty: false,
     });
   }
-
   async updateValueCategory(event) {
     const { value } = await event.target;
     this.setState({ categoryId: value });
     this.findProduct();
   }
-
   updateValue(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
-
   render() {
     const { searchText, products, isEmpty } = this.state;
     return (
@@ -54,9 +50,9 @@ export default class Home extends React.Component {
         <div className="search-bar-content">
           <div>
             <SearchBar
-              searchText={ searchText }
-              onChange={ this.updateValue }
-              onClick={ this.findProduct }
+              searchText={searchText}
+              onChange={this.updateValue}
+              onClick={this.findProduct}
             />
           </div>
           <div>
@@ -64,7 +60,7 @@ export default class Home extends React.Component {
           </div>
         </div>
         <div>
-          {isEmpty ? <EmptyProductList /> : <ProductList products={ products } />}
+          {isEmpty ? <EmptyProductList /> : <ProductList products={products} />}
         </div>
       </div>
     );

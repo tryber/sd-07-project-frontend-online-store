@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default class EmptyProductList extends React.Component {
   render() {
     return (
