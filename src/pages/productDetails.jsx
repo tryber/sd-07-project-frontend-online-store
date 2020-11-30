@@ -11,17 +11,19 @@ export default class ProductDetails extends Component {
       detailsTitle,
       detailsThumbnail,
       detailsPrice,
+      shippingFree,
     } = props.location.state;
     this.state = {
       id: detailsId,
       title: detailsTitle,
       thumbnail: detailsThumbnail,
       price: detailsPrice,
+      shipping: shippingFree,
     };
   }
 
   render() {
-    const { id, title, thumbnail, price } = this.state;
+    const { id, title, thumbnail, price, shipping } = this.state;
     return (
       <div className="">
         <Link to="/carrinho" data-testid="shopping-cart-button">
@@ -42,6 +44,7 @@ export default class ProductDetails extends Component {
               R$
               { price }
             </span>
+            { shipping ? <span data-testid="free-shipping"> Frete: grátis</span> : null }
           </div>
         </div>
       </div>
@@ -56,6 +59,7 @@ ProductDetails.propTypes = {
       detailsTitle: PropTypes.string.isRequired,
       detailsThumbnail: PropTypes.string.isRequired,
       detailsPrice: PropTypes.number.isRequired,
+      shippingFree: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };

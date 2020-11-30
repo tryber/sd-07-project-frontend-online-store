@@ -137,9 +137,14 @@ export default class SearchBar extends Component {
                     detailsTitle: itens.title,
                     detailsThumbnail: itens.thumbnail,
                     detailsPrice: itens.price,
+                    FreeShipping: itens.shipping.free_shipping,
                   },
                 } }
               >
+                {
+                  itens.shipping.free_shipping
+                    ? <span data-testid="free-shipping"> Frete: grátis</span> : null
+                }
                 <img
                   className="thumbnail-card"
                   src={ itens.thumbnail }
@@ -150,6 +155,7 @@ export default class SearchBar extends Component {
                   R$
                   { itens.price }
                 </span>
+
               </Link>
               <button
                 type="button"
