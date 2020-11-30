@@ -8,17 +8,17 @@ class Cart extends React.Component {
     const carrinho = JSON.parse(localStorage.getItem('carrinho'));
     return (
       <div>
-         <Link to="/">
+        <Link to="/">
           <img
             alt="Voltar"
             src="https://img.icons8.com/ios/2x/reply-arrow.png"
           />
         </Link>
-        {!localStorage.length ? <EmptyCart /> : carrinho.map((item) => (<Informations
-          key={ item.id }
-          product={ item }
-        />))}
-        
+        {!localStorage.length ? (
+          <EmptyCart />
+        ) : (
+          carrinho.map((item) => <Informations key={ item.id } product={ item } />)
+        )}
       </div>
     );
   }
