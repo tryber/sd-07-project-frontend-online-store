@@ -15,3 +15,19 @@ export const addCartItem = (newItem) => {
   }
   saveCartItems(items);
 };
+
+export const handleQuantity = ({ id, action }) => {
+  const cartItems = getCartItems();
+  const item = cartItems.find((cartItem) => cartItem.id === id[0]);
+  const filteredItems = cartItems.filter((cartItem) => cartItem !== item);
+  let quantity = Number(item.quantity);
+  if (action === 'increase') {
+    quantity += 1;
+    item.quantity = String(quantity);
+  } else if (action === 'decrease') {
+    quantity -= 1;
+    item.quantity = String(quantity);
+  }
+  const newCartItemsList = [...filteredItems, item];
+  saveCartItems(newCartItemsList);
+};
