@@ -38,6 +38,7 @@ class UserInfoForm extends React.Component {
     return (
       <div>
         <input
+          data-testid="checkout-fullname"
           placeholder="Nome Completo"
           type="text"
           value={ name }
@@ -52,6 +53,7 @@ class UserInfoForm extends React.Component {
     return (
       <div>
         <input
+          data-testid="checkout-cpf"
           placeholder="CPF"
           type="text"
           value={ cpf }
@@ -66,6 +68,7 @@ class UserInfoForm extends React.Component {
     return (
       <div>
         <input
+          data-testid="checkout-email"
           placeholder="Email."
           type="text"
           value={ email }
@@ -80,6 +83,7 @@ class UserInfoForm extends React.Component {
     return (
       <div>
         <input
+          data-testid="checkout-phone"
           placeholder="Telefone"
           type="text"
           value={ phoneNumber }
@@ -95,6 +99,7 @@ class UserInfoForm extends React.Component {
     return (
       <div>
         <input
+          data-testid="checkout-cep"
           placeholder="CEP"
           type="text"
           value={ zipCode }
@@ -109,6 +114,7 @@ class UserInfoForm extends React.Component {
     return (
       <div>
         <input
+          data-testid="checkout-address"
           placeholder="Endereço"
           type="text"
           value={ street }
