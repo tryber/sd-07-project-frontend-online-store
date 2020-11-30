@@ -14,6 +14,7 @@ class ProductDetails extends Component {
       condicoes: 'nao informado',
     };
     this.getDetailsProduct = this.getDetailsProduct.bind(this);
+    this.addInCart = this.addInCart.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +37,26 @@ class ProductDetails extends Component {
     const condicoes = produto[0].attributes[1].value_name;
     const modelo = produto[0].attributes[2].value_name;
     this.setState({ product: produto[0], marca, modelo, condicoes });
+  }
+
+  addInCart() {
+    const { product } = this.props;
+    const { id, title, price, thumbnail } = product;
+    const quantity = 1;
+    let productRepet = false;
+    const carrinho = JSON.parse(localStorage.getItem('carrinho'));
+    const valor = (carrinho === null ? [] : carrinho);
+    valor.forEach((item) => {
+      if (item.id === id) {
+        item.quantity += 1;
+        productRepet = true;
+      }
+    });
+    if (productRepet) {
+      return localStorage.setItem("carrinho", JSON.stringify(valor));
+    }
+    valor.push({ id, title, thumbnail, price, quantity });
+    localStorage.setItem("carrinho", JSON.stringify(valor));
   }
 
   render() {
@@ -81,6 +102,7 @@ class ProductDetails extends Component {
           <button
             data-testid="product-detail-add-to-cart"
             className="button-product"
+            onClick={ this.addInCart }
             type="button"
           >
             ADICIONAR NO CARRINHO
@@ -92,6 +114,7 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
+  product: PropTypes.objectOf.isRequired,
   match: PropTypes.objectOf.isRequired,
 };
 

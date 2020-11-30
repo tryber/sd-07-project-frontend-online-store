@@ -9,8 +9,6 @@ class ListCardsProduts extends React.Component {
     this.addInCart = this.addInCart.bind(this);
   }
 
-
-
   addInCart() {
     const { product } = this.props;
     const { id, title, price, thumbnail } = product;
