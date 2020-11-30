@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Control, Input } from 'rbx';
 import chart from '../icon/chart.png';
 import '../App.css';
-import "rbx/index.css";
+import 'rbx/index.css';
 import Categories from '../components/Categories';
 import ListCard from '../components/ListCard';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
-import { Button, Control, Icon, Input } from 'rbx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 class Main extends React.Component {
@@ -82,13 +82,14 @@ class Main extends React.Component {
 
         <div className="input-1">
           <Control iconLeft iconRight>
-            <Input rounded
+            <Input
+              rounded
               data-testid="query-input"
               onChange={ this.handleValue }
               className="searchInput"
               type="search"
             />
-             {/* <Icon align="left">
+            {/* <Icon align="left">
               <FontAwesomeIcon icon={faSearch} />
             </Icon> */}
           </Control>
@@ -122,16 +123,16 @@ class Main extends React.Component {
 
         <div className="buttonFetch-4">
           <Button.Group>
-            {
-              <Button rounded 
-                outlined color="black"
-                className="buttonFetch"
-                data-testid="query-button"
-                onClick={ this.handleApiRequest }
-              >
-                Buscar
-              </Button>
-            }
+            <Button
+              rounded
+              outlined
+              color="black"
+              className="buttonFetch"
+              data-testid="query-button"
+              onClick={ this.handleApiRequest }
+            >
+              Buscar
+            </Button>
           </Button.Group>
         </div>
       </div>
