@@ -30,7 +30,10 @@ class App extends Component {
             />
             <Route
               path="/productdetails/:id"
-              render={ (props) => <ProductDetails id={ props.match.params.id } /> }
+              render={ (props) => (<ProductDetails
+                addCart={ this.addCart }
+                id={ props.match.params.id }
+              />) }
             />
             <Route
               exact

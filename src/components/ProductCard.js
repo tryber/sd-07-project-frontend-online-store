@@ -9,7 +9,7 @@ class ProductCard extends Component {
     return (
       <div data-testid="product">
         <img src={ thumbnail } alt={ title } />
-        <p>{ title }</p>
+        <p data-testid="product-detail-name">{ title }</p>
         <p>{ price }</p>
         <Link data-testid="product-detail-link" to={ `/productdetails/${id}` }>
           VER DETALHES

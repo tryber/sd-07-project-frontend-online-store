@@ -84,6 +84,8 @@ class ProductDetails extends Component {
 
   render() {
     const { loading, productDetail, productDescription, productReviews } = this.state;
+    const { addCart } = this.props;
+
     if (loading) return <Loading />;
 
     const { title, price } = productDetail;
@@ -122,6 +124,13 @@ class ProductDetails extends Component {
                 );
               })}
             </p>
+            <button
+              type="button"
+              data-testid="product-detail-add-to-cart"
+              onClick={ () => addCart(productDetail) }
+            >
+              ADICIONAR
+            </button>
           </div>
         </div>
         {/* Review Form */}
@@ -164,6 +173,9 @@ class ProductDetails extends Component {
   }
 }
 
-ProductDetails.propTypes = { id: PropTypes.string.isRequired };
+ProductDetails.propTypes = ({
+  addCart: PropTypes.func,
+  id: PropTypes.string,
+}).isRequired;
 
 export default ProductDetails;
