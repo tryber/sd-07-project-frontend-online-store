@@ -35,6 +35,14 @@ class ProductsList extends Component {
     this.requestCategories();
   }
 
+  getTitle(string) {
+    const index = string.indexOf(':');
+    const number = 2;
+    const parameter = index + number;
+    const title = string.slice(parameter, string.length);
+    return title;
+  }
+  
   getPrice(string) {
     const index = string.indexOf('$');
     const number = 2;
@@ -108,14 +116,6 @@ class ProductsList extends Component {
     const stringNumber = string.toFixed(roundNumber);
     const number = this.removeZero(stringNumber);
     return number;
-  }
-
-  getTitle(string) {
-    const index = string.indexOf(':');
-    const number = 2;
-    const parameter = index + number;
-    const title = string.slice(parameter, string.length);
-    return title;
   }
 
   addItemToLocalStorage({ target }) {

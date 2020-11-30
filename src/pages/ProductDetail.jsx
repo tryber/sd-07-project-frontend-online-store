@@ -223,8 +223,7 @@ class ProductDetail extends Component {
         <div className="containerDetails">
           Especificações Técnicas
           <ul style={ { listStyle: 'none' } }>
-            {attributes.map((element) => {
-              return (
+            {attributes.map((element) => { return (
                 <li key={ element.id }>
                   {`${element.name} --- ${element.value_name}`}
                 </li>
@@ -267,8 +266,8 @@ class ProductDetail extends Component {
         <Link data-testid="shopping-cart-button" to="/ShoppingCart">
           Ir para o carrinho
         </Link>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <div className="containerForm">
           <form>
             Avaliar Produto:
@@ -297,8 +296,9 @@ class ProductDetail extends Component {
               </select>
             </div>
             <div>
-              <label htmlFor="">
+              <label htmlFor="product-evaluation">
                 <textarea
+                  name="product-evaluation"
                   data-testid="product-detail-evaluation"
                   placeholder="Mensagem (opcional)"
                 />
