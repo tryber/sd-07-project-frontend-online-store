@@ -7,8 +7,10 @@ import Categories from '../components/Categories';
 import ListCard from '../components/ListCard';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
-import { Button } from 'rbx';
-import { DEFAULTS } from 'rbx/base/helpers/variables';
+import { Button, Control, Icon, Input } from 'rbx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
 
 class Main extends React.Component {
   constructor() {
@@ -79,12 +81,17 @@ class Main extends React.Component {
       <div className="container">
 
         <div className="input-1">
-          <input
-            data-testid="query-input"
-            onChange={ this.handleValue }
-            className="searchInput"
-            type="search"
-          />
+          <Control iconLeft iconRight>
+            <Input rounded
+              data-testid="query-input"
+              onChange={ this.handleValue }
+              className="searchInput"
+              type="search"
+            />
+             {/* <Icon align="left">
+              <FontAwesomeIcon icon={faSearch} />
+            </Icon> */}
+          </Control>
           <h3 data-testid="home-initial-message">{message}</h3>
           <div>
             { loading ? <Loading /> : '' }

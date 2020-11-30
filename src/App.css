@@ -12,12 +12,6 @@ Body {
   width: 100%;
 }
 
-.searchInput {
-  border-radius: 50px;
-  height: 40px;
-  width: 100%;
-}
-
 .chartImg {
   background-color: #72a0c1;
   width: 50px;
@@ -48,11 +42,6 @@ Body {
   margin: 15px;
   align-self: flex-start;
   order: 3;
-}
-.buttonFetch {
-  width: 150px;
-  height: 30px;
-  border-radius: 10px;
 }
 
 .list-card-product {
