@@ -1,44 +1,76 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Proptypes from 'prop-types';
+import * as API from '../services/api';
+import CartIcon from '../components/CartIcon';
 import "./ProductDetails.css";
-import React, { Component } from "react";
-import * as API from "../services/api";
-import { Link } from "react-router-dom";
-import CartIcon from "../components/CartIcon";
+
 
 class ProductDetail extends Component {
   constructor(props) {
     super(props);
+    this.getId = this.getId.bind(this);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
     this.changeQuantityState = this.changeQuantityState.bind(this);
     this.removeLastItem = this.removeLastItem.bind(this);
     this.removeZero = this.removeZero.bind(this);
     this.roundNumber = this.roundNumber.bind(this);
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
+    this.translateFreeShipping = this.translateFreeShipping.bind(this);
     this.state = {
       id: "",
       attributes: [],
       title: "",
       price: 0,
-      thumbnail: "",
+      freeShipping: false,
+      thumbnail: '',
+      availableQuantity: 0,
       quantityChanged: false,
     };
   }
 
-  async searchQueryProducts() {
-    const ListProducts = await API.getProductsFromCategoryAndQuery(
-      this.props.match.params.id,
-      undefined
-    );
-    const { results } = ListProducts;
-    if (results !== undefined) {
-      const { id, title, attributes, thumbnail, price } = results[0];
-      return this.setState({ id, attributes, title, thumbnail, price });
-    }
-    const { id, attributes, title, thumbnail, price } = ListProducts;
-    return this.setState({ id, attributes, title, thumbnail, price });
-  }
-
   componentDidMount() {
     this.searchQueryProducts();
+  }
+
+  getId() {
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+    return id;
+  }
+
+  async searchQueryProducts() {
+    const productId = this.getId();
+    const ListProducts = await API.getProductsFromCategoryAndQuery(productId);
+    const { results } = ListProducts;
+    if (results !== undefined) {
+      const { id, title, attributes, thumbnail, price, shipping } = results[0];
+      const availableQuantity = results[0].available_quantity;
+      const freeShipping = shipping.free_shipping;
+      return this.setState({
+        id,
+        attributes,
+        title,
+        thumbnail,
+        price,
+        freeShipping,
+        availableQuantity,
+      });
+    }
+    const { id, attributes, title, thumbnail, price, shipping } = ListProducts;
+    const availableQuantity = ListProducts.available_quantity;
+    const freeShipping = shipping.free_shipping;
+    console.log(ListProducts);
+    return this.setState({
+      id,
+      attributes,
+      title,
+      thumbnail,
+      price,
+      freeShipping,
+      availableQuantity,
+    });
   }
 
   changeQuantityState() {
@@ -49,11 +81,10 @@ class ProductDetail extends Component {
 
   removeLastItem(string) {
     let stringNumber = string;
-    if (
-      stringNumber[stringNumber.length - 1] === "0" ||
-      stringNumber[stringNumber.length - 1] === "."
-    ) {
-      stringNumber = stringNumber.slice(0, stringNumber.length - 1);
+    if (stringNumber[stringNumber.length - 1] === '0'
+    || stringNumber[stringNumber.length - 1] === '.') {
+      const index = 0;
+      stringNumber = stringNumber.slice(index, (stringNumber.length - 1));
     }
     return stringNumber;
   }
@@ -71,17 +102,16 @@ class ProductDetail extends Component {
   }
 
   roundNumber(string) {
-    let stringNumber = string.toFixed(2);
+    const roundNumber = 2;
+    const stringNumber = string.toFixed(roundNumber);
     const number = this.removeZero(stringNumber);
     return number;
   }
 
   addItemToLocalStorage() {
-    const id = this.state.id;
-    const title = this.state.title;
-    const price = this.state.price;
-    const totalPrice = this.state.price;
-    const imagePath = this.state.thumbnail;
+    const { id, title, price, thumbnail, availableQuantity } = this.state;
+    const totalPrice = price;
+    const imagePath = thumbnail;
     const number = 1;
     if (Storage) {
       const getItemSaved = JSON.parse(localStorage.getItem("cart"));
@@ -89,11 +119,12 @@ class ProductDetail extends Component {
       let repeatedProduct = false;
       values.forEach((item) => {
         if (item.id === id) {
-          item.number += 1;
-          item.totalPrice =
-            parseFloat(item.totalPrice) + parseFloat(item.price);
-          item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
+          if (item.number < availableQuantity) {
+            item.number += 1;
+            item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+          }
         }
       });
       if (repeatedProduct) {
@@ -101,13 +132,20 @@ class ProductDetail extends Component {
         return this.changeQuantityState();
       }
       values.push({ id, title, price, imagePath, number, totalPrice });
-      localStorage.setItem("cart", JSON.stringify(values));
+      localStorage.setItem('cart', JSON.stringify(values));
       this.changeQuantityState();
     }
   }
 
+  translateFreeShipping() {
+    const { freeShipping } = this.state;
+    let translatedFreeShipping = 'Não';
+    if (freeShipping === true) translatedFreeShipping = 'Sim';
+    return translatedFreeShipping;
+  }
+
   render() {
-    const { title, price, thumbnail } = this.state;
+    const { title, price, thumbnail, attributes } = this.state;
 
     return (
       <div className="container">
@@ -115,32 +153,36 @@ class ProductDetail extends Component {
         <br></br>
         <br></br>
         <div className="containerProduct">
-          <h3 data-testid="product-detail-name">Descrição: {title}</h3>
-          <div>R$ {price}</div>
-          <img src={thumbnail} alt={title} />
+          <h3 data-testid="product-detail-name">Descrição: { title }</h3>
+          <div>R$ { price }</div>
+          <img src={ thumbnail } alt={ title } />
         </div>
         <br></br>
         <br></br>
-        <CartIcon cartItens={JSON.parse(localStorage.getItem("cart"))} />
+        <CartIcon cartItens={ JSON.parse(localStorage.getItem("cart")) } />
         <br></br>
         <br></br>
         <div className="containerDetails">
           Especificações Técnicas
-          <ul style={{listStyle: "none"}}>
-            {this.state.attributes.map((element) => {
+          <ul style={{ listStyle: "none" }}>
+            {attributes.map((element) => {
               return (
-                <li key={element.id}>
+                <li key={ element.id }>
                   {`${element.name} --- ${element.value_name}`};
                 </li>
               );
             })}
           </ul>
+            <p data-testid="free-shipping">
+              Frete grátis:
+              { this.translateFreeShipping() }
+            </p>
         </div>
         <br></br>
         <br></br>
         <button
           data-testid="product-detail-add-to-cart"
-          onClick={this.addItemToLocalStorage}
+          onClick={ this.addItemToLocalStorage }
         >
           Adicionar
         </button>
@@ -195,5 +237,13 @@ class ProductDetail extends Component {
     );
   }
 }
+
+ProductDetail.propTypes = {
+  match: Proptypes.shape({
+    params: Proptypes.shape({
+      id: Proptypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default ProductDetail;

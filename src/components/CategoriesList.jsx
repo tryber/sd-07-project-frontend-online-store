@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types';
 
 class CategoriesList extends Component {
   render() {
@@ -10,13 +11,21 @@ class CategoriesList extends Component {
           data-testid="category"
           type="radio"
           name="category"
-          value={id}
-          onChange={onCategoryChoice}
+          value={ id }
+          onChange={ onCategoryChoice }
         />
-        <label htmlFor={id}>{name}</label>
+        <label htmlFor={ id }>{ name }</label>
       </div>
     );
   }
 }
+
+CategoriesList.propTypes = {
+  categorie: Proptypes.shape({
+    id: Proptypes.string.isRequired,
+    name: Proptypes.string.isRequired,
+  }).isRequired,
+  onCategoryChoice: Proptypes.func.isRequired,
+};
 
 export default CategoriesList;

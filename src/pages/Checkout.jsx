@@ -1,20 +1,20 @@
-import './Checkout.css'
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CartItem from "../components/CartItem";
+// import CartItem from '../components/CartItem';
+import './Checkout.css'
 
 class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: JSON.parse(localStorage.getItem("cart")),
-      name: "",
-      email: "",
+      products: JSON.parse(localStorage.getItem('cart')),
+      name: '',
+      email: '',
       cpf: 0,
       phone: 0,
       cep: 0,
-      address: "",
-      radioButton: false,
+      address: '',
+      // radioButton: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.sucess = this.sucess.bind(this);
@@ -31,8 +31,9 @@ class Checkout extends Component {
   }
 
   render() {
-    const { products } = this.state;
-    let totalSum = 0;
+    const { products, name, email, cpf, phone, cep, address } = this.state;
+    let totalSum = '0';
+    totalSum = parseInt(totalSum, 10);
     return (
       <div className="container">
         <Link to="/">Retornar</Link>
@@ -60,53 +61,53 @@ class Checkout extends Component {
           Informações do Comprador
           <form className="form">
             <input
-              type='text'
-              onChange={this.handleChange}
-              data-testid='checkout-fullname'
-              name='name'
-              value={this.state.name}
-              placeholder='Nome completo'
+              type="text"
+              onChange={ this.handleChange }
+              data-testid="checkout-fullname"
+              name="name"
+              value={ name }
+              placeholder="Nome completo"
             />
             <input
-              type='text'
-              onChange={this.handleChange}
-              data-testid='checkout-email'
-              name='email'
-              value={this.state.email}
-              placeholder='Email'
+              type="text"
+              onChange={ this.handleChange }
+              data-testid="checkout-email"
+              name="email"
+              value={ email }
+              placeholder="Email"
             />
             <input
-              type='text'
-              onChange={this.handleChange}
-              data-testid='checkout-cpf'
-              name='cpf'
-              value={this.state.cpf}
-              placeholder='CPF'
-              maxLength='12'
+              type="text"
+              onChange={ this.handleChange }
+              data-testid="checkout-cpf"
+              name="cpf"
+              value={ cpf }
+              placeholder="CPF"
+              maxLength="12"
             />
             <input
-              type='text'
-              onChange={this.handleChange}
-              data-testid='checkout-phone'
-              name='phone'
-              value={this.state.phone}
-              placeholder='(xx) 99999-9999'
+              type="text"
+              onChange={ this.handleChange }
+              data-testid="checkout-phone"
+              name="phone"
+              value={ phone }
+              placeholder="(xx) 99999-9999"
             />
             <input
-              type='text'
-              onChange={this.handleChange}
-              data-testid='checkout-cep'
-              name='cep'
-              value={this.state.cep}
-              placeholder='00000-000'
+              type="text"
+              onChange={ this.handleChange }
+              data-testid="checkout-cep"
+              name="cep"
+              value={ cep }
+              placeholder="00000-000"
             />
             <input
-              type='text'
-              onChange={this.handleChange}
-              data-testid='checkout-address'
-              name='address'
-              value={this.state.address}
-              placeholder='Endereço'
+              type="text"
+              onChange={ this.handleChange }
+              data-testid="checkout-address"
+              name="address"
+              value={ address }
+              placeholder="Endereço"
             />
           </form>
         </section>
@@ -116,50 +117,52 @@ class Checkout extends Component {
           Método de Pagamento
           <div className="container-fpag">
             <label htmlFor='radio-button-boleto'>
+          <div>
+            <label htmlFor="radio-button-boleto">
               Boleto
               <input
-                type='radio'
-                onChange={this.handleChange}
-                name='radioButton'
-                value='Boleto'
-                id='radio-button-boleto'
+                type="radio"
+                onChange={ this.handleChange }
+                name="radioButton"
+                value="Boleto"
+                id="radio-button-boleto"
               />
             </label>
-            <label htmlFor='radio-button-card-visa'>
+            <label htmlFor="radio-button-card-visa">
               Cartão Visa
               <input
-                type='radio'
-                onChange={this.handleChange}
-                name='radioButton'
-                value='Visa'
-                id='radio-button-card-visa'
+                type="radio"
+                onChange={ this.handleChange }
+                name="radioButton"
+                value="Visa"
+                id="radio-button-card-visa"
               />
             </label>
-            <label htmlFor='radio-button-card-mastercard'>
+            <label htmlFor="radio-button-card-mastercard">
               Cartão MasterCard
               <input
-                type='radio'
-                onChange={this.handleChange}
-                name='radioButton'
-                value='Mastercard'
-                id='radio-button-card-mastercard'
+                type="radio"
+                onChange={ this.handleChange }
+                name="radioButton"
+                value="Mastercard"
+                id="radio-button-card-mastercard"
               />
             </label>
-            <label htmlFor='radio-button-card-elo'>
+            <label htmlFor="radio-button-card-elo">
               Cartão Elo
               <input
-                type='radio'
-                onChange={this.handleChange}
-                name='radioButton'
-                value='Elo'
-                id='radio-button-card-elo'
+                type="radio"
+                onChange={ this.handleChange }
+                name="radioButton"
+                value="Elo"
+                id="radio-button-card-elo"
               />
             </label>
           </div>
         </section>
         <br></br>
         <br></br>
-        <button onSubmit={this.sucess}>Comprar</button>
+        <button type="submit" onSubmit={ this.sucess }>Comprar</button>
       </div>
     );
   }

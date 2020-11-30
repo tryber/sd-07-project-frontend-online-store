@@ -1,5 +1,6 @@
 import './CartItem.css';
 import React, { Component } from 'react';
+import Proptypes from 'prop-types';
 
 class CartItem extends Component {
   constructor() {
@@ -9,7 +10,16 @@ class CartItem extends Component {
   }
 
   showItem() {
-    const { id, title, price, image, number, sumItem, subtractItem, removeItem } = this.props;
+    const {
+      id,
+      title,
+      price,
+      image,
+      number,
+      sumItem,
+      subtractItem,
+      removeItem,
+    } = this.props;
     return (
       <div className="container">
         <span data-testid="shopping-cart-product-name"> Descrição: <strong> {title} </strong></span>
@@ -36,25 +46,36 @@ class CartItem extends Component {
   }
 
   showSimpleItem() {
-    const { title, price, image, number} = this.props;
+    const { title, price, image, number } = this.props;
     return (
       <div className="containerSimple">
         <img src={image} alt={title} />
         <span data-testid="shopping-cart-product-name">Descrição: {title} - </span>
-        <span data-testid="shopping-cart-product-quantity"> Qtd: {number} -</span>
+        <span data-testid="shopping-cart-product-quantity"> Qtd: {number} - </span>
         <span> R$ {price}</span>
       </div>
-    )
+    );
   }
 
 
   render() {
     const { sumItem } = this.props;
-    if(sumItem) {
+    if (sumItem) {
       return this.showItem();
     }
     return this.showSimpleItem();
   }
 }
+
+CartItem.propTypes = {
+  id: Proptypes.string.isRequired,
+  title: Proptypes.string.isRequired,
+  price: Proptypes.number.isRequired,
+  image: Proptypes.string.isRequired,
+  number: Proptypes.number.isRequired,
+  sumItem: Proptypes.func.isRequired,
+  subtractItem: Proptypes.func.isRequired,
+  removeItem: Proptypes.func.isRequired,
+};
 
 export default CartItem;
