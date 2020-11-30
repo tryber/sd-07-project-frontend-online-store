@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ShowCartItems from '../components/ShowCartItems';
 import { getCartItems } from '../services/localStorageHandler';
 
@@ -45,6 +46,7 @@ class ShoppingCart extends Component {
             } }
           />
         ))}
+        <Link data-testid="checkout-products" to="/payment">Finalizer Compra</Link>
       </div>
     );
   }
