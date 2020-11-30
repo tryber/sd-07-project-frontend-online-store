@@ -8,7 +8,7 @@ class ProductCard extends React.Component {
     const { product } = this.props;
     const { title, id, price, thumbnail } = product;
     return (
-      <div data-testid="product">
+      <div data-testid="product" className="product-card">
         <div>
           <Link to={ { pathname: `/product-details/${id}`, state: product } }>
             <h4 data-testid="product-detail-link">{ title }</h4>
@@ -22,6 +22,7 @@ class ProductCard extends React.Component {
         <AddToCartButton
           product={ product }
           dataTestId="product-add-to-cart"
+          className="btn-add-to-cart"
         />
       </div>
     );

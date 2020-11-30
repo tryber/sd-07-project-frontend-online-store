@@ -56,11 +56,13 @@ class Home extends React.Component {
     return (
       <div className="home">
         <Header handlerSearch={ this.handlerSearch } state={ this.state } />
-        <Categories
-          categories={ categories }
-          handlerSelectCategory={ this.handlerSelectCategory }
-        />
-        <Products products={ products } />
+        <div className="main-content">
+          <Categories
+            categories={ categories }
+            handlerSelectCategory={ this.handlerSelectCategory }
+          />
+          <Products products={ products } />
+        </div>
       </div>
     );
   }

@@ -12,15 +12,17 @@ class ProductDetails extends React.Component {
     return (
       <div>
         <Header />
-        <h4 data-testid="product-detail-name">{`${title}`}</h4>
-        <img src={ thumbnail } alt="Imagem" />
-        <h4>{`R$ ${price}`}</h4>
-        <p>Especificação</p>
-        <AddToCartButton
-          dataTestId="product-detail-add-to-cart"
-          product={ product }
-        />
-        <RatingForm />
+        <div className="product-details">
+          <h4 data-testid="product-detail-name">{`${title}`}</h4>
+          <img src={ thumbnail } alt="Imagem" />
+          <h4>{`R$ ${price}`}</h4>
+          <p>Especificação</p>
+          <AddToCartButton
+            dataTestId="product-detail-add-to-cart"
+            product={ product }
+          />
+          <RatingForm />
+        </div>
       </div>
     );
   }

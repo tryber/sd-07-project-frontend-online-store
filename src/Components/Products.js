@@ -11,14 +11,14 @@ class Products extends React.Component {
     if (results) {
       if (results.length === empty) return <p>Nenhum produto foi encontrado</p>;
       return (
-        <div>
+        <div className="product-content">
           {results.map((result) => <ProductCard key={ result.id } product={ result } />)}
         </div>
       );
     }
     return (
-      <div>
-        <p data-testid="home-initial-message">
+      <div className="initial-message">
+        <p data-testid="home-initial-message" className="message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
       </div>
