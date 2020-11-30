@@ -6,9 +6,6 @@ import ShoppingCartButton from '../components/ShoppingCartButton';
 export default class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      objeto: [],
-    };
     this.addToCart = this.addToCart.bind(this);
   }
 
@@ -21,9 +18,12 @@ export default class ProductDetail extends React.Component {
     const { id, title, price, thumbnail } = product;
     const array = JSON.parse(localStorage.getItem('items') || '[]');
     const index = array.findIndex((elemento) => elemento.id === id);
-    index === -1
-      ? array.push({ id, title, price, thumbnail, quantidade: 1 })
-      : array[index].quantidade++;
+    const negativeIndex = -1;
+    if (index === negativeIndex) {
+      array.push({ id, title, price, thumbnail, quantidade: 1 });
+    } else {
+      array[index].quantidade += 1;
+    }
     localStorage.setItem('items', JSON.stringify(array));
   }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ResultForm from './ResultForm';
 
 export default class EditForm extends React.Component {
@@ -20,6 +19,7 @@ export default class EditForm extends React.Component {
       [name]: value,
     });
   }
+
   //  const array = JSON.parse(localStorage.getItem('items') || '[]');
 
   enviar(event) {
@@ -34,26 +34,27 @@ export default class EditForm extends React.Component {
   }
 
   render() {
+    const { email, radio, comentario } = this.state;
     return (
       <div>
         <form>
           <input
             type="text"
             name="email"
-            value={ this.state.email }
+            value={ email }
             onChange={ this.atualizaEstado }
           />
 
           <input
             type="number"
             name="radio"
-            value={ this.state.radio }
+            value={ radio }
             onChange={ this.atualizaEstado }
           />
           <textarea
             data-testid="product-detail-evaluation"
             name="comentario"
-            value={ this.state.comentario }
+            value={ comentario }
             onChange={ this.atualizaEstado }
           />
           <button type="button" onClick={ (event) => this.enviar(event) }>

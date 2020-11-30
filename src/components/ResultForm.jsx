@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export default class ResultForm extends React.Component {
   constructor() {
@@ -12,34 +11,35 @@ export default class ResultForm extends React.Component {
     this.restauraEstado = this.restauraEstado.bind(this);
   }
 
+  componentDidMount() {
+    this.restauraEstado();
+  }
+
   restauraEstado() {
     const review = JSON.parse(localStorage.getItem('review'));
     this.setState(review);
   }
 
-  componentDidMount() {
-    this.restauraEstado();
-  }
-
   render() {
+    const { email, radio, comentario } = this.state;
     return (
       <div>
         <input
           type="text"
           name="email"
-          value={ this.state.email }
+          value={ email }
           readOnly
         />
 
         <input
           type="number"
           name="radio"
-          value={ this.state.radio }
+          value={ radio }
           readOnly
         />
         <textarea
           name="comentario"
-          value={ this.state.comentario }
+          value={ comentario }
           readOnly
         />
       </div>
