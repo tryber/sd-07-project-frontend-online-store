@@ -8,6 +8,7 @@ class ShoppingCartPage extends Component {
 
     this.increaseItem = this.increaseItem.bind(this);
     this.decreaseItem = this.decreaseItem.bind(this);
+    this.totalPrice = this.totalPrice.bind(this);
 
     this.state = {
       shoppingCartItems: [],
@@ -16,6 +17,10 @@ class ShoppingCartPage extends Component {
 
   componentDidMount() {
     this.getProductsFromLocalStorage();
+  }
+
+  componentDidUpdate() {
+    this.totalPrice();
   }
 
   getProductsFromLocalStorage() {
@@ -48,6 +53,12 @@ class ShoppingCartPage extends Component {
   }
 
   totalPrice() {
+    const zero = 0;
+    const decimals = 2;
+    const { shoppingCartItems } = this.state;
+    const sum = shoppingCartItems.reduce((acc, { price, quantity }) => (
+      price * quantity + acc), zero);
+    return sum.toFixed(decimals);
   }
 
   render() {
@@ -73,13 +84,11 @@ class ShoppingCartPage extends Component {
         </div>
         <div>
           Valor Total da Compra R$
-          {/* estado total price */}
+          {this.totalPrice()}
         </div>
-        <button data-testid="checkout-products" type="button">
-          <Link to="/checkout">
-            Finalizar Compra
-          </Link>
-        </button>
+        <Link data-testid="checkout-products" to="/checkout">
+          Finalizar Compra
+        </Link>
       </div>
     );
   }
