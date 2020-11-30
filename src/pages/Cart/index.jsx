@@ -15,7 +15,11 @@ class Cart extends React.Component {
 
   componentDidUpdate() {
     const { products } = this.state;
+    let total = null;
     sessionStorage.setItem('item', JSON.stringify(products));
+
+    products.forEach(({ quantity }) => { total += quantity; });
+    sessionStorage.setItem('totalQuantity', total);
   }
 
   increase(index) {
@@ -38,12 +42,13 @@ class Cart extends React.Component {
 
   cartItemsRenderized() {
     const { products } = this.state;
-    return products.map(({ title, quantity }, index) => (
+    return products.map(({ title, quantity, availableQt }, index) => (
       <CartItem
         title={ title }
         quantity={ quantity }
         add={ () => this.increase(index) }
         minus={ () => this.decrease(index) }
+        availableQt={ availableQt }
         key={ title }
       />
     ));

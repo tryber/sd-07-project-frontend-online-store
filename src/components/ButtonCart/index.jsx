@@ -7,21 +7,51 @@ class ButtonCart extends React.Component {
     this.addCart = this.addCart.bind(this);
   }
 
-  addCart({ target: { value } }) {
+  totalQuantity(array) {
+    let total = null;
+    array.forEach(({ quantity }) => { total += quantity; });
+    sessionStorage.setItem('totalQuantity', total);
+  }
+
+  findSimilar(array, value) {
+    let isRepeated = false;
+
+    array.forEach((item) => {
+      if (item.title === value) {
+        isRepeated = true;
+        item.quantity += 1;
+      }
+    });
+
+    if (isRepeated) this.finalPost(array);
+    return isRepeated;
+  }
+
+  addCart() {
+    const { upQty, title, availableQt } = this.props;
+
     const items = JSON.parse(sessionStorage.getItem('item'));
     if (items) {
-      const arrays = JSON.stringify([...items, { title: value, quantity: 1 }]);
-      sessionStorage.setItem('item', arrays);
+      if (!this.findSimilar(items, title)) {
+        const products = [...items, { title, quantity: 1, availableQt }];
+        this.finalPost(products);
+      }
     } else {
-      const array = JSON.stringify([{ title: value, quantity: 1 }]);
-      sessionStorage.setItem('item', array);
+      const product = [{ title, quantity: 1, availableQt }];
+      this.finalPost(product);
     }
+    upQty();
+  }
+
+  finalPost(array) {
+    this.totalQuantity(array);
+    sessionStorage.setItem('item', JSON.stringify(array));
   }
 
   render() {
-    const { title, test } = this.props;
+    const { test } = this.props;
     return (
-      <button type="button" data-testid={ test } value={ title } onClick={ this.addCart }>
+      <button type="button" data-testid={ test } onClick={ this.addCart }>
         Adicionar ao carrinho
       </button>
     );
@@ -30,7 +60,11 @@ class ButtonCart extends React.Component {
 
 export default ButtonCart;
 
+ButtonCart.defaultProps = { availableQt: undefined };
+
 ButtonCart.propTypes = {
   title: PropTypes.string.isRequired,
   test: PropTypes.string.isRequired,
+  availableQt: PropTypes.number,
+  upQty: PropTypes.func.isRequired,
 };
