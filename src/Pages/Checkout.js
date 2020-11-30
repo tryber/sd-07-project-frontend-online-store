@@ -1,15 +1,14 @@
 import React from 'react';
-import Teste from '../Components/Teste';
-// import ListProductsCheckout from '../Components/ListProductsCheckout';
-// import Header from '../Components/Header';
+import CheckoutForm from '../Components/CheckoutForm';
+import ListProductsCheckout from '../Components/ListProductsCheckout';
+
 
 class Checkout extends React.Component {
   render() {
     return (
       <div>
-        {// <ListProductsCheckout />
-        }
-        <Teste />
+        <ListProductsCheckout />
+        <CheckoutForm />
       </div>
     );
   }
