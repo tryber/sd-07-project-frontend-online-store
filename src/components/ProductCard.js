@@ -27,7 +27,7 @@ class ProductCard extends React.Component {
   addToCart() {
     const { product: { id, price, title } } = this.props;
     const initialQuantity = 1;
-    addCartItem({ id, price, title, initialQuantity });
+    addCartItem({ id, price, title, quantity: initialQuantity });
   }
 
 
