@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductCard extends Component {
   render() {
@@ -14,7 +15,13 @@ class ProductCard extends Component {
               data-testid="product"
             >
               <h2>{ title }</h2>
-              <img src={ thumbnail } alt="products" />
+              <Link to={
+                { pathname: `./pages/productpage/${id}`,
+                  state: product,
+              }
+              }>
+                <img src={ thumbnail } alt="products" data-testid="product-detail-link" />
+              </Link>
               <p>{ price }</p>
             </div>
           );
