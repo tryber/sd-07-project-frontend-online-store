@@ -11,7 +11,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={ ProductsList } />
         <Route exact path="/pages/cart" component={ Cart } />
-        <Route 
+        <Route
           exact
           path="/pages/productpage/:Id"
           render={ (props) => <ProductPage { ...props } /> }
