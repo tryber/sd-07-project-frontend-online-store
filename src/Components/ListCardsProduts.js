@@ -16,16 +16,16 @@ class ListCardsProduts extends React.Component {
     const carrinho = JSON.parse(localStorage.getItem('carrinho'));
     const valor = (carrinho === null ? [] : carrinho);
     valor.forEach((item) => {
-      if(item.id === id){
+      if (item.id === id) {
         item.quantity += 1;
         productRepet = true;
       }
-    })
-    if(productRepet) {
-      return localStorage.setItem("carrinho", JSON.stringify(valor))
+    });
+    if (productRepet) {
+      return localStorage.setItem('carrinho', JSON.stringify(valor));
     }
-    valor.push({id, title, thumbnail, price, quantity})
-    localStorage.setItem("carrinho", JSON.stringify(valor))
+    valor.push({ id, title, thumbnail, price, quantity });
+    localStorage.setItem('carrinho', JSON.stringify(valor));
   }
 
   render() {
@@ -46,16 +46,17 @@ class ListCardsProduts extends React.Component {
           <img src={ thumbnail } alt={ `${title} sprite` } />
         </Link>
         <h4 className="price">
-          R$ 
+          R$
           { price }
         </h4>
-        <button data-testid="product-add-to-cart" 
-        className="button-product" 
-        type="button" 
-        onClick={ this.addInCart }>
+        <button
+          data-testid="product-add-to-cart"
+          className="button-product"
+          type="button"
+          onClick={ this.addInCart }
+        >
           ADICIONAR NO CARRINHO
         </button>
-        
       </div>
     );
   }

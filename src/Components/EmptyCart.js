@@ -2,7 +2,7 @@ import React from 'react';
 
 class EmptyCart extends React.Component {
   render() {
-    return(
+    return (
       <div>
         <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         <img
@@ -11,7 +11,7 @@ class EmptyCart extends React.Component {
           alt="caixa fazia"
         />
       </div>
-    )
+    );
   }
 }
 
