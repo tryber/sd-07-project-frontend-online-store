@@ -16,7 +16,7 @@ class ProductsList extends React.Component {
                 data-testid="product"
               >
                 <Link
-                  to={{
+                  to={ {
                     pathname: '/product-details',
                     state: {
                       id,
