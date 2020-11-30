@@ -2,10 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import chart from '../icon/chart.png';
 import '../App.css';
+import "rbx/index.css";
 import Categories from '../components/Categories';
 import ListCard from '../components/ListCard';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
+import { Button } from 'rbx';
+import { DEFAULTS } from 'rbx/base/helpers/variables';
 
 class Main extends React.Component {
   constructor() {
@@ -74,6 +77,7 @@ class Main extends React.Component {
     }
     return (
       <div className="container">
+
         <div className="input-1">
           <input
             data-testid="query-input"
@@ -110,14 +114,17 @@ class Main extends React.Component {
         </div>
 
         <div className="buttonFetch-4">
-          <button
-            type="button"
-            className="buttonFetch"
-            data-testid="query-button"
-            onClick={ this.handleApiRequest }
-          >
-            Buscar
-          </button>
+          <Button.Group>
+            {
+                <Button rounded outlined color="black"
+                className="buttonFetch"
+                data-testid="query-button"
+                onClick={ this.handleApiRequest }
+              >
+                Buscar
+              </Button>
+           }
+          </Button.Group>
         </div>
       </div>
     );
