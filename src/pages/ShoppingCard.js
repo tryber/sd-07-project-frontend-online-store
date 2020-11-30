@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import EmptyList from '../components/EmptList';
-import ShoppingCardList from '../components/ShoppingCardList';
+import PropTypes from 'prop-types';
+import { EmptyList, ShoppingCardList } from '../components/index';
 import ShoppingCartImage from '../images/shopping-cart.svg';
 import './ShoppingCard.css';
 
@@ -28,5 +28,11 @@ class ShoppingCard extends Component {
     );
   }
 }
+
+ShoppingCard.propTypes = {
+  location: PropTypes.shape({
+    productsInShoppingCart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
+};
 
 export default ShoppingCard;

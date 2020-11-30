@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './ShoppingCardList.css';
 
 class ShoppingCardList extends Component {
@@ -12,13 +13,13 @@ class ShoppingCardList extends Component {
             <div className="product-content">
               <div>
                 <span> Nome do Item: </span>
-                <span>{item.title}</span>
+                <span data-testid="shopping-cart-product-name">{item.title}</span>
               </div>
               <div>
                 <span> Preço unitário: R$ </span>
                 <span>{item.price}</span>
                 <span> Quantidade: </span>
-                <span>{item.quantity}</span>
+                <span data-testid="shopping-cart-product-quantity">{item.quantity}</span>
                 <span> Preço total: R$ </span>
                 <span>{item.price * item.quantity}</span>
               </div>
@@ -29,5 +30,9 @@ class ShoppingCardList extends Component {
     );
   }
 }
+
+ShoppingCardList.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ShoppingCardList;
