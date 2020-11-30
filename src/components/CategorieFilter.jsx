@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
+
 export default class CategorieFilter extends React.Component {
   constructor() {
     super();
@@ -9,13 +10,16 @@ export default class CategorieFilter extends React.Component {
       categories: [],
     };
   }
+
   componentDidMount() {
     this.FetchCategories();
   }
+
   async FetchCategories() {
     const result = await api.getCategories();
     this.setState({ categories: result });
   }
+
   render() {
     const { categories } = this.state;
     const { updateValueCategory } = this.props;
@@ -29,8 +33,8 @@ export default class CategorieFilter extends React.Component {
                 type="radio"
                 data-testid="category"
                 name="categoryId"
-                value={categorie.id}
-                onChange={updateValueCategory}
+                value={ categorie.id }
+                onChange={ updateValueCategory }
               />
             </label>
           </div>

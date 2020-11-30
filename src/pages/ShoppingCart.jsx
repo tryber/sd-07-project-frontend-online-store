@@ -1,4 +1,5 @@
 import React from 'react';
+
 export default class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ export default class ShoppingCart extends React.Component {
       this.recuperaLocalStorage();
     }
   }
-  
+
   arrayEmpty() {
     this.setState({ objeto: [] });
   }
@@ -47,4 +48,3 @@ export default class ShoppingCart extends React.Component {
     );
   }
 }
-
