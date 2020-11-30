@@ -5,16 +5,20 @@ import * as cartAPI from '../services/cartAPI';
 
 class ProductDetail extends Component {
   constructor(props) {
-    super()
+    super();
     this.state = {
       product: props.location.state.product,
-    }
+    };
   }
 
   render() {
-
     const { product } = this.state;
-    console.log(product)
+    let freeShipping;
+    if (product.shipping.free_shipping) {
+      freeShipping = <span data-testid="free-shipping">Frete grátis!</span>;
+    } else {
+      freeShipping = <span />;
+    }
     const specifications = product.attributes;
     return (
       <div>
@@ -35,8 +39,10 @@ class ProductDetail extends Component {
               </li>
             ))}
           </ul>
+          {freeShipping}
         </div>
         <button
+          type="button"
           data-testid="product-detail-add-to-cart"
           onClick={() => cartAPI.addItem(product)}
         >

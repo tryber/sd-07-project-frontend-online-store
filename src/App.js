@@ -15,6 +15,8 @@ class App extends Component {
     };
   }
 
+
+
   addToCart() {}
   
   render() {
@@ -28,10 +30,10 @@ class App extends Component {
           <Switch>
             <Route
               path="/product_Detail"
-              render={(props) => <ProductDetail {...props} />}
+              render={(props) => <ProductDetail {...props } />}
             />
-            <Route path="/cart" component={CartList} />
-            <Route exact path="/" component={Home} />
+            <Route path="/cart" component={ CartList } />
+            <Route exact path="/" component={ Home } />
 
           </Switch>
         </Router>
