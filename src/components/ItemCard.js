@@ -23,7 +23,7 @@ class ItemCard extends React.Component {
   render() {
     const { id, product, title, image, price, freeShipping } = this.props;
     let temFrete = '';
-    let elementPropertie =''
+    let elementPropertie = '';
     if (freeShipping === true) {
       temFrete = 'Frete Grátis';
       elementPropertie = 'free-shipping';
@@ -51,7 +51,7 @@ class ItemCard extends React.Component {
           Detalhes
         </Link>
         <p
-        data-testid={elementPropertie}
+          data-testid={ elementPropertie }
         >
           {temFrete}
         </p>
@@ -68,6 +68,7 @@ ItemCard.propTypes = {
   title: PropTypes.string,
   image: PropTypes.string,
   price: PropTypes.number,
+  freeShipping: PropTypes.bool,
 };
 
 ItemCard.defaultProps = {
@@ -76,4 +77,5 @@ ItemCard.defaultProps = {
   title: PropTypes.string,
   image: PropTypes.string,
   price: PropTypes.number,
+  freeShipping: PropTypes.bool,
 };

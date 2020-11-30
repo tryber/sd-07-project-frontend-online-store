@@ -10,7 +10,7 @@ class ListCard extends React.Component {
       <div className="list-card-product">
         {products.map((prod) => {
           const { shipping } = prod;
-          const { free_shipping } = shipping;
+          const { freeShipping } = shipping.free_shipping;
           console.log();
           return (
             <ItemCard
@@ -18,7 +18,7 @@ class ListCard extends React.Component {
               product={ prod }
               title={ prod.title }
               id={ prod.id }
-              freeShipping={free_shipping}
+              freeShipping={ freeShipping }
               image={ prod.thumbnail }
               price={ prod.price }
             />

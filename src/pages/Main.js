@@ -8,7 +8,7 @@ import Categories from '../components/Categories';
 import ListCard from '../components/ListCard';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 class Main extends React.Component {
@@ -65,7 +65,6 @@ class Main extends React.Component {
         search !== '' || catID !== '' ? '' : 'Nenhum produto foi encontrado',
       product: await api.getProductsFromCategoryAndQuery(catID, search),
     });
-    console.log(this.state.product);
   }
 
   render() {
