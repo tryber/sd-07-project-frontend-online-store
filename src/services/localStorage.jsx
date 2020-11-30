@@ -29,3 +29,13 @@ export const addToCart = (product) => {
   if (!unique) cart.push(item);
   saveCart(cart);
 };
+
+export const showQuantInCart = () => {
+  const cart = readCart();
+  const zero = 0;
+  if (cart) {
+    return (cart
+      .reduce((previous, { amount }) => previous + amount, zero));
+  }
+  return zero;
+};

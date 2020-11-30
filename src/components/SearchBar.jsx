@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   render() {
-    const { query, onChange, onClick } = this.props;
+    const { query, onChange, onClick, cartSize } = this.props;
     return (
       <header>
         <input
@@ -26,6 +26,12 @@ class SearchBar extends React.Component {
 
         <Link data-testid="shopping-cart-button" to="/pages/shopping-cart">
           Carrinho
+          <span
+            className="cart-quantity"
+            data-testid="shopping-cart-size"
+          >
+            { cartSize }
+          </span>
         </Link>
       </header>
     );
@@ -38,4 +44,5 @@ SearchBar.propTypes = {
   query: propTypes.string.isRequired,
   onChange: propTypes.func.isRequired,
   onClick: propTypes.func.isRequired,
+  cartSize: propTypes.number.isRequired,
 };
