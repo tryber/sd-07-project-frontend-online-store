@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as api from '../services/api';
+import { Link } from 'react-router-dom';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class ProductDetail extends React.Component {
     this.productLoaded = this.productLoaded.bind(this);
     this.state = {
       loading: true,
+      product: [],
     };
   }
 
@@ -17,14 +18,14 @@ class ProductDetail extends React.Component {
   }
 
   async fetchProduct() {
-    const {
-      match: {
-        params: { id },
-      },
-    } = this.props;
-    const RequestReturn = await api.getProduct(id);
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+    const endpoint = `https://api.mercadolibre.com/items/${id}`;
+    const response = await fetch(endpoint);
+    const fetchedProduct = await response.json();
     this.setState({
-      product: RequestReturn,
+      product: fetchedProduct,
       loading: false,
     });
   }
@@ -44,6 +45,7 @@ class ProductDetail extends React.Component {
             ))}
           </ul>
         </div>
+        <Link to="/shoppingCart"> Carrinho de compras </Link>
       </div>
     );
   }
