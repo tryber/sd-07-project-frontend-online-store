@@ -102,3 +102,6 @@ Body {
   justify-content: center;
   width: fit-content;
 }
+.card-product {
+  background-color: white;
+}
