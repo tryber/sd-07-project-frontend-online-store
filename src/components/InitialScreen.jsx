@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { SideBar } from './index';
-import './InitialScreen.css';
 import Header from './Header';
 import ProductList from './ProductList';
 
@@ -69,22 +68,23 @@ class InitialScreen extends React.Component {
     const tagMessage = <h1 data-testid="home-initial-message">{message}</h1>;
 
     return (
-      <>
+      <div className="initial-screen">
         <Header
           searchInput={ searchInput }
           onInputSearchChange={ this.onInputSearchChange }
           buttonSearch={ this.buttonSearch }
         />
-        {!searchInput ? tagMessage : ''}
-        <div className="side-bar">
-          <SideBar
-            categories={ categories }
-            onChangeCategorySelected={ this.onChangeCategorySelected }
-          />
+        <h4 className="search-text">{!searchInput ? tagMessage : ''}</h4>
+        <div className="initial-screen-body">
+          <div className="side-bar">
+            <SideBar
+              categories={ categories }
+              onChangeCategorySelected={ this.onChangeCategorySelected }
+            />
+          </div>
+          <ProductList products={ products } />
         </div>
-
-        <ProductList products={ products } />
-      </>
+      </div>
     );
   }
 }

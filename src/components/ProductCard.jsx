@@ -31,15 +31,16 @@ class ProductCard extends React.Component {
     const indexTwo = 8;
     const subtitle = title.substring(indexOne, indexTwo);
     return (
-      <div>
+      <div className="product-card">
         <Link data-testid="product-detail-link" to={ `/detail/${subtitle}` }>
-          <div data-testid="product">
-            <img src={ thumbnail } alt="Imagem do produto" />
-            <h4>{title}</h4>
-            <h3>{price}</h3>
+          <div data-testid="product" className="product-card-body">
+            <img src={ thumbnail } alt="Imagem do produto" className="product-card-img" />
+            <h4 className="product-card-title">{title}</h4>
+            <h3 className="product-card-price">{`R$ ${price}`}</h3>
           </div>
         </Link>
         <button
+          className="product-card-button"
           type="button"
           data-testid="product-add-to-cart"
           id={ product }
