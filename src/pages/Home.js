@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Category from '../components/Category';
-import SearchBar from '../components/SearchBar';
-import ProductCard from '../components/ProductCard';
-import NotFound from '../components/NotFound';
-import ShoppingCartButton from '../components/ShoppingCartButton';
+import {
+  Category, SearchBar, ProductCard, NotFound, ShoppingCartButton }
+  from '../components/index';
 import * as api from '../services/api';
 
 class Home extends Component {
@@ -14,6 +12,8 @@ class Home extends Component {
       categories: [],
       products: {},
       status: false,
+      categoryId: '',
+      query: '',
     };
   }
 
@@ -21,12 +21,16 @@ class Home extends Component {
 
   componentDidUpdate(prevProps, prevState) { this.StatusSet(prevState); }
 
-  onClick(query) { this.fetchProducts(query); }
+  onClick(key, value) {
+    this.setState({
+      [key]: value,
+    });
+  }
 
   StatusSet(prevState) {
-    const { products } = this.state;
-    if (prevState.products !== products) {
-      this.setState({ status: true });
+    const { categoryId, query } = this.state;
+    if (prevState.categoryId !== categoryId || prevState.query !== query) {
+      this.fetchProducts();
     }
   }
 
@@ -34,9 +38,11 @@ class Home extends Component {
     this.setState({ categories: await api.getCategories() });
   }
 
-  async fetchProducts(query, categoryId = '') {
+  async fetchProducts() {
+    const { categoryId, query } = this.state;
     this.setState({
       products: await api.getProductsFromCategoryAndQuery(categoryId, query),
+      status: true,
     });
   }
 
@@ -53,7 +59,7 @@ class Home extends Component {
               : <NotFound />
           )
         }
-        <Category categories={ categories } />
+        <Category categories={ categories } onClick={ this.onClick } />
       </div>
     );
   }
