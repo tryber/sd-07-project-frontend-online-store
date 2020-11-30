@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class ProductCard extends Component {
   render() {
     const { product, updatecart } = this.props;
-    const { thumbnail, title, price } = product;
+    const { thumbnail, title, price, shipping: { free_shipping } } = product;
     return (
       <div data-testid="product">
         <Link
@@ -13,6 +13,7 @@ class ProductCard extends Component {
           to={ { pathname: '/product', product, updatecart } }
         >
           <img src={ thumbnail } alt="Imagem do produto" />
+          { free_shipping && <span data-testid="free-shipping">Frete Grátis</span> }
           <h3>{ title }</h3>
           <h2>{ price }</h2>
         </Link>
@@ -33,6 +34,9 @@ ProductCard.propTypes = {
     thumbnail: Proptypes.string.isRequired,
     title: Proptypes.string.isRequired,
     price: Proptypes.number.isRequired,
+    shipping: Proptypes.shape({
+      free_shipping: Proptypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
   updatecart: Proptypes.func.isRequired,
 };
