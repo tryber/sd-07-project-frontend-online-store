@@ -22,7 +22,7 @@ class CartIcon extends Component {
 }
 
 CartIcon.propTypes = {
-  totalQuantity: PropTypes.number.isRequired,
+  totalQuantity: PropTypes.string.isRequired,
 };
 
 export default CartIcon;

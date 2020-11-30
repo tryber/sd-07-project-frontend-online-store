@@ -18,14 +18,14 @@ class App extends React.Component {
   }
 
   addItem(item) {
-    let { totalQuantity } = this.state;
+    let { totalQuantity, cart } = this.state;
     totalQuantity += 1;
     this.setState((previousState) => ({
       cart: [...previousState.cart, item],
       totalQuantity,
     }));
     console.log(item);
-    localStorage.setItem(item.id, JSON.stringify(item));
+    localStorage.setItem(cart, JSON.stringify(item));
     localStorage.setItem('totalQuantity', totalQuantity);
   }
 
@@ -46,7 +46,7 @@ class App extends React.Component {
         return;
       }
     }
-    localStorage.setItem(item.id, JSON.stringify(item));
+    localStorage.setItem(cart, JSON.stringify(item));
     localStorage.setItem('totalQuantity', totalQuantity);
   }
 
