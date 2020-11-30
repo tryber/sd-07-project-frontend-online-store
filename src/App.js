@@ -1,12 +1,13 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import ListagemDeProdutos from './pages/ListagemDeProdutos'
+import Routes from './Routes';
 
 function App() {
   return (
-    <div>
-      <ListagemDeProdutos />
-    </div>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 
