@@ -22,7 +22,7 @@ class ShoppingCartIcon extends React.Component {
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     const summ = (sum, addValue) => sum + (addValue.qtd);
     const cartTotal = cartItems.reduce(summ, len.length);
-    if (numeroItens !== cartTotal) {
+    if (numeroItens < cartTotal) {
       this.atualizar(cartTotal);
     }
     return (
