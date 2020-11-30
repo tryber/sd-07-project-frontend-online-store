@@ -76,19 +76,17 @@ class ProductCard extends React.Component {
     const { item } = this.props;
     const { id, available_quantity: availableQuantity, title, price, thumbnail } = item;
     return (
-      <section data-testid="product">
-        <p>
-          {id}
-        </p>
-        <div>
-          <img alt="Sell Product" className="card-image" src={ thumbnail } />
-        </div>
+      <section>
+        <img className="card-image" alt="" src={ thumbnail } />
         <div className="info">
-          <div>{title}</div>
-          <br />
-          <div>{availableQuantity}</div>
-          <br />
-          <div>{price}</div>
+          <h3 className="title">{title}</h3>
+          <h5 className="subtitle"><b>{ price }</b></h5>
+          <div>
+            <h6>
+              Quantidade disponível:
+              { availableQuantity }
+            </h6>
+          </div>
         </div>
         <Link
           data-testid="product-detail-link"
@@ -99,7 +97,6 @@ class ProductCard extends React.Component {
         >
           Mais Detalhes
         </Link>
-        <hr />
         <button
           data-testid="product-add-to-cart"
           value="items"
