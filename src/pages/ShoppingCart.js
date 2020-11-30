@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import Header from '../components/Header';
 import CartItem from '../components/CartItem';
 
@@ -35,6 +37,13 @@ class ShoppingCart extends Component {
             />
           ))
         }
+        <Link
+          to="/checkout"
+          cart={ cart }
+          data-testid="checkout-products"
+        >
+          Finalizar Compra
+        </Link>
       </div>
     );
   }
