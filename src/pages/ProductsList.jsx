@@ -167,8 +167,7 @@ class ProductsList extends Component {
           }
           return products;
         });
-      }
-      else if (value === 'higher-price') {
+      } else if (value === 'higher-price') {
         products.sort(function (a, b) {
           if (a.price < b.price) {
             return 1;
