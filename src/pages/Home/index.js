@@ -22,13 +22,11 @@ export class Home extends Component {
     };
   }
 
-
   addTocart(product) {
     this.setState((prev) => ({
       productsItemsCart: [...prev.productsItemsCart, product],
     }));
   }
-
 
   getCurrentCategory(id) {
     this.setState({ categoryId: id, isLoading: true }, async () => {
@@ -41,21 +39,14 @@ export class Home extends Component {
   }
 
   fetchSearchButton(searchResult) {
-
-
     this.setState({ searchInput: searchResult, isLoading: true }, async () => {
-
-
       const object = await api.getProductsFromCategoryAndQuery(
         this.state.categoryId,
         searchResult
       );
 
-
       this.setState({ products: object.results, isLoading: false });
     });
-
-
   }
 
   render() {
@@ -76,8 +67,6 @@ export class Home extends Component {
               callback={this.fetchSearchButton}
             />
             <div className="displayCard">
-
-
               {products.length === 0 && !isLoading && (
                 <div data-testid="home-initial-message">
                   Digite algum termo de pesquisa ou escolha uma categoria.
@@ -97,8 +86,6 @@ export class Home extends Component {
                   </cp.CardProduct>
                 ))
               )}
-
-
             </div>
           </div>
         </div>
