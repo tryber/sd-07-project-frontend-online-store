@@ -32,15 +32,14 @@ class Home extends React.Component {
   }
 
   onSearchTextChange({ target }) {
-    const { name } = target;
-    const value = target.value;
+    const { name, value } = target;
     this.setState({ [name]: value });
   }
 
   async getProducts(categoryId, query) {
     const products = await api.getProductsFromCategoryAndQuery(
       categoryId,
-      query
+      query,
     );
     return products;
   }
@@ -50,7 +49,8 @@ class Home extends React.Component {
     const categoryId = 'ALL';
     const { results } = await this.getProducts(categoryId, searchText);
     let falha;
-    if (results.length === 0) {
+    const vazio = 0;
+    if (results.length === vazio) {
       falha = 'Fail';
     } else {
       falha = 'OK';
@@ -91,7 +91,7 @@ class Home extends React.Component {
                 id="searchtext"
                 type="text"
                 name="searchText"
-                placeholder="Digite algum termo de pesquisa aqui"
+                placeholder="  Digite algum termo de pesquisa aqui"
                 autoComplete="off"
                 value={ searchText }
                 onChange={ this.onSearchTextChange }
