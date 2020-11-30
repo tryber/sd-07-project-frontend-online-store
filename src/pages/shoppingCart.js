@@ -15,7 +15,10 @@ class shoppingCart extends Component {
   }
 
   increaseDecrease(idItem, action) {
-    const { shoppingList, quantity } = this.state;
+    const { quantity } = this.state;
+    const shoppingList = JSON.parse(localStorage.getItem('cart'));
+    // const quantity = localStorage.getItem('quantity');
+    console.log(quantity);
     const variavel = shoppingList
       .find(item => {
         const { id } = item;
@@ -40,15 +43,15 @@ class shoppingCart extends Component {
       this.setState({
         shoppingList,
         quantity,
-      }, localStorage.setItem('quantity',quantity))
+      }, localStorage.setItem('quantity',quantity), localStorage.setItem('cart', JSON.stringify(shoppingList)))
     }
   }
   createQuantity() {
     console.log('passou aqui')
-    const { shoppingList } = this.state;
+    const shoppingList = JSON.parse(localStorage.getItem('cart'));
     console.log(shoppingList);
     const quantity = [];
-    for (let index = 0; index < 5; index += 1) {
+    for (let index = 0; index < shoppingList.length; index += 1) {
       quantity.push(1);
     }
     console.log(quantity);
@@ -58,10 +61,12 @@ class shoppingCart extends Component {
   }
   componentDidMount() {
     const list = JSON.parse(localStorage.getItem('cart'));
+    // const quantity = localStorage.getItem('quantity');
 
     if (list !== null) {
       this.setState(() => ({
         shoppingList: list ? list : [],
+        // quantity,
       }), this.createQuantity())
     }
 
@@ -69,7 +74,9 @@ class shoppingCart extends Component {
 
 
   shoppingCartMount() {
-    const { shoppingList } = this.state;
+    const shoppingList = JSON.parse(localStorage.getItem('cart'));
+    // const { shoppingList } = this.state;
+
     const { quantity } = this.state;
     const array = [];
     if (shoppingList.length === 0) {
@@ -78,8 +85,6 @@ class shoppingCart extends Component {
           <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
         </div>)
     }
-    // Tudo abaixo daqui pressupõe que no state tem um array no formato shoppingList [{},{}] com chaves product e quantity
-    //esse for está rodando só 1x, precisamos que ele retorne todos os outputs. 
     for (let index = 0; index < shoppingList.length; index += 1) {
       const { title, thumbnail, price, id } = shoppingList[index];
       array.push(
@@ -111,7 +116,7 @@ class shoppingCart extends Component {
     return (
       <div>
         <h2>Total</h2>
-        <h2>{sum}</h2>
+        <h2>{sum.toFixed(2)}</h2>
       </div>
     )
 
@@ -127,16 +132,13 @@ class shoppingCart extends Component {
   // }
 
   render() {
-
     return (
       <div className="shoppingCartBody">
         <h1>Shopping Cart</h1>
         <this.shoppingCartMount />
         <this.totalSum />
       </div>
-
     )
-
   }
 }
 export default shoppingCart;
