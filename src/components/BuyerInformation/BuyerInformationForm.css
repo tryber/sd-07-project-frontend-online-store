@@ -1,0 +1,17 @@
+.form-information {
+display:flex;
+flex-direction: column;
+padding: 10px;
+width: 500px;
+}
+
+input {
+    margin: 2px;
+}
+
+.payment{
+    display: flex;
+    flex-direction: column;
+}
+
+
