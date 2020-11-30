@@ -4,59 +4,37 @@ import PropTypes from 'prop-types';
 class CartItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      thumbnail: '',
-      title: '',
-      quantity: 0,
-      price: 0,
-      total: 'XXX,XX',
-    };
+
     this.addAmount = this.addAmount.bind(this);
     this.lessAmount = this.lessAmount.bind(this);
   }
 
-  componentDidMount() {
-    this.handleState();
-  }
-
-  handleState() {
-    const { item } = this.props;
-    const { title, thumbnail, price, quantity } = item;
-    this.setState({ title, thumbnail, price, quantity, total: price });
-  }
-
   addAmount() {
-    const { price } = this.state;
-    let { quantity, total } = this.state;
-    quantity += 1;
-    total = price * quantity;
-    this.setState({ quantity, total });
-    console.log(quantity);
+    const { item, handleTotalQuantity } = this.props;
+    handleTotalQuantity('+', item);
   }
 
   lessAmount() {
+    const { item, handleTotalQuantity } = this.props;
     const lowerLimit = 0;
-    const { price } = this.state;
-    let { quantity, total } = this.state;
-    if (quantity > lowerLimit) {
-      quantity -= 1;
+    if (item.quantity > lowerLimit) {
+      handleTotalQuantity('-', item);
     }
-    total = price * quantity;
-    this.setState({ quantity, total });
-    console.log(quantity);
   }
 
   render() {
-    const { title, thumbnail, total, quantity } = this.state;
+    const { item } = this.props;
+    const { title, thumbnail, quantity } = item;
+
     return (
       <div>
-        <button
-          type="button"
-        >
+        <button type="button">
           X
         </button>
         <img src={ thumbnail } alt={ title } />
-        <h2 data-testid="shopping-cart-product-name">{ title }</h2>
+        <h2 data-testid="shopping-cart-product-name">
+          {title}
+        </h2>
         <button
           type="button"
           onClick={ this.lessAmount }
@@ -66,7 +44,10 @@ class CartItem extends Component {
         >
           -
         </button>
-        <h3 data-testid="shopping-cart-product-quantity">{ quantity }</h3>
+        <h3 data-testid="shopping-cart-product-quantity">
+          { quantity }
+        </h3>
+
         <button
           type="button"
           onClick={ this.addAmount }
@@ -76,12 +57,11 @@ class CartItem extends Component {
         >
           +
         </button>
-        <h4>{ total }</h4>
         <p>
-          {`Valor Total da Compra: ${total}`}
+          Valor Total da Compra:
         </p>
 
-        {console.log(title)}
+        <button type="submit"> Finalizar Compra </button>
       </div>
     );
   }
@@ -93,6 +73,7 @@ CartItem.propTypes = {
     thumbnail: PropTypes.string,
     quantity: PropTypes.number,
   }).isRequired,
+  handleTotalQuantity: PropTypes.func.isRequired,
 };
 
 export default CartItem;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default class QueryBar extends Component {
@@ -29,16 +28,6 @@ export default class QueryBar extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h3>
         </div>
-        <Link
-          to="/shoopingcart"
-          data-testid="shopping-cart-button"
-          className="home-initial-link"
-        >
-          <img
-            src="images/shopping-cart-50.png"
-            alt="Carrinho de Compras"
-          />
-        </Link>
       </div>
     );
   }

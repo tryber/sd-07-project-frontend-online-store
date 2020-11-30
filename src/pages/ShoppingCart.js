@@ -7,13 +7,12 @@ import CartItem from '../components/CartItem';
 
 class ShoppingCart extends Component {
   render() {
-    const { cart } = this.props;
-    if (!cart.length) {
+    const { handleTotalQuantity, cart } = this.props;
+    if (!Object.keys(cart).length) {
       return (
         <div>
           <Header
             text="Carrinho de Compras"
-            imagePath="images/shopping-cart-50.png"
             imagePathReply="images/reply-arrow-red-50.png"
           />
           <img
@@ -27,12 +26,15 @@ class ShoppingCart extends Component {
       <div>
         <Header
           text="Carrinho de Compras"
-          imagePath="images/shopping-cart-50.png"
           imagePathReply="images/reply-arrow-red-50.png"
         />
         {
           cart.map((item) => (
-            <CartItem key={ item.id } item={ item } />
+            <CartItem
+              key={ item.id }
+              item={ item }
+              handleTotalQuantity={ handleTotalQuantity }
+            />
           ))
         }
         <Link
@@ -49,6 +51,7 @@ class ShoppingCart extends Component {
 
 ShoppingCart.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  handleTotalQuantity: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;

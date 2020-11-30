@@ -6,7 +6,7 @@ body{
   font-size: 16;
   color: #000000;
   line-height: 25px;
-  
+
 }
 .header {
   display: flex;
@@ -30,6 +30,10 @@ body{
   height: 40px;
   border-radius: 50px;
   width: 70%;
+
+}
+
+.home-initial-link {
 
 }
 
