@@ -5,6 +5,7 @@ class AddReview extends Component {
     super(props);
     this.state = {
       review: {
+        email: '',
         rating: '',
         comment: '',
       },
@@ -15,11 +16,11 @@ class AddReview extends Component {
   }
 
   updateState(field, newValue) {
-    this.setState({ review: { [field]: newValue, } });
+    this.setState({ review: { [field]: newValue } });
   }
 
   handleSubmit() {
-    this.setState( (prevState) => ({history : [...prevState.history, prevState.review]}))
+    this.setState((prevState) => ({ history: [...prevState.history, prevState.review] }));
   }
 
   render() {
@@ -28,7 +29,13 @@ class AddReview extends Component {
       <div>
         <h2>Avaliação</h2>
         <form>
-          <textarea 
+          <input
+            placeholder="E-mail"
+            type="email"
+            required="true"
+            onChange={ (event) => this.updateState('email', event.target.value) }
+          />
+          <textarea
             placeholder="Escreva um comentário (opcional)"
             data-testid="product-detail-evaluation"
             onChange={ (event) => this.updateState('comment', event.target.value) }
@@ -51,8 +58,8 @@ class AddReview extends Component {
           </button>
         </form>
         <div>
-          { history.map((item, index) => (
-            <div key={index}>
+          { history.map(item => (
+            <div key={ item.email }>
               <p>{item.comment}</p>
               <p>{item.rating}</p>
             </div>))
