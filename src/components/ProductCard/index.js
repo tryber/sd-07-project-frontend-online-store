@@ -47,9 +47,9 @@ class ProductCard extends Component {
         </div>
         <div>
           <button
-            type="submit"
+            type="button"
             data-testid="product-add-to-cart"
-            onClick={ (e) => { e.preventDefault(); this.addToCart(product); } }
+            onClick={ () => this.addToCart(product) }
           >
             Adicionar ao Carrinho
           </button>
