@@ -8,13 +8,36 @@ export default class SearchBar extends Component {
     super();
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+    this.getLocalStorage = this.getLocalStorage.bind(this);
+    this.arrayEmpty = this.arrayEmpty.bind(this);
+    this.quantity = this.quantity.bind(this);
     this.state = {
       listOfProducts: [],
       query: '',
       category: '',
+      objeto: [],
     };
   }
 
+  componentDidMount() {
+    const local = JSON.parse(localStorage.getItem('cart'));
+    // eslint-disable-next-line no-unused-expressions
+    if (local === null) {
+      this.arrayEmpty();
+    } else {
+      this.getLocalStorage();
+    }
+  }
+
+  getLocalStorage() {
+    const saveObj = JSON.parse(localStorage.getItem('cart'));
+    this.setState({
+      objeto: saveObj,
+    });
+  }
+
+  // eslint-disable-next-line react/sort-comp
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({
@@ -29,6 +52,43 @@ export default class SearchBar extends Component {
 
     const retrieveProductsFromCategoryOrQuery = getProductsFromCategoryOrQuery.results;
     this.setState({ listOfProducts: retrieveProductsFromCategoryOrQuery });
+  }
+
+  async addToCart(item) {
+    const { title, price, thumbnail, id } = item;
+    console.log(item);
+    const { objeto } = this.state;
+    const objItem = {
+      id,
+      title,
+      price,
+      thumbnail,
+      quantity: 1,
+    };
+    const newState = [...objeto, objItem];
+    this.setState({ objeto: newState });
+    localStorage.setItem('cart', JSON.stringify(newState));
+    this.quantity(item);
+  }
+
+  quantity(item) {
+    const { id } = item;
+    const array = JSON.parse(localStorage.getItem('cart'));
+    const newId = id;
+    const index = array.findIndex((elemento) => elemento.id === newId);
+    const num = -1;
+    // eslint-disable-next-line no-unused-expressions
+    if (index === num) {
+      array.push({ id: newId, quantidade: 1 });
+    } else {
+      array[index].quantidade += 1;
+    }
+    localStorage.setItem('cart', JSON.stringify(array));
+  }
+
+
+  arrayEmpty() {
+    this.setState({ objeto: [] });
   }
 
   render() {
@@ -84,6 +144,15 @@ export default class SearchBar extends Component {
               <a className="details-link" href="http://www.google.com">
                 Ver detalhes
               </a>
+              <button
+                type="button"
+                name={ itens.id }
+                className="details-link"
+                data-testid="product-add-to-cart"
+                onClick={ () => this.addToCart(itens) }
+              >
+                Adicionar ao carrinho
+              </button>
             </div>
           ))}
         </div>
