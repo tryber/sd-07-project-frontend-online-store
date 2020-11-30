@@ -166,8 +166,6 @@ class ProductsList extends Component {
         })
       }
       else if (value === 'higher-price') {
-        console.log(value);
-        console.log('Fui chamado');
         products.sort(function (a, b) {
           if (a.price < b.price) {
             return 1;
