@@ -1,20 +1,22 @@
 .App {
-  align-items: baseline;
+  align-items: center;
+  background-color: rgba(15, 163, 107, 0.100);
   display: flex;
   flex-direction: column;
-  height: 100%;
-  justify-content: baseline;
+  height: auto;
+  justify-content: center;
   text-align: center;
   width: 100%;
 }
 
 .App-header {
   align-items: center;
-  background-color: #282c34;
+  background-color: #0fa36b;
   color: white;
   display: flex;
   flex-direction: column;
   font-size: 20px;
+  font-weight: 700;
   height: 30px;
   justify-content: center;
   width: 100%;
@@ -90,12 +92,89 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  justify-content: center;
+  margin: 10px;
+  width: 900px;
+}
+
+.product-details, .review {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
   width: 100%;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.product-detail-text {
+  display: flex;
+  align-content: center;
+  text-align: left;
+}
+
+.product-detail-text > p {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.review, .reviews-list  {
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: baseline;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.review>span, .review>p {
+  align-items: baseline;
+  display: flex;
+  margin: 10px;
+}
+
+.review>h2 {
+  margin-left: 10px;
+}
+
+.review-form {
+  height: 100px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.review-form, .review-header {
+  align-self: baseline;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 200px;
+  margin-right: 10px;
+}
+
+textarea {
+  width: 420px;
+}
+
+button {
+  width: 80px;
+}
+
+img {
+  width: 40%;
 }
 
 .buttons-link {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
   width: 90%;
 }
