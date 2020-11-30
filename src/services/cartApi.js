@@ -40,16 +40,16 @@ export function decreaseToCart(product) {
   localStorage.setItem('cart', JSON.stringify(newCart));
 }
 
-/* export function removeFromCart(product) {
-  const currentList = JSON.parse(localStorage.getItem('cart'));
-  let newList = currentList.map(({ id }) => id !== product.id);
-  console.log(newList);
-  newList = (newList[0] === false) ? [] : newList;
-  localStorage.setItem('cart', JSON.stringify(newList));
-} */
-
 export function removeFromCart(product) {
   const currentList = JSON.parse(localStorage.getItem('cart'));
   currentList.splice(currentList.findIndex(({ id }) => id === product.id), 1);
   localStorage.setItem('cart', JSON.stringify(currentList));
+}
+
+export function getCartLength() {
+  const currentList = JSON.parse(localStorage.getItem('cart'));
+  const initialLenght = 0;
+  const cartLength = currentList
+    .reduce((total, item) => total + item.cartQuantity, initialLenght);
+  return cartLength;
 }
