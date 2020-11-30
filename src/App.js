@@ -1,49 +1,57 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ProductList from "./pages/ProductList";
-import ProductDetail from "./pages/ProductDetail";
-import ShoppingCart from "./pages/ShoppingCart";
-import "./App.css";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ProductList from './pages/ProductList';
+import ProductDetail from './pages/ProductDetail';
+import ShoppingCart from './pages/ShoppingCart';
+import CartIcon from './components/CartIcon';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
     super();
     this.addItem = this.addItem.bind(this);
+    this.handleTotalQuantity = this.handleTotalQuantity.bind(this);
     this.state = {
       cart: [],
       totalQuantity: 0,
     };
-    this.totalAmount = this.totalAmount.bind(this);
   }
 
   addItem(item) {
+    let { totalQuantity } = this.state;
+    totalQuantity += 1;
     this.setState((previousState) => ({
       cart: [...previousState.cart, item],
+      totalQuantity,
     }));
-    this.totalAmount();
   }
 
-  totalAmount() {
-    const valueInit = 0;
-    const { cart } = this.state;
+  handleTotalQuantity(op) {
     let { totalQuantity } = this.state;
-    totalQuantity = cart.reduce((acc, item) => acc + parseInt(item.quantity, 10),
-      valueInit);
+    if (op === '+') {
+      totalQuantity += 1;
+    } else if (op === '-') {
+      totalQuantity -= 1;
+    }
     this.setState({ totalQuantity });
-    console.log('TotalAmoutn APP: ', totalQuantity);
   }
 
   render() {
-    const { cart } = this.state;
+    const { cart, totalQuantity } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
+          <CartIcon totalQuantity={ totalQuantity } />
           <Switch>
             <Route
               exact
               path="/product/:categoryId/:id"
               render={ (props) => (
-                <ProductDetail addItem={ this.addItem } { ...props } />
+                <ProductDetail
+                  addItem={ this.addItem }
+                  { ...props }
+                  handleTotalQuantity={ this.handleTotalQuantity }
+                />
               ) }
             />
             {' '}
@@ -51,13 +59,24 @@ class App extends React.Component {
               exact
               path="/"
               render={ (props) => (
-                <ProductList addItem={ this.addItem } cart={ cart } { ...props } />
+                <ProductList
+                  addItem={ this.addItem }
+                  cart={ cart }
+                  { ...props }
+                  handleTotalQuantity={ this.handleTotalQuantity }
+                />
               ) }
             />
             <Route
               exact
               path="/shoopingcart"
-              render={ (props) => <ShoppingCart addItem={ this.addItem } cart={ cart } { ...props } /> }
+              render={ (props) => (
+                <ShoppingCart
+                  addItem={ this.addItem }
+                  cart={ cart }
+                  { ...props }
+                  handleTotalQuantity={ this.handleTotalQuantity }
+                />) }
             />
           </Switch>
           {' '}

@@ -1,41 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import CartIcon from '../components/CartIcon';
 import CartItem from '../components/CartItem';
 
 class ShoppingCart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      totalQuantity: 0,
-      totalPrice: 0,
-    };
-    this.handleCartIcom = this.handleCartIcom.bind(this);
-    this.totalAmount = this.totalAmount.bind(this);
-  }
-
-  componentDidMount() {
-    this.totalAmount();
-  }
-
-  totalAmount() {
-    const valueInit = 0;
-    const { cart } = this.props;
-    let { totalQuantity } = this.state;
-    totalQuantity = cart.reduce((acc, item) => acc + parseInt(item.quantity, 10),
-      valueInit);
-    this.setState({ totalQuantity });
-    console.log('TotalAmoutn: ', totalQuantity);
-  }
-
-  handleCartIcom(quantity) {
-    this.totalAmount();
-  }
-
   render() {
-    const { cart } = this.props;
-    const { totalQuantity } = this.state;
+    const { cart, handleTotalQuantity } = this.props;
     if (!cart.length) {
       return (
         <div>
@@ -54,14 +24,16 @@ class ShoppingCart extends Component {
     return (
       <div>
         <Header
-          totalQuantity={ totalQuantity }
           text="Carrinho de Compras"
           imagePathReply="images/reply-arrow-red-50.png"
         />
-        <CartIcon totalQuantity={ totalQuantity } />
         {
           cart.map((item) => (
-            <CartItem key={ item.id } item={ item } onClick={ this.handleCartIcom } />
+            <CartItem
+              key={ item.id }
+              item={ item }
+              handleTotalQuantity={ handleTotalQuantity }
+            />
           ))
         }
       </div>
@@ -71,6 +43,7 @@ class ShoppingCart extends Component {
 
 ShoppingCart.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  handleTotalQuantity: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;

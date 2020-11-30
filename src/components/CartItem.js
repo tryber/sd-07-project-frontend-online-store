@@ -13,19 +13,18 @@ class CartItem extends Component {
   }
 
   addAmount() {
-    const { onClick, item } = this.props;
+    const { item, handleTotalQuantity } = this.props;
+    handleTotalQuantity('+');
     item.quantity += 1;
-    onClick(1);
-    this.setState({ quantity: item.quantity });
   }
 
   lessAmount() {
-    const { onClick, item } = this.props;
+    const { item, handleTotalQuantity } = this.props;
+    handleTotalQuantity('-');
     const lowerLimit = 0;
     if (item.quantity > lowerLimit) {
       item.quantity -= 1;
     }
-    onClick(-1);
   }
 
   render() {
@@ -65,7 +64,7 @@ class CartItem extends Component {
           +
         </button>
         <p>
-          { `Valor Total da Compra:` }
+          Valor Total da Compra:
         </p>
 
         <button type="submit"> Finalizar Compra </button>
@@ -80,6 +79,7 @@ CartItem.propTypes = {
     thumbnail: PropTypes.string,
     quantity: PropTypes.number,
   }).isRequired,
+  handleTotalQuantity: PropTypes.func.isRequired,
 };
 
 export default CartItem;

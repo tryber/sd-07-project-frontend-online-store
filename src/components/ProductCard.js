@@ -11,11 +11,9 @@ class ProdoctCard extends React.Component {
   }
 
   addToCart(product) {
-    const { onClick } = this.props;
     const { title, thumbnail, price, id } = product;
     const { addItem } = this.props;
     addItem({ title, thumbnail, price, id, quantity: 1 });
-    onClick();
   }
 
   render() {
