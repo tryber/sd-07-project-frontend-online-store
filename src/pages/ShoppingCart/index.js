@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import * as cartApi from '../../services/cartApi';
 import CartItem from '../../components/CartItem';
-import { Link } from 'react-router-dom';
 
 class ShoppingCart extends Component {
   constructor() {
