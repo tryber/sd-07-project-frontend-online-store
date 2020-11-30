@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as localStorage from '../services/localStorage';
+import api from '../services/api';
 
 import './ShoppingCart.css';
 
@@ -56,10 +57,11 @@ export default class ShoppingCart extends Component {
     }
   }
 
-  addSubButton(productId, operation) {
+  async addSubButton(productId, operation) {
     const zero = 0;
     const { cart } = this.state;
     const index = cart.findIndex(({ id }) => id === productId);
+    const avaliable_qtd = await fetch(`https://api.mercadolibre.com/items/${id}`);
     if (operation === 'add') {
       cart[index].amount += 1;
     } else if (operation === 'sub' && cart[index].amount > zero) {
