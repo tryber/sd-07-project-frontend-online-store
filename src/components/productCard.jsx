@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   render() {
-    const { product } = this.props;
+    const { product, addToCart } = this.props;
     const { id, title, price, thumbnail } = product;
 
     return (
@@ -24,6 +24,12 @@ class ProductCard extends React.Component {
           >
             Detalhes
           </Link>
+          <button data-testid="product-add-to-cart"
+          type="button"
+          onClick={ () => addToCart(product)}
+          >
+            Adicionar ao carrinho de compras
+            </button>
         </div>
       </div>
     );
