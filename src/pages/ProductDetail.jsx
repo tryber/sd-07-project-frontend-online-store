@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import * as API from '../services/api';
 import CartIcon from '../components/CartIcon';
-import "./ProductDetails.css";
+import './ProductDetails.css';
 
 
 class ProductDetail extends Component {
@@ -21,9 +21,9 @@ class ProductDetail extends Component {
     this.subtractItem = this.subtractItem.bind(this);
     this.translateFreeShipping = this.translateFreeShipping.bind(this);
     this.state = {
-      id: "",
+      id: '',
       attributes: [],
-      title: "",
+      title: '',
       price: 0,
       freeShipping: false,
       thumbnail: '',
@@ -45,7 +45,7 @@ class ProductDetail extends Component {
   }
 
   setInitialStateNumber(id) {
-    const cartArray = JSON.parse(localStorage.getItem("cart"));
+    const cartArray = JSON.parse(localStorage.getItem('cart'));
     if (cartArray === null) return this.setState({ number: 0 });
     const product = cartArray.find((item) => item.id === id);
     this.setState({ number: product.number });
@@ -103,8 +103,8 @@ class ProductDetail extends Component {
 
   removeZero(string) {
     let stringNumber = string;
-    if (stringNumber[0] === "0") {
-      stringNumber = "0";
+    if (stringNumber[0] === '0') {
+      stringNumber = '0';
       return stringNumber;
     }
     stringNumber = this.removeLastItem(stringNumber);
@@ -126,7 +126,7 @@ class ProductDetail extends Component {
     const imagePath = thumbnail;
     const number = 1;
     if (Storage) {
-      const getItemSaved = JSON.parse(localStorage.getItem("cart"));
+      const getItemSaved = JSON.parse(localStorage.getItem('cart'));
       const values = getItemSaved === null ? [] : getItemSaved;
       let repeatedProduct = false;
       values.forEach((item) => {
@@ -141,7 +141,7 @@ class ProductDetail extends Component {
         }
       });
       if (repeatedProduct) {
-        localStorage.setItem("cart", JSON.stringify(values));
+        localStorage.setItem('cart', JSON.stringify(values));
         return this.changeQuantityState();
       }
       values.push({ id, title, price, imagePath, number, totalPrice, availableQuantity });
@@ -202,21 +202,27 @@ class ProductDetail extends Component {
     return (
       <div className="container">
         <Link to="/">Retornar</Link>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <div className="containerProduct">
-          <h3 data-testid="product-detail-name">Descrição: { title }</h3>
-          <div>R$ { price }</div>
+          <h3 data-testid="product-detail-name">
+            Descrição:
+            { title }
+          </h3>
+          <div>
+            R$
+            { price }
+          </div>
           <img src={ thumbnail } alt={ title } />
         </div>
-        <br></br>
-        <br></br>
-        <CartIcon cartItens={ JSON.parse(localStorage.getItem("cart")) } />
-        <br></br>
-        <br></br>
-        <div className="containerDetails">
+        <br />
+        <br />
+        <CartIcon cartItens={ JSON.parse(localStorage.getItem('cart')) } />
+        <br />
+        <br />
+        <div className='containerDetails'>
           Especificações Técnicas
-          <ul style={{ listStyle: "none" }}>
+          <ul style={{ listStyle: 'none' }}>
             {attributes.map((element) => {
               return (
                 <li key={ element.id }>
@@ -230,15 +236,25 @@ class ProductDetail extends Component {
               { this.translateFreeShipping() }
             </p>
         </div>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <button
             name={ id }
-            onClick={ this.subtractItem }>-</button>
-          <span> { number } </span>
+            type="button"
+            onClick={ this.subtractItem }
+          >
+            -
+          </button>
+          <span>
+            { number }
+          </span>
           <button
             name={ id }
-            onClick={ this.sumItem }>+</button>
+            type="button"
+            onClick={ this.sumItem }
+          >
+            +
+          </button>
         <button
           data-testid="product-detail-add-to-cart"
           onClick={ this.addItemToLocalStorage }

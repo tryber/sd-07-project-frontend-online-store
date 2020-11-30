@@ -5,7 +5,7 @@ import CategoriesList from '../components/CategoriesList';
 import Logo from '../shoppingCartImage.png';
 import CartIcon from '../components/CartIcon';
 import ShowProducts from '../components/ShowProducts';
-import './ProductsList.css'
+import './ProductsList.css';
 
 class ProductsList extends Component {
   constructor() {
@@ -105,14 +105,16 @@ class ProductsList extends Component {
 
   getTitle(string) {
     const index = string.indexOf(':');
-    const parameter = index + 2;
+    const number = 2;
+    const parameter = index + number;
     const title = string.slice(parameter, string.length);
     return title;
   }
 
   getPrice(string) {
     const index = string.indexOf('$');
-    const parameter = index + 2;
+    const number = 2;
+    const parameter = index + number;
     const price = string.slice(parameter, string.length);
     return price;
   }
@@ -157,14 +159,15 @@ class ProductsList extends Component {
   orderItens() {
     const { products } = this.state;
     if (products !== undefined) {
-      const value = document.getElementById('input-select').value;
+      const input = document.getElementById('input-select');
+      const value = input.value;
       if (value === 'lower-price') {
         products.sort(function (a, b) {
           if (a.price > b.price) {
             return 1;
           }
           return products;
-        })
+        });
       }
       else if (value === 'higher-price') {
         products.sort(function (a, b) {
@@ -172,7 +175,7 @@ class ProductsList extends Component {
             return 1;
           }
           return products;
-        })
+        });
       }
     return this.setState({ products: products });
     }

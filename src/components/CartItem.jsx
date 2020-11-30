@@ -22,24 +22,47 @@ class CartItem extends Component {
     } = this.props;
     return (
       <div className="container">
-        <span data-testid="shopping-cart-product-name"> Descrição: <strong> { title } </strong></span>
+        <span data-testid="shopping-cart-product-name">
+          Descrição:
+          <strong>
+            { title }
+          </strong>
+        </span>
         <img src={ image } alt={ title } />
-        <span> <strong>R$ { price } </strong></span>
+        <span>
+          <strong>
+            R$
+            { price }
+          </strong>
+        </span>
         <br></br>
         <div className="btns">
           <button
             data-testid="product-decrease-quantity"
+            type="button"
             name={ id }
-            onClick={ subtractItem }>-</button>
-          <span data-testid="shopping-cart-product-quantity"> { number } </span>
+            onClick={ subtractItem }
+          >
+            -
+          </button>
+          <span data-testid="shopping-cart-product-quantity">
+            { number }
+          </span>
           <button
             data-testid="product-increase-quantity"
+            type="button"
             name={ id }
-            onClick={ sumItem }>+</button>
+            onClick={ sumItem }
+          >
+            +
+          </button>
           <br></br>
           <button
             name={ id }
-            onClick={ removeItem }>X</button>
+            onClick={ removeItem }
+          >
+            X
+          </button>
         </div>
       </div>
     );
@@ -49,10 +72,21 @@ class CartItem extends Component {
     const { title, price, image, number } = this.props;
     return (
       <div className="containerSimple">
-        <img src={image} alt={title} />
-        <span data-testid="shopping-cart-product-name">Descrição: {title} - </span>
-        <span data-testid="shopping-cart-product-quantity"> Qtd: {number} - </span>
-        <span> R$ {price}</span>
+        <img src={ image } alt={ title } />
+        <span data-testid="shopping-cart-product-name">
+          Descrição:
+          { title }
+          -
+        </span>
+        <span data-testid="shopping-cart-product-quantity">
+          Qtd:
+          { number }
+          -
+        </span>
+        <span>
+          R$
+          { price }
+        </span>
       </div>
     );
   }

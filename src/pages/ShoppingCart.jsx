@@ -116,19 +116,19 @@ class ShoppingCart extends Component {
     return (
       <div className="container">
         <Link to="/">Retornar</Link>
-          <div className="items">
-            {products.map((product) => (<CartItem
-              key={ product.id }
-              id={ product.id }
-              title={ product.title }
-              price={ product.totalPrice }
-              image={ product.imagePath }
-              number={ product.number }
-              sumItem={ this.sumItem }
-              subtractItem={ this.subtractItem }
-              removeItem={ this.removeItem }
-            />))}
-          </div>
+        <div className="items">
+          {products.map((product) => (<CartItem
+            key={ product.id }
+            id={ product.id }
+            title={ product.title }
+            price={ product.totalPrice }
+            image={ product.imagePath }
+            number={ product.number }
+            sumItem={ this.sumItem }
+            subtractItem={ this.subtractItem }
+            removeItem={ this.removeItem }
+          />))}
+        </div>
         <Link data-testid="checkout-products" to="/Checkout">Checkout</Link>
       </div>
     );
