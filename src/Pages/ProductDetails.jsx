@@ -1,6 +1,7 @@
-import React from 'react';
-import { useLocation } from 'react-router';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import ShoopingCartButton from '../Components/ShoppingCartButton';
+import AvaliationForms from '../Components/AvaliationForms';
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -29,6 +30,22 @@ const ProductDetails = () => {
     }
   };
 
+  const [currentName, setCurrentName] = useState('');
+  const onChangeName = (event) => {
+    setCurrentName(event.target.value);
+  };
+
+  const [currentComment, setCurrentComment] = useState('');
+  const onChangeComment = (event) => {
+    setCurrentComment(event.target.value);
+  };
+
+  const [comments, setComment] = useState([]);
+  const submitComment = (event) => {
+    event.preventDefault();
+    setComment([...comments, { name: currentName, comment: currentComment }]);
+  };
+
   return (
     <div>
       <ShoopingCartButton data-testid="shopping-cart-button" />
@@ -43,6 +60,29 @@ const ProductDetails = () => {
       >
         Adicionar ao carrinho
       </button>
+
+      <AvaliationForms
+        onChangeName={ onChangeName }
+        onChangeComment={ onChangeComment }
+        submitComment={ submitComment }
+      />
+
+      <ul className="comment-session">
+        { comments.map((element) => {
+          const { name, comment } = element;
+          return (
+            <li key={ `${name}-comment` }>
+              <span>
+                Nome:
+                { name }
+              </span>
+              <p>
+                { comment }
+              </p>
+            </li>
+          );
+        }) }
+      </ul>
     </div>);
 };
 
