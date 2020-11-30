@@ -51,13 +51,13 @@ class Product extends Component {
           <span><strong>Descrição: {title}</strong></span>
           <br></br>
           <br></br>
-          <img src={thumbnail} alt={title} />
+          <img src={ thumbnail } alt={ title } />
           <h5>R$ {price}</h5>
           { this.renderShipping(freeShipping) }
           <button
             data-testid="product-add-to-cart"
-            name={id}
-            onClick={actualizeCart}
+            name={ id }
+            onClick={ actualizeCart }
           >
             Adicionar ao carrinho
           </button>

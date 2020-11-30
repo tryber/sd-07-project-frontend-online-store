@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import CartItem from '../components/CartItem';
+import CartItem from '../components/CartItem';
 import './Checkout.css'
 
 class Checkout extends Component {
@@ -116,8 +116,6 @@ class Checkout extends Component {
         <section>
           Método de Pagamento
           <div className="container-fpag">
-            <label htmlFor='radio-button-boleto'>
-          <div>
             <label htmlFor="radio-button-boleto">
               Boleto
               <input

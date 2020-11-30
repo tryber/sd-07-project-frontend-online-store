@@ -138,7 +138,7 @@ class ProductsList extends Component {
     const { categories, products } = this.state;
 
     return (
-      <div className="Container>
+      <div className="Container">
         <div className="categories">
           {categories ? categories.map((categorie) => (
             <CategoriesList
