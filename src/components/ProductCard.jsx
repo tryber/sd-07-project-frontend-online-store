@@ -19,6 +19,14 @@ export default class ProductCard extends React.Component {
         </Link>
         <p>{`Preço: ${price}`}</p>
         <img src={ thumbnail } alt={ title } />
+        <Link data-testid="product-add-to-cart"
+          to={ {
+            pathname: '',
+            state: product,
+          } }
+        >
+          Adicionar ao carrinho
+          </Link>
       </div>
     );
   }
