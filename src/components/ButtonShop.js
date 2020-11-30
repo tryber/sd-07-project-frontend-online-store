@@ -6,7 +6,10 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 class ButtonShop extends React.Component {
   render() {
     return (
-      <IconButton color="primary" aria-label="add to shopping cart">
+      <IconButton
+        color="primary"
+        aria-label="add to shopping cart"
+      >
         <Link to="/shoppage">
           <AddShoppingCartIcon data-testid="shopping-cart-button" />
         </Link>

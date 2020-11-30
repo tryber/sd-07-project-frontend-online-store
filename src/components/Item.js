@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import { addToCart } from '../services/cartAPI';
 
 export default class Item extends React.Component {
   render() {
@@ -20,6 +21,13 @@ export default class Item extends React.Component {
         >
           Ver detalhes do produto
         </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => addToCart(product) }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
