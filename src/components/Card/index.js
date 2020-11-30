@@ -8,7 +8,13 @@ class Card extends Component {
   render() {
     let { searchInput } = this.props;
     const { categoryID, product } = this.props;
-    const { title, thumbnail, price, id } = product;
+    const {
+      title,
+      thumbnail,
+      price,
+      id,
+      shipping: { free_shipping: freeShipping },
+    } = product;
     searchInput = (searchInput !== '') ? searchInput : false;
     return (
       <article data-testid="product">
@@ -20,6 +26,7 @@ class Card extends Component {
         </main>
         <footer>
           <p>{`R$ ${price}`}</p>
+          {freeShipping && <p data-testid="free-shipping">Frete Grátis</p>}
           <Link
             to={ `/product/${id}/${categoryID}/${searchInput}` }
             data-testid="product-detail-link"
@@ -45,6 +52,9 @@ Card.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
   categoryID: PropTypes.string.isRequired,
   searchInput: PropTypes.string.isRequired,
