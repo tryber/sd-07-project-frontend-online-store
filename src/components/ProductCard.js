@@ -15,11 +15,14 @@ class ProductCard extends Component {
               data-testid="product"
             >
               <h2>{ title }</h2>
-              <Link to={
-                { pathname: `./pages/productpage/${id}`,
-                  state: product,
-              }
-              }>
+              <Link 
+                to={
+                  { 
+                    pathname: `./pages/productpage/${id}`,
+                    state: product,
+                  }
+                }
+              >
                 <img src={ thumbnail } alt="products" data-testid="product-detail-link" />
               </Link>
               <p>{ price }</p>

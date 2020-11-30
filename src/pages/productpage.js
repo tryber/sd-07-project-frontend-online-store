@@ -1,5 +1,4 @@
 import React from 'react';
-import * as api from '../services/api';
 
 class ProductPage extends React.Component {
   render() {
@@ -12,4 +11,8 @@ class ProductPage extends React.Component {
   }
 }
 
-export default ProductPage
+ProductPage.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
+export default ProductPage;
