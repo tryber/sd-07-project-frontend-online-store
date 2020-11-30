@@ -7,7 +7,7 @@ class Cart extends React.Component {
     const carrinho = JSON.parse(localStorage.getItem('carrinho'));
     return (
       <div>
-        {localStorage.length ? <EmptyCart /> : carrinho.map((item) => (<Informations
+        {!localStorage.length ? <EmptyCart /> : carrinho.map((item) => (<Informations
           key={ item.id }
           product={ item }
         />))}
