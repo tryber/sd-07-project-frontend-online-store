@@ -8,7 +8,11 @@ class ListaDeProdutos extends React.Component {
     return (
       <div>
         { onFetchProducts
-          .map((product) => <Produto key={ product.id } product={ product } />) }
+          .map((product) => (<Produto
+            key={ product.id }
+            product={ product }
+            funcToAddProductsToCart={ this.funcToAddProductsToCart }
+          />)) }
       </div>
     );
   }
