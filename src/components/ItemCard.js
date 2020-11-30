@@ -21,7 +21,13 @@ class ItemCard extends React.Component {
   }
 
   render() {
-    const { id, product, title, image, price } = this.props;
+    const { id, product, title, image, price, freeShipping } = this.props;
+    let temFrete = '';
+    let elementPropertie =''
+    if (freeShipping === true) {
+      temFrete = 'Frete Grátis';
+      elementPropertie = 'free-shipping';
+    }
     return (
       <div className="card-product" data-testid="product">
         <span className="card-title">{ title }</span>
@@ -44,6 +50,11 @@ class ItemCard extends React.Component {
         >
           Detalhes
         </Link>
+        <p
+        data-testid={elementPropertie}
+        >
+          {temFrete}
+        </p>
       </div>
     );
   }
