@@ -1,15 +1,17 @@
 import React from 'react';
 import CampoDeBusca from '../components/CampoDeBusca';
 import BotaoCarrinho from '../components/BotaoCarrinho';
+import ListaDeProdutos from '../components/ListaDeProdutos';
 import ListaDeCategorias from '../components/ListaDeCategorias';
 import * as api from '../services/api';
-import ListaDeProdutos from '../components/ListaDeProdutos';
 
 class Home extends React.Component {
   constructor() {
     super();
-    this.initialMessageOrListProducts = this.initialMessageOrListProducts.bind(this);
+    this.updateChanges = this.updateChanges.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleClickCategories = this.handleClickCategories.bind(this);
+    this.initialMessageOrListProducts = this.initialMessageOrListProducts.bind(this);
     this.state = {
       query: '',
       categoryId: '',
@@ -26,17 +28,26 @@ class Home extends React.Component {
     });
   }
 
+  updateChanges() {
+    const { categoryId, query } = this.state;
+    api.getProductsFromCategoryAndQuery(categoryId, query)
+      .then((response) => this.setState({
+        onFetchProducts: response.results,
+      }));
+  }
+
   handleInputChange(search) {
     this.setState(() => ({
       query: search,
-    }), () => {
-      const { categoryId, query } = this.state;
-      api.getProductsFromCategoryAndQuery(categoryId, query)
-        .then((response) => this.setState({
-          onFetchProducts: response.results,
-        }));
-    });
+    }), () => this.updateChanges());
   }
+
+  handleClickCategories(id) {
+    this.setState({
+      categoryId: id,
+    }, () => this.updateChanges());
+  }
+
 
   initialMessageOrListProducts(products) {
     const numberToComper = 0;
@@ -59,7 +70,10 @@ class Home extends React.Component {
         />
         { this.initialMessageOrListProducts(onFetchProducts) }
         <BotaoCarrinho />
-        <ListaDeCategorias categories={ categories } />
+        <ListaDeCategorias
+          categories={ categories }
+          handleClickCategories={ this.handleClickCategories }
+        />
       </div>
     );
   }
