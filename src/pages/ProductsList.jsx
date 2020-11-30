@@ -5,7 +5,7 @@ import CategoriesList from '../components/CategoriesList';
 import Logo from '../shoppingCartImage.png';
 import CartIcon from '../components/CartIcon';
 import ShowProducts from '../components/ShowProducts';
-import './ProductsList.css'
+import './ProductsList.css';
 
 class ProductsList extends Component {
   constructor() {
@@ -21,6 +21,7 @@ class ProductsList extends Component {
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
     this.getTitle = this.getTitle.bind(this);
     this.getPrice = this.getPrice.bind(this);
+    this.orderItens = this.orderItens.bind(this);
     this.state = {
       category: undefined,
       categories: undefined,
@@ -30,9 +31,24 @@ class ProductsList extends Component {
     };
   }
 
-
   componentDidMount() {
     this.requestCategories();
+  }
+
+  getTitle(string) {
+    const index = string.indexOf(':');
+    const number = 2;
+    const parameter = index + number;
+    const title = string.slice(parameter, string.length);
+    return title;
+  }
+
+  getPrice(string) {
+    const index = string.indexOf('$');
+    const number = 2;
+    const parameter = index + number;
+    const price = string.slice(parameter, string.length);
+    return price;
   }
 
   async requestCategories() {
@@ -102,23 +118,10 @@ class ProductsList extends Component {
     return number;
   }
 
-  getTitle(string) {
-    const index = string.indexOf(':');
-    const parameter = index + 2;
-    const title = string.slice(parameter, string.length);
-    return title;
-  }
-
-  getPrice(string) {
-    const index = string.indexOf('$');
-    const parameter = index + 2;
-    const price = string.slice(parameter, string.length);
-    return price;
-  }
-
   addItemToLocalStorage({ target }) {
     const id = target.name;
     const product = document.getElementById(`${id}`).firstChild;
+    product.className = 'item-selected';
     const title = this.getTitle(product.firstChild.innerText);
     const imagePath = product.firstChild.nextSibling
       .nextSibling.nextSibling.src;
@@ -152,6 +155,30 @@ class ProductsList extends Component {
     }
   }
 
+  orderItens() {
+    const { products } = this.state;
+    if (products !== undefined) {
+      const input = document.getElementById('input-select');
+      const { value } = input;
+      if (value === 'lower-price') {
+        products.sort(function (a, b) {
+          if (a.price > b.price) {
+            return 1;
+          }
+          return products;
+        });
+      } else if (value === 'higher-price') {
+        products.sort(function (a, b) {
+          if (a.price < b.price) {
+            return 1;
+          }
+          return products;
+        });
+      }
+      return this.setState({ products: products });
+    }
+  }
+
   render() {
     const { categories, products } = this.state;
 
@@ -173,6 +200,23 @@ class ProductsList extends Component {
             onChange={ this.handleChange }
           />
           <CartIcon cartItens={ JSON.parse(localStorage.getItem('cart')) } />
+          <div>
+            <select
+              htmlFor="input-select"
+              id="input-select"
+              onChange={ this.orderItens }
+            >
+              <option value="">
+                Ordenar por
+              </option>
+              <option value="lower-price">
+                Menor preço
+              </option>
+              <option value="higher-price">
+                Maior preço
+              </option>
+            </select>
+          </div>
           <button
             className="btn"
             data-testid="query-button"

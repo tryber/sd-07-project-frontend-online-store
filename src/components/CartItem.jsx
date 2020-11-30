@@ -22,24 +22,48 @@ class CartItem extends Component {
     } = this.props;
     return (
       <div className="container">
-        <span data-testid="shopping-cart-product-name"> Descrição: <strong> {title} </strong></span>
-        <img src={image} alt={title} />
-        <span> <strong>R$ {price} </strong></span>
-        <br></br>
+        <span data-testid="shopping-cart-product-name">
+          Descrição:
+          <strong>
+            { title }
+          </strong>
+        </span>
+        <img src={ image } alt={ title } />
+        <span>
+          <strong>
+            R$
+            { price }
+          </strong>
+        </span>
+        <br />
         <div className="btns">
           <button
             data-testid="product-decrease-quantity"
-            name={id}
-            onClick={subtractItem}>-</button>
-          <span data-testid="shopping-cart-product-quantity"> {number} </span>
+            type="button"
+            name={ id }
+            onClick={ subtractItem }
+          >
+            -
+          </button>
+          <span data-testid="shopping-cart-product-quantity">
+            { number }
+          </span>
           <button
             data-testid="product-increase-quantity"
-            name={id}
-            onClick={sumItem}>+</button>
-          <br></br>
+            type="button"
+            name={ id }
+            onClick={ sumItem }
+          >
+            +
+          </button>
+          <br />
           <button
-            name={id}
-            onClick={removeItem}>X</button>
+            name={ id }
+            type="button"
+            onClick={ removeItem }
+          >
+            X
+          </button>
         </div>
       </div>
     );
@@ -49,10 +73,21 @@ class CartItem extends Component {
     const { title, price, image, number } = this.props;
     return (
       <div className="containerSimple">
-        <img src={image} alt={title} />
-        <span data-testid="shopping-cart-product-name">Descrição: {title} - </span>
-        <span data-testid="shopping-cart-product-quantity"> Qtd: {number} - </span>
-        <span> R$ {price}</span>
+        <img src={ image } alt={ title } />
+        <span data-testid="shopping-cart-product-name">
+          Descrição:
+          { title }
+          -
+        </span>
+        <span data-testid="shopping-cart-product-quantity">
+          Qtd:
+          { number }
+          -
+        </span>
+        <span>
+          R$
+          { price }
+        </span>
       </div>
     );
   }

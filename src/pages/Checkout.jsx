@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
-import './Checkout.css'
+import './Checkout.css';
 
 class Checkout extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class Checkout extends Component {
     return (
       <div className="container">
         <Link to="/">Retornar</Link>
-        <br></br>
+        <br />
         <section className="sectionProducts">
           Revise seus produtos
           <div className="containerProducts">
@@ -45,17 +45,20 @@ class Checkout extends Component {
               totalSum += parseFloat(product.totalPrice);
               return (
                 <CartItem
-                  key={product.id}
-                  id={product.id}
-                  title={product.title}
-                  price={product.totalPrice}
-                  image={product.imagePath}
-                  number={product.number}
+                  key={ product.id }
+                  id={ product.id }
+                  title={ product.title }
+                  price={ product.totalPrice }
+                  image={ product.imagePath }
+                  number={ product.number }
                 />
               );
             })}
           </div>
-          <div className="price">Preço Total: R$ <strong>{totalSum}</strong></div>
+          <div className="price">
+            Preço Total: R$
+            <strong>{totalSum}</strong>
+          </div>
         </section>
         <section>
           Informações do Comprador
@@ -111,8 +114,8 @@ class Checkout extends Component {
             />
           </form>
         </section>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <section>
           Método de Pagamento
           <div className="container-fpag">
@@ -158,8 +161,8 @@ class Checkout extends Component {
             </label>
           </div>
         </section>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <button type="submit" onSubmit={ this.sucess }>Comprar</button>
       </div>
     );
