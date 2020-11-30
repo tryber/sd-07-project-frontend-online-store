@@ -1,9 +1,9 @@
 import React from 'react';
+import ProductInCart from '../components/ProductInCart';
 
 class ShoppingCartPage extends React.Component {
   constructor(props) {
     super(props);
-
     this.actualizeState = this.actualizeState.bind(this);
     this.state = {
       productsSelected: [],
@@ -23,17 +23,13 @@ class ShoppingCartPage extends React.Component {
 
   render() {
     const { productsSelected, amount } = this.state;
-
     return (
       <div>
         {productsSelected.map((product, index) => (
           <div key={ product }>
-            <p data-testid="shopping-cart-product-name">
-              {product}
-            </p>
-            <span data-testid="shopping-cart-product-quantity">
-              {amount[index]}
-            </span>
+            <ProductInCart
+              product={ { title: product, quantityInCart: amount[index] } }
+            />
           </div>
         ))}
         {
@@ -44,5 +40,4 @@ class ShoppingCartPage extends React.Component {
     );
   }
 }
-
 export default ShoppingCartPage;

@@ -10,13 +10,24 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ Home } />
-          <Route exact path="/shoppingCartPage" component={ ShoppingCartPage } />
-          <Route exact path="/ShoppingCartPage/Details" component={ ProductDetails } />
+          <Route
+            exact
+            path="/"
+            component={ Home }
+          />
+          <Route
+            exact
+            path="/shoppingCartPage"
+            component={ ShoppingCartPage }
+          />
+          <Route
+            exact
+            path="/ShoppingCartPage/Details"
+            component={ ProductDetails }
+          />
         </Switch>
       </BrowserRouter>
     </div>
   );
 }
-
 export default App;
