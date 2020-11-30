@@ -120,6 +120,7 @@ class ProductsList extends Component {
   addItemToLocalStorage({ target }) {
     const id = target.name;
     const product = document.getElementById(`${id}`).firstChild;
+    product.className = 'item-selected';
     const title = this.getTitle(product.firstChild.innerText);
     const imagePath = product.firstChild.nextSibling
       .nextSibling.nextSibling.src;

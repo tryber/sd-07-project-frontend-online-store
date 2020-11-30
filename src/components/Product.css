@@ -17,3 +17,13 @@
     width: 400px;
     align-self: center;
 }
+
+.item-selected {
+    border-radius: 10px;
+    border: 1px solid red;
+    color: black;
+    padding: 20px;
+    margin: 20px;
+    width: 400px;
+    align-self: center;
+}

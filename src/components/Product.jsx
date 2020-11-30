@@ -8,6 +8,7 @@ class Product extends Component {
     super(props);
     this.translateFreeShipping = this.translateFreeShipping.bind(this);
     this.renderShipping = this.renderShipping.bind(this);
+    this.className = this.className.bind(this);
   }
 
   translateFreeShipping(freeShipping) {
@@ -35,6 +36,16 @@ class Product extends Component {
     );
   }
 
+  className(id) {
+    let className = 'item';
+    const cartItens = JSON.parse(localStorage.getItem('cart'));
+    if (cartItens !== null) {
+      const isInCart = cartItens.some((item) => item.id === id);
+      if (isInCart === true) className = 'item-selected';
+    }
+    return className;
+  }
+
   render() {
     const {
       id,
@@ -47,7 +58,7 @@ class Product extends Component {
     } = this.props;
     return (
       <div className="container" data-testid="product" id={id}>
-        <div className="item">
+        <div className={ this.className(id) }>
           <span><strong>Descrição: { title }</strong></span>
           <br></br>
           <br></br>
