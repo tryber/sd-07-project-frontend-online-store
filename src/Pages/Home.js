@@ -46,7 +46,7 @@ class Home extends React.Component {
     const { products } = this.state;
     return (
       <div className="item-list">
-        {products.map((product) => <Item key={ product.id } { ...product } />)}
+        {products.map((product) => <Item key={ product.id } product={ product } />)}
       </div>
     );
   }
