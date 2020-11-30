@@ -21,6 +21,7 @@ class ProductsList extends Component {
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
     this.getTitle = this.getTitle.bind(this);
     this.getPrice = this.getPrice.bind(this);
+    this.orderItens = this.orderItens.bind(this);
     this.state = {
       category: undefined,
       categories: undefined,
@@ -152,6 +153,32 @@ class ProductsList extends Component {
     }
   }
 
+  orderItens() {
+    const { products } = this.state;
+    if (products !== undefined) {
+      const value = document.getElementById('input-select').value;
+      if (value === 'lower-price') {
+        products.sort(function (a, b) {
+          if (a.price > b.price) {
+            return 1;
+          }
+          return products;
+        })
+      }
+      else if (value === 'higher-price') {
+        console.log(value);
+        console.log('Fui chamado');
+        products.sort(function (a, b) {
+          if (a.price < b.price) {
+            return 1;
+          }
+          return products;
+        })
+      }
+    return this.setState({ products: products });
+    }
+  }
+
   render() {
     const { categories, products } = this.state;
 
@@ -173,6 +200,23 @@ class ProductsList extends Component {
             onChange={ this.handleChange }
           />
           <CartIcon cartItens={ JSON.parse(localStorage.getItem('cart')) } />
+          <div>
+            <select
+              htmlFor="input-select"
+              id="input-select"
+              onChange={ this.orderItens }
+            >
+              <option value="">
+                Ordenar por
+              </option>
+              <option value="lower-price">
+                Menor preço
+              </option>
+              <option value="higher-price">
+                Maior preço
+              </option>
+              </select>
+          </div>
           <button
             className="btn"
             data-testid="query-button"
