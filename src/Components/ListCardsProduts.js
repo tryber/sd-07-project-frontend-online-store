@@ -12,9 +12,11 @@ class ListCardsProduts extends React.Component {
   handleClick() {}
 
   render() {
-    const { product, termo } = this.props;
-    const { category_id: category, id, title, thumbnail, price } = product;
-    const parametros = category + '-' + termo + '-' + id;
+    const {
+      termo,
+      product: { id, title, thumbnail, price, category_id: category },
+    } = this.props;
+    const parametros = `${category}-${termo}-${id}`;
 
     return (
       <div data-testid="product" className="product-card">
@@ -27,10 +29,11 @@ class ListCardsProduts extends React.Component {
             { title }
           </h3>
           <img src={ thumbnail } alt={ `${title} sprite` } />
+          <h4>
+            R$
+            { price }
+          </h4>
         </Link>
-        <h4>R$ 
-          { price }
-        </h4>
         <button className="button-product" type="button" onClick={ this.handleClick }>
           ADICIONAR NO CARRINHO
         </button>
@@ -41,11 +44,10 @@ class ListCardsProduts extends React.Component {
 
 
 ListCardsProduts.propTypes = {
-  products: PropTypes.objectOf.isRequired,
-  category_id: PropTypes.string.isRequired,
+  product: PropTypes.objectOf.isRequired,
   termo: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  thumbnail: PropTypes.img.isRequired,
+  thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };
