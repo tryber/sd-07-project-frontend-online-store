@@ -32,17 +32,34 @@ export class ShopCart extends Component {
           </Link>
           <icon.Cart color="gray" />
         </div>
-
-        <div className="item-product-ctn">
+        <div className="ctn-item-display">
           <view.ItemProduct product={this.state.product} />
-        </div>
-        <div className="item-product-ctn">
           <view.ItemProduct product={this.state.product} />
-        </div>
-        <div className="item-product-ctn">
           <view.ItemProduct product={this.state.product} />
-        </div>
-        <div className="item-product-ctn">
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
+          <view.ItemProduct product={this.state.product} />
           <view.ItemProduct product={this.state.product} />
         </div>
         <div>

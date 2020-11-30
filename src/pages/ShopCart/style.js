@@ -18,7 +18,15 @@ export const Ctn = styled.div`
     margin-top: 50px;
   }
 
-  .item-product-ctn {
-    padding: 10px;
+  .ctn-item-display {
+    border: 1px solid black;
+    width: 70%;
+    height: 70vh;
+    margin: 30px 0;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
   }
 `;
