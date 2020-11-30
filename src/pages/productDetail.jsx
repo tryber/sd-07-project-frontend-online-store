@@ -1,13 +1,15 @@
 import React from 'react';
-import * as api from '../services/api';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.fetchProduct = this.fetchProduct.bind(this);
+    this.productLoaded = this.productLoaded.bind(this);
     this.state = {
-      product: [],
       loading: true,
+      product: [],
     };
   }
 
@@ -16,40 +18,51 @@ class ProductDetail extends React.Component {
   }
 
   async fetchProduct() {
-    const { id } = this.props.match.params;
-    const RequestReturn = await api.getProduct(id);
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+    const endpoint = `https://api.mercadolibre.com/items/${id}`;
+    const response = await fetch(endpoint);
+    const fetchedProduct = await response.json();
     this.setState({
-      product: RequestReturn,
+      product: fetchedProduct,
       loading: false,
     });
   }
 
-  render() {
-    const { loading } = this.state;
-    const { title, price, thumbnail, attributes } = this.state.product;
-    console.log(attributes);
+  productLoaded() {
+    const { product } = this.state;
+    const { title, price, thumbnail, attributes } = product;
     return (
-      <div data-testid="product-detail-name">
-        {loading ? (
-          <p>Loading</p>
-        ) : (
-          <div>
-            <h4>{`PRODUTO ${title} - R$${price}`}</h4>
-            <img alt="product Cover" src={ thumbnail } />
-            <ul>
-              {attributes.map((attribute) => (
-                <li key={ attribute.name }>
-                  { attribute.name }
-                  :
-                  { attribute.value_name }
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+      <div>
+        <div data-testid="product-detail-name">
+          <h4>{ title }</h4>
+          <h3>{`R$${price}`}</h3>
+          <img alt="product Cover" src={ thumbnail } />
+          <ul>
+            {attributes.map((a) => (
+              <li key={ a.name }>{`${a.name}: ${a.value_name}`}</li>
+            ))}
+          </ul>
+        </div>
+        <Link to="/shoppingCart"> Carrinho de compras </Link>
       </div>
     );
   }
+
+  render() {
+    const { loading } = this.state;
+    return <div>{loading ? <p>Loading</p> : this.productLoaded()}</div>;
+  }
 }
+
+ProductDetail.propTypes = {
+  match: PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    isExact: PropTypes.bool.isRequired,
+    params: PropTypes.object.isRequired,
+  }).isRequired,
+};
 
 export default ProductDetail;

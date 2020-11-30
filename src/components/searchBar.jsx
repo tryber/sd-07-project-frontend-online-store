@@ -23,10 +23,6 @@ class SearchBar extends React.Component {
     this.productListLoaded = this.productListLoaded.bind(this);
   }
 
-  componentDidMount() {
-    this.filterCategoryAndQuery();
-  }
-
   handleSearchChange({ target }) {
     const { name, value } = target;
     this.setState({ [name]: value });
@@ -51,9 +47,10 @@ class SearchBar extends React.Component {
   }
 
   productListLoaded() {
+    const { products } = this.state;
     return (
       <div>
-        {this.state.products.map((product) => (
+        {products.map((product) => (
           <ProductCard key={ product.id } product={ product } />
         ))}
       </div>
