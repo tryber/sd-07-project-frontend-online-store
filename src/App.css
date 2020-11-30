@@ -104,10 +104,16 @@ input.b-search{
   transition: 1s;
  }
 
+ .cart-icon{
+  position: relative;
+  z-index: 2;
+  max-width: 25px;
+}
+
 .bt-but{
   background-color:#86BC42;
   color:white;
-  padding: 10px;
+  padding: 2px 10px 2px 10px;
   border:0px;
   font-size: 0.8rem;
   transition: 1s;
@@ -115,6 +121,7 @@ input.b-search{
   border-radius: 5px;
   cursor: pointer;
 }
+
 .bt-but:hover{
   background-color:#61CE70;
 }
