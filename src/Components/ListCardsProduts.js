@@ -27,10 +27,10 @@ class ListCardsProduts extends React.Component {
         <Link
           className="link-card"
           data-testid="product-detail-link"
-          to={ `/product/${parametros}` }
+          to={`/product/${parametros}`}
         >
-          <h3 className="title">{title}</h3>
-          <img src={ thumbnail } alt={ `${title} sprite` } />
+          <h3 className="title">{ title }</h3>
+          <img src={ thumbnail } alt={`${title} sprite`} />
         </Link>
         <h4 className="price">
           R$
@@ -48,7 +48,6 @@ class ListCardsProduts extends React.Component {
     );
   }
 }
-
 
 ListCardsProduts.propTypes = {
   product: PropTypes.objectOf.isRequired,
