@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { ShoppingCartList } from '../../components';
 import * as lsapi from '../../services/lsapi';
-import './ShoppingCart.css';
+import './Checkout.css';
 
-class ShoppingCart extends Component {
+class Checkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,27 +29,18 @@ class ShoppingCart extends Component {
     });
     return (
       <div className="cart-list-container">
-        <h2>Carrinho de Compras</h2>
+        <h2>Revise seus Produtos</h2>
         <ShoppingCartList
           purchasedProducts={ purchasedProducts }
           handleChange={ this.updateTotalPrice }
+          hiddenbuttons="true"
         />
         <h3>
           { `Valor Total da Compra: ${formatter.format(totalPrice)}` }
         </h3>
-        <div>
-          <Link to="/checkout">
-            <button
-              type="button"
-              data-testid="checkout-products"
-            >
-              Finalizar Compra
-            </button>
-          </Link>
-        </div>
       </div>
     );
   }
 }
 
-export default ShoppingCart;
+export default Checkout;

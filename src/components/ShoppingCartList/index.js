@@ -19,7 +19,7 @@ class ShoppingCartList extends Component {
   }
 
   render() {
-    const { purchasedProducts } = this.props;
+    const { purchasedProducts, hiddenbuttons = false } = this.props;
     const formatter = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
@@ -29,22 +29,24 @@ class ShoppingCartList extends Component {
         {purchasedProducts.length
           ? purchasedProducts.map(({ product, quantity }) => (
             <div className="cart-list-item" key={ product.id }>
-              <button
-                type="submit"
-                onClick={ (e) => {
-                  e.preventDefault(); this.updateCartList({ product, quantity: 0 });
-                } }
-              >
-                X
-              </button>
+              {
+                !hiddenbuttons && (
+                  <button
+                    type="button"
+                    onClick={ () => this.updateCartList({ product, quantity: 0 }) }
+                  >
+                    X
+                  </button>)
+              }
               <img src={ product.thumbnail } alt="Imagem do produto" />
               <span data-testid="shopping-cart-product-name">
                 { product.title }
               </span>
-              <QuantityControl
-                item={ { product, quantity } }
-                handleClick={ this.updateCartList }
-              />
+              { !hiddenbuttons
+                && <QuantityControl
+                  item={ { product, quantity } }
+                  handleClick={ this.updateCartList }
+                /> }
               <span>
                 { formatter.format(product.price * quantity) }
               </span>
@@ -70,6 +72,11 @@ ShoppingCartList.propTypes = {
     quantity: PropTypes.number.isRequired,
   })).isRequired,
   handleChange: PropTypes.func.isRequired,
+  hiddenbuttons: PropTypes.bool,
+};
+
+ShoppingCartList.defaultProps = {
+  hiddenbuttons: false,
 };
 
 export default ShoppingCartList;
