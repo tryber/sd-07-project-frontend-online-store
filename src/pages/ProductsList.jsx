@@ -19,6 +19,8 @@ class ProductsList extends Component {
     this.removeZero = this.removeZero.bind(this);
     this.roundNumber = this.roundNumber.bind(this);
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
+    this.getTitle = this.getTitle.bind(this);
+    this.getPrice = this.getPrice.bind(this);
     this.state = {
       category: undefined,
       categories: undefined,
@@ -100,14 +102,28 @@ class ProductsList extends Component {
     return number;
   }
 
+  getTitle(string) {
+    const index = string.indexOf(':');
+    const parameter = index + 2;
+    const title = string.slice(parameter, string.length);
+    return title;
+  }
+
+  getPrice(string) {
+    const index = string.indexOf('$');
+    const parameter = index + 2;
+    const price = string.slice(parameter, string.length);
+    return price;
+  }
+
   addItemToLocalStorage({ target }) {
     const id = target.name;
     const product = document.getElementById(`${id}`).firstChild;
-    const title = product.firstChild.innerText;
+    const title = this.getTitle(product.firstChild.innerText);
     const imagePath = product.firstChild.nextSibling
       .nextSibling.nextSibling.src;
-    const price = product.firstChild.nextSibling.nextSibling
-      .nextSibling.nextSibling.nextSibling.innerHTML;
+    const price = this.getPrice(product.firstChild.nextSibling.nextSibling
+      .nextSibling.nextSibling.nextSibling.innerHTML);
     const availableQuantity = product.firstChild.nextSibling.nextSibling
       .nextSibling.nextSibling.attributes.available_quantity.value;
     const totalPrice = price;

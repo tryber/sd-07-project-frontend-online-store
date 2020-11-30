@@ -61,7 +61,6 @@ class ProductDetail extends Component {
     const { id, attributes, title, thumbnail, price, shipping } = ListProducts;
     const availableQuantity = ListProducts.available_quantity;
     const freeShipping = shipping.free_shipping;
-    console.log(ListProducts);
     return this.setState({
       id,
       attributes,
@@ -131,7 +130,8 @@ class ProductDetail extends Component {
         localStorage.setItem("cart", JSON.stringify(values));
         return this.changeQuantityState();
       }
-      values.push({ id, title, price, imagePath, number, totalPrice });
+      values.push({ id, title, price, imagePath, number, totalPrice, availableQuantity });
+      console.log(number);
       localStorage.setItem('cart', JSON.stringify(values));
       this.changeQuantityState();
     }
@@ -139,8 +139,8 @@ class ProductDetail extends Component {
 
   translateFreeShipping() {
     const { freeShipping } = this.state;
-    let translatedFreeShipping = 'Não';
-    if (freeShipping === true) translatedFreeShipping = 'Sim';
+    let translatedFreeShipping = ' Não';
+    if (freeShipping === true) translatedFreeShipping = ' Sim';
     return translatedFreeShipping;
   }
 
