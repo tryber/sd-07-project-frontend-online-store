@@ -1,38 +1,103 @@
-.App {
+.app-div {
+  display: flex;
   text-align: center;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-bar {
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.search-bar-input {
+  margin-top: 15px;
+  border-radius: 50px;
+  width: 500px;
+  height: 30px;
+  border: 1.7px solid black;
+  padding-left: 33px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search-bar-icon {
+  margin: 5px;
+  top: 10px;
+  position: relative;
+  left: 32px;
+  
+}
+
+.icons{
+    width: 25px;
+}
+
+.display-flex{
+  display: flex;
+}
+.shopping-cart-text {
+  position: absolute;
+  top: 40px;
+  left: 15px;
+  width: 200px;
+  margin: 10px 15px 10px 10px;
+}
+
+.go-back-arrow-icon {
+  position: absolute;
+  top: 0px;
+  left: 1px;
+  width: 30px;
+  margin: 10px 15px 10px 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.go-back-arrow-icon:hover {
+  transform: scale(1.1);
+}
+
+.cart-item-product{
+  display: flex;
+  align-items: center;
+}
+
+
+.shopping-cart-wrapper{
   display: flex;
   flex-direction: column;
+  justify-content: left;
+}
+.wrapper{
+  border: 0.5px solid rgb(75, 74, 74); 
+  padding: 2rem;
+  margin: 1rem;
+}
+.form-rate-product{
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+.form-rate-input{
+  margin-bottom: 0.5rem;
+}
+.rates-wrapper{
+  justify-content: left;
+  display: flex;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  flex-direction: column;
+  border-bottom: 0.5px solid rgb(75, 74, 74); 
+}
+.rating-wrapper{
+  margin-left: 0.5rem;
+}
+
+.rating-star{
+  border: none;
+  background-color: transparent;
+}
+.rating-header{
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rating-header .rating-paragraph{
+  margin-right: 0.5rem;
 }
