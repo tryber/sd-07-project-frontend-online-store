@@ -20,7 +20,7 @@ class ProductCard extends Component {
                   {
                     pathname: `./pages/productpage/${id}`,
                     state: product,
-                }
+                  }
                 }
               >
                 <img src={ thumbnail } alt="products" data-testid="product-detail-link" />

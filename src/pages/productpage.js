@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 class ProductPage extends React.Component {
   render() {
-    const { title } = this.props.location.state;
+    const { location } = this.props;
+    const { state } = location
+    const { title } = state;
     return(
       <div>
         <h1 data-testid="product-detail-name">{title}</h1>
@@ -13,6 +15,8 @@ class ProductPage extends React.Component {
 }
 
 ProductPage.propTypes = {
+  location: PropTypes.object.isRequired,
+  state: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
 };
 
