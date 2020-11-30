@@ -15,7 +15,11 @@ class Cart extends React.Component {
 
   componentDidUpdate() {
     const { products } = this.state;
+    let total = null;
     sessionStorage.setItem('item', JSON.stringify(products));
+
+    products.forEach(({ quantity }) => { total += quantity; });
+    sessionStorage.setItem('totalQuantity', total);
   }
 
   increase(index) {
