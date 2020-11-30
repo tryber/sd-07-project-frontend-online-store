@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import StarButton from './StarButton';
 
 class StarRow extends Component {
@@ -19,8 +20,9 @@ class StarRow extends Component {
   }
 }
 StarRow.propTypes = {
-rating :
-ratingChange:
-max:
-}
+  rating: PropTypes.number.isRequired,
+  ratingChange: PropTypes.func.isRequired,
+  max: PropTypes.number.isRequired,
+};
+
 export default StarRow;
