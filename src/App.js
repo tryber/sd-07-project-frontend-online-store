@@ -19,7 +19,8 @@ class App extends React.Component {
   }
 
   addItem(item) {
-    let { totalQuantity, cart } = this.state;
+    let { totalQuantity } = this.state;
+    const { cart } = this.state;
     totalQuantity += 1;
     this.setState((previousState) => ({
       cart: [...previousState.cart, item],
@@ -31,13 +32,15 @@ class App extends React.Component {
   }
 
   handleTotalQuantity(op, item) {
-    let { totalQuantity, cart } = this.state;
+    let { totalQuantity } = this.state;
+    const { cart } = this.state;
+    const zero = 0;
     if (op === '+') {
       totalQuantity += 1;
     } else if (op === '-') {
       totalQuantity -= 1;
     }
-    for (let index = 0; index < Object.keys(cart); index += 1) {
+    for (let index = zero; index < Object.keys(cart); index += 1) {
       if (cart[index].id === item.id) {
         cart[index].quantity += 1;
         this.setState({

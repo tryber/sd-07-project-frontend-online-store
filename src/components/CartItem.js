@@ -62,7 +62,7 @@ class CartItem extends Component {
         <p>
           Valor Total da Compra:
         </p>
-      
+
         <button type="submit"> Finalizar Compra </button>
         {console.log(title)}
       </div>
