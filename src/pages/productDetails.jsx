@@ -50,7 +50,7 @@ export default class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  location: React.propTypes.shape({
+  location: PropTypes.shape({
     state: PropTypes.shape({
       detailsId: PropTypes.string.isRequired,
       detailsTitle: PropTypes.string.isRequired,
