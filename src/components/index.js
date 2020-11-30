@@ -3,3 +3,4 @@ export { default as Category } from './Category';
 export { default as ProductCard } from './ProductCard';
 export { default as SearchBar } from './SearchBar';
 export { default as ShoppingCartButton } from './ShoppingCartButton';
+export { default as Assessment } from './Assessment';

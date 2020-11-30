@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { ShoppingCartButton } from '../components/index';
+import { ShoppingCartButton, Assessment } from '../components/index';
 
 class Details extends Component {
   render() {
@@ -25,6 +25,7 @@ class Details extends Component {
           <li>{ title }</li>
           <li>{ price }</li>
         </ul>
+        <Assessment />
       </div>
     );
   }
