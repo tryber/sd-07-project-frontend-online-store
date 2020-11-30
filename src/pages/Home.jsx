@@ -17,14 +17,20 @@ export default class Home extends React.Component {
     };
     this.findProduct = this.findProduct.bind(this);
     this.updateValue = this.updateValue.bind(this);
+
     this.updateValueCategory = this.updateValueCategory.bind(this);
   }
 
   async findProduct() {
     const { categoryId, searchText } = this.state;
-    const products = await api.getProductsFromCategoryAndQuery(categoryId, searchText);
+    const products = await api.getProductsFromCategoryAndQuery(
+      categoryId,
+      searchText,
+    );
     this.setState({
-      products: products.results, isEmpty: false });
+      products: products.results,
+      isEmpty: false,
+    });
   }
 
   async updateValueCategory(event) {
@@ -40,13 +46,10 @@ export default class Home extends React.Component {
 
   render() {
     const { searchText, products, isEmpty } = this.state;
-
     return (
       <div className="main-content">
         <div>
-          <CategorieFilter
-            updateValueCategory={ this.updateValueCategory }
-          />
+          <CategorieFilter updateValueCategory={ this.updateValueCategory } />
         </div>
         <div className="search-bar-content">
           <div>
