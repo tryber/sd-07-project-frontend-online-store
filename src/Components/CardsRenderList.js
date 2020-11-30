@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ListCardsProduts from './ListCardsProduts';
 import '../Pages/Home.css';
 
+
 class CardsRenderList extends React.Component {
   render() {
     const { products, termo } = this.props;
