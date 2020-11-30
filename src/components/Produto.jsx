@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import * as FunctionsToCart from './FunctionsToCart';
 
 
 class Produto extends React.Component {
@@ -17,6 +18,14 @@ class Produto extends React.Component {
         <img src={ thumbnail } alt="imagem de um produto" />
         </Link>
         <span>{ price }</span>
+        <button
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={ () => FunctionsToCart
+            .addToCart(title, price, thumbnail) }
+        >
+          Adicionar ao seu carrinho
+        </button>
       </div>
     );
   }
