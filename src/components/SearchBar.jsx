@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
   constructor() {
     super();
     this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.state = {
       query: '',
+      products: {},
+      status: false,
     };
+  }
+
+  onClick() { this.fetchProducts(query); }
+
+  async fetchProducts(query, categoryId = '') {
+    this.setState({
+      products: await api.getProductsFromCategoryAndQuery(categoryId, query),
+    });
   }
 
   onChange({ target: { name, value } }) {
@@ -16,9 +26,7 @@ class SearchBar extends Component {
     });
   }
 
-  render() {
-    const { onClick } = this.props;
-    const { query } = this.state;
+  getElement() {
     return (
       <div>
         <input
@@ -30,7 +38,7 @@ class SearchBar extends Component {
         <button
           data-testid="query-button"
           type="button"
-          onClick={ () => { onClick(query); } }
+          onClick={ () => { this.onClick(); } }
         >
           BUSCAR
         </button>
@@ -38,12 +46,13 @@ class SearchBar extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
       </div>
+    )
+  }
+  render() {
+    return (
+      getElement()
     );
   }
 }
-
-SearchBar.propTypes = {
-  onClick: PropTypes.func.isRequired,
-};
 
 export default SearchBar;
