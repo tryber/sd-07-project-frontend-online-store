@@ -11,11 +11,14 @@ class ProductDetail extends Component {
     super(props);
     this.getId = this.getId.bind(this);
     this.searchQueryProducts = this.searchQueryProducts.bind(this);
+    this.setInitialStateNumber = this.setInitialStateNumber.bind(this);
     this.changeQuantityState = this.changeQuantityState.bind(this);
     this.removeLastItem = this.removeLastItem.bind(this);
     this.removeZero = this.removeZero.bind(this);
     this.roundNumber = this.roundNumber.bind(this);
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
+    this.sumItem = this.sumItem.bind(this);
+    this.subtractItem = this.subtractItem.bind(this);
     this.translateFreeShipping = this.translateFreeShipping.bind(this);
     this.state = {
       id: "",
@@ -25,6 +28,7 @@ class ProductDetail extends Component {
       freeShipping: false,
       thumbnail: '',
       availableQuantity: 0,
+      number: 0,
       quantityChanged: false,
     };
   }
@@ -40,6 +44,13 @@ class ProductDetail extends Component {
     return id;
   }
 
+  setInitialStateNumber(id) {
+    const cartArray = JSON.parse(localStorage.getItem("cart"));
+    if (cartArray === null) return this.setState({ number: 0 });
+    const product = cartArray.find((item) => item.id === id);
+    this.setState({ number: product.number });
+  }
+
   async searchQueryProducts() {
     const productId = this.getId();
     const ListProducts = await API.getProductsFromCategoryAndQuery(productId);
@@ -48,6 +59,7 @@ class ProductDetail extends Component {
       const { id, title, attributes, thumbnail, price, shipping } = results[0];
       const availableQuantity = results[0].available_quantity;
       const freeShipping = shipping.free_shipping;
+      this.setInitialStateNumber(id);
       return this.setState({
         id,
         attributes,
@@ -61,6 +73,7 @@ class ProductDetail extends Component {
     const { id, attributes, title, thumbnail, price, shipping } = ListProducts;
     const availableQuantity = ListProducts.available_quantity;
     const freeShipping = shipping.free_shipping;
+    this.setInitialStateNumber(id);
     return this.setState({
       id,
       attributes,
@@ -123,6 +136,7 @@ class ProductDetail extends Component {
             item.number += 1;
             item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
             item.totalPrice = this.roundNumber(item.totalPrice);
+            this.setState({ number: item.number });
           }
         }
       });
@@ -131,9 +145,47 @@ class ProductDetail extends Component {
         return this.changeQuantityState();
       }
       values.push({ id, title, price, imagePath, number, totalPrice, availableQuantity });
-      console.log(number);
       localStorage.setItem('cart', JSON.stringify(values));
       this.changeQuantityState();
+      this.setState({ number: number });
+    }
+  }
+
+  sumItem({ target }) {
+    const id = target.name;
+    if (Storage) {
+      const cartArray = JSON.parse(localStorage.getItem('cart'));
+      if (cartArray === null) return this.addItemToLocalStorage();
+      cartArray.forEach((item) => {
+        if (item.id === id) {
+          if (item.number < item.availableQuantity) {
+            item.number += 1;
+            item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+            this.setState({ number: item.number });
+          }
+        }
+      });
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+    }
+  }
+
+  subtractItem({ target }) {
+    const id = target.name;
+    if (Storage) {
+      const cartArray = JSON.parse(localStorage.getItem('cart'));
+      cartArray.forEach((item) => {
+        if (item.id === id) {
+          const minimumNumber = 0;
+          if (item.number > minimumNumber) {
+            item.number -= 1;
+            item.totalPrice = parseFloat(item.totalPrice) - parseFloat(item.price);
+            item.totalPrice = this.roundNumber(item.totalPrice);
+            this.setState({ number: item.number });
+          }
+        }
+      });
+      localStorage.setItem('cart', JSON.stringify(cartArray));
     }
   }
 
@@ -145,7 +197,7 @@ class ProductDetail extends Component {
   }
 
   render() {
-    const { title, price, thumbnail, attributes } = this.state;
+    const { id, title, price, thumbnail, attributes, number } = this.state;
 
     return (
       <div className="container">
@@ -180,6 +232,13 @@ class ProductDetail extends Component {
         </div>
         <br></br>
         <br></br>
+        <button
+            name={ id }
+            onClick={ this.subtractItem }>-</button>
+          <span> { number } </span>
+          <button
+            name={ id }
+            onClick={ this.sumItem }>+</button>
         <button
           data-testid="product-detail-add-to-cart"
           onClick={ this.addItemToLocalStorage }

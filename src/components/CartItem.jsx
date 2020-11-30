@@ -22,24 +22,24 @@ class CartItem extends Component {
     } = this.props;
     return (
       <div className="container">
-        <span data-testid="shopping-cart-product-name"> Descrição: <strong> {title} </strong></span>
-        <img src={image} alt={title} />
-        <span> <strong>R$ {price} </strong></span>
+        <span data-testid="shopping-cart-product-name"> Descrição: <strong> { title } </strong></span>
+        <img src={ image } alt={ title } />
+        <span> <strong>R$ { price } </strong></span>
         <br></br>
         <div className="btns">
           <button
             data-testid="product-decrease-quantity"
-            name={id}
-            onClick={subtractItem}>-</button>
-          <span data-testid="shopping-cart-product-quantity"> {number} </span>
+            name={ id }
+            onClick={ subtractItem }>-</button>
+          <span data-testid="shopping-cart-product-quantity"> { number } </span>
           <button
             data-testid="product-increase-quantity"
-            name={id}
-            onClick={sumItem}>+</button>
+            name={ id }
+            onClick={ sumItem }>+</button>
           <br></br>
           <button
-            name={id}
-            onClick={removeItem}>X</button>
+            name={ id }
+            onClick={ removeItem }>X</button>
         </div>
       </div>
     );
