@@ -40,7 +40,7 @@ class ProductCard extends React.Component {
           </div>
         </Link>
         <button
-          className="product-card-button"
+          className="add-cart-button"
           type="button"
           data-testid="product-add-to-cart"
           id={ product }

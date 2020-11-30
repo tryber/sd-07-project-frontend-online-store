@@ -19,17 +19,19 @@ class FormRating extends React.Component {
 
   renderForm({ changeHandler, userMessage, email, rating }) {
     return (
-      <form id="form-evaluation">
+      <form className="evaluation-form" id="form-evaluation">
         <input
+          className="input-evaluation email-evaluation"
           name="email"
           onChange={ changeHandler }
           value={ email }
           type="email"
           placeholder="Email"
         />
-        <label htmlFor="rating">
+        <label className="labels" htmlFor="rating">
           Nota do Produto:
           <input
+            className="input-evaluation rating-evaluation"
             id="rating"
             onChange={ changeHandler }
             name="evaluationRating"
@@ -40,13 +42,14 @@ class FormRating extends React.Component {
           />
         </label>
         <textarea
+          className="textarea-evaluation"
           data-testid="product-detail-evaluation"
           name="userMessage"
           value={ userMessage }
           placeholder="Mensagem(Opcional)"
           onChange={ changeHandler }
         />
-        <button type="button">Avaliar</button>
+        <button className="evaluation-button" type="button">Avaliar</button>
       </form>
     );
   }
