@@ -12,21 +12,21 @@ class ProductsList extends React.Component {
           {productList.length
             ? productList.map(({ id, title, thumbnail, price }) => (
               <li
-                key={id}
+                key={ id }
                 data-testid="product"
               >
-              <Link
-                to={{
-                  pathname: '/product-details',
-                  state: {
-                    id,
-                    productName: title,
-                    productImg: thumbnail,
-                    productPrice: price,
-                  },
-                }}
-                data-testid="product-detail-link"
-                key={`${title} ${id}`}
+                <Link
+                  to={{
+                    pathname: '/product-details',
+                    state: {
+                      id,
+                      productName: title,
+                      productImg: thumbnail,
+                      productPrice: price,
+                    },
+                  } }
+                  data-testid="product-detail-link"
+                  key={ `${title} ${id}` }
                 >
                   <h3>{ title }</h3>
                   <img src={ thumbnail } alt="Product" />
