@@ -31,9 +31,16 @@ class ProductsList extends Component {
     };
   }
 
-
   componentDidMount() {
     this.requestCategories();
+  }
+
+  getPrice(string) {
+    const index = string.indexOf('$');
+    const number = 2;
+    const parameter = index + number;
+    const price = string.slice(parameter, string.length);
+    return price;
   }
 
   async requestCategories() {
@@ -111,14 +118,6 @@ class ProductsList extends Component {
     return title;
   }
 
-  getPrice(string) {
-    const index = string.indexOf('$');
-    const number = 2;
-    const parameter = index + number;
-    const price = string.slice(parameter, string.length);
-    return price;
-  }
-
   addItemToLocalStorage({ target }) {
     const id = target.name;
     const product = document.getElementById(`${id}`).firstChild;
@@ -160,7 +159,7 @@ class ProductsList extends Component {
     const { products } = this.state;
     if (products !== undefined) {
       const input = document.getElementById('input-select');
-      const value = input.value;
+      const { value } = input;
       if (value === 'lower-price') {
         products.sort(function (a, b) {
           if (a.price > b.price) {
@@ -175,9 +174,9 @@ class ProductsList extends Component {
             return 1;
           }
           return products;
-        })
+        });
       }
-    return this.setState({ products: products });
+      return this.setState({ products: products });
     }
   }
 
@@ -217,7 +216,7 @@ class ProductsList extends Component {
               <option value="higher-price">
                 Maior preço
               </option>
-              </select>
+            </select>
           </div>
           <button
             className="btn"

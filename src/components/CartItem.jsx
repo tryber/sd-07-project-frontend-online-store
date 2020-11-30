@@ -35,7 +35,7 @@ class CartItem extends Component {
             { price }
           </strong>
         </span>
-        <br></br>
+        <br />
         <div className="btns">
           <button
             data-testid="product-decrease-quantity"
@@ -56,9 +56,10 @@ class CartItem extends Component {
           >
             +
           </button>
-          <br></br>
+          <br />
           <button
             name={ id }
+            type="button"
             onClick={ removeItem }
           >
             X

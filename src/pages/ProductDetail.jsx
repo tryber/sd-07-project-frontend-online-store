@@ -220,49 +220,50 @@ class ProductDetail extends Component {
         <CartIcon cartItens={ JSON.parse(localStorage.getItem('cart')) } />
         <br />
         <br />
-        <div className='containerDetails'>
+        <div className="containerDetails">
           Especificações Técnicas
-          <ul style={{ listStyle: 'none' }}>
+          <ul style={ { listStyle: 'none' } }>
             {attributes.map((element) => {
               return (
                 <li key={ element.id }>
-                  {`${element.name} --- ${element.value_name}`};
+                  {`${element.name} --- ${element.value_name}`}
                 </li>
               );
             })}
           </ul>
-            <p data-testid="free-shipping">
-              Frete grátis:
-              { this.translateFreeShipping() }
-            </p>
+          <p data-testid="free-shipping">
+            Frete grátis:
+            { this.translateFreeShipping() }
+          </p>
         </div>
         <br />
         <br />
         <button
-            name={ id }
-            type="button"
-            onClick={ this.subtractItem }
-          >
-            -
-          </button>
-          <span>
-            { number }
-          </span>
-          <button
-            name={ id }
-            type="button"
-            onClick={ this.sumItem }
-          >
-            +
-          </button>
+          name={ id }
+          type="button"
+          onClick={ this.subtractItem }
+        >
+          -
+        </button>
+        <span>
+          { number }
+        </span>
         <button
+          name={ id }
+          type="button"
+          onClick={ this.sumItem }
+        >
+          +
+        </button>
+        <button
+          type="button"
           data-testid="product-detail-add-to-cart"
           onClick={ this.addItemToLocalStorage }
         >
           Adicionar
         </button>
-        <br></br>
-        <br></br>
+        <br />
+        <br />
         <Link data-testid="shopping-cart-button" to="/ShoppingCart">
           Ir para o carrinho
         </Link>
@@ -304,7 +305,7 @@ class ProductDetail extends Component {
               </label>
             </div>
             <div>
-              <button>Avaliar</button>
+              <button type="button">Avaliar</button>
             </div>
           </form>
         </div>

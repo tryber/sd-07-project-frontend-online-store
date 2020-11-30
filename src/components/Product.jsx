@@ -17,6 +17,17 @@ class Product extends Component {
     return translatedFreeShipping;
   }
 
+
+  className(id) {
+    let className = 'item';
+    const cartItens = JSON.parse(localStorage.getItem('cart'));
+    if (cartItens !== null) {
+      const isInCart = cartItens.some((item) => item.id === id);
+      if (isInCart === true) className = 'item-selected';
+    }
+    return className;
+  }
+
   renderShipping(freeShipping) {
     if (freeShipping === false) {
       return (
@@ -34,16 +45,6 @@ class Product extends Component {
         { this.translateFreeShipping(freeShipping) }
       </span>
     );
-  }
-
-  className(id) {
-    let className = 'item';
-    const cartItens = JSON.parse(localStorage.getItem('cart'));
-    if (cartItens !== null) {
-      const isInCart = cartItens.some((item) => item.id === id);
-      if (isInCart === true) className = 'item-selected';
-    }
-    return className;
   }
 
   render() {
@@ -68,8 +69,7 @@ class Product extends Component {
           <br />
           <br />
           <img src={ thumbnail } alt={ title } />
-          <span available_quantity={ availableQuantity }>
-          </span>
+          <span available_quantity={ availableQuantity } />
           <h5>
             R$
             { price }
