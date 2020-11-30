@@ -1,15 +1,28 @@
 import React from 'react';
 import CampoDeBusca from '../components/CampoDeBusca';
 import BotaoCarrinho from '../components/BotaoCarrinho';
+<<<<<<< HEAD
 import ListaDeCategorias from '../components/ListaDeCategorias';
 import * as api from '../services/api';
 import ListaDeProdutos from '../components/ListaDeProdutos';
+=======
+import ListaDeProdutos from '../components/ListaDeProdutos';
+import ListaDeCategorias from '../components/ListaDeCategorias';
+import * as api from '../services/api';
+>>>>>>> main-group-2
 
 class Home extends React.Component {
   constructor() {
     super();
+<<<<<<< HEAD
     this.initialMessageOrListProducts = this.initialMessageOrListProducts.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+=======
+    this.updateChanges = this.updateChanges.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleClickCategories = this.handleClickCategories.bind(this);
+    this.initialMessageOrListProducts = this.initialMessageOrListProducts.bind(this);
+>>>>>>> main-group-2
     this.state = {
       query: '',
       categoryId: '',
@@ -26,6 +39,7 @@ class Home extends React.Component {
     });
   }
 
+<<<<<<< HEAD
   handleInputChange(search) {
     this.setState(() => ({
       query: search,
@@ -38,6 +52,29 @@ class Home extends React.Component {
     });
   }
 
+=======
+  updateChanges() {
+    const { categoryId, query } = this.state;
+    api.getProductsFromCategoryAndQuery(categoryId, query)
+      .then((response) => this.setState({
+        onFetchProducts: response.results,
+      }));
+  }
+
+  handleInputChange(search) {
+    this.setState(() => ({
+      query: search,
+    }), () => this.updateChanges());
+  }
+
+  handleClickCategories(id) {
+    this.setState({
+      categoryId: id,
+    }, () => this.updateChanges());
+  }
+
+
+>>>>>>> main-group-2
   initialMessageOrListProducts(products) {
     const numberToComper = 0;
     if (products.length !== numberToComper) {
@@ -59,7 +96,14 @@ class Home extends React.Component {
         />
         { this.initialMessageOrListProducts(onFetchProducts) }
         <BotaoCarrinho />
+<<<<<<< HEAD
         <ListaDeCategorias categories={ categories } />
+=======
+        <ListaDeCategorias
+          categories={ categories }
+          handleClickCategories={ this.handleClickCategories }
+        />
+>>>>>>> main-group-2
       </div>
     );
   }
