@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -28,15 +27,15 @@ class ItemCart extends React.Component {
 
   count() {
     const { product } = this.props;
-    const { available_quantity } = product;
+    const { available_quantity: quantity } = product;
     const { count } = this.state;
     if (count < 1) {
       this.setState({
         count: 1,
       });
-    } else if (count > available_quantity) {
+    } else if (count > quantity) {
       this.setState({
-        count: available_quantity,
+        count: quantity,
       });
     }
     return count;
