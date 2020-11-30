@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import AddCart from './AddCart';
 import '../App.css';
 
 class ListCardsProduts extends React.Component {
@@ -11,22 +12,7 @@ class ListCardsProduts extends React.Component {
 
   addInCart() {
     const { product } = this.props;
-    const { id, title, price, thumbnail } = product;
-    const quantity = 1;
-    let productRepet = false;
-    const carrinho = JSON.parse(localStorage.getItem('carrinho'));
-    const valor = (carrinho === null ? [] : carrinho);
-    valor.forEach((item) => {
-      if (item.id === id) {
-        item.quantity += 1;
-        productRepet = true;
-      }
-    });
-    if (productRepet) {
-      return localStorage.setItem('carrinho', JSON.stringify(valor));
-    }
-    valor.push({ id, title, thumbnail, price, quantity });
-    localStorage.setItem('carrinho', JSON.stringify(valor));
+    AddCart(product);
   }
 
   render() {
