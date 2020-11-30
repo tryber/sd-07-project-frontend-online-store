@@ -11,7 +11,7 @@ class ListCard extends React.Component {
         {products.map((prod) => {
           const { shipping } = prod;
           let freeShipping = false;
-          if (shipping.free_shipping === true){
+          if (shipping.free_shipping === true) {
             freeShipping = true;
           }
           return (
