@@ -9,7 +9,9 @@ const styledIconGlobal = css`
 
   :hover {
     transform: scale(1);
+
     cursor: pointer;
+
   }
 `;
 
@@ -19,7 +21,6 @@ export const Cart = styled(icon.FaCartPlus)`
 
 export const Plus = styled(icon.FaPlus)`
   ${styledIconGlobal}
-
   font-size: 1.5em;
   transform: scale(1);
   :active {
@@ -29,12 +30,11 @@ export const Plus = styled(icon.FaPlus)`
 
 export const Minus = styled(icon.FaMinus)`
   ${styledIconGlobal}
-
   font-size: 1.5em;
-
   transform: scale(1);
   :active {
     transform: scale(1.3);
+
   }
 `;
 
@@ -50,22 +50,21 @@ export const Star = styled(icon.FaStar)`
   transform: scale(1);
   ${({ modeview, setcolor }) => {
     switch (modeview) {
-      case 'input':
-        return css`
-          color: ${setcolor};
-          cursor: pointer;
-          :hover {
-            transform: scale(1.3);
-          }
-        `;
-      case 'card':
-        return css`
-          color: ${setcolor};
-        `;
-        break;
+    case 'input':
+      return css`
+        color: ${setcolor};
+        cursor: pointer;
+        :hover {
+          transform: scale(1.3);
+        }
+      `;
+    case 'card':
+      return css`
+        color: ${setcolor};
+      `;
 
-      default:
-        break;
+    default:
+      break;
     }
   }}
 `;
