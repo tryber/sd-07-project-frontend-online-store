@@ -62,11 +62,7 @@ export default class HomeBeforeSearch extends Component {
         <Link to="/ShoppingCart" data-testid="shopping-cart-button">
           <img
             src={ shoppingCartIcon }
-<<<<<<< HEAD
             className="icons"
-=======
-            className="shopping-cart-icon"
->>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
             alt="shoppingCartImg"
           />
         </Link>

@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CartButton from './CartButton';
-<<<<<<< HEAD
 import { handleAddItemToCart } from '../services/utils';
-=======
->>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
 
 export default class ProductsList extends React.Component {
   render() {
@@ -22,7 +19,6 @@ export default class ProductsList extends React.Component {
                 to={ {
                   pathname: '/Product',
                   state: {
-<<<<<<< HEAD
                     product,
                   },
                 } }
@@ -40,23 +36,6 @@ export default class ProductsList extends React.Component {
                 product={ product }
                 addItemToCart={ handleAddItemToCart }
               />
-=======
-                    productName: title,
-                    productImg: thumbnail,
-                    productPrice: price,
-                  },
-                } }
-                data-testid="product-detail-link"
-                key={ `${title} ${id}` }
-              >
-                <div>
-                  <h4>{ title }</h4>
-                  <img src={ thumbnail } alt="Product" />
-                  <p>{ price }</p>
-                </div>
-              </Link>
-              <CartButton datatestid="product-add-to-cart" productName={ title } />
->>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
             </li>
           )) : (<li> Nenhum produto foi encontrado </li>)}
       </ul>
