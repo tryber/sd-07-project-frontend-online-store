@@ -1,18 +1,17 @@
 import React from 'react';
+import EmptyCart from '../Components/EmptyCart';
+import Informations from '../Components/Informations';
 
 class Cart extends React.Component {
   render() {
-    return (
+    const carrinho = JSON.parse(localStorage.getItem('carrinho'));
+    return( 
       <div>
-        <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-        <img
-          className="box-empty"
-          src="https://image.flaticon.com/icons/png/512/15/15457.png"
-          alt="caixa fazia"
-        />
+        {localStorage.length === 0 ? <EmptyCart /> : carrinho.map((item) => <Informations 
+        key={item.id} product={item} />) }
       </div>
-    );
+    )
   }
-}
+};
 
-export default Cart;
+export default Cart; 

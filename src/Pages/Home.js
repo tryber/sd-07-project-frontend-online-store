@@ -91,7 +91,7 @@ class Home extends React.Component {
                 id="searchtext"
                 type="text"
                 name="searchText"
-                placeholder="Digite algum termo de pesquisa aqui"
+                placeholder="  Digite algum termo de pesquisa aqui"
                 autoComplete="off"
                 value={ searchText }
                 onChange={ this.onSearchTextChange }

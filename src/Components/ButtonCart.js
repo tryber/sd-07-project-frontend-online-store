@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Pages/Home.css';
+import '../App.css';
 
 class ButtonCart extends React.Component {
   render() {
