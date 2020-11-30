@@ -5,7 +5,33 @@ import voltar from '../components/img/undo.png';
 import ShoppingCartIcon from '../components/Shopping-cart-icon';
 
 class ShoppingCart extends React.Component {
+  constructor() {
+    super();
+    this.atualizar = this.atualizar.bind(this);
+    this.state = {
+      cart: false,
+    };
+  }
+
+  componentDidMount() {
+    setInterval(() => this.atualizar(), '10');
+  }
+
+  async atualizar() {
+    const { cart } = this.state;
+    const comp = [];
+    const cartitems = JSON.parse(localStorage.getItem('cartItems'));
+    if (cartitems.length > comp.length && cart === false) {
+      await this.setState({ cart: true });
+    }
+    if (cartitems.length === comp.length && cart === true) {
+      await this.setState({ cart: false });
+    }
+  }
+
   render() {
+    this.atualizar();
+    const { cart } = this.state;
     return (
       <div className="ShoppingCart">
         <div className="headerS">
@@ -19,9 +45,17 @@ class ShoppingCart extends React.Component {
           <Cart botto={ this.atualizar } />
         </div>
         <button type="button">
-          <Link className="payment" data-testid="checkout-products" to="/payment">
-            finalizar compra
-          </Link>
+          { (cart)
+            ? (
+              <Link className="payment" data-testid="checkout-products" to="/payment">
+                finalizar compra
+              </Link>
+            )
+            : (
+              <Link className="payment" data-testid="checkout-products" to="/">
+                voltar as compras
+              </Link>
+            ) }
         </button>
       </div>
     );

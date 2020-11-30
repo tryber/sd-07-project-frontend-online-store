@@ -272,3 +272,11 @@
 .shopping {
   width: 50px;
 }
+
+button:focus {
+  outline-style: none;
+}
+
+input:focus {
+  outline-style: none;
+}
