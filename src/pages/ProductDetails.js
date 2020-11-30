@@ -50,11 +50,11 @@ class ProductDetails extends React.Component {
 
   handleClick() {
     const { itemRecived } = this.state;
-    const { id, title, price, thumbnail } = itemRecived;
+    const { id, title, price, thumbnail, available_quantity: available } = itemRecived;
     const qtd = 1;
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
     if (this.checkCartOnAdd(id)) {
-      cartItemsStorage.push({ id, title, price, thumbnail, qtd });
+      cartItemsStorage.push({ id, title, price, thumbnail, qtd, available });
       localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
     }
   }

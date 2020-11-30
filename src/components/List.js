@@ -10,11 +10,11 @@ class List extends React.Component {
   }
 
   updateCart(products) {
-    const { id, title, price, thumbnail } = products;
+    const { id, title, price, thumbnail, available } = products;
     const qtd = 1;
     let cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
     if (this.checkCartOnAdd(id)) {
-      cartItemsStorage.push({ id, title, price, thumbnail, qtd });
+      cartItemsStorage.push({ id, title, price, thumbnail, qtd, available });
       localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
     }
     cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));

@@ -33,7 +33,9 @@ class Payment extends React.Component {
     const { sumCart } = this.state;
     return (
       <div>
-        <Link to="/shoppingcart"><img className="imagem" src={ voltar } alt="voltar" /></Link>
+        <Link to="/shoppingcart">
+          <img className="imagem" src={ voltar } alt="voltar" />
+        </Link>
         <div>
           <div>
             <h3>Revise seus produtos</h3>

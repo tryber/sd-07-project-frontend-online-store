@@ -29,6 +29,21 @@
   align-items: center;
 }
 
+.a {
+  display: flex;
+  text-decoration: none;
+}
+
+.cartsize {
+  position: absolute;
+  top: -20px;
+  right: 1px;
+  background-color: rgb(247, 139, 139);
+  padding: 5px 6px;
+  border-radius: 100px;
+  color: black;
+}
+
 .pesquisa {
   width: 25vw;
   border-right: 2px solid rgba(126, 126, 126, 0.685);
@@ -217,6 +232,36 @@
   appearance: none;
   cursor: pointer;
   border: 0;
+}
+
+.ShoppingCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headerS {
+  background-color: rgb(207, 207, 207);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment {
+  text-decoration: none;
+  color: black;
+}
+
+.button {
+  background-color: rgba(220, 249, 253, 0);
+  appearance: none;
+  cursor: pointer;
+  border: 0;
+}
+
+.carrinho {
+  display: flex;
+  align-items: center;
 }
 
 .imagem {

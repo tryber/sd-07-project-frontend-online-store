@@ -27,9 +27,11 @@ class Cart extends Component {
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
     const PA = cartItemsStorage.filter((item) => item.id === name);
     const item = PA[0];
-    item.qtd += 1;
-    localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
-    this.atualizar();
+    if (item.qtd < item.available) {
+      item.qtd += 1;
+      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+      this.atualizar();
+    }
   }
 
   delet(event) {
@@ -45,9 +47,7 @@ class Cart extends Component {
     const cartItemsStorage = JSON.parse(localStorage.getItem('cartItems'));
     const PA = cartItemsStorage.filter((item) => item.id === name);
     const item = PA[0];
-    if (item.qtd === 1) {
-      this.delet(event);
-    } else {
+    if (item.qtd > 1) {
       item.qtd -= 1;
       localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
       this.atualizar();
@@ -61,22 +61,24 @@ class Cart extends Component {
   }
 
   sumCart() {
+    const len = [];
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     const summ = (sum, addValue) => sum + (addValue.qtd * addValue.price);
-    const cartTotal = cartItems.reduce(summ, '');
+    const cartTotal = cartItems.reduce(summ, len.length);
     this.setState({ sumCart: cartTotal });
   }
 
   render() {
     const { compras, sumCart } = this.state;
     if (compras.length < 1) {
-      return <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>;
+      return <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>;
     }
     return (
       <div>
         {compras.map((item) => (
-          <div key={ item.id }>
+          <div key={ item.id } className="carrinho">
             <button
+              className="button"
               type="button"
               name={ item.id }
               onClick={ this.delet }
@@ -91,6 +93,7 @@ class Cart extends Component {
             <img src={ item.thumbnail } alt={ item.title } />
             <p data-testid="shopping-cart-product-name">{item.title}</p>
             <button
+              className="button"
               type="button"
               data-testid="product-decrease-quantity"
               name={ item.id }
@@ -100,6 +103,7 @@ class Cart extends Component {
             </button>
             <p data-testid="shopping-cart-product-quantity">{item.qtd}</p>
             <button
+              className="button"
               type="button"
               data-testid="product-increase-quantity"
               name={ item.id }

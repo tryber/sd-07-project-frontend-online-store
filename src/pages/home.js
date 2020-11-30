@@ -12,7 +12,6 @@ class Home extends React.Component {
     this.select = this.select.bind(this);
     this.buscaCategoryAndQuery = this.buscaCategoryAndQuery.bind(this);
     this.atualizar = this.atualizar.bind(this);
-    this.localStorageCart = this.localStorageCart.bind(this);
     this.state = {
       category: '',
       searchValue: '',
@@ -22,19 +21,11 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.atualizar();
-    this.localStorageCart();
   }
 
   async onClick(texto) {
     await this.setState({ searchValue: texto });
     this.atualizar();
-  }
-
-  localStorageCart() {
-    if (!localStorage.getItem('cartItems')) {
-      const cartItemsStorage = [];
-      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
-    }
   }
 
   async buscaCategoryAndQuery(category, query) {
@@ -57,6 +48,10 @@ class Home extends React.Component {
   }
 
   render() {
+    if (!localStorage.getItem('cartItems')) {
+      const cartItemsStorage = [];
+      localStorage.setItem('cartItems', JSON.stringify(cartItemsStorage));
+    }
     const { list } = this.state;
     return (
       <div className="home">
