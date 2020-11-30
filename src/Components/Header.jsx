@@ -5,7 +5,7 @@ import icon from '../shopping-cart.svg';
 
 class Header extends React.Component {
   render() {
-    const { getProducts } = this.props;
+    const { getProducts, searchBar } = this.props;
     return (
       <div className="container-header">
         <div className="inner-container">
@@ -19,6 +19,7 @@ class Header extends React.Component {
               className="input"
               id="search-input"
               data-testid="query-input"
+              onChange={ searchBar }
             />
             <button
               className="btn-search"
@@ -41,6 +42,9 @@ class Header extends React.Component {
 }
 
 
-Header.propTypes = { getProducts: PropTypes.func.isRequired };
+Header.propTypes = {
+  getProducts: PropTypes.func.isRequired,
+  searchBar: PropTypes.func.isRequired,
+};
 
 export default Header;
