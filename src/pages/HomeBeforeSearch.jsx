@@ -5,6 +5,7 @@ import shoppingCartIcon from '../img/shopping-cart.png';
 import searchBarIcon from '../img/search-bar-icon.png';
 import CategoryList from './CategoryList';
 import ProductsList from './ProductsList';
+// um salve especial a todo o grupo 7, foram demais!
 
 export default class HomeBeforeSearch extends Component {
   constructor() {
