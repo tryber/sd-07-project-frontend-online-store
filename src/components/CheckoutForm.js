@@ -27,6 +27,19 @@ class CheckoutForm extends React.Component {
 
   submit(event) {
     event.preventDefault();
+    this.setState({
+      completeName: '',
+      CPF: '',
+      email: '',
+      tel: '',
+      CEP: '',
+      endereco: '',
+      complement: '',
+      numberOfHouse: '',
+      city: '',
+      state: '',
+      payment: 'billet',
+    });
   }
 
   render() {
