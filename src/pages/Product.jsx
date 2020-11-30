@@ -100,7 +100,11 @@ export default class Product extends Component {
                 placeholder="E-mail"
               />
               <div className="rating-wrapper">
-                <StarRow rating={ rating } ratingChange={ this.handleRatingOnChange } max={ 5 } />
+                <StarRow
+                  rating={ rating }
+                  ratingChange={ this.handleRatingOnChange }
+                  max={ 5 }
+                />
               </div>
             </div>
             <textarea

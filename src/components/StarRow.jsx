@@ -18,5 +18,9 @@ class StarRow extends Component {
     );
   }
 }
-
+StarRow.propTypes = {
+rating :
+ratingChange:
+max:
+}
 export default StarRow;

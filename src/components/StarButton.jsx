@@ -7,7 +7,9 @@ class StarButton extends Component {
     const text = active ? '★' : '☆';
 
     return (
-      <button className="rating-star" type="button" onClick={ ratingChange }>{ text }</button>
+      <button className="rating-star" type="button" onClick={ ratingChange }>
+        { text }
+      </button>
     );
   }
 }
