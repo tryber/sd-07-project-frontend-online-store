@@ -19,7 +19,6 @@ export const addCartItem = (newItem) => {
 export const handleQuantity = ({ id, action }) => {
   const cartItems = getCartItems();
   const item = cartItems.find((cartItem) => cartItem.id === id[0]);
-  const filteredItems = cartItems.filter((cartItem) => cartItem !== item);
   let quantity = Number(item.quantity);
   if (action === 'increase') {
     quantity += 1;
@@ -28,6 +27,9 @@ export const handleQuantity = ({ id, action }) => {
     quantity -= 1;
     item.quantity = String(quantity);
   }
-  const newCartItemsList = [...filteredItems, item];
+  const newCartItemsList = cartItems.map((cartItem) => {
+    const condition = cartItem === item ? item : cartItem;
+    return condition;
+  });
   saveCartItems(newCartItemsList);
 };
