@@ -49,9 +49,11 @@ export default class ShoppingCart extends Component {
   totalPrice() {
     const { cart } = this.state;
     const zero = 0;
-    const total = cart
-      .reduce((previous, { price, amount }) => previous + price * amount, zero);
-    this.setState({ totalPrice: total });
+    if (cart) {
+      const total = cart
+        .reduce((previous, { price, amount }) => previous + price * amount, zero);
+      this.setState({ totalPrice: total });
+    }
   }
 
   addSubButton(productId, operation) {
