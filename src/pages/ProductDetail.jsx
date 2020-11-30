@@ -132,9 +132,9 @@ class ProductDetail extends Component {
       let repeatedProduct = false;
       values.forEach((item) => {
         if (item.id === id) {
-          item.number += 1;
-          item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
-          item.totalPrice = this.roundNumber(item.totalPrice);
+          // item.number += 1;
+          // item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+          // item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
           if (item.number < item.availableQuantity) {
             item.number += 1;

@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content:right;
+}
+
+#addItem {
+  animation-name: add;
+  animation-duration: 5s;
+}
+
+@keyframes add {
+  to { border: 5px double black; }
+}
