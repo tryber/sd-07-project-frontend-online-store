@@ -7,22 +7,30 @@ class Checkout extends Component {
   constructor() {
     super();
     this.setSumOfCartPrice = this.setSumOfCartPrice.bind(this);
+    this.calculatingTotal = this.calculatingTotal.bind(this);
     this.state = { cartSum: 0 };
   }
 
   componentDidMount() {
-    const { cart } = this.props;
-    let sumOf = 0;
-    for (let index = 0; index < cart.length; index += 1) {
-      console.log(cart[index]);
-      sumOf += cart[index].price;
-    }
-
+    const zero = 0;
+    const sumOf = this.calculatingTotal(zero);
     this.setSumOfCartPrice(sumOf);
   }
 
   setSumOfCartPrice(value) {
     this.setState({ cartSum: value });
+  }
+
+  calculatingTotal(inititalValue) {
+    const { cart } = this.props;
+    let sum = inititalValue;
+    let index = inititalValue;
+
+    for (index; index < cart.length; index += 1) {
+      sum += cart[index].price;
+    }
+
+    return sum;
   }
 
   render() {
