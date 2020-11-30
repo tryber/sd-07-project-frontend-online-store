@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from '../components/Loading/Loading';
+import AddByDetails from '../components/AddByDetails/AddByDetails';
+import ShoppingCartButton from '../components/ShoppingCartButton/ShoppingCartButton';
 import Rating from '../components/Rating/Rating';
-
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class ProductDetails extends Component {
     this.fetchProduct = this.fetchProduct.bind(this);
     this.state = {
       isLoading: true,
-      productSelected: {},
+      productSelected: [],
     };
   }
 
@@ -52,6 +53,7 @@ class ProductDetails extends Component {
             ))}
           </ul>
         </div>
+        <AddByDetails productSelected={ product } />
       </div>
     );
   }
@@ -61,6 +63,7 @@ class ProductDetails extends Component {
     return (
       <div>
         {isLoading ? <Loading /> : this.renderDetails(productSelected)}
+        <ShoppingCartButton />
         <Rating />
       </div>
     );

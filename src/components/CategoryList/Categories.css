@@ -1,0 +1,16 @@
+.categories-container {
+  border: 1px solid black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  max-width: 15rem;
+}
+
+.categories-container div {
+  display: flex;
+  flex-direction: column;
+}
+
+.categories-container span {
+  margin-bottom: 0.5rem;
+}

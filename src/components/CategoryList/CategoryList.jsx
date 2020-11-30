@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../../services/api';
+import './Categories.css';
 
 class CategoryList extends Component {
   constructor() {
@@ -25,7 +26,7 @@ class CategoryList extends Component {
     const { categoriesList } = this.state;
     const { onChangeCategory } = this.props;
     return (
-      <div>
+      <div className="categories-container">
         <span>Categorias:</span>
         <div>
           {categoriesList.map((category) => (

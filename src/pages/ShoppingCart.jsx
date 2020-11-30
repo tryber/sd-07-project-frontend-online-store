@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EmptyCard from '../components/EmptyCard/EmptyCard';
 
 class ShoppingCart extends Component {
   render() {
@@ -21,6 +22,7 @@ class ShoppingCart extends Component {
             <p data-testid="shopping-cart-product-quantity">Qts:1</p>
           </div>
         ))}
+        <EmptyCard />
       </div>
     );
   }
