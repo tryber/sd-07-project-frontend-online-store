@@ -29,8 +29,7 @@ class CartItem extends Component {
 
   render() {
     const { item } = this.props;
-    const { title, thumbnail } = item;
-    const { quantity } = this.state;
+    const { title, thumbnail, quantity } = item;
 
     return (
       <div>

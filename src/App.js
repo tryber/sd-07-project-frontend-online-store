@@ -24,6 +24,7 @@ class App extends React.Component {
       cart: [...previousState.cart, item],
       totalQuantity,
     }));
+    localStorage.setItem('totalQuantity', totalQuantity);
   }
 
   handleTotalQuantity(op) {
@@ -34,10 +35,13 @@ class App extends React.Component {
       totalQuantity -= 1;
     }
     this.setState({ totalQuantity });
+    localStorage.setItem('totalQuantity', totalQuantity);
   }
 
   render() {
-    const { cart, totalQuantity } = this.state;
+    const { cart } = this.state;
+    let { totalQuantity } = this.state;
+    totalQuantity = localStorage.getItem('totalQuantity');
     return (
       <div className="App">
         <BrowserRouter>
