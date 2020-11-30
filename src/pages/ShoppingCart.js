@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../Table.css';
+
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -72,33 +75,47 @@ class ShoppingCart extends React.Component {
         </header>
         {!localStorage.length ? ('Aproveite as ofertas para comprar o que deseja'
         ) : (this.readCart().map((key) => {
-          const { sku, cost, name, image } = key;
+          const { sku, cost, name, image, quantity } = key;
           return (
-            <section key={ sku } data-testid="product">
-              <p>
-                {sku}
-              </p>
-              <div>
-                <img alt="Product inside cart" src={ image } />
-              </div>
-              <div className="info">
-                <div
-                  data-testid="shopping-cart-product-quantity"
-                >
-                  { quantitySameItems }
-                </div>
-                <div
-                  data-testid="shopping-cart-product-name"
-                >
-                  {name}
-                </div>
-                <div>
-                  {cost}
-                </div>
-              </div>
+            <section key={ sku } data-testid="product" className="container-fluid">
+              <table className="table table-bordered table-striped table-hover">
+                <tr>
+                  <th className="text-center">Identificação</th>
+                  <th className="text-center">Imagem</th>
+                  <th className="text-center">Produto</th>
+                  <th className="text-center">Preço</th>
+                  <th className="text-center">Disponível</th>
+                  <th className="text-center">Adquiridos</th>
+                </tr>
+
+                <tr>
+                  <td>{ sku }</td>
+                  <td>
+                    <img
+                      className="img-responsive img-circle text-center"
+                      src={ image }
+                      alt={ name }
+                    />
+                  </td>
+                  <td className="text-center">{ name }</td>
+                  <td className="text-center">{ cost }</td>
+                  <td className="text-center">{ quantity }</td>
+                  <td className="text-center">{ quantitySameItems }</td>
+                </tr>
+              </table>
             </section>);
         })
         )}
+        <div className="text-right">
+          <Link
+            className="btn btn-success text-right"
+            To={ { pathname: './pages/CheckoutPage',
+              state: { quantitySameItems },
+            } }
+          >
+            Finalizar Compra!
+          </Link>
+        </div>
       </main>
     );
   }

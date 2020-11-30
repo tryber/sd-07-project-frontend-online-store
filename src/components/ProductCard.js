@@ -75,8 +75,8 @@ class ProductCard extends React.Component {
     const { item } = this.props;
     const { id, available_quantity: availableQuantity, title, price, thumbnail } = item;
     return (
-      <section data-testid="product">
-        <img className="card-image" alt="" src={ thumbnail } />
+      <section data-testid="product" className=".item-section">
+        <img className="card-image img-card" alt="" src={ thumbnail } />
         <div className="info">
           <h3 className="title">{title}</h3>
           <h5 className="subtitle"><b>{ price }</b></h5>

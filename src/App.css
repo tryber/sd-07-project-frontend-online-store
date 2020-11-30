@@ -34,7 +34,7 @@ body,
   justify-content: space-evenly;
 }
 
-img {
+.img-card {
   align-items: center;
   border-radius: 5%;
   display: block;
@@ -64,7 +64,7 @@ img {
   width: 80%;
   height: 80%;
 }
-section {
+.item-section {
   border-radius: 5%;
   max-width: 288px;
   width: 100%;
