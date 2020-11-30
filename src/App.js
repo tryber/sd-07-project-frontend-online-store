@@ -7,6 +7,7 @@ import ShoppingCart from './components/ShoppingCart'; */
 import MainPage from './pages/main-page';
 import ProductDetails from './pages/ProductDetails';
 import ShoppingCart from './components/ShoppingCart';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={ MainPage } />
           <Route exact path="/shopping-cart" component={ ShoppingCart } />
+          <Route exact path="/checkout" component={ Checkout } />
           <Route exact path="/:id" component={ ProductDetails } />
         </Switch>
       </BrowserRouter>

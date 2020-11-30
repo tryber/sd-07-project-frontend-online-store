@@ -11,12 +11,14 @@ class ProductList extends Component {
 
   saveItem() {
     const { product } = this.props;
-    const { id, title, price } = product;
+    const { id, title, price, thumbnail, shipping } = product;
+    const availableQuantity = product.available_quantity;
+    console.log(product);
     const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
     const itemsIndex = items.findIndex((element) => element.id === id);
     const flag = -1;
     if (itemsIndex === flag) {
-      items.push({ id, title, price, qtd: 1 });
+      items.push({ id, title, price, availableQuantity, thumbnail, shipping, qtd: 1 });
     } else {
       items[itemsIndex].qtd += 1;
     }
@@ -65,6 +67,7 @@ ProductList.propTypes = {
     thumbnail: PropTypes.string,
     price: PropTypes.number,
     shipping: PropTypes.object,
+    available_quantity: PropTypes.number,
   }).isRequired,
 };
 
