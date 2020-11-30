@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ShoppingCartList } from '../../components';
+import PropTypes from 'prop-types';
+import { ShoppingCartList, Header } from '../../components';
 import * as lsapi from '../../services/lsapi';
 import './ShoppingCart.css';
 
@@ -23,12 +24,14 @@ class ShoppingCart extends Component {
   render() {
     const purchasedProducts = lsapi.getShoppingCartList();
     const { totalPrice } = this.state;
+    const { location } = this.props;
     const formatter = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     });
     return (
       <div className="cart-list-container">
+        <Header pathname={ location.pathname } />
         <h2>Carrinho de Compras</h2>
         <ShoppingCartList
           purchasedProducts={ purchasedProducts }
@@ -41,5 +44,11 @@ class ShoppingCart extends Component {
     );
   }
 }
+
+ShoppingCart.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ShoppingCart;

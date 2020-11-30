@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CategoryList, SearchBar, ProductList, Header } from '../../components';
 import * as api from '../../services/api';
 import './Home.css';
@@ -39,9 +40,10 @@ class Home extends Component {
 
   render() {
     const { products, purchasedProducts } = this.state;
+    const { location } = this.props;
     return (
       <div className="main-container">
-        <Header />
+        <Header pathname={ location.pathname } />
         <aside className="categories-container">
           <CategoryList handleChange={ this.handleChange } />
         </aside>
@@ -59,5 +61,11 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Home;

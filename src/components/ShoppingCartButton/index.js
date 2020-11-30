@@ -11,6 +11,7 @@ class ShoppingCartButton extends Component {
         data-testid="shopping-cart-button"
       >
         <img
+          className="shopping-cart-button"
           src={ shoppingCartLogo }
           alt="icon shopping cart"
         />

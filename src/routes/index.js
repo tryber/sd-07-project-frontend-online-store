@@ -4,9 +4,19 @@ import { Home, ShoppingCart, ProductDetail } from '../pages';
 
 const Routes = () => (
   <Switch>
-    <Route path="/productdetail" component={ ProductDetail } />
-    <Route path="/shoppingcart" component={ ShoppingCart } />
-    <Route exact path="/" component={ Home } />
+    <Route
+      path="/productdetail"
+      render={ (props) => <ProductDetail { ...props } /> }
+    />
+    <Route
+      path="/shoppingcart"
+      render={ (props) => <ShoppingCart { ...props } /> }
+    />
+    <Route
+      exact
+      path="/"
+      render={ (props) => <Home { ...props } /> }
+    />
   </Switch>
 );
 
