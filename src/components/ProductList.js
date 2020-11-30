@@ -5,13 +5,12 @@ import Products from './Products';
 class ProductList extends React.Component {
   render() {
     const { products, click } = this.props;
-    const emptyArray = 0;
 
     if (click) {
       return (
         <div>
           {products.map((product) => <Products key={ product.id } product={ product } />)}
-          {products.length === emptyArray && <p>Nenhum produto foi encontrado</p>}
+          {!products.length && <p>Nenhum produto foi encontrado</p>}
         </div>
       );
     }
