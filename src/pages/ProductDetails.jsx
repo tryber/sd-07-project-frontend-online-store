@@ -4,7 +4,7 @@ import * as api from '../services/api';
 import Loading from '../components/Loading/Loading';
 import AddByDetails from '../components/AddByDetails/AddByDetails';
 import ShoppingCartButton from '../components/ShoppingCartButton/ShoppingCartButton';
-
+import Rating from '../components/Rating/Rating';
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -64,6 +64,7 @@ class ProductDetails extends Component {
       <div>
         {isLoading ? <Loading /> : this.renderDetails(productSelected)}
         <ShoppingCartButton />
+        <Rating />
       </div>
     );
   }
