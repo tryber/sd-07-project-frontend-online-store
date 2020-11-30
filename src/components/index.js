@@ -7,5 +7,5 @@ import CartItem from './CartItem';
 import Evaluation from './Evaluation';
 import ProductList from './ProductList';
 
-export { Category, CategoryList, EmptyCart, SearchPlusCart,
-  ButtonCart, CartItem, Evaluation, ProductList };
+export { Category, CategoryList, EmptyCart, SearchPlusCart, ButtonCart,
+  CartItem, Evaluation, ProductList };
