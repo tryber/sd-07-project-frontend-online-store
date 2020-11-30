@@ -1,6 +1,7 @@
 import { createGlobalStyle, css } from 'styled-components';
 import resetCss from './reset';
 
+
 export const title = css`
   font-size: 24px;
   font-weight: 700;
@@ -13,6 +14,7 @@ export const subTitle = css`
 export const text = css`
   font-size: 15px;
 `;
+
 
 export default createGlobalStyle`
 
