@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ProductCart from '../Components/ProductCart';
 
 class ShoppingCartPage extends Component {
@@ -74,7 +75,11 @@ class ShoppingCartPage extends Component {
           Valor Total da Compra R$
           {/* estado total price */}
         </div>
-        <button type="button">Finalizar Compra</button>
+        <button data-testid="checkout-products" type="button">
+          <Link to="/checkout">
+            Finalizar Compra
+          </Link>
+        </button>
       </div>
     );
   }
