@@ -258,6 +258,15 @@
   cursor: pointer;
   border: 0;
 }
+.produto2 {
+  border: 3px solid rgba(126, 126, 126, 0.685);
+  margin: 20px;
+  width: 150px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .carrinho {
   width: 100%;

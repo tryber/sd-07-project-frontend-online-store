@@ -22,9 +22,10 @@ class Payment extends React.Component {
   }
 
   sumCart() {
+    const len = [];
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     const summ = (sum, addValue) => sum + (addValue.qtd * addValue.price);
-    const cartTotal = cartItems.reduce(summ, '');
+    const cartTotal = cartItems.reduce(summ, len.length);
     this.setState({ sumCart: cartTotal });
   }
 
@@ -33,22 +34,25 @@ class Payment extends React.Component {
     const { sumCart } = this.state;
     return (
       <div>
-        <Link to="/shoppingcart">
-          <img className="imagem" src={ voltar } alt="voltar" />
-        </Link>
+        <div className="barraH">
+          <Link to="/shoppingcart">
+            <img className="imagem" src={ voltar } alt="voltar" />
+          </Link>
+        </div>
         <div>
           <div>
             <h3>Revise seus produtos</h3>
-            {(cartItems.length < 1)
-              ? (<h3>Seu carrinho está vazio</h3>)
-              : (
+            <div className="barrapesquisa">
+              {
                 cartItems.map((item) => (
-                  <div key={ item.id }>
+                  <div key={ item.id } className="produto2">
                     <img src={ item.thumbnail } alt={ item.title } />
                     <p data-testid="shopping-cart-product-name">{item.title}</p>
                     <p>{`R$ ${item.qtd * item.price}`}</p>
                   </div>
-                )))}
+                ))
+              }
+            </div>
             <h3>{`total: R$ ${sumCart}`}</h3>
           </div>
         </div>
