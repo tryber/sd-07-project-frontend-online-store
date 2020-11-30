@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Category, SearchBar, ProductCard, NotFound, ShoppingCartButton }
   from '../components/index';
@@ -17,9 +18,13 @@ class Home extends Component {
     };
   }
 
-  componentDidMount() { this.fetchCategories(); }
+  componentDidMount() {
+    this.fetchCategories();
+  }
 
-  componentDidUpdate(prevProps, prevState) { this.StatusSet(prevState); }
+  componentDidUpdate(prevProps, prevState) {
+    this.StatusSet(prevState);
+  }
 
   onClick(key, value) {
     this.setState({
@@ -48,21 +53,30 @@ class Home extends Component {
 
   render() {
     const { categories, status, products } = this.state;
+    const { shoppingCard, addToCard } = this.props;
     return (
       <div>
         <SearchBar onClick={ this.onClick } />
-        <ShoppingCartButton />
-        {
-          status && (
-            products.results.length
-              ? <ProductCard products={ products.results } />
-              : <NotFound />
-          )
-        }
+        <ShoppingCartButton productsInShoppingCart={ shoppingCard } />
+        {status
+          && (products.results.length ? (
+            <ProductCard
+              products={ products.results }
+              addToCard={ addToCard }
+              shoppingCard={ shoppingCard }
+            />
+          ) : (
+            <NotFound />
+          ))}
         <Category categories={ categories } onClick={ this.onClick } />
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  shoppingCard: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToCard: PropTypes.func.isRequired,
+};
 
 export default Home;
