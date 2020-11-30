@@ -32,7 +32,9 @@ class ProductDetail extends Component {
   }
 
   async eventAddCart() {
-    await localStorage.setItem('cart', [localStorage.getItem('cart'), JSON.stringify(this.props.product)]);
+    const { product } = this.props;
+    await localStorage.setItem('cart',
+      [localStorage.getItem('cart'), JSON.stringify(product)]);
   }
 
 
@@ -52,7 +54,13 @@ class ProductDetail extends Component {
             </h4>
             <h5>{product.price}</h5>
           </div>
-          <button data-testid="product-add-to-cart" onClick={this.eventAddCart}>Adicionar ao Carrinho</button>
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            onClick={ this.eventAddCart }
+          >
+            Adicionar ao Carrinho
+          </button>
         </div>
       </div>
     );
@@ -62,6 +70,7 @@ class ProductDetail extends Component {
 export default ProductDetail;
 
 ProductDetail.propTypes = {
+  product: PropTypes.shape().isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,

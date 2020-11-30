@@ -40,21 +40,22 @@ class home extends Component {
     this.fetchProducts();
   }
 
-  async addCartEvent(product){
+  async addCartEvent(product) {
+    const { cart } = this.state;
     await this.setState({
-      cart: [...this.state.cart, product],
+      cart: [...cart, product],
     });
     if (localStorage.getItem('cart') === null) {
-      localStorage.setItem('cart', JSON.stringify(this.state.cart));
+      localStorage.setItem('cart', JSON.stringify(cart));
     } else {
-      console.log(this.state.cart)
+      // console.log(this.state.cart)
       // localStorage.setItem('cart', []);
-      localStorage.setItem('cart', JSON.stringify(this.state.cart));
+      localStorage.setItem('cart', JSON.stringify(cart));
     }
   }
 
   render() {
-    const { products } = this.state;
+    const { products, cart } = this.state;
     return (
       <div>
         <section className="cabecalho">
@@ -62,7 +63,7 @@ class home extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h2>
           <SearchBar query={ this.inputEvent } fetchProducts={ this.fetchProducts } />
-          <Link to={ {pathname: "/shoppingCart", state: this.state.cart} }>
+          <Link to={ { pathname: '/shoppingCart', state: cart } }>
             <img
               src={ CartIcon }
               width="50"
@@ -78,7 +79,11 @@ class home extends Component {
           <div className="productList">
             {
               products
-                .map((product) => <ProductCard key={ product.id } product={ product } event={this.addCartEvent}/>)
+                .map((product) => (<ProductCard
+                  key={ product.id }
+                  product={ product }
+                  event={ this.addCartEvent }
+                />))
             }
           </div>
         </section>
