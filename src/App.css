@@ -61,3 +61,41 @@
   margin: 5px;
   width: 100%;
 }
+
+.home {
+  display: flex;
+  width: 100%;
+}
+
+.searchBar>input {
+  width: 500px;
+}
+
+.searchBar-car {
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 90%;
+}
+
+.SearchBar-products {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  width: 100%;
+}
+
+.product {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.buttons-link {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}

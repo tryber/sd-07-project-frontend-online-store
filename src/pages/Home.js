@@ -33,11 +33,11 @@ class Home extends Component {
   }
 
   async handleUpdateCategory(prevProps, prevState) {
-    const { categories } = this.state;
+    const { categories, inputValue } = this.state;
     const { getProductsFromCategoryAndQuery } = API;
     if (prevState.categories !== categories) {
-      const categoryUpdate = await getProductsFromCategoryAndQuery(null, categories);
-      this.setState({ products: categoryUpdate.results });
+      const categoryUp = await getProductsFromCategoryAndQuery(categories, inputValue);
+      this.setState({ products: categoryUp.results });
     }
   }
 
@@ -52,7 +52,7 @@ class Home extends Component {
   render() {
     const { inputValue, products } = this.state;
     return (
-      <div>
+      <div className="home">
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
