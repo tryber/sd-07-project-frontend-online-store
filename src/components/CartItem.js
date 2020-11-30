@@ -62,7 +62,6 @@ class CartItem extends Component {
         </p>
 
         <button type="submit"> Finalizar Compra </button>
-        {console.log(title)}
       </div>
     );
   }

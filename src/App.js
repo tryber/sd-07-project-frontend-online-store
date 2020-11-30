@@ -9,26 +9,26 @@ import Checkout from './pages/Checkout';
 
 class App extends React.Component {
   constructor() {
+    const total = JSON.parse(localStorage.getItem('totalQuantity'));
     super();
     this.addItem = this.addItem.bind(this);
     this.handleTotalQuantity = this.handleTotalQuantity.bind(this);
     this.state = {
       cart: [],
-      totalQuantity: 0,
+      totalQuantity: total,
     };
   }
 
   addItem(item) {
-    let { totalQuantity } = this.state;
-    const { cart } = this.state;
-    totalQuantity += 1;
+    const { totalQuantity } = this.state;
+    const newTotal = totalQuantity + 1;
+
     this.setState((previousState) => ({
       cart: [...previousState.cart, item],
-      totalQuantity,
+      totalQuantity: newTotal,
     }));
-    console.log(item);
-    localStorage.setItem(cart, JSON.stringify(item));
-    localStorage.setItem('totalQuantity', totalQuantity);
+    localStorage.setItem('cart', JSON.stringify(item));
+    localStorage.setItem('totalQuantity', newTotal);
   }
 
   handleTotalQuantity(op, item) {
@@ -36,23 +36,26 @@ class App extends React.Component {
     const { cart } = this.state;
     const sizeCart = Object.keys(cart).length;
     const zero = 0;
+
     if (op === '+') {
       totalQuantity += 1;
     } else if (op === '-' && totalQuantity > sizeCart) {
       totalQuantity -= 1;
     }
+
     for (let index = zero; index < Object.keys(cart).length; index += 1) {
       if (cart[index].id === item.id) {
-        cart[index].quantity += 1;
-        console.log(cart[index].quantity);
-        this.setState({
-          cart,
-          totalQuantity,
-        });
-        return;
+        if (op === '+') cart[index].quantity += 1;
+        if (op === '-' && cart[index].quantity > 1) cart[index].quantity -= 1;
+
+        this.setState({ cart });
+
+        break;
       }
     }
-    localStorage.setItem(cart, JSON.stringify(item));
+    console.log(totalQuantity);
+    this.setState({ totalQuantity });
+    localStorage.setItem('cart', JSON.stringify(item));
     localStorage.setItem('totalQuantity', totalQuantity);
   }
 
