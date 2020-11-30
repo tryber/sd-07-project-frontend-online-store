@@ -22,7 +22,9 @@ export const CtnCenter = styled.div`
       align-items: center;
       justify-content: center;
 
+
       box-shadow: 1px 1px 1px 1px rgba(68, 68, 68, 0.68);
+
 
     }
 

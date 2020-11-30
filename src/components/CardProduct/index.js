@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
@@ -30,9 +31,11 @@ class CardProduct extends Component {
     return (
       <css.cpnCenter data-testid="product">
 
+
         <div className="ctn-title">
           <h4 className="text">{title}</h4>
         </div>
+
 
         <img src={thumbnail} alt="Product Image" />
         <p>{price}</p>
@@ -40,9 +43,11 @@ class CardProduct extends Component {
           Adicionar ao Carrinho
         </cp.Button>
 
+
         <Link className="links" to="/details" data-testid="product-detail-link">
           Detalhes
         </Link>
+
 
       </css.cpnCenter>
     );
@@ -52,12 +57,16 @@ class CardProduct extends Component {
 CardProduct.propTypes = {
 
 
+
+
   id: PropTypes.string,
   title: PropTypes.string,
   price: PropTypes.number,
   thumbnail: PropTypes.string,
 
+
 };
+
 
 CardProduct.propDefault = {
 
@@ -66,7 +75,9 @@ CardProduct.propDefault = {
   price: 0,
   thumbnail: '',
 
+
 };
+
 
 
 export default CardProduct;

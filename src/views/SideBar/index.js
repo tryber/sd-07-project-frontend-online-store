@@ -8,6 +8,7 @@ class SideBar extends Component {
     super();
 
 
+
     this.handlerClick = this.handlerClick.bind(this);
 
     this.state = {
@@ -33,14 +34,29 @@ class SideBar extends Component {
       const object = await api.getCategories();
       this.setState({ catergories: object, isLoading: false });
     });
+
   }
 
+
+  async handlerClick({ target: { name, value } }) {
+   const { callback } = this.props;
+   await this.setState({ [name]: value });
+    callback(this.state.categoryId);
+  }
+
+  fetchCategoriesApi() {
+    this.setState({ isLoading: true }, async () => {
+      const object = await api.getCategories();
+      this.setState({ catergories: object, isLoading: false });
+    });
+  }
 
   render() {
     const { catergories, isLoading, categoryAll } = this.state;
 
     return (
       <css.ctnSideBar>
+
 
         <h1 className="subTitle">Categorias</h1>
         <div className="div-category">
@@ -77,6 +93,7 @@ class SideBar extends Component {
                 </label>
               </div>
             );
+
 
           })
         )}

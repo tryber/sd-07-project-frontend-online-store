@@ -22,7 +22,6 @@ export const Cart = styled(icon.FaCartPlus)`
 export const Plus = styled(icon.FaPlus)`
   ${styledIconGlobal}
 
-
   font-size: 1.5em;
 
   transform: scale(1);
@@ -34,9 +33,7 @@ export const Plus = styled(icon.FaPlus)`
 export const Minus = styled(icon.FaMinus)`
   ${styledIconGlobal}
 
-
   font-size: 1.5em;
-
   transform: scale(1);
   :active {
     transform: scale(1.3);
@@ -57,6 +54,7 @@ export const Star = styled(icon.FaStar)`
   ${({ modeview, setcolor }) => {
     switch (modeview) {
 
+
       case 'input':
         return css`
           color: ${setcolor};
@@ -72,6 +70,7 @@ export const Star = styled(icon.FaStar)`
 
       default:
         break;
+
 
     }
   }}

@@ -3,6 +3,7 @@ import { subTitle } from '../../style/global';
 
 export const ctnSideBar = styled.div`
 
+
   display: flex;
   flex-direction: column;
   width: 85%;
@@ -30,4 +31,5 @@ export const ctnSideBar = styled.div`
     }
 
   }
+
 `;
