@@ -32,7 +32,14 @@ class ProductDetail extends Component {
   }
 
   async eventAddCart() {
-    await localStorage.setItem('cart', [localStorage.getItem('cart'), JSON.stringify(this.props.product)]);
+    const { product } = this.state;
+    if (localStorage.getItem('cart') === null) {
+      localStorage.setItem('cart', JSON.stringify([product]));
+    } else {
+      const arrayProducts = JSON.parse(localStorage.getItem('cart'));
+      arrayProducts.push(product);
+      localStorage.setItem('cart', JSON.stringify(arrayProducts));
+    }
   }
 
 
@@ -52,7 +59,13 @@ class ProductDetail extends Component {
             </h4>
             <h5>{product.price}</h5>
           </div>
-          <button data-testid="product-add-to-cart" onClick={this.eventAddCart}>Adicionar ao Carrinho</button>
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            onClick={ this.eventAddCart }
+          >
+            Adicionar ao Carrinho
+          </button>
         </div>
       </div>
     );

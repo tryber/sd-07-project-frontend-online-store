@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class shoppingCart extends Component {
   render() {
-    console.log(this.props.location.state);
     return (
       <div>
         <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>

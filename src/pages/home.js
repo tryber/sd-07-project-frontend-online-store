@@ -16,7 +16,6 @@ class home extends Component {
       category: '',
       query: '',
       products: [],
-      cart: [],
     };
   }
 
@@ -40,14 +39,13 @@ class home extends Component {
     this.fetchProducts();
   }
 
-  async addCartEvent(product){
-    await this.setState({
-      cart: [...this.state.cart, product],
-    });
+  async addCartEvent(product) {
     if (localStorage.getItem('cart') === null) {
-      localStorage.setItem('cart', JSON.stringify(this.state.cart));
+      localStorage.setItem('cart', JSON.stringify([product]));
     } else {
-      localStorage.setItem('cart', []);
+      const arrayProducts = JSON.parse(localStorage.getItem('cart'));
+      arrayProducts.push(product);
+      localStorage.setItem('cart', JSON.stringify(arrayProducts));
     }
   }
 
@@ -60,7 +58,7 @@ class home extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h2>
           <SearchBar query={ this.inputEvent } fetchProducts={ this.fetchProducts } />
-          <Link to={ {pathname: "/shoppingCart", state: this.state.cart} }>
+          <Link to="/shoppingCart">
             <img
               src={ CartIcon }
               width="50"
@@ -76,7 +74,11 @@ class home extends Component {
           <div className="productList">
             {
               products
-                .map((product) => <ProductCard key={ product.id } product={ product } event={this.addCartEvent}/>)
+                .map((product) => (<ProductCard
+                  key={ product.id }
+                  product={ product }
+                  event={ this.addCartEvent }
+                />))
             }
           </div>
         </section>
