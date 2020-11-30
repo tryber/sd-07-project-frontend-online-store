@@ -15,18 +15,14 @@ export default class Home extends Component {
       query: '',
     };
 
-    this.handleRadioClick = this.handleRadioClick.bind(this);
     this.getProdutsByQuery = this.getProdutsByQuery.bind(this);
-    this.onSearchText = this.onSearchText.bind(this);
+    this.handleRadioClick = this.handleRadioClick.bind(this);
   }
 
-  async handleRadioClick({ target: { name, id } }) {
-    await this.setState({ [name]: id });
-    this.getProdutsByQuery();
-  }
-
-  onSearchText({ target: { name, value } }) {
-    this.setState({ [name]: value });
+  handleRadioClick({ target: { name, id } }) {
+    this.setState({ [name]: id }, () => {
+      this.getProdutsByQuery();
+    });
   }
 
   async getProdutsByQuery() {
@@ -41,7 +37,7 @@ export default class Home extends Component {
       <div className="busca">
         <SearchBar
           query={ query }
-          onChange={ this.onSearchText }
+          onChange={ ({ target: { name, value } }) => this.setState({ [name]: value }) }
           onClick={ this.getProdutsByQuery }
         />
 
