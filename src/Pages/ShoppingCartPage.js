@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCart from '../Components/ProductCart';
+import Header from '../Components/Header';
 
 class ShoppingCartPage extends Component {
   constructor(props) {
@@ -56,9 +57,11 @@ class ShoppingCartPage extends Component {
     const zero = 0;
     const decimals = 2;
     const { shoppingCartItems } = this.state;
-    const sum = shoppingCartItems.reduce((acc, { price, quantity }) => (
-      price * quantity + acc), zero);
-    return sum.toFixed(decimals);
+    if (shoppingCartItems) {
+      const sum = shoppingCartItems.reduce((acc, { price, quantity }) => (
+        price * quantity + acc), zero);
+      return sum.toFixed(decimals);
+    }
   }
 
   render() {
@@ -66,12 +69,14 @@ class ShoppingCartPage extends Component {
     if (!shoppingCartItems) {
       return (
         <div>
+          <Header />
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         </div>
       );
     }
     return (
       <div>
+        <Header />
         <div>
           {shoppingCartItems.map((item) => (
             <ProductCart
