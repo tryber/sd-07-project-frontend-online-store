@@ -31,7 +31,7 @@ export default class QuantifyProducts extends Component {
             data-testid="product-increase-quantity"
           >
             +
-          </button> 
+          </button>
           <button
             onClick={ () => { this.decrease(); } }
             type="button"
