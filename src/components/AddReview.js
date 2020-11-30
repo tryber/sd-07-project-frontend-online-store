@@ -19,8 +19,7 @@ class AddReview extends Component {
   }
 
   handleSubmit() {
-    const { review, history } = this.state,
-    this.state.history.push(review);
+    this.setState( (prevState) => ({history : [...prevState.history, prevState.review]}))
   }
 
   render() {
