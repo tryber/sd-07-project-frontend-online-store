@@ -9,7 +9,7 @@ import {
   Comments, Email, EmailInput,
   Evaluation, Form, Message,
   SelectInput,
-} from "./styles";
+} from './styles';
 
 class CardDetailsForm extends React.Component {
   constructor(props) {
