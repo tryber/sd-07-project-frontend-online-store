@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class Evaluation extends React.Component {
   constructor() {
@@ -71,11 +70,5 @@ class Evaluation extends React.Component {
     );
   }
 }
-
-Evaluation.propTypes = {
-  evaluationText: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  reviewList: PropTypes.array.isRequired,
-};
 
 export default Evaluation;
