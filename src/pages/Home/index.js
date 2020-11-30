@@ -20,10 +20,6 @@ export class Home extends Component {
     };
   }
 
-
-
-
-
   getCurrentCategory(id) {
     this.setState({ categoryId: id, isLoading: true }, async () => {
       const object = await api.getProductsFromCategoryAndQuery(
@@ -35,21 +31,14 @@ export class Home extends Component {
   }
 
   fetchSearchButton(searchResult) {
-
-
     this.setState({ searchInput: searchResult, isLoading: true }, async () => {
-
-
       const object = await api.getProductsFromCategoryAndQuery(
         this.state.categoryId,
         searchResult
       );
 
-
       this.setState({ products: object.results, isLoading: false });
     });
-
-
   }
 
   render() {
@@ -66,8 +55,6 @@ export class Home extends Component {
           <div className="ctn-displayCard">
             <view.SearchInput callback={this.fetchSearchButton} />
             <div className="displayCard">
-
-
               {products.length === 0 && !isLoading && (
                 <div>Digite algum termo de pesquisa ou escolha uma categoria.</div>
               )}
@@ -95,8 +82,6 @@ export class Home extends Component {
                   {product.title}
                 </cp.CardProduct>
               ))} */}
-
-
             </div>
           </div>
         </div>
