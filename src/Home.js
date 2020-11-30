@@ -13,15 +13,25 @@ class ProductsList extends Component {
       status: false,
       products: [],
       demand: '',
+      productId: '',
     };
 
     this.fecthProducts = this.fecthProducts.bind(this);
     this.change = this.change.bind(this);
+    this.fecthProductsCategoryId = this.fecthProductsCategoryId.bind(this);
   }
 
   async fecthProducts() {
-    const { demand } = this.state;
-    const resultRequest = await getProductsFromCategoryAndQuery('', demand);
+    const { productId, demand } = this.state;
+    const resultRequest = await getProductsFromCategoryAndQuery(productId, demand);
+    this.setState({
+      status: true,
+      products: resultRequest.results,
+    });
+  }
+
+  async fecthProductsCategoryId(id) {
+    const resultRequest = await getProductsFromCategoryAndQuery(id, '');
     this.setState({
       status: true,
       products: resultRequest.results,
@@ -38,7 +48,7 @@ class ProductsList extends Component {
     return (
       <div>
         {(status) ? <ProductCard products={ products } /> : false}
-        {(products.length === '') ? <span>Nenhum produto foi encontrado</span> : false}
+        {(products === []) ? <span>Nenhum produto foi encontrado</span> : false}
         <div className="ContainerForm">
           <form>
             <div>
@@ -72,7 +82,7 @@ class ProductsList extends Component {
                 />
               </Link>
             </div>
-            <Categories>
+            <Categories fecthProductsCategoryId={ this.fecthProductsCategoryId }>
               <div>
                 <Link to="./pages/cart">
                   <img

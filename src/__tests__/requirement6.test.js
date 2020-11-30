@@ -14,7 +14,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
 );
 
 describe('Selecionar uma categoria e ver somente produtos daquela categoria', () => {
-  it.skip(`Filtra corretamente os produtos de uma página para exibir somente os daquela
+  it(`Filtra corretamente os produtos de uma página para exibir somente os daquela
       categoria`, async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
