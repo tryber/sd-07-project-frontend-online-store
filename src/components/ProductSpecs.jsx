@@ -5,10 +5,14 @@ class ProductSpecs extends React.Component {
   render() {
     const { title, price, thumbnail } = this.props;
     return (
-      <div>
-        <h3 data-testid="product-detail-name">{`${title} - R$ ${price}`}</h3>
-        <img src={ thumbnail } alt="Imagem do produto" />
-        <div>
+      <div className="product-specs">
+        <div className="product">
+          <h3 className="product-specs-title" data-testid="product-specs-name">
+            {`${title} - R$ ${price}`}
+          </h3>
+          <img className="product-specs-img" src={ thumbnail } alt="Imagem do produto" />
+        </div>
+        <div className="product-specs-list">
           <ul>
             <li>Especificação 01</li>
             <li>Especificação 02</li>

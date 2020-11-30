@@ -46,12 +46,10 @@ class ProductDetail extends React.Component {
   render() {
     const { dataDetail, loading } = this.state;
     const { id, title, price, thumbnail } = dataDetail;
-    // const productToKart = { id, title, price, qtt: 1 }
-
     return (
-      <div>
+      <div className="product-details-container">
         <Header />
-        <div>
+        <div className="product-details">
           {loading ? (
             'Loading...'
           ) : (
@@ -59,7 +57,7 @@ class ProductDetail extends React.Component {
           )}
           <div>
             <button
-              // data-testid="shopping-cart-button"
+              className="add-cart-button"
               data-testid="product-detail-add-to-cart"
               type="submit"
               onClick={ () => this
