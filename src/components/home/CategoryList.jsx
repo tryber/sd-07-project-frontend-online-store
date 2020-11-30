@@ -16,7 +16,7 @@ class CategoryList extends React.Component {
                   onChange={ () => check(id) }
                   name="categories"
                 />
-                {name}
+                { name }
               </label>
             </div>
           ))}
