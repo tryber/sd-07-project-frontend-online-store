@@ -47,3 +47,33 @@
     border-radius: 5px;
     width: 100px;
 }
+
+@media screen and (min-device-width: 320px) and (max-width: 568px) {
+    .container {
+        border: none;
+        text-align: center;
+        margin: 5px;
+        padding: 5px;
+    }
+    .container .categories {
+        display: none;
+    }
+    .container .otherElements {
+        width: 100%;
+    } 
+}
+
+@media screen and (min-device-width: 768px) and (max-width: 1024px) {
+    .container {
+        border: none;
+        text-align: center;
+        margin: 5px;
+        padding: 5px;
+    }
+    .container .categories {
+        text-align: left;
+    }
+    .container .otherElements {
+        width: 300px;
+    }
+}   
