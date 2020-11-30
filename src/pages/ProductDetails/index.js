@@ -17,6 +17,7 @@ class ProductDetails extends Component {
         price: 0,
         thumbnail: '',
         availableQuantity: 0,
+        shipping: { freeShipping: false },
       },
     };
 
@@ -38,7 +39,13 @@ class ProductDetails extends Component {
   render() {
     const { match: { params: { id } } } = this.props;
     const { product } = this.state;
-    const { title, price, thumbnail, available_quantity: availableQuantity } = product;
+    const {
+      title,
+      price,
+      thumbnail,
+      available_quantity: availableQuantity,
+      shipping: { free_shipping: freeShipping },
+    } = product;
 
     return (
       <section>
@@ -55,6 +62,7 @@ class ProductDetails extends Component {
             </main>
           </header>
           <div>{`R$ ${price}`}</div>
+          {freeShipping && <p data-testid="free-shipping">Frete Grátis</p>}
           <CartButton />
           <button
             type="button"
