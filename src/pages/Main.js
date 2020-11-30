@@ -103,9 +103,10 @@ class Main extends React.Component {
             { cartCount === null ? count : cartCount.length }
           </span>
         </div>
-
-        <div className="categories-3">
-          <Categories handleCatChange={ this.handleCatChange } />
+        <div>
+          <div className="categories-3">
+            <Categories handleCatChange={ this.handleCatChange } />
+          </div>
         </div>
 
         <div className="buttonFetch-4">
