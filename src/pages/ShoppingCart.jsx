@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as localStorage from '../services/localStorage';
 
 export default class ShoppingCart extends Component {
@@ -49,6 +50,11 @@ export default class ShoppingCart extends Component {
             </p>
           </div>
         ))}
+        <Link to="/checkout" data-testid="checkout-products">
+          <button type="button">
+            Finalizar compra
+          </button>
+        </Link>
       </div>
     );
   }
