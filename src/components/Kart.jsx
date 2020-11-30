@@ -31,7 +31,10 @@ class KartList extends React.Component {
     return (
       <div className="kart">
         {itensStorage ? (
-          <KartItens itensStorage={ itensStorage } />
+          <KartItens
+            itensStorage={ itensStorage }
+            getStorageItens={ this.getStorageItens }
+          />
         ) : (
           <h1 data-testid="shopping-cart-empty-message">{message}</h1>
         )}

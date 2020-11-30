@@ -8,45 +8,42 @@ class Itens extends React.Component {
     super(props);
 
     this.updateValue = this.updateValue.bind(this);
-    // this.deleteProduct = this.deleteProduct.bind(this);
-
-    this.state = {
-      quantity: 1,
-    };
+    this.deleteProduct = this.deleteProduct.bind(this);
   }
 
   updateValue(operator) {
     const { updateProductsStorage } = storageServices;
-    const { itens } = this.props;
+    const { item, getStorageItens } = this.props;
 
     if (operator === 'sub') {
-      const operatorMin = 0;
-      if (itens.qtt > operatorMin) itens.qtt -= 1;
-      updateProductsStorage(itens);
+      const operatorMin = 1;
+      if (item.qtt > operatorMin) item.qtt -= 1;
+      updateProductsStorage(item);
     } else {
-      itens.qtt += 1;
-      updateProductsStorage(itens);
+      item.qtt += 1;
+      updateProductsStorage(item);
     }
+    this.setState({});
 
-    this.setState({
-      quantity: itens.qtt,
-    });
+    getStorageItens();
   }
 
-  // async deleteProduct() {
-  //   const { delProductsStorage } = storageServices;
-  //   const { itens } = this.props;
-  //   await delProductsStorage(itens);
-  // }
+  async deleteProduct({ target }) {
+    const { getStorageItens } = this.props;
+    const itemId = { id: target.id };
+    await storageServices.delProductsStorage(itemId);
+    this.setState({});
+    getStorageItens();
+  }
 
   render() {
-    const { itens: { title, thumbnail, price } } = this.props;
-    const { quantity } = this.state;
+    const { item: { id, title, thumbnail, price, qtt } } = this.props;
     return (
       <div>
         <button
+          id={ id }
           type="button"
-          // onClick={ this.deleteProduct }
+          onClick={ this.deleteProduct }
         >
           X
         </button>
@@ -60,7 +57,7 @@ class Itens extends React.Component {
           -
         </button>
         <span data-testid="shopping-cart-product-quantity">
-          {`Quantidade: ${quantity}`}
+          {`Quantidade: ${qtt}`}
         </span>
         <button
           type="button"
@@ -76,12 +73,14 @@ class Itens extends React.Component {
 }
 
 Itens.propTypes = {
-  itens: PropTypes.shape({
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     qtt: PropTypes.number.isRequired,
   }).isRequired,
+  getStorageItens: PropTypes.func.isRequired,
 };
 
 export default Itens;
