@@ -11,6 +11,7 @@ import {
 import {
   recoveryReviewsFromLocalStorage,
 } from '../services/reviewsFunctions';
+import Footer from '../components/Footer';
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -100,6 +101,7 @@ class ProductDetails extends Component {
         </div>
         <AddSpecificProduct addShoppingCartItems={ this.addShoppingCartItems } />
         <ReviewList />
+        <Footer />
       </div>
     );
   }

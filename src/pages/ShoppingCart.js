@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 class ShoppingCart extends Component {
   render() {
@@ -16,6 +17,7 @@ class ShoppingCart extends Component {
             Seu carrinho está vazio
           </h3>
         </ul>
+        <Footer />
       </div>
     );
   }
