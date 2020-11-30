@@ -25,6 +25,7 @@
     justify-content: flex-start;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .otherElements input {
@@ -59,6 +60,7 @@
         display: none;
     }
     .container .otherElements {
+        text-align: center;
         width: 100%;
     } 
 }
@@ -74,6 +76,7 @@
         text-align: left;
     }
     .container .otherElements {
+        text-align: center;
         width: 300px;
     }
 }   

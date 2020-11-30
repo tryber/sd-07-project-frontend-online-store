@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Proptypes from 'prop-types';
+import './CartIcon.css';
+import Logo from '../shoppingCartImage.png';
 
 class CartIcon extends Component {
   render() {
@@ -12,8 +14,8 @@ class CartIcon extends Component {
       });
     }
     return (
-      <div>
-        <img alt="cart icon" />
+      <div className="container">
+        <img id="cartIcon" src={Logo} alt="cart icon" />
         <span data-testid="shopping-cart-size">{quantity}</span>
       </div>
     );

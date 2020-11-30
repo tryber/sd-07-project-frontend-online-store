@@ -20,10 +20,18 @@
 
 .item-selected {
     border-radius: 10px;
-    border: 1px solid red;
+    border: 5px double red;
+    background-color: white;
     color: black;
     padding: 20px;
     margin: 20px;
     width: 400px;
     align-self: center;
+    animation-name: selecionado;
+    animation-duration: 1s;
+}
+
+@keyframes selecionado {
+    from { background-color: white; }
+    to { background-color:black }
 }

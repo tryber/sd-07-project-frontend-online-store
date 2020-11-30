@@ -17,15 +17,16 @@ class ProductDetail extends Component {
     this.removeZero = this.removeZero.bind(this);
     this.roundNumber = this.roundNumber.bind(this);
     this.addItemToLocalStorage = this.addItemToLocalStorage.bind(this);
+
     this.sumItem = this.sumItem.bind(this);
     this.subtractItem = this.subtractItem.bind(this);
     this.translateFreeShipping = this.translateFreeShipping.bind(this);
+    
     this.state = {
       id: '',
       attributes: [],
       title: '',
       price: 0,
-      freeShipping: false,
       thumbnail: '',
       availableQuantity: 0,
       number: 0,
@@ -131,8 +132,11 @@ class ProductDetail extends Component {
       let repeatedProduct = false;
       values.forEach((item) => {
         if (item.id === id) {
+          // item.number += 1;
+          // item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
+          // item.totalPrice = this.roundNumber(item.totalPrice);
           repeatedProduct = true;
-          if (item.number < availableQuantity) {
+          if (item.number < item.availableQuantity) {
             item.number += 1;
             item.totalPrice = parseFloat(item.totalPrice) + parseFloat(item.price);
             item.totalPrice = this.roundNumber(item.totalPrice);
