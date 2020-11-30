@@ -58,15 +58,14 @@ class AddReview extends Component {
           </button>
         </form>
         <div>
-          { history.map(item => (
+          { history.map((item) => (
             <div key={ item.email }>
-              <p>{item.comment}</p>
-              <p>{item.rating}</p>
-            </div>))
-          }
+              <p>{ item.comment }</p>
+              <p>{ item.rating }</p>
+            </div>)) }
         </div>
       </div>
-    )
+    );
   }
 }
 
