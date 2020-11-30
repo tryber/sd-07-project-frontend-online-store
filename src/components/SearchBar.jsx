@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import './SearchBar.css';
 import CastegoryList from './CategoryList';
@@ -86,7 +87,6 @@ export default class SearchBar extends Component {
     localStorage.setItem('cart', JSON.stringify(array));
   }
 
-
   arrayEmpty() {
     this.setState({ objeto: [] });
   }
@@ -122,28 +122,35 @@ export default class SearchBar extends Component {
           </button>
         </div>
 
-        <p
-          className="home-initial-message"
-          data-testid="home-initial-message"
-        >
+        <p className="home-initial-message" data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <div className="containerCard">
           {listOfProducts.map((itens) => (
             <div className="product-card" data-testid="product" key={ itens.id }>
-              <img
-                className="thumbnail-card"
-                src={ itens.thumbnail }
-                alt={ itens.title }
-              />
-              <h1 className="title-card">{itens.title}</h1>
-              <span className="price-card">
-                R$
-                {itens.price}
-              </span>
-              <a className="details-link" href="http://www.google.com">
-                Ver detalhes
-              </a>
+              <Link
+                data-testid="product-detail-link"
+                to={ {
+                  pathname: `/ProductDetails/${itens.id}`,
+                  state: {
+                    detailsId: itens.id,
+                    detailsTitle: itens.title,
+                    detailsThumbnail: itens.thumbnail,
+                    detailsPrice: itens.price,
+                  },
+                } }
+              >
+                <img
+                  className="thumbnail-card"
+                  src={ itens.thumbnail }
+                  alt={ itens.title }
+                />
+                <h1 className="title-card">{ itens.title }</h1>
+                <span className="price-card">
+                  R$
+                  { itens.price }
+                </span>
+              </Link>
               <button
                 type="button"
                 name={ itens.id }
