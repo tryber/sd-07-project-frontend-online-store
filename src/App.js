@@ -9,8 +9,11 @@ function App() {
     <BrowserRouter>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/" component={ page.Home } />
-        <Route path="/shopcart" component={ page.ShopCart } />
+
+        <Route exact path="/" component={page.Home} />
+        <Route path="/shopcart" component={page.ShopCart} />
+        <Route path="/details" component={page.ProductDetails} />
+
       </Switch>
     </BrowserRouter>
   );

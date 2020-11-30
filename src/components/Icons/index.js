@@ -9,6 +9,9 @@ const styledIconGlobal = css`
 
   :hover {
     transform: scale(1);
+
+    cursor: pointer;
+
   }
 `;
 
@@ -18,23 +21,20 @@ export const Cart = styled(icon.FaCartPlus)`
 
 export const Plus = styled(icon.FaPlus)`
   ${styledIconGlobal}
-
-  font-size: 1em;
-
+  font-size: 1.5em;
   transform: scale(1);
   :active {
-    transform: scale(1.1);
+    transform: scale(1.3);
   }
 `;
 
 export const Minus = styled(icon.FaMinus)`
   ${styledIconGlobal}
-
-  font-size: 1em;
-
+  font-size: 1.5em;
   transform: scale(1);
   :active {
-    transform: scale(1.1);
+    transform: scale(1.3);
+
   }
 `;
 
@@ -45,7 +45,7 @@ export const Search = styled(icon.FaSearch)`
 
 export const Star = styled(icon.FaStar)`
   ${styledIconGlobal};
-  font-size: 1em;
+  font-size: 1.5em;
   margin: 0 5px;
   transform: scale(1);
   ${({ modeview, setcolor }) => {
