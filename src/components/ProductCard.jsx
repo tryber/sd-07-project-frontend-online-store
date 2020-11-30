@@ -8,15 +8,13 @@ class ProductCard extends Component {
     return (
       <div>
         {products.map(({ id, title, thumbnail, price }) => (
-          <div key={ id } data-testid="product">
-            <h2>{title}</h2>
-            <img src={ thumbnail } alt="product" />
-            <span>{price}</span>
-            <Link
-              data-testid="product-detail-link"
-              to={ { pathname: `/details/${id}` } }
-            >
-              Details
+          <div>
+            <Link data-testid="product-detail-link" to="/details/:id">
+              <div key={ id } data-testid="product">
+                <h2>{title}</h2>
+                <img src={ thumbnail } alt="product" />
+                <span>{price}</span>
+              </div>
             </Link>
           </div>
         ))}

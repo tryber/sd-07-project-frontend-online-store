@@ -6,13 +6,13 @@ class Details extends Component {
   render() {
     return (
       <div>
-        <h2 data-testid="product-detail-name">
-          Produto title - R$ price
-        </h2>
         <div>
           <Link to="/cardsLibrary">carrinho de compras</Link>
           <Link to="/">Return</Link>
         </div>
+        <h2 data-testid="product-detail-name">
+          Produto title - R$ price
+        </h2>
         <div>
           <img alt="title" src="thumbnail" />
         </div>
