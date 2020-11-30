@@ -6,7 +6,7 @@ class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.fetchProduct = this.fetchProduct.bind(this);
-    this.productLoaded = this.productLoaded.bind(this);    
+    this.productLoaded = this.productLoaded.bind(this);
     this.state = {
       loading: true,
       product: [],
@@ -32,29 +32,35 @@ class ProductDetail extends React.Component {
   }
 
   productAdd() {
-    const { product, quantidade } = this.state;
-    const { title } = product; 
-    // if (quantidade < 1) {this.setState({quantidade: 0})}
+    const { product } = this.state;
+    const { title } = product;
+    let { quantidade } = this.state;
+    const max = 99;
     return (
-      <div>        
+      <div>
         <div>
           <button
             data-testid=""
             type="submit"
-            onClick={() => {
-              if (quantidade < 1) {return this.setState({quantidade: 0})}
-              this.setState({quantidade: (this.state.quantidade -= 1)}) 
-            }}
+            onClick={ () => {
+              if (quantidade < 1) {
+                return this.setState({ quantidade: 0 });
+              }
+              this.setState({ quantidade: quantidade -= 1 });
+            } }
           >
             -
           </button>
-          <div>
-            {quantidade}
-          </div>
+          <div>{quantidade}</div>
           <button
             data-testid=""
             type="submit"
-            onClick={() => this.setState({quantidade: (this.state.quantidade += 1)}) }
+            onClick={ () => {
+              if (quantidade > max) {
+                return this.setState({ quantidade: 100 });
+              }
+              this.setState({ quantidade: quantidade += 1 });
+            } }
           >
             +
           </button>
@@ -62,7 +68,7 @@ class ProductDetail extends React.Component {
         <button
           data-testid="product-detail-add-to-cart"
           type="submit"
-          onClick={() => console.log(title + this.state.quantidade)}
+          onClick={ () => console.log(title + quantidade) }
         >
           ADICIONAR PRODUTO
         </button>
@@ -77,10 +83,10 @@ class ProductDetail extends React.Component {
       <div data-testid="product-detail-name">
         <h4>{title}</h4>
         <h3>{`R$${price}`}</h3>
-        <img alt="product Cover" src={thumbnail} />
+        <img alt="product Cover" src={ thumbnail } />
         <ul>
           {attributes.map((a) => (
-            <li key={a.name}>{`${a.name}: ${a.value_name}`}</li>
+            <li key={ a.name }>{`${a.name}: ${a.value_name}`}</li>
           ))}
         </ul>
       </div>
@@ -93,7 +99,9 @@ class ProductDetail extends React.Component {
       <div>
         {loading ? <p>Loading</p> : this.productLoaded()}
         {loading ? <div>Loading</div> : this.productAdd()}
-        {loading ? <div>Loading</div> : <Link to="/shoppingCart"> Carrinho de compras </Link>}
+        {loading
+          ? <div>Loading</div>
+          : <Link to="/shoppingCart"> Carrinho de compras </Link>}
       </div>
     );
   }
