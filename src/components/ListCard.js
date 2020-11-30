@@ -10,8 +10,10 @@ class ListCard extends React.Component {
       <div className="list-card-product">
         {products.map((prod) => {
           const { shipping } = prod;
-          const { freeShipping } = shipping.free_shipping;
-          console.log();
+          let freeShipping = false;
+          if (shipping.free_shipping === true){
+            freeShipping = true;
+          }
           return (
             <ItemCard
               key={ prod.id }
