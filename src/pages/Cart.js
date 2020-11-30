@@ -28,13 +28,22 @@ export default class Cart extends Component {
   updateCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart'));
     if (cart !== undefined && cart !== [] && cart !== null) {
-      cart.forEach(async ({ id: idCartItem, category, searchKey, quantity, availableQuantity }) => {
+      cart.forEach(async ({
+        id: idCartItem,
+        category,
+        searchKey,
+        quantity,
+        availableQuantity,
+      }) => {
         const resp = await api.getProductsFromCategoryAndQuery(category, searchKey);
         const { title, thumbnail, price, id } = resp.results.find(
           (product) => product.id === idCartItem,
         );
         this.setState((previus) => ({
-          cartItems: [...previus.cartItems, { title, thumbnail, price, id, quantity, availableQuantity }],
+          cartItems: [
+            ...previus.cartItems,
+            { title, thumbnail, price, id, quantity, availableQuantity },
+          ],
           isEmpty: false,
         }));
       });
