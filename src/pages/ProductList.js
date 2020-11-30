@@ -5,7 +5,7 @@ import * as cartApi from '../services/localStorage';
 
 class ProductList extends React.Component {
   render() {
-    const { products } = this.props;
+    const { products, updateCartSize } = this.props;
     return (
       <div>
         { products.map((product) => (
@@ -24,7 +24,10 @@ class ProductList extends React.Component {
             <button
               type="button"
               data-testid="product-add-to-cart"
-              onClick={ () => cartApi.addToCart(product) }
+              onClick={ () => {
+                cartApi.addToCart(product);
+                updateCartSize();
+              } }
             >
               Add to Cart
             </button>
@@ -37,6 +40,7 @@ class ProductList extends React.Component {
 
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  updateCartSize: PropTypes.func.isRequired,
 };
 
 export default ProductList;
