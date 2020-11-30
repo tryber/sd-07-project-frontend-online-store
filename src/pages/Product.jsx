@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import goBackArrow from '../img/back-arrow.png';
 import CartButton from './CartButton';
 import shoppingCartIcon from '../img/shopping-cart.png';
+<<<<<<< HEAD
 import StarRow from '../components/StarRow';
 
 import {
@@ -63,6 +64,12 @@ export default class Product extends Component {
     const { message, email, rating } = this.state;
     const rates = readSavedFormsOnStore();
 
+=======
+
+export default class Product extends Component {
+  render() {
+    const { location: { state: { productName, productImg, productPrice } } } = this.props;
+>>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
     return (
       <div>
         <div>
@@ -72,12 +79,17 @@ export default class Product extends Component {
           <Link to="/ShoppingCart" data-testid="shopping-cart-button">
             <img
               src={ shoppingCartIcon }
+<<<<<<< HEAD
               className="icons shopping-cart-icon"
+=======
+              className="shopping-cart-icon"
+>>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
               alt="shoppingCartImg"
             />
           </Link>
         </div>
         <div>
+<<<<<<< HEAD
           <h1 data-testid="product-detail-name">{ product.title }</h1>
           <img src={ product.thumbnail } alt="productImg" />
           <p>{ product.price }</p>
@@ -135,11 +147,31 @@ export default class Product extends Component {
             <p>Esse item não possui comentários ainda</p>
           ) }
         </div>
+=======
+          <h1 data-testid="product-detail-name">{ productName }</h1>
+          <img src={ productImg } alt="productImg" />
+          <p>{ productPrice }</p>
+          <CartButton
+            datatestid="product-detail-add-to-cart"
+            productName={ productName }
+          />
+        </div>
+>>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
       </div>
     );
   }
 }
 
 Product.propTypes = {
+<<<<<<< HEAD
   location: PropTypes.func.isRequired,
+=======
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      productName: PropTypes.string.isRequired,
+      productImg: PropTypes.string.isRequired,
+      productPrice: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+>>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
 };

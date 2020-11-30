@@ -48,9 +48,14 @@ export default class ShoppingCart extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     const { cartItems } = this.state;
 
     if (!cartItems) {
+=======
+    const cartItem = localStorage.getItem('item');
+    if (!cartItem) {
+>>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
       return (
         <div>
           <Link to="/">
@@ -58,7 +63,11 @@ export default class ShoppingCart extends Component {
           </Link>
           <img
             src={ shoppingCartIcon }
+<<<<<<< HEAD
             className="icons shopping-cart-icon-2"
+=======
+            className="shopping-cart-icon-2"
+>>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
             alt="shoppingCartImg"
           />
           <span className="shopping-cart-text">Carrinho de Compras</span>
@@ -67,6 +76,7 @@ export default class ShoppingCart extends Component {
       );
     }
     return (
+<<<<<<< HEAD
       <div className="shopping-cart-header">
         <div className="shopping-cart-wrapper">
           <Link className="display-flex" to="/">
@@ -103,6 +113,29 @@ export default class ShoppingCart extends Component {
           <button type="button" onClick={ () => this.checkoutSale }>
             Finalizar Compra
           </button>
+=======
+      <div>
+        <Link to="/">
+          <img src={ goBackArrow } className="go-back-arrow-icon" alt="goBackArrow" />
+        </Link>
+        <img
+          src={ shoppingCartIcon }
+          className="shopping-cart-icon-2"
+          alt="shoppingCartImg"
+        />
+        <span
+          className="shopping-cart-text"
+        >
+          Carrinho de Compras
+        </span>
+        <div>
+          <p data-testid="shopping-cart-product-name">{cartItem}</p>
+          <span
+            data-testid="shopping-cart-product-quantity"
+          >
+            Quantidade: 1
+          </span>
+>>>>>>> 09a5c6ca758e272420dba9b836615dcaa619cbc5
         </div>
       </div>
     );
