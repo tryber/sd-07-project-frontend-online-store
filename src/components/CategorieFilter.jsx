@@ -5,9 +5,7 @@ import * as api from '../services/api';
 export default class CategorieFilter extends React.Component {
   constructor() {
     super();
-
     this.FetchCategories = this.FetchCategories.bind(this);
-
     this.state = {
       categories: [],
     };
@@ -30,7 +28,7 @@ export default class CategorieFilter extends React.Component {
         {categories.map((categorie) => (
           <div className="categorie-item" key={ categorie.id }>
             <label htmlFor={ categorie.id }>
-              { categorie.name }
+              {categorie.name}
               <input
                 type="radio"
                 data-testid="category"
@@ -45,7 +43,6 @@ export default class CategorieFilter extends React.Component {
     );
   }
 }
-
 CategorieFilter.propTypes = {
   categorie: PropTypes.shape({
     id: PropTypes.string,
