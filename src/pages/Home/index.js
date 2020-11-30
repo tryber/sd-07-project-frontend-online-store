@@ -21,6 +21,9 @@ export class Home extends Component {
   }
 
 
+
+
+
   getCurrentCategory(id) {
     this.setState({ categoryId: id, isLoading: true }, async () => {
       const object = await api.getProductsFromCategoryAndQuery(
@@ -32,13 +35,21 @@ export class Home extends Component {
   }
 
   fetchSearchButton(searchResult) {
-    this.setState( { searchInput: searchResult, isLoading: true }, async () => {
+
+
+    this.setState({ searchInput: searchResult, isLoading: true }, async () => {
+
+
       const object = await api.getProductsFromCategoryAndQuery(
         this.state.categoryId,
         searchResult
       );
-    this.setState( { products: object.results, isLoading: false });
-    })
+
+
+      this.setState({ products: object.results, isLoading: false });
+    });
+
+
   }
 
   render() {
@@ -55,16 +66,37 @@ export class Home extends Component {
           <div className="ctn-displayCard">
             <view.SearchInput callback={this.fetchSearchButton} />
             <div className="displayCard">
-              { products.map((product) => (
+
+
+              {products.length === 0 && !isLoading && (
+                <div>Digite algum termo de pesquisa ou escolha uma categoria.</div>
+              )}
+              {isLoading ? (
+                <cp.Loading />
+              ) : (
+                products.map((product) => (
+                  <cp.CardProduct
+                    key={product.id}
+                    thumbnail={product.thumbnail}
+                    price={product.price}
+                    title={product.title}
+                  >
+                    {product.title}
+                  </cp.CardProduct>
+                ))
+              )}
+              {/* {products.map((product) => (
                 <cp.CardProduct
-                  key={ product.id }
-                  thumbnail={ product.thumbnail }
-                  price={ product.price }
-                  title={ product.title }
+                  key={product.id}
+                  thumbnail={product.thumbnail}
+                  price={product.price}
+                  title={product.title}
                 >
-                  { product.title }
+                  {product.title}
                 </cp.CardProduct>
-              ))}
+              ))} */}
+
+
             </div>
           </div>
         </div>
