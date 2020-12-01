@@ -65,12 +65,12 @@ class ProductDetails extends Component {
     );
   }
 
-  async addShoppingCartItems(event) {
+  async addShoppingCartItems() {
     const oldList = recoveryProductsFromLocalStorage();
     this.setState({
       shoppingCartItems: oldList,
     });
-    const { target } = event;    
+
     const { product } = this.state;
 
     await this.setState((previousState) => ({
@@ -115,23 +115,23 @@ class ProductDetails extends Component {
           </ul>
         </div>
         <div>
-        <button
-          type="button"
-          onClick={ this.addItem }
-        >
-          {' '}
-          +
-          {' '}
-        </button>
-          <div>{quantity}</div>
-        <button
-          type="button"
-          onClick={ this.removeItem }
-        >
-          {' '}
-          -
-          {' '}
-        </button>
+          <button
+            type="button"
+            onClick={ this.addItem }
+          >
+            {' '}
+            +
+            {' '}
+          </button>
+            <div>{quantity}</div>
+          <button
+            type="button"
+            onClick={ this.removeItem }
+          >
+            {' '}
+            -
+            {' '}
+          </button>
         </div>
         <AddSpecificProduct addShoppingCartItems={ this.addShoppingCartItems } />
         <ReviewList />
