@@ -78,3 +78,4 @@ GetIcon.propTypes = {
 }.isRequired;
 
 export default GetIcon;
+
