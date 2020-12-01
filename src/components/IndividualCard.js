@@ -21,6 +21,7 @@ class IndividualCard extends Component {
             id={ id }
             onClick={ addShoppingCartItems }
             className="bt-add"
+            data-testid="product-add-to-cart"
           >
             Adicionar ao carrinho
           </button>
