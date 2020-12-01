@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as cartStorage from '../../services/cartStorage';
 
 class AddByDetails extends Component {
   constructor(props) {
     super(props);
-
-    this.addCart = this.addCart.bind(this);
+    this.addCartItem = this.addCartItem.bind(this);
   }
 
-  addCart() {
-    const productsInCart = JSON.parse(localStorage.getItem('cart')) || [];
+  addCartItem() {
     const { productSelected } = this.props;
-    const newProducts = [...productsInCart, productSelected];
-    cartStorage.addToCart(newProducts);
+    const previousProducts = JSON.parse(localStorage.getItem('cart')) || [];
+    const findProduct = previousProducts
+      .find((SCproduct) => SCproduct.thumbnail === productSelected.thumbnail);
+    const newProduct = {
+      key: productSelected.id,
+      title: productSelected.title,
+      thumbnail: productSelected.thumbnail,
+      id: productSelected.id,
+      price: productSelected.price,
+      quantity: 1,
+    };
+
+    if (!findProduct) {
+      previousProducts.push(newProduct);
+    } else {
+      findProduct.quantity += 1;
+    }
+
+    this.setState(
+      () => ({ listProducts: previousProducts }),
+      () => {
+        const { listProducts } = this.state;
+        localStorage.setItem('cart', JSON.stringify(listProducts));
+      },
+    );
   }
 
   render() {
     return (
       <div>
         <button
-          onClick={ this.addCart }
+          onClick={ this.addCartItem }
           type="button"
           data-testid="product-detail-add-to-cart"
         >
@@ -31,6 +51,12 @@ class AddByDetails extends Component {
   }
 }
 
-AddByDetails.propTypes = { productSelected: PropTypes.shape({}).isRequired };
+AddByDetails.propTypes = {
+  productSelected: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.number,
+  }).isRequired };
 
 export default AddByDetails;

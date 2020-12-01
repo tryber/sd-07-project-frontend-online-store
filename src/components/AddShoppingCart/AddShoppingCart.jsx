@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class AddShoppingcart extends Component {
+class AddShoppingCart extends Component {
   constructor(props) {
     super(props);
-    const { product } = this.props;
     this.state = {
       listProducts: [],
-      product,
     };
 
     this.addCartItem = this.addCartItem.bind(this);
   }
 
   addCartItem() {
-    const { product } = this.state;
-    const previosProduts = JSON.parse(localStorage.getItem('cart')) || [];
+    const { product } = this.props;
+    const previousProducts = JSON.parse(localStorage.getItem('cart')) || [];
+    const findProduct = previousProducts.find((SCproduct) => SCproduct.id === product.id);
+    const newProduct = {
+      key: product.id,
+      title: product.title,
+      thumbnail: product.thumbnail,
+      id: product.id,
+      price: product.price,
+      quantity: 1,
+    };
+
+    if (!findProduct) {
+      previousProducts.push(newProduct);
+    } else {
+      findProduct.quantity += 1;
+    }
+
     this.setState(
-      () => ({ listProducts: [...previosProduts, product] }),
+      () => ({ listProducts: previousProducts }),
       () => {
         const { listProducts } = this.state;
         localStorage.setItem('cart', JSON.stringify(listProducts));
@@ -40,6 +54,12 @@ class AddShoppingcart extends Component {
   }
 }
 
-export default AddShoppingcart;
+AddShoppingCart.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.number,
+  }).isRequired };
 
-AddShoppingcart.propTypes = { product: PropTypes.shape({}).isRequired };
+export default AddShoppingCart;
