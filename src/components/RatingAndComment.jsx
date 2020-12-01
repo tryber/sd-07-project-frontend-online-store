@@ -25,28 +25,28 @@ class RatingAndComment extends React.Component {
         />
 
         <div onChange={ this.onChangeValue }>
-          <label>
-            <input type="radio" value="0" name="rating" />
+          <label htmlFor="rating-0">
+            <input id="rating-0" type="radio" value="0" name="rating" />
             0
           </label>
-          <label>
-            <input type="radio" value="1" name="rating" />
+          <label htmlFor="rating-1">
+            <input id="rating-1" type="radio" value="1" name="rating" />
             1
           </label>
-          <label>
-            <input type="radio" value="2" name="rating" />
+          <label htmlFor="rating-2">
+            <input id="rating-2" type="radio" value="2" name="rating" />
             2
           </label>
-          <label>
-            <input type="radio" value="3" name="rating" />
+          <label htmlFor="rating-3">
+            <input id="rating-3" type="radio" value="3" name="rating" />
             3
           </label>
-          <label>
-            <input type="radio" value="4" name="rating" />
+          <label htmlFor="rating-4">
+            <input id="rating-4" type="radio" value="4" name="rating" />
             4
           </label>
-          <label>
-            <input type="radio" value="5" name="rating" />
+          <label htmlFor="rating-5">
+            <input id="rating-5" type="radio" value="5" name="rating" />
             5
           </label>
         </div>
