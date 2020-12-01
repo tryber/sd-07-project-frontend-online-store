@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import EmptyCart from '../components/EmptyCard/EmptyCard';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -8,6 +7,7 @@ class ShoppingCart extends Component {
       cart: [],
     };
     this.getPreviousProducts = this.getPreviousProducts.bind(this);
+    this.emptyCart = this.emptyCart.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +34,10 @@ class ShoppingCart extends Component {
     if (findSCProduct.quantity >= 1) {
       this.setState({ cart: cartCopy });
     }
+  }
+
+  emptyCart() {
+    this.setState({ cart: localStorage.clear() });
   }
 
   render() {
@@ -84,7 +88,7 @@ class ShoppingCart extends Component {
             {cart.reduce((acc, curr) => (acc + (curr.price * curr.quantity)), zero)}
           </span>
         </div>
-        <EmptyCart />
+        <button type="button" onClick={ this.emptyCart }>Esvaziar carrinho</button>
       </div>
     );
   }
