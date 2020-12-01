@@ -22,10 +22,29 @@ export class Home extends Component {
     };
   }
 
-  addTocart(product) {
-    this.setState((prev) => ({
+  async getProductInCartLocalStorage() {
+    if (localStorage.getItem('productInCart')) {
+      const objectFromLocation = JSON.parse(localStorage.getItem('productsInCard'));
+      await this.setState({ productsItemsCart: objectFromLocation });
+    } else {
+      await this.setState({ productsItemsCart: [] });
+    }  
+  }
+
+  componentDidMount() {
+    this.getProductInCartLocalStorage();
+  }
+  
+  addToLocalStorage() {
+    const { productsItemsCart } = this.state;
+    localStorage.setItem('productsInCard', JSON.stringify(productsItemsCart));
+  }
+
+  async addTocart(product) {
+    await this.setState((prev) => ({
       productsItemsCart: [...prev.productsItemsCart, product],
     }));
+    this.addToLocalStorage();
   }
 
   getCurrentCategory(id) {
@@ -62,7 +81,7 @@ export class Home extends Component {
 
           <div className="ctn-displayCard">
             <view.SearchInput
-              productCart={productsItemsCart}
+              itensProducts={productsItemsCart}
               amountCart={productsItemsCart.length}
               callback={this.fetchSearchButton}
             />

@@ -8,12 +8,28 @@ import * as view from '../../views';
 export class ProductDetails extends Component {
   constructor() {
     super();
+    this.addToCart = this.addToCart.bind(this);
     this.state = {
       productDetails: [],
+      productsInCart: [],
     };
   }
 
-  componentDidMount() {}
+  async addToCart() {
+    const { id, title, price, thumbnail, amount } = this.props.location.detailsProduct;
+    const product = { id, title, price, thumbnail, amount };
+    await this.setState(prev => ({ productsInCart: [...prev.productsInCart, product] }));
+    localStorage.setItem('productsInCard', JSON.stringify(this.state.productsInCart));
+  }
+
+  getProductInCartLocalStorage() {
+    const objectFromLocation = JSON.parse(localStorage.getItem('productsInCard'));
+    this.setState({ productsInCart: objectFromLocation });
+  }
+
+  componentDidMount() {
+    this.getProductInCartLocalStorage();
+  }
 
   render() {
     const { title, price, thumbnail, amount } = this.props.location.detailsProduct;
@@ -39,7 +55,9 @@ export class ProductDetails extends Component {
                   amount={amount}
                 />
               </div>
-              <cp.Button className="button">Adicionar ao carrinho</cp.Button>
+              <Link to="/" onClick={this.addToCart} >
+                <cp.Button className="button" data-testid="product-detail-add-to-cart" >Adicionar ao carrinho</cp.Button>
+              </Link>
             </div>
           </div>
           <div className="ctn-texts">
