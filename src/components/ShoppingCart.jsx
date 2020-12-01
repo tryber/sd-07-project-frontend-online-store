@@ -5,6 +5,8 @@ class ShoppingCart extends Component {
   constructor(props) {
     super(props);
     this.restoreState = this.restoreState.bind(this);
+    this.increaseItem = this.increaseItem.bind(this);
+    this.decreaseItem = this.decreaseItem.bind(this);
     this.state = {
       productsTeste: [],
     };
@@ -19,15 +21,63 @@ class ShoppingCart extends Component {
     this.setState({ productsTeste: products });
   }
 
+  increaseItem(item) {
+    const { productsTeste } = this.state;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
+    const itemsIndex = items.findIndex((element) => element.id === item.id);
+    const flag = -1;
+    if (itemsIndex !== flag) {
+      items[itemsIndex].qtd += 1;
+    }
+    localStorage.setItem('itemsCart', JSON.stringify(items));
+    productsTeste.find((element) => element.id === item.id).qtd += 1;
+    this.setState({ productsTeste });
+  }
+
+  decreaseItem(item) {
+    const { productsTeste } = this.state;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
+    const itemsIndex = items.findIndex((element) => element.id === item.id);
+    const flag = -1;
+    const flagZero = 0;
+    if (items[itemsIndex].qtd > flagZero) {
+      if (itemsIndex !== flag) {
+        items[itemsIndex].qtd -= 1;
+      }
+      localStorage.setItem('itemsCart', JSON.stringify(items));
+      productsTeste.find((element) => element.id === item.id).qtd -= 1;
+      this.setState({ productsTeste });
+    }
+  }
+
   render() {
     const { productsTeste } = this.state;
     return (
       <div>
         {productsTeste ? productsTeste.map((item) => (
           <div key={ item.title }>
+            <button
+              type="button"
+            >
+              X
+            </button>
             <p data-testid="shopping-cart-product-name">{ item.title }</p>
             <p>{ item.price }</p>
             <p data-testid="shopping-cart-product-quantity">{ item.qtd }</p>
+            <button
+              type="submit"
+              data-testid="product-increase-quantity"
+              onClick={ () => this.increaseItem(item) }
+            >
+              +
+            </button>
+            <button
+              type="submit"
+              data-testid="product-decrease-quantity"
+              onClick={ () => this.decreaseItem(item) }
+            >
+              -
+            </button>
           </div>
         )) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
         {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
