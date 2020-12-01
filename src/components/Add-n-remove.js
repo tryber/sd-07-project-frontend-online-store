@@ -16,9 +16,14 @@ class AddAndRemoveItem extends Component {
     this.setState({ quantity: quantity + 1 });
   }
 
+  
   removeItem() {
     const { quantity } = this.state;
-    this.setState({ quantity: quantity - 1 });
+    if (quantity <= 0) {
+      this.setState({ quantity: 0 })
+    } else {
+      this.setState({ quantity: quantity - 1 });
+    }    
   }
 
   render() {
