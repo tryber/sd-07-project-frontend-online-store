@@ -1,8 +1,8 @@
 import React from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
-import GetIcon from './Icons';
 import PropTypes from 'prop-types';
+import GetIcon from './Icons';
 
 class Card extends React.Component {
   constructor(props) {
@@ -28,7 +28,6 @@ class Card extends React.Component {
   }
 
   render() {
-
     const { products, counter } = this.props;
     const { title, thumbnail, price, id, categoryId } = products;
     return (
