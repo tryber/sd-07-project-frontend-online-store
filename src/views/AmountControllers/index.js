@@ -33,7 +33,7 @@ export class AmountControllers extends Component {
     return (
       <css.Ctn>
         <icon.Minus onClick={ this.decreaseAmount } />
-        <div className="display">{ this.state.amount }</div>
+        <div className="display" data-testid="shopping-cart-product-quantity">{ this.state.amount }</div>
         <icon.Plus onClick={ this.increaseAmount } />
       </css.Ctn>
     );

@@ -26,7 +26,7 @@ class SearchInput extends Component {
   }
 
   render() {
-    const { amountCart, productCart } = this.props;
+    const { amountCart, itensProducts } = this.props;
     return (
       <css.ctnCenter>
         <div className="ctn-search-bar">
@@ -46,7 +46,7 @@ class SearchInput extends Component {
         <Link
           className="ctn-badge"
           data-testid="shopping-cart-button"
-          to={{ pathname: '/shopcart', productItem: productCart }}
+          to={{ pathname: '/shopcart', productItens: itensProducts }}
         >
           <div className="badge">{amountCart}</div>
           <icon.Cart />

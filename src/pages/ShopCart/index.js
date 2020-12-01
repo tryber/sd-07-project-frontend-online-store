@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as view from '../../views';
@@ -7,23 +8,24 @@ import * as icon from '../../components/Icons';
 export class ShopCart extends Component {
   constructor(props) {
     super();
-
+  
     this.state = {
-      cartProducts: [],
-      priceTotal: 10,
-      isEmpytCart: false,
-      product: {
-        id: 'teste',
-        title: 'teste com titulo de produto muito grande para caber em uma linha',
-        price: 34.02,
-        amount: 2,
-        thumbnail: 'testeimg',
-      },
+      productsInCart: [],
+
     };
+  }
+  
+  componentDidMount() {
+    this.getProductsFromLocation();
+  }
+
+  getProductsFromLocation() {
+    const { productItens } = this.props.location;
+    this.setState({ productsInCart: productItens});
   }
 
   render() {
-    const { priceTotal } = this.state;
+    const { productsInCart } = this.state;
     return (
       <css.Ctn>
         <div className="icon-ctn">
@@ -33,37 +35,7 @@ export class ShopCart extends Component {
           <icon.Cart color="gray" />
         </div>
         <div className="ctn-item-display">
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-          <view.ItemProduct product={this.state.product} />
-        </div>
-        <div>
-          <p>Preço total:{priceTotal}</p>
+          { productsInCart.map(products => (<view.ItemProduct product={products}/>)) }
         </div>
 
         <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>

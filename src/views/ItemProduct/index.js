@@ -11,7 +11,7 @@ export class ItemProduct extends Component {
       <css.Ctn key={id} >
         <icon.Close />
         <img src={thumbnail}/>
-        <h4 className='ctn-title'>{title}</h4>
+        <h4 className='ctn-title' data-testid="shopping-cart-product-name" >{title}</h4>
         <view.AmountControllers amount={amount} />
         <p>{price}</p>
       </css.Ctn>

@@ -62,7 +62,7 @@ export class Home extends Component {
 
           <div className="ctn-displayCard">
             <view.SearchInput
-              productCart={productsItemsCart}
+              itensProducts={productsItemsCart}
               amountCart={productsItemsCart.length}
               callback={this.fetchSearchButton}
             />
