@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import EvaluationForm from '../components/evaluationForm';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class ProductDetail extends React.Component {
             ))}
           </ul>
         </div>
+        <EvaluationForm />
         <Link to="/shoppingCart"> Carrinho de compras </Link>
       </div>
     );
