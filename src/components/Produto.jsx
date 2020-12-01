@@ -1,8 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as FunctionsToCart from './FunctionsToCart';
 
 class Produto extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleStorageForDetails = this.handleStorageForDetails.bind(this);
+  }
+
+  handleStorageForDetails(product) {
+    localStorage.setItem('productDetails', JSON.stringify(product));
+  }
+
   render() {
     const { product } = this.props;
     const { title, price, thumbnail } = product;
@@ -18,6 +29,17 @@ class Produto extends React.Component {
             .addToCart(title, price, thumbnail) }
         >
           Adicionar ao seu carrinho
+        </button>
+        <button
+          type="button"
+          onClick={ () => this.handleStorageForDetails(product) }
+        >
+          <Link
+            data-testid="product-detail-link"
+            to="/detalhes"
+          >
+            Detalhes do produto
+          </Link>
         </button>
       </div>
     );
