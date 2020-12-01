@@ -12,7 +12,9 @@ class ShoppingCart extends React.Component {
     }
   }
 
-  cartProducts() {}
+  cartProducts() {
+    
+  }
 
   render() {
     const { emptyCart } = this.state;
@@ -22,4 +24,4 @@ class ShoppingCart extends React.Component {
   }
 }
 
-export default ShoppingCart;;
+export default ShoppingCart;
