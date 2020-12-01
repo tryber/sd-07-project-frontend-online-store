@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 import CategoriesList from './CategoriesList';
 import ProductsList from './ProductsList';
+import CartIcon from '../assets/cart.svg';
 
 // code idea based on <GP-7><Thx!>
 
@@ -35,12 +36,10 @@ class Home extends Component {
     this.setState({ productList: products.results });
   }
 
-
   async fetchByCategory(categoryId) {
     const products = await api.getProductsFromCategoryAndQuery(categoryId, '');
     this.setState({ productList: products.results });
   }
-
 
   render() {
     const { productList } = this.state;
@@ -58,7 +57,7 @@ class Home extends Component {
           </div>
         </div>
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
-          Carrinho de compras
+          <img src={ CartIcon } className="cart-icon" alt="Carrinho de compras" />
         </Link>
         <div data-testid="home-initial-message">
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
