@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ProductCart from '../Components/ProductCart';
+import Header from '../Components/Header';
 
 class ShoppingCartPage extends Component {
   constructor(props) {
@@ -7,6 +9,7 @@ class ShoppingCartPage extends Component {
 
     this.increaseItem = this.increaseItem.bind(this);
     this.decreaseItem = this.decreaseItem.bind(this);
+    this.totalPrice = this.totalPrice.bind(this);
 
     this.state = {
       shoppingCartItems: [],
@@ -15,6 +18,10 @@ class ShoppingCartPage extends Component {
 
   componentDidMount() {
     this.getProductsFromLocalStorage();
+  }
+
+  componentDidUpdate() {
+    this.totalPrice();
   }
 
   getProductsFromLocalStorage() {
@@ -47,6 +54,14 @@ class ShoppingCartPage extends Component {
   }
 
   totalPrice() {
+    const zero = 0;
+    const decimals = 2;
+    const { shoppingCartItems } = this.state;
+    if (shoppingCartItems) {
+      const sum = shoppingCartItems.reduce((acc, { price, quantity }) => (
+        price * quantity + acc), zero);
+      return sum.toFixed(decimals);
+    }
   }
 
   render() {
@@ -54,12 +69,14 @@ class ShoppingCartPage extends Component {
     if (!shoppingCartItems) {
       return (
         <div>
+          <Header />
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         </div>
       );
     }
     return (
       <div>
+        <Header />
         <div>
           {shoppingCartItems.map((item) => (
             <ProductCart
@@ -72,9 +89,11 @@ class ShoppingCartPage extends Component {
         </div>
         <div>
           Valor Total da Compra R$
-          {/* estado total price */}
+          {this.totalPrice()}
         </div>
-        <button type="button">Finalizar Compra</button>
+        <Link data-testid="checkout-products" to="/checkout">
+          Finalizar Compra
+        </Link>
       </div>
     );
   }
