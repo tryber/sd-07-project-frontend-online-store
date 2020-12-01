@@ -52,3 +52,12 @@ export function setProductsStorage(product) {
   if (setProductAll.length) localStorage.setItem('cart', JSON.stringify(setProductAll));
   setProductAll = [];
 }
+
+export function getStorageKartItens() {
+  let itensStorage = getProductsStorage();
+  if (!itensStorage) itensStorage = [];
+  const zero = 0;
+  const qttItemsKart = itensStorage.map((product) => product.qtt)
+    .reduce((acc, valueActual) => acc + valueActual, zero);
+  return qttItemsKart;
+}

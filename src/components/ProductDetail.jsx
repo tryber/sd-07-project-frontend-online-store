@@ -14,6 +14,7 @@ class ProductDetail extends React.Component {
     this.state = {
       dataDetail: [],
       loading: true,
+      qttItemsKart: StorageServices.getStorageKartItens(),
     };
   }
 
@@ -44,11 +45,11 @@ class ProductDetail extends React.Component {
   }
 
   render() {
-    const { dataDetail, loading } = this.state;
+    const { dataDetail, loading, qttItemsKart } = this.state;
     const { id, title, price, thumbnail } = dataDetail;
     return (
       <div className="product-details-container">
-        <Header />
+        <Header qttItemsKart={ qttItemsKart } />
         <div className="product-details">
           {loading ? (
             'Loading...'

@@ -5,6 +5,7 @@ import Header from './Header';
 import ProductList from './ProductList';
 
 import * as api from '../services/api';
+import * as storageServices from '../services/storageServices';
 
 class InitialScreen extends React.Component {
   constructor() {
@@ -14,12 +15,14 @@ class InitialScreen extends React.Component {
     this.onInputSearchChange = this.onInputSearchChange.bind(this);
     this.buttonSearch = this.buttonSearch.bind(this);
     this.onChangeCategorySelected = this.onChangeCategorySelected.bind(this);
+    this.getKartItens = this.getKartItens.bind(this);
     this.state = {
       searchInput: '',
       categories: [],
       products: [],
       message: 'Digite algum termo de pesquisa ou escolha uma categoria.',
       categorySelected: '',
+      qttItemsKart: storageServices.getStorageKartItens(),
     };
   }
 
@@ -37,6 +40,11 @@ class InitialScreen extends React.Component {
     });
   }
 
+  async getKartItens() {
+    const qttItemsKart = await storageServices.getStorageKartItens();
+    this.setState({ qttItemsKart });
+  }
+
   buttonSearch() {
     this.fetchProducts();
   }
@@ -50,7 +58,6 @@ class InitialScreen extends React.Component {
       datacategorySelected,
       dataInputSearch,
     );
-
     this.setState({ products: getProducts.results });
   }
 
@@ -63,8 +70,7 @@ class InitialScreen extends React.Component {
   }
 
   render() {
-    const { message, searchInput, products, categories } = this.state;
-
+    const { message, searchInput, products, categories, qttItemsKart } = this.state;
     const tagMessage = <h1 data-testid="home-initial-message">{message}</h1>;
 
     return (
@@ -73,6 +79,7 @@ class InitialScreen extends React.Component {
           searchInput={ searchInput }
           onInputSearchChange={ this.onInputSearchChange }
           buttonSearch={ this.buttonSearch }
+          qttItemsKart={ qttItemsKart }
         />
         <div className="search-text">{!searchInput ? tagMessage : ''}</div>
         <div className="initial-screen-body">
@@ -82,7 +89,7 @@ class InitialScreen extends React.Component {
               onChangeCategorySelected={ this.onChangeCategorySelected }
             />
           </div>
-          <ProductList products={ products } />
+          <ProductList products={ products } getKartItens={ this.getKartItens } />
         </div>
       </div>
     );

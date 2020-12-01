@@ -11,7 +11,7 @@ class Itens extends React.Component {
     this.deleteProduct = this.deleteProduct.bind(this);
   }
 
-  updateValue(operator) {
+  updateValue(operator, callback) {
     const { updateProductsStorage } = storageServices;
     const { item, getStorageItens } = this.props;
 
@@ -25,6 +25,8 @@ class Itens extends React.Component {
     }
     this.setState({});
 
+    callback();
+
     getStorageItens();
   }
 
@@ -37,7 +39,7 @@ class Itens extends React.Component {
   }
 
   render() {
-    const { item: { id, title, thumbnail, price, qtt } } = this.props;
+    const { item: { id, title, thumbnail, price, qtt }, getKartItens } = this.props;
     return (
       <div>
         <button
@@ -52,7 +54,7 @@ class Itens extends React.Component {
         <button
           type="button"
           data-testid="product-decrease-quantity"
-          onClick={ () => this.updateValue('sub') }
+          onClick={ () => this.updateValue('sub', getKartItens) }
         >
           -
         </button>
@@ -62,7 +64,7 @@ class Itens extends React.Component {
         <button
           type="button"
           data-testid="product-increase-quantity"
-          onClick={ () => this.updateValue('sum') }
+          onClick={ () => this.updateValue('sum', getKartItens) }
         >
           +
         </button>
@@ -81,6 +83,7 @@ Itens.propTypes = {
     qtt: PropTypes.number.isRequired,
   }).isRequired,
   getStorageItens: PropTypes.func.isRequired,
+  getKartItens: PropTypes.func.isRequired,
 };
 
 export default Itens;

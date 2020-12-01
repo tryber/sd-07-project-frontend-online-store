@@ -10,7 +10,7 @@ class ProductCard extends React.Component {
     this.addProductCart = this.addProductCart.bind(this);
   }
 
-  async addProductCart() {
+  async addProductCart(callback) {
     const { product } = this.props;
     const { thumbnail, title, price, id } = product;
     const addItem = {
@@ -20,12 +20,12 @@ class ProductCard extends React.Component {
       price,
       qtt: 1,
     };
-
     await storageServices.setProductsStorage(addItem);
+    callback();
   }
 
   render() {
-    const { product } = this.props;
+    const { product, getKartItens } = this.props;
     const { thumbnail, title, price } = product;
     const indexOne = 0;
     const indexTwo = 8;
@@ -44,7 +44,7 @@ class ProductCard extends React.Component {
           type="button"
           data-testid="product-add-to-cart"
           id={ product }
-          onClick={ this.addProductCart }
+          onClick={ () => this.addProductCart(getKartItens) }
         >
           Adicionar ao Carrinho
         </button>
@@ -60,6 +60,7 @@ ProductCard.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
+  getKartItens: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

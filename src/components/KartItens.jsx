@@ -5,7 +5,7 @@ import Itens from './Itens';
 
 class KartItens extends React.Component {
   render() {
-    const { itensStorage, getStorageItens } = this.props;
+    const { itensStorage, getStorageItens, getKartItens } = this.props;
     const zero = 0;
     const digitDotAfter = 2;
     const value = itensStorage.map((product) => product.price * product.qtt)
@@ -13,7 +13,12 @@ class KartItens extends React.Component {
     return (
       <div>
         {itensStorage.map((item) => (
-          <Itens key={ item.id } item={ item } getStorageItens={ getStorageItens } />
+          <Itens
+            key={ item.id }
+            item={ item }
+            getStorageItens={ getStorageItens }
+            getKartItens={ getKartItens }
+          />
         ))}
         <h1>{`Valor Final da Compra: R$${value.toFixed(digitDotAfter)}`}</h1>
         <Link
@@ -31,6 +36,7 @@ class KartItens extends React.Component {
 KartItens.propTypes = {
   itensStorage: PropTypes.arrayOf(PropTypes.object).isRequired,
   getStorageItens: PropTypes.func.isRequired,
+  getKartItens: PropTypes.func.isRequired,
 };
 
 export default KartItens;
