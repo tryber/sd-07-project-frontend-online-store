@@ -7,7 +7,6 @@ class CartItens extends React.Component {
     this.state = {
       quantity: 1,
     };
-
   }
 
   updateQuantity(elem, func) {
@@ -22,14 +21,14 @@ class CartItens extends React.Component {
   render() {
     function increaseQuantity(state) {
       this.updateQuantity(this, 1);
-      const newState = {...state, quantity: state.quantity + 1};
+      const newState = { ...state, quantity: state.quantity + 1 };
       return newState;
     }
 
     function decreaseQuantity(state) {
       if(state.quantity > 1) {
         this.updateQuantity(this, -1);
-        const newState = {...state, quantity: state.quantity - 1};
+        const newState = { ...state, quantity: state.quantity - 1 };
         return newState;
       }
     }
@@ -48,7 +47,7 @@ class CartItens extends React.Component {
         </button>
 
         <div data-testid="shopping-cart-product-quantity" className="cart-item-quantity">
-          {this.state.quantity}
+          { this.state.quantity }
         </div>
 
         <button className="quantity-buttons" data-testid="product-increase-quantity" onClick={ () => { this.setState(increaseQuantity) } }>

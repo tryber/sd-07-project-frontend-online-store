@@ -1,6 +1,6 @@
-import React from "react";
-import "../App.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import '../App.css';
+import { Link } from 'react-router-dom';
 import GetIcon from './Icons';
 
 class Card extends React.Component {
@@ -15,10 +15,10 @@ class Card extends React.Component {
     if (!localStorage.cartItems) {
       localStorage.setItem("cartItems", JSON.stringify([cartItemProperties]));
     } else {
-      const itemsInStorage = localStorage.getItem("cartItems");
+      const itemsInStorage = localStorage.getItem('cartItems');
       const parsedItems = JSON.parse(itemsInStorage);
       localStorage.setItem(
-        "cartItems",
+        'cartItems',
         JSON.stringify(parsedItems.concat(cartItemProperties))
       );
     }
@@ -28,23 +28,23 @@ class Card extends React.Component {
   render() {
     const { products, counter } = this.props;
     const { title, thumbnail, price, id, category_id } = products;
-  
     return (
       <div data-testid="product" className="cardProduct">
-        <img src={thumbnail} alt="product item" />
+        <img src={ thumbnail } alt="product item" />
         <div className="product-container">
           <Link
             className="product-detail-link"
             to={{
-              pathname: `/details/${id}/category/${category_id}`,
+              pathname: `/details/${id}/category/${ category_id }`,
               counter: counter,
             }}
             data-testid="product-detail-link"
           >
-            {" "}
-            <h1>{title}</h1>{" "}
+            {' '}
+            <h1>{ title }</h1>
+            {' '}
           </Link>
-          <h2>R${price}</h2>
+          <h2>R${ price }</h2>
         </div>
 
         <button

@@ -6,9 +6,9 @@ class Checkout extends React.Component {
       const arrOfPrices = [];
       this.props.location.state.products.map((product) => {
         arrOfPrices.push(product.price);
-      })
+      });
       return (arrOfPrices.reduce((a, b) => a + b, 0)).toFixed(2);
-    }
+    };
 
     const { products } = this.props.location.state;
     return (
@@ -25,9 +25,12 @@ class Checkout extends React.Component {
                   {product.price}
                 </div>
               </div>
-              )
+            );
           })}
-        <h2>Valor Total da Compra: {SumOfPrices()}</h2>
+          <h2>
+            Valor Total da Compra:
+            {SumOfPrices()}
+          </h2>
         </section>
         <form>
           <input

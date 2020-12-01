@@ -5,7 +5,7 @@ class RatingAndComment extends React.Component {
     super(props);
 
     this.state = {
-      rating: 0
+      rating: 0,
     };
     this.onChangeValue = this.onChangeValue.bind(this);
   }
@@ -17,15 +17,16 @@ class RatingAndComment extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <form>
         <textarea
           data-testid="product-detail-evaluation"
-          placeholder="Adicione um comentário (Opcional)">
-        </textarea>
+          placeholder="Adicione um comentário (Opcional)"
+        />
 
         <div onChange={ this.onChangeValue }>
-          <label><input type="radio" value="0" name="rating" />
+          <label>
+            <input type="radio" value="0" name="rating" />
             0
           </label>
           <label>
