@@ -4,13 +4,18 @@ import ProductCartItems from './ProductCartItems';
 
 class ProductCartList extends Component {
   render() {
-    const { cartItems } = this.props;
+    const { cartItems, addCart, removeItemCart, removeCart } = this.props;
+
     return (
       <div>
-        <p data-testid="shopping-cart-product-quantity">
-          { `Quantidade de itens: ${cartItems.length}` }
-        </p>
-        { cartItems.map((item) => <ProductCartItems key={ item.id } item={ item } />) }
+        { cartItems.map((item) => (
+          <ProductCartItems
+            key={ item.id }
+            item={ item }
+            addCart={ addCart }
+            removeItemCart={ removeItemCart }
+            removeCart={ removeCart }
+          />))}
       </div>
     );
   }
@@ -18,6 +23,9 @@ class ProductCartList extends Component {
 
 ProductCartList.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addCart: PropTypes.func.isRequired,
+  removeItemCart: PropTypes.func.isRequired,
+  removeCart: PropTypes.func.isRequired,
 };
 
 export default ProductCartList;
