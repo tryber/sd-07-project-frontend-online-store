@@ -67,14 +67,14 @@ class ShoppingCart extends Component {
               data-testid="product-decrease-quantity"
               onClick={ () => this.removeOne(product.id) }
             >
-            -
+              -
             </button>
             <button
               type="button"
               data-testid="product-increase-quantity"
               onClick={ () => this.addOne(product.id) }
             >
-            +
+              +
             </button>
           </div>
         ))}
