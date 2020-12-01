@@ -31,8 +31,8 @@ class DetalhesDoProduto extends React.Component {
             {id}
           </li>
           <li>
-              Preço:
-              {price}
+            Preço:
+            {price}
           </li>
         </ul>
         <button
