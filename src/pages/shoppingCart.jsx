@@ -10,7 +10,7 @@ class ShoppingCart extends React.Component {
       emptyCart: false,
     };
   }
-
+  //victor rocha
   cartProducts() {
     const products = localStorage.picksUpItemsFromTheCartInLocalStorage();
     return (
