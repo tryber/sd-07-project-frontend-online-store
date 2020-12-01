@@ -17,7 +17,7 @@ export class AmountControllers extends Component {
   async increaseAmount() {
     const { onClick } = this.props;
     await this.setState({ amount: this.state.amount + 1 });
-    // onClick(this.state.amount);
+    onClick(this.state.amount);
   }
 
   async decreaseAmount() {
@@ -25,16 +25,24 @@ export class AmountControllers extends Component {
     const { onClick } = this.props;
     if (amount > 1) {
       await this.setState({ amount: this.state.amount - 1 });
-      // onClick(this.state.amount);
+      onClick(this.state.amount);
     }
   }
 
   render() {
     return (
       <css.Ctn>
-        <icon.Minus onClick={ this.decreaseAmount } />
-        <div className="display" data-testid="shopping-cart-product-quantity">{ this.state.amount }</div>
-        <icon.Plus onClick={ this.increaseAmount } />
+        <icon.Minus
+          data-testid="product-decrease-quantity"
+          onClick={this.decreaseAmount}
+        />
+        <div className="display" data-testid="shopping-cart-product-quantity">
+          {this.state.amount}
+        </div>
+        <icon.Plus
+          data-testid="product-increase-quantity"
+          onClick={this.increaseAmount}
+        />
       </css.Ctn>
     );
   }

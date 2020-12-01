@@ -8,20 +8,19 @@ import * as icon from '../../components/Icons';
 export class ShopCart extends Component {
   constructor(props) {
     super();
-  
+
     this.state = {
       productsInCart: [],
-
     };
   }
-  
+
   componentDidMount() {
     this.getProductsFromLocation();
   }
 
   getProductsFromLocation() {
     const { productItens } = this.props.location;
-    this.setState({ productsInCart: productItens});
+    this.setState({ productsInCart: productItens });
   }
 
   render() {
@@ -35,7 +34,9 @@ export class ShopCart extends Component {
           <icon.Cart color="gray" />
         </div>
         <div className="ctn-item-display">
-          { productsInCart.map(products => (<view.ItemProduct product={products}/>)) }
+          {productsInCart.map((product) => (
+            <view.ItemProduct key={product.id} product={product} />
+          ))}
         </div>
 
         <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>

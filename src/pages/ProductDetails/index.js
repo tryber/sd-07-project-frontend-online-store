@@ -4,35 +4,43 @@ import * as css from './style';
 import * as icon from '../../components/Icons';
 import * as cp from '../../components';
 import * as view from '../../views';
+import * as util from '../../services/utilities';
 
 export class ProductDetails extends Component {
-  constructor() {
-    super();
-    this.addToCart = this.addToCart.bind(this);
+  constructor(props) {
+    super(props);
+    this.setState = this.setState.bind(this);
+    this.amountEventClick = this.amountEventClick.bind(this);
+
     this.state = {
-      productDetails: [],
-      productsInCart: [],
+      currentProductDetail: {
+        id: '',
+        price: '',
+        thumbnail: '',
+        title: '',
+        amount: 1,
+      },
     };
   }
 
-  async addToCart() {
-    const { id, title, price, thumbnail, amount } = this.props.location.detailsProduct;
-    const product = { id, title, price, thumbnail, amount };
-    await this.setState(prev => ({ productsInCart: [...prev.productsInCart, product] }));
-    localStorage.setItem('productsInCard', JSON.stringify(this.state.productsInCart));
-  }
-
-  getProductInCartLocalStorage() {
-    const objectFromLocation = JSON.parse(localStorage.getItem('productsInCard'));
-    this.setState({ productsInCart: objectFromLocation });
+  amountEventClick(amount) {
+    this.setState((prev) => ({
+      currentProductDetail: {
+        ...prev.currentProductDetail,
+        amount: amount,
+      },
+    }));
   }
 
   componentDidMount() {
-    this.getProductInCartLocalStorage();
+    util.getFromLocalAndSet('currentProductDetail', this.setState);
   }
 
   render() {
-    const { title, price, thumbnail, amount } = this.props.location.detailsProduct;
+    // const { title, price, thumbnail, amount } = this.props.location.detailsProduct;
+    const { title, price, thumbnail, amount } = this.state.currentProductDetail;
+    const { currentProductDetail } = this.state;
+
     return (
       <css.Ctn>
         <div className="ctn-icons">
@@ -53,10 +61,22 @@ export class ProductDetails extends Component {
                 <view.AmountControllers
                   className="controller-Amount"
                   amount={amount}
+                  onClick={this.amountEventClick}
                 />
               </div>
-              <Link to="/" onClick={this.addToCart} >
-                <cp.Button className="button" data-testid="product-detail-add-to-cart" >Adicionar ao carrinho</cp.Button>
+              <Link to="/">
+                <cp.Button
+                  className="button"
+                  data-testid="product-detail-add-to-cart"
+                  getEvent={() =>
+                    util.addObjInLocalStorage(
+                      'productsItemsCart',
+                      currentProductDetail
+                    )
+                  }
+                >
+                  Adicionar ao carrinho
+                </cp.Button>
               </Link>
             </div>
           </div>
@@ -81,6 +101,7 @@ export class ProductDetails extends Component {
               <view.RatingStar mode="input" />
             </div>
             <textarea
+              data-testid="product-detail-evaluation"
               className="textArea"
               maxLength="300"
               name="coments"
