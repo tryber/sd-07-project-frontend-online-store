@@ -55,15 +55,15 @@ class ShoppinCart extends React.Component {
         </h3>
         <Link to="/">
           <Icon size="large">
-            <FontAwesomeIcon icon={faBackward} size="3x" />
+            <FontAwesomeIcon icon={ faBackward } size="3x" />
           </Icon>
         </Link>
         <div>
           {localCArt.map((namePrice) => {
             console.log();
             return (
-              <div key={namePrice.split('$')[0]}>
-                <button type="button" onClick={this.deleteProduct}>
+              <div key={ namePrice.split('$')[0] }>
+                <button type="button" onClick={ this.deleteProduct }>
                   X
                 </button>
                 <span data-testid="shopping-cart-product-quantity">

@@ -29,18 +29,18 @@ class Categories extends React.Component {
     const { handleCatChange } = this.props;
     return (
       <div className="radioCategorie">
-        {loading ? <Loading /> : ""}
+        { loading ? <Loading /> : "" }
         {categories.map((category) => {
           console.log('');
           return (
-            <div key={category.id}>
+            <div key={ category.id }>
               <input
                 data-testid="category"
                 type="radio"
-                id={category.id}
+                id={ category.id }
                 name="gender"
-                value={category.name}
-                onChange={handleCatChange}
+                value={ category.name }
+                onChange={ handleCatChange }
               />
               {category.name}
               <br />

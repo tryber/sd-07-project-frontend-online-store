@@ -2,13 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import 'rbx/index.css';
+import { Button, Control, Icon, Input } from 'rbx';
+import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Categories from '../components/Categories';
 import ListCard from '../components/ListCard';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Button, Control, Icon, Input } from 'rbx';
+
+
+
 
 class Main extends React.Component {
   constructor() {
@@ -45,7 +48,7 @@ class Main extends React.Component {
       },
       async () => {
         await this.handleApiRequest();
-      }
+      },
     );
   }
 
@@ -85,12 +88,12 @@ class Main extends React.Component {
                   color="dark"
                   rounded
                   data-testid="query-input"
-                  onChange={this.handleValue}
+                  onChange={ this.handleValue }
                   className="searchInput"
                   type="search"
                 />
                 <Icon align="left">
-                  <FontAwesomeIcon icon={faSearch} />
+                  <FontAwesomeIcon icon={ faSearch } />
                 </Icon>
               </Control>
               <div className="message">
@@ -106,7 +109,7 @@ class Main extends React.Component {
                 key="white"
                 className="buttonFetch"
                 data-testid="query-button"
-                onClick={this.handleApiRequest}
+                onClick={ this.handleApiRequest }
               >
                 Buscar
               </Button>
@@ -115,7 +118,7 @@ class Main extends React.Component {
             <div className="box sub-box">
               <Link to="/shoppingCart" data-testid="shopping-cart-button">
                 <Icon size="large">
-                  <FontAwesomeIcon icon={faCartPlus} size="2x" />
+                  <FontAwesomeIcon icon={ faCartPlus } size="2x" />
                 </Icon>
               </Link>
               <span data-testid="shopping-cart-size" className="cart-details">
@@ -127,12 +130,12 @@ class Main extends React.Component {
         <div className="first">
           <div className="flex-container second">
             <div className="box-radio">
-              <Categories handleCatChange={this.handleCatChange} />
+              <Categories handleCatChange={ this.handleCatChange } />
             </div>
 
             <div className="box-item">
               {loading ? <Loading /> : ''}
-              <ListCard search={search} category={catID} product={array} />
+              <ListCard search={ search } category={ catID } product={ array } />
             </div>
           </div>
         </div>

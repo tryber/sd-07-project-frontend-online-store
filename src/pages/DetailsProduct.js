@@ -50,7 +50,7 @@ class DetailsProduct extends React.Component {
         <div>
           <Link to="/shoppingCart" data-testid="shopping-cart-button">
             <Icon size="large">
-              <FontAwesomeIcon icon={faCartPlus} size="3x" />
+              <FontAwesomeIcon icon={ faCartPlus } size="3x" />
             </Icon>
           </Link>
           <span data-testid="shopping-cart-size" className="cart-details">
@@ -63,7 +63,7 @@ class DetailsProduct extends React.Component {
         </div>
 
         <div>
-          <img src={thumbnail} alt="Imagem detalhada" />
+          <img src={ thumbnail } alt="Imagem detalhada" />
         </div>
 
         <div>
@@ -80,7 +80,7 @@ class DetailsProduct extends React.Component {
             outlined
             color="primary"
             data-testid="product-detail-add-to-cart"
-            onClick={this.handleCart}
+            onClick={ this.handleCart }
           >
             Adicionar ao carrinho!
           </Button>
@@ -89,7 +89,7 @@ class DetailsProduct extends React.Component {
         <div>
           <Link to="/">
             <Icon size="large">
-              <FontAwesomeIcon icon={faBackward} size="3x" />
+              <FontAwesomeIcon icon={ faBackward } size="3x" />
             </Icon>
           </Link>
         </div>
