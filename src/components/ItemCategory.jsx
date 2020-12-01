@@ -12,8 +12,9 @@ class Item extends React.Component {
           id={ id }
           data-testid="category"
           onClick={ onClick }
+          className="category-container"
         />
-        <label htmlFor={ id }>{name}</label>
+        <label htmlFor={ id } className="category-container" >{name}</label>
       </div>
     );
   }

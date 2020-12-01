@@ -5,6 +5,7 @@ import CardProduct from '../components/CardProduct';
 import '../App.css';
 import Loading from '../components/Loading';
 import TopBar from '../components/TopBar';
+import Logo from '../images/clube-dos-4.png';
 
 class Home extends React.Component {
   constructor() {
@@ -66,7 +67,7 @@ class Home extends React.Component {
         <div className="home-aside-container">
           <img
             alt="logo"
-            src="https://files.slack.com/files-pri/TMDDFEPFU-F01FMBQVA3Y/clube_dos_4.png"
+            src={Logo}
             width={ 200 }
           />
           <ListCategory sendCategoryId={ this.sendCategoryId } />

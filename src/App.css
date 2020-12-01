@@ -6,11 +6,9 @@
 }
 
 .home-aside-container {
-  height: 100vh;
   padding: 30px;
   margin-right: 20px;
   color: white;
-  /* font-size: clamp(0.8rem, 0.8rem, 1rem); */
   background-color: #244a61;
   display: flex;
   align-items: center;
@@ -59,6 +57,7 @@
 
 .search-button img {
   height: 20px;
+  cursor: pointer;
 }
 
 .search-subcontainer input {
@@ -181,6 +180,7 @@
   border-radius: 1rem;
   padding: 10px;
   background-color: #ceeef5;
+  cursor: pointer;
 }
 
 .search-bar-container {
@@ -188,8 +188,13 @@
   justify-content: space-between;
 }
 
+.category-container {
+  cursor: pointer;
+}
+
 .quantity-buttons button {
   margin: 10px;
+  cursor: pointer;
 }
 
 .product-evaluation {
