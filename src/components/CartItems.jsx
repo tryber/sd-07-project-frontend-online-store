@@ -23,4 +23,4 @@ CartItems.propTypes = {
   price: PropTypes.number.isRequired,
 };
 
-export default CartItens;
+export default CartItems;
