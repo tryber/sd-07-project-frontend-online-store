@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as localStorage from '../services/localStorage';
+import EvaluationForm from '../components/evaluationForm';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -104,6 +105,7 @@ class ProductDetail extends React.Component {
     return (
       <div>
         {loading ? <p>Loading</p> : this.productLoaded()}
+        <EvaluationForm />
         {loading ? <div>Loading</div> : this.productAdd()}
         {loading ? (
           <div>Loading</div>
