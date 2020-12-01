@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EmptyCard from '../components/EmptyCard/EmptyCard';
+import EmptyCart from '../components/EmptyCard/EmptyCard';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -84,7 +84,7 @@ class ShoppingCart extends Component {
             {cart.reduce((acc, curr) => (acc + (curr.price * curr.quantity)), zero)}
           </span>
         </div>
-        <EmptyCard />
+        <EmptyCart />
       </div>
     );
   }

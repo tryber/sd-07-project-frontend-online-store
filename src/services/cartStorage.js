@@ -6,6 +6,6 @@ export function getCart() {
   JSON.parse(localStorage.getItem('cart'));
 }
 
-export function emptyCard() {
+export function emptyCart() {
   localStorage.clear();
 }

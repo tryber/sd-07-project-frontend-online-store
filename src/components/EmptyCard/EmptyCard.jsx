@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import * as cartStorage from '../../services/cartStorage';
 
-class EmptyCard extends Component {
+class EmptyCart extends Component {
   constructor(props) {
     super(props);
-    this.emptyCard = this.emptyCard.bind(this);
+    this.emptyCart = this.emptyCart.bind(this);
   }
 
-  emptyCard() {
-    cartStorage.emptyCard();
+  emptyCart() {
+    cartStorage.emptyCart();
   }
 
   render() {
@@ -16,7 +16,7 @@ class EmptyCard extends Component {
       <div>
         <button
           type="button"
-          onClick={ this.emptyCard }
+          onClick={ this.emptyCart }
         >
           Esvaziar o carrinho
         </button>
@@ -25,4 +25,4 @@ class EmptyCard extends Component {
   }
 }
 
-export default EmptyCard;
+export default EmptyCart;
