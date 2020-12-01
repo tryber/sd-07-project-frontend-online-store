@@ -81,7 +81,8 @@ class Main extends React.Component {
           <div className="flex-container sub-container">
             <div className="box sub-box-1">
               <Control iconLeft iconRight>
-                <Input color="dark"
+                <Input
+                  color="dark"
                   rounded
                   data-testid="query-input"
                   onChange={this.handleValue}
@@ -93,9 +94,8 @@ class Main extends React.Component {
                 </Icon>
               </Control>
               <div className="message">
-                 <h3 data-testid="home-initial-message">{message}</h3>
+                <h3 data-testid="home-initial-message">{message}</h3>
               </div>
-              
             </div>
 
             <div className="box sub-box">
@@ -114,9 +114,9 @@ class Main extends React.Component {
 
             <div className="box sub-box">
               <Link to="/shoppingCart" data-testid="shopping-cart-button">
-               <Icon size="large">
-                 <FontAwesomeIcon icon={faCartPlus} size="2x"/>
-               </Icon>
+                <Icon size="large">
+                  <FontAwesomeIcon icon={faCartPlus} size="2x" />
+                </Icon>
               </Link>
               <span data-testid="shopping-cart-size" className="cart-details">
                 {cartCount === null ? count : cartCount.length}

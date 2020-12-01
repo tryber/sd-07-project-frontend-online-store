@@ -1,5 +1,5 @@
 body {
-  background-color:#A3C1AD;
+  background-color: #a3c1ad;
   margin: 30px;
 }
 .flex-container {
@@ -12,7 +12,7 @@ body {
   justify-content: flex-start;
 }
 .box-radio {
-  background-color: #8DA399;
+  background-color: #8da399;
 }
 .radioCategorie {
   margin: 10px;
@@ -35,7 +35,7 @@ body {
 }
 
 .box {
-  background-color:#A3C1AD;
+  background-color: #a3c1ad;
 }
 
 .sub-box-1 {
@@ -83,7 +83,7 @@ body {
   height: auto;
   margin: 5px;
   width: 175px;
-} 
+}
 
 .freteGratis {
   text-align: center;

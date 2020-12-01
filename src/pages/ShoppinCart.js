@@ -62,8 +62,10 @@ class ShoppinCart extends React.Component {
           {localCArt.map((namePrice) => {
             console.log();
             return (
-              <div key={ namePrice.split('$')[0] }>
-                <button type="button" onClick={ this.deleteProduct }>X</button>
+              <div key={namePrice.split('$')[0]}>
+                <button type="button" onClick={this.deleteProduct}>
+                  X
+                </button>
                 <span data-testid="shopping-cart-product-quantity">
                   Quantidade:
                   {localCArt.length === null
@@ -82,7 +84,7 @@ class ShoppinCart extends React.Component {
           })}
           <p>
             Valor Total: R$
-            { totalPrice }
+            {totalPrice}
           </p>
         </div>
       </div>

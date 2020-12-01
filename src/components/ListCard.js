@@ -16,13 +16,13 @@ class ListCard extends React.Component {
           }
           return (
             <ItemCard
-              key={ prod.id }
-              product={ prod }
-              title={ prod.title }
-              id={ prod.id }
-              freeShipping={ freeShipping }
-              image={ prod.thumbnail }
-              price={ prod.price }
+              key={prod.id}
+              product={prod}
+              title={prod.title}
+              id={prod.id}
+              freeShipping={freeShipping}
+              image={prod.thumbnail}
+              price={prod.price}
             />
           );
         })}

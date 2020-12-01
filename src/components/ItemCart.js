@@ -6,16 +6,12 @@ class ItemCart extends React.Component {
     const { name, price, qtde } = this.props;
     return (
       <div>
-        <h3 data-testid="shopping-cart-product-name">
-          {name}
-        </h3>
+        <h3 data-testid="shopping-cart-product-name">{name}</h3>
         <p>
           Valor Unitário:
           {price}
         </p>
-        <p data-testid="shopping-cart-product-quantity">
-          {qtde}
-        </p>
+        <p data-testid="shopping-cart-product-quantity">{qtde}</p>
         <p>
           Total:
           {parseFloat(price) * qtde}

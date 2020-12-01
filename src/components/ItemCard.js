@@ -31,32 +31,32 @@ class ItemCard extends React.Component {
     }
     return (
       <div className="card-product" data-testid="product">
-        <span className="card-title">{ title }</span>
-        <img src={ image } alt="foto-produto" className="card-image" />
+        <span className="card-title">{title}</span>
+        <img src={image} alt="foto-produto" className="card-image" />
         <span className="card-price">
           R$
-          { price }
+          {price}
         </span>
-        <p className="freteGratis"
-          data-testid={ elementPropertie }
-        >
+        <p className="freteGratis" data-testid={elementPropertie}>
           {temFrete}
         </p>
-      
-         
-      
+
         <Link
           data-testid="product-detail-link"
-          to={ { pathname: `detailsProduct/${id}`, state: { product } } }
+          to={{ pathname: `detailsProduct/${id}`, state: { product } }}
           className="card-price"
         >
           Detalhes
         </Link>
 
-        <Button className="salesButton" color="success" data-testid="product-add-to-cart" onClick={ this.handleCart }   >
-          <p>Adicionar ao carrinho!</p> 
-          </Button>
-       
+        <Button
+          className="salesButton"
+          color="success"
+          data-testid="product-add-to-cart"
+          onClick={this.handleCart}
+        >
+          <p>Adicionar ao carrinho!</p>
+        </Button>
       </div>
     );
   }
