@@ -28,13 +28,13 @@ export class Home extends Component {
       await this.setState({ productsItemsCart: objectFromLocation });
     } else {
       await this.setState({ productsItemsCart: [] });
-    }  
+    }
   }
 
   componentDidMount() {
     this.getProductInCartLocalStorage();
   }
-  
+
   addToLocalStorage() {
     const { productsItemsCart } = this.state;
     localStorage.setItem('productsInCard', JSON.stringify(productsItemsCart));
