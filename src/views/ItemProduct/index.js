@@ -4,15 +4,25 @@ import * as icon from '../../components/Icons';
 import * as view from '../../views';
 
 export class ItemProduct extends Component {
+  constructor() {
+    super();
+    this.handleEventClick = this.handleEventClick.bind(this);
+  }
+
+  handleEventClick(amount) {
+    console.log(amount);
+  }
 
   render() {
-    const { id, title, price, amount, thumbnail } = this.props.product;
-    return(
-      <css.Ctn key={id} >
+    const { title, price, amount, thumbnail } = this.props.product;
+    return (
+      <css.Ctn>
         <icon.Close />
-        <img src={thumbnail}/>
-        <h4 className='ctn-title' data-testid="shopping-cart-product-name" >{title}</h4>
-        <view.AmountControllers amount={amount} />
+        <img src={thumbnail} />
+        <h4 className="ctn-title" data-testid="shopping-cart-product-name">
+          {title}
+        </h4>
+        <view.AmountControllers onClick={this.handleEventClick} amount={amount} />
         <p>{price}</p>
       </css.Ctn>
     );
