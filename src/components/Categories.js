@@ -33,7 +33,7 @@ class Categories extends React.Component {
         {categories.map((category) => {
           console.log('');
           return (
-            <div key={ category.id }>
+            <div className='radioCategorie' key={ category.id }>
               <input
                 data-testid="category"
                 type="radio"

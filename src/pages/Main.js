@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Control, Input } from 'rbx';
 import chart from '../icon/chart.png';
 import '../App.css';
 import 'rbx/index.css';
@@ -8,8 +7,9 @@ import Categories from '../components/Categories';
 import ListCard from '../components/ListCard';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Button, Control, Icon, Input } from 'rbx';
 
 class Main extends React.Component {
   constructor() {
@@ -46,7 +46,7 @@ class Main extends React.Component {
       },
       async () => {
         await this.handleApiRequest();
-      },
+      }
     );
   }
 
@@ -77,62 +77,67 @@ class Main extends React.Component {
       array = product.results;
     }
     return (
-      <div className="container">
+      <div className="flex-container">
+        <div className="box">
+          <div className="flex-container sub-container">
+            <div className="box sub-box-1">
+              <Control iconLeft iconRight>
+                <Input color="dark"
+                  rounded
+                  data-testid="query-input"
+                  onChange={this.handleValue}
+                  className="searchInput"
+                  type="search"
+                />
+                <Icon align="left">
+                  <FontAwesomeIcon icon={faSearch} />
+                </Icon>
+              </Control>
+              <div className="message">
+                 <h3 data-testid="home-initial-message">{message}</h3>
+              </div>
+              
+            </div>
 
-        <div className="input-1">
-          <Control iconLeft iconRight>
-            <Input
-              rounded
-              data-testid="query-input"
-              onChange={ this.handleValue }
-              className="searchInput"
-              type="search"
-            />
-            {/* <Icon align="left">
-              <FontAwesomeIcon icon={faSearch} />
-            </Icon> */}
-          </Control>
-          <h3 data-testid="home-initial-message">{message}</h3>
-          <div>
-            { loading ? <Loading /> : '' }
-            <ListCard
-              search={ search }
-              category={ catID }
-              product={ array }
-            />
+            <div className="box sub-box">
+              <Button
+                rounded
+                outlined
+                color="black"
+                key="white"
+                className="buttonFetch"
+                data-testid="query-button"
+                onClick={this.handleApiRequest}
+              >
+                Buscar
+              </Button>
+            </div>
+
+            <div className="box sub-box">
+              <Link to="/shoppingCart" data-testid="shopping-cart-button">
+                <img
+                  className="chartImg"
+                  src={chart}
+                  alt="carrinho-de-compras"
+                />
+              </Link>
+              <span data-testid="shopping-cart-size" className="cart-details">
+                {cartCount === null ? count : cartCount.length}
+              </span>
+            </div>
           </div>
         </div>
+        <div className="first">
+          <div className="flex-container second">
+            <div className="box-radio">
+              <Categories handleCatChange={this.handleCatChange} />
+            </div>
 
-        <div className="linkToCart-2">
-          <Link to="/shoppingCart" data-testid="shopping-cart-button">
-            <img className="chartImg" src={ chart } alt="carrinho-de-compras" />
-          </Link>
-          <span
-            data-testid="shopping-cart-size"
-            className="cart-details"
-          >
-            { cartCount === null ? count : cartCount.length }
-          </span>
-        </div>
-        <div>
-          <div className="categories-3">
-            <Categories handleCatChange={ this.handleCatChange } />
+            <div className="box-item">
+              {loading ? <Loading /> : ''}
+              <ListCard search={search} category={catID} product={array} />
+            </div>
           </div>
-        </div>
-
-        <div className="buttonFetch-4">
-          <Button.Group>
-            <Button
-              rounded
-              outlined
-              color="black"
-              className="buttonFetch"
-              data-testid="query-button"
-              onClick={ this.handleApiRequest }
-            >
-              Buscar
-            </Button>
-          </Button.Group>
         </div>
       </div>
     );
