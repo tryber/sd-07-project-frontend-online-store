@@ -9,15 +9,18 @@ class Product extends Component {
     this.addToCart = this.addToCart.bind(this);
   }
 
-  addToCart() {
+
+  async addToCart() {
     const { title,
       thumbnail,
       price,
       id,
       category,
       searchKey,
+      updateCartTotal,
       availableQuantity } = this.props;
-    addToCart({ title, thumbnail, price, id, category, searchKey, availableQuantity });
+    await addToCart({ title, thumbnail, price, id, category, searchKey, availableQuantity });
+    updateCartTotal();       
   }
 
   render() {
@@ -55,6 +58,7 @@ Product.propTypes = {
   id: PropTypes.string.isRequired,
   category: PropTypes.string,
   searchKey: PropTypes.string.isRequired,
+  updateCartTotal: PropTypes.func.isRequired,
   availableQuantity: PropTypes.number.isRequired,
   freeShipping: PropTypes.bool.isRequired,
 };
