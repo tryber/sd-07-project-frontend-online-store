@@ -1,0 +1,115 @@
+.prodoct-cards {
+    display: flex;
+    flex-flow: wrap;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.product-card {
+  width: calc(100%/3 - 20px);
+  margin: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  background: #f9bb08;
+  border-radius: 3px;
+  }
+
+  .price {
+    font-weight: 800;
+    font-size: 30px;
+  }
+
+  .product-card-body {
+    flex: 0 1 auto;
+    padding: 20px;
+  }
+
+  .product-card-image {
+    height: calc(((100vw - (100vw - 900px))/3 - 20px) /2);
+  }
+
+  .product-card-image img{
+    margin-top: 30px;
+    object-fit: cover;
+  }
+
+  .product-card-title {
+    padding: 15px;
+    flex-grow: 1;
+  }
+
+  .product-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .product-link-add {
+     margin-bottom: 10px;
+     font-size: 20px;
+     text-transform: uppercase;
+  }
+
+  .product-link-add:hover {
+    background-color: #740001;
+    color: #fff;
+    font-weight: 800;
+  }
+
+  .product-link-add, .product-link-detail {
+    border: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: 50px;
+  }
+
+  .product-link a{
+    color: #000000;
+    font-size: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 0;
+    transition: 0.1s ease;
+  }
+  .product-link-detail:hover{
+    background-color: #740001;
+    color: #fff;
+    font-weight: 800;
+  }
+
+  .button-category {
+    appearance: none;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 800;
+  }
+
+  .button-category:hover {
+    background-color:  #aa861e;
+    color: #fff;
+    font-weight: 800;
+  }
+
+.side-bar {
+    background-color: #740001;
+    display: table-column;
+    border: 2px solid black;
+    padding: 15px;
+    font-size: 20px;
+    line-height: 30px;
+    width: 20%;
+  }
+
+  .side-bar p {
+      padding: 0;
+      margin: 0;
+      font-size: 30px;
+      font-weight: 700;
+      color: #e7d105;
+  }
