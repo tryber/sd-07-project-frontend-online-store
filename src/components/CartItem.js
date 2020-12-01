@@ -82,7 +82,6 @@ CartItem.propTypes = {
   id: PropTypes.string.isRequired,
   updateQuantity: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
-
 };
 
 export default CartItem;
