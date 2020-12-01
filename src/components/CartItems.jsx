@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CartItens = ({ title, price, quantity }) => (
+const CartItems = ({ title, price, quantity }) => (
   <div>
     <p data-testid="shopping-cart-product-name">
       { title }
@@ -17,7 +17,7 @@ const CartItens = ({ title, price, quantity }) => (
   </div>
 );
 
-CartItens.propTypes = {
+CartItems.propTypes = {
   title: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
