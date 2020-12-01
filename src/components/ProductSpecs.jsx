@@ -7,8 +7,10 @@ class ProductSpecs extends React.Component {
     return (
       <div className="product-specs">
         <div className="product">
-          <h3 className="product-specs-title" data-testid="product-specs-name">
-            {`${title} - R$ ${price}`}
+          <h3 className="product-specs-title" data-testid="product-detail-name">
+            <p data-testid="product-specs-name">
+              {`${title} - R$ ${price}`}
+            </p>
           </h3>
           <img className="product-specs-img" src={ thumbnail } alt="Imagem do produto" />
         </div>

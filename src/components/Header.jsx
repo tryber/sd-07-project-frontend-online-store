@@ -28,12 +28,14 @@ class Header extends React.Component {
 
 Header.defaultProps = {
   searchInput: '',
+  onInputSearchChange: () => {},
+  buttonSearch: () => {},
 };
 
 Header.propTypes = {
   searchInput: PropTypes.string,
-  onInputSearchChange: PropTypes.func.isRequired,
-  buttonSearch: PropTypes.func.isRequired,
+  onInputSearchChange: PropTypes.func,
+  buttonSearch: PropTypes.func,
 };
 
 export default Header;
