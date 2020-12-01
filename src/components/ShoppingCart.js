@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CartItens from './CartItens';
+import CartItems from './CartItems';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class ShoppingCart extends Component {
   renderProducts() {
     const { products } = this.state;
     return products.map((product) => (
-      <CartItens
+      <CartItems
         key={ product.title }
         title={ product.title }
         price={ product.price }
