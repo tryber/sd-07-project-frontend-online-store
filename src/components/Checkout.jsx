@@ -4,7 +4,8 @@ class Checkout extends React.Component {
   render() {
     const SumOfPrices = () => {
       const arrOfPrices = [];
-      this.props.location.state.products.map((product) => {
+      const { products } = this.props.location.state;
+      products.map((product) => {
         arrOfPrices.push(product.price);
       });
       return (arrOfPrices.reduce((a, b) => a + b, 0)).toFixed(2);
