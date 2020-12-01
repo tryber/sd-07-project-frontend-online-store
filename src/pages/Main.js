@@ -10,9 +10,6 @@ import ListCard from '../components/ListCard';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
 
-
-
-
 class Main extends React.Component {
   constructor() {
     super();
