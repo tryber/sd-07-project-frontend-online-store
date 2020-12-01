@@ -2,12 +2,55 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import AvaliationList from '../components/AvaliationList';
+import AvaliationForm from '../components/AvaliationForm';
 
 export default class ProductDetails extends Component {
   constructor() {
     super();
 
+    this.getProduct = this.getProduct.bind(this);
+    this.getStorage = this.getStorage.bind(this);
+    this.setStorage = this.setStorage.bind(this);
     this.saveItemsFromDetail = this.saveItemsFromDetail.bind(this);
+
+    this.state = {
+      name: '',
+      thumbnail: '',
+      avaliations: [],
+    };
+  }
+
+  componentDidMount() {
+    this.getProduct();
+    this.getStorage();
+  }
+
+  getProduct() {
+    const { location: { state: { item } } } = this.props;
+    this.setState({
+      name: item.title,
+      thumbnail: item.thumbnail,
+    });
+  }
+
+  getStorage() {
+    const { name } = this.state;
+
+    if (localStorage.getItem(`${name}`)) {
+      this.setState({ avaliations: JSON.parse(localStorage.getItem(`${name}`)) });
+    }
+  }
+
+  setStorage(avaliations) {
+    const { name } = this.state;
+
+    const arrayOfAvaliations = localStorage.getItem(`${name}`)
+      ? JSON.parse(localStorage.getItem(`${name}`))
+      : [];
+    arrayOfAvaliations.push(avaliations);
+    localStorage.setItem(`${name}`, JSON.stringify(arrayOfAvaliations));
+    this.setState({ avaliations: JSON.parse(localStorage.getItem(`${name}`)) });
   }
 
   saveItemsFromDetail(item) {
@@ -35,6 +78,7 @@ export default class ProductDetails extends Component {
 
   render() {
     const { location: { state: { item } } } = this.props;
+    const { name, thumbnail, avaliations } = this.state;
     return (
       <div>
         <header className="page-header">
@@ -52,13 +96,18 @@ export default class ProductDetails extends Component {
         </header>
 
         <div data-testid="product-detail-name">
-          {item.title}
+          { name }
         </div>
 
-        <img src={ item.thumbnail } alt={ item.title } />
+        <img src={ thumbnail } alt={ name } />
+
         <p>
           Especificações do produto...
         </p>
+
+        <AvaliationForm form={ this.setStorage } />
+        <AvaliationList avaliations={ avaliations } />
+
         <button
           type="button"
           onClick={ () => this.saveItemsFromDetail(item) }
