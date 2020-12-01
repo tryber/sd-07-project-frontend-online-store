@@ -5,5 +5,15 @@ import Header from './Header';
 import ProductDetail from './ProductDetail';
 import PayProductList from './PayProductList';
 import BuyerInfo from './BuyerInfo';
+import SearchInput from './SearchInput';
 
-export { SideBar, ProductDetail, Header, Kart, ProductCard, PayProductList, BuyerInfo };
+export {
+  SideBar,
+  ProductDetail,
+  Header,
+  Kart,
+  ProductCard,
+  PayProductList,
+  BuyerInfo,
+  SearchInput,
+};

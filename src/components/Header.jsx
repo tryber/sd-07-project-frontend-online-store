@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import KartImg from '../img/kart.svg';
 import LogoImg from '../img/Logo.svg';
+import SearchInput from './SearchInput';
 
 class Header extends React.Component {
   render() {
@@ -12,17 +13,11 @@ class Header extends React.Component {
         <Link to="/">
           <img src={ LogoImg } alt="Imagem da Logo" />
         </Link>
-        <input
-          className="input-search"
-          data-testid="query-input"
-          type="text"
-          name="inputSearch"
-          value={ searchInput }
-          onChange={ onInputSearchChange }
+        <SearchInput
+          searchInput={ searchInput }
+          onInputSearchChange={ onInputSearchChange }
+          buttonSearch={ buttonSearch }
         />
-        <button data-testid="query-button" type="submit" onClick={ buttonSearch }>
-          Buscar
-        </button>
         <Link data-testid="shopping-cart-button" to="/kart">
           <img src={ KartImg } className="kart-icon" alt="Botão carrinho de compras" />
         </Link>

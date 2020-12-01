@@ -74,7 +74,7 @@ class InitialScreen extends React.Component {
           onInputSearchChange={ this.onInputSearchChange }
           buttonSearch={ this.buttonSearch }
         />
-        <h4 className="search-text">{!searchInput ? tagMessage : ''}</h4>
+        <div className="search-text">{!searchInput ? tagMessage : ''}</div>
         <div className="initial-screen-body">
           <div className="side-bar">
             <SideBar
