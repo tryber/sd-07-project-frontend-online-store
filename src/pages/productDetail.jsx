@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import * as localStorage from '../services/localStorage';
 
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.fetchProduct = this.fetchProduct.bind(this);
     this.productLoaded = this.productLoaded.bind(this);
+    this.productAdd = this.productAdd.bind(this);
     this.state = {
       loading: true,
       product: [],
@@ -27,14 +29,18 @@ class ProductDetail extends React.Component {
     this.setState({
       product: fetchedProduct,
       loading: false,
-      quantidade: 0,
+      quantity: 1,
     });
+  }
+
+  addToCart(product) {
+    localStorage.saveProductIntoShoppingCart(product);
   }
 
   productAdd() {
     const { product } = this.state;
-    const { title } = product;
-    let { quantidade } = this.state;
+    const { id, title } = product;
+    let { quantity } = this.state;
     const max = 99;
     return (
       <div>
@@ -43,23 +49,23 @@ class ProductDetail extends React.Component {
             data-testid=""
             type="submit"
             onClick={ () => {
-              if (quantidade < 1) {
-                return this.setState({ quantidade: 0 });
+              if (quantity < 1) {
+                return this.setState({ quantity: 0 });
               }
-              this.setState({ quantidade: quantidade -= 1 });
+              this.setState({ quantity: (quantity -= 1) });
             } }
           >
             -
           </button>
-          <div>{quantidade}</div>
+          <div>{ quantity }</div>
           <button
             data-testid=""
             type="submit"
             onClick={ () => {
-              if (quantidade > max) {
-                return this.setState({ quantidade: 100 });
+              if (quantity > max) {
+                return this.setState({ quantity: 100 });
               }
-              this.setState({ quantidade: quantidade += 1 });
+              this.setState({ quantity: (quantity += 1) });
             } }
           >
             +
@@ -68,9 +74,9 @@ class ProductDetail extends React.Component {
         <button
           data-testid="product-detail-add-to-cart"
           type="submit"
-          onClick={ () => console.log(title + quantidade) }
+          onClick={ () => this.addToCart({ id, title, quantity }) }
         >
-          ADICIONAR PRODUTO
+          Adicionar ao carrinho de compras
         </button>
       </div>
     );
@@ -81,12 +87,12 @@ class ProductDetail extends React.Component {
     const { title, price, thumbnail, attributes } = product;
     return (
       <div data-testid="product-detail-name">
-        <h4>{title}</h4>
-        <h3>{`R$${price}`}</h3>
+        <h3>{ title }</h3>
+        <h4>{ `R$${price}` }</h4>
         <img alt="product Cover" src={ thumbnail } />
         <ul>
           {attributes.map((a) => (
-            <li key={ a.name }>{`${a.name}: ${a.value_name}`}</li>
+            <li key={ a.name }>{ `${a.name}: ${a.value_name}` }</li>
           ))}
         </ul>
       </div>
@@ -99,9 +105,16 @@ class ProductDetail extends React.Component {
       <div>
         {loading ? <p>Loading</p> : this.productLoaded()}
         {loading ? <div>Loading</div> : this.productAdd()}
-        {loading
-          ? <div>Loading</div>
-          : <Link to="/shoppingCart"> Carrinho de compras </Link>}
+        {loading ? (
+          <div>Loading</div>
+        ) : (
+          <Link
+            data-testid="shopping-cart-button"
+            to="/shoppingCart"
+          >
+            Carrinho de compras
+          </Link>
+        )}
       </div>
     );
   }

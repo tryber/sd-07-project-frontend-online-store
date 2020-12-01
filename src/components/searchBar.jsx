@@ -3,7 +3,7 @@ import * as api from '../services/api';
 import Category from './categoryList';
 import NotFound from './notFound';
 import ProductCard from './productCard';
-import * as localStorage from '../services/localStorage'
+import * as localStorage from '../services/localStorage';
 // import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
@@ -57,13 +57,15 @@ class SearchBar extends React.Component {
     return (
       <div>
         {products.map((product) => (
-          <ProductCard key={ product.id } product={ product } addToCart={this.addToCart}/>
+          <ProductCard
+            key={ product.id }
+            product={ product }
+            addToCart={ this.addToCart }
+          />
         ))}
       </div>
     );
   }
-
-
 
   render() {
     const { query, products } = this.state;

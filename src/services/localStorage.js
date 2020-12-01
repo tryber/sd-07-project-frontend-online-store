@@ -9,4 +9,4 @@ export const saveProductIntoShoppingCart = (itemCart) => {
 export const picksUpItemsFromTheCartInLocalStorage = () => {
   const products = JSON.parse(localStorage.getItem('products'));
   return products;
-};;;
+};

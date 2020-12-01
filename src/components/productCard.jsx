@@ -11,25 +11,20 @@ class ProductCard extends React.Component {
       <div className="product-card" data-testid="product" key={ id }>
         <img alt="product Cover" className="product-card-image" src={ thumbnail } />
         <div className="product-card-body">
-          <h4
-            data-testid="product-card-title"
-            className="product-card-title"
-          >
+          <h4 data-testid="product-card-title" className="product-card-title">
             { title }
           </h4>
           <h5 className="product-card-storyline">{ price }</h5>
-          <Link
-            data-testid="product-detail-link"
-            to={ `/productDetail/${id}` }
-          >
+          <Link data-testid="product-detail-link" to={ `/productDetail/${id}` }>
             Detalhes
           </Link>
-          <button data-testid="product-add-to-cart"
-          type="button"
-          onClick={ () => addToCart(product)}
+          <button
+            data-testid="product-add-to-cart"
+            type="button"
+            onClick={ () => addToCart({ id, title, quantity: 1 }) }
           >
             Adicionar ao carrinho de compras
-            </button>
+          </button>
         </div>
       </div>
     );
@@ -37,6 +32,7 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
+  addToCart: PropTypes.func.isRequired,
   product: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -45,4 +41,4 @@ ProductCard.propTypes = {
   }).isRequired,
 };
 
-export default ProductCard;;
+export default ProductCard;

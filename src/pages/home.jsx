@@ -7,6 +7,8 @@ class Home extends React.Component {
     return (
       <div>
         <SearchBar />
+        {/* CategoryList
+        ProductCard */}
         <Link
           to="/shoppingCart"
           data-testid="shopping-cart-button"
