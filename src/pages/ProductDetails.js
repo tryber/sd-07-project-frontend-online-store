@@ -123,7 +123,7 @@ class ProductDetails extends Component {
             +
             {' '}
           </button>
-            <div>{quantity}</div>
+          <div>{quantity}</div>
           <button
             type="button"
             onClick={ this.removeItem }
