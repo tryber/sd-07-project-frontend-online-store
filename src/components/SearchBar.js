@@ -11,10 +11,11 @@ class SearchBar extends Component {
     return (
       <main>
         <div className="item-inputsearch">
-          <h3 data-testid="home-initial-message">
+          <h5 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
-          </h3>
+          </h5>
           <input
+            className="entrie-search"
             data-testid="query-input"
             type="text"
             name="input-text"
@@ -24,6 +25,7 @@ class SearchBar extends Component {
           <hr />
           <button
             id="input-text"
+            className="btn btn-info btn-xs"
             data-testid="query-button"
             type="button"
             onClick={ handleSubmit }

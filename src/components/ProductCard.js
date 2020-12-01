@@ -89,6 +89,7 @@ class ProductCard extends React.Component {
         </div>
         <Link
           data-testid="product-detail-link"
+          className="btn btn-primary btn-xs"
           to={ {
             pathname: `/pages/ProductDetails/${id}`,
             state: { item },
@@ -97,6 +98,7 @@ class ProductCard extends React.Component {
           Mais Detalhes
         </Link>
         <button
+          className="btn btn-primary btn-xs"
           data-testid="product-add-to-cart"
           value="items"
           type="button"

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Table.css';
-
+import Quantity from '../components/Quantity';
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -21,7 +20,7 @@ class ShoppingCart extends React.Component {
   }
 
   render() {
-    const { quantitySameItems } = this.state;
+    // const { quantitySameItems } = this.state;
     return (
       <main>
         <header>
@@ -80,7 +79,7 @@ class ShoppingCart extends React.Component {
             <section key={ sku } data-testid="product" className="container-fluid">
               <table className="table table-bordered table-striped table-hover">
                 <tr>
-                  <th className="text-center">Identificação</th>
+                  <th className="text-center">Excluir Produto</th>
                   <th className="text-center">Imagem</th>
                   <th className="text-center">Produto</th>
                   <th className="text-center">Preço</th>
@@ -89,7 +88,15 @@ class ShoppingCart extends React.Component {
                 </tr>
 
                 <tr>
-                  <td>{ sku }</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn text-nowrap"
+                      onClick={ this }
+                    >
+                      <h2>X</h2>
+                    </button>
+                  </td>
                   <td>
                     <img
                       className="img-responsive img-circle text-center"
@@ -97,10 +104,22 @@ class ShoppingCart extends React.Component {
                       alt={ name }
                     />
                   </td>
-                  <td className="text-center">{ name }</td>
+                  <td
+                    className="text-center"
+                    data-testid="shopping-cart-product-name"
+                  >
+                    { name }
+                  </td>
                   <td className="text-center">{ cost }</td>
                   <td className="text-center">{ quantity }</td>
-                  <td className="text-center">{ quantitySameItems }</td>
+                  <td
+                    className="text-center"
+                    data-testid="shopping-cart-product-quantity"
+                  >
+                    <Quantity
+                      parentState={ this.state }
+                    />
+                  </td>
                 </tr>
               </table>
             </section>);
@@ -109,9 +128,7 @@ class ShoppingCart extends React.Component {
         <div className="text-right">
           <Link
             className="btn btn-success text-right"
-            To={ { pathname: './pages/CheckoutPage',
-              state: { quantitySameItems },
-            } }
+            to="/pages/CheckoutPage"
           >
             Finalizar Compra!
           </Link>

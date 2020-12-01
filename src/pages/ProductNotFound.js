@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 
 class ProductNotFound extends Component {
   render() {
-    return <h1>Produto não encontrada</h1>;
+    return (
+      <header>
+        <div>
+        </div>
+        <div>
+        </div>
+        <div>
+        </div>
+      </header>
+    )
   }
 }
 

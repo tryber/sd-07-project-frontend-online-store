@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../App.css';
+import Forms from '../components/Forms';
 
 class CheckoutPage extends Component {
   constructor(props) {
     super(props);
 
     this.readCart = this.readCart.bind(this);
+
+    this.state = {
+
+    };
   }
 
   readCart() {
@@ -15,32 +22,88 @@ class CheckoutPage extends Component {
 
   render() {
     return (
-      <section ClassName="container-fluid">
-        <table className="table table-striped table-bordered">
-          <tr>
-            <th className="text-center">Imagem</th>
-            <th className="text-center">Produto</th>
-            <th className="text-center">Preço Unitário</th>
-            <th className="text-center">Adquiridos</th>
-            <th className="text-center">Total Parcial</th>
-          </tr>
+      <main className="container-fluid">
+        <section ClassName="container-fluid">
+          <header ClassName="page-header">
+            <div className="item-inputsearch">Aqui vai uma logo</div>
+            <div className="item-inputsearch">
+              <h2>
+                Finalização da Compra
+              </h2>
+            </div>
+            <div className="item-inputsearch">
+              <Link to="/">
+                <svg
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  className="bi bi-arrow-left"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4
+                  4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0
+                  0 15 8z"
+                  />
+                </svg>
+              </Link>
+              <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 16 16"
+                className="bi bi-cart3"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5
+                  0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5
+                  0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5
+                  0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1
+                  0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1
+                  0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+                />
+              </svg>
+            </div>
+          </header>
+          {!localStorage.length ? ('Aproveite as ofertas para comprar o que deseja'
+          ) : (this.readCart().map((key) => {
+            const { sku, cost, name, image } = key;
+            return (
+              <table
+                cellSpacing="0"
+                key={ sku }
+                className="table table-striped table-bordered"
+              >
+                <tr>
+                  <th className="text-center">Imagem</th>
+                  <th className="text-center">Produto</th>
+                  <th className="text-center">Preço Unitário</th>
+                  <th className="text-center">Adquiridos</th>
+                  <th className="text-center">Total Parcial</th>
+                </tr>
+                <tr>
+                  <td className="text-center">
+                    <img
+                      className="img-circle check-img"
+                      src={ image }
+                      alt="Imagem de produtos para checkout"
+                    />
+                  </td>
+                  <td className="text-center">{ name }</td>
+                  <td className="text-center">{ cost }</td>
+                  <td className="text-center">1</td>
+                  <td className="text-center">totalparcial</td>
+                </tr>
+              </table>);
+          }))}
+        </section>
+        <Forms />
+      </main>
 
-          <tr>
-            <td>sku</td>
-            <td>
-              <img
-                className="img-responsive img-circle"
-                src="image"
-                alt="name"
-              />
-            </td>
-            <td>name</td>
-            <td>cost</td>
-            <td>quantity</td>
-            <td>quantitySameItems</td>
-          </tr>
-        </table>
-      </section>
     );
   }
 }

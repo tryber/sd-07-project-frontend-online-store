@@ -73,10 +73,19 @@ body,
   margin: 1rem 1.5rem 0 !important;
 }
 
-section:hover {
+.check-img {
+  border: 1 solid transparent;
+  border-radius: 50%;
+  max-height: 35px;
+  max-width: 75px;
+  width: 100%;
+  height: auto;
+}
+
+/* section:hover {
   transform: translate(0, -10px);
   background: #eee;
-}
+} */
 
 .info {
   margin: 0;
@@ -95,6 +104,15 @@ section:hover {
   margin: 0.5rem 1rem 0.5rem 0;
 }
 
+.form-section {
+  border: 1px solid gray;
+  position: relative;
+  margin: auto;
+  height: 30vh;
+  width: 90vw;
+
+}
+
 @media screen and (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
@@ -108,10 +126,9 @@ section:hover {
   }
 }
 
-input, select {
-  margin-left: 30px;
-  margin-right: 50px;
+.entrie-search {
   width: 350px;
+  height: 20px;
 }
 
 header {
@@ -129,7 +146,7 @@ header {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 0.4rem;
+  padding-top: 0.6em;
 
 }
 
