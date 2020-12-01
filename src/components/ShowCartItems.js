@@ -1,20 +1,44 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
+import { handleQuantity } from '../services/localStorageHandler';
 
 class ShowCartItems extends React.Component {
   render() {
-    const { item } = this.props;
+    const { item: { id, title, price, quantity }, updateCart } = this.props;
     return (
       <div>
         <div data-testid="shopping-cart-product-name">
-          {item.title}
+          {title}
         </div>
         <div>
-          {item.price}
+          {price}
         </div>
         <div data-testid="shopping-cart-product-quantity">
-          {item.quantity}
+          {quantity}
+        </div>
+        <div>
+          <button
+            type="button"
+            data-testid="product-increase-quantity"
+            name="increase"
+            onClick={ () => {
+              handleQuantity({ id: [id], action: 'increase' });
+              updateCart();
+            } }
+          >
+            +
+          </button>
+          <button
+            type="button"
+            data-testid="product-decrease-quantity"
+            name="decrease"
+            onClick={ () => {
+              handleQuantity({ id: [id], action: 'decrease' });
+              updateCart();
+            } }
+          >
+            -
+          </button>
         </div>
       </div>
     );
@@ -23,10 +47,12 @@ class ShowCartItems extends React.Component {
 
 ShowCartItems.propTypes = {
   item: PropTypes.shape({
+    id: PropTypes.any.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     quantity: PropTypes.any.isRequired,
   }).isRequired,
+  updateCart: PropTypes.func.isRequired,
 };
 
 export default ShowCartItems;
