@@ -3,6 +3,7 @@ import * as api from '../../services/api';
 import * as cp from '../../components';
 import * as view from '../../views';
 import * as css from './style';
+import * as util from '../../services/utilities';
 
 export class Home extends Component {
   constructor(props) {
@@ -10,18 +11,18 @@ export class Home extends Component {
 
     this.getCurrentCategory = this.getCurrentCategory.bind(this);
     this.fetchSearchButton = this.fetchSearchButton.bind(this);
-    this.addTocart = this.addTocart.bind(this);
+    this.setState = this.setState.bind(this);
 
     this.state = {
       isLoading: false,
       categoryId: '',
       products: [],
       searchInput: '',
-      searchResult: true,
       productsItemsCart: [],
     };
   }
 
+<<<<<<< HEAD
   async getProductInCartLocalStorage() {
     if (localStorage.getItem('productInCart')) {
       const objectFromLocation = JSON.parse(localStorage.getItem('productsInCard'));
@@ -45,6 +46,10 @@ export class Home extends Component {
       productsItemsCart: [...prev.productsItemsCart, product],
     }));
     this.addToLocalStorage();
+=======
+  componentDidMount() {
+    util.getFromLocalAndSet('productsItemsCart', this.setState);
+>>>>>>> 1be48ea75c323248567d882e983cecc42fe68434
   }
 
   getCurrentCategory(id) {
@@ -61,9 +66,8 @@ export class Home extends Component {
     this.setState({ searchInput: searchResult, isLoading: true }, async () => {
       const object = await api.getProductsFromCategoryAndQuery(
         this.state.categoryId,
-        searchResult
+        this.state.searchInput
       );
-
       this.setState({ products: object.results, isLoading: false });
     });
   }
@@ -99,7 +103,13 @@ export class Home extends Component {
                     key={product.id}
                     product={product}
                     amount={1}
-                    addToCart={this.addTocart}
+                    addToCart={(product) =>
+                      util.setObjStorageAndSetState(
+                        'productsItemsCart',
+                        product,
+                        this.setState
+                      )
+                    }
                   >
                     {product.title}
                   </cp.CardProduct>
