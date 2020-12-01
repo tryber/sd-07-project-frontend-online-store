@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ProductsCartCounter extends React.Component {
   render() {
@@ -10,5 +11,9 @@ class ProductsCartCounter extends React.Component {
     );
   }
 }
+
+ProductsCartCounter.propTypes = {
+  counter: PropTypes.number,
+}.isRequired;
 
 export default ProductsCartCounter;

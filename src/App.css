@@ -197,7 +197,7 @@ textarea:focus, input:focus, select:focus {
   width: 25px;
 }
 
-.shopping-cart-button {
+.shopping-btn {
   align-items: flex-start;
   display: flex;
 }
