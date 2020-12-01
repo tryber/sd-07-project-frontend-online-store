@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Checkout extends React.Component {
   render() {
@@ -8,7 +9,9 @@ class Checkout extends React.Component {
       products.map((product) => {
         arrOfPrices.push(product.price);
       });
-      return (arrOfPrices.reduce((a, b) => a + b, 0)).toFixed(2);
+      const initialValor = 0;
+      const decimalPlaces = 2;
+      return (arrOfPrices.reduce((a, b) => a + b, initialValor)).toFixed(decimalPlaces);
     };
 
     const { products } = this.props.location.state;
@@ -71,5 +74,16 @@ class Checkout extends React.Component {
     );
   }
 }
+
+Checkout.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+      price: PropTypes.number,
+      quantity: PropTypes.number,
+    })
+  )
+}.isRequired;
 
 export default Checkout;
