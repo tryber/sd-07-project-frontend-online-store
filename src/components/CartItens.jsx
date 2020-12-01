@@ -14,9 +14,9 @@ class CartItens extends React.Component {
     const productList = JSON.parse(localStorage.getItem('cartItems'));
     const productListed = elem.props.item;
     const { quantity: quantityFromState } = this.state;
-    productList.map(({id, quantity}) => {
+    productList.map(({ id, quantity }) => {
       if (id === productListed.id) quantity = quantityFromState + func;
-      return null;
+      return quantity;
     });
     localStorage.setItem('cartItems', JSON.stringify(productList));
   }
