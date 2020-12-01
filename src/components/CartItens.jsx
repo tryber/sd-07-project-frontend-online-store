@@ -14,7 +14,7 @@ class CartItens extends React.Component {
     const productListed = elem.props.item;
     productList.map((product) => {
       if (product.id === productListed.id) product.quantity = this.state.quantity + func;
-    })
+    });
     localStorage.setItem('cartItems', JSON.stringify(productList));
   }
 
@@ -26,7 +26,7 @@ class CartItens extends React.Component {
     }
 
     function decreaseQuantity(state) {
-      if(state.quantity > 1) {
+      if (state.quantity > 1) {
         this.updateQuantity(this, -1);
         const newState = { ...state, quantity: state.quantity - 1 };
         return newState;
@@ -39,10 +39,14 @@ class CartItens extends React.Component {
     return (
       <div className="cart-item">
         <GetIcon name="CloseIcon" />
-        <p data-testid="shopping-cart-product-name" >{ title }</p>
+        <p data-testid="shopping-cart-product-name">{ title }</p>
         <p>{ price * this.state.quantity }</p>
 
-        <button className="quantity-buttons" data-testid="product-decrease-quantity" onClick={ () => { this.setState(decreaseQuantity) } }>
+        <button
+          className="quantity-buttons"
+          data-testid="product-decrease-quantity"
+          onClick={ () => { this.setState(decreaseQuantity); } }
+        >
           <GetIcon name="DashIcon" />
         </button>
 
@@ -50,11 +54,15 @@ class CartItens extends React.Component {
           { this.state.quantity }
         </div>
 
-        <button className="quantity-buttons" data-testid="product-increase-quantity" onClick={ () => { this.setState(increaseQuantity) } }>
+        <button
+          className="quantity-buttons"
+          data-testid="product-increase-quantity"
+          onClick={ () => { this.setState(increaseQuantity); } }
+        >
           <GetIcon name="PlusIcon" />
         </button>
       </div>
-    )
+    );
   }
 }
 
