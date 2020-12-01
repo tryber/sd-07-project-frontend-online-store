@@ -78,5 +78,4 @@ Card.propTypes = {
   counter: PropTypes.number,
 }.isRequired;
 
-
 export default Card;
