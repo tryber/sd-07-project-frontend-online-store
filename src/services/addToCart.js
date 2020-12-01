@@ -4,7 +4,9 @@ function addToCart({
   price,
   id: idNewItem,
   category,
-  searchKey }) {
+  searchKey,
+  availableQuantity,
+}) {
   let cart = JSON.parse(localStorage.getItem('cart'));
   if (cart === undefined || cart === null) {
     cart = [];
@@ -20,6 +22,7 @@ function addToCart({
       price,
       category,
       searchKey,
+      availableQuantity,
     }];
   } else {
     let { quantity } = cart[itemIndex];
@@ -32,6 +35,7 @@ function addToCart({
       price,
       category,
       searchKey,
+      availableQuantity,
     };
   }
   localStorage.setItem('cart', JSON.stringify(cart));

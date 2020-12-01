@@ -8,7 +8,13 @@ export default class ProductList extends Component {
     const { results, category, searchKey, updateCartTotal } = this.props;
     return (
       <div className="div-prod-list">
-        {results.map(({ title, thumbnail, price, id }) => (
+        {results.map(({ title,
+          thumbnail,
+          price,
+          id,
+          available_quantity: availableQuantity,
+          shipping,
+        }) => (
           <Product
             title={ title }
             thumbnail={ thumbnail }
@@ -18,6 +24,8 @@ export default class ProductList extends Component {
             category={ category }
             searchKey={ searchKey }
             updateCartTotal={ updateCartTotal }
+            availableQuantity={ availableQuantity }
+            freeShipping={ shipping.free_shipping }
           />
         ))}
       </div>

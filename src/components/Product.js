@@ -9,24 +9,25 @@ class Product extends Component {
     this.addToCart = this.addToCart.bind(this);
   }
 
+
   async addToCart() {
-    const {
-      title,
+    const { title,
       thumbnail,
       price,
       id,
       category,
       searchKey,
       updateCartTotal,
-    } = this.props;
-    await addToCart({ title, thumbnail, price, id, category, searchKey });
-    updateCartTotal();
+      availableQuantity } = this.props;
+    await addToCart({ title, thumbnail, price, id, category, searchKey, availableQuantity });
+    updateCartTotal();       
   }
 
   render() {
-    const { title, thumbnail, price, id, category, searchKey } = this.props;
+    const { title, thumbnail, price, id, category, searchKey, freeShipping } = this.props;
     return (
       <div data-testid="product">
+        {freeShipping ? <p data-testid="free-shipping">envio grátis</p> : null}
         <h2>{title}</h2>
         <img src={ thumbnail } alt="thumb" />
         <p>{price}</p>
@@ -58,6 +59,8 @@ Product.propTypes = {
   category: PropTypes.string,
   searchKey: PropTypes.string.isRequired,
   updateCartTotal: PropTypes.func.isRequired,
+  availableQuantity: PropTypes.number.isRequired,
+  freeShipping: PropTypes.bool.isRequired,
 };
 
 Product.defaultProps = {

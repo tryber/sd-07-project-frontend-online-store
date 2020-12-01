@@ -34,14 +34,19 @@ class CartItem extends Component {
   }
 
   render() {
-    const { title, thumbnail, price, id, quantity } = this.props;
+    const { title, thumbnail, price, id, quantity, availableQuantity } = this.props;
     return (
       <div key={ id }>
         <h2 data-testid="shopping-cart-product-name">{title}</h2>
         <img src={ thumbnail } alt="thumb" />
         <p>{price}</p>
-        <p data-testid="shopping-cart-product-quantity">{quantity}</p>
+        <p
+          data-testid="shopping-cart-product-quantity"
+        >
+          {`${quantity} de ${availableQuantity}`}
+        </p>
         <button
+          disabled={ quantity <= 1 }
           type="button"
           data-testid="product-decrease-quantity"
           onClick={ this.decreaseQuantity }
@@ -49,6 +54,7 @@ class CartItem extends Component {
           -
         </button>
         <button
+          disabled={ quantity >= availableQuantity }
           type="button"
           data-testid="product-increase-quantity"
           onClick={ this.increaseQuantity }
@@ -72,9 +78,11 @@ CartItem.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
+  availableQuantity: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   updateQuantity: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
+
 };
 
 export default CartItem;
