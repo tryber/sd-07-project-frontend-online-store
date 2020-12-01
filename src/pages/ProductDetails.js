@@ -95,7 +95,9 @@ class ProductDetails extends Component {
             <h2 data-testid="product-detail-name">
               {title}
               {' '}
-              - R$
+            </h2>
+            <h2>
+              R$
               {price}
             </h2>
             <img
@@ -141,7 +143,12 @@ class ProductDetails extends Component {
   }
 }
 
-ProductDetails.propTypes = { match: PropTypes.func.isRequired };
-
+ProductDetails.propTypes = { match: PropTypes.shape({
+  isExact: PropTypes.bool.isRequired,
+  params: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+}).isRequired,
+};
 
 export default ProductDetails;

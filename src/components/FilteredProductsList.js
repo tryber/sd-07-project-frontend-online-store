@@ -6,7 +6,9 @@ class FilteredProductsList extends Component {
   render() {
     const { allProducts, addShoppingCartItems } = this.props;
 
-    if (allProducts === undefined) {
+    const comparNumber = 0;
+
+    if (allProducts.length === comparNumber) {
       return (
         <div>
           <ul data-testid="home-initial-message">

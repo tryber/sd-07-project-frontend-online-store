@@ -13,7 +13,7 @@ class ProductsList extends Component {
   constructor() {
     super();
     this.state = {
-      productsToRender: undefined,
+      productsToRender: [],
       inputSearchValue: '',
       shoppingCartItems: [],
     };
