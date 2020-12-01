@@ -3,6 +3,7 @@ import * as api from '../services/api';
 import Category from './categoryList';
 import NotFound from './notFound';
 import ProductCard from './productCard';
+import * as localStorage from '../services/localStorage';
 // import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
@@ -21,6 +22,7 @@ class SearchBar extends React.Component {
     this.handleChangeCategory = this.handleChangeCategory.bind(this);
     this.filterCategoryAndQuery = this.filterCategoryAndQuery.bind(this);
     this.productListLoaded = this.productListLoaded.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   handleSearchChange({ target }) {
@@ -46,12 +48,20 @@ class SearchBar extends React.Component {
     });
   }
 
+  addToCart(product) {
+    localStorage.saveProductIntoShoppingCart(product);
+  }
+
   productListLoaded() {
     const { products } = this.state;
     return (
       <div>
         {products.map((product) => (
-          <ProductCard key={ product.id } product={ product } />
+          <ProductCard
+            key={ product.id }
+            product={ product }
+            addToCart={ this.addToCart }
+          />
         ))}
       </div>
     );

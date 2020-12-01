@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import * as localStorage from '../services/localStorage';
 
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.fetchProduct = this.fetchProduct.bind(this);
     this.productLoaded = this.productLoaded.bind(this);
+    this.productAdd = this.productAdd.bind(this);
     this.state = {
       loading: true,
       product: [],
@@ -27,32 +29,94 @@ class ProductDetail extends React.Component {
     this.setState({
       product: fetchedProduct,
       loading: false,
+      quantity: 1,
     });
+  }
+
+  addToCart(product) {
+    localStorage.saveProductIntoShoppingCart(product);
+  }
+
+  productAdd() {
+    const { product } = this.state;
+    const { id, title, price } = product;
+    let { quantity } = this.state;
+    const max = 99;
+    return (
+      <div>
+        <div>
+          <button
+            data-testid=""
+            type="submit"
+            onClick={ () => {
+              if (quantity < 1) {
+                return this.setState({ quantity: 0 });
+              }
+              this.setState({ quantity: (quantity -= 1) });
+            } }
+          >
+            -
+          </button>
+          <div>{ quantity }</div>
+          <button
+            data-testid=""
+            type="submit"
+            onClick={ () => {
+              if (quantity > max) {
+                return this.setState({ quantity: 100 });
+              }
+              this.setState({ quantity: (quantity += 1) });
+            } }
+          >
+            +
+          </button>
+        </div>
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="submit"
+          onClick={ () => this.addToCart({ price, id, title, quantity }) }
+        >
+          Adicionar ao carrinho de compras
+        </button>
+      </div>
+    );
   }
 
   productLoaded() {
     const { product } = this.state;
     const { title, price, thumbnail, attributes } = product;
     return (
-      <div>
-        <div data-testid="product-detail-name">
-          <h4>{ title }</h4>
-          <h3>{`R$${price}`}</h3>
-          <img alt="product Cover" src={ thumbnail } />
-          <ul>
-            {attributes.map((a) => (
-              <li key={ a.name }>{`${a.name}: ${a.value_name}`}</li>
-            ))}
-          </ul>
-        </div>
-        <Link to="/shoppingCart"> Carrinho de compras </Link>
+      <div data-testid="product-detail-name">
+        <h3>{ title }</h3>
+        <h4>{ `R$${price}` }</h4>
+        <img alt="product Cover" src={ thumbnail } />
+        <ul>
+          {attributes.map((a) => (
+            <li key={ a.name }>{ `${a.name}: ${a.value_name}` }</li>
+          ))}
+        </ul>
       </div>
     );
   }
 
   render() {
     const { loading } = this.state;
-    return <div>{loading ? <p>Loading</p> : this.productLoaded()}</div>;
+    return (
+      <div>
+        {loading ? <p>Loading</p> : this.productLoaded()}
+        {loading ? <div>Loading</div> : this.productAdd()}
+        {loading ? (
+          <div>Loading</div>
+        ) : (
+          <Link
+            data-testid="shopping-cart-button"
+            to="/shoppingCart"
+          >
+            Carrinho de compras
+          </Link>
+        )}
+      </div>
+    );
   }
 }
 
