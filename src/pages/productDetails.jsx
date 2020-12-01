@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import ReactStars from 'react-rating-stars-component';
 
 export default class ProductDetails extends Component {
   constructor(props) {
@@ -22,6 +22,9 @@ export default class ProductDetails extends Component {
 
   render() {
     const { id, title, thumbnail, price } = this.state;
+    const ratingChanged = (newRating) => {
+      console.log(newRating);
+    };
     return (
       <div className="">
         <Link to="/carrinho" data-testid="shopping-cart-button">
@@ -36,12 +39,20 @@ export default class ProductDetails extends Component {
           <img src={ thumbnail } alt={ title } />
           <div>
             <strong>
-              <span data-testid="product-detail-name">{ title }</span>
+              <span data-testid="product-detail-name">{title}</span>
             </strong>
             <span className="price-card">
               R$
-              { price }
+              {price}
             </span>
+            <ReactStars
+              count={ 5 }
+              onChange={ ratingChanged }
+              size={ 24 }
+              activeColor="#ffd700"
+              data-testid="product-detail-evaluation"
+            />
+            ,
           </div>
         </div>
       </div>
