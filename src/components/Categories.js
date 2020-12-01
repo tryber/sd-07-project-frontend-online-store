@@ -1,5 +1,6 @@
 import React from 'react';
 import * as mlAPI from '../services/api';
+
 class Categories extends React.Component {
   constructor(props) {
     super(props);

@@ -46,7 +46,7 @@ class SearchBar extends React.Component {
 
   updateCounter(state, update, newState) {
     if (update) {
-      return {...state, counter: newState};
+      return { ...state, counter: newState };
     }
     const productList = JSON.parse(localStorage.getItem('cartItems'));
     return productList != null ? productList.length : 0;
@@ -63,14 +63,14 @@ class SearchBar extends React.Component {
       <div>
         <header className="header-container">
           <Link to="/">
-            <img className="logo" src={logo} alt="logo-react" />
+            <img className="logo" src={ logo } alt="logo-react" />
           </Link>
           <div className="search">
             <div className="search-bar-content">
               <button
                 className="search-button"
                 data-testid="query-button"
-                onClick={this.fetchApiByQuery}
+                onClick={ this.fetchApiByQuery }
               >
                 <GetIcon className="search-button-icon" name="SearchIcon" />
               </button>
@@ -78,9 +78,9 @@ class SearchBar extends React.Component {
                 data-testid="query-input"
                 className="search-bar"
                 type="text"
-                value={this.state.searchElement}
+                value={ this.state.searchElement }
                 name="searchElement"
-                onChange={this.changeStateValue}
+                onChange={ this.changeStateValue }
               />
             </div>
             <div className="home-initial-message" data-testid="home-initial-message">
@@ -90,21 +90,22 @@ class SearchBar extends React.Component {
           <Link to="/cart" className="shopping-cart-button" data-testid="shopping-cart-button">
             <GetIcon className="shopping-cart-icon" name="ShoppingCartIcon" />
           </Link>
-          <ProductsCartCounter counter={this.state.counter} />
+          <ProductsCartCounter counter={ this.state.counter } />
         </header>
         <div className="container">
           <section className="categories-list">
-            <Categories handleChange={this.changeStateValue}/>
+            <Categories handleChange={ this.changeStateValue } />
           </section>
           <section className="product-list">
             {arrayOfItemByInputedText
               .map((item) => <Card
-                key={item.id} 
-                products={item} 
-                onAdd={this.productsCounter}
-                counter={this.state.counter}
+                key={ item.id } 
+                products={ item } 
+                onAdd={ this.productsCounter }
+                counter={ this.state.counter }
               />)}
-          </section></div>
+          </section>
+        </div>
       </div>
     );
   }

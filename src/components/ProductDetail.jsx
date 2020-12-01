@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as mlAPI from '../services/api';
 import { Link } from 'react-router-dom';
+import * as mlAPI from '../services/api';
 import Rating from './Rating';
 import RatingAndComment from '../components/RatingAndComment';
 import ProductsCartCounter from './ProductsCartCounter';
@@ -51,12 +51,12 @@ class ProductDetail extends Component {
 
   render() {
     const { loading, itemDetails, rating } = this.state;
-    const { id ,title, price, thumbnail, attributes } = itemDetails;
+    const { id, title, price, thumbnail, attributes } = itemDetails;
     const { counter } = this.props.location;
     const loadingElement = <span>Carregando...</span>;
     return (
       <div>
-        <ProductsCartCounter counter={counter} />
+        <ProductsCartCounter counter={ counter } />
         <Link to="/">Home</Link>
         <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
         <div data-testid="product-detail-name" className="cardProduct">
@@ -71,18 +71,19 @@ class ProductDetail extends Component {
                     <div key={ element.id }>
                       { element.name }
                       <span>{ element.value_name }</span>
-                    </div>))
-                  }
-                </div>
-          <button
-            type="button"
-            name="productId"
-            data-testid="product-detail-add-to-cart"
-            onClick={() => this.addCartItem({ id, title, price })}
-          >
-            Adicionar ao carrinho
-          </button>
-          </div>
+                    </div>
+                  ))
+                }
+              </div>
+              <button
+                type="button"
+                name="productId"
+                data-testid="product-detail-add-to-cart"
+                onClick={() => this.addCartItem({ id, title, price })}
+              >
+                Adicionar ao carrinho
+              </button>
+            </div>
           )}
         </div>
         <Rating rating={ rating } />
