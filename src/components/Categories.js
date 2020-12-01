@@ -29,7 +29,7 @@ class Categories extends React.Component {
     const { handleCatChange } = this.props;
     return (
       <div className="radioCategorie">
-        {loading ? <Loading /> : ''}
+        {loading ? <Loading /> : ""}
         {categories.map((category) => {
           console.log('');
           return (
