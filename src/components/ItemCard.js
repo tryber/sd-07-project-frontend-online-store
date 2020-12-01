@@ -43,7 +43,7 @@ class ItemCard extends React.Component {
 
         <Link
           data-testid="product-detail-link"
-          to={ {pathname: `detailsProduct/${id}`, state: {product}} }
+          to={ {pathname: `detailsProduct/${ id }`, state: { product }} }
           className="card-price"
         >
           Detalhes
