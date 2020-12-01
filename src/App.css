@@ -1,4 +1,5 @@
 body {
+  background-color:#A3C1AD;
   margin: 30px;
 }
 .flex-container {
@@ -9,6 +10,9 @@ body {
   /* text-align: center; */
   flex-flow: column;
   justify-content: flex-start;
+}
+.box-radio {
+  background-color: #8DA399;
 }
 .radioCategorie {
   margin: 10px;
@@ -28,6 +32,10 @@ body {
   border: 1px solid black;
   align-self: flex-start;
   flex-grow: 1;
+}
+
+.box {
+  background-color:#A3C1AD;
 }
 
 .sub-box-1 {
@@ -67,7 +75,7 @@ body {
 }
 
 .card-product {
-  border: 2px solid rgb(88, 86, 86);
+  border: 1px solid rgb(88, 86, 86);
   border-radius: 5px;
   box-sizing: border-box;
   display: flex;
@@ -75,7 +83,7 @@ body {
   height: auto;
   margin: 5px;
   width: 150px;
-}
+} 
 
 .card-product .card-title {
   flex-grow: 1;

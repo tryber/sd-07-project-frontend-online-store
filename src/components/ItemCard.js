@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Button, Control, Icon, Input } from 'rbx';
 
 class ItemCard extends React.Component {
   constructor() {
@@ -36,13 +37,15 @@ class ItemCard extends React.Component {
           R$
           { price }
         </span>
-        <button
-          type="button"
-          data-testid="product-add-to-cart"
-          onClick={ this.handleCart }
-        >
-          Adicionar ao carrinho!
-        </button>
+      
+          <Button
+            color="success"
+            data-testid="product-add-to-cart"
+            onClick={ this.handleCart }
+          >
+           Adicionar ao carrinho!
+          </Button>
+      
         <Link
           data-testid="product-detail-link"
           to={ { pathname: `detailsProduct/${id}`, state: { product } } }

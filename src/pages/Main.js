@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import chart from '../icon/chart.png';
 import '../App.css';
 import 'rbx/index.css';
 import Categories from '../components/Categories';
@@ -8,7 +7,7 @@ import ListCard from '../components/ListCard';
 import * as api from '../services/api';
 import Loading from '../components/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Button, Control, Icon, Input } from 'rbx';
 
 class Main extends React.Component {
@@ -115,11 +114,9 @@ class Main extends React.Component {
 
             <div className="box sub-box">
               <Link to="/shoppingCart" data-testid="shopping-cart-button">
-                <img
-                  className="chartImg"
-                  src={chart}
-                  alt="carrinho-de-compras"
-                />
+               <Icon size="large">
+                 <FontAwesomeIcon icon={faCartPlus} size="2x"/>
+               </Icon>
               </Link>
               <span data-testid="shopping-cart-size" className="cart-details">
                 {cartCount === null ? count : cartCount.length}

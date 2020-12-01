@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import voltar from '../icon/voltar.png';
 import '../App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBackward } from '@fortawesome/free-solid-svg-icons';
+import { Icon } from 'rbx';
 
 class ShoppinCart extends React.Component {
   constructor() {
@@ -52,7 +54,9 @@ class ShoppinCart extends React.Component {
           Seu carrinho está vazio
         </h3>
         <Link to="/">
-          <img className="voltar" src={ voltar } alt="imagem-Voltar" />
+          <Icon size="large">
+            <FontAwesomeIcon icon={faBackward} size="3x" />
+          </Icon>
         </Link>
         <div>
           {localCArt.map((namePrice) => {

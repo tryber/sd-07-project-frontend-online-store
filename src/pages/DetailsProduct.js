@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import chart from '../icon/chart.png';
-import voltar from '../icon/voltar.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBackward, faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { Button, Icon } from 'rbx';
 
 class DetailsProduct extends React.Component {
   constructor() {
@@ -46,37 +47,51 @@ class DetailsProduct extends React.Component {
 
     return (
       <div>
-        <Link to="/shoppingCart" data-testid="shopping-cart-button">
-          <img className="chartImg" src={ chart } alt="carrinho-de-compras" />
-        </Link>
-        <span
-          data-testid="shopping-cart-size"
-          className="cart-details"
-        >
-          { cartCount === null ? count : cartCount.length }
-        </span>
-        <Link to="/">
-          <img className="voltar" src={ voltar } alt="imagem-Voltar" />
-        </Link>
         <div>
-          <h2 data-testid="product-detail-name">{ title }</h2>
-          <div>
-            <img src={ thumbnail } alt="Imagem detalhada" />
-          </div>
-          <div>
-            <p>Descrição Técnica</p>
-            <p>
-              R$
-              { price }
-            </p>
-          </div>
-          <button
-            type="button"
+          <Link to="/shoppingCart" data-testid="shopping-cart-button">
+            <Icon size="large">
+              <FontAwesomeIcon icon={faCartPlus} size="3x" />
+            </Icon>
+          </Link>
+          <span data-testid="shopping-cart-size" className="cart-details">
+            {cartCount === null ? count : cartCount.length}
+          </span>
+        </div>
+
+        <div>
+          <h2 data-testid="product-detail-name">{title}</h2>
+        </div>
+
+        <div>
+          <img src={thumbnail} alt="Imagem detalhada" />
+        </div>
+
+        <div>
+          <p>Descrição Técnica</p>
+          <p>
+            R$
+            {price}
+          </p>
+        </div>
+
+        <div>
+          <Button
+            rounded
+            outlined
+            color="primary"
             data-testid="product-detail-add-to-cart"
-            onClick={ this.handleCart }
+            onClick={this.handleCart}
           >
             Adicionar ao carrinho!
-          </button>
+          </Button>
+        </div>
+
+        <div>
+          <Link to="/">
+            <Icon size="large">
+              <FontAwesomeIcon icon={faBackward} size="3x" />
+            </Icon>
+          </Link>
         </div>
       </div>
     );

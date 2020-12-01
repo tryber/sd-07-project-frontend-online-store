@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as api from '../services/api';
 import Loading from './Loading';
 
+
 class Categories extends React.Component {
   constructor(props) {
     super(props);
@@ -28,12 +29,12 @@ class Categories extends React.Component {
     const { categories, loading } = this.state;
     const { handleCatChange } = this.props;
     return (
-      <div>
+      <div className='radioCategorie'>
         {loading ? <Loading /> : ''}
         {categories.map((category) => {
           console.log('');
           return (
-            <div className='radioCategorie' key={ category.id }>
+            <div key={ category.id }>
               <input
                 data-testid="category"
                 type="radio"
