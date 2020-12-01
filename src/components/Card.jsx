@@ -13,7 +13,7 @@ class Card extends React.Component {
     const cartItemProperties = { id, title, price };
     cartItemProperties.quantity = 1;
     if (!localStorage.cartItems) {
-      localStorage.setItem("cartItems", JSON.stringify([cartItemProperties]));
+      localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
     } else {
       const itemsInStorage = localStorage.getItem('cartItems');
       const parsedItems = JSON.parse(itemsInStorage);
@@ -26,6 +26,7 @@ class Card extends React.Component {
     onAdd();
   }
   render() {
+
     const { products, counter } = this.props;
     const { title, thumbnail, price, id, category_id } = products;
     return (
@@ -34,17 +35,20 @@ class Card extends React.Component {
         <div className="product-container">
           <Link
             className="product-detail-link"
-            to={{
-              pathname: `/details/${id}/category/${ category_id }`,
+            to={ {
+              pathname: `/details/${id}/category/${category_id}`,
               counter: counter,
-            }}
+            } }
             data-testid="product-detail-link"
           >
             {' '}
             <h1>{ title }</h1>
             {' '}
           </Link>
-          <h2>R${ price }</h2>
+          <h2>
+            R$
+            { price }
+          </h2>
         </div>
 
         <button
@@ -52,7 +56,7 @@ class Card extends React.Component {
           name="productId"
           className="product-add-to-cart"
           data-testid="product-add-to-cart"
-          onClick={() => this.addCartItem({ id, title, price })}
+          onClick={ () => this.addCartItem({ id, title, price }) }
         >
           <GetIcon className="add-shopping-cart-icon" name="AddShoppingCartIcon" />
         </button>

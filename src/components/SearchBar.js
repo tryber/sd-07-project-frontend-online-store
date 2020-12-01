@@ -32,7 +32,9 @@ class SearchBar extends React.Component {
     this.setState(
       async () => {
         const segmentedItens = await mlAPI
-          .getProductsFromCategoryAndQuery(this.state.categoryId, this.state.searchElement);
+          .getProductsFromCategoryAndQuery(
+            this.state.categoryId, this.state.searchElement
+          );
         this.setState({
           arrayOfItemByInputedText: [...segmentedItens.results],
         });
@@ -53,7 +55,7 @@ class SearchBar extends React.Component {
   }
   productsCounter() {
     const productList = JSON.parse(localStorage.getItem('cartItems'));
-    const newState = productList != null ? productList.reduce((acc, cur) => acc + cur.quantity,0) : 0;
+    const newState = productList != null ? productList.reduce((acc, cur) => acc + cur.quantity, 0) : 0;
     this.setState(this.updateCounter(this.state, true, newState));
   }
 
@@ -99,8 +101,8 @@ class SearchBar extends React.Component {
           <section className="product-list">
             {arrayOfItemByInputedText
               .map((item) => <Card
-                key={ item.id } 
-                products={ item } 
+                key={ item.id }
+                products={ item }
                 onAdd={ this.productsCounter }
                 counter={ this.state.counter }
               />)}

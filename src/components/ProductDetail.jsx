@@ -8,12 +8,12 @@ import ProductsCartCounter from './ProductsCartCounter';
 
 class ProductDetail extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       itemDetails: '',
       loading: true,
       rating: 0,
-    }
+    };
     this.fetchApiById = this.fetchApiById.bind(this);
   }
 
@@ -28,7 +28,7 @@ class ProductDetail extends Component {
         const itemFetched = await mlAPI
           .getProductsFromCategoryAndQuery(this.props.match.params.category, '');
         const itemFiltered = await itemFetched.results
-          .find((item) => { return item.id === this.props.match.params.id });
+          .find((item) => { return item.id === this.props.match.params.id; });
         this.setState({
           loading: false,
           itemDetails: itemFiltered,
@@ -79,7 +79,7 @@ class ProductDetail extends Component {
                 type="button"
                 name="productId"
                 data-testid="product-detail-add-to-cart"
-                onClick={() => this.addCartItem({ id, title, price })}
+                onClick={ () => this.addCartItem({ id, title, price }) }
               >
                 Adicionar ao carrinho
               </button>

@@ -60,12 +60,12 @@ class ShoppingCart extends React.Component {
         </h2>
 
         <Link
-          to={{
+          to={ {
             pathname: '/cart/checkout',
             state: {
               products: this.state.cartItems,
             },
-          }}
+          } }
           data-testid="checkout-products"
         >
           <button onClick={ console.log('incrementar') }>Finalizar Compra</button>
