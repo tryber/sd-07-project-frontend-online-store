@@ -1,9 +1,9 @@
 localStorage.setItem('products', JSON.stringify([]));
 
 export const saveProductIntoShoppingCart = (itemCart) => {
-  let products = JSON.parse(localStorage.getItem('products'));
-  products = [...products, itemCart];
-  localStorage.setItem('products', JSON.stringify(products));
+  let cartItems = JSON.parse(localStorage.getItem('products'));
+  cartItems = [...cartItems, itemCart];
+  localStorage.setItem('products', JSON.stringify(cartItems));
 };
 
 export const picksUpItemsFromTheCartInLocalStorage = () => {

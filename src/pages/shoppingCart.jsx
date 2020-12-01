@@ -19,6 +19,7 @@ class ShoppingCart extends React.Component {
           <div key={ p.id }>
             <div data-testid="shopping-cart-product-name">{ p.title }</div>
             <div data-testid="shopping-cart-product-quantity">{ p.quantity }</div>
+            <div>{`${p.price * p.quantity}`}</div>
           </div>
         ))}
       </div>

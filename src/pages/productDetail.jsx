@@ -39,7 +39,7 @@ class ProductDetail extends React.Component {
 
   productAdd() {
     const { product } = this.state;
-    const { id, title } = product;
+    const { id, title, price } = product;
     let { quantity } = this.state;
     const max = 99;
     return (
@@ -74,7 +74,7 @@ class ProductDetail extends React.Component {
         <button
           data-testid="product-detail-add-to-cart"
           type="submit"
-          onClick={ () => this.addToCart({ id, title, quantity }) }
+          onClick={ () => this.addToCart({ price, id, title, quantity }) }
         >
           Adicionar ao carrinho de compras
         </button>
