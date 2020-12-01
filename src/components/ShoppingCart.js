@@ -26,10 +26,11 @@ class ShoppingCart extends React.Component {
   render() {
     const SumOfPrices = () => {
       const arrOfPrices = [];
-      this.state.cartItems.map((product) => {
-        arrOfPrices.push(product.price);
-      });
-      return (arrOfPrices.reduce((a, b) => a + b, 0)).toFixed(2);
+      const { state } = this;
+      state.cartItems.map((product) => arrOfPrices.push(product.price));
+      const initialValue = 0;
+      const decimalPlaces = 2;
+      return (arrOfPrices.reduce((a, b) => a + b, initialValue)).toFixed(decimalPlaces);
     };
     const { cartItems } = this.state;
     if (!cartItems) {
@@ -63,12 +64,17 @@ class ShoppingCart extends React.Component {
           to={ {
             pathname: '/cart/checkout',
             state: {
-              products: this.state.cartItems,
+              products: cartItems,
             },
           } }
           data-testid="checkout-products"
         >
-          <button onClick={ console.log('incrementar') }>Finalizar Compra</button>
+          <button
+            type="button"
+            onClick={ console.log('incrementar') }
+          >
+            Finalizar Compra
+          </button>
         </Link>
 
       </div>

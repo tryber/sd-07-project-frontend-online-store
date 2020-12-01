@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as mlAPI from '../services/api';
 
 class Categories extends React.Component {
@@ -19,7 +20,6 @@ class Categories extends React.Component {
       async () => {
         const categoriesFromApi = await mlAPI.getCategories();
         this.setState({
-          loading: false,
           arrayOfCategories: categoriesFromApi,
         });
       },
@@ -33,7 +33,7 @@ class Categories extends React.Component {
       <div>
         { arrayOfCategories.map(
           ({ id, name }) => (
-            <label name="category">
+            <label key={ id } htmlFor={ name } name="category">
               <input
                 data-testid="category"
                 type="radio"
@@ -51,5 +51,9 @@ class Categories extends React.Component {
     );
   }
 }
+
+Categories.propTypes = {
+  handleChange: PropTypes.func,
+}.isRequired;
 
 export default Categories;

@@ -4,7 +4,7 @@ import * as mlAPI from '../services/api';
 import '../App.css';
 import logo from '../images/logo.svg';
 import Card from './Card';
-import Categories from '../components/Categories';
+import Categories from './Categories';
 import GetIcon from './Icons';
 import ProductsCartCounter from './ProductsCartCounter';
 
@@ -31,9 +31,10 @@ class SearchBar extends React.Component {
   async fetchApiByQuery() {
     this.setState(
       async () => {
+        const { categoryId, searchElement } = this.state;
         const segmentedItens = await mlAPI
           .getProductsFromCategoryAndQuery(
-            this.state.categoryId, this.state.searchElement
+            categoryId, searchElement,
           );
         this.setState({
           arrayOfItemByInputedText: [...segmentedItens.results],
@@ -50,17 +51,20 @@ class SearchBar extends React.Component {
     if (update) {
       return { ...state, counter: newState };
     }
-    const productList = JSON.parse(localStorage.getItem('cartItems'));
-    return productList != null ? productList.length : 0;
+    const products = JSON.parse(localStorage.getItem('cartItems'));
+    const zero = 0;
+    return products != null ? products.length : zero;
   }
+
   productsCounter() {
-    const productList = JSON.parse(localStorage.getItem('cartItems'));
-    const newState = productList != null ? productList.reduce((acc, cur) => acc + cur.quantity, 0) : 0;
-    this.setState(this.updateCounter(this.state, true, newState));
+    const prod = JSON.parse(localStorage.getItem('cartItems'));
+    const zero = 0;
+    const nSt = prod != null ? prod.reduce((acc, cur) => acc + cur.quantity, zero) : zero;
+    this.setState(this.updateCounter(this.state, true, nSt));
   }
 
   render() {
-    const { arrayOfItemByInputedText } = this.state;
+    const { arrayOfItemByInputedText, searchElement, counter } = this.state;
     return (
       <div>
         <header className="header-container">
@@ -73,11 +77,12 @@ class SearchBar extends React.Component {
                 data-testid="query-input"
                 className="search-bar"
                 type="text"
-                value={ this.state.searchElement }
+                value={ searchElement }
                 name="searchElement"
                 onChange={ this.changeStateValue }
               />
               <button
+                type="button"
                 className="search-button"
                 data-testid="query-button"
                 onClick={ this.fetchApiByQuery }
@@ -89,10 +94,10 @@ class SearchBar extends React.Component {
               <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
             </div>
           </div>
-          <Link to="/cart" className="shopping-cart-button" data-testid="shopping-cart-button">
+          <Link to="/cart" className="shopping-btn" data-testid="shopping-cart-button">
             <GetIcon className="shopping-cart-icon" name="ShoppingCartIcon" />
           </Link>
-          <ProductsCartCounter counter={ this.state.counter } />
+          <ProductsCartCounter counter={ counter } />
         </header>
         <div className="container">
           <section className="categories-list">
@@ -100,12 +105,12 @@ class SearchBar extends React.Component {
           </section>
           <section className="product-list">
             {arrayOfItemByInputedText
-              .map((item) => <Card
+              .map((item) => (<Card
                 key={ item.id }
                 products={ item }
                 onAdd={ this.productsCounter }
-                counter={ this.state.counter }
-              />)}
+                counter={ counter }
+              />))}
           </section>
         </div>
       </div>
