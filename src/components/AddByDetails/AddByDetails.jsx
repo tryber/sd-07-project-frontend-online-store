@@ -51,6 +51,12 @@ class AddByDetails extends Component {
   }
 }
 
-AddByDetails.propTypes = { productSelected: PropTypes.shape({}).isRequired };
+AddByDetails.propTypes = {
+  productSelected: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.number,
+  }).isRequired };
 
 export default AddByDetails;

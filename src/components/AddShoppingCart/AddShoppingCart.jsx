@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class AddShoppingcart extends Component {
+class AddShoppingCart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,14 +22,14 @@ class AddShoppingcart extends Component {
       id: product.id,
       price: product.price,
       quantity: 1,
-    }
+    };
 
     if (!findProduct) {
       previousProducts.push(newProduct);
     } else {
-      findProduct.quantity ++;
+      findProduct.quantity += 1;
     }
-    
+
     this.setState(
       () => ({ listProducts: previousProducts }),
       () => {
@@ -54,6 +54,12 @@ class AddShoppingcart extends Component {
   }
 }
 
-AddShoppingcart.propTypes = { product: PropTypes.shape({}).isRequired };
+AddShoppingCart.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.number,
+  }).isRequired };
 
-export default AddShoppingcart;
+export default AddShoppingCart;
