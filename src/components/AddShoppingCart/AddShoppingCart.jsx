@@ -54,6 +54,6 @@ class AddShoppingcart extends Component {
   }
 }
 
-export default AddShoppingcart;
-
 AddShoppingcart.propTypes = { product: PropTypes.shape({}).isRequired };
+
+export default AddShoppingcart;
