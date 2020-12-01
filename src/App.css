@@ -4,14 +4,16 @@
 }
 
 .header-container {
+  align-items: flex-start;
   background-color: rgb(255, 241, 115);
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.164);
   color: gray;
   display: flex;
-  height: 48px;
+  height: 80px;
   justify-content: center;
-  margin-bottom: 5vh;
+  margin-bottom: 30px;
   padding: 15px;
+  width: 100vw;
 }
 
 .logo {
@@ -33,7 +35,8 @@
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.164);
   border-radius: 25px;
   display: flex;
-  padding-left: 5px;
+  padding-left: 10px;
+  width: 50vw;
 }
 
 .search-bar-content:hover {
@@ -60,7 +63,7 @@ textarea:focus, input:focus, select:focus {
   font-size: 15px;
   justify-content: center;
   height: 18px;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 .query-button{
@@ -69,7 +72,6 @@ textarea:focus, input:focus, select:focus {
   height: 20px;
   left: -5px;
   position: relative;
-  width: 20px;
   }
 
 .query-button.okay{
@@ -85,6 +87,10 @@ textarea:focus, input:focus, select:focus {
 .search-button-icon {
   display: flex;
   width: 1.4em;
+}
+
+.search-button-icon:hover {
+  width: 1.5em;
 }
 
 .shopping-cart-title {
@@ -128,25 +134,33 @@ textarea:focus, input:focus, select:focus {
 }
 
 .product-list {
-  width: 40vw;
+  max-width: 600px;
 }
 
 .categories-list {
-  border-radius: 5px;
-  padding: 10px;
-  margin-right: 1vw;
-  width: 20vw;
+  background-color: rgb(255, 249, 191);
+  border: 1px solid black;
+  border-radius: 20px;
+  height: 600px;
+  padding: 15px;
+  margin-right: 15px;
+  max-width: 250px;
 }
 
 .cardProduct {
-  border-radius: 5px;
+  background-color: rgb(255, 249, 191);
+  border: 1px solid black;
+  border-radius: 20px;
   display: flex;
+  margin-bottom: 15px;
+  padding: 15px;
 }
 
 .cardProduct img {
-  height: 10vw;
-  margin-right: 1vw;
-  width: 10vw;
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 100px;
+  margin-right: 10px;
 }
 
 .product-detail-link {

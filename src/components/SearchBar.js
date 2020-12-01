@@ -69,13 +69,6 @@ class SearchBar extends React.Component {
           </Link>
           <div className="search">
             <div className="search-bar-content">
-              <button
-                className="search-button"
-                data-testid="query-button"
-                onClick={ this.fetchApiByQuery }
-              >
-                <GetIcon className="search-button-icon" name="SearchIcon" />
-              </button>
               <input
                 data-testid="query-input"
                 className="search-bar"
@@ -84,6 +77,13 @@ class SearchBar extends React.Component {
                 name="searchElement"
                 onChange={ this.changeStateValue }
               />
+              <button
+                className="search-button"
+                data-testid="query-button"
+                onClick={ this.fetchApiByQuery }
+              >
+                <GetIcon className="search-button-icon" name="SearchIcon" />
+              </button>
             </div>
             <div className="home-initial-message" data-testid="home-initial-message">
               <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
