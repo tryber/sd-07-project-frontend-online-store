@@ -1,32 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Checkout extends React.Component {
   render() {
     const SumOfPrices = () => {
       const arrOfPrices = [];
-      this.props.location.state.products.map((product) => {
+      const { location } = this.props;
+      const { products } = location.state;
+      products.map((product) => {
         arrOfPrices.push(product.price);
+        return product.price;
       });
-      return (arrOfPrices.reduce((a, b) => a + b, 0)).toFixed(2);
+      const initialValor = 0;
+      const decimalPlaces = 2;
+      return (arrOfPrices.reduce((a, b) => a + b, initialValor)).toFixed(decimalPlaces);
     };
 
-    const { products } = this.props.location.state;
+    const { location } = this.props;
+    const { products } = location.state;
     return (
       <div>
         <section>
           <h2>Revise seus produtos</h2>
-          {products.map((product) => {
-            return (
+          {products.map((product) => (
+            <div key={ product.id }>
               <div>
-                <div>
-                  {product.title}
-                </div>
-                <div>
-                  {product.price}
-                </div>
+                {product.title}
               </div>
-            );
-          })}
+              <div>
+                {product.price}
+              </div>
+            </div>
+          ))}
           <h2>
             Valor Total da Compra:
             {SumOfPrices()}
@@ -70,5 +75,16 @@ class Checkout extends React.Component {
     );
   }
 }
+
+Checkout.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+      price: PropTypes.number,
+      quantity: PropTypes.number,
+    }),
+  ),
+}.isRequired;
 
 export default Checkout;

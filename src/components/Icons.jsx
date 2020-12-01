@@ -71,8 +71,11 @@ class GetIcon extends Component {
     );
   }
 }
+
 GetIcon.propTypes = {
   name: PropTypes.string,
   className: PropTypes.string,
 }.isRequired;
+
 export default GetIcon;
+

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import GetIcon from './Icons';
 
 class Card extends React.Component {
@@ -19,16 +20,16 @@ class Card extends React.Component {
       const parsedItems = JSON.parse(itemsInStorage);
       localStorage.setItem(
         'cartItems',
-        JSON.stringify(parsedItems.concat(cartItemProperties))
+        JSON.stringify(parsedItems.concat(cartItemProperties)),
       );
     }
     const { onAdd } = this.props;
     onAdd();
   }
-  render() {
 
+  render() {
     const { products, counter } = this.props;
-    const { title, thumbnail, price, id, category_id } = products;
+    const { title, thumbnail, price, id, categoryId } = products;
     return (
       <div data-testid="product" className="cardProduct">
         <img src={ thumbnail } alt="product item" />
@@ -36,8 +37,8 @@ class Card extends React.Component {
           <Link
             className="product-detail-link"
             to={ {
-              pathname: `/details/${id}/category/${category_id}`,
-              counter: counter,
+              pathname: `/details/${id}/category/${categoryId}`,
+              counter,
             } }
             data-testid="product-detail-link"
           >
@@ -64,5 +65,17 @@ class Card extends React.Component {
     );
   }
 }
+
+Card.propTypes = {
+  onAdd: PropTypes.func,
+  product: PropTypes.shape({
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.number,
+    id: PropTypes.string,
+    categoryId: PropTypes.string,
+  }),
+  counter: PropTypes.number,
+}.isRequired;
 
 export default Card;
