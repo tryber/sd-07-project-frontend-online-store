@@ -94,13 +94,12 @@ class DetailsProduct extends React.Component {
           </Link>
         </div>
         <form>
-          <input type="email" placeholder="Email"/>
-          <input type="text" placeholder="nota"/>
+          <input type="email" placeholder="Email" />
+          <input type="text" placeholder="nota" />
           <textarea
-          data-testid="product-detail-evaluation"
-          placeholder="Mensagem(opcional)"
-          >
-          </textarea>
+            data-testid="product-detail-evaluation"
+            placeholder="Mensagem(opcional)"
+          />
           <input type="submit" value="Avaliar" />
         </form>
       </div>
