@@ -18,17 +18,30 @@ class ProductDetails extends Component {
     super(props);
 
     this.addShoppingCartItems = this.addShoppingCartItems.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
 
     this.state = {
       loading: true,
       product: {},
       shoppingCartItems: [],
+      quantity: 1,
     };
   }
 
   componentDidMount() {
     this.APIquery();
     recoveryReviewsFromLocalStorage();
+  }
+
+  addItem() {
+    const { quantity } = this.state;
+    this.setState({ quantity: quantity + 1 });
+  }
+
+  removeItem() {
+    const { quantity } = this.state;
+    this.setState({ quantity: quantity - 1 });
   }
 
   async APIquery() {
@@ -65,7 +78,7 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { product, loading } = this.state;
+    const { product, loading, quantity } = this.state;
     const { title, price, pictures, attributes } = product;
 
     // console.log(product);
@@ -97,10 +110,28 @@ class ProductDetails extends Component {
                 { value_name }
               </li>))}
           </ul>
-
+        </div>
+        <div>
+        <button
+            type="button"
+            onClick={ this.addItem }
+          >
+            {' '}
+            +
+            {' '}
+          </button>
+          <div>{quantity}</div>
+          <button
+            type="button"
+            onClick={ this.removeItem }
+          >
+            {' '}
+            -
+            {' '}
+          </button>
         </div>
         <AddSpecificProduct addShoppingCartItems={ this.addShoppingCartItems } />
-        <ReviewList />
+        <ReviewList />        
         <Footer />
       </div>
     );
