@@ -41,11 +41,11 @@ class ProductDetails extends Component {
 
   removeItem() {
     const { quantity } = this.state;
-    if (quantity <= 0) {
-      this.setState({ quantity: 0 })
+    if (quantity < 1) {
+      this.setState({ quantity: 0 });
     } else {
       this.setState({ quantity: quantity - 1 });
-    }    
+    }
   }
 
   async APIquery() {
@@ -70,8 +70,7 @@ class ProductDetails extends Component {
     this.setState({
       shoppingCartItems: oldList,
     });
-    const { target } = event;
-    const { id } = target;
+    const { target } = event;    
     const { product } = this.state;
 
     await this.setState((previousState) => ({
@@ -106,36 +105,36 @@ class ProductDetails extends Component {
             />
           </div>
           <ul className="container-list">
-            {attributes.map(({ name, value_name, id }) => (
+            {attributes.map(({ name, value_name: valueName, id }) => (
               <li key={ id }>
                 {name}
                 :
                 {' '}
-                { value_name }
+                { valueName }
               </li>))}
           </ul>
         </div>
         <div>
         <button
-            type="button"
-            onClick={ this.addItem }
-          >
-            {' '}
-            +
-            {' '}
-          </button>
+          type="button"
+          onClick={ this.addItem }
+        >
+          {' '}
+          +
+          {' '}
+        </button>
           <div>{quantity}</div>
-          <button
-            type="button"
-            onClick={ this.removeItem }
-          >
-            {' '}
-            -
-            {' '}
-          </button>
+        <button
+          type="button"
+          onClick={ this.removeItem }
+        >
+          {' '}
+          -
+          {' '}
+        </button>
         </div>
         <AddSpecificProduct addShoppingCartItems={ this.addShoppingCartItems } />
-        <ReviewList />        
+        <ReviewList />
         <Footer />
       </div>
     );

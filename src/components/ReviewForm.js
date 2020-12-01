@@ -11,7 +11,7 @@ class ReviewForm extends React.Component {
     this.ratingChanged = this.ratingChanged.bind(this);
 
     this.state = {
-      email: '',      
+      email: '',
       comments: '',
       rating: 0,
     };
@@ -46,7 +46,7 @@ class ReviewForm extends React.Component {
           required="required"
           value={ email }
           onChange={ (event) => this.updateReview('email', event.target.value) }
-        />        
+        />
         <div>
           <ReactStars
             count={ 5 }
@@ -63,7 +63,7 @@ class ReviewForm extends React.Component {
           value={ comments }
           onChange={ (event) => this.updateReview('comments', event.target.value) }
         />
-        <button type="button" onClick={ this.addNewReview }>AVALIAR</button>        
+        <button type="button" onClick={ this.addNewReview }>AVALIAR</button>
       </div>
     );
   }
