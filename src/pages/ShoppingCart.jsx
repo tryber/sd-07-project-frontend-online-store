@@ -43,6 +43,7 @@ class ShoppingCart extends Component {
   render() {
     const { cart } = this.state;
     const zero = 0;
+    const two = 2;
     if (!cart) {
       return (
         <h2 data-testid="shopping-cart-empty-message">
@@ -85,7 +86,8 @@ class ShoppingCart extends Component {
         <div>
           Valor total: R$
           <span>
-            {cart.reduce((acc, curr) => (acc + (curr.price * curr.quantity)), zero)}
+            {cart.reduce((acc, curr) => parseFloat((acc + (curr.price * curr.quantity))
+              .toFixed(two)), zero)}
           </span>
         </div>
         <button type="button" onClick={ this.emptyCart }>Esvaziar carrinho</button>
