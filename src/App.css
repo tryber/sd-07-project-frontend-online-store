@@ -82,13 +82,23 @@ body {
   flex-direction: column;
   height: auto;
   margin: 5px;
-  width: 150px;
+  width: 175px;
 } 
 
+.freteGratis {
+  text-align: center;
+  color: red;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+}
 .card-product .card-title {
   flex-grow: 1;
   padding: 10px;
   text-align: center;
+}
+p {
+  color: black;
+  font-weight: bolder;
 }
 
 .card-product .card-image {

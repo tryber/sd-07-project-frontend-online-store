@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Control, Icon, Input } from 'rbx';
+import { Button } from 'rbx';
 
 class ItemCard extends React.Component {
   constructor() {
@@ -37,14 +37,13 @@ class ItemCard extends React.Component {
           R$
           { price }
         </span>
+        <p className="freteGratis"
+          data-testid={ elementPropertie }
+        >
+          {temFrete}
+        </p>
       
-          <Button
-            color="success"
-            data-testid="product-add-to-cart"
-            onClick={ this.handleCart }
-          >
-           Adicionar ao carrinho!
-          </Button>
+         
       
         <Link
           data-testid="product-detail-link"
@@ -53,11 +52,11 @@ class ItemCard extends React.Component {
         >
           Detalhes
         </Link>
-        <p
-          data-testid={ elementPropertie }
-        >
-          {temFrete}
-        </p>
+
+        <Button className="salesButton" color="success" data-testid="product-add-to-cart" onClick={ this.handleCart }   >
+          <p>Adicionar ao carrinho!</p> 
+          </Button>
+       
       </div>
     );
   }
