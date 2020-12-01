@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import EmptyCard from '../components/EmptyCard/EmptyCard';
+import ButtonPurshaseSummary from
+  '../components/ButtonPurshaseSummary/ButtonPurshaseSummary';
 
 class ShoppingCart extends Component {
   render() {
@@ -23,7 +25,9 @@ class ShoppingCart extends Component {
           </div>
         ))}
         <EmptyCard />
+        <ButtonPurshaseSummary />
       </div>
+
     );
   }
 }
