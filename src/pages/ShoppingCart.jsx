@@ -13,16 +13,23 @@ class ShoppingCart extends Component {
     this.setState({ cart: JSON.parse(localStorage.getItem('cart')) })
   }
    
-/*   addOne(id) {
+  addOne(id) {
     const { cart } = this.state;
-    const findSCProduct = cart.find((SCproduct) => SCproduct.id === id)
-    this.setState({ cart })
+    const cartCopy = [...cart]
+    const findSCProduct = cartCopy.find((SCproduct) => SCproduct.id === id)
+    findSCProduct.quantity++
+    this.setState({ cart: cartCopy })
+  }
 
-    removeOne(id) {
+  removeOne(id) {
     const { cart } = this.state;
-    const findSCProduct = cart.find((SCproduct) => SCproduct.id === id)
-    this.setState({ cart })
-  } */
+    const cartCopy = [...cart]
+    const findSCProduct = cartCopy.find((SCproduct) => SCproduct.id === id)
+    findSCProduct.quantity--
+    if (findSCProduct.quantity > 0) {
+      this.setState({ cart: cartCopy })
+    }
+  }
 
   render() {
     const { cart } = this.state;
@@ -46,6 +53,9 @@ class ShoppingCart extends Component {
             <button data-testid="product-increase-quantity" onClick={() => this.addOne(product.id)}>+</button>
           </div>
         ))}
+        <div>
+        Valor total: R$<span>{cart.reduce((acc, curr) => (acc + (curr.price * curr.quantity)), 0)}</span>
+        </div>
         <EmptyCard />
       </div>
     );
