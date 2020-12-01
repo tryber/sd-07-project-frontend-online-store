@@ -6,4 +6,6 @@ export { default as ShoppingCartButton } from './ShoppingCartButton';
 export { default as Buy } from './Buy';
 export { default as EmptyList } from './EmptList';
 export { default as ShoppingCardList } from './ShoppingCardList';
-export { default as Assessment } from './Assessment';
+export { default as Evalue } from './Evalue';
+export { default as Stars } from './Stars';
+export { default as Assessments } from './Assessments';

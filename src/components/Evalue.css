@@ -1,0 +1,10 @@
+.containerStars {
+  display: flex;
+  flex-wrap: rap;
+}
+.stars {
+  background: white;
+  margin: 0px;
+  width: 30px;
+  height: 30px;
+}
