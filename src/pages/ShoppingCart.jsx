@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ButtonPurshaseSummary from
+  '../components/ButtonPurshaseSummary/ButtonPurshaseSummary';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -91,7 +93,9 @@ class ShoppingCart extends Component {
           </span>
         </div>
         <button type="button" onClick={ this.emptyCart }>Esvaziar carrinho</button>
+        <ButtonPurshaseSummary />
       </div>
+
     );
   }
 }
