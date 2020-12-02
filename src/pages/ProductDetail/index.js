@@ -1,5 +1,9 @@
 import React from 'react';
-import { Header, EvaluationForm, EvaluationList } from '../../components';
+import {
+  Header,
+  EvaluationForm,
+  EvaluationList,
+  QuantityControl } from '../../components';
 import './ProductDetail.css';
 import * as lsapi from '../../services/lsapi';
 
@@ -8,8 +12,11 @@ class ProductDetail extends React.Component {
     super(props);
     this.state = {
       shoppingCartQuantity: 0,
+      quantityToAdd: 1,
     };
     this.updateShoppintCartQuantity = this.updateShoppintCartQuantity.bind(this);
+    this.updateQuantityToAdd = this.updateQuantityToAdd.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -20,15 +27,20 @@ class ProductDetail extends React.Component {
     this.setState({ shoppingCartQuantity: lsapi.getTotalQuantity() });
   }
 
-  addToCart(product) {
-    const DEFAULT_QUANTITY_PER_CLICK = 1;
-    lsapi.addToShoppingCartList(product, DEFAULT_QUANTITY_PER_CLICK);
+  updateQuantityToAdd({ quantity }) {
+    this.setState({ quantityToAdd: quantity });
+  }
+
+  addToCart(product, quantity) {
+    lsapi.addToShoppingCartList(product, quantity);
     this.updateShoppintCartQuantity();
+    this.updateQuantityToAdd({ quantity: 1 });
   }
 
   render() {
     const product = lsapi.getSelectedProduct();
-    const { shoppingCartQuantity } = this.state;
+    const availableQuantity = lsapi.getAvailableQuantity(product);
+    const { shoppingCartQuantity, quantityToAdd } = this.state;
     if (product) {
       return (
         <div className="detail-main-container">
@@ -52,10 +64,16 @@ class ProductDetail extends React.Component {
             </div>
           </div>
           <div className="detail-action-addcart">
+            <QuantityControl
+              item={ { product, quantity: quantityToAdd } }
+              handleClick={ this.updateQuantityToAdd }
+              availableQuantity={ availableQuantity }
+            />
             <button
               type="button"
               data-testid="product-detail-add-to-cart"
-              onClick={ () => this.addToCart(product) }
+              disabled={ quantityToAdd > availableQuantity }
+              onClick={ () => this.addToCart(product, quantityToAdd) }
             >
               Adicionar ao Carrinho
             </button>

@@ -44,6 +44,7 @@ class ShoppingCartList extends Component {
               <QuantityControl
                 item={ { product, quantity } }
                 handleClick={ this.updateCartList }
+                availableQuantity={ product.available_quantity }
               />
               <span>
                 { formatter.format(product.price * quantity) }
