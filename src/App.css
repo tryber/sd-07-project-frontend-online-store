@@ -105,13 +105,51 @@ body,
 }
 
 .form-section {
-  border: 1px solid gray;
+  justify-content: center;
+  display: flex;
+  border: 2px solid gray;
+  border: radius 0.5rem;
   position: relative;
   margin: auto;
-  height: 30vh;
-  width: 90vw;
+  height:40vh;
+  width: 80vw;
+  gap: 1rem auto;
 
 }
+
+
+
+.row-section {
+  align-items: center;
+  border: radius 5px;
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+  margin-left: 15px;
+  vertical-align: middle;
+  
+}
+
+.payment-chek {
+  border: 1px solid gray;
+  display: grid;
+  grid-template-columns: repeat(7 60px);
+  grid-template-rows: 1fr;
+  column-gap: 10px;
+  height:20vh;
+  margin-top: 4%;
+  width: 80vw;
+
+}
+
+.icon {
+  font-size: 60px;
+}
+
+.button-radio {
+  height: 20px;
+}
+
 
 @media screen and (max-width: 600px) {
   .grid {

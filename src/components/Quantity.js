@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PropTypes from 'prop-types';
-
 
 class Quantity extends Component {
   constructor(props) {
@@ -31,7 +29,7 @@ class Quantity extends Component {
     const { quantity } = this.state;
     return (
       <main>
-        <h3>{ quantity }</h3>
+        <en>{ quantity }</en>
         <div>
           <button type="button" className="btn" onClick={ this.increment }>+</button>
         </div>
@@ -42,11 +40,5 @@ class Quantity extends Component {
     );
   }
 }
-
-Quantity.propTypes = {
-  parentState: PropTypes.shape({
-    quantity: PropTypes.number,
-  }),
-};
 
 export default Quantity;

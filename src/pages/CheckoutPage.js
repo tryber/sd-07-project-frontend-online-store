@@ -21,6 +21,11 @@ class CheckoutPage extends Component {
   }
 
   render() {
+    const objectValues = JSON.parse(localStorage.getItem('items'));
+    const totalPrice = objectValues
+      .map((product) => product.cost)
+      .reduce((acc, nextValue) => acc + nextValue);
+
     return (
       <main className="container-fluid">
         <section ClassName="container-fluid">
@@ -32,7 +37,7 @@ class CheckoutPage extends Component {
               </h2>
             </div>
             <div className="item-inputsearch">
-              <Link to="/">
+              <Link to="/pages/ShoppingCart">
                 <svg
                   width="1em"
                   height="1em"
@@ -67,14 +72,16 @@ class CheckoutPage extends Component {
                   0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
                 />
               </svg>
+              <p>Valor total:</p>
+              <strong>{ totalPrice }</strong>
             </div>
           </header>
+
           {!localStorage.length ? ('Aproveite as ofertas para comprar o que deseja'
           ) : (this.readCart().map((key) => {
             const { sku, cost, name, image } = key;
             return (
               <table
-                cellSpacing="0"
                 key={ sku }
                 className="table table-striped table-bordered"
               >
@@ -82,8 +89,7 @@ class CheckoutPage extends Component {
                   <th className="text-center">Imagem</th>
                   <th className="text-center">Produto</th>
                   <th className="text-center">Preço Unitário</th>
-                  <th className="text-center">Adquiridos</th>
-                  <th className="text-center">Total Parcial</th>
+                  <th className="text-center">Quantidade</th>
                 </tr>
                 <tr>
                   <td className="text-center">
@@ -93,10 +99,19 @@ class CheckoutPage extends Component {
                       alt="Imagem de produtos para checkout"
                     />
                   </td>
-                  <td className="text-center">{ name }</td>
+                  <td
+                    data-testid="shopping-cart-product-name"
+                    className="text-center"
+                  >
+                    { name }
+                  </td>
+                  <td
+                    data-testid="shopping-cart-product-quantity"
+                    className="text-center"
+                  >
+                    1
+                  </td>
                   <td className="text-center">{ cost }</td>
-                  <td className="text-center">1</td>
-                  <td className="text-center">totalparcial</td>
                 </tr>
               </table>);
           }))}

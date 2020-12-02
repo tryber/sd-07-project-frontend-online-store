@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
 import ProductNotFound from './pages/ProductNotFound';
-import ConnectedCheckoutPage from './pages/CheckoutPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
         <Switch>
           <Route path="/pages/ProductNotFound" component={ ProductNotFound } />
           <Route path="/pages/ShoppingCart" component={ ShoppingCart } />
-          <Route path="/pages/CheckoutPage" component={ ConnectedCheckoutPage } />
+          <Route path="/pages/CheckoutPage" component={ CheckoutPage } />
           <Route path="/pages/ProductDetails/:id" component={ ProductDetails } />
           <Route exact path="/" component={ Home } />
         </Switch>
