@@ -24,6 +24,21 @@ export function getTotalQuantity() {
   ), DEFAULT_TOTAL_QUANTITY);
 }
 
+export function getAvailableQuantity(product) {
+  const itemPurchased = getShoppingCartList()
+    .find((item) => item.product.id === product.id);
+  if (itemPurchased) {
+    const {
+      product: {
+        available_quantity: availableQuantity,
+      },
+      quantity: purchasedQuantity,
+    } = itemPurchased;
+    return availableQuantity - purchasedQuantity;
+  }
+  return product.available_quantity;
+}
+
 export function addToShoppingCartList(product, quantity) {
   const newShoppingCartList = getShoppingCartList();
   const foundItem = newShoppingCartList.find((item) => item.product.id === product.id);

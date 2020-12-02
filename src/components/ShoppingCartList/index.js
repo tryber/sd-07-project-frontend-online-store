@@ -42,11 +42,11 @@ class ShoppingCartList extends Component {
               <span data-testid="shopping-cart-product-name">
                 { product.title }
               </span>
-              { !hiddenbuttons
-                && <QuantityControl
-                  item={ { product, quantity } }
-                  handleClick={ this.updateCartList }
-                /> }
+              <QuantityControl
+                item={ { product, quantity } }
+                handleClick={ this.updateCartList }
+                availableQuantity={ product.available_quantity }
+              />
               <span>
                 { formatter.format(product.price * quantity) }
               </span>
