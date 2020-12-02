@@ -58,6 +58,7 @@ class SearchBar extends React.Component {
 
   productsCounter() {
     // Requisito 13 não funciona
+    // Se alterar para o commit anterior, o Eslint reclama que a mudança de estado deve ser feita com callback
     // const prod = JSON.parse(localStorage.getItem('cartItems'));
     // const zero = 0;
     // const nSt = prod != null ? prod.reduce((acc, cur) => acc + cur.quantity, zero) : zero;
