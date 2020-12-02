@@ -9,12 +9,14 @@ class AddToCartButton extends React.Component {
 
   handleAddToCart() {
     const { product } = this.props;
+    // console.log(product);
     const item = {
       id: product.id,
       title: product.title,
       price: product.price,
       thumbnail: product.thumbnail,
       quantity: 1,
+      availableQuantity: product.available_quantity,
     };
 
     if (!localStorage.shoppingCartItems) {
@@ -49,6 +51,7 @@ AddToCartButton.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    available_quantity: PropTypes.number,
   }).isRequired,
   dataTestId: PropTypes.string.isRequired,
 };

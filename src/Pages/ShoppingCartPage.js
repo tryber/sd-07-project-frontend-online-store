@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ProductCart from '../Components/ProductCart';
 import Header from '../Components/Header';
 
@@ -33,8 +34,10 @@ class ShoppingCartPage extends Component {
 
   increaseItem(id) {
     const { shoppingCartItems } = this.state;
-    shoppingCartItems.find((item) => item.id === id)
-      .quantity += 1;
+    const { availableQuantity } = shoppingCartItems.find((item) => item.id === id);
+    let shopQuantity = shoppingCartItems.find((item) => item.id === id).quantity;
+    shopQuantity = (shopQuantity < availableQuantity) ? shopQuantity += 1 : shopQuantity;
+    shoppingCartItems.find((item) => item.id === id).quantity = shopQuantity;
     this.setState({
       shoppingCartItems,
     });
@@ -66,6 +69,7 @@ class ShoppingCartPage extends Component {
 
   render() {
     const { shoppingCartItems } = this.state;
+    // console.log(shoppingCartItems);
     if (!shoppingCartItems) {
       return (
         <div>
@@ -98,5 +102,12 @@ class ShoppingCartPage extends Component {
     );
   }
 }
+
+ShoppingCartPage.propTypes = {
+  product: PropTypes.shape({
+    availableQuantity: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 
 export default ShoppingCartPage;
