@@ -6,7 +6,9 @@ class FilteredProductsList extends Component {
   render() {
     const { allProducts, addShoppingCartItems } = this.props;
 
-    if (allProducts === undefined) {
+    const comparNumber = 0;
+
+    if (allProducts.length === comparNumber) {
       return (
         <div>
           <ul data-testid="home-initial-message">
@@ -23,10 +25,7 @@ class FilteredProductsList extends Component {
         {allProducts.map((product) => (
           <IndividualCard
             key={ product.id }
-            id={ product.id }
-            title={ product.title }
-            price={ product.price }
-            image={ product.thumbnail }
+            product={ product }
             addShoppingCartItems={ addShoppingCartItems }
           />
         ))}

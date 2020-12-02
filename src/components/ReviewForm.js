@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-// import StarsRating from './StarsRating'
+import ReactStars from 'react-stars';
 
 
 class ReviewForm extends React.Component {
@@ -8,16 +8,14 @@ class ReviewForm extends React.Component {
     super(props);
 
     this.addNewReview = this.addNewReview.bind(this);
+    this.ratingChanged = this.ratingChanged.bind(this);
 
     this.state = {
       email: '',
-      rating: 0,
       comments: '',
+      rating: 0,
     };
   }
-
-  // const {rating, setRating} = useState(2);
-  // const onStarChange = (newRating) => setRating(newRating);
 
   async addNewReview() {
     const { onClick } = this.props;
@@ -33,8 +31,12 @@ class ReviewForm extends React.Component {
     this.setState({ [field]: newValue });
   }
 
+  ratingChanged(newRating) {
+    this.setState({ rating: newRating });
+  }
+
   render() {
-    const { email, rating, comments } = this.state;
+    const { email, comments, rating } = this.state;
     return (
       <div>
         <h2>Nos conte o que achou do produto:</h2>
@@ -45,16 +47,16 @@ class ReviewForm extends React.Component {
           value={ email }
           onChange={ (event) => this.updateReview('email', event.target.value) }
         />
-        <input
-          placeholder="Nota"
-          type="number"
-          step={ 0.1 }
-          min={ 0 }
-          max={ 5 }
-          required="required"
-          value={ rating }
-          onChange={ (event) => this.updateReview('rating', event.target.value) }
-        />
+        <div>
+          <ReactStars
+            count={ 5 }
+            onChange={ this.ratingChanged }
+            size={ 24 }
+            color2="#ffd700"
+            half={ false }
+            value={ rating }
+          />
+        </div>
         <textarea
           data-testid="product-detail-evaluation"
           placeholder="Mensagem (opcional)"
@@ -62,7 +64,6 @@ class ReviewForm extends React.Component {
           onChange={ (event) => this.updateReview('comments', event.target.value) }
         />
         <button type="button" onClick={ this.addNewReview }>AVALIAR</button>
-        {/* <StarsRating rating={rating} handleChange={onStarChange} /> */}
       </div>
     );
   }
