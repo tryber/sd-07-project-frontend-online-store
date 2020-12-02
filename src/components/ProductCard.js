@@ -26,11 +26,11 @@ class ProductCard extends Component {
               <p>{ price }</p>
               <Link
                 to={ {
-                  pathname: './pages/cart',
+                  pathname: './pages/cartfull',
                   state: product,
                 } }
               >
-                <span data-testid="product-add-to-cart">COMPRAR</span>
+                <button data-testid="product-add-to-cart" type="button">COMPRAR</button>
               </Link>
             </div>
           );
