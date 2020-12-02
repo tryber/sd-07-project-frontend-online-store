@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
 
 import DefaultWrapper from '../../components/DefaultWrapper';
 import Form from '../../components/Form';
@@ -17,8 +14,6 @@ const detailPage = {
 function CheckoutPage() {
   const navigate = useHistory();
 
-  const { register, handleSubmit, errors } = useForm({ resolver: yupResolver(schema) });
-
   const [paymentMethod, setPaymentMethod] = useState('');
   const [cardValidity, setCardValidity] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -26,12 +21,16 @@ function CheckoutPage() {
   const [userData, setUserData] = useState({});
   const [done, setDone] = useState(false);
 
-  const onHandlePayment = event => setPaymentMethod(event.target.value);
+  const onHandlePayment = (event) => setPaymentMethod(event.target.value);
 
   const validateData = () => {
-    const validCardNumber = cardNumber.length === 16;
-    const validCardName = cardName.length > 4;
-    const validCardValidity = cardValidity.length > 4;
+    const cardNumberMinimumLength = 16;
+    const cardNameMinimumLength = 4;
+    const cardValidityMinimumLength = 4;
+
+    const validCardNumber = cardNumber.length === cardNumberMinimumLength;
+    const validCardName = cardName.length > cardNameMinimumLength;
+    const validCardValidity = cardValidity.length > cardValidityMinimumLength;
 
     if (paymentMethod && validCardNumber && validCardName && validCardValidity) {
       return true;
@@ -39,18 +38,27 @@ function CheckoutPage() {
     return false;
   };
 
-  const onSubmit = (formData) => {
+  const onSubmit = () => {
     const isValid = validateData();
+    if (!isValid) return;
 
-    if (isValid) {
-      setUserData(formData);
+    const dataToSave = {
+      paymentMethod,
+      cardValidity,
+      cardNumber,
+      cardName,
+      done,
+    };
+
+    setUserData(dataToSave, () => {
       localStorage.setItem('userData', JSON.stringify(userData));
-      setDone(true);
-    }
+    });
+
+    setDone(true);
   };
 
   const buttonSubmit = (
-    <Button onClick={handleSubmit(onSubmit)}>Finalizar compra</Button>
+    <Button onClick={ onSubmit }>Finalizar compra</Button>
   );
 
   useEffect(() => {
@@ -58,11 +66,11 @@ function CheckoutPage() {
   }, [done, navigate]);
 
   return (
-    <DefaultWrapper wrapperInfo={detailPage} render={buttonSubmit}>
+    <DefaultWrapper wrapperInfo={ detailPage } render={ buttonSubmit }>
       <div>
 
         <h1>Método de Pagamento</h1>
-        <div onChange={onHandlePayment} className="payment_method">
+        <div onChange={ onHandlePayment } className="payment_method">
           <label htmlFor="boleto">
             <input type="radio" name="payment" id="boleto" value="boleto" />
             Boleto
@@ -81,43 +89,33 @@ function CheckoutPage() {
           <input
             type="text"
             name="card_name_data"
-            value={cardName}
-            onChange={event => setCardName(event.target.value)}
-            placeholder="Nome conforme escrito no cartão" />
+            value={ cardName }
+            onChange={ (event) => setCardName(event.target.value) }
+            placeholder="Nome conforme escrito no cartão"
+          />
 
           <input
             type="number"
             name="card_number_data"
-            value={cardNumber}
-            onChange={event => setCardNumber(event.target.value)}
-            placeholder="Número do cartão" />
+            value={ cardNumber }
+            onChange={ (event) => setCardNumber(event.target.value) }
+            placeholder="Número do cartão"
+          />
 
           <input
             type="text"
             name="card_validity_data"
-            value={cardValidity}
-            onChange={event => setCardValidity(event.target.value)}
-            placeholder="mês/ano" />
+            value={ cardValidity }
+            onChange={ (event) => setCardValidity(event.target.value) }
+            placeholder="mês/ano"
+          />
         </div>
 
       </div>
 
-      <Form register={register} errors={errors} />
+      <Form />
     </DefaultWrapper>
   );
 }
-
-const schema = Yup.object().shape({
-  name: Yup.string().required().min(4),
-  cpf: Yup.string().required().min(11).max(11),
-  email: Yup.string().required(),
-  phone: Yup.string().required(),
-  cep: Yup.string().required().min(8),
-  address: Yup.string().required(),
-  additional: Yup.string(),
-  neighborhood: Yup.string().required(),
-  city: Yup.string().required(),
-  state: Yup.string().required(),
-});
 
 export default CheckoutPage;

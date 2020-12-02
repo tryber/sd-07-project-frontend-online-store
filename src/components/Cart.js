@@ -3,24 +3,21 @@ import React, { Component } from 'react';
 import ShoppingDetails from './ShoppingDetails';
 
 class Cart extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      opened: false,
       cartItems: [],
     };
 
-    // this.openCart = this.openCart.bind(this);
+    this.updateCart = this.updateCart.bind(this);
   }
 
-  // openCart() {
-  //   this.setState({
-  //     opened: !this.state.opened,
-  //   });
-  // }
-
   componentDidMount() {
+    this.updateCart();
+  }
+
+  updateCart() {
     const stringCarrinho = localStorage.getItem('carrinho');
     const arrayCarrinho = JSON.parse(stringCarrinho);
 
@@ -32,7 +29,7 @@ class Cart extends Component {
   render() {
     const { cartItems } = this.state;
 
-    if (cartItems.length === 0) {
+    if (!cartItems.length) {
       return <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>;
     }
 
@@ -40,7 +37,7 @@ class Cart extends Component {
       <div>
         <div>
           {
-            cartItems.map(item => <ShoppingDetails key={item.id} item={item} />)
+            cartItems.map((item) => <ShoppingDetails key={ item.id } item={ item } />)
           }
         </div>
       </div>

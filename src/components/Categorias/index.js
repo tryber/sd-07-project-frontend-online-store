@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './style.css';
+
 class Categorias extends Component {
   render() {
     const { data, filterCategory } = this.props;
@@ -8,32 +10,36 @@ class Categorias extends Component {
     return (
       <>
         <h1>Categorias</h1>
-        <div className="category-list-items" onChange={filterCategory}>
-          {data.map((categoria) => {
-            return (
-              <div key={categoria.id} className="item-category">
+        <div className="category-list-items" onChange={ filterCategory }>
+          {
+            data.map((categoria) => (
+              <div key={ categoria.id } className="item-category">
                 <input
-                  id={categoria.id}
+                  id={ categoria.id }
                   className="checkbox"
-                  onClick={this.props.onSetCategories}
                   type="radio"
                   name="checkCategory"
-                  value={categoria.id}
+                  value={ categoria.id }
                 />
                 <label
                   className="text-category"
                   data-testid="category"
-                  htmlFor={categoria.id}
+                  htmlFor={ categoria.id }
                 >
                   {categoria.name}
                 </label>
               </div>
-            );
-          })}
+            ))
+          }
         </div>
       </>
     );
   }
 }
+
+Categorias.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterCategory: PropTypes.func.isRequired,
+};
 
 export default Categorias;

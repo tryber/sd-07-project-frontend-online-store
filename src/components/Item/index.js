@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import './style.css'
+import './style.css';
 import Button from '../Button';
 
 class Item extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.onClickComprar = this.onClickComprar.bind(this);
   }
 
   onClickComprar() {
-    const { id, title, thumbnail, price } = this.props.item;
+    const { modifyCart, item } = this.props;
+    const { id, title, thumbnail, price } = item;
+
     const pattern = {
       id,
       title,
@@ -20,7 +23,7 @@ class Item extends Component {
       price,
       total: price,
       quantity: 1,
-    }
+    };
 
     const stringCarrinho = localStorage.getItem('carrinho');
     const arrayCarrinho = JSON.parse(stringCarrinho);
@@ -28,8 +31,7 @@ class Item extends Component {
     if (!stringCarrinho) {
       localStorage.setItem('carrinho', JSON.stringify([pattern]));
     } else {
-
-      const product = arrayCarrinho.find(item => id === item.id);
+      const product = arrayCarrinho.find((carrinhoItem) => id === carrinhoItem.id);
 
       if (product) {
         product.quantity += 1;
@@ -40,11 +42,12 @@ class Item extends Component {
         localStorage.setItem('carrinho', JSON.stringify(arrayCarrinho));
       }
     }
-    this.props.modifyCart()
+    modifyCart();
   }
 
   render() {
-    const { id, title, thumbnail, price, shipping } = this.props.item;
+    const { item: { id, title, thumbnail, price, shipping } } = this.props;
+
     const shortItem = {
       id,
       title,
@@ -52,28 +55,49 @@ class Item extends Component {
       price,
       quantity: 1,
       total: price,
-    }
-
+    };
 
     return (
       <div className="item" data-testid="product">
         <p>{title}</p>
-        <img className="img-item" src={thumbnail} alt={title} />
-        <p>R${price}</p>
-        { shipping.free_shipping && <p data-testid="free-shipping">Free</p> }
-        <button data-testid="product-add-to-cart" onClick={this.onClickComprar}>Adicionar</button>
+        <img className="img-item" src={ thumbnail } alt={ title } />
+        <p>
+          { `R$ ${price}` }
+        </p>
+        {
+          shipping.free_shipping && <p data-testid="free-shipping">Free</p>
+        }
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ this.onClickComprar }
+        >
+          Adicionar
+        </button>
         <Button
-          as={Link}
-          to={{
+          as={ Link }
+          to={ {
             pathname: '/detail',
-            state: shortItem
-          }}
-          data-testid="product-detail-link">
+            state: shortItem,
+          } }
+          data-testid="product-detail-link"
+        >
           Detalhes
         </Button>
       </div>
     );
   }
 }
+
+Item.propTypes = {
+  modifyCart: PropTypes.func.isRequired,
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    shipping: PropTypes.object.isRequired,
+  }).isRequired,
+};
 
 export default Item;

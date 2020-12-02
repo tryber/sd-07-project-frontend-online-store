@@ -12,14 +12,7 @@ function DefaultWrapper(props) {
     <Wrapper>
       <Header>
         {wrapperInfo.title}
-        {
-          // wrapperInfo.showHeaderButton && (
-          //   // <Button as={Link} to="/cart" data-testid="shopping-cart-button">
-          //   //   Ir para o carrinho
-          //   // </Button>
-          // )
-        }
-        <Button as={Link} to={wrapperInfo.closeButtonLink}>
+        <Button as={ Link } to={ wrapperInfo.closeButtonLink }>
           FECHAR
         </Button>
       </Header>
@@ -31,17 +24,18 @@ function DefaultWrapper(props) {
       <Footer>
         {render && render}
       </Footer>
-    </Wrapper >
+    </Wrapper>
   );
 }
 
 DefaultWrapper.propTypes = {
+  render: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
   wrapperInfo: PropTypes.shape({
     title: PropTypes.string.isRequired,
     showHeaderButton: PropTypes.bool.isRequired,
     closeButtonLink: PropTypes.string.isRequired,
   }).isRequired,
-  render: PropTypes.any,
 };
 
 export default DefaultWrapper;

@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-
-import CartIcon from '../../components/CartIcon'
-import DefaultWrapper from '../../components/DefaultWrapper';
-import ShoppingDetails from '../../components/ShoppingDetails';
-import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 import './style.css';
 
+import DefaultWrapper from '../../components/DefaultWrapper';
+import CartIcon from '../../components/CartIcon';
+import ShoppingDetails from '../../components/ShoppingDetails';
+
 const detailPage = {
-  title: "Detalhes do produto",
+  title: 'Detalhes do produto',
   showHeaderButton: true,
-  closeButtonLink: "/",
+  closeButtonLink: '/',
 };
 
 function DetailPage(props) {
-  const { state: item } = props.location;
+  const { cartItems, modifyCart, location } = props;
+
+  const { state: item } = location;
   const { title, thumbnail } = item;
-  const { register, handleSubmit } = useForm();
   const [ratings, setRatings] = useState([]);
 
   const onSubmit = (data) => {
@@ -24,62 +25,64 @@ function DetailPage(props) {
 
   const starsElement = (stars) => {
     const output = [];
-    for (let index = 0; index < stars; index++) {
+    const initialValue = 0;
+
+    for (let index = initialValue; index < stars; index += 1) {
       output.push(<span>★</span>);
     }
+
     return output;
   };
 
   return (
     <DefaultWrapper
-      wrapperInfo={detailPage}
-      render={<ShoppingDetails item={item} modifyCart={props.modifyCart} />}
+      wrapperInfo={ detailPage }
+      render={ <ShoppingDetails item={ item } modifyCart={ modifyCart } /> }
     >
-      <CartIcon cartItems={props.cartItems} />
+      <CartIcon cartItems={ cartItems } />
       <div>
         <h1 data-testid="product-detail-name">{title}</h1>
-        <img src={thumbnail} alt={title} />
+        <img src={ thumbnail } alt={ title } />
       </div>
       <div>
         <h1>Especificações técnicas</h1>
         <p>Especificações</p>
       </div>
       <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label>Comentário</label>
+        <form onSubmit={ onSubmit }>
+          <p>Comentário</p>
           <textarea
             data-testid="product-detail-evaluation"
             name="textRating"
             id="text"
             cols="30"
             rows="5"
-            ref={register}
           />
           <div className="rating">
-            <label>
-              <input type="radio" name="stars" value="1" ref={register} />
+            <label htmlFor="star-1">
+              <input type="radio" id="star-1" name="stars" value="1" />
               <span className="icon">★</span>
             </label>
-            <label>
-              <input type="radio" name="stars" value="2" ref={register} />
-              <span className="icon">★</span>
-              <span className="icon">★</span>
-            </label>
-            <label>
-              <input type="radio" name="stars" value="3" ref={register} />
-              <span className="icon">★</span>
+            <label htmlFor="star-2">
+              <input type="radio" id="star-2" name="stars" value="2" />
               <span className="icon">★</span>
               <span className="icon">★</span>
             </label>
-            <label>
-              <input type="radio" name="stars" value="4" ref={register} />
-              <span className="icon">★</span>
+            <label htmlFor="star-3">
+              <input type="radio" id="star-3" name="stars" value="3" />
               <span className="icon">★</span>
               <span className="icon">★</span>
               <span className="icon">★</span>
             </label>
-            <label>
-              <input type="radio" name="stars" value="5" ref={register} />
+            <label htmlFor="star-4">
+              <input type="radio" id="star-4" name="stars" value="4" />
+              <span className="icon">★</span>
+              <span className="icon">★</span>
+              <span className="icon">★</span>
+              <span className="icon">★</span>
+            </label>
+            <label htmlFor="star-5">
+              <input type="radio" id="star-5" name="stars" value="5" />
               <span className="icon">★</span>
               <span className="icon">★</span>
               <span className="icon">★</span>
@@ -90,16 +93,22 @@ function DetailPage(props) {
           <input type="submit" />
         </form>
       </div>
-      {ratings.map((rating) => {
-        return (
-          <div className="evaluation">
+      {
+        ratings.map((rating) => (
+          <div className="evaluation" key={ rating }>
             <p>{rating.textRating}</p>
             {starsElement(rating.stars)}
           </div>
-        );
-      })}
+        ))
+      }
     </DefaultWrapper>
   );
 }
+
+DetailPage.propTypes = {
+  cartItems: PropTypes.number.isRequired,
+  modifyCart: PropTypes.func.isRequired,
+  location: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default DetailPage;

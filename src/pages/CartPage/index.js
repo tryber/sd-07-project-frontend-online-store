@@ -11,11 +11,13 @@ const detailPage = {
   closeButtonLink: '/',
 };
 
-const button = <Button as={Link} to="/checkout" data-testid="checkout-products">Comprar</Button>;
+const button = (
+  <Button as={ Link } to="/checkout" data-testid="checkout-products">Comprar</Button>
+);
 
 function CartPage() {
   return (
-    <DefaultWrapper wrapperInfo={detailPage} render={button}>
+    <DefaultWrapper wrapperInfo={ detailPage } render={ button }>
       <Cart />
     </DefaultWrapper>
   );
