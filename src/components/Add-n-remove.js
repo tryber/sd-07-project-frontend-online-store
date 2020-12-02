@@ -30,7 +30,7 @@ class AddAndRemoveItem extends Component {
     return (
       <div key={ key } data-testid="product">
         <div className="main-category-result-content" id={ id }>
-          <h4>{ title }</h4>
+          <h4 data-testid="shopping-cart-product-name">{ title }</h4>
           <img src={ image } alt="titulo" />
           <p>{ price }</p>
           <button
@@ -41,7 +41,7 @@ class AddAndRemoveItem extends Component {
             +
             {' '}
           </button>
-          <div>{quantity}</div>
+          <div data-testid="shopping-cart-product-quantity">{quantity}</div>
           <button
             type="button"
             onClick={ this.removeItem }

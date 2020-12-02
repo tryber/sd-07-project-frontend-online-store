@@ -15,6 +15,7 @@ class ShoppingCart extends Component {
 
   render() {
     const { shoppingCartItems } = this.state;
+    console.log(shoppingCartItems);
 
     if (shoppingCartItems[0]) {
       return (
