@@ -14,7 +14,8 @@ class ProductDetails extends React.Component {
   }
 
   getDetailProduct() {
-    const { id } = this.props.match.params;
+    const { match } = this.props;
+    const { id } = match.params;
     const { location: { state: product } } = this.props;
     const result = product.filter((acc) => acc.id === id);
     return result;
