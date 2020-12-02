@@ -16,7 +16,11 @@ class ProductCard extends Component {
 
   render() {
     const { product, quantityChange } = this.props;
-    const { title, thumbnail, price } = product;
+    const {
+      title,
+      thumbnail,
+      price,
+      shipping: { free_shipping: isFreeShipping } } = product;
     return (
       <div
         className="product-card"
@@ -36,6 +40,7 @@ class ProductCard extends Component {
           >
             { title }
           </h3>
+          { isFreeShipping && <span data-testid="free-shipping">Frete Grátis</span> }
           <p>{ price }</p>
           <Link
             data-testid="product-detail-link"
@@ -65,6 +70,9 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
   quantityChange: PropTypes.func.isRequired,
 };
