@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Wrapper } from './style';
+import Wrapper from './style';
 
 function ShoppingDetails({ item, modifyCart }) {
   const { title, price, id } = item;
