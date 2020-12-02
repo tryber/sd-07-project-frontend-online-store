@@ -4,3 +4,16 @@
   padding-left: 10px;
   padding-bottom: 10px;
 }
+
+.category-content h3 {
+  margin: 10px;
+}
+
+.category-content label {
+  height: 20px;
+}
+
+.category-content label input {
+  font-size: 12px;
+  margin-right: 3px;
+}

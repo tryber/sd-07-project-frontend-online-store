@@ -17,6 +17,10 @@ class ProductCard extends Component {
   render() {
     const { product } = this.props;
     const { title, thumbnail, price } = product;
+    const formatter = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
     return (
       <div
         className="product-card"
@@ -36,7 +40,7 @@ class ProductCard extends Component {
           >
             { title }
           </h3>
-          <p>{ price }</p>
+          <p>{ formatter.format(price) }</p>
           <Link
             data-testid="product-detail-link"
             to="/productdetail"
@@ -45,7 +49,7 @@ class ProductCard extends Component {
             Mais Detalhes
           </Link>
         </div>
-        <div>
+        <div className="product-card-button">
           <button
             type="button"
             data-testid="product-add-to-cart"

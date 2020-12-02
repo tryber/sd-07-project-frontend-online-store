@@ -1,3 +1,4 @@
+import BackArrowButton from './BackArrowButton';
 import CategoryList from './CategoryList';
 import EvaluationForm from './EvaluationForm';
 import EvaluationList from './EvaluationList';
@@ -14,6 +15,7 @@ import BuyerInformation from './BuyerInformation';
 import PaymentOption from './PaymentOption';
 
 export {
+  BackArrowButton,
   CategoryList,
   EvaluationForm,
   EvaluationList,

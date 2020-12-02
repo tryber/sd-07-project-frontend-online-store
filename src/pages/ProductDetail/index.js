@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Header, EvaluationForm, EvaluationList } from '../../components';
 import './ProductDetail.css';
 import * as lsapi from '../../services/lsapi';
@@ -11,10 +12,11 @@ class ProductDetail extends React.Component {
 
   render() {
     const product = lsapi.getSelectedProduct();
+    const { location } = this.props;
     if (product) {
       return (
         <div className="detail-main-container">
-          <Header />
+          <Header pathname={ location.pathname } />
           <div className="detail-title-content" data-testid="product-detail-name">
             <h2>{ product.title }</h2>
           </div>
@@ -54,5 +56,11 @@ class ProductDetail extends React.Component {
     );
   }
 }
+
+ProductDetail.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ProductDetail;

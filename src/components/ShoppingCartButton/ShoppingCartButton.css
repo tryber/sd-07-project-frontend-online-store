@@ -1,0 +1,8 @@
+.shopping-cart-button {
+  height: 32px;           /* make this the size of your image */
+  padding-left: 32px;     /* make text start to the right of the image */
+}
+
+.hidden {
+  visibility: hidden;
+}
