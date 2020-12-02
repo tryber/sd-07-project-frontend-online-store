@@ -19,3 +19,10 @@ export async function getProductsFromCategoryAndQuery(query, ...categoryId) {
   const response = (await fetch(endPointSearchIten)).json();
   return response;
 }
+
+
+export async function getDetailProduct(id) {
+  const endPoint = `https://api.mercadolibre.com/items/${id}?include_attributes=all`;
+  const response = (await fetch(endPoint)).json();
+  return response;
+}
