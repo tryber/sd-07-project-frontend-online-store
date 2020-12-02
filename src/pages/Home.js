@@ -19,16 +19,16 @@ export default class Home extends Component {
     this.handleRadioClick = this.handleRadioClick.bind(this);
   }
 
-  handleRadioClick({ target: { name, id } }) {
-    this.setState({ [name]: id }, () => {
-      this.getProdutsByQuery();
-    });
-  }
-
   async getProdutsByQuery() {
     const { categoryId, query } = this.state;
     const searchResult = await api.getProductsFromCategoryAndQuery(categoryId, query);
     this.setState({ products: searchResult.results });
+  }
+
+  handleRadioClick({ target: { name, id } }) {
+    this.setState({ [name]: id }, () => {
+      this.getProdutsByQuery();
+    });
   }
 
   render() {

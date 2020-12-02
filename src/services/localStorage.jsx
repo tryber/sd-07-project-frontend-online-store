@@ -8,20 +8,23 @@ export const saveCart = (cart) => {
 export const addToCart = (product) => {
   let cart = readCart();
   if (!cart) cart = [];
+
+  const { id, title, price, thumbnail, evaluation, feedback } = product;
   const item = {
-    id: product.id,
-    title: product.title,
-    price: product.price,
-    thumbnail: product.thumbnail,
+    id,
+    title,
+    price,
+    thumbnail,
     amount: 1,
-    evaluation: product.evaluation,
-    feedback: product.feedback,
+    totalAmount: product.available_quantity,
+    evaluation,
+    feedback,
   };
 
   let unique = false;
-  cart.forEach((element) => {
-    if (item.id === element.id) {
-      element.amount += 1;
+  cart.forEach((cartItem) => {
+    if (item.id === cartItem.id) {
+      cartItem.amount += 1;
       unique = true;
     }
   });
