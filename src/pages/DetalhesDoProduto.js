@@ -1,5 +1,6 @@
 import React from 'react';
 import BotaoCarrinho from '../components/BotaoCarrinho';
+import * as FunctionsToCart from '../components/FunctionsToCart';
 
 class DetalhesDoProduto extends React.Component {
   render() {
@@ -29,7 +30,19 @@ class DetalhesDoProduto extends React.Component {
             Quantidade disponível:
             {id}
           </li>
+          <li>
+            Preço:
+            {price}
+          </li>
         </ul>
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          onClick={ () => FunctionsToCart
+            .addToCart(title, price, thumbnail) }
+        >
+          Adicionar ao seu carrinho
+        </button>
       </div>
     );
   }
