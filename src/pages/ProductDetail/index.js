@@ -41,12 +41,14 @@ class ProductDetail extends React.Component {
     const product = lsapi.getSelectedProduct();
     const availableQuantity = lsapi.getAvailableQuantity(product);
     const { shoppingCartQuantity, quantityToAdd } = this.state;
+    const { shipping: { free_shipping: isFreeShipping } } = product;
     if (product) {
       return (
         <div className="detail-main-container">
           <Header quantity={ shoppingCartQuantity } />
           <div className="detail-title-content" data-testid="product-detail-name">
             <h2>{ product.title }</h2>
+            { isFreeShipping && <span data-testid="free-shipping">Frete Grátis</span> }
           </div>
           <div className="detail-info-container">
             <img
