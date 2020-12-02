@@ -1,5 +1,6 @@
+import Checkout from './Checkout';
 import ShoppingCart from './ShoppingCart';
 import ProductDetail from './ProductDetail';
 import Home from './Home';
 
-export { ShoppingCart, ProductDetail, Home };
+export { ShoppingCart, ProductDetail, Home, Checkout };

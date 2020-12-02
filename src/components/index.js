@@ -10,6 +10,8 @@ import QuantityControl from './QuantityControl';
 import SearchBar from './SearchBar';
 import ShoppingCartButton from './ShoppingCartButton';
 import ShoppingCartList from './ShoppingCartList';
+import BuyerInformation from './BuyerInformation';
+import PaymentOption from './PaymentOption';
 
 export {
   CategoryList,
@@ -24,4 +26,6 @@ export {
   SearchBar,
   ShoppingCartButton,
   ShoppingCartList,
+  BuyerInformation,
+  PaymentOption,
 };

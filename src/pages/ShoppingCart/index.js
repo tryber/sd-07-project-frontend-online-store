@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { ShoppingCartList } from '../../components';
 import * as lsapi from '../../services/lsapi';
 import './ShoppingCart.css';
@@ -37,6 +38,16 @@ class ShoppingCart extends Component {
         <h3>
           { `Valor Total da Compra: ${formatter.format(totalPrice)}` }
         </h3>
+        <div>
+          <Link to="/checkout">
+            <button
+              type="button"
+              data-testid="checkout-products"
+            >
+              Finalizar Compra
+            </button>
+          </Link>
+        </div>
       </div>
     );
   }
