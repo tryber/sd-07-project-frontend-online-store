@@ -7,6 +7,7 @@ class ShoppingCart extends Component {
     this.restoreState = this.restoreState.bind(this);
     this.increaseItem = this.increaseItem.bind(this);
     this.decreaseItem = this.decreaseItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
     this.state = {
       productsTeste: [],
     };
@@ -19,6 +20,20 @@ class ShoppingCart extends Component {
   async restoreState() {
     const products = await JSON.parse(localStorage.getItem('itemsCart'));
     this.setState({ productsTeste: products });
+  }
+
+  removeItem(item) {
+    const { productsTeste } = this.state;
+    const items = JSON.parse(localStorage.getItem('itemsCart') || '[]');
+    const itemsIndex = items.findIndex((element) => element.id === item.id);
+    const flag = -1;
+    if (itemsIndex !== flag) {
+      delete items[itemsIndex];
+    }
+    localStorage.setItem('itemsCart', JSON.stringify(items));
+    productsTeste.find((element) => element.id === item.id);
+    localStorage.removeItem(item.id);
+    this.setState({ productsTeste });
   }
 
   increaseItem(item) {
@@ -58,6 +73,7 @@ class ShoppingCart extends Component {
           <div key={ item.title }>
             <button
               type="button"
+              onClick={ () => this.removeItem(item) }
             >
               X
             </button>
