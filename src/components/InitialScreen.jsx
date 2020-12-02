@@ -42,7 +42,7 @@ class InitialScreen extends React.Component {
 
   async getKartItens() {
     const qttItemsKart = await storageServices.getStorageKartItens();
-    this.setState({ qttItemsKart });
+    await this.setState({ qttItemsKart });
   }
 
   buttonSearch() {

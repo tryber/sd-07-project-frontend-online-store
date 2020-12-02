@@ -4,27 +4,8 @@ import PropTypes from 'prop-types';
 import KartImg from '../img/kart.svg';
 import LogoImg from '../img/Logo.svg';
 import SearchInput from './SearchInput';
-// import * as storageServices from '../services/storageServices';
 
 class Header extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.getStorageItens = this.getStorageItens.bind(this);
-  //   this.state = { qttItemsKart: 0 };
-  // }
-
-  // componentDidMount() {
-  //   this.getStorageItens();
-  // }
-
-  // async getStorageItens() {
-  //   const itensStorage = await storageServices.getProductsStorage();
-  //   const zero = 0;
-  //   const qttItemsKart = itensStorage.map((product) => product.qtt)
-  //     .reduce((acc, valueActual) => acc + valueActual, zero);
-  //   this.setState({ qttItemsKart });
-  // }
-
   render() {
     const { searchInput, onInputSearchChange, buttonSearch, qttItemsKart } = this.props;
     return (
@@ -38,12 +19,14 @@ class Header extends React.Component {
           buttonSearch={ buttonSearch }
         />
         <Link data-testid="shopping-cart-button" to="/kart">
-          <img src={ KartImg } className="kart-icon" alt="Botão carrinho de compras" />
-          <div
-            className="qtt-items-kart"
-            data-testid="shopping-cart-size"
-          >
-            { qttItemsKart }
+          <div className="qtt-items-kart">
+            <img src={ KartImg } className="kart-icon" alt="Botão carrinho de compras" />
+            <div
+              className="qtt-items-kart"
+              data-testid="shopping-cart-size"
+            >
+              { qttItemsKart }
+            </div>
           </div>
         </Link>
       </header>

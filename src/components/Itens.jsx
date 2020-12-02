@@ -30,12 +30,13 @@ class Itens extends React.Component {
     getStorageItens();
   }
 
-  async deleteProduct({ target }) {
+  async deleteProduct({ target }, callback) {
     const { getStorageItens } = this.props;
     const itemId = { id: target.id };
     await storageServices.delProductsStorage(itemId);
     this.setState({});
     getStorageItens();
+    callback();
   }
 
   render() {
@@ -45,7 +46,7 @@ class Itens extends React.Component {
         <button
           id={ id }
           type="button"
-          onClick={ this.deleteProduct }
+          onClick={ (event) => this.deleteProduct(event, getKartItens) }
         >
           X
         </button>

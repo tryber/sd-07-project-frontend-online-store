@@ -1,5 +1,4 @@
 import React from 'react';
-import './InitialScreen.css';
 import KartItens from './KartItens';
 import Header from './Header';
 import * as storageServices from '../services/storageServices';
@@ -27,8 +26,8 @@ class KartList extends React.Component {
     this.setState({ itensStorage });
   }
 
-  async getKartItens() {
-    const qttItemsKart = await storageServices.getStorageKartItens();
+  getKartItens() {
+    const qttItemsKart = storageServices.getStorageKartItens();
     this.setState({ qttItemsKart });
   }
 

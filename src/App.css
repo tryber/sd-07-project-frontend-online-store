@@ -83,6 +83,13 @@ a:link {
   width: 62px;
 }
 
+.qtt-items-kart {
+  color: red;
+  float: right;
+  font-size: large;
+  font-weight: 700;
+}
+
 .initial-screen {
   display: flex;
   flex-direction: column;

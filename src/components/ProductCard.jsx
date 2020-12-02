@@ -21,7 +21,7 @@ class ProductCard extends React.Component {
       qtt: 1,
     };
     await storageServices.setProductsStorage(addItem);
-    callback();
+    await callback();
   }
 
   render() {
