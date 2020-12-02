@@ -1,0 +1,33 @@
+.main-frame {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 90%;
+}
+
+.search-frame {
+  width: 60%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-engine {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.category-list {
+  width: 200px;
+}

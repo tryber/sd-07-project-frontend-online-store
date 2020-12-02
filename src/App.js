@@ -1,30 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import DetailPage from './pages/DetailPage';
+import SearchPage from './pages/SearchPage';
+import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      cartElements: 0
+    }
+
+    this.setCartElements = this.setCartElements.bind(this)
+  }
+
+  setCartElements() {
+    const cartItems = localStorage.getItem('carrinho')
+    if (cartItems) {
+      const sum = JSON.parse(cartItems).reduce((acc, act) => (acc + act.quantity), 0)
+      this.setState({ cartElements: sum })
+    }
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" render={() => <SearchPage modifyCart={this.setCartElements} cartItems={this.state.cartElements} />} />
+          <Route path="/cart" component={CartPage} />
+          <Route path="/detail" render={(props) => <DetailPage {...props} modifyCart={this.setCartElements} cartItems={this.state.cartElements} />} />
+          <Route path="/checkout" component={CheckoutPage} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
