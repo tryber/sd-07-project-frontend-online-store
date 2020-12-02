@@ -31,10 +31,24 @@ class Quantity extends Component {
       <main>
         <en>{ quantity }</en>
         <div>
-          <button type="button" className="btn" onClick={ this.increment }>+</button>
+          <button
+            data-testid="product-increase-quantity"
+            type="button"
+            className="btn"
+            onClick={ this.increment }
+          >
+            +
+          </button>
         </div>
         <div>
-          <button type="button" className="btn" onClick={ this.decrement }>-</button>
+          <button
+            data-testid="product-decrease-quantity"
+            type="button"
+            className="btn"
+            onClick={ this.decrement }
+          >
+            -
+          </button>
         </div>
       </main>
     );
