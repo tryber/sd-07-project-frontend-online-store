@@ -5,7 +5,7 @@ import CategoriesList from './CategoriesList';
 import ProductsList from './ProductsList';
 import CartIcon from '../assets/cart.svg';
 
-// code idea based on <GP-7><Thx!>
+// code idea based on <GP-7><Thx!!>
 
 class Home extends Component {
   constructor() {
