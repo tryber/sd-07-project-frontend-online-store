@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import * as api from '../services/api';
-import Loading from '../components/Loading';
-import ReviewList from '../components/ReviewList';
+import PropTypes, { object } from 'prop-types';
+// import * as api from '../services/api';
+// import Loading from '../components/Loading';
+// import ReviewList from '../components/ReviewList';
 import AddSpecificProduct from '../components/AddSpecificProduct';
 import {
   addProductInLocalStorage,
@@ -22,15 +22,15 @@ class ProductDetails extends Component {
     this.removeItem = this.removeItem.bind(this);
 
     this.state = {
-      loading: true,
-      product: {},
+      // loading: true,
+      product: props.location.product,
       shoppingCartItems: [],
       quantity: 1,
     };
   }
 
   componentDidMount() {
-    this.APIquery();
+    // this.APIquery();
     recoveryReviewsFromLocalStorage();
   }
 
@@ -46,23 +46,6 @@ class ProductDetails extends Component {
     } else {
       this.setState({ quantity: quantity - 1 });
     }
-  }
-
-  async APIquery() {
-    const { match } = this.props;
-    const { params } = match;
-    this.setState(
-      { loading: true },
-      async () => {
-        const { id } = params;
-        const productID = await api.fetchAPIByID(id);
-        // console.log(productID);
-        this.setState({
-          loading: false,
-          product: productID,
-        });
-      },
-    );
   }
 
   async addShoppingCartItems() {
@@ -81,12 +64,11 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { product, loading, quantity } = this.state;
-    const { title, price, pictures, attributes } = product;
+    const { quantity } = this.state;
+    const { location } = this.props;
+    const { title, price, thumbnail, attributes } = location.product;
 
-    // console.log(product);
-
-    if (loading === true) return <Loading />;
+    // if (loading === true) return <Loading />;
 
     return (
       <div>
@@ -102,7 +84,8 @@ class ProductDetails extends Component {
             </h2>
             <img
               className="product-detail-image"
-              src={ pictures[0].url }
+              // src={ pictures[0].url }
+              src={ thumbnail }
               alt={ `imagem do produto ${title}` }
             />
           </div>
@@ -136,18 +119,20 @@ class ProductDetails extends Component {
           </button>
         </div>
         <AddSpecificProduct addShoppingCartItems={ this.addShoppingCartItems } />
-        <ReviewList />
+        {/* <ReviewList /> */}
         <Footer />
       </div>
     );
   }
 }
 
-ProductDetails.propTypes = { match: PropTypes.shape({
-  isExact: PropTypes.bool.isRequired,
-  params: PropTypes.object.isRequired,
-  path: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+ProductDetails.propTypes = { location: PropTypes.shape({
+  product: PropTypes.shape({
+    price: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    attributes: PropTypes.arrayOf(object).isRequired,
+  }).isRequired,
 }).isRequired,
 };
 
