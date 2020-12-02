@@ -1,0 +1,13 @@
+.detail-main-container {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.detail-info-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.detail-product-image {
+  height: 300px;
+}

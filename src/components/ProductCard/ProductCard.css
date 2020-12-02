@@ -1,0 +1,40 @@
+.products-content {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  width: 220px;
+  border-radius: 6px;
+  box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+  margin: 2px;
+}
+
+.product-card-info {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 1rem;
+  line-height: 1.5em;
+}
+
+.product-card-title {
+  font-size: 16px;
+  color: #32325d;
+  margin-bottom: 0.2em;
+}
+
+.product-card-image {
+  height: 150px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 6px 6px 0px 0px;
+}

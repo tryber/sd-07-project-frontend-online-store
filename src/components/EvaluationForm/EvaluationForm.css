@@ -1,0 +1,16 @@
+.form-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.form-container h2 {
+  margin-bottom: 1px;
+}
+
+.form-content {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  border: 1px solid black;
+  height: 150px;
+}

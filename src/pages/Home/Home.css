@@ -1,0 +1,16 @@
+.main-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.categories-container {
+  flex-basis: 250px;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.products-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  flex-basis: 75%;
+}
