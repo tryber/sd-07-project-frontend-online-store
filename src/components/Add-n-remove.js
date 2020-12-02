@@ -13,12 +13,16 @@ class AddAndRemoveItem extends Component {
 
   addItem() {
     const { quantity } = this.state;
-    setState({ quantity: quantity + 1 });
+    this.setState({ quantity: quantity + 1 });
   }
 
   removeItem() {
     const { quantity } = this.state;
-    setState({ quantity: quantity - 1 });
+    if (quantity < 1) {
+      this.setState({ quantity: 0 });
+    } else {
+      this.setState({ quantity: quantity - 1 });
+    }
   }
 
   render() {
@@ -32,7 +36,7 @@ class AddAndRemoveItem extends Component {
           <p>{ price }</p>
           <button
             type="button"
-            onClick={ addItem }
+            onClick={ this.addItem }
           >
             {' '}
             +
@@ -41,14 +45,13 @@ class AddAndRemoveItem extends Component {
           <div>{quantity}</div>
           <button
             type="button"
-            onClick={ removeItem }
+            onClick={ this.removeItem }
           >
             {' '}
             -
             {' '}
           </button>
         </div>
-        <p>Apagar depois</p>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CartIcon from '../components/CartIcon';
+import CartIcon from './CartIcon';
 
 class GoToShoppingCart extends Component {
   render() {
