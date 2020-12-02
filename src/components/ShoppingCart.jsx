@@ -80,7 +80,6 @@ class ShoppingCart extends Component {
             </button>
           </div>
         )) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
-        {/* <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p> */}
         <Link
           to={
             { pathname: '/checkout',
