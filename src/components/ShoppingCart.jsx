@@ -72,7 +72,7 @@ class ShoppingCart extends Component {
         {productsTeste ? productsTeste.map((item) => (
           <div key={ item.title }>
             <button
-              type="button"
+              type="submit"
               onClick={ () => this.removeItem(item) }
             >
               X
