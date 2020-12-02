@@ -1,30 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Kart, ProductDetail, PayProductList } from './components';
+import InitialScreen from './components/InitialScreen';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ InitialScreen } />
+          <Route exact path="/kart" component={ Kart } />
+          <Route exact path="/detail/:id" component={ ProductDetail } />
+          <Route exact path="/pay" component={ PayProductList } />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
