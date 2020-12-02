@@ -9,10 +9,8 @@ class RatingAndComment extends React.Component {
     };
     this.onChangeValue = this.onChangeValue.bind(this);
   }
-
   onChangeValue(event) {
     const { value } = event.target;
-
     this.setState({ rating: value });
   }
 
@@ -24,7 +22,7 @@ class RatingAndComment extends React.Component {
           placeholder="Adicione um comentário (Opcional)"
         />
 
-        <div onChange={ this.onChangeValue }>
+        <div onChange={this.onChangeValue}>
           <label htmlFor="rating-0">
             <input id="rating-0" type="radio" value="0" name="rating" />
             0
