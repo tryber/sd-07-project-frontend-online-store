@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as mlAPI from '../services/api';
 import Rating from './Rating';
-import RatingAndComment from '../components/RatingAndComment';
+import RatingAndComment from './RatingAndComment';
 import ProductsCartCounter from './ProductsCartCounter';
 
 class ProductDetail extends Component {
@@ -25,10 +25,13 @@ class ProductDetail extends Component {
     this.setState(
       { loading: true },
       async () => {
+        const { match } = this.props;
+        const { params } = match;
+        const { category, id } = params;
         const itemFetched = await mlAPI
-          .getProductsFromCategoryAndQuery(this.props.match.params.category, '');
+          .getProductsFromCategoryAndQuery(category, '');
         const itemFiltered = await itemFetched.results
-          .find((item) => { return item.id === this.props.match.params.id; });
+          .find((item) => item.id === id);
         this.setState({
           loading: false,
           itemDetails: itemFiltered,
@@ -52,7 +55,8 @@ class ProductDetail extends Component {
   render() {
     const { loading, itemDetails, rating } = this.state;
     const { id, title, price, thumbnail, attributes } = itemDetails;
-    const { counter } = this.props.location;
+    const { location } = this.props;
+    const { counter } = location;
     const loadingElement = <span>Carregando...</span>;
     return (
       <div>
@@ -100,6 +104,15 @@ ProductDetail.propTypes = {
     loading: PropTypes.bool.isRequired,
     rating: PropTypes.number.isRequired,
     imagePath: PropTypes.string.isRequired,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    counter: PropTypes.number.isRequired,
   }).isRequired,
 };
 

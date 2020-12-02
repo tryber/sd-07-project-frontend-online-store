@@ -84,4 +84,3 @@ CartItens.propTypes = {
 }.isRequired;
 
 export default CartItens;
-

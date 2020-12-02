@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
       arrayOfItemByInputedText: [],
       searchElement: '',
       categoryId: '',
-      counter: this.updateCounter(),
+      counter: 0,
     };
   }
 
@@ -57,10 +57,12 @@ class SearchBar extends React.Component {
   }
 
   productsCounter() {
-    const prod = JSON.parse(localStorage.getItem('cartItems'));
-    const zero = 0;
-    const nSt = prod != null ? prod.reduce((acc, cur) => acc + cur.quantity, zero) : zero;
-    this.setState(this.updateCounter(this.state, true, nSt));
+    // Requisito 13 não funciona
+    // const prod = JSON.parse(localStorage.getItem('cartItems'));
+    // const zero = 0;
+    // const nSt = prod != null ? prod.reduce((acc, cur) => acc + cur.quantity, zero) : zero;
+    // this.setState(this.updateCounter(this.state, true, nSt));
+    this.setState((estadoAnterior) => ({ counter: estadoAnterior.counter + 1 }));
   }
 
   render() {

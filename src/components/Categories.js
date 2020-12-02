@@ -57,4 +57,3 @@ Categories.propTypes = {
 }.isRequired;
 
 export default Categories;
-
