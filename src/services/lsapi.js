@@ -1,6 +1,7 @@
 const SHOPPING_CART_LIST = 'ShoppingCartList';
 const SELECTED_PRODUCT = 'SelectedProduct';
 const DEFAULT_TOTAL_PRICE = 0;
+const DEFAULT_TOTAL_QUANTITY = 0;
 const MIN_QUANTITY = 0;
 
 export function getShoppingCartList() {
@@ -15,6 +16,12 @@ export function getTotalPrice() {
   return getShoppingCartList().reduce((totalPrice, item) => (
     totalPrice + (item.product.price * item.quantity)
   ), DEFAULT_TOTAL_PRICE);
+}
+
+export function getTotalQuantity() {
+  return getShoppingCartList().reduce((totalQuantity, item) => (
+    totalQuantity + item.quantity
+  ), DEFAULT_TOTAL_QUANTITY);
 }
 
 export function addToShoppingCartList(product, quantity) {

@@ -15,7 +15,7 @@ class ProductCard extends Component {
   }
 
   render() {
-    const { product } = this.props;
+    const { product, quantityChange } = this.props;
     const { title, thumbnail, price } = product;
     return (
       <div
@@ -47,9 +47,9 @@ class ProductCard extends Component {
         </div>
         <div>
           <button
-            type="submit"
+            type="button"
             data-testid="product-add-to-cart"
-            onClick={ (e) => { e.preventDefault(); this.addToCart(product); } }
+            onClick={ () => { this.addToCart(product); quantityChange(); } }
           >
             Adicionar ao Carrinho
           </button>
@@ -66,6 +66,7 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
+  quantityChange: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

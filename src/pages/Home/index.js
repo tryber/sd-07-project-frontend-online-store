@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { CategoryList, SearchBar, ProductList, Header } from '../../components';
 import * as api from '../../services/api';
+import * as lsapi from '../../services/lsapi';
 import './Home.css';
 
 class Home extends Component {
@@ -10,11 +11,16 @@ class Home extends Component {
       query: '',
       categoryId: '',
       products: [],
-      purchasedProducts: [],
+      shoppingCartQuantity: 0,
     };
     this.fetchProducts = this.fetchProducts.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.searchClick = this.searchClick.bind(this);
+    this.updateShoppintCartQuantity = this.updateShoppintCartQuantity.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateShoppintCartQuantity();
   }
 
   async fetchProducts() {
@@ -37,11 +43,15 @@ class Home extends Component {
     this.fetchProducts();
   }
 
+  updateShoppintCartQuantity() {
+    this.setState({ shoppingCartQuantity: lsapi.getTotalQuantity() });
+  }
+
   render() {
-    const { products, purchasedProducts } = this.state;
+    const { products, shoppingCartQuantity } = this.state;
     return (
       <div className="main-container">
-        <Header />
+        <Header quantity={ shoppingCartQuantity } />
         <aside className="categories-container">
           <CategoryList handleChange={ this.handleChange } />
         </aside>
@@ -49,10 +59,10 @@ class Home extends Component {
           <SearchBar
             handleChange={ this.handleChange }
             handleClick={ this.searchClick }
-            purchasedProducts={ purchasedProducts }
           />
           <ProductList
             products={ products }
+            quantityChange={ this.updateShoppintCartQuantity }
           />
         </section>
       </div>
