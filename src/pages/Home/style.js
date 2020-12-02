@@ -52,3 +52,5 @@ export const CtnCenter = styled.div`
     }
   }
 `;
+
+export default CtnCenter;

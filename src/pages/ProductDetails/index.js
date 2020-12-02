@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as css from './style';
-import * as icon from '../../components/Icons';
-import * as cp from '../../components';
+import * as cpIcons from '../../components/Icons';
+import * as cpForms from '../../components/forms';
 import * as view from '../../views';
 import * as util from '../../services/utilities';
 
-export class ProductDetails extends Component {
+class ProductDetails extends Component {
   constructor(props) {
     super(props);
     this.setState = this.setState.bind(this);
@@ -23,60 +23,59 @@ export class ProductDetails extends Component {
     };
   }
 
-  amountEventClick(amount) {
-    this.setState((prev) => ({
-      currentProductDetail: {
-        ...prev.currentProductDetail,
-        amount: amount,
-      },
-    }));
-  }
-
   componentDidMount() {
     util.getFromLocalAndSet('currentProductDetail', this.setState);
   }
 
+  amountEventClick(amount) {
+    this.setState((prev) => ({
+      currentProductDetail: {
+        ...prev.currentProductDetail,
+        amount,
+      },
+    }));
+  }
+
+
   render() {
     // const { title, price, thumbnail, amount } = this.props.location.detailsProduct;
-    const { title, price, thumbnail, amount } = this.state.currentProductDetail;
     const { currentProductDetail } = this.state;
+    const { title, price, thumbnail, amount } = currentProductDetail;
 
     return (
       <css.Ctn>
         <div className="ctn-icons">
           <Link to="/">
-            <icon.Back />
+            <cpIcons.Back />
           </Link>
           <div className="title">
             <h1 data-testid="product-detail-name">{title}</h1>
           </div>
-          <icon.Cart />
+          <cpIcons.Cart />
         </div>
         <div className="ctn-main">
           <div className="ctn-display">
-            <img src={thumbnail} alt="Product" />
+            <img src={ thumbnail } alt="Product" />
             <div className="ctn-inputs">
               <div className="ctn-amount">
                 <h4 className="amount">Quantidade</h4>
                 <view.AmountControllers
                   className="controller-Amount"
-                  amount={amount}
-                  onClick={this.amountEventClick}
+                  amount={ amount }
+                  onClick={ this.amountEventClick }
                 />
               </div>
               <Link to="/">
-                <cp.Button
+                <cpForms.Button
                   className="button"
                   data-testid="product-detail-add-to-cart"
-                  getEvent={() =>
-                    util.addObjInLocalStorage(
-                      'productsItemsCart',
-                      currentProductDetail
-                    )
-                  }
+                  getEvent={ () => util.addObjInLocalStorage(
+                    'productsItemsCart',
+                    currentProductDetail,
+                  ) }
                 >
                   Adicionar ao carrinho
-                </cp.Button>
+                </cpForms.Button>
               </Link>
             </div>
           </div>
@@ -97,7 +96,7 @@ export class ProductDetails extends Component {
           <div className="ctn-width">
             <div className="subTitle">Avaliações</div>
             <div className="ctn-inputAndStar">
-              <cp.Input className="input" />
+              <cpForms.Input className="input" />
               <view.RatingStar mode="input" />
             </div>
             <textarea
@@ -107,7 +106,7 @@ export class ProductDetails extends Component {
               name="coments"
               cols="30"
               rows="10"
-            ></textarea>
+            />
           </div>
         </div>
       </css.Ctn>

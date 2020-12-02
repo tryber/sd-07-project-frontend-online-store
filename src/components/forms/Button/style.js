@@ -21,3 +21,5 @@ export const Button = styled.button`
     transform: scale(1);
   }
 `;
+
+export default Button;

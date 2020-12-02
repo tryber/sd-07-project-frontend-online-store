@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as view from '../../views';
+import PropTypes from 'prop-types';
+import * as viewProds from '../../views/products';
 import * as css from './style';
-import * as icon from '../../components/Icons';
+import * as cpIcons from '../../components/Icons';
 
-export class ShopCart extends Component {
-  constructor(props) {
+class ShopCart extends Component {
+  constructor() {
     super();
 
     this.state = {
@@ -19,7 +20,8 @@ export class ShopCart extends Component {
   }
 
   getProductsFromLocation() {
-    const { productItens } = this.props.location;
+    const { location } = this.props;
+    const { productItens } = location;
     this.setState({ productsInCart: productItens });
   }
 
@@ -29,13 +31,13 @@ export class ShopCart extends Component {
       <css.Ctn>
         <div className="icon-ctn">
           <Link data-testid="shopping-cart-button" to="/">
-            <icon.Back />
+            <cpIcons.Back />
           </Link>
-          <icon.Cart color="gray" />
+          <cpIcons.Cart color="gray" />
         </div>
         <div className="ctn-item-display">
           {productsInCart.map((product) => (
-            <view.ItemProduct key={product.id} product={product} />
+            <viewProds.ItemProduct key={ product.id } product={ product } />
           ))}
         </div>
 
@@ -44,5 +46,11 @@ export class ShopCart extends Component {
     );
   }
 }
+
+ShopCart.propTypes = {
+  location: PropTypes.shape({
+    productItens: PropTypes.object,
+  }).isRequired,
+};
 
 export default ShopCart;

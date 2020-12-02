@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
-
-import * as util from '../../services/utilities';
 import PropTypes from 'prop-types';
+import * as util from '../../../services/utilities';
 import * as css from './style';
-import * as cp from '../index';
+import * as cpForms from '../../../components/forms';
 
 class CardProduct extends Component {
   constructor(props) {
     super(props);
 
-    const { id, price, title, thumbnail } = this.props.product;
+    const { product } = this.props;
+    const { id, price, title, thumbnail } = product;
     const { amount } = this.props;
     this.addProductCart = this.addProductCart.bind(this);
     this.saveCurrentProductDetails = this.saveCurrentProductDetails.bind(this);
@@ -29,7 +28,8 @@ class CardProduct extends Component {
 
   addProductCart() {
     const { addToCart } = this.props;
-    addToCart(this.state.product);
+    const { product } = this.state;
+    addToCart(product);
   }
 
   saveCurrentProductDetails() {
@@ -38,30 +38,29 @@ class CardProduct extends Component {
   }
 
   render() {
-    const { price, thumbnail, title } = this.props.product;
+    const { product } = this.state;
+    const { price, thumbnail, title } = product;
 
     return (
       <css.cpnCenter data-testid="product">
         <div className="ctn-title">
           <h4 className="text">{title}</h4>
         </div>
-
-        <img src={thumbnail} alt="Product Image" />
+        <img src={ thumbnail } alt="Product" />
         <p>{price}</p>
-        <cp.Button
-          getEvent={this.addProductCart}
+        <cpForms.Button
+          getEvent={ this.addProductCart }
           data-testid="product-add-to-cart"
           className="button"
         >
           Adicionar ao Carrinho
-        </cp.Button>
+        </cpForms.Button>
 
         <Link
           data-testid="product-detail-link"
           className="links"
-          to={{ pathname: '/details', detailsProduct: this.state.product }}
-          data-testid="product-detail-link"
-          onClick={this.saveCurrentProductDetails}
+          to={ { pathname: '/details', detailsProduct: product } }
+          onClick={ this.saveCurrentProductDetails }
         >
           Detalhes
         </Link>
@@ -71,17 +70,25 @@ class CardProduct extends Component {
 }
 
 CardProduct.propTypes = {
-  id: PropTypes.string,
-  title: PropTypes.string,
-  price: PropTypes.number,
-  thumbnail: PropTypes.string,
+  product: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    thumbnail: PropTypes.string,
+  }),
+  amount: PropTypes.number,
+  addToCart: PropTypes.func,
 };
 
-CardProduct.propDefault = {
-  id: '',
-  title: '',
-  price: 0,
-  thumbnail: '',
+CardProduct.defaultProps = {
+  product: {
+    id: '',
+    title: '',
+    price: 0,
+    thumbnail: '',
+  },
+  amount: 0,
+  addToCart: () => {},
 };
 
 export default CardProduct;

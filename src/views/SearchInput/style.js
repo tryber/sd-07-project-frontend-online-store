@@ -51,3 +51,5 @@ export const ctnCenter = styled.div`
     }
   }
 `;
+
+export default ctnCenter;

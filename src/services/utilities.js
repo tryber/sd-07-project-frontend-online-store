@@ -2,8 +2,9 @@ const getItemStorage = (key) => localStorage.getItem(key);
 
 const getObjStorage = (key) => JSON.parse(localStorage.getItem(key));
 
-export const setObjStorage = (key, value) =>
+export const setObjStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
+};
 
 export const setObjStorageAndSetState = (key, obj, setState) => {
   if (getItemStorage(key)) {

@@ -33,3 +33,5 @@ export const ctnSideBar = styled.div`
   }
 
 `;
+
+export default ctnSideBar;

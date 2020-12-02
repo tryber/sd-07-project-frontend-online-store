@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import * as api from '../../services/api';
 import * as cp from '../../components';
+import * as viewProds from '../../views/products';
 import * as view from '../../views';
 import * as css from './style';
 import * as util from '../../services/utilities';
 
-export class Home extends Component {
-  constructor(props) {
+class Home extends Component {
+  constructor() {
     super();
 
     this.getCurrentCategory = this.getCurrentCategory.bind(this);
@@ -22,51 +23,27 @@ export class Home extends Component {
     };
   }
 
-<<<<<<< HEAD
-  async getProductInCartLocalStorage() {
-    if (localStorage.getItem('productInCart')) {
-      const objectFromLocation = JSON.parse(localStorage.getItem('productsInCard'));
-      await this.setState({ productsItemsCart: objectFromLocation });
-    } else {
-      await this.setState({ productsItemsCart: [] });
-    }
-  }
-
-  componentDidMount() {
-    this.getProductInCartLocalStorage();
-  }
-
-  addToLocalStorage() {
-    const { productsItemsCart } = this.state;
-    localStorage.setItem('productsInCard', JSON.stringify(productsItemsCart));
-  }
-
-  async addTocart(product) {
-    await this.setState((prev) => ({
-      productsItemsCart: [...prev.productsItemsCart, product],
-    }));
-    this.addToLocalStorage();
-=======
   componentDidMount() {
     util.getFromLocalAndSet('productsItemsCart', this.setState);
->>>>>>> 1be48ea75c323248567d882e983cecc42fe68434
   }
 
   getCurrentCategory(id) {
+    const { categoryId, searchInput } = this.state;
     this.setState({ categoryId: id, isLoading: true }, async () => {
       const object = await api.getProductsFromCategoryAndQuery(
-        this.state.categoryId,
-        this.state.searchInput
+        categoryId,
+        searchInput,
       );
       this.setState({ products: object.results, isLoading: false });
     });
   }
 
   fetchSearchButton(searchResult) {
+    const { categoryId, searchInput } = this.state;
     this.setState({ searchInput: searchResult, isLoading: true }, async () => {
       const object = await api.getProductsFromCategoryAndQuery(
-        this.state.categoryId,
-        this.state.searchInput
+        categoryId,
+        searchInput,
       );
       this.setState({ products: object.results, isLoading: false });
     });
@@ -80,17 +57,17 @@ export class Home extends Component {
         <cp.Header />
         <div className="ctn-main">
           <div className="ctn-sidebar">
-            <view.SideBar callback={this.getCurrentCategory} />
+            <view.SideBar callback={ this.getCurrentCategory } />
           </div>
 
           <div className="ctn-displayCard">
             <view.SearchInput
-              itensProducts={productsItemsCart}
-              amountCart={productsItemsCart.length}
-              callback={this.fetchSearchButton}
+              itensProducts={ productsItemsCart }
+              amountCart={ productsItemsCart.length }
+              callback={ this.fetchSearchButton }
             />
             <div className="displayCard">
-              {products.length === 0 && !isLoading && (
+              {products.length === [].length && !isLoading && (
                 <div data-testid="home-initial-message">
                   Digite algum termo de pesquisa ou escolha uma categoria.
                 </div>
@@ -99,20 +76,18 @@ export class Home extends Component {
                 <cp.Loading />
               ) : (
                 products.map((product) => (
-                  <cp.CardProduct
-                    key={product.id}
-                    product={product}
-                    amount={1}
-                    addToCart={(product) =>
-                      util.setObjStorageAndSetState(
-                        'productsItemsCart',
-                        product,
-                        this.setState
-                      )
-                    }
+                  <viewProds.CardProduct
+                    key={ product.id }
+                    product={ product }
+                    amount={ 1 }
+                    addToCart={ (obj) => util.setObjStorageAndSetState(
+                      'productsItemsCart',
+                      obj,
+                      this.setState,
+                    ) }
                   >
                     {product.title}
-                  </cp.CardProduct>
+                  </viewProds.CardProduct>
                 ))
               )}
             </div>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { text } from '../../style/global';
+import { text } from '../../../style/global';
 
 export const cpnCenter = styled.div`
   background-color: #f5f5f5;
@@ -37,3 +37,5 @@ export const cpnCenter = styled.div`
     padding: 10px;
   }
 `;
+
+export default cpnCenter;

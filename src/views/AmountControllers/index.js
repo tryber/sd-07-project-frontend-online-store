@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as css from './style';
-import * as icon from '../../components/Icons';
+import * as cpIcons from '../../components/Icons';
 
-export class AmountControllers extends Component {
+class AmountControllers extends Component {
   constructor(props) {
     super(props);
     const { amount } = this.props;
@@ -10,42 +11,54 @@ export class AmountControllers extends Component {
     this.increaseAmount = this.increaseAmount.bind(this);
     this.decreaseAmount = this.decreaseAmount.bind(this);
     this.state = {
-      amount: amount,
+      amount,
     };
   }
 
   async increaseAmount() {
     const { onClick } = this.props;
-    await this.setState({ amount: this.state.amount + 1 });
-    onClick(this.state.amount);
+    const { amount } = this.state;
+    await this.setState({ amount: amount + 1 });
+    onClick(amount);
   }
 
   async decreaseAmount() {
     const { amount } = this.state;
     const { onClick } = this.props;
     if (amount > 1) {
-      await this.setState({ amount: this.state.amount - 1 });
-      onClick(this.state.amount);
+      await this.setState({ amount: amount - 1 });
+      onClick(amount);
     }
   }
 
   render() {
+    const { amount } = this.state;
     return (
       <css.Ctn>
-        <icon.Minus
+        <cpIcons.Minus
           data-testid="product-decrease-quantity"
-          onClick={this.decreaseAmount}
+          onClick={ this.decreaseAmount }
         />
         <div className="display" data-testid="shopping-cart-product-quantity">
-          {this.state.amount}
+          {amount}
         </div>
-        <icon.Plus
+        <cpIcons.Plus
           data-testid="product-increase-quantity"
-          onClick={this.increaseAmount}
+          onClick={ this.increaseAmount }
         />
       </css.Ctn>
     );
   }
 }
+
+AmountControllers.propTypes = {
+  amount: PropTypes.number,
+  onClick: PropTypes.func,
+};
+
+AmountControllers.defaultProps = {
+  amount: 1,
+  onClick: () => {},
+};
 
 export default AmountControllers;

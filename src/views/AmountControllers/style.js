@@ -13,3 +13,5 @@ export const Ctn = styled.div`
     font-weight: 700;
   }
 `;
+
+export default Ctn;

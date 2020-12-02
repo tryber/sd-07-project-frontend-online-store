@@ -9,3 +9,5 @@ export const Ctn = styled.div`
     display: none;
   }
 `;
+
+export default Ctn;

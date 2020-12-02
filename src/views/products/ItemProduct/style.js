@@ -14,3 +14,5 @@ export const Ctn = styled.div`
     width: 50%;
   }
 `;
+
+export default Ctn;

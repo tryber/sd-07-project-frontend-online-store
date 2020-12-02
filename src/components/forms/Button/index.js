@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as css from './style';
+
 
 class Button extends Component {
   render() {
@@ -11,5 +13,14 @@ class Button extends Component {
     );
   }
 }
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  getEvent: PropTypes.func,
+};
+
+Button.defaultProps = {
+  getEvent: () => {},
+};
 
 export default Button;

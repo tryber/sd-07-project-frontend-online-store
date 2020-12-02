@@ -12,3 +12,5 @@ export const Input = styled.input`
     box-shadow: 0 0 5px 0 green;
   }
 `;
+
+export default Input;

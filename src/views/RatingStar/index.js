@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as css from './style';
-import * as icon from '../../components/Icons';
+import * as cpIcons from '../../components/Icons';
 
-export class RatingStar extends Component {
+class RatingStar extends Component {
   constructor(props) {
     super(props);
     const { rating } = this.props;
     this.state = {
-      rating: rating,
+      rating,
       hoverValue: null,
     };
-  }
-
-  async eventHandleClick(name, value) {
-    const { onClick } = this.props;
-    await this.setState({ [name]: value });
-    // onClick(this.state.rating);
   }
 
   setColorModeView(numberStar) {
@@ -23,14 +18,25 @@ export class RatingStar extends Component {
     return numberStar <= (hoverValue || rating) ? '#ffc107' : '#aaa';
   }
 
+  async eventHandleClick(name, value) {
+    const { onClick } = this.props;
+    const { rating } = this.state;
+    await this.setState({ [name]: value });
+    onClick(rating);
+  }
+
   renderModeViewCard() {
     const { mode } = this.props;
+    const numberArr = 5;
 
-    return [...Array(5)].map((_star, index) => {
+    return [...Array(numberArr)].map((_star, index) => {
       const numberStar = index + 1;
       return (
-        <div key={ index }>
-          <icon.Star modeview={ mode } setcolor={ this.setColorModeView(numberStar) } />
+        <div key={ numberStar }>
+          <cpIcons.Star
+            modeview={ mode }
+            setcolor={ this.setColorModeView(numberStar) }
+          />
         </div>
       );
     });
@@ -38,18 +44,19 @@ export class RatingStar extends Component {
 
   renderModeViewInput() {
     const { mode } = this.props;
+    const numberArr = 5;
 
-    return [...Array(5)].map((_star, index) => {
+    return [...Array(numberArr)].map((_star, index) => {
       const numberStar = index + 1;
       return (
-        <label key={ index }>
+        <label htmlFor="rating" key={ numberStar }>
           <input
             name="rating"
             className="inputRadio"
             type="radio"
             onClick={ () => this.eventHandleClick('rating', numberStar) }
           />
-          <icon.Star
+          <cpIcons.Star
             modeview={ mode }
             setcolor={ this.setColorModeView(numberStar) }
             onMouseEnter={ () => this.eventHandleClick('hoverValue', numberStar) }
@@ -71,5 +78,17 @@ export class RatingStar extends Component {
     );
   }
 }
+
+RatingStar.propTypes = {
+  rating: PropTypes.number,
+  onClick: PropTypes.func,
+  mode: PropTypes.string,
+};
+
+RatingStar.defaultProps = {
+  rating: 1,
+  onClick: () => {},
+  mode: '',
+};
 
 export default RatingStar;

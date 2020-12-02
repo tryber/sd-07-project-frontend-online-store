@@ -18,3 +18,5 @@ export const Header = styled.header`
     justify-content: space-between;
   }
 `;
+
+export default Header;

@@ -145,3 +145,5 @@ export const Ctn = styled.div`
     }
   }
 `;
+
+export default Ctn;

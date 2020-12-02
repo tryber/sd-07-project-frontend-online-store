@@ -30,3 +30,5 @@ export const Ctn = styled.div`
     overflow-y: auto;
   }
 `;
+
+export default Ctn;

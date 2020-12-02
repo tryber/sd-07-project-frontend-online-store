@@ -8,3 +8,5 @@ export const Loading = styled.div`
   border-radius: 50%;
   animation: is-rotating 1s infinite;
 `;
+
+export default Loading;

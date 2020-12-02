@@ -53,25 +53,21 @@ export const Star = styled(icon.FaStar)`
   transform: scale(1);
   ${({ modeview, setcolor }) => {
     switch (modeview) {
-
-
-      case 'input':
-        return css`
+    case 'input':
+      return css`
           color: ${setcolor};
           cursor: pointer;
           :hover {
             transform: scale(1.3);
           }
         `;
-      case 'card':
-        return css`
+    case 'card':
+      return css`
           color: ${setcolor};
         `;
 
-      default:
-        break;
-
-
+    default:
+      break;
     }
   }}
 `;
