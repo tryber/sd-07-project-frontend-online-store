@@ -34,7 +34,6 @@ class Home extends React.Component {
     const category = event.target.id;
     this.setState({ selectCategory: category });
     const { searchBar } = this.state;
-    console.log(category);
     const response = await getProductsFromCategoryAndQuery(searchBar, category);
     this.setState({ listProduct: response.results });
   }
