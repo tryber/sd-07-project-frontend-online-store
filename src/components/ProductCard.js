@@ -24,6 +24,12 @@ class ProductCard extends Component {
                 <img src={ thumbnail } alt="products" data-testid="product-detail-link" />
               </Link>
               <p>{ price }</p>
+              <Link
+                to="./pages/cart"
+                data-testid="product-add-to-cart"
+              >
+                COMPRAR
+              </Link>
             </div>
           );
         })}
