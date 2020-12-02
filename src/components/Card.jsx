@@ -29,7 +29,7 @@ class Card extends React.Component {
 
   render() {
     const { products, counter } = this.props;
-    const { title, thumbnail, price, id, category_id } = products;
+    const { title, thumbnail, price, id } = products;
     return (
       <div data-testid="product" className="cardProduct">
         <img src={ thumbnail } alt="product item" />
@@ -37,7 +37,7 @@ class Card extends React.Component {
           <Link
             className="product-detail-link"
             to={ {
-              pathname: `/details/${id}/category/${category_id}`,
+              pathname: `/details/${id}/category/${products.category_id}`,
               counter,
             } }
             data-testid="product-detail-link"

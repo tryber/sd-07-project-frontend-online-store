@@ -1,7 +1,7 @@
 import React from 'react';
 
 class RatingAndComment extends React.Component {
-  constructor(props) {
+/*   constructor(props) {
     super(props);
 
     this.state = {
@@ -12,7 +12,7 @@ class RatingAndComment extends React.Component {
   onChangeValue(event) {
     const { value } = event.target;
     this.setState({ rating: value });
-  }
+  } */
 
   render() {
     return (
@@ -22,7 +22,7 @@ class RatingAndComment extends React.Component {
           placeholder="Adicione um comentário (Opcional)"
         />
 
-        <div onChange={this.onChangeValue}>
+        <div onChange={ this.onChangeValue }>
           <label htmlFor="rating-0">
             <input id="rating-0" type="radio" value="0" name="rating" />
             0
