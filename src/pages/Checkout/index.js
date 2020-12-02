@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ShoppingCartList, Header, BuyerInformation, PaymentOption } from '../../components';
 import * as lsapi from '../../services/lsapi';
 import './Checkout.css';
+import {
+  ShoppingCartList,
+  Header,
+  BuyerInformation,
+  PaymentOption } from '../../components';
 
 class Checkout extends Component {
   constructor(props) {
