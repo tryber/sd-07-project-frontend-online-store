@@ -13,7 +13,7 @@ class Stars extends Component {
             <button
               onClick={ ({ target: { parentNode } }) => onClick(parentNode) }
               key={ `key${index}` }
-              type="button"
+              onKeyPress={ index }
             >
               <img
                 src={ (note <= index) ? starOff : starOn }
