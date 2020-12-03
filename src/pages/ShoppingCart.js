@@ -8,17 +8,11 @@ class ShoppingCart extends React.Component {
     super(props);
 
     this.readCart = this.readCart.bind(this);
-    this.cartItemClickListener = this.cartItemClickListener.bind(this);
   }
 
   readCart() {
     const objectValues = JSON.parse(localStorage.getItem('items'));
     return objectValues;
-  }
-
-  cartItemClickListener(event) {
-    const cartItems = document.querySelectorAll('.del-item');
-    cartItems.remove(event);
   }
 
   render() {
@@ -79,7 +73,7 @@ class ShoppingCart extends React.Component {
           const { sku, cost, name, image, quantity } = key;
           return (
             <section key={ sku } data-testid="product">
-              <table className="table table-bordered table-striped table-hover del-item">
+              <table className="table table-bordered table-striped table-hover">
                 <tr>
                   <td>
                     <i>{ sku }</i>
