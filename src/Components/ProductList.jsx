@@ -38,8 +38,9 @@ class ProductList extends React.Component {
           <Link
             to={ { pathname: `productdetail/${product.id}`, state: products } }
             data-testid="product-detail-link"
+            className="btn-details"
           >
-            detalhes
+            Detalhes
           </Link>
         </div>
       ))

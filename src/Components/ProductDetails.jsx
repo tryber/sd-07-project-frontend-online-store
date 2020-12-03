@@ -16,7 +16,9 @@ class ProductDetails extends React.Component {
   getDetailProduct() {
     const { match } = this.props;
     const { id } = match.params;
-    const { location: { state: product } } = this.props;
+    const {
+      location: { state: product },
+    } = this.props;
     const result = product.filter((acc) => acc.id === id);
     return result;
   }
@@ -25,20 +27,31 @@ class ProductDetails extends React.Component {
     const product = this.getDetailProduct();
     return (
       <div className="container-detail">
-        <h3 data-testid="product-detail-name">{ product[0].title }</h3>
+        <h3 data-testid="product-detail-name">{product[0].title}</h3>
         <div className="container-inner">
           <img src={ product[0].thumbnail } alt="Produto" />
           <div className="detail-product">
             <span className="label">Condição:</span>
-            { product[0].condition }
+            {product[0].condition}
             <span className="label">Quantidade disponivel:</span>
-            { product[0].available_quantity }
+            {product[0].available_quantity}
             <span className="label">Preço:</span>
-            { product[0].price }
+            {product[0].price}
           </div>
         </div>
-        <Link to="/cart" className="btn-cart"> Cart </Link>
-        <Link to="/" className="btn-back"> Voltar </Link>
+        <Link
+          to={ { pathname: `/cart/${product[0].id}`,
+            state: product[0] } }
+          className="btn-add-cart"
+        >
+          Comprar
+        </Link>
+        <Link to="/cart/0" className="btn-cart">
+          Cart
+        </Link>
+        <Link to="/" className="btn-back">
+          Voltar
+        </Link>
       </div>
     );
   }
