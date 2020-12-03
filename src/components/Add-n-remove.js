@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as cartFunctions from '../services/cartFunctions';
 
 class AddAndRemoveItem extends Component {
   constructor() {
@@ -18,9 +19,7 @@ class AddAndRemoveItem extends Component {
 
   removeItem() {
     const { quantity } = this.state;
-    if (quantity < 1) {
-      this.setState({ quantity: 0 });
-    } else {
+    if (quantity >= 1) {
       this.setState({ quantity: quantity - 1 });
     }
   }
@@ -31,7 +30,7 @@ class AddAndRemoveItem extends Component {
     return (
       <div key={ key } data-testid="product">
         <div className="main-category-result-content" id={ id }>
-          <h4>{ title }</h4>
+          <h4 data-testid="shopping-cart-product-name">{ title }</h4>
           <img src={ image } alt="titulo" />
           <p>{ price }</p>
           <button
@@ -42,13 +41,22 @@ class AddAndRemoveItem extends Component {
             +
             {' '}
           </button>
-          <div>{quantity}</div>
+          <div data-testid="shopping-cart-product-quantity">{quantity}</div>
           <button
             type="button"
             onClick={ this.removeItem }
           >
             {' '}
             -
+            {' '}
+          </button>
+          <button
+            type="button"
+            data-testid="product-remove"
+            onClick={ cartFunctions.deleteProductFromLocalStorage() }
+          >
+            {' '}
+            X
             {' '}
           </button>
         </div>
