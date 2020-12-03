@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Details from './pages/Details';
 import './App.css';
 import ShoppingCart from './pages/ShoppingCard';
+import Checkout from './pages/Checkout';
 
 class App extends Component {
   constructor() {
@@ -96,6 +97,8 @@ class App extends Component {
               />
             ) }
           />
+
+          <Route exact path="/checkout" component={ Checkout } />
         </Switch>
       </BrowserRouter>
     );

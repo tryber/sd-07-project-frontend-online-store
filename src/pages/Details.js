@@ -81,6 +81,9 @@ Details.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     addToCard: PropTypes.func.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
   shoppingCard: PropTypes.arrayOf(PropTypes.object).isRequired,
   addToCard: PropTypes.func.isRequired,

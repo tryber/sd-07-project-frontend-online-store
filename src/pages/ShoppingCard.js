@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { EmptyList, ShoppingCardList, GoBack, Total } from '../components/index';
 import ShoppingCartImage from '../images/shopping-cart.svg';
@@ -32,6 +33,21 @@ class ShoppingCard extends Component {
             <Total productsInShoppingCart={ productsInShoppingCart } />
           </div>
         )}
+
+        {productsInShoppingCart.length > shoppingCardEmpty ? (
+          <Link
+            to={ {
+              pathname: '/checkout',
+              state: { productsInShoppingCart },
+            } }
+          >
+            <button
+              data-testid="checkout-products"
+              type="button"
+            >
+              Finalizar Compra
+            </button>
+          </Link>) : (false)}
       </div>
     );
   }
