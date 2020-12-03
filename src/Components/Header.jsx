@@ -31,7 +31,7 @@ class Header extends React.Component {
             </button>
           </div>
           <div className="cart-icon">
-            <Link to="/cart" data-testid="shopping-cart-button">
+            <Link to="/cart/0" data-testid="shopping-cart-button">
               <img src={ icon } alt="cart-icon" />
             </Link>
           </div>

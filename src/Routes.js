@@ -12,9 +12,7 @@ class Routes extends React.Component {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/cart">
-            <Cart />
-          </Route>
+          <Route path="/cart/:id" render={ (props) => <Cart { ...props } /> } />
           <Route
             path="/productdetail/:id"
             render={ (props) => <Productdetail { ...props } /> }
