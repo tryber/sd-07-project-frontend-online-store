@@ -1,18 +1,25 @@
 import React from 'react';
 import Rating from '@material-ui/lab/Rating';
+import EvaluationView from './evaluationView';
 
 class EvaluationForm extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      // evaluations: [],
+      evaluations: [],
       email: '',
       rating: 0,
       comment: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.saveEvaluation = this.saveEvaluation.bind(this);
+    this.loadEvaluation = this.loadEvaluation.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadEvaluation();
   }
 
   handleChange({ target }) {
@@ -20,11 +27,29 @@ class EvaluationForm extends React.Component {
     this.setState({ [name]: value });
   }
 
+  saveEvaluation() {
+    const { evaluations } = this.state;
+    const evaluationsState = this.state;
+    const storeEvaluation = evaluations.concat(evaluationsState);
+    this.setState({ evaluations: storeEvaluation });
+    localStorage.setItem('evaluation', JSON.stringify(this.state));
+    this.setState({
+      email: '',
+      rating: 0,
+      comment: '',
+    });
+  }
+
+  loadEvaluation() {
+    const evaluation = JSON.parse(localStorage.getItem('evaluation'));
+    this.setState(evaluation);
+  }
 
   render() {
     const { email, rating, comment } = this.state;
     return (
       <div>
+        <h4>Avalie este produto:</h4>
         <form>
           <input
             type="email"
@@ -53,12 +78,13 @@ class EvaluationForm extends React.Component {
             onChange={ this.handleChange }
           />
           <button
-            type="submit"
+            type="button"
             onClick={ this.saveEvaluation }
           >
             Avaliar
           </button>
         </form>
+        <EvaluationView />
       </div>
     );
   }
