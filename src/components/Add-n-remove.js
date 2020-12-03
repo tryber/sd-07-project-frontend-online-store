@@ -36,6 +36,7 @@ class AddAndRemoveItem extends Component {
           <button
             type="button"
             onClick={ this.addItem }
+            data-testid="product-increase-quantity"
           >
             {' '}
             +
@@ -45,6 +46,7 @@ class AddAndRemoveItem extends Component {
           <button
             type="button"
             onClick={ this.removeItem }
+            data-testid="product-decrease-quantity"
           >
             {' '}
             -
