@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../services/api';
+import * as cartApi from '../services/localStorage';
 
 import SearchBar from '../components/SearchBar';
 import CategoriesList from './CategoriesList';
@@ -13,16 +14,12 @@ export default class Home extends Component {
       products: [],
       categoryId: '',
       query: '',
+      cartSize: cartApi.showQuantInCart(),
     };
 
     this.getProdutsByQuery = this.getProdutsByQuery.bind(this);
     this.handleRadioClick = this.handleRadioClick.bind(this);
-  }
-
-  async getProdutsByQuery() {
-    const { categoryId, query } = this.state;
-    const searchResult = await api.getProductsFromCategoryAndQuery(categoryId, query);
-    this.setState({ products: searchResult.results });
+    this.updateCartSize = this.updateCartSize.bind(this);
   }
 
   handleRadioClick({ target: { name, id } }) {
@@ -31,21 +28,32 @@ export default class Home extends Component {
     });
   }
 
+  async getProdutsByQuery() {
+    const { categoryId, query } = this.state;
+    const searchResult = await api.getProductsFromCategoryAndQuery(categoryId, query);
+    this.setState({ products: searchResult.results });
+  }
+
+  updateCartSize() {
+    this.setState({ cartSize: cartApi.showQuantInCart() });
+  }
+
   render() {
-    const { products, query } = this.state;
+    const { products, query, cartSize } = this.state;
     return (
       <div className="busca">
         <SearchBar
           query={ query }
           onChange={ ({ target: { name, value } }) => this.setState({ [name]: value }) }
           onClick={ this.getProdutsByQuery }
+          cartSize={ cartSize }
         />
 
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <CategoriesList onClick={ this.handleRadioClick } />
-        <ProductList products={ products } />
+        <ProductList products={ products } updateCartSize={ this.updateCartSize } />
       </div>
     );
   }

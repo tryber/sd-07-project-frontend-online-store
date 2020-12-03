@@ -50,6 +50,12 @@ export default class ProductDetails extends Component {
       <div>
         <Link data-testid="shopping-cart-button" to="/pages/shopping-cart">
           Carrinho
+          <span
+            className="cart-quantity"
+            data-testid="shopping-cart-size"
+          >
+            {cartApi.showQuantInCart()}
+          </span>
         </Link>
         <div className="product-details" data-testid="product-detail-name">
           <h1>{ title }</h1>
