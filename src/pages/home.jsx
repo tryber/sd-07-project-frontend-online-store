@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SearchBar from '../components/searchBar';
 
 class Home extends React.Component {
@@ -13,7 +14,10 @@ class Home extends React.Component {
           to="/shoppingCart"
           data-testid="shopping-cart-button"
         >
-          Carrinho de compras
+          <ShoppingCartIcon
+            color="action"
+            fontSize="large"
+          />
         </Link>
       </div>
     );

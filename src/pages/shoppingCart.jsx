@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import * as localStorage from '../services/localStorage';
 
 class ShoppingCart extends React.Component {
@@ -73,6 +74,9 @@ class ShoppingCart extends React.Component {
         ) : (
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         )}
+        <Link data-testid="checkout-products" to="/checkout">
+          Comprar
+        </Link>
       </div>
     );
   }

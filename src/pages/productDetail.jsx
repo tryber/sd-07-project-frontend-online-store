@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import * as localStorage from '../services/localStorage';
 import EvaluationForm from '../components/evaluationForm';
 
@@ -63,7 +64,7 @@ class ProductDetail extends React.Component {
             -
           </Button>
           <div>
-            <h4>{quantity}</h4>
+            <h4>{ quantity }</h4>
           </div>
           <Button
             variant="contained"
@@ -102,9 +103,9 @@ class ProductDetail extends React.Component {
         <h4>{`R$${price}`}</h4>
         <img alt="product Cover" src={ thumbnail } />
         <ul>
-          {attributes.map((a) => (
+          { attributes.map((a) => (
             <li key={ a.name }>{`${a.name}: ${a.value_name}`}</li>
-          ))}
+          )) }
         </ul>
       </div>
     );
@@ -114,16 +115,16 @@ class ProductDetail extends React.Component {
     const { loading } = this.state;
     return (
       <div>
-        {loading ? <p>Loading</p> : this.productLoaded()}
+        { loading ? <p>Loading</p> : this.productLoaded() }
         <EvaluationForm />
-        {loading ? <div>Loading</div> : this.productAdd()}
-        {loading ? (
+        { loading ? <div>Loading</div> : this.productAdd() }
+        { loading ? (
           <div>Loading</div>
         ) : (
           <Link data-testid="shopping-cart-button" to="/shoppingCart">
-            Carrinho de compras
+            <ShoppingCartIcon color="action" fontSize="large" />
           </Link>
-        )}
+        ) }
       </div>
     );
   }
