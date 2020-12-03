@@ -56,16 +56,17 @@ export default class ShoppingCart extends Component {
     }
   }
 
-  addSubButton(productId, operation) {
-    const zero = 0;
+  async addSubButton(productId, operation) {
+    const minAmount = 0;
     const { cart } = this.state;
     const index = cart.findIndex(({ id }) => id === productId);
+
     if (operation === 'add') {
       cart[index].amount += 1;
-    } else if (operation === 'sub' && cart[index].amount > zero) {
+    } else if (operation === 'sub' && cart[index].amount > minAmount) {
       cart[index].amount -= 1;
     }
-    if (cart[index].amount <= zero) {
+    if (cart[index].amount <= minAmount) {
       this.removeItem(cart[index].id);
     } else {
       this.setState({ cart }, () => {
@@ -80,7 +81,7 @@ export default class ShoppingCart extends Component {
     const two = 2;
     return (
       <div className="cart-products">
-        { cart.map(({ amount, thumbnail, title, id, price }) => (
+        { cart.map(({ amount, totalAmount, thumbnail, title, id, price }) => (
           <div className="product" key={ id }>
             <button
               className="remove-product"
@@ -117,6 +118,7 @@ export default class ShoppingCart extends Component {
               name="add"
               data-testid="product-increase-quantity"
               type="button"
+              disabled={ amount === totalAmount }
             >
               +
             </button>
