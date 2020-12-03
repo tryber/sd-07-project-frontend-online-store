@@ -11,6 +11,7 @@ class ProductCard extends React.Component {
     this.onClickCategory = this.onClickCategory.bind(this);
     this.handleTextInput = this.handleTextInput.bind(this);
     this.saveItems = this.saveItems.bind(this);
+    this.freeShipping = this.freeShipping.bind(this);
 
     this.state = {
       categoryId: '',
@@ -71,6 +72,13 @@ class ProductCard extends React.Component {
     }
   }
 
+  freeShipping() {
+    const { item } = this.props;
+    const { shipping } = item;
+    const values = Object.values(shipping);
+    return values[0];
+  }
+
   render() {
     const { item } = this.props;
     const { id, available_quantity: availableQuantity, title, price, thumbnail } = item;
@@ -106,6 +114,15 @@ class ProductCard extends React.Component {
         >
           Cart
         </button>
+        <b
+          className="btn btn-xs"
+        >
+          { this.freeShipping() ? (
+            <p data-testid="free-shipping">Frete Grátis</p>
+          ) : (
+            <p>Frete Pago</p>
+          )}
+        </b>
       </section>
     );
   }
@@ -118,6 +135,7 @@ ProductCard.propTypes = {
     price: PropTypes.string,
     thumbnail: PropTypes.string,
     available_quantity: PropTypes.number,
+    shipping: PropTypes.bool,
   }).isRequired,
 };
 

@@ -109,9 +109,9 @@ class CheckoutPage extends Component {
                     data-testid="shopping-cart-product-quantity"
                     className="text-center"
                   >
-                    1
+                    { cost }
                   </td>
-                  <td className="text-center">{ cost }</td>
+                  <td className="text-center">1</td>
                 </tr>
               </table>);
           }))}

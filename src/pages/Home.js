@@ -57,7 +57,7 @@ export default class Home extends Component {
     const { categoryId } = this.state;
     return (
       <main>
-        <header className="page-header">
+        <header>
           <div>
             <h1>HOME</h1>
           </div>

@@ -100,7 +100,6 @@ export default class ProductDetails extends Component {
         </div>
 
         <img src={ thumbnail } alt={ name } />
-
         <p>
           Especificações do produto...
         </p>

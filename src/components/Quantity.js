@@ -29,7 +29,6 @@ class Quantity extends Component {
     const { quantity } = this.state;
     return (
       <main>
-        <en>{ quantity }</en>
         <div>
           <button
             data-testid="product-increase-quantity"
@@ -40,6 +39,7 @@ class Quantity extends Component {
             +
           </button>
         </div>
+        <en>{ quantity }</en>
         <div>
           <button
             data-testid="product-decrease-quantity"

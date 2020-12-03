@@ -8,6 +8,7 @@ class ShoppingCart extends React.Component {
     super(props);
 
     this.readCart = this.readCart.bind(this);
+    this.cartItemClickListener = this.cartItemClickListener.bind(this);
   }
 
   readCart() {
@@ -15,7 +16,13 @@ class ShoppingCart extends React.Component {
     return objectValues;
   }
 
+  cartItemClickListener(event) {
+    const cartItems = document.querySelectorAll('.del-item');
+    cartItems.remove(event);
+  }
+
   render() {
+    document.addEventListener('click', this.cartItemClickListener);
     return (
       <main>
         <header>
@@ -71,26 +78,11 @@ class ShoppingCart extends React.Component {
         ) : (this.readCart().map((key) => {
           const { sku, cost, name, image, quantity } = key;
           return (
-            <section key={ sku } data-testid="product" className="container-fluid">
-              <table className="table table-bordered table-striped table-hover">
-                <tr>
-                  <th className="text-center">Excluir Produto</th>
-                  <th className="text-center">Imagem</th>
-                  <th className="text-center">Produto</th>
-                  <th className="text-center">Preço</th>
-                  <th className="text-center">Disponível</th>
-                  <th className="text-center">Adquiridos</th>
-                </tr>
-
+            <section key={ sku } data-testid="product">
+              <table className="table table-bordered table-striped table-hover del-item">
                 <tr>
                   <td>
-                    <button
-                      type="button"
-                      className="btn text-nowrap"
-                      onClick={ this }
-                    >
-                      <h2>X</h2>
-                    </button>
+                    <i>{ sku }</i>
                   </td>
                   <td>
                     <img
@@ -105,7 +97,10 @@ class ShoppingCart extends React.Component {
                   >
                     { name }
                   </td>
-                  <td className="text-center">{ cost }</td>
+                  <td className="text-center">
+                    R$
+                    { cost }
+                  </td>
                   <td className="text-center">{ quantity }</td>
                   <td
                     className="text-center"
