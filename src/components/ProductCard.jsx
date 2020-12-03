@@ -18,7 +18,7 @@ class ProductCard extends Component {
     const { products, addToCard, shoppingCard } = this.props;
     return (
       <div>
-        {products.map(({ id, title, thumbnail, price }) => (
+        {products.map(({ id, title, thumbnail, price, shipping }) => (
           <div key={ id }>
             <Link
               data-testid="product-detail-link"
@@ -27,6 +27,7 @@ class ProductCard extends Component {
                 id,
                 title,
                 thumbnail,
+                shipping,
                 price,
                 addToCard,
                 shoppingCard,
@@ -34,6 +35,10 @@ class ProductCard extends Component {
             >
               {this.getCard(title, thumbnail, price)}
             </Link>
+            {
+              free_shipping
+                ? <span data-testid="free-shipping">Frete Grátis</span> : false
+            }
             <Buy
               dataTestId="product-add-to-cart"
               id={ id }

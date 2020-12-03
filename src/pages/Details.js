@@ -5,7 +5,8 @@ import { ShoppingCartButton, Buy } from '../components/index';
 
 class Details extends Component {
   render() {
-    const { location: { id, title, thumbnail, price } } = this.props;
+    const { location: { id, title, thumbnail, price, shipping } } = this.props;
+    const { free_shipping } = shipping;
     const { shoppingCard, addToCard } = this.props;
     return (
       <div>
@@ -21,6 +22,7 @@ class Details extends Component {
         <div>
           <img alt={ title } src={ thumbnail } />
         </div>
+        {free_shipping ? <span data-testid="free-shipping">Frete Grátis</span> : false}
         <Buy
           dataTestId="product-detail-add-to-cart"
           id={ id }
@@ -45,6 +47,9 @@ Details.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     addToCard: PropTypes.func.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
   shoppingCard: PropTypes.arrayOf(PropTypes.object).isRequired,
   addToCard: PropTypes.func.isRequired,
