@@ -11,6 +11,7 @@ class Stars extends Component {
         {
           Array.from({ length: 5 }, (_, index) => (
             <button
+              type="button"
               onClick={ ({ target: { parentNode } }) => onClick(parentNode) }
               key={ `key${index}` }
               onKeyPress={ index }

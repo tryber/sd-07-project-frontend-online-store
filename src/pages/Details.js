@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  ShoppingCartButton, Buy, Evalue, Assessments, GoBack
+  ShoppingCartButton, Buy, Evalue, Assessments, GoBack,
 } from '../components/index';
 
 class Details extends Component {
