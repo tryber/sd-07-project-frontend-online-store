@@ -3,7 +3,15 @@ import PropTypes, { array } from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Cart extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      quantity: 1,
+    };
+  }
+
   render() {
+    const { quantity } = this.state;
     const { match } = this.props;
     const { id } = match.params;
     const {
@@ -27,9 +35,9 @@ class Cart extends React.Component {
               <th>Total</th>
             </tr>
             <tr>
-              <td>{product.title}</td>
+              <td data-testid="shopping-cart-product-name">{product.title}</td>
               <td>{product.price}</td>
-              <td>1</td>
+              <td data-testid="shopping-cart-product-quantity">{quantity}</td>
               <td>0</td>
             </tr>
           </table>
@@ -58,7 +66,7 @@ class Cart extends React.Component {
               <span>Total</span>
               <span>R$0,00</span>
             </div>
-            <button className="btn-chashout" type="submit">
+            <button className="btn-chashout" type="submit" data-testid="shopping-cart-button">
               Pagar
             </button>
           </div>

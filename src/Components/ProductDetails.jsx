@@ -43,6 +43,7 @@ class ProductDetails extends React.Component {
           to={ { pathname: `/cart/${product[0].id}`,
             state: product[0] } }
           className="btn-add-cart"
+          data-testid="product-detail-add-to-cart"
         >
           Comprar
         </Link>
