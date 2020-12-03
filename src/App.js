@@ -1,29 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Home from './pages/Home';
+import ShoppingCart from './pages/ShoppingCart';
+import ProductDetails from './pages/ProductDetails';
+import Checkout from './pages/Checkout';
+import NotFound from './pages/NotFound';
 
 function App() {
+  const localStorageObjetcs = JSON.parse(localStorage.getItem('productsList'));
+  if (!localStorageObjetcs) {
+    localStorage.setItem('productsList', JSON.stringify([]));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={ Home } />
+        <Route path="/shopping-cart" component={ ShoppingCart } />
+        <Route path="/checkout" component={ Checkout } />
+        <Route path="/product/:category_id/:id" component={ ProductDetails } />
+        <Route component={ NotFound } />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
