@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes, { object } from 'prop-types';
+import GoToShoppingCart from '../components/GoToShoppingCart';
 // import * as api from '../services/api';
 // import Loading from '../components/Loading';
 // import ReviewList from '../components/ReviewList';
@@ -72,6 +73,7 @@ class ProductDetails extends Component {
 
     return (
       <div>
+        <GoToShoppingCart />
         <div className="product-detail">
           <div className="container-title-image">
             <h2 data-testid="product-detail-name">
