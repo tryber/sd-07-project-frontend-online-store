@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './ShoppingCardList.css';
+import Quantity from './Quantity';
+import RemoveItem from './RemoveItem';
 
 class ShoppingCardList extends Component {
   render() {
-    const { products } = this.props;
+    const { products, changeQuantity, removeItem } = this.props;
+    const decimals = 2;
     return (
       <div>
         {products.map((item) => (
@@ -17,11 +20,18 @@ class ShoppingCardList extends Component {
               </div>
               <div>
                 <span> Preço unitário: R$ </span>
-                <span>{item.price}</span>
-                <span> Quantidade: </span>
-                <span data-testid="shopping-cart-product-quantity">{item.quantity}</span>
+                <span>{(item.price).toFixed(decimals)}</span>
+                <Quantity
+                  quantity={ item.quantity }
+                  changeQuantity={ changeQuantity }
+                  id={ item.id }
+                />
+                <RemoveItem
+                  removeItem={ removeItem }
+                  id={ item.id }
+                />
                 <span> Preço total: R$ </span>
-                <span>{item.price * item.quantity}</span>
+                <span>{(item.price * item.quantity).toFixed(decimals)}</span>
               </div>
             </div>
           </div>
@@ -32,6 +42,8 @@ class ShoppingCardList extends Component {
 }
 
 ShoppingCardList.propTypes = {
+  changeQuantity: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
