@@ -1,11 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ShoppingCartButton, Buy, GoBack } from '../components/index';
+import {
+  ShoppingCartButton, Buy, Evalue, Assessments, GoBack,
+} from '../components/index';
 
 class Details extends Component {
+  constructor() {
+    super();
+    this.getSubmit = this.getSubmit.bind(this);
+    this.state = {
+      storage: [],
+    };
+  }
+
+  componentDidMount() { this.getStorage(); }
+
+  componentDidUpdate(prevState) { this.updateStorage(prevState); }
+
+  getStorage() {
+    const { location: { id } } = this.props;
+    if (localStorage.getItem(id)) {
+      this.setState({ storage: JSON.parse(localStorage.getItem(id)) });
+    }
+  }
+
+  getSubmit(storageAdd) {
+    this.setState(({ storage }) => ({ storage: [storageAdd, ...storage] }));
+  }
+
+  updateStorage(prevState) {
+    const { location: { id } } = this.props;
+    const { storage } = this.state;
+    if (prevState.storage !== storage) {
+      localStorage.setItem(id, JSON.stringify(storage));
+    }
+  }
+
   render() {
-    const { location: { id, title, thumbnail, price } } = this.props;
-    const { shoppingCard, addToCard } = this.props;
+    const {
+      location: { id, title, thumbnail, price }, shoppingCard, addToCard,
+    } = this.props;
+    const { storage } = this.state;
     return (
       <div>
         <div>
@@ -33,6 +68,8 @@ class Details extends Component {
           <li>{ title }</li>
           <li>{ price }</li>
         </ul>
+        <Evalue getSubmit={ this.getSubmit } />
+        <Assessments storage={ storage } />
       </div>
     );
   }
