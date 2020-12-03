@@ -17,8 +17,6 @@ class Cart extends React.Component {
     const {
       location: { state: product },
     } = this.props;
-    console.log(id);
-    console.log(product);
     const number = '0';
     return id !== number ? (
       <div className="container-cart">
@@ -35,7 +33,7 @@ class Cart extends React.Component {
               <th>Total</th>
             </tr>
             <tr>
-              <td data-testid="shopping-cart-product-name">{product.title}</td>
+            <td data-testid="shopping-cart-product-name">{product.title}</td>
               <td>{product.price}</td>
               <td data-testid="shopping-cart-product-quantity">{quantity}</td>
               <td>0</td>
