@@ -34,7 +34,7 @@ body,
   justify-content: space-evenly;
 }
 
-img {
+.img-card {
   align-items: center;
   border-radius: 5%;
   display: block;
@@ -64,7 +64,7 @@ img {
   width: 80%;
   height: 80%;
 }
-section {
+.item-section {
   border-radius: 5%;
   max-width: 288px;
   width: 100%;
@@ -73,10 +73,19 @@ section {
   margin: 1rem 1.5rem 0 !important;
 }
 
-section:hover {
+.check-img {
+  border: 1 solid transparent;
+  border-radius: 50%;
+  max-height: 35px;
+  max-width: 75px;
+  width: 100%;
+  height: auto;
+}
+
+/* section:hover {
   transform: translate(0, -10px);
   background: #eee;
-}
+} */
 
 .info {
   margin: 0;
@@ -95,6 +104,53 @@ section:hover {
   margin: 0.5rem 1rem 0.5rem 0;
 }
 
+.form-section {
+  justify-content: center;
+  display: flex;
+  border: 2px solid gray;
+  border: radius 0.5rem;
+  position: relative;
+  margin: auto;
+  height:40vh;
+  width: 80vw;
+  gap: 1rem auto;
+
+}
+
+
+
+.row-section {
+  align-items: center;
+  border: radius 5px;
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+  margin-left: 15px;
+  vertical-align: middle;
+  
+}
+
+.payment-chek {
+  border: 1px solid gray;
+  display: grid;
+  grid-template-columns: repeat(7 60px);
+  grid-template-rows: 1fr;
+  column-gap: 10px;
+  height:20vh;
+  margin-top: 4%;
+  width: 80vw;
+
+}
+
+.icon {
+  font-size: 60px;
+}
+
+.button-radio {
+  height: 20px;
+}
+
+
 @media screen and (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
@@ -108,10 +164,9 @@ section:hover {
   }
 }
 
-input, select {
-  margin-left: 30px;
-  margin-right: 50px;
+.entrie-search {
   width: 350px;
+  height: 20px;
 }
 
 header {
@@ -129,7 +184,7 @@ header {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 0.4rem;
+  padding-top: 0.6em;
 
 }
 

@@ -81,7 +81,7 @@ export default class ProductDetails extends Component {
     const { name, thumbnail, avaliations } = this.state;
     return (
       <div>
-        <header>
+        <header className="page-header">
           <Link to="/">
             <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -100,7 +100,6 @@ export default class ProductDetails extends Component {
         </div>
 
         <img src={ thumbnail } alt={ name } />
-
         <p>
           Especificações do produto...
         </p>
@@ -110,7 +109,7 @@ export default class ProductDetails extends Component {
 
         <button
           type="button"
-          onClick={ this.saveItemsFromDetail(item) }
+          onClick={ () => this.saveItemsFromDetail(item) }
           data-testid="product-detail-add-to-cart"
         >
           Adicionar ao carrinho
