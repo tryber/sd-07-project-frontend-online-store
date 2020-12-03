@@ -6,3 +6,7 @@ export { default as ShoppingCartButton } from './ShoppingCartButton';
 export { default as Buy } from './Buy';
 export { default as EmptyList } from './EmptList';
 export { default as ShoppingCardList } from './ShoppingCardList';
+export { default as GoBack } from './GoBack';
+export { default as Quantity } from './Quantity';
+export { default as RemoveItem } from './RemoveItem';
+export { default as Total } from './Total';
