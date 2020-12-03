@@ -4,5 +4,6 @@ export { default as ProductCard } from './ProductCard';
 export { default as SearchBar } from './SearchBar';
 export { default as ShoppingCartButton } from './ShoppingCartButton';
 export { default as Buy } from './Buy';
-export { default as EmptyList } from './EmptList';
+export { default as EmptyList } from './EmptyList';
 export { default as ShoppingCardList } from './ShoppingCardList';
+export { default as ShoppingCardListBuy } from './ShoppingCardListBuy';
