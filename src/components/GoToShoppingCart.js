@@ -6,8 +6,8 @@ class GoToShoppingCart extends Component {
   render() {
     return (
       <div>
-        <Link to="/shoppingCart">
-          <button className="bt-but" type="button" data-testid="shopping-cart-button">
+        <Link to="/shoppingCart" data-testid="shopping-cart-button">
+          <button className="bt-but" type="button">
             <CartIcon />
           </button>
         </Link>

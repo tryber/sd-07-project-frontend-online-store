@@ -49,7 +49,7 @@ class ProductDetails extends Component {
     }
   }
 
-  async addShoppingCartItems() {
+  addShoppingCartItems() {
     const oldList = recoveryProductsFromLocalStorage();
     this.setState({
       shoppingCartItems: oldList,
@@ -57,11 +57,12 @@ class ProductDetails extends Component {
 
     const { product } = this.state;
 
-    await this.setState((previousState) => ({
+    this.setState((previousState) => ({
       shoppingCartItems: [...previousState.shoppingCartItems, product],
-    }));
-    const { shoppingCartItems } = this.state;
-    addProductInLocalStorage(shoppingCartItems);
+    }), () => {
+      const { shoppingCartItems } = this.state;
+      addProductInLocalStorage(shoppingCartItems);
+    });
   }
 
   render() {
