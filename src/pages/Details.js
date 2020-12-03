@@ -5,8 +5,7 @@ import { ShoppingCartButton, Buy } from '../components/index';
 
 class Details extends Component {
   render() {
-    const { location: { id, title, thumbnail, price, shipping } } = this.props;
-    const { free_shipping } = shipping;
+    const { location: { id, title, thumbnail, price } } = this.props;
     const { shoppingCard, addToCard } = this.props;
     return (
       <div>
@@ -22,7 +21,6 @@ class Details extends Component {
         <div>
           <img alt={ title } src={ thumbnail } />
         </div>
-        {free_shipping ? <span data-testid="free-shipping">Frete Grátis</span> : false}
         <Buy
           dataTestId="product-detail-add-to-cart"
           id={ id }
