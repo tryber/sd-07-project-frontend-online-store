@@ -56,13 +56,14 @@ class ReviewList extends Component {
   }
 
   render() {
-    const { reviewsObj } = this.state;
+    // const { reviewsObj } = this.state;
+    const localStorageList = recoveryReviewsFromLocalStorage();
 
     return (
       <div>
         <ReviewForm onClick={ this.onClick } />
         <div>
-          {reviewsObj.map(({ email, rating, comments, id }) => (
+          {localStorageList.map(({ email, rating, comments, id }) => (
             <div key={ id }>
               <span>{email}</span>
               <span>{rating}</span>

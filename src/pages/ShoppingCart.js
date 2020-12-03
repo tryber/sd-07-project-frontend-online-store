@@ -15,6 +15,7 @@ class ShoppingCart extends Component {
 
   render() {
     const { shoppingCartItems } = this.state;
+    const localStorageList = cartFunctions.recoveryProductsFromLocalStorage();
     console.log(shoppingCartItems);
 
     if (shoppingCartItems[0]) {
@@ -35,7 +36,7 @@ class ShoppingCart extends Component {
               </button>
             </Link>
           </div>
-          {shoppingCartItems.map((product) => (
+          {localStorageList.map((product) => (
             <AddAndRemove
               key={ product.id }
               id={ product.id }
