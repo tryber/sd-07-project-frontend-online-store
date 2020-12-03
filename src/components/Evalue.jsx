@@ -17,16 +17,16 @@ class Evalue extends Component {
     };
   }
 
-  handleDate(key, value) {
-    this.setState({ [key]: value });
-  }
-
   onClick(element) {
     const { firstChild: { src, id }, parentNode: { childNodes } } = element;
     this.setState({ note: +id });
     return src.includes(starOff)
       ? childNodes.forEach(({ firstChild: e }) => { if (e.id <= id) e.src = starOn; })
       : childNodes.forEach(({ firstChild: e }) => { if (e.id >= id) e.src = starOff; });
+  }
+
+  handleDate(key, value) {
+    this.setState({ [key]: value });
   }
 
   render() {
