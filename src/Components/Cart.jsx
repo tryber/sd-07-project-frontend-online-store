@@ -66,7 +66,10 @@ class Cart extends React.Component {
               <span>Total</span>
               <span>R$0,00</span>
             </div>
-            <button className="btn-chashout" type="submit" data-testid="shopping-cart-button">
+            <button
+              className="btn-chashout"
+              type="submit"
+              data-testid="shopping-cart-button">
               Pagar
             </button>
           </div>
