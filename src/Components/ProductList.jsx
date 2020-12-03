@@ -11,7 +11,7 @@ class ProductList extends React.Component {
         Digite algum termo de pesquisa ou escolha uma categoria.
       </p>
     ) : (
-      listProduct.map((product) => (
+      products.map((product) => (
         <div
           className="container-product"
           data-testid="product"
@@ -20,7 +20,12 @@ class ProductList extends React.Component {
           <div className="image-product">
             <img src={ product.thumbnail } alt="imagem do produto" />
           </div>
-          <div className="header-product">{product.title}</div>
+          <div
+            data-testid="shopping-cart-product-name"
+            className="header-product"
+          >
+            {product.title}
+          </div>
           <div className="price-product">{`R$${product.price}`}</div>
         </div>
       ))
