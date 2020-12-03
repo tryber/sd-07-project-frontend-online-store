@@ -9,6 +9,8 @@ class App extends Component {
   constructor() {
     super();
     this.addToCard = this.addToCard.bind(this);
+    this.changeQuantity = this.changeQuantity.bind(this);
+    this.removeItem = this.removeItem.bind(this);
     this.state = {
       shoppingCard: [],
     };
@@ -36,6 +38,30 @@ class App extends Component {
     });
   }
 
+  removeItem(id) {
+    const { shoppingCard } = this.state;
+    const index = shoppingCard.findIndex((item) => item.id === id);
+    shoppingCard.splice(index, 1);
+    this.setState({ shoppingCard });
+  }
+
+  changeQuantity(id, quantity) {
+    const { shoppingCard } = this.state;
+    const index = shoppingCard.findIndex((item) => item.id === id);
+    const itemChanged = shoppingCard[index];
+    itemChanged.quantity = quantity;
+    shoppingCard.splice(index, 1, itemChanged);
+    this.setState({ shoppingCard });
+
+    // const { shoppingCard } = this.state;
+    // shoppingCard.map(item => {
+    //   if (item.id === id) item.quantity = quantity;
+    //   return (true);
+    // });
+    // this.setState({ shoppingCard: shoppingCard });
+    // return
+  }
+
   render() {
     const { shoppingCard } = this.state;
     return (
@@ -45,16 +71,19 @@ class App extends Component {
             exact
             path="/"
             render={ () => (
-              <Home
-                shoppingCard={ shoppingCard }
-                addToCard={ this.addToCard }
-              />
+              <Home shoppingCard={ shoppingCard } addToCard={ this.addToCard } />
             ) }
           />
           <Route
             exact
             path="/shoppingCart"
-            render={ (props) => <ShoppingCart { ...props } /> }
+            render={ (props) => (
+              <ShoppingCart
+                { ...props }
+                changeQuantity={ this.changeQuantity }
+                removeItem={ this.removeItem }
+              />
+            ) }
           />
           <Route
             exact

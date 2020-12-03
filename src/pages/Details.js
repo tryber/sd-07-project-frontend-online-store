@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { ShoppingCartButton, Buy, Evalue, Assessments } from '../components/index';
+import {
+  ShoppingCartButton, Buy, Evalue, Assessments, GoBack
+} from '../components/index';
 
 class Details extends Component {
   constructor() {
@@ -43,7 +44,7 @@ class Details extends Component {
     return (
       <div>
         <div>
-          <Link to="/">Return</Link>
+          <GoBack />
         </div>
         <div>
           <ShoppingCartButton productsInShoppingCart={ shoppingCard } />
