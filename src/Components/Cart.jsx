@@ -69,7 +69,8 @@ class Cart extends React.Component {
             <button
               className="btn-chashout"
               type="submit"
-              data-testid="shopping-cart-button">
+              data-testid="shopping-cart-button"
+            >
               Pagar
             </button>
           </div>
