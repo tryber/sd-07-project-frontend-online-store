@@ -3,7 +3,7 @@ import PropTypes, { object } from 'prop-types';
 import GoToShoppingCart from '../components/GoToShoppingCart';
 // import * as api from '../services/api';
 // import Loading from '../components/Loading';
-// import ReviewList from '../components/ReviewList';
+import ReviewList from '../components/ReviewList';
 import AddSpecificProduct from '../components/AddSpecificProduct';
 import {
   addProductInLocalStorage,
@@ -121,7 +121,7 @@ class ProductDetails extends Component {
           </button>
         </div>
         <AddSpecificProduct addShoppingCartItems={ this.addShoppingCartItems } />
-        {/* <ReviewList /> */}
+        <ReviewList />
         <Footer />
       </div>
     );
