@@ -70,7 +70,7 @@ class ProductsList extends Component {
     });
   }
 
-  async addShoppingCartItems(event) {
+  addShoppingCartItems(event) {
     const oldList = recoveryProductsFromLocalStorage();
     this.setState({
       shoppingCartItems: oldList,
@@ -79,11 +79,12 @@ class ProductsList extends Component {
     const { id } = target;
     const { productsToRender } = this.state;
     const newItem = productsToRender.filter((product) => product.id === id);
-    await this.setState((previousState) => ({
+    this.setState((previousState) => ({
       shoppingCartItems: [...previousState.shoppingCartItems, newItem[0]],
-    }));
-    const { shoppingCartItems } = this.state;
-    addProductInLocalStorage(shoppingCartItems);
+    }), () => {
+      const { shoppingCartItems } = this.state;
+      addProductInLocalStorage(shoppingCartItems);
+    });
   }
 
   render() {

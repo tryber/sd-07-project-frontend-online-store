@@ -15,9 +15,11 @@ class ShoppingCart extends Component {
 
   render() {
     const { shoppingCartItems } = this.state;
+    const localStorageList = cartFunctions.recoveryProductsFromLocalStorage();
     console.log(shoppingCartItems);
+    const compareNumber = 0;
 
-    if (shoppingCartItems[0]) {
+    if (shoppingCartItems.length !== compareNumber) {
       return (
         <section>
           <div><h2>Carrinho de compras</h2></div>
@@ -30,12 +32,12 @@ class ShoppingCart extends Component {
           </div>
           <div>
             <Link to="./Checkout">
-              <button type="button">
+              <button type="button" data-testid="checkout-products">
                 Finalizar Compra
               </button>
             </Link>
           </div>
-          {shoppingCartItems.map((product) => (
+          {localStorageList.map((product) => (
             <AddAndRemove
               key={ product.id }
               id={ product.id }
@@ -62,12 +64,12 @@ class ShoppingCart extends Component {
             Seu carrinho está vazio
           </h3>
         </ul>
-        <Footer />
         <Link to="./Checkout">
           <button type="button">
             Finalizar Compra
           </button>
         </Link>
+        <Footer />
       </div>
     );
   }

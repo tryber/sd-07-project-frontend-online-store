@@ -16,7 +16,7 @@ class IndividualCard extends Component {
             to={ { pathname: '/product', product } }
             data-testid="product-detail-link"
           >
-            <button type="button" className="bt-det">
+            <button type="button" className="bt-det" data-testid="product-detail-link">
               Ver detalhes
             </button>
           </Link>
