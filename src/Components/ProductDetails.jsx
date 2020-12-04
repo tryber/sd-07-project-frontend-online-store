@@ -8,7 +8,6 @@ class ProductDetails extends React.Component {
 
     this.getDetailProduct = this.getDetailProduct.bind(this);
     this.submitComent = this.submitComent.bind(this);
-
   }
 
   componentDidMount() {
@@ -83,9 +82,7 @@ class ProductDetails extends React.Component {
             Avaliar
           </button>
           <div className="reviews">
-            <ul id="reviews">
-
-            </ul>
+            <ul id="reviews" />
           </div>
         </div>
       </div>
