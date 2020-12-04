@@ -1,51 +1,54 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import {
-  ButtonSubmit,
-  Form,
+  CartIcon,
   HeaderContainer,
-  HeaderContent, InputText,
-  ShoppingCartIcon,
+  HeaderContent,
+  SearchInput,
+  SearchLabel,
 } from './styles';
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { worldSearch: '' };
-    this.handlerWorlds = this.handlerWorlds.bind(this);
+    this.state = { query: '' };
+    this.changeQuery = this.changeQuery.bind(this);
   }
 
-  handlerWorlds({ target }) {
+  changeQuery({ target }) {
     const { value } = target;
-    this.setState({ worldSearch: value });
+    this.setState({ query: value });
   }
 
   render() {
-    const { handleWorldSearch } = this.props;
-    const { worldSearch } = this.state;
-
+    const { quantity } = this.props;
+    const { query } = this.state;
     return (
       <HeaderContainer>
         <HeaderContent>
-          <Form>
-            <InputText
+          <SearchLabel>
+            <SearchInput
+              type="text"
               data-testid="query-input"
-              value={ worldSearch }
-              onChange={ this.handlerWorlds }
+              value={ query }
+              onChange={ this.changeQuery }
             />
-            <ButtonSubmit
+            <Link
+              to={ `/search/0/${query || '0'}` }
               data-testid="query-button"
-              onClick={ handleWorldSearch }
-              value={ worldSearch }
             >
-              Buscar
-            </ButtonSubmit>
-          </Form>
-          <Link to="/shopping-cart" data-testid="shopping-cart-button">
-            <ShoppingCartIcon />
+              buscar
+            </Link>
+          </SearchLabel>
+
+          <Link
+            to="/shopping"
+            data-testid="shopping-cart-button"
+          >
+            <span data-testid="shopping-cart-size">{ quantity }</span>
+            <CartIcon />
           </Link>
         </HeaderContent>
       </HeaderContainer>
@@ -54,7 +57,7 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  handleWorldSearch: PropTypes.func.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 export default Header;

@@ -1,64 +1,91 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { getProductsFromCategoryAndQuery } from '../../services/api';
+
+import ProductItem from '../ProductItem';
+
 import {
-  ProducEmpty,
   ProductsContainer,
   ProductsContent,
 } from './styles';
 
-import Card from '../Card';
-import { getProductsFromCategoryAndQuery } from '../../services/api';
-
 class Products extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { products: [], currentIdCategory: '', currentWorldSearch: '' };
-    this.fetchAPI = this.fetchAPI.bind(this);
+    this.state = {
+      search: false,
+      products: JSON.parse(localStorage.getItem('products')) || [],
+      currency: {},
+    }
   }
 
-  componentDidUpdate() {
-    const { category, query } = this.props;
-    const { currentIdCategory, currentWorldSearch } = this.state;
-    const byCategory = category !== '' && category !== currentIdCategory;
-    const byWorldSearch = query !== '' && query !== currentWorldSearch;
-    if (byCategory || byWorldSearch) this.updateState(category, query);
+  async componentDidMount() {
+    await this.setup();
+    await this.verifyExistSearch();
   }
 
-  updateState(category, query) {
-    this.setState({
-      currentIdCategory: category,
-      currentWorldSearch: query,
-    });
-    this.fetchAPI();
+  async componentDidUpdate() {
+    const { match } = this.props;
+    const { category, query } = match.params
+    const { currency } = this.state;
+    if (currency.category !== category || currency.query !== query) {
+      await this.setup();
+    }
   }
 
-  async fetchAPI() {
-    const { category, query } = this.props;
+  async setup() {
+    await this.initSearch();
+  }
+
+  async initSearch() {
+    const { match } = this.props;
+    const { category, query } = match.params;
+    await this.setState({ currency: { category, query } });
+    if (
+      (category !== '0' && category !== undefined)
+      || (query !== '0' && query !== undefined)
+    ) {
+      await this.fetchGetProducts();
+    }
+  }
+
+  async fetchGetProducts() {
+    const { currency: { category, query } } = this.state;
     const { results } = await getProductsFromCategoryAndQuery(category, query);
-    this.setState({ products: results });
+    localStorage.setItem('products', JSON.stringify(results));
+    this.setState({ products: results, search: true });
+  }
+
+  async verifyExistSearch() {
+    const empty = 0;
+    const { products } = this.state;
+    const lengthProducts = products.length;
+    if (lengthProducts !== empty) {
+      await this.setState({ search: true });
+    }
   }
 
   render() {
-    const { category, query } = this.props;
-    const { products } = this.state;
-    const productsEmpty = products.length;
+    const { search, products } = this.state;
+    const { updateQuantity } = this.props;
+
+    if (!search) {
+      return (
+        <h3 data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </h3>
+      );
+    }
+
     return (
       <ProductsContainer>
         <ProductsContent>
-          {!productsEmpty && (
-            <ProducEmpty data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </ProducEmpty>
-          )}
-
           {products.map((product) => (
-            <Card
-              key={ product.id }
+            <ProductItem
+              key={product.id}
               product={ product }
-              category={ category }
-              query={ query }
+              updateQuantity={ updateQuantity }
             />
           ))}
         </ProductsContent>
@@ -68,13 +95,22 @@ class Products extends React.Component {
 }
 
 Products.propTypes = {
-  category: PropTypes.string,
-  query: PropTypes.string,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      category: PropTypes.string,
+      query: PropTypes.string,
+    }),
+  }),
+  updateQuantity: PropTypes.func.isRequired,
 };
 
 Products.defaultProps = {
-  category: '',
-  query: '',
+  match: {
+    params: {
+      category: '0',
+      query: '0',
+    },
+  },
 };
 
 export default Products;
