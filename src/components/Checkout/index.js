@@ -5,12 +5,9 @@ import {
   CepInput,
   CheckoutContainer,
   CheckoutContent,
-  CheckoutForm,
-  CPFInput,
-  EmailInput,
-  NameInput,
-  Pay,
-  PhoneInput,
+  CheckoutForm, CPFInput, EmailInput, LabelAddress, LabelCep, LabelCPF, LabelEmail,
+  LabelName, LabelPhone,
+  NameInput, Pay, PhoneInput,
 } from './styles';
 
 class Checkout extends React.Component {
@@ -19,12 +16,24 @@ class Checkout extends React.Component {
       <CheckoutContainer>
         <CheckoutContent>
           <CheckoutForm>
-            <NameInput data-testid="checkout-fullname" />
-            <EmailInput data-testid="checkout-email" />
-            <CPFInput data-testid="checkout-cpf" />
-            <PhoneInput data-testid="checkout-phone" />
-            <CepInput data-testid="checkout-cep" />
-            <AddressInput data-testid="checkout-address" />
+            <LabelName>
+              <NameInput data-testid="checkout-fullname" />
+            </LabelName>
+            <LabelEmail>
+              <EmailInput data-testid="checkout-email" />
+            </LabelEmail>
+            <LabelCPF>
+              <CPFInput data-testid="checkout-cpf" />
+            </LabelCPF>
+            <LabelPhone>
+              <PhoneInput data-testid="checkout-phone" />
+            </LabelPhone>
+            <LabelCep>
+              <CepInput data-testid="checkout-cep" />
+            </LabelCep>
+            <LabelAddress>
+              <AddressInput data-testid="checkout-address" />
+            </LabelAddress>
             <Pay>Pagar</Pay>
           </CheckoutForm>
         </CheckoutContent>

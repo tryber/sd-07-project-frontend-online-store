@@ -24,5 +24,4 @@ export const CepInput = styled.input``;
 export const LabelAddress = styled.label``;
 export const AddressInput = styled.input``;
 
-
 export const Pay = styled.button``;
