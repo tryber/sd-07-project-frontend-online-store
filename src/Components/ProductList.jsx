@@ -35,6 +35,11 @@ class ProductList extends React.Component {
           </div>
           <div className="header-product">{product.title}</div>
           <div className="price-product">{`R$${product.price}`}</div>
+          <div className="shipping">
+            {product.shipping.free_shipping === true
+              ? <p data-testid="free-shipping">frete grátis</p>
+              : ' '}
+          </div>
           <Link
             to={ { pathname: `productdetail/${product.id}`, state: products } }
             data-testid="product-detail-link"
