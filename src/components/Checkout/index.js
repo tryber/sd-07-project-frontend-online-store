@@ -17,34 +17,22 @@ class Checkout extends React.Component {
         <CheckoutContent>
           <CheckoutForm>
             <LabelName>
-              <NameInput
-                data-testid="checkout-fullname"
-              />
+              <NameInput data-testid="checkout-fullname" />
             </LabelName>
             <LabelEmail>
-              <EmailInput
-                data-testid="checkout-email"
-              />
+              <EmailInput data-testid="checkout-email" />
             </LabelEmail>
             <LabelCPF>
-              <CPFInput
-                data-testid="checkout-cpf"
-              />
+              <CPFInput data-testid="checkout-cpf" />
             </LabelCPF>
             <LabelPhone>
-              <PhoneInput
-                data-testid="checkout-phone"
-              />
+              <PhoneInput data-testid="checkout-phone" />
             </LabelPhone>
             <LabelCep>
-              <CepInput
-                data-testid="checkout-cep"
-              />
+              <CepInput data-testid="checkout-cep" />
             </LabelCep>
             <LabelAddress>
-              <AddressInput
-                data-testid="checkout-address"
-              />
+              <AddressInput data-testid="checkout-address" />
             </LabelAddress>
             <Pay>Pagar</Pay>
           </CheckoutForm>

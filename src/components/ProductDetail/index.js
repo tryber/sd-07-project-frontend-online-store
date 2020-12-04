@@ -70,7 +70,7 @@ class ProductDetail extends React.Component {
       price: product.price,
       title: product.title,
       available_quantity: product.available_quantity,
-    }
+    };
   }
 
   render() {
@@ -87,6 +87,7 @@ class ProductDetail extends React.Component {
           </ProductDetailTitle>
           <ProductDetailImage src={ thumbnail } alt={ title } />
           <button
+            type="button"
             data-testid="product-detail-add-to-cart"
             onClick={ (event) => {
               this.productAddToCart(event, id);

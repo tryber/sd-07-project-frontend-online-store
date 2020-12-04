@@ -29,8 +29,9 @@ class ShoppingCarts extends React.Component {
   }
 
   async updateQuantity() {
+    const zero = 0;
     const { shopping } = this.state;
-    const quantity = shopping.reduce((acc, curr) => acc + curr.quantity, 0);
+    const quantity = shopping.reduce((acc, curr) => acc + curr.quantity, zero);
     await this.setState({ quantity });
   }
 
@@ -79,6 +80,7 @@ class ShoppingCarts extends React.Component {
             <div key={ cart.id }>
               <h4 data-testid="shopping-cart-product-name">{ cart.title }</h4>
               <button
+                type="button"
                 data-testid="product-decrease-quantity"
                 onClick={ (event) => this.decreaseQuantity(event, cart.id) }
               >

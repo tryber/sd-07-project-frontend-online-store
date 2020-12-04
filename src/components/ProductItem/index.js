@@ -61,7 +61,7 @@ class ProductItem extends React.Component {
       price: product.price,
       title: product.title,
       available_quantity: product.available_quantity,
-    }
+    };
   }
 
   render() {

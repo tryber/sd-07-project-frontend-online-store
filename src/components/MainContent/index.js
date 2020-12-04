@@ -23,8 +23,9 @@ class MainContent extends React.Component {
   }
 
   async updateQuantity() {
+    const zero = 0;
     const shopping = JSON.parse(localStorage.getItem('shopping')) || [];
-    const quantity = shopping.reduce((acc, curr) => acc + curr.quantity, 0);
+    const quantity = shopping.reduce((acc, curr) => acc + curr.quantity, zero);
     await this.setState({ quantity });
   }
 

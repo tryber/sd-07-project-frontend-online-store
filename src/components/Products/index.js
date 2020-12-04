@@ -17,7 +17,7 @@ class Products extends React.Component {
       search: false,
       products: JSON.parse(localStorage.getItem('products')) || [],
       currency: {},
-    }
+    };
   }
 
   async componentDidMount() {
@@ -27,7 +27,7 @@ class Products extends React.Component {
 
   async componentDidUpdate() {
     const { match } = this.props;
-    const { category, query } = match.params
+    const { category, query } = match.params;
     const { currency } = this.state;
     if (currency.category !== category || currency.query !== query) {
       await this.setup();
@@ -83,7 +83,7 @@ class Products extends React.Component {
         <ProductsContent>
           {products.map((product) => (
             <ProductItem
-              key={product.id}
+              key={ product.id }
               product={ product }
               updateQuantity={ updateQuantity }
             />
