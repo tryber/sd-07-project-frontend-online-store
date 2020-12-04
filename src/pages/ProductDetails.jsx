@@ -48,7 +48,11 @@ export default class ProductDetails extends Component {
     const { title, price, thumbnail } = product;
     return (
       <div className="details">
-        <Link data-testid="shopping-cart-button" className="cartButton" to="/pages/shopping-cart">
+        <Link
+          data-testid="shopping-cart-button"
+          className="cartButton"
+          to="/pages/shopping-cart"
+        >
           Carrinho
           <span
             className="cart-quantity"
@@ -70,7 +74,7 @@ export default class ProductDetails extends Component {
               data-testid="product-detail-evaluation"
               onChange={ this.handleMessage }
             />
-            <br/>
+            <br />
             <input
               type="number"
               name="evaluation"

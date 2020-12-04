@@ -112,16 +112,18 @@ export default class ShoppingCart extends Component {
             </p>
             <button
               onClick={ ({ target }) => this.addSubButton(id, target.name) }
-              className="add-button"
+              className="add-button btnAddSub"
               name="add"
               data-testid="product-increase-quantity"
               type="button"
               disabled={ amount === totalAmount }
-              className="btnAddSub"
             >
               +
             </button>
-            <p className="product-price">R${ price }</p>
+            <p className="product-price">
+              R$
+              { price }
+            </p>
           </div>
         ))}
         <p className="totalValue">
@@ -148,7 +150,7 @@ export default class ShoppingCart extends Component {
           <div className="header">
             <Link to="/">Voltar</Link>
           </div>
-            {this.productsList()}
+          {this.productsList()}
         </div>
       );
     }

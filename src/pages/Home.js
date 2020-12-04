@@ -53,8 +53,8 @@ export default class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <div className="content">
-        <CategoriesList onClick={ this.handleRadioClick } />
-        <ProductList products={ products } updateCartSize={ this.updateCartSize } />
+          <CategoriesList onClick={ this.handleRadioClick } />
+          <ProductList products={ products } updateCartSize={ this.updateCartSize } />
         </div>
       </div>
     );

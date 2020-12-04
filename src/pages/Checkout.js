@@ -64,67 +64,67 @@ export default class Checkout extends React.Component {
           </div>
         ))}
         <form className="formGroup">
-            <input
-              placeholder="Nome"
-              name="fullName"
-              type="text"
-              data-testid="checkout-fullname"
-              id="checkout-fullname"
-              value={ fullName }
-              onChange={ this.onChange }
-              required
-            />
-            <input
-              placeholder="Email"
-              name="email"
-              type="text"
-              data-testid="checkout-email"
-              id="checkout-email"
-              value={ email }
-              onChange={ this.onChange }
-              required
-            />
-            <input
-              placeholder="CPF"
-              name="cpf"
-              type="text"
-              data-testid="checkout-cpf"
-              id="checkout-cpf"
-              maxLength="11"
-              value={ cpf }
-              onChange={ this.onChange }
-              required
-            />
-            <input
-              placeholder="Telefone"
-              name="phone"
-              type="text"
-              data-testid="checkout-phone"
-              id="checkout-phone"
-              value={ phone }
-              onChange={ this.onChange }
-              required
-            />
-            <input
-              placeholder="CEP"
-              name="cep"
-              type="text"
-              data-testid="checkout-cep"
-              id="checkout-cep"
-              value={ cep }
-              onChange={ this.onChange }
-              required
-            />
-            <input
-              placeholder="Endereço"
-              name="address"
-              type="text"
-              data-testid="checkout-address"
-              id="checkout-address"
-              value={ address }
-              onChange={ this.onChange }
-              required
-            />
+          <input
+            placeholder="Nome"
+            name="fullName"
+            type="text"
+            data-testid="checkout-fullname"
+            id="checkout-fullname"
+            value={ fullName }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="Email"
+            name="email"
+            type="text"
+            data-testid="checkout-email"
+            id="checkout-email"
+            value={ email }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="CPF"
+            name="cpf"
+            type="text"
+            data-testid="checkout-cpf"
+            id="checkout-cpf"
+            maxLength="11"
+            value={ cpf }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="Telefone"
+            name="phone"
+            type="text"
+            data-testid="checkout-phone"
+            id="checkout-phone"
+            value={ phone }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="CEP"
+            name="cep"
+            type="text"
+            data-testid="checkout-cep"
+            id="checkout-cep"
+            value={ cep }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="Endereço"
+            name="address"
+            type="text"
+            data-testid="checkout-address"
+            id="checkout-address"
+            value={ address }
+            onChange={ this.onChange }
+            required
+          />
           <input type="button" value="Finalizar compra" onClick={ this.concludeBuy } />
         </form>
       </div>
