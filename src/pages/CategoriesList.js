@@ -23,8 +23,8 @@ class CategoriesList extends React.Component {
     const { list } = this.state;
     const { onClick } = this.props;
     return (
-      <div>
-        Categorias de Produtos:
+      <div className="categories">
+        <h3>Categorias de Produtos:</h3>
         {list.map(({ id, name }) => (
           <div key={ id }>
             <input

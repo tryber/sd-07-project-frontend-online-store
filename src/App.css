@@ -1,56 +1,318 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  background-color: #E2E2E2;
 }
 
 header {
-  width: 100%;
-  padding: 10px;
+  width: 98%;
+  padding: 20px;
+  background: #0A2463;
+  display: flex;
+  justify-content: space-between;
 }
 
 header input {
   width: 80%;
+  height: 20px;
+  box-shadow: 3px 3px #00000044;
 }
 
-header a {
+header button {
+  padding: 7px;
+  font-size: 14px ;
+  border: 1px solid black;
+  border-radius: 3px ;
+  background-color: white;
+}
+
+.cartButton {
   padding: 5px;
-  margin: 10px;
   text-decoration: none;
   color: black;
   border: 1px solid black;
   border-radius: 3px ;
+  background-color: #FB3640;
+}
+
+.header {
+  width: 100%;
+  padding: 20px 0 20px 20px;
+  background: #0A2463;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.categories {
+  text-align: left;
+  width: 10%;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  background-color: #247BA0;
+  padding: 15px 0 15px 20px;
+}
+
+.contentPage {
+  padding: 10px 0 10px 0;
+  text-align: center;
+  background-color: white;
+}
+
+.content {
+  display: flex;
+  text-align: center;
+}
+
+.cards {
+  margin: 10px;
+  display: inline-block;
+  width: 200px;
+  align-items: center;
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+}
+
+.cards a {
+  text-decoration: none;
+  color: black;
+}
+
+.cards h4{
+  height: 50px;
+}
+
+.cards p{
+  font-weight: bolder;
+  background-color: #247BA0;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+}
+
+.cards button {
+  width: 100px;
+  background-color: #FB3640;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  margin-bottom: 15px;
+}
+
+.cards button:active {
+  background-color: #EA2530;
+  color: white;
+}
+
+.cards img {
+  width: 90%;
+}
+
+.cart-quantity {
+  padding: 2px;
+  border-radius: 5px;
+  border: 1px solid white;
+  color: white;
+  font-weight: bolder;
+  margin: 5px
+}
+
+.btnAddSub {
+  font-weight: bolder;
+  flex-direction: row;
+  display: inline-block;
+  width: 20px !important;
+  padding: 15px !important;
+  margin: 10px;
+}
+
+.shoppingCards {
+  margin: 10px;
+  display: inline-block;
+  width: 200px;
+  align-items: center;
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+}
+
+.shoppingCards a {
+  text-decoration: none;
+  color: black;
+}
+
+.shoppingCards h4{
+  height: 50px;
+}
+
+.shoppingCards p{
+  font-weight: bolder;
+  background-color: #247BA0;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+}
+
+.shoppingCardsTitle{
+  font-weight: bolder;
+  background-color: #247BA0;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  height: 100px;
+}
+
+.shoppingCards button {
+  width: 100px;
+  background-color: #FB3640;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  margin-bottom: 15px;
+}
+
+.shoppingCards button:active {
+  background-color: #EA2530;
+  color: white;
+}
+
+.shoppingCards img {
+  width: 100px;
+  border: 1px solid black;
+  margin: 20px
+}
+
+.totalValue {
+  font-weight: bolder;
+  background-color: #247BA0;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+}
+
+.finish{
+  float: right;
+  padding: 5px;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 3px ;
+  background-color: #FB3640;
+}
+
+.product-title {
+  font-weight: bolder;
+  background-color: #247BA0;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+  width: 90%;
+  border: 1px solid black;
+}
+
+.product-qtd {
+  font-weight: bolder;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  display: inline-block;
+  width: 5%;
+  border: 1px solid black;
+}
+
+.formGroup {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.formGroup input{
+  margin: 10px;
+  width: 30%;
+  min-width: 100px;
+  box-shadow: 3px 3px #00000044;
+}
+
+.formGroup input[type=button] {
+  background-color: #FB3640;
+  font-weight: bolder;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.product-details {
+  font-weight: bolder;
+  background-color: #247BA0;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+  width: 90%;
+  border: 1px solid black;
+}
+
+.details {
+  margin: 10px;
+  display: flex;
+  width: 95%;
+  align-items: center;
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+  flex-direction: column;
+}
+
+.details input {
+  width: 100px;
+  background-color: #247BA0;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  margin: 15px;
+}
+
+.details a {
+  text-decoration: none;
+  color: black;
+}
+
+.details h4{
+  height: 50px;
+}
+
+.details p{
+  font-weight: bolder;
+  background-color: #247BA0;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+}
+
+.details button {
+  width: 100px;
+  background-color: #FB3640;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  margin-bottom: 15px;
+}
+
+.details button:active {
+  background-color: #EA2530;
+  color: white;
+}
+
+.details img {
+  width: 200px;
 }

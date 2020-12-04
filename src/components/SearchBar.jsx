@@ -24,7 +24,7 @@ class SearchBar extends React.Component {
           Pesquisar
         </button>
 
-        <Link data-testid="shopping-cart-button" to="/pages/shopping-cart">
+        <Link data-testid="shopping-cart-button" className="cartButton" to="/pages/shopping-cart">
           Carrinho
           <span
             className="cart-quantity"

@@ -49,11 +49,13 @@ export default class Home extends Component {
           cartSize={ cartSize }
         />
 
-        <p data-testid="home-initial-message">
+        <p data-testid="home-initial-message" className="contentPage">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <div className="content">
         <CategoriesList onClick={ this.handleRadioClick } />
         <ProductList products={ products } updateCartSize={ this.updateCartSize } />
+        </div>
       </div>
     );
   }

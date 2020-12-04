@@ -47,8 +47,8 @@ export default class ProductDetails extends Component {
     const { product } = this.state;
     const { title, price, thumbnail } = product;
     return (
-      <div>
-        <Link data-testid="shopping-cart-button" to="/pages/shopping-cart">
+      <div className="details">
+        <Link data-testid="shopping-cart-button" className="cartButton" to="/pages/shopping-cart">
           Carrinho
           <span
             className="cart-quantity"
@@ -57,9 +57,9 @@ export default class ProductDetails extends Component {
             {cartApi.showQuantInCart()}
           </span>
         </Link>
-        <div className="product-details" data-testid="product-detail-name">
-          <h1>{ title }</h1>
-          <h2>{ price }</h2>
+        <div data-testid="product-detail-name">
+          <h4>{ title }</h4>
+          <p>{ price }</p>
           <img src={ thumbnail } alt={ `${title}` } />
 
           <div className="rating">
@@ -70,7 +70,7 @@ export default class ProductDetails extends Component {
               data-testid="product-detail-evaluation"
               onChange={ this.handleMessage }
             />
-
+            <br/>
             <input
               type="number"
               name="evaluation"

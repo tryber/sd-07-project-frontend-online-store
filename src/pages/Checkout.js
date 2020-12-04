@@ -63,10 +63,9 @@ export default class Checkout extends React.Component {
             </p>
           </div>
         ))}
-        <form>
-          <label htmlFor="checkout-fullname">
-            Nome:
+        <form className="formGroup">
             <input
+              placeholder="Nome"
               name="fullName"
               type="text"
               data-testid="checkout-fullname"
@@ -75,10 +74,8 @@ export default class Checkout extends React.Component {
               onChange={ this.onChange }
               required
             />
-          </label>
-          <label htmlFor="checkout-email">
-            E-mail:
             <input
+              placeholder="Email"
               name="email"
               type="text"
               data-testid="checkout-email"
@@ -87,10 +84,8 @@ export default class Checkout extends React.Component {
               onChange={ this.onChange }
               required
             />
-          </label>
-          <label htmlFor="checkout-cpf">
-            CPF:
             <input
+              placeholder="CPF"
               name="cpf"
               type="text"
               data-testid="checkout-cpf"
@@ -100,10 +95,8 @@ export default class Checkout extends React.Component {
               onChange={ this.onChange }
               required
             />
-          </label>
-          <label htmlFor="checkout-phone">
-            Telefone:
             <input
+              placeholder="Telefone"
               name="phone"
               type="text"
               data-testid="checkout-phone"
@@ -112,10 +105,8 @@ export default class Checkout extends React.Component {
               onChange={ this.onChange }
               required
             />
-          </label>
-          <label htmlFor="checkout-cep">
-            CEP:
             <input
+              placeholder="CEP"
               name="cep"
               type="text"
               data-testid="checkout-cep"
@@ -124,10 +115,8 @@ export default class Checkout extends React.Component {
               onChange={ this.onChange }
               required
             />
-          </label>
-          <label htmlFor="checkout-address">
-            Endereço:
             <input
+              placeholder="Endereço"
               name="address"
               type="text"
               data-testid="checkout-address"
@@ -136,8 +125,7 @@ export default class Checkout extends React.Component {
               onChange={ this.onChange }
               required
             />
-          </label>
-          <input type="button" value="finalizar compra" onClick={ this.concludeBuy } />
+          <input type="button" value="Finalizar compra" onClick={ this.concludeBuy } />
         </form>
       </div>
     );
