@@ -43,7 +43,9 @@ class ProductList extends React.Component {
             Detalhes
           </Link>
           <Link
-            to={ { pathname: `cart/${product.id}`, state: products[0] } }
+          
+            to={ { pathname: `cart/${product.id}`,
+              state: (listProduct.filter((acc) => product.id === acc.id)) [0] } }
             data-testid="product-add-to-cart"
             className="btn-details"
           >
