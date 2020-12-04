@@ -37,8 +37,7 @@ export const showQuantInCart = () => {
   const cart = readCart();
   const zero = 0;
   if (cart) {
-    return (cart
-      .reduce((previous, { amount }) => previous + amount, zero));
+    return (cart.reduce((previous, { amount }) => previous + amount, zero));
   }
   return zero;
 };
