@@ -7,7 +7,6 @@ class ProductList extends React.Component {
     super();
 
     this.getdata = this.getdata.bind(this);
-
   }
 
   getdata() {

@@ -34,9 +34,9 @@ class Cart extends React.Component {
             </tr>
             <tr>
             <td data-testid="shopping-cart-product-name">{product.title}</td>
-              <td>{product.price}</td>
-              <td data-testid="shopping-cart-product-quantity">{quantity}</td>
-              <td>0</td>
+            <td>{product.price}</td>
+            <td data-testid="shopping-cart-product-quantity">{quantity}</td>
+            <td>0</td>
             </tr>
           </table>
           <Link to="/" className="btn-back-shop">
