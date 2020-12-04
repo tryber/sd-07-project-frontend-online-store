@@ -333,3 +333,38 @@ body {
   margin: auto;
   color: #c9c9c9;
 }
+.review-detail form {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.review-detail form input {
+  border:none;
+  border-radius: 5px;
+  padding: 10px ;
+  margin-bottom:10px;
+}
+
+.review-detail form textarea {
+  border:none;
+  border-radius: 5px;
+  padding: 10px ;
+}
+
+.reviews {
+  background-color: #acc8d4;
+  text-align: left;
+  margin-top:15px ;
+  padding: 5px;
+}
+
+.btn-comment {
+  background-color: #179267;
+  border:none;
+  border-radius:5px;
+  color: white;
+  font-weight: 700;
+  margin-top:10px ;
+  padding: 10px;
+}

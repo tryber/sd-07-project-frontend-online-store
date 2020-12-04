@@ -7,6 +7,8 @@ class ProductDetails extends React.Component {
     super();
 
     this.getDetailProduct = this.getDetailProduct.bind(this);
+    this.submitComent = this.submitComent.bind(this);
+
   }
 
   componentDidMount() {
@@ -21,6 +23,14 @@ class ProductDetails extends React.Component {
     } = this.props;
     const result = product.filter((acc) => acc.id === id);
     return result;
+  }
+
+  submitComent() {
+    const email = document.getElementById('userEmail').value;
+    const msg = document.getElementById('mensageUser').value;
+    const listReviews = document.getElementById('reviews');
+    const block = `<div className="coment">Usuario: ${email} <br> Mensagem: ${msg}</div>`;
+    listReviews.innerHTML = block;
   }
 
   render() {
@@ -53,6 +63,31 @@ class ProductDetails extends React.Component {
         <Link to="/" className="btn-back">
           Voltar
         </Link>
+        <div className="review-detail">
+          <h3>Deixe sua opinião</h3>
+          <form>
+            <input
+              type="email"
+              placeholder="E-mail: exemplo@exemplo.com"
+              id="userEmail"
+            />
+            <textarea
+              cols="33"
+              rowls="5"
+              placeholder="Mensagem opcional"
+              data-testid="product-detail-evaluation"
+              id="mensageUser"
+            />
+          </form>
+          <button type="submit" onClick={ this.submitComent } className="btn-comment">
+            Avaliar
+          </button>
+          <div className="reviews">
+            <ul id="reviews">
+
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }
