@@ -19,7 +19,7 @@ class Home extends React.Component {
       newSearch: '',
       searchKey: '',
       searchProducts: [],
-      categoryId: '',
+      categoryId: ' ',
       loading: false,
     };
   }
