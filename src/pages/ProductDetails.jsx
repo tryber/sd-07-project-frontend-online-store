@@ -15,7 +15,7 @@ class ProductDetails extends React.Component {
     this.state = {
       loading: true,
       product: {},
-    }
+    };
   }
 
   componentDidMount() {
@@ -56,8 +56,8 @@ class ProductDetails extends React.Component {
   render() {
     const { loading, product } = this.state;
     const { thumbnail, title, price } = product;
-    
-    if(loading) return <Loading />
+
+    if (loading) return <Loading />;
 
     return (
       <div className="page-container">
@@ -94,15 +94,5 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
 };
-
-ProductDetails.defaultProps = {
-  match: {
-    params: {
-      categoryId: "",
-      search: "",
-      id: "",
-    }
-  }
-}
 
 export default ProductDetails;

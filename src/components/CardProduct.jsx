@@ -40,13 +40,13 @@ class CardProduct extends React.Component {
     return (
       <div className="product-card">
         <Link
-          to={`/${categoryId}/${searchKey}/${id}`}
+          to={ `/${categoryId}/${searchKey}/${id}` }
         >
           <img src={ thumbnail } alt={ title } />
         </Link>
         <div className="product-info">
           <Link
-            to={`/${categoryId}/${searchKey}/${id}`}
+            to={ `/${categoryId}/${searchKey}/${id}` }
             data-testid="product"
             className="product-link"
           >
@@ -79,16 +79,5 @@ CardProduct.propTypes = {
     thumbnail: PropTypes.string,
   }).isRequired,
 };
-
-CardProduct.defaultProps = {
-  categoryId: " ",
-  searchKey: " ",
-  item: {
-    title: "",
-    id: "",
-    price: 0,
-    thumbnail: "",
-  }
-}
 
 export default CardProduct;
