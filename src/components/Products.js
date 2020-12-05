@@ -9,8 +9,8 @@ class Products extends React.Component {
         {allProducts === undefined ? (
           <p>loading</p>
         ) : (
-          allProducts.map((product) => (
-            <Product key={ product.title } product={ product } />)))}
+          allProducts.map((product) => <Product key={product.title} product={product} />)
+        )}
       </div>
     );
   }
