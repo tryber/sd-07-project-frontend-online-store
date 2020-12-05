@@ -1,53 +1,30 @@
 import React from 'react';
 
 class BuyerInformation extends React.Component {
+  renderInput(dataTestid, placeHolder) {
+    return (
+      <input
+        required
+        data-testid={dataTestid}
+        type="text"
+        placeholder={placeHolder}
+      />
+    );
+  }
+
   render() {
     return (
       <div className="checkout-component">
         <h2>Informação do Comprador</h2>
         <div className="buyer-inputs">
-          <input
-            required
-            data-testid="checkout-fullname"
-            type="text"
-            placeholder="Nome Completo"
-          />
-          <input
-            required
-            data-testid="checkout-cpf"
-            type="text"
-            placeholder="CPF"
-          />
-          <input
-            required
-            data-testid="checkout-email"
-            type="text"
-            placeholder="Email"
-          />
-        </div>
-        <div className="buyer-inputs">
-          <input
-            required
-            data-testid="checkout-cep"
-            type="text"
-            placeholder="CEP"
-          />
-          <input
-            required
-            data-testid="checkout-address"
-            type="text"
-            placeholder="Endereço"
-          />
-        </div>
-        <div className="buyer-inputs">
-          <input type="text" placeholder="Complemento" />
-          <input
-            required
-            data-testid="checkout-phone"
-            type="text"
-            placeholder="Número"
-          />
-          <input type="text" placeholder="Cidade" />
+            {this.renderInput('checkout-fullname', 'Nome Completo')}
+            {this.renderInput('checkout-cpf', 'CPF')}
+            {this.renderInput('checkout-email', 'Email')}
+            {this.renderInput('checkout-cep', 'CEP')}
+            {this.renderInput('checkout-address', 'Endereço')}
+            {this.renderInput('', 'Complemento')}
+            {this.renderInput('checkout-phone', 'Número')}
+            {this.renderInput('', 'Cidade')}     
         </div>
       </div>
     );

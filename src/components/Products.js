@@ -3,13 +3,13 @@ import Product from './Product';
 
 class Products extends React.Component {
   render() {
-    const { allProducts } = this.props;
+    const { products } = this.props;
     return (
       <div className="products">
-        {allProducts === undefined ? (
+        {products === undefined ? (
           <p>loading</p>
         ) : (
-          allProducts.map((product) => <Product key={product.title} product={product} />)
+          products.map((product) => <Product key={product.title} product={product} />)
         )}
       </div>
     );

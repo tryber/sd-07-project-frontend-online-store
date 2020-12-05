@@ -19,7 +19,6 @@ class CartItem extends React.Component {
               <QuantifyProducts />
             </li>
           </ul>
-        <span data-testid="price-product-cart">{ `R$ ${item.price}` }</span>
         </div>
       </div>
     );
