@@ -1,17 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 
 class ShoppingCartButton extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      quantity_cart: localStorage.getItem('items_cart'),
-    };
-  }
-
   render() {
+    const { cartQuantity } = this.props;
+
     return (
       <Link to="/pages/ShoppingCart" data-testid="shopping-cart-button">
         <svg
@@ -32,10 +26,14 @@ class ShoppingCartButton extends React.Component {
           0 1 0 0 2 1 1 0 0 0 0-2z"
           />
         </svg>
-        <span>{ localStorage.getItem('items_cart') === '0' ? '0' : this.state.quantity_cart }</span>
+        <span data-testid="shopping-cart-size">{ cartQuantity }</span>
       </Link>
     );
   }
 }
+
+ShoppingCartButton.propTypes = {
+  cartQuantity: PropTypes.number.isRequired,
+};
 
 export default ShoppingCartButton;

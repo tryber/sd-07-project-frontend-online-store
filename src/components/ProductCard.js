@@ -35,7 +35,7 @@ class ProductCard extends React.Component {
   }
 
   saveItems() {
-    const { item } = this.props;
+    const { item, addCartQuantity } = this.props;
     const {
       id,
       available_quantity: availableQuantity,
@@ -43,6 +43,7 @@ class ProductCard extends React.Component {
       price,
       thumbnail,
     } = item;
+    addCartQuantity();
     if (!localStorage.length) {
       localStorage.setItem('items',
         JSON.stringify([{
@@ -52,7 +53,7 @@ class ProductCard extends React.Component {
           quantity: availableQuantity,
           image: thumbnail,
         }]));
-        localStorage.setItem('items_cart', 1)
+      localStorage.setItem('items_cart', 1);
       return;
     }
     const objectValues = JSON.parse(localStorage.getItem('items'));
@@ -64,8 +65,8 @@ class ProductCard extends React.Component {
         quantity: availableQuantity,
         image: thumbnail,
       }]));
-    const cart_quantity = Number(localStorage.getItem('items_cart')) + 1;
-    localStorage.setItem('items_cart', cart_quantity);
+    const cartQuantity = Number(localStorage.getItem('items_cart')) + 1;
+    localStorage.setItem('items_cart', cartQuantity);
   }
 
   handleUndefined() {
@@ -90,11 +91,11 @@ class ProductCard extends React.Component {
         <img className="card-image img-card" alt="" src={ thumbnail } />
         <div className="info">
           <h3 className="title">{title}</h3>
-          <h5 className="subtitle"><b>{ price }</b></h5>
+          <h5 className="subtitle"><b>{price}</b></h5>
           <div>
             <h6>
               Quantidade disponível:
-              { availableQuantity }
+              {availableQuantity}
             </h6>
           </div>
         </div>
@@ -120,7 +121,7 @@ class ProductCard extends React.Component {
         <b
           className="btn btn-xs"
         >
-          { this.freeShipping() ? (
+          {this.freeShipping() ? (
             <p data-testid="free-shipping">Frete Grátis</p>
           ) : (
             <p>Frete Pago</p>
@@ -132,6 +133,7 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
+  addCartQuantity: PropTypes.func.isRequired,
   item: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
