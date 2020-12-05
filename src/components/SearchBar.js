@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ProductCard from './ProductCard';
 import '../App.css';
 
 class SearchBar extends Component {
   render() {
     const { handleSubmit, handleTextInput } = this.props;
-    const { parentState } = this.props;
-    const { itemsFindOut, loading } = parentState;
     return (
       <main>
         <div className="item-inputsearch">
@@ -32,14 +29,6 @@ class SearchBar extends Component {
           >
             Pesquisar
           </button>
-        </div>
-        <div className="grid">
-          <div className="item">
-            {loading ? itemsFindOut.results.map((item) => {
-              const { id } = item;
-              return <ProductCard key={ id } item={ item } />;
-            }) : ''}
-          </div>
         </div>
       </main>
     );

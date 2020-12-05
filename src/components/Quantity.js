@@ -14,15 +14,21 @@ class Quantity extends Component {
   }
 
   increment() {
+    const { id } = this.props;
     this.setState((prevState) => ({
       quantity: prevState.quantity + 1,
     }));
+    const cart_quantity = Number(localStorage.getItem('items_cart')) + 1;
+    localStorage.setItem('items_cart', cart_quantity);
   }
 
   decrement() {
+    const { id } = this.props;
     this.setState((prevState) => ({
       quantity: Math.max(prevState.quantity - 1, 1),
     }));
+    const cart_quantity = Number(localStorage.getItem('items_cart')) - 1;
+    localStorage.setItem('items_cart', cart_quantity);
   }
 
   render() {

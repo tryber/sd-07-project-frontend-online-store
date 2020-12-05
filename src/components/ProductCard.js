@@ -52,6 +52,7 @@ class ProductCard extends React.Component {
           quantity: availableQuantity,
           image: thumbnail,
         }]));
+        localStorage.setItem('items_cart', 1)
       return;
     }
     const objectValues = JSON.parse(localStorage.getItem('items'));
@@ -63,6 +64,8 @@ class ProductCard extends React.Component {
         quantity: availableQuantity,
         image: thumbnail,
       }]));
+    const cart_quantity = Number(localStorage.getItem('items_cart')) + 1;
+    localStorage.setItem('items_cart', cart_quantity);
   }
 
   handleUndefined() {

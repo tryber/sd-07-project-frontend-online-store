@@ -3,12 +3,20 @@ import { Link } from 'react-router-dom';
 
 
 class ShoppingCartButton extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      quantity_cart: localStorage.getItem('items_cart'),
+    };
+  }
+
   render() {
     return (
       <Link to="/pages/ShoppingCart" data-testid="shopping-cart-button">
         <svg
-          width="1em"
-          height="1em"
+          width="2em"
+          height="2em"
           viewBox="0 0 16 16"
           className="bi bi-cart3"
           fill="currentColor"
@@ -24,6 +32,7 @@ class ShoppingCartButton extends React.Component {
           0 1 0 0 2 1 1 0 0 0 0-2z"
           />
         </svg>
+        <span>{ localStorage.getItem('items_cart') === '0' ? '0' : this.state.quantity_cart }</span>
       </Link>
     );
   }
