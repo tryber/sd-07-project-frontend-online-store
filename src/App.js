@@ -15,6 +15,8 @@ class App extends Component {
     };
   }
 
+
+
   addToCart() {}
 
   render() {
