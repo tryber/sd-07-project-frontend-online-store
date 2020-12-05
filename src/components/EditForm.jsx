@@ -36,32 +36,48 @@ export default class EditForm extends React.Component {
   render() {
     const { email, radio, comentario } = this.state;
     return (
-      <div>
-        <form>
-          <input
-            type="text"
-            name="email"
-            value={ email }
-            onChange={ this.atualizaEstado }
-          />
+      <div className="edit-form-main">
+        <form className="product-form">
+          <label htmlFor="email">
+            Email:
+            <input
+              className="input-form"
+              type="text"
+              name="email"
+              value={ email }
+              onChange={ this.atualizaEstado }
+            />
+          </label>
 
-          <input
-            type="number"
-            name="radio"
-            value={ radio }
-            onChange={ this.atualizaEstado }
-          />
-          <textarea
-            data-testid="product-detail-evaluation"
-            name="comentario"
-            value={ comentario }
-            onChange={ this.atualizaEstado }
-          />
-          <button type="button" onClick={ (event) => this.enviar(event) }>
-            texto aqui
+          <label htmlFor="radio">
+            {' '}
+            Rating:
+            <input
+              className="input-form"
+              type="number"
+              name="radio"
+              value={ radio }
+              onChange={ this.atualizaEstado }
+            />
+          </label>
+          <label htmlFor="comentario">
+            Deixe seu comentário:
+            <textarea
+              className="input-form"
+              data-testid="product-detail-evaluation"
+              name="comentario"
+              value={ comentario }
+              onChange={ this.atualizaEstado }
+            />
+          </label>
+          <button
+            className="product-button"
+            type="button"
+            onClick={ (event) => this.enviar(event) }
+          >
+            Enviar avaliação
           </button>
         </form>
-
         <ResultForm />
       </div>
     );

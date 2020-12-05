@@ -28,6 +28,7 @@ export default class ProductCard extends React.Component {
     return (
       <div data-testid="product" className="product-card" key={ id }>
         <Link
+          className="product-title"
           to={ {
             pathname: `/details/${id}`,
             state: product,
@@ -36,9 +37,15 @@ export default class ProductCard extends React.Component {
         >
           <h3>{title}</h3>
         </Link>
-        <p>{`Preço: ${price}`}</p>
-        <img src={ thumbnail } alt={ title } />
+        <img
+          className="product-image"
+          src={ thumbnail }
+          alt={ title }
+        />
+        <p>{`R$: ${price}`}</p>
+
         <button
+          className="product-button"
           type="button"
           data-testid="product-add-to-cart"
           // id={id}

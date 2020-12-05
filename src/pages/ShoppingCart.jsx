@@ -1,10 +1,13 @@
 import React from 'react';
+import EmptyShoppingCart from '../components/EmptyShoppingCart';
+import ShoppingCartList from '../components/ShoppingCartList';
 
 export default class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       objeto: [],
+      isEmpty: true,
     };
     this.recuperaLocalStorage = this.recuperaLocalStorage.bind(this);
     this.arrayEmpty = this.arrayEmpty.bind(this);
@@ -25,24 +28,18 @@ export default class ShoppingCart extends React.Component {
 
   recuperaLocalStorage() {
     const objeto = JSON.parse(localStorage.getItem('items'));
-    this.setState({ objeto });
+    this.setState({ objeto, isEmpty: false });
   }
 
   render() {
-    const { objeto } = this.state;
+    const { objeto, isEmpty } = this.state;
     return (
-      <div data-testid="shopping-cart-empty-message">
-        `Seu carrinho está vazio`
+      <div>
+        <header className="header-bar-content">
+          <h1>ShoppingCart</h1>
+        </header>
         <div>
-          { objeto.map((item) => (
-            <div data-testid="shopping-cart-product-name" key={ item.id }>
-              {item.title}
-              <img src={ item.thumbnail } alt="foto do produto" />
-              <p data-testid="shopping-cart-product-quantity">
-                {item.quantidade}
-              </p>
-            </div>
-          ))}
+          {isEmpty ? <EmptyShoppingCart /> : <ShoppingCartList objeto={ objeto } />}
         </div>
       </div>
     );

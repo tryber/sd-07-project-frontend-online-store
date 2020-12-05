@@ -5,15 +5,21 @@ export default class SearchBar extends React.Component {
   render() {
     const { searchText, onChange, onClick } = this.props;
     return (
-      <div>
+      <div className="search-bar">
         <input
+          className="search-input"
           data-testid="query-input"
           onChange={ onChange }
           type="text"
           value={ searchText }
           name="searchText"
         />
-        <button data-testid="query-button" type="button" onClick={ onClick }>
+        <button
+          className="search-button"
+          data-testid="query-button"
+          type="button"
+          onClick={ onClick }
+        >
           Search
         </button>
       </div>

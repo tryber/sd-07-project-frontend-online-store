@@ -47,11 +47,8 @@ export default class Home extends React.Component {
   render() {
     const { searchText, products, isEmpty } = this.state;
     return (
-      <div className="main-content">
-        <div>
-          <CategorieFilter updateValueCategory={ this.updateValueCategory } />
-        </div>
-        <div className="search-bar-content">
+      <div className="body-content">
+        <div className="header-bar-content">
           <div>
             <SearchBar
               searchText={ searchText }
@@ -63,8 +60,13 @@ export default class Home extends React.Component {
             <ShoppingCartButton />
           </div>
         </div>
-        <div>
-          {isEmpty ? <EmptyProductList /> : <ProductList products={ products } />}
+        <div className="main-content">
+          <div>
+            <CategorieFilter updateValueCategory={ this.updateValueCategory } />
+          </div>
+          <div>
+            {isEmpty ? <EmptyProductList /> : <ProductList products={ products } />}
+          </div>
         </div>
       </div>
     );
