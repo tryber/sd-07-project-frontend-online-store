@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar';
 import '../App.css';
 import ListCategories from '../components/ListCategories';
 import ShoppingCartButton from '../components/ShoppingCartButton';
+import ProductCard from '../components/ProductCard';
 import * as api from '../services/api';
 
 export default class Home extends Component {
@@ -14,12 +15,14 @@ export default class Home extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTextInput = this.handleTextInput.bind(this);
     this.handleUndefined = this.handleUndefined.bind(this);
+    this.addCartQuantity = this.addCartQuantity.bind(this);
 
     this.state = {
       searchItems: '',
       categoryId: '',
       itemsFindOut: [],
       loading: false,
+      cartQuantity: localStorage.getItem('items_cart'),
     };
   }
 
@@ -53,8 +56,14 @@ export default class Home extends Component {
     }
   }
 
+  addCartQuantity() {
+    this.setState((prevState) => ({
+      cartQuantity: Number(prevState.cartQuantity) + 1,
+    }));
+  }
+
   render() {
-    const { categoryId } = this.state;
+    const { categoryId, cartQuantity, loading, itemsFindOut } = this.state;
     return (
       <main>
         <header>
@@ -70,9 +79,21 @@ export default class Home extends Component {
               handleUndefined={ this.handleUndefined }
             />
           </div>
-          <div><ShoppingCartButton /></div>
+          <div><ShoppingCartButton cartQuantity={ cartQuantity } /></div>
         </header>
         <ListCategories onClickCategory={ this.onClickCategory } />
+        <div className="grid">
+          <div className="item">
+            {loading ? itemsFindOut.results.map((item) => {
+              const { id } = item;
+              return (<ProductCard
+                addCartQuantity={ this.addCartQuantity }
+                key={ id }
+                item={ item }
+              />);
+            }) : ''}
+          </div>
+        </div>
       </main>
     );
   }

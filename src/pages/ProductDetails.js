@@ -13,11 +13,13 @@ export default class ProductDetails extends Component {
     this.getStorage = this.getStorage.bind(this);
     this.setStorage = this.setStorage.bind(this);
     this.saveItemsFromDetail = this.saveItemsFromDetail.bind(this);
+    this.addCartQuantity = this.addCartQuantity.bind(this);
 
     this.state = {
       name: '',
       thumbnail: '',
       avaliations: [],
+      cartQuantity: localStorage.getItem('items_cart'),
     };
   }
 
@@ -53,7 +55,14 @@ export default class ProductDetails extends Component {
     this.setState({ avaliations: JSON.parse(localStorage.getItem(`${name}`)) });
   }
 
+  addCartQuantity() {
+    this.setState((prevState) => ({
+      cartQuantity: Number(prevState.cartQuantity) + 1,
+    }));
+  }
+
   saveItemsFromDetail(item) {
+    this.addCartQuantity();
     if (!localStorage.length) {
       localStorage.setItem('items',
         JSON.stringify([{
@@ -63,6 +72,7 @@ export default class ProductDetails extends Component {
           quantity: item.available_quantity,
           image: item.thumbnail,
         }]));
+      localStorage.setItem('items_cart', 1);
       return;
     }
     const objectValues = JSON.parse(localStorage.getItem('items'));
@@ -74,11 +84,13 @@ export default class ProductDetails extends Component {
         quantity: item.available_quantity,
         image: item.thumbnail,
       }]));
+    const cartQuantity = Number(localStorage.getItem('items_cart')) + 1;
+    localStorage.setItem('items_cart', cartQuantity);
   }
 
   render() {
     const { location: { state: { item } } } = this.props;
-    const { name, thumbnail, avaliations } = this.state;
+    const { name, thumbnail, avaliations, cartQuantity } = this.state;
     return (
       <div>
         <header className="page-header">
@@ -92,7 +104,7 @@ export default class ProductDetails extends Component {
               />
             </svg>
           </Link>
-          <ShoppingCartButton />
+          <ShoppingCartButton cartQuantity={ cartQuantity } />
         </header>
 
         <div data-testid="product-detail-name">
