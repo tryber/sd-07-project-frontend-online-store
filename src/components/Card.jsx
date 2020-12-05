@@ -7,7 +7,16 @@ import GetIcon from './Icons';
 class Card extends React.Component {
   constructor(props) {
     super(props);
+    this.productYetSelected = this.productYetSelected.bind(this);
     this.addCartItem = this.addCartItem.bind(this);
+  }
+
+  productYetSelected(id, parsedItems) {
+    let productIsSelected = false;
+    parsedItems.map((item) => {
+      if (item.id === id) productIsSelected = true;
+    });
+    return productIsSelected;
   }
 
   addCartItem({ id, title, price }) {
@@ -18,10 +27,16 @@ class Card extends React.Component {
     } else {
       const itemsInStorage = localStorage.getItem('cartItems');
       const parsedItems = JSON.parse(itemsInStorage);
-      localStorage.setItem(
-        'cartItems',
-        JSON.stringify(parsedItems.concat(cartItemProperties)),
-      );
+      if (this.productYetSelected(id, parsedItems) === false) {
+        localStorage.setItem(
+          'cartItems',
+          JSON.stringify(parsedItems.concat(cartItemProperties)),
+        );
+      } else {
+        const lastItem = parsedItems.length - 1;
+        parsedItems[lastItem].quantity += 1;
+        localStorage.setItem('cartItems', JSON.stringify(parsedItems));
+      }
     }
     const { onAdd } = this.props;
     onAdd();

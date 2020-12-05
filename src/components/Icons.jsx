@@ -66,7 +66,7 @@ class GetIcon extends Component {
 
     return (
       <svg width="1.8em" viewBox="0 0 16 16" className={ className } xmlns="http://www.w3.org/2000/svg">
-        { paths.map((path) => <path key={ name } fillRule="evenodd" d={ path } />) }
+        { paths.map((path) => <path key={ path } fillRule="evenodd" d={ path } />) }
       </svg>
     );
   }

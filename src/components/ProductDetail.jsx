@@ -104,7 +104,7 @@ ProductDetail.propTypes = {
     loading: PropTypes.bool.isRequired,
     rating: PropTypes.number.isRequired,
     imagePath: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
