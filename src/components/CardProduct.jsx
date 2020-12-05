@@ -33,7 +33,6 @@ class CardProduct extends React.Component {
     // console.log(this.readLocalStorage());
   }
 
-
   render() {
     const { item, categoryId, searchKey } = this.props;
     const { title, price, thumbnail, id } = item;

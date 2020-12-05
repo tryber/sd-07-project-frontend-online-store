@@ -16,7 +16,8 @@ class Home extends React.Component {
     this.sendCategoryId = this.sendCategoryId.bind(this);
 
     this.state = {
-      searchKey: ' ',
+      newSearch: '',
+      searchKey: '',
       searchProducts: [],
       categoryId: '',
       loading: false,
@@ -45,6 +46,7 @@ class Home extends React.Component {
         this.setState({
           loading: false,
           searchProducts: [...response.results],
+          newSearch: searchKey,
         });
       },
     );
@@ -61,7 +63,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { searchKey, categoryId, searchProducts, loading } = this.state;
+    const { newSearch, searchKey, categoryId, searchProducts, loading } = this.state;
     return (
       <div className="home-container">
         <div className="home-aside-container">
@@ -104,7 +106,7 @@ class Home extends React.Component {
                     key={ item.id }
                     item={ item }
                     categoryId={ categoryId }
-                    searchKey={ searchKey }
+                    searchKey={ newSearch === '' ? ' ' : newSearch }
                   />
                 ))
               )}
