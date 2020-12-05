@@ -28,4 +28,9 @@ export const returnPrice = () => {
     .map((id) => id.info.price * id.quantidade)
     .reduce((a, b) => a + b);
   return sum;
+
+export const increaseItem = (id) => {
+  const cart = readCart();
+  id.quantidade += 1;
+  saveCart(cart);
 };

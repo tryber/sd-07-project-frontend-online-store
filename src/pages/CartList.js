@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+
 import * as cartAPI from '../services/cartAPI';
 import CartItem from '../components/CartItem';
 
@@ -12,7 +14,7 @@ class CartList extends React.Component {
         Seu carrinho está vazio
       </div>
     ) : (
-      <div>
+      <div data-testid="item-cart">
         {Object.values(itemsId).map((id) => (
           <CartItem key={Object.keys(id)} itemId={id} />
         ))}

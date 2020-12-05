@@ -3,7 +3,7 @@ import Product from './Product';
 
 class Products extends React.Component {
   render() {
-    const allProducts = this.props.products;
+    const { allProducts } = this.props;
     return (
       <div className="products">
         {allProducts === undefined ? (
