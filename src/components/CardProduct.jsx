@@ -30,7 +30,7 @@ class CardProduct extends React.Component {
     const cartItems = this.readLocalStorage();
     const addItem = [...cartItems, item];
     localStorage.setItem('cartItems', JSON.stringify(addItem));
-    console.log(this.readLocalStorage());
+    // console.log(this.readLocalStorage());
   }
 
 
@@ -41,7 +41,6 @@ class CardProduct extends React.Component {
       <div className="product-card">
         <Link
           to={ { pathname: `/${title}`, product: { item } } }
-          data-testid="product"
         >
           <img src={ thumbnail } alt={ title } />
         </Link>

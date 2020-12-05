@@ -21,7 +21,7 @@ class ProductDetails extends React.Component {
     const cartItems = this.readLocalStorage();
     const addItem = [...cartItems, item];
     localStorage.setItem('cartItems', JSON.stringify(addItem));
-    console.log(this.readLocalStorage());
+    // console.log(this.readLocalStorage());
   }
 
   render() {
@@ -64,7 +64,7 @@ ProductDetails.propTypes = {
       item: PropTypes.shape({
         title: PropTypes.string.isRequired,
         thumbnail: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
       }).isRequired,
     }).isRequired,
   }).isRequired,

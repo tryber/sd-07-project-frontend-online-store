@@ -30,7 +30,7 @@ class Cart extends React.Component {
   render() {
     const { listProduct, emptyCart } = this.state;
     const products = localStorage.getItem('cartItems');
-    console.log(products);
+    // console.log(products);
 
     if (products === '[]' || emptyCart) {
       return (
