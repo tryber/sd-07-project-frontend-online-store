@@ -1,7 +1,5 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Reviews from '../components/Reviews';
-
-import * as cartAPI from '../services/cartAPI';
 
 class Specifications extends Component {
   render() {
@@ -12,9 +10,13 @@ class Specifications extends Component {
         <h6>Especificações Técnicas</h6>
         <ul>
           {specifications.map((item) => (
-            <li key={item.name}>
+            <li key={ item.name }>
               {' '}
-              {item.name} : {item.value_name}{' '}
+              {item.name}
+              {' '}
+              :
+              {item.value_name}
+              {' '}
             </li>
           ))}
         </ul>
@@ -29,3 +31,12 @@ class Specifications extends Component {
 }
 
 export default Specifications;
+
+Specifications.propTypes = {
+  product: PropTypes.shape({
+    attributes: PropTypes.object.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
+  }).isRequired,
+}.isRequired;

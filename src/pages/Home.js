@@ -11,9 +11,6 @@ class PageListProducts extends React.Component {
     this.categoryUpdate = this.categoryUpdate.bind(this);
     this.state = {
       categorys: [],
-      products: [],
-      loading: false,
-      searchText: '',
       selectedCategory: '',
     };
   }
@@ -23,12 +20,9 @@ class PageListProducts extends React.Component {
   }
 
   async fetchCategorys() {
-    this.setState({ loading: true }, async () => {
-      const categorysReturn = await api.getCategories();
-      this.setState({
-        categorys: categorysReturn,
-        loading: false,
-      });
+    const categorysReturn = await api.getCategories();
+    this.setState({
+      categorys: categorysReturn,
     });
   }
 
@@ -40,9 +34,9 @@ class PageListProducts extends React.Component {
     const { categorys, selectedCategory } = this.state;
     return (
       <div className="page-list-products">
-        <Categorias categorys={categorys} callback={this.categoryUpdate} />
+        <Categorias categorys={ categorys } callback={ this.categoryUpdate } />
         <div className="list-products">
-          <ProductListing categoryId={selectedCategory} />
+          <ProductListing categoryId={ selectedCategory } />
         </div>
       </div>
     );

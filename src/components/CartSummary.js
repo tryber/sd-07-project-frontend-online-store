@@ -1,22 +1,24 @@
 import React from 'react';
 
 import * as cartAPI from '../services/cartAPI';
-import CartItem from './CartItem';
+import CartItemSummary from './CartItemSummary';
 
 class CartSummary extends React.Component {
   render() {
-    const itemsId = cartAPI.getCart();
-    const valuesItemsId = Object.values(itemsId)
-    return valuesItemsId.length === 0 ? (
-      <div data-testid="shopping-cart-empty-message">
-        Seu carrinho está vazio
-      </div>
+    const itemsCart = cartAPI.getCart();
+    const ids = Object.keys(itemsCart);
+    const zeroItensCart = 0;
+    return ids.length === zeroItensCart ? (
+      <div data-testid="shopping-cart-empty-message">Seu carrinho está vazio</div>
     ) : (
       <div className="cart-summary">
-        {valuesItemsId.map((id) => (
-          <CartItem key={Object.keys(id)} itemId={id} />
+        {Object.keys(itemsCart).map((id) => (
+          <CartItemSummary key={ id } id={ id } />
         ))}
-        <p>Total: R${cartAPI.returnPrice()}</p>
+        <p>
+          Total: R$
+          {cartAPI.returnPrice()}
+        </p>
       </div>
     );
   }

@@ -10,7 +10,7 @@ export const getCart = () => {
 };
 
 export const addItem = (newItem) => {
-  let cart = readCart();
+  const cart = readCart();
   if (cart[newItem.id]) {
     cart[newItem.id].quantidade += 1;
   } else {
@@ -22,8 +22,14 @@ export const addItem = (newItem) => {
   saveCart(cart);
 };
 
+export const returnItem = (id) => {
+  const cart = readCart();
+  const item = cart[id];
+  return item;
+};
+
 export const returnPrice = () => {
-  let cart = readCart();
+  const cart = readCart();
   const sum = Object.values(cart)
     .map((id) => id.info.price * id.quantidade)
     .reduce((a, b) => a + b);
@@ -32,6 +38,12 @@ export const returnPrice = () => {
 
 export const increaseItem = (id) => {
   const cart = readCart();
-  id.quantidade += 1;
+  cart[id].quantidade += 1;
+  saveCart(cart);
+};
+
+export const decreaseItem = (id) => {
+  const cart = readCart();
+  cart[id].quantidade -= 1;
   saveCart(cart);
 };

@@ -9,15 +9,11 @@ class RadioStars extends React.Component {
         {values.map((value) => {
           const star = `star${value}`;
           return (
-            <label htmlFor={star} title={value}>
-              <input
-                type="radio"
-                id={star}
-                name="rating"
-                value={value}
-                required
-              />
-              {value} stars
+            <label key={ star } htmlFor={ star } title={ value }>
+              <input type="radio" id={ star } name="rating" value={ value } required />
+              {value}
+              {' '}
+              stars
             </label>
           );
         })}

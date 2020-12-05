@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { Link } from 'react-router-dom';
 
 class Product extends React.Component {
   render() {
@@ -16,14 +18,14 @@ class Product extends React.Component {
       <div data-testid="product" className="product">
         <Link
           data-testid="product-detail-link"
-          to={{
+          to={ {
             pathname: '/product_Detail',
             search: `${product.title}`,
             state: { product },
-          }}
+          } }
         >
           <p>{product.title}</p>
-          <img src={product.thumbnail} />
+          <img alt={ product.title } src={ product.thumbnail } />
           <p>{`R$ ${product.price}`}</p>
           {freeShipping}
         </Link>
@@ -33,3 +35,14 @@ class Product extends React.Component {
 }
 
 export default Product;
+
+Product.propTypes = {
+  Product: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
+  }).isRequired,
+}.isRequired;

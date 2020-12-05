@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Product from './Product';
 
 class Products extends React.Component {
@@ -9,7 +11,7 @@ class Products extends React.Component {
         {products === undefined ? (
           <p>loading</p>
         ) : (
-          products.map((product) => <Product key={product.title} product={product} />)
+          products.map((product) => <Product key={ product.title } product={ product } />)
         )}
       </div>
     );
@@ -17,3 +19,7 @@ class Products extends React.Component {
 }
 
 export default Products;
+
+Products.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

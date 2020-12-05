@@ -9,12 +9,13 @@ class Checkout extends React.Component {
   constructor() {
     super();
     this.mySubmitHandler = this.mySubmitHandler.bind(this);
+    this.updatePrice = this.updatePrice.bind(this);
     this.state = {
       shouldRedirect: false,
     };
   }
 
-  mySubmitHandler(e) {
+  mySubmitHandler() {
     this.setState({ shouldRedirect: true });
   }
 
@@ -24,7 +25,7 @@ class Checkout extends React.Component {
       return <Redirect to="/" />;
     }
     return (
-      <form onSubmit={this.mySubmitHandler}>
+      <form onSubmit={ this.mySubmitHandler }>
         <h1>Checkout</h1>
         <CartSummary />
         <BuyerInformation />

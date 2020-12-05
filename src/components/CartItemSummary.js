@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import QuantifyProducts from './QuantifyProducts';
 import * as cartAPI from '../services/cartAPI';
 
-class CartItem extends React.Component {
+class CartItemSummary extends React.Component {
   render() {
     const { id } = this.props;
-    const itemValues = cartAPI.returnItem(id);
-    const item = itemValues.info;
+    const valuesItem = cartAPI.returnItem(id);
+    const item = valuesItem.info;
     return (
-      <div data-testid="shopping-cart-product-name" className="cart-item">
+      <div
+        data-testid="shopping-cart-product-name"
+        className="cart-item"
+      >
         <div>
           <img
             data-testid="imagem-product-cart"
@@ -22,7 +24,7 @@ class CartItem extends React.Component {
           <h3>{item.title}</h3>
           <ul>
             <li>{`R$ ${item.price}`}</li>
-            <QuantifyProducts id={ id } />
+            <li>{`Quantidade ${valuesItem.quantidade}`}</li>
           </ul>
         </div>
       </div>
@@ -30,8 +32,8 @@ class CartItem extends React.Component {
   }
 }
 
-export default CartItem;
+export default CartItemSummary;
 
-CartItem.propTypes = {
+CartItemSummary.propTypes = {
   id: PropTypes.string.isRequired,
 };
