@@ -22,7 +22,7 @@ class CartItem extends React.Component {
           <h3>{item.title}</h3>
           <ul>
             <li>{`R$ ${item.price}`}</li>
-            <QuantifyProducts id={ id } />
+            <QuantifyProducts id={ id } quantidade={ itemValues.quantidade } />
           </ul>
         </div>
       </div>

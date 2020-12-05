@@ -31,13 +31,13 @@ class Reviews extends React.Component {
             data-testid="product-detail-evaluation"
             className="text-review"
           />
-          <button type="button" onClick={() => this.addReview()}>
+          <button type="button" onClick={ () => this.addReview() }>
             Avaliar
           </button>
         </form>
         <div>
           {reviews.map((review) => (
-            <div key={review}>
+            <div key={ review }>
               <p>{review.email}</p>
               <p>{review.rating}</p>
               <p>{review.reviewText}</p>
