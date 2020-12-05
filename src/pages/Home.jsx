@@ -67,7 +67,7 @@ class Home extends React.Component {
         <div className="home-aside-container">
           <img
             alt="logo"
-            src={Logo}
+            src={ Logo }
             width={ 200 }
           />
           <ListCategory sendCategoryId={ this.sendCategoryId } />
