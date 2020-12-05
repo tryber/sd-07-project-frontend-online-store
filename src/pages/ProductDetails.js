@@ -1,6 +1,6 @@
 import React from 'react';
-import Evaluation from '../components/Evaluation';
 import PropTypes from 'prop-types';
+import Evaluation from '../components/Evaluation';
 import ShoppingCartButton from '../components/ShoppingCartButton';
 
 class ProductDetails extends React.Component {
