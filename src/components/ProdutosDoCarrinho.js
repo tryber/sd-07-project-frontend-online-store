@@ -3,34 +3,9 @@ import PropTypes from 'prop-types';
 import BotoesProduto from './BotoesProduto';
 
 class ProdutosDoCarrinho extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      count: 1,
-    }
-    this.toIncreaseQuantity = this.toIncreaseQuantity.bind(this);
-    this.toDecreaseQuantity = this.toDecreaseQuantity.bind(this);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-  }
-
-  toIncreaseQuantity() { this.setState(() => console.log('oi'))}
-  
-  toDecreaseQuantity() {
-    this.setState(() => ({ count: this.state.count - 1 }), () => {
-      console.log(`Botão subtrair: ${this.state.count}`);
-    });
-  }
-
-  handleDeleteClick() {
-    console.log(this.state)
-  }
-   render() {
-    const { product, handleTotalPrice } = this.props;
+  render() {
+    const { product, handleTotalPrice, updateLocalStorage } = this.props;
     const { title, price, thumbnail, quantity, id } = product;
-    if (localStorage.getItem('productsToBuy') !== null) {
-      // let jsonParseGetItem = JSON.parse(localStorage.getItem('productsToBuy'));
-      // console.log(jsonParseGetItem[0].quantity);
-    }
     return (
       <div data-testid="product">
         <h1 data-testid="shopping-cart-product-name">{ title }</h1>
@@ -40,9 +15,10 @@ class ProdutosDoCarrinho extends React.Component {
           id={ id }
           quantity={ quantity }
           price={ price }
-          quantity={ this.state.count }
-          handleTotalPrice={ handleTotalPrice } />
-        <p>{quantity}</p>
+          handleTotalPrice={ handleTotalPrice }
+          updateLocalStorage={ updateLocalStorage }
+        />
+        <p data-testid="shopping-cart-product-quantity">{quantity}</p>
       </div>
     );
   }
@@ -51,9 +27,13 @@ class ProdutosDoCarrinho extends React.Component {
 export default ProdutosDoCarrinho;
 
 ProdutosDoCarrinho.propTypes = {
+  handleTotalPrice: PropTypes.func.isRequired,
+  updateLocalStorage: PropTypes.func.isRequired,
   product: PropTypes.shape({
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     thumbnail: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
 };

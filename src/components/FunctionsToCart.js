@@ -2,71 +2,65 @@ const arrTosaveLocalStorage = [];
 
 export function handleTotalPrice() {
   let jsonParseGetItem = [];
+  const initialValue = 0;
   if (localStorage.getItem('productsToBuy') !== null) {
     jsonParseGetItem = JSON.parse(localStorage.getItem('productsToBuy'));
   }
   const total = jsonParseGetItem.reduce((acc, product) => {
-    console.log(product)
-    let totalPrice = product.price * product.quantity;
-    return acc + totalPrice
-  }, 0)
-  return total
+    const totalPrice = product.price * product.quantity;
+    return acc + totalPrice;
+  }, initialValue);
+  return total;
 }
 
 function verifyCartProduct(id) {
   let jsonParseGetItem = [];
   if (localStorage.getItem('productsToBuy') !== null) {
     jsonParseGetItem = JSON.parse(localStorage.getItem('productsToBuy'));
-    return arrTosaveLocalStorage.push(...jsonParseGetItem);
   }
-  const result = jsonParseGetItem.some(product => product.id === id);
-  return result
+  const result = jsonParseGetItem.some((product) => product.id === id);
+  return result;
+}
+
+function customAlert(message) {
+  window.alert(message);
 }
 
 export function updateQuantity(id, operation) {
-  if(operation === "soma") {
+  if (operation === 'soma') {
     const cart = JSON.parse(localStorage.getItem('productsToBuy'));
-    const updateAddOperation = cart.map(product => {
+    const updateAddOperation = cart.map((product) => {
       if (product.id === id) {
-        return { ...product, quantity: product.quantity + 1 }
+        return { ...product, quantity: product.quantity + 1 };
       }
-      return product
-    })
-    localStorage.setItem('productsToBuy', JSON.stringify(updateAddOperation));
-  } else if (operation === "subtração") {
+      return product;
+    });
+    return localStorage.setItem('productsToBuy', JSON.stringify(updateAddOperation));
+  } if (operation === 'subtração') {
     const cart = JSON.parse(localStorage.getItem('productsToBuy'));
-    const updateSubtractionOperation = cart.map(product => {
+    const updateSubtractionOperation = cart.map((product) => {
       if (product.id === id) {
-        if (product.quantity < 2) {
-          return alert('Quantidade mínima atingida!')
+        if (product.quantity <= 1) {
+          customAlert('Quantidade mínima atingida!');
+          return { ...product, quantity: product.quantity };
         }
-        return { ...product, quantity: product.quantity - 1 }
+        return { ...product, quantity: product.quantity - 1 };
       }
-      return product
-    })
-    localStorage.setItem('productsToBuy', JSON.stringify(updateSubtractionOperation));  
-  } 
-  
+      return product;
+    });
+    return localStorage
+      .setItem('productsToBuy', JSON.stringify(updateSubtractionOperation));
+  } if (operation === 'deletar') {
+    const cart = JSON.parse(localStorage.getItem('productsToBuy'));
+    const deleteProduct = cart.filter((product) => product.id !== id);
+    return localStorage.setItem('productsToBuy', JSON.stringify(deleteProduct));
+  }
 }
 
 export function addToCart(title, price, thumbnail, quantity, id) {
-  let jsonParseGetItem = [];
-
-  if (localStorage.getItem('productsToBuy') !== null) {
-    jsonParseGetItem = JSON.parse(localStorage.getItem('productsToBuy'));
-    arrTosaveLocalStorage.push(...jsonParseGetItem);
+  if (verifyCartProduct(id)) {
+    return customAlert('Produto já existe no carrinho!');
   }
-
-  // if(verifyCartProduct(id)) {
-  //   const updateOnlyQuantityProduct = jsonParseGetItem.map(product => {
-  //     if (product.id === id) {
-  //       return { ...product, quantity: product.quantity + 1 }
-  //     }
-  //     return product      
-  //   })
-  //   localStorage.setItem('productsToBuy', JSON.stringify(updateOnlyQuantityProduct));
-  //   return updateOnlyQuantityProduct;
-  // }
 
   const objToLocalStorage = {
     title,
@@ -75,6 +69,7 @@ export function addToCart(title, price, thumbnail, quantity, id) {
     quantity,
     id,
   };
+  console.log(arrTosaveLocalStorage);
 
   arrTosaveLocalStorage.push(objToLocalStorage);
   localStorage.setItem('productsToBuy', JSON.stringify(arrTosaveLocalStorage));

@@ -4,29 +4,35 @@ import ProdutosDoCarrinho from '../components/ProdutosDoCarrinho';
 import * as FunctionsToCart from '../components/FunctionsToCart';
 
 class CarrinhoDeCompras extends React.Component {
-  
   constructor() {
     super();
     this.state = {
       totalPrice: FunctionsToCart.handleTotalPrice(),
-    }
-    this.teste = this.teste.bind(this);
-  }
-  
-  teste() {
-    this.setState({ totalPrice: FunctionsToCart.handleTotalPrice() })
+      update: [],
+    };
+    this.getTotalPrice = this.getTotalPrice.bind(this);
+    this.updateLocalStorage = this.updateLocalStorage.bind(this);
   }
 
+  getTotalPrice() {
+    this.setState({ totalPrice: FunctionsToCart.handleTotalPrice() });
+  }
 
-  // handleTotalPrice(quantity, price) {
-  //   this.setState((previousState) => ({ totalPrice: (quantity * price) + previousState.totalPrice }));
-  // }
+  updateLocalStorage() {
+    this.setState({ update: JSON.parse(localStorage.getItem('productsToBuy')) });
+  }
+
   initialMessageOrListProducts(products) {
     const numberToComper = 0;
     if (products.length !== numberToComper) {
       return products
         .map((product) => (
-          <ProdutosDoCarrinho key={ product.title } product={ product } handleTotalPrice={ this.teste } />
+          <ProdutosDoCarrinho
+            key={ product.title }
+            product={ product }
+            handleTotalPrice={ this.getTotalPrice }
+            updateLocalStorage={ this.updateLocalStorage }
+          />
         ));
     }
     return (
@@ -37,16 +43,15 @@ class CarrinhoDeCompras extends React.Component {
 
   render() {
     const arrTosaveLocalStorage = [];
+    const { totalPrice, update } = this.state;
+    console.log(update);
 
     if (localStorage.getItem('productsToBuy') !== null) {
       const jsonParseGetItem = JSON.parse(localStorage.getItem('productsToBuy'));
       arrTosaveLocalStorage.push(...jsonParseGetItem);
     }
-    console.log(this.state.totalPrice)
-
     return (
       <div>
-        <p data-testid="shopping-cart-product-quantity">{arrTosaveLocalStorage.length}</p>
         <button type="button">
           <Link
             to="/"
@@ -55,7 +60,7 @@ class CarrinhoDeCompras extends React.Component {
           </Link>
         </button>
         { this.initialMessageOrListProducts(arrTosaveLocalStorage) }
-        <p>{this.state.totalPrice}</p>     
+        <p>{ totalPrice }</p>
       </div>
     );
   }

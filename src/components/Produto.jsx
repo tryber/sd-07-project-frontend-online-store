@@ -17,7 +17,7 @@ class Produto extends React.Component {
   render() {
     const { product } = this.props;
     const { title, price, thumbnail, id } = product;
-    const quantityDefaultWhenAddToCart = 1
+    const quantityDefaultWhenAddToCart = 1;
     return (
       <div data-testid="product">
         <h1>{ title }</h1>
@@ -54,5 +54,6 @@ Produto.propTypes = {
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     thumbnail: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
 };
