@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PropTypes from 'prop-types';
 
 class Quantity extends Component {
   constructor(props) {
@@ -14,6 +15,9 @@ class Quantity extends Component {
   }
 
   increment() {
+    const { quantity } = this.state;
+    const { availableQuantity } = this.props;
+    if (quantity === availableQuantity) return;
     this.setState((prevState) => ({
       quantity: prevState.quantity + 1,
     }));
@@ -58,5 +62,7 @@ class Quantity extends Component {
     );
   }
 }
+
+Quantity.propTypes = { availableQuantity: PropTypes.string.isRequired };
 
 export default Quantity;

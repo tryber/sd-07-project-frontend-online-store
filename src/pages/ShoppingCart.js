@@ -100,7 +100,7 @@ class ShoppingCart extends React.Component {
                     className="text-center"
                     data-testid="shopping-cart-product-quantity"
                   >
-                    <Quantity id={ sku } />
+                    <Quantity id={ sku } availableQuantity={ quantity } />
                   </td>
                 </tr>
               </table>
