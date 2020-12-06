@@ -35,7 +35,9 @@ class App extends Component {
   }
 
   getSubmit(shoppingCardAdd) {
-    this.setState(({ shoppingCard }) => ({ shoppingCard: [shoppingCardAdd, ...shoppingCard] }));
+    this.setState(({ shoppingCard }) => ({
+      shoppingCard: [shoppingCardAdd, ...shoppingCard],
+    }));
   }
 
   updateStorage(prevState) {

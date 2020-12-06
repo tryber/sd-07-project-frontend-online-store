@@ -100,7 +100,7 @@ Details.propTypes = {
     shipping: PropTypes.shape({
       free_shipping: PropTypes.bool,
     }),
-  }).isRequired,
+  }),
   shoppingCard: PropTypes.arrayOf(PropTypes.object).isRequired,
   addToCard: PropTypes.func.isRequired,
 };
