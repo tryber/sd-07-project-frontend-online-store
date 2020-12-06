@@ -18,7 +18,6 @@ export default class Rating extends Component {
 
   handleChangeMsg(event) {
     this.setState({ value: event.target.value });
-    // console.log(this.state.value)
   }
 
   handleChangeRating(event) {
