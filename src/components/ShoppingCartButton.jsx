@@ -5,8 +5,24 @@ import ShoppingCartImage from '../images/shopping-cart.svg';
 import './ShoppingCartButton.css';
 
 class ShoppingCartButton extends Component {
+  constructor() {
+    super();
+    this.sumQuantity = this.sumQuantity.bind(this);
+    this.state = {
+      circleClass: 'quantity',
+    };
+  }
+
+  sumQuantity(array) {
+    const initialValue = 0;
+    const quantity = array.reduce((acc, item) => acc + item.quantity, initialValue);
+    return quantity;
+  }
+
   render() {
     const { productsInShoppingCart } = this.props;
+    const { circleClass } = this.state;
+    const quantity = this.sumQuantity(productsInShoppingCart);
     return (
       <nav>
         <Link
@@ -15,6 +31,9 @@ class ShoppingCartButton extends Component {
           data-testid="shopping-cart-button"
           products-in-shopping-cart={ productsInShoppingCart }
         >
+          <div className={ `${circleClass}` }>
+            <span data-testid="shopping-cart-size">{quantity}</span>
+          </div>
           <img className="image" src={ ShoppingCartImage } alt="Carrinho de Compras" />
         </Link>
       </nav>

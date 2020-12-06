@@ -18,7 +18,7 @@ class ProductCard extends Component {
   getCard(title, thumbnail, price, shipping) {
     return (
       <div data-testid="product">
-        <h2>{title}</h2>
+        <h2>{ title }</h2>
         <img src={ thumbnail } alt="product" />
 
         <div className="divShipping">
@@ -27,42 +27,55 @@ class ProductCard extends Component {
           }
         </div>
         <br />
-        <span>{price}</span>
+        <span>{ price }</span>
       </div>
     );
   }
 
   render() {
     const { products, addToCard, shoppingCard } = this.props;
+    // const { availableQuantity } = products;
+    // console.log(products[0].availableQuantity)
     return (
       <div>
-        {products.map(({ id, title, thumbnail, price, shipping }) => (
-          <div key={ id }>
-            <Link
-              data-testid="product-detail-link"
-              to={ {
-                pathname: `/details/${id}`,
-                id,
-                title,
-                thumbnail,
-                shipping,
-                price,
-                addToCard,
-                shoppingCard,
-              } }
-            >
-              {this.getCard(title, thumbnail, price, shipping)}
-            </Link>
-            <Buy
-              dataTestId="product-add-to-cart"
-              id={ id }
-              title={ title }
-              price={ price }
-              thumbnail={ thumbnail }
-              addToCard={ addToCard }
-            />
-          </div>
-        ))}
+        {products.map(
+          ({
+            id,
+            title,
+            thumbnail,
+            price,
+            available_quantity: availableQuantity,
+            shipping,
+          }) => (
+            <div key={ id }>
+              <Link
+                data-testid="product-detail-link"
+                to={ {
+                  pathname: `/details/${id}`,
+                  id,
+                  title,
+                  thumbnail,
+                  price,
+                  availableQuantity,
+                  addToCard,
+                  shoppingCard,
+                  shipping,
+                } }
+              >
+                {this.getCard(title, thumbnail, price, shipping))}
+              </Link>
+              <Buy
+                dataTestId="product-add-to-cart"
+                id={ id }
+                title={ title }
+                price={ price }
+                availableQuantity={ availableQuantity }
+                thumbnail={ thumbnail }
+                addToCard={ addToCard }
+              />
+            </div>
+          ),
+        )}
       </div>
     );
   }
