@@ -25,6 +25,7 @@ class ShoppingCardList extends Component {
                   quantity={ item.quantity }
                   changeQuantity={ changeQuantity }
                   id={ item.id }
+                  available_quantity={item.available_quantity}
                 />
                 <RemoveItem
                   removeItem={ removeItem }

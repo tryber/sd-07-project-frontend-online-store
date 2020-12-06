@@ -38,7 +38,7 @@ class Details extends Component {
 
   render() {
     const {
-      location: { id, title, thumbnail, price }, shoppingCard, addToCard,
+      location: { id, title, thumbnail, price, available_quantity }, shoppingCard, addToCard,
     } = this.props;
     const { storage } = this.state;
     return (
@@ -60,6 +60,7 @@ class Details extends Component {
           id={ id }
           title={ title }
           price={ price }
+          available_quantity={ available_quantity }
           thumbnail={ thumbnail }
           addToCard={ addToCard }
         />
@@ -80,6 +81,7 @@ Details.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    available_quantity: PropTypes.number.isRequired,
     addToCard: PropTypes.func.isRequired,
     shipping: PropTypes.shape({
       free_shipping: PropTypes.bool.isRequired,

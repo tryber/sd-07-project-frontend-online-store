@@ -16,9 +16,11 @@ class ProductCard extends Component {
 
   render() {
     const { products, addToCard, shoppingCard } = this.props;
+    // const { available_quantity } = products;
+    // console.log(products[0].available_quantity)
     return (
       <div>
-        {products.map(({ id, title, thumbnail, price }) => (
+        {products.map(({ id, title, thumbnail, price, available_quantity }) => (
           <div key={ id }>
             <Link
               data-testid="product-detail-link"
@@ -28,6 +30,7 @@ class ProductCard extends Component {
                 title,
                 thumbnail,
                 price,
+                available_quantity,
                 addToCard,
                 shoppingCard,
               } }
@@ -39,6 +42,7 @@ class ProductCard extends Component {
               id={ id }
               title={ title }
               price={ price }
+              available_quantity={ available_quantity }
               thumbnail={ thumbnail }
               addToCard={ addToCard }
             />
