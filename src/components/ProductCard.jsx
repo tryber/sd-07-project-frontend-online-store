@@ -2,13 +2,31 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Buy from './Buy';
+import packageImage from '../images/packageImage.svg';
+import './ProductCard.css';
 
 class ProductCard extends Component {
-  getCard(title, thumbnail, price) {
+  getFreeShipping() {
+    return (
+      <div data-testid="free-shipping">
+        Frete Grátis
+        <img className="packageImage" src={ packageImage } alt="Frete grátis" />
+      </div>
+    );
+  }
+
+  getCard(title, thumbnail, price, shipping) {
     return (
       <div data-testid="product">
         <h2>{title}</h2>
         <img src={ thumbnail } alt="product" />
+
+        <div className="divShipping">
+          {
+            shipping.free_shipping ? this.getFreeShipping() : false
+          }
+        </div>
+        <br />
         <span>{price}</span>
       </div>
     );
@@ -18,7 +36,7 @@ class ProductCard extends Component {
     const { products, addToCard, shoppingCard } = this.props;
     return (
       <div>
-        {products.map(({ id, title, thumbnail, price }) => (
+        {products.map(({ id, title, thumbnail, price, shipping }) => (
           <div key={ id }>
             <Link
               data-testid="product-detail-link"
@@ -27,12 +45,13 @@ class ProductCard extends Component {
                 id,
                 title,
                 thumbnail,
+                shipping,
                 price,
                 addToCard,
                 shoppingCard,
               } }
             >
-              {this.getCard(title, thumbnail, price)}
+              {this.getCard(title, thumbnail, price, shipping)}
             </Link>
             <Buy
               dataTestId="product-add-to-cart"
