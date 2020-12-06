@@ -9,7 +9,6 @@ class Checkout extends React.Component {
   constructor() {
     super();
     this.mySubmitHandler = this.mySubmitHandler.bind(this);
-    this.updatePrice = this.updatePrice.bind(this);
     this.state = {
       shouldRedirect: false,
     };

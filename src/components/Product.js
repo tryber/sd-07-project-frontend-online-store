@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Link } from 'react-router-dom';
+
+import * as cartAPI from '../services/cartAPI';
 
 class Product extends React.Component {
   render() {
@@ -29,6 +30,13 @@ class Product extends React.Component {
           <p>{`R$ ${product.price}`}</p>
           {freeShipping}
         </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => cartAPI.addItem(product) }
+        >
+          Me adicione ao carrinho :)
+        </button>
       </div>
     );
   }
