@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import Rating from '../components/Rating';
 
 export default class ProductDetails extends Component {
   constructor(props) {
@@ -18,6 +18,19 @@ export default class ProductDetails extends Component {
       thumbnail: detailsThumbnail,
       price: detailsPrice,
     };
+  }
+
+  async addToCart() {
+    const { title, price, thumbnail, id } = this.state;
+    const objItem = {
+      id,
+      title,
+      price,
+      thumbnail,
+      quantity: 1,
+    };
+    const newState = [objItem];
+    localStorage.setItem('cart', JSON.stringify(newState));
   }
 
   render() {
@@ -42,8 +55,18 @@ export default class ProductDetails extends Component {
               R$
               { price }
             </span>
+            <button
+              type="button"
+              name={ id }
+              className="details-link"
+              data-testid="product-detail-add-to-cart"
+              onClick={ () => this.addToCart(id) }
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
         </div>
+        <Rating />
       </div>
     );
   }
