@@ -1,0 +1,20 @@
+.product-container {
+  background-color: green;
+  border-color: black;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  margin: 10px 30px;
+  padding: 10px;
+}
+
+.thumbnail {
+  background-color: red;
+  margin-right: 10px;
+  width: 90px;
+}
+
+.product-content {
+  background-color: blue;
+}

@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.imagem-card {
+  margin: 15px;
+  width: 60px;
+}
+
+.title {
+  color: black;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.imagem-box {
+  align-self: center;
+  width: 300px;
+  margin: 100px auto 30px;
+}
+
+.footer {
+  display: flex;
+  font-size: 24px;
+  font-weight: 600;
+  justify-content: center;
+}
