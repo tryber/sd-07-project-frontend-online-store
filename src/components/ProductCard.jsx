@@ -62,7 +62,7 @@ class ProductCard extends Component {
                   shipping,
                 } }
               >
-                {this.getCard(title, thumbnail, price, shipping))}
+                {this.getCard(title, thumbnail, price, shipping)}
               </Link>
               <Buy
                 dataTestId="product-add-to-cart"
