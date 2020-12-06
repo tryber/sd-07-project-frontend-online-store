@@ -11,12 +11,6 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.onClickCategory = this.onClickCategory.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleTextInput = this.handleTextInput.bind(this);
-    this.handleUndefined = this.handleUndefined.bind(this);
-    this.addCartQuantity = this.addCartQuantity.bind(this);
-
     this.state = {
       searchItems: '',
       categoryId: '',
@@ -26,7 +20,7 @@ export default class Home extends Component {
     };
   }
 
-  async onClickCategory(event) {
+  onClickCategory = async (event) => {
     const categoryId = event.target.id;
     const products = await api.getProductsFromCategoryAndQuery(categoryId);
     this.setState({
@@ -36,27 +30,27 @@ export default class Home extends Component {
     });
   }
 
-  handleTextInput(event) {
+  handleTextInput = (event) => {
     this.setState({
       searchItems: event.target.value,
     });
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     const { searchItems } = this.state;
     api.getProductsFromCategoryAndQuery(searchItems)
       .then((products) => this.setState({ itemsFindOut: products, loading: true }))
       .catch((error) => console.log(error));
   }
 
-  handleUndefined() {
+  handleUndefined = () => {
     const { loading, itemsFindOut } = this.state;
     if (!itemsFindOut.lenght || loading === false) {
       return <Redirect to="./pages/ProductNotFound" />;
     }
   }
 
-  addCartQuantity() {
+  addCartQuantity = () => {
     this.setState((prevState) => ({
       cartQuantity: Number(prevState.cartQuantity) + 1,
     }));
