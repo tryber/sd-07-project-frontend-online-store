@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
+import './GlobalStyles.css';
 import Home from './pages/home';
 import Cart from './pages/Cart';
 import Details from './pages/Details';
