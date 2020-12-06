@@ -98,11 +98,15 @@ Details.propTypes = {
     availableQuantity: PropTypes.number.isRequired,
     addToCard: PropTypes.func.isRequired,
     shipping: PropTypes.shape({
-      free_shipping: PropTypes.bool.isRequired,
-    }).isRequired,
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
   shoppingCard: PropTypes.arrayOf(PropTypes.object).isRequired,
   addToCard: PropTypes.func.isRequired,
+};
+
+Details.defaultProps = {
+  location: { shipping: undefined },
 };
 
 export default Details;
