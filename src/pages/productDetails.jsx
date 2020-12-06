@@ -20,7 +20,7 @@ export default class ProductDetails extends Component {
     };
   }
 
-  async addToCart(item) {
+  async addToCart() {
     const { title, price, thumbnail, id } = this.state;
     const objItem = {
       id,
