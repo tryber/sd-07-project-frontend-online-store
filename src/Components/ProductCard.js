@@ -6,7 +6,9 @@ import AddToCartButton from './AddToCartButton';
 class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
-    const { title, id, price, thumbnail } = product;
+    console.log(product)
+    const { title, id, price, thumbnail, shipping } = product;
+    const { free_shipping: freeShipping } = shipping;
     return (
       <div data-testid="product" className="product-card">
         <div>
@@ -19,6 +21,7 @@ class ProductCard extends React.Component {
           R$
           { price }
         </p>
+        { freeShipping ? <div data-testid="free-shipping"><div className="free-shipping"/>Frete Grátis</div> : null }
         <AddToCartButton
           product={ product }
           dataTestId="product-add-to-cart"
