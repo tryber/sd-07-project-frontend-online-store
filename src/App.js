@@ -17,13 +17,47 @@ class App extends Component {
     };
   }
 
-  addToCard(id, title, price, thumbnail) {
+  componentDidMount() {
+    this.getStorage();
+  }
+
+  componentDidUpdate(prevState) {
+    this.updateStorage(prevState);
+  }
+
+  getStorage() {
+    // const {
+    //   location: { id },
+    // } = this.props;
+    if (localStorage.getItem('shoppingCard')) {
+      this.setState({ shoppingCard: JSON.parse(localStorage.getItem('shoppingCard')) });
+    }
+  }
+
+  getSubmit(shoppingCardAdd) {
+    this.setState(({ shoppingCard }) => ({
+      shoppingCard: [shoppingCardAdd, ...shoppingCard],
+    }));
+  }
+
+  updateStorage(prevState) {
+    // const {
+    //   location: { id },
+    // } = this.props;
+    const { shoppingCard } = this.state;
+    if (prevState.shoppingCard !== shoppingCard) {
+      localStorage.setItem('shoppingCard', JSON.stringify(shoppingCard));
+    }
+  }
+
+  addToCard(id, title, price, thumbnail, availableQuantity) {
     const addProduct = {
       id,
       title,
       quantity: 1,
       price,
       thumbnail,
+      availableQuantity,
     };
     const { shoppingCard } = this.state;
     const foundProduct = shoppingCard.findIndex((product) => product.id === id);
@@ -37,6 +71,7 @@ class App extends Component {
     this.setState({
       shoppingCard,
     });
+    // console.log(addProduct.availableQuantity)
   }
 
   removeItem(id) {
