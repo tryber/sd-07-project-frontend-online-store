@@ -10,20 +10,21 @@ class ShoppingCartButton extends Component {
     this.sumQuantity = this.sumQuantity.bind(this);
     this.state = {
       circleClass: 'quantity',
-    }
+    };
   }
 
   sumQuantity(array) {
-    const quantity = array.reduce((acc, item) => acc + item.quantity, 0);
+    const initialValue = 0;
+    const quantity = array.reduce((acc, item) => acc + item.quantity, initialValue);
     return quantity;
   }
 
   render() {
     const { productsInShoppingCart } = this.props;
     const { circleClass } = this.state;
-    const quantity = this.sumQuantity(productsInShoppingCart)
+    const quantity = this.sumQuantity(productsInShoppingCart);
     return (
-      // <nav>
+      <nav>
         <Link
           className="button"
           to={ { pathname: '/shoppingCart', productsInShoppingCart } }
@@ -35,7 +36,7 @@ class ShoppingCartButton extends Component {
           </div>
           <img className="image" src={ ShoppingCartImage } alt="Carrinho de Compras" />
         </Link>
-      // </nav>
+      </nav>
     );
   }
 }

@@ -17,14 +17,14 @@ class App extends Component {
     };
   }
 
-  addToCard(id, title, price, thumbnail, available_quantity) {
+  addToCard(id, title, price, thumbnail, availableQuantity) {
     const addProduct = {
       id,
       title,
       quantity: 1,
       price,
       thumbnail,
-      available_quantity,
+      availableQuantity,
     };
     const { shoppingCard } = this.state;
     const foundProduct = shoppingCard.findIndex((product) => product.id === id);
@@ -38,7 +38,7 @@ class App extends Component {
     this.setState({
       shoppingCard,
     });
-    // console.log(addProduct.available_quantity)
+    // console.log(addProduct.availableQuantity)
   }
 
   removeItem(id) {

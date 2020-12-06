@@ -29,9 +29,9 @@ class Quantity extends Component {
     }
   }
 
-  plus(id, quantity, available_quantity) {
+  plus(id, quantity, availableQuantity) {
     const { changeQuantity } = this.props;
-    if (quantity < available_quantity) {
+    if (quantity < availableQuantity) {
       changeQuantity(id, quantity + 1);
     }
   }
@@ -52,7 +52,7 @@ class Quantity extends Component {
   // }
 
   render() {
-    const { id, quantity, available_quantity } = this.props;
+    const { id, quantity, availableQuantity } = this.props;
     return (
       <div className="container">
         <button
@@ -82,7 +82,7 @@ class Quantity extends Component {
         <button
           type="button"
           className="plus sign"
-          onClick={ () => this.plus(id, quantity, available_quantity) }
+          onClick={ () => this.plus(id, quantity, availableQuantity) }
           data-testid="product-increase-quantity"
         >
           +
@@ -96,7 +96,7 @@ Quantity.propTypes = {
   changeQuantity: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
-  available_quantity: PropTypes.number.isRequired,
+  availableQuantity: PropTypes.number.isRequired,
 };
 
 export default Quantity;

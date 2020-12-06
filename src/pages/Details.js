@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  ShoppingCartButton, Buy, Evalue, Assessments, GoBack,
+  ShoppingCartButton,
+  Buy,
+  Evalue,
+  Assessments,
+  GoBack,
 } from '../components/index';
 
 class Details extends Component {
@@ -13,12 +17,18 @@ class Details extends Component {
     };
   }
 
-  componentDidMount() { this.getStorage(); }
+  componentDidMount() {
+    this.getStorage();
+  }
 
-  componentDidUpdate(prevState) { this.updateStorage(prevState); }
+  componentDidUpdate(prevState) {
+    this.updateStorage(prevState);
+  }
 
   getStorage() {
-    const { location: { id } } = this.props;
+    const {
+      location: { id },
+    } = this.props;
     if (localStorage.getItem(id)) {
       this.setState({ storage: JSON.parse(localStorage.getItem(id)) });
     }
@@ -29,7 +39,9 @@ class Details extends Component {
   }
 
   updateStorage(prevState) {
-    const { location: { id } } = this.props;
+    const {
+      location: { id },
+    } = this.props;
     const { storage } = this.state;
     if (prevState.storage !== storage) {
       localStorage.setItem(id, JSON.stringify(storage));
@@ -38,7 +50,9 @@ class Details extends Component {
 
   render() {
     const {
-      location: { id, title, thumbnail, price, available_quantity }, shoppingCard, addToCard,
+      location: { id, title, thumbnail, price, availableQuantity },
+      shoppingCard,
+      addToCard,
     } = this.props;
     const { storage } = this.state;
     return (
@@ -50,7 +64,7 @@ class Details extends Component {
           <ShoppingCartButton productsInShoppingCart={ shoppingCard } />
         </div>
         <h2 data-testid="product-detail-name">
-          {`Produto ${title} - R$ ${price}`}
+          { `Produto ${title} - R$ ${price}` }
         </h2>
         <div>
           <img alt={ title } src={ thumbnail } />
@@ -60,14 +74,14 @@ class Details extends Component {
           id={ id }
           title={ title }
           price={ price }
-          available_quantity={ available_quantity }
+          availableQuantity={ availableQuantity }
           thumbnail={ thumbnail }
           addToCard={ addToCard }
         />
         <h4>Especificações técnicas</h4>
         <ul>
-          <li>{ title }</li>
-          <li>{ price }</li>
+          <li>{title}</li>
+          <li>{price}</li>
         </ul>
         <Evalue getSubmit={ this.getSubmit } />
         <Assessments storage={ storage } />
@@ -81,7 +95,7 @@ Details.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    available_quantity: PropTypes.number.isRequired,
+    availableQuantity: PropTypes.number.isRequired,
     addToCard: PropTypes.func.isRequired,
     shipping: PropTypes.shape({
       free_shipping: PropTypes.bool.isRequired,
