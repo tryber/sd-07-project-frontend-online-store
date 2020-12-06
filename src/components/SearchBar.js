@@ -4,7 +4,6 @@ import * as mlAPI from '../services/api';
 import '../App.css';
 import logo from '../images/logo.svg';
 import Card from './Card';
-import Categories from './Categories';
 import GetIcon from './Icons';
 import ProductsCartCounter from './ProductsCartCounter';
 
@@ -14,6 +13,7 @@ class SearchBar extends React.Component {
     this.changeStateValue = this.changeStateValue.bind(this);
     this.fetchApiByQuery = this.fetchApiByQuery.bind(this);
     this.productsCounter = this.productsCounter.bind(this);
+    this.updateCounter = this.updateCounter.bind(this);
     this.updateCounter = this.updateCounter.bind(this);
 
     this.state = {
@@ -25,8 +25,9 @@ class SearchBar extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchApiByQuery();
+   const test = () => { this.fetchApiByQuery();};
   }
+
 
   async fetchApiByQuery() {
     this.setState(
@@ -57,12 +58,6 @@ class SearchBar extends React.Component {
   }
 
   productsCounter() {
-    // Requisito 13 não funciona
-    // Se alterar para o commit anterior, o Eslint reclama que a mudança de estado deve ser feita com callback
-    // const prod = JSON.parse(localStorage.getItem('cartItems'));
-    // const zero = 0;
-    // const nSt = prod != null ? prod.reduce((acc, cur) => acc + cur.quantity, zero) : zero;
-    // this.setState(this.updateCounter(this.state, true, nSt));
     this.setState((estadoAnterior) => ({ counter: estadoAnterior.counter + 1 }));
   }
 
@@ -103,9 +98,6 @@ class SearchBar extends React.Component {
           <ProductsCartCounter counter={ counter } />
         </header>
         <div className="container">
-          <section className="categories-list">
-            <Categories handleChange={ this.changeStateValue } />
-          </section>
           <section className="product-list">
             {arrayOfItemByInputedText
               .map((item) => (<Card
