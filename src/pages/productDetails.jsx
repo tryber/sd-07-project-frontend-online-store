@@ -20,6 +20,19 @@ export default class ProductDetails extends Component {
     };
   }
 
+  async addToCart(item) {
+    const { title, price, thumbnail, id } = this.state;
+    const objItem = {
+      id,
+      title,
+      price,
+      thumbnail,
+      quantity: 1,
+    };
+    const newState = [objItem];
+    localStorage.setItem('cart', JSON.stringify(newState));
+  }
+
   render() {
     const { id, title, thumbnail, price } = this.state;
     return (
@@ -42,6 +55,15 @@ export default class ProductDetails extends Component {
               R$
               { price }
             </span>
+            <button
+              type="button"
+              name={ id }
+              className="details-link"
+              data-testid="product-detail-add-to-cart"
+              onClick={ () => this.addToCart(id) }
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
         </div>
       </div>
