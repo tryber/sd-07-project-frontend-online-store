@@ -129,11 +129,11 @@ input:focus, .search-bar-button {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  height: 280px;
+  height: 380px;
   justify-content: space-between;
   margin-top: 50px;
   padding: 20px;
-  width: 250px;
+  width: 300px;
 }
 
 .initial-message {
@@ -215,4 +215,12 @@ input:focus, .search-bar-button {
 .form-label input {
   margin-left: 10px;
   width: 100%;
+}
+
+.free-shipping {
+  background-image: url('./Images/free-shipping.png');
+  background-size: cover;
+  height: 30px;
+  margin: 0 auto;
+  width: 30px;
 }
