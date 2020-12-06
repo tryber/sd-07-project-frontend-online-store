@@ -6,7 +6,6 @@ import AddToCartButton from './AddToCartButton';
 class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
-    console.log(product)
     const { title, id, price, thumbnail, shipping } = product;
     const { free_shipping: freeShipping } = shipping;
     return (
@@ -21,7 +20,7 @@ class ProductCard extends React.Component {
           R$
           { price }
         </p>
-        { freeShipping ? <div data-testid="free-shipping"><div className="free-shipping"/>Frete Grátis</div> : null }
+        { freeShipping ? <div data-testid="free-shipping">Frete Grátis</div> : null}
         <AddToCartButton
           product={ product }
           dataTestId="product-add-to-cart"
@@ -38,6 +37,7 @@ ProductCard.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    shipping: PropTypes.object,
   }).isRequired,
 };
 
