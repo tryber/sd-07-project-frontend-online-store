@@ -1,35 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import * as cartAPI from '../services/cartAPI';
 
 export default class QuantifyProducts extends Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
+    const { quantidade } = this.props;
     this.state = {
-      quantify: 1,
+      quantify: quantidade,
     };
-  }
-
-  componentDidMount() {
-    const cart = cartAPI.getCart();
-    const { id } = this.props;
-    this.setState({ quantify: cart[id].quantidade });
   }
 
   async increase(id) {
     const { quantify } = this.state;
+    const { updateCartAmount } = this.props;
     cartAPI.increaseItem(id);
     this.setState({ quantify: quantify + 1 });
+    updateCartAmount();
   }
 
   async decrease(id) {
     const { quantify } = this.state;
+    const { updateCartAmount } = this.props;
     cartAPI.decreaseItem(id);
     if (quantify > 1) {
       this.setState({ quantify: quantify - 1 });
     }
+    updateCartAmount();
   }
+
   render() {
     const { quantify } = this.state;
     const { id } = this.props;
@@ -38,16 +38,16 @@ export default class QuantifyProducts extends Component {
       <div>
         <div>
           <button
-            onClick={() => this.increase(id)}
+            onClick={ () => this.increase(id) }
             type="button"
             data-testid="product-increase-quantity"
           >
             +
           </button>
           <button
-            onClick={() => {
+            onClick={ () => {
               this.decrease(id);
-            }}
+            } }
             type="button"
             data-testid="product-decrease-quantity"
           >
@@ -56,9 +56,18 @@ export default class QuantifyProducts extends Component {
 
           <button type="button">X</button>
 
-          <div data-testid="shopping-cart-product-quantity">Quantidade: {quantify}</div>
+          <div data-testid="shopping-cart-product-quantity">
+            Quantidade:
+            {quantify}
+          </div>
         </div>
       </div>
     );
   }
 }
+
+QuantifyProducts.propTypes = {
+  id: PropTypes.string.isRequired,
+  quantidade: PropTypes.number.isRequired,
+  updateCartAmount: PropTypes.func.isRequired,
+};

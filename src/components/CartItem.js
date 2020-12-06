@@ -6,7 +6,7 @@ import * as cartAPI from '../services/cartAPI';
 
 class CartItem extends React.Component {
   render() {
-    const { id } = this.props;
+    const { id, updateCartAmount } = this.props;
     const itemValues = cartAPI.returnItem(id);
     const item = itemValues.info;
     return (
@@ -22,7 +22,11 @@ class CartItem extends React.Component {
           <h3>{item.title}</h3>
           <ul>
             <li>{`R$ ${item.price}`}</li>
-            <QuantifyProducts id={ id } />
+            <QuantifyProducts
+              id={ id }
+              quantidade={ itemValues.quantidade }
+              updateCartAmount={ updateCartAmount }
+            />
           </ul>
         </div>
       </div>
@@ -34,4 +38,5 @@ export default CartItem;
 
 CartItem.propTypes = {
   id: PropTypes.string.isRequired,
+  updateCartAmount: PropTypes.func.isRequired,
 };

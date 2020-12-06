@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import * as api from '../services/api';
 import Categorias from '../components/Categorias';
@@ -32,11 +33,15 @@ class PageListProducts extends React.Component {
 
   render() {
     const { categorys, selectedCategory } = this.state;
+    const { updateCartAmount } = this.props;
     return (
       <div className="page-list-products">
         <Categorias categorys={ categorys } callback={ this.categoryUpdate } />
         <div className="list-products">
-          <ProductListing categoryId={ selectedCategory } />
+          <ProductListing
+            categoryId={ selectedCategory }
+            updateCartAmount={ updateCartAmount }
+          />
         </div>
       </div>
     );
@@ -44,3 +49,7 @@ class PageListProducts extends React.Component {
 }
 
 export default PageListProducts;
+
+PageListProducts.propTypes = {
+  updateCartAmount: PropTypes.func.isRequired,
+};

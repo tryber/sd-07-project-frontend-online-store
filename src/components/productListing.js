@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Products from './Products';
 import * as api from '../services/api';
@@ -9,29 +10,31 @@ class ProductListing extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.getProducts = this.getProducts.bind(this);
     this.state = {
-      loading: false,
       products: [],
-      searchText: '',
-      categorySelected: ''
+      categorySelected: '',
     };
   }
 
-
   componentDidUpdate() {
-    if (this.props.categoryId !== this.state.categorySelected) {
-      this.getProducts()
+    const { categoryId } = this.props;
+    const { categorySelected } = this.state;
+    if (categoryId !== categorySelected) {
+      this.getProducts();
     }
   }
 
   async getProducts() {
-    const response = await api.getProductsFromCategoryAndQuery(this.props.categoryId, this.state.searchText)
+    const { categoryId } = this.props;
+    const { searchText } = this.state;
+    const response = await api.getProductsFromCategoryAndQuery(
+      categoryId,
+      searchText,
+    );
     this.setState({
-      categorySelected: this.props.categoryId,
+      categorySelected: categoryId,
       products: response.results,
-      loading: false
-    })
+    });
   }
-
 
   handleChange({ target }) {
     const { name, value } = target;
@@ -39,10 +42,12 @@ class ProductListing extends Component {
   }
 
   render() {
+    const { products } = this.state;
+    const { updateCartAmount } = this.props;
     return (
       <div>
         <input
-          onChange={this.handleChange}
+          onChange={ this.handleChange }
           data-testid="query-input"
           className="search-category"
           type="text"
@@ -51,13 +56,22 @@ class ProductListing extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <button onClick={this.getProducts} data-testid="query-button">
+        <button
+          type="button"
+          onClick={ this.getProducts }
+          data-testid="query-button"
+        >
           DISPARA API
         </button>
-        <Products products={this.state.products} />
+        <Products products={ products } updateCartAmount={ updateCartAmount } />
       </div>
     );
   }
 }
 
 export default ProductListing;
+
+ProductListing.propTypes = {
+  categoryId: PropTypes.string.isRequired,
+  updateCartAmount: PropTypes.func.isRequired,
+};
