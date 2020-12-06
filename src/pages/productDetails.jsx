@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import Rating from '../components/Rating';
 
 export default class ProductDetails extends Component {
   constructor(props) {
@@ -66,6 +66,7 @@ export default class ProductDetails extends Component {
             </button>
           </div>
         </div>
+        <Rating />
       </div>
     );
   }
