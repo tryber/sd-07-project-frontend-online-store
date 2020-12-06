@@ -20,7 +20,7 @@ export default class Home extends Component {
     };
   }
 
-  onClickCategory = async (event) => {
+  fetchByCategory = async (event) => {
     const categoryId = event.target.id;
     const products = await api.getProductsFromCategoryAndQuery(categoryId);
     this.setState({
@@ -75,7 +75,7 @@ export default class Home extends Component {
           </div>
           <div><ShoppingCartButton cartQuantity={ cartQuantity } /></div>
         </header>
-        <ListCategories onClickCategory={ this.onClickCategory } />
+        <ListCategories fetchByCategory={ this.fetchByCategory } />
         <div className="grid">
           <div className="item">
             {loading ? itemsFindOut.results.map((item) => {

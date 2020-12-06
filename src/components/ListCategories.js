@@ -19,7 +19,7 @@ class ListCategories extends Component {
   }
 
   render() {
-    const { onClickCategory } = this.props;
+    const { fetchByCategory } = this.props;
     const { categories } = this.state;
 
     return (
@@ -37,7 +37,7 @@ class ListCategories extends Component {
                 { name }
               </label>
               <input
-                onClick={ onClickCategory }
+                onClick={ fetchByCategory }
                 id={ id }
                 type="radio"
                 name="category"
@@ -52,7 +52,7 @@ class ListCategories extends Component {
 }
 
 ListCategories.propTypes = {
-  onClickCategory: PropTypes.func.isRequired,
+  fetchByCategory: PropTypes.func.isRequired,
 };
 
 export default ListCategories;
