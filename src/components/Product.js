@@ -5,6 +5,17 @@ import { Link } from 'react-router-dom';
 import * as cartAPI from '../services/cartAPI';
 
 class Product extends React.Component {
+  constructor() {
+    super();
+    this.addItemToCartAndUpdate = this.addItemToCartAndUpdate.bind(this);
+  }
+
+  addItemToCartAndUpdate() {
+    const { product, updateCartAmount } = this.props;
+    cartAPI.addItem(product);
+    updateCartAmount();
+  }
+
   render() {
     const { product } = this.props;
     let freeShipping;
@@ -33,7 +44,7 @@ class Product extends React.Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ () => cartAPI.addItem(product) }
+          onClick={ this.addItemToCartAndUpdate }
         >
           Me adicione ao carrinho :)
         </button>

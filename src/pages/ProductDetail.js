@@ -8,9 +8,17 @@ import * as cartAPI from '../services/cartAPI';
 class ProductDetail extends Component {
   constructor(props) {
     super();
+    this.addItemToCartAndUpdate = this.addItemToCartAndUpdate.bind(this);
     this.state = {
       product: props.location.state.product,
     };
+  }
+
+  addItemToCartAndUpdate() {
+    const { product } = this.state;
+    const { updateCartAmount } = this.props;
+    cartAPI.addItem(product);
+    updateCartAmount();
   }
 
   render() {
@@ -29,7 +37,7 @@ class ProductDetail extends Component {
         <button
           type="button"
           data-testid="product-detail-add-to-cart"
-          onClick={ () => cartAPI.addItem(product) }
+          onClick={ this.addItemToCartAndUpdate }
         >
           Me adicione ao carrinho :)
         </button>
@@ -47,4 +55,5 @@ ProductDetail.propTypes = {
       product: PropTypes.object,
     }).isRequired,
   }).isRequired,
+  updateCartAmount: PropTypes.func.isRequired,
 };

@@ -14,16 +14,20 @@ export default class QuantifyProducts extends Component {
 
   async increase(id) {
     const { quantify } = this.state;
+    const { updateCartAmount } = this.props;
     cartAPI.increaseItem(id);
     this.setState({ quantify: quantify + 1 });
+    updateCartAmount();
   }
 
   async decrease(id) {
     const { quantify } = this.state;
+    const { updateCartAmount } = this.props;
     cartAPI.decreaseItem(id);
     if (quantify > 1) {
       this.setState({ quantify: quantify - 1 });
     }
+    updateCartAmount();
   }
 
   render() {
@@ -65,4 +69,5 @@ export default class QuantifyProducts extends Component {
 QuantifyProducts.propTypes = {
   id: PropTypes.string.isRequired,
   quantidade: PropTypes.number.isRequired,
+  updateCartAmount: PropTypes.func.isRequired,
 };

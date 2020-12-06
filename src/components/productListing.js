@@ -43,6 +43,7 @@ class ProductListing extends Component {
 
   render() {
     const { products } = this.state;
+    const { updateCartAmount } = this.props;
     return (
       <div>
         <input
@@ -62,7 +63,7 @@ class ProductListing extends Component {
         >
           DISPARA API
         </button>
-        <Products products={ products } />
+        <Products products={ products } updateCartAmount={ updateCartAmount } />
       </div>
     );
   }
@@ -72,4 +73,5 @@ export default ProductListing;
 
 ProductListing.propTypes = {
   categoryId: PropTypes.string.isRequired,
+  updateCartAmount: PropTypes.func.isRequired,
 };
