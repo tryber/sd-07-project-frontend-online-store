@@ -12,6 +12,8 @@ class DetalhesDoProduto extends React.Component {
       thumbnail,
       id,
     } = jsonParseGetItem;
+    const quantityDefaultWhenAddToCart = 1;
+
     return (
       <div>
         <BotaoCarrinho />
@@ -39,7 +41,7 @@ class DetalhesDoProduto extends React.Component {
           data-testid="product-detail-add-to-cart"
           type="button"
           onClick={ () => FunctionsToCart
-            .addToCart(title, price, thumbnail) }
+            .addToCart(title, price, thumbnail, quantityDefaultWhenAddToCart, id) }
         >
           Adicionar ao seu carrinho
         </button>
