@@ -3,6 +3,10 @@ div[data-testid="product"]{
     padding-left: 30px;
     margin-right: 10px;
     margin-top: 8px;
+    width: 220px;
+    height: 260px;
+
+    position: relative;
 }
 img[alt="thumb-product"]{
     height: 128px;
@@ -14,8 +18,26 @@ img[alt="thumb-product"]{
 .h3-title{
     font-size: 14px;
     font-weight: 300;
+    color: #454637;
 }
 .p-price{
     font-size: 26px;
     font-weight: 600;
+    color: #454637;
+}
+[data-testid="product-detail-link"]{
+    text-decoration: none;
+}
+.p-free-shipping{
+    position: absolute;
+    color: #2546DA;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+}
+[data-testid="free-shipping"]{
+    fill:#2546DA;
+    height:18px;
+    width: 18px;
+    padding-right: 4px;
 }
