@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 class Carrinho extends React.Component {
   constructor(props) {
@@ -153,15 +153,10 @@ class Carrinho extends React.Component {
             {total}
           </h3>
           <Link
-           data-testid="checkout-products"
-           to={ {
-                  pathname: "/payment",
-                  state: {
-                    ObjectPayment: objeto,
-                    }
-                } }
-              >
-             Payment
+            data-testid="checkout-products"
+            to="payment"
+          >
+            Payment
           </Link>
         </div>
       </div>

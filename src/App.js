@@ -4,7 +4,7 @@ import './App.css';
 import Listagem from './pages/listagem';
 import Carrinho from './pages/carrinho';
 import ProductDetails from './pages/productDetails';
-import Payment from './pages/payment'
+import Payment from './pages/payment';
 
 
 function App() {
