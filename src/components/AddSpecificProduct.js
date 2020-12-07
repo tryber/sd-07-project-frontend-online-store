@@ -9,7 +9,7 @@ class AddSpecificProduct extends Component {
       <button
         type="button"
         onClick={ addShoppingCartItems }
-        data-testid="product-add-to-cart"
+        data-testid="product-detail-add-to-cart"
       >
         Adicionar ao carrinho
       </button>
