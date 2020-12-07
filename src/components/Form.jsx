@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-rating-stars-component';
 
-class EvaluationForm extends Component {
+class EvaluationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,8 +15,16 @@ class EvaluationForm extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  getEvaluationList(productId) {
+    const evaluationList = JSON.parse(localStorage.getItem(productId));
+    if (evaluationList) {
+      return evaluationList;
+    }
+    return [];
+  }
+
   addEvaluation(productId, evaluation) {
-    const evaluationList = getEvaluationList(productId);
+    const evaluationList = EvaluationForm.getEvaluationList(productId);
     evaluationList.push(evaluation);
     localStorage.setItem(productId, JSON.stringify(evaluationList));
   }
@@ -33,7 +41,7 @@ class EvaluationForm extends Component {
   handleClick() {
     const { email, message, rating } = this.state;
     const { productId } = this.props;
-    addEvaluation(productId, { email, message, rating });
+    EvaluationForm.addEvaluation(productId, { email, message, rating });
   }
 
   render() {
