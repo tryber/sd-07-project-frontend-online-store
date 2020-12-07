@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/product.css';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import addToCart from '../services/addToCart';
@@ -28,9 +29,9 @@ class Product extends Component {
     return (
       <div data-testid="product">
         {freeShipping ? <p data-testid="free-shipping">envio grátis</p> : null}
-        <h2>{title}</h2>
-        <img src={ thumbnail } alt="thumb" />
-        <p>{price}</p>
+        <img src={ thumbnail } alt="thumb-product" />
+        <h3 className="h3-title">{title}</h3>
+        <p className="p-price">{price}</p>
         <Link
           data-testid="product-detail-link"
           to={ `./details/${category || null}/${
