@@ -1,0 +1,77 @@
+.search-bar-div {
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: 5%;
+  /* width: 90%; */
+}
+.query-input {
+  border-radius: 8px;
+  font-size: 25px;
+  font-weight: 500;
+  height: 30px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 70%;
+}
+
+.query-button {
+    border-radius: 8px;
+    font-size: 20px;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 25%;
+
+  }
+.home-initial-message {
+    font-weight: 500; 
+}
+
+.containerCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: 5%;
+  margin-top: 30px;
+}
+.product-card {
+  border: 2px solid blue;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 30%;
+}
+.thumbnail-card {
+  align-self: center;
+  height: 70%;
+  width: 70%;
+}
+.title-card {
+  font-size: medium;
+  word-wrap: break-word;
+}
+.price-card {
+  font-size: larger;
+  font-weight: 500;
+}
+.details-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: navy;
+    font-weight: bold;
+    text-decoration: none; 
+    width: 65%;
+    height: 20%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
