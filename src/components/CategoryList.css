@@ -1,0 +1,9 @@
+
+.container-lists-category {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    list-style-type: none;
+    border: 2px solid blue;
+    border-radius: 20px;
+
+}
