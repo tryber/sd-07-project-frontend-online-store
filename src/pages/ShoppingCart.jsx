@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as localStorage from '../services/localStorage';
 
-import './ShoppingCart.css';
-
 export default class ShoppingCart extends Component {
   constructor() {
     super();
@@ -82,24 +80,24 @@ export default class ShoppingCart extends Component {
     return (
       <div className="cart-products">
         { cart.map(({ amount, totalAmount, thumbnail, title, id, price }) => (
-          <div className="product" key={ id }>
+          <div className="shoppingCards" key={ id }>
             <button
               className="remove-product"
               onClick={ () => this.removeItem(id) }
               type="button"
             >
-              X
+              REMOVER
             </button>
             <img className="product-image" src={ thumbnail } alt={ title } />
             <p
-              className="product-title"
+              className="shoppingCardsTitle"
               data-testid="shopping-cart-product-name"
             >
               { title }
             </p>
             <button
               onClick={ ({ target }) => this.addSubButton(id, target.name) }
-              className="sub-button"
+              className="btnAddSub"
               name="sub"
               data-testid="product-decrease-quantity"
               type="button"
@@ -107,14 +105,14 @@ export default class ShoppingCart extends Component {
               -
             </button>
             <p
-              className="product-qtd"
+              className="btnAddSub"
               data-testid="shopping-cart-product-quantity"
             >
               { amount }
             </p>
             <button
               onClick={ ({ target }) => this.addSubButton(id, target.name) }
-              className="add-button"
+              className="add-button btnAddSub"
               name="add"
               data-testid="product-increase-quantity"
               type="button"
@@ -122,13 +120,16 @@ export default class ShoppingCart extends Component {
             >
               +
             </button>
-            <p className="product-price">{ price }</p>
+            <p className="product-price">
+              R$
+              { price }
+            </p>
           </div>
         ))}
-        <p>
-          {`Valor Total da Compra R$:${totalPrice.toFixed(two)}`}
+        <p className="totalValue">
+          {`Valor Total da Compra R$: ${totalPrice.toFixed(two)}`}
         </p>
-        <Link to="/checkout" data-testid="checkout-products">
+        <Link to="/checkout" className="finish" data-testid="checkout-products">
           Finalizar compra
         </Link>
       </div>
@@ -146,7 +147,9 @@ export default class ShoppingCart extends Component {
     if (cartItemsLength) {
       return (
         <div>
-          <Link to="/">Voltar</Link>
+          <div className="header">
+            <Link to="/">Voltar</Link>
+          </div>
           {this.productsList()}
         </div>
       );

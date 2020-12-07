@@ -63,81 +63,69 @@ export default class Checkout extends React.Component {
             </p>
           </div>
         ))}
-        <form>
-          <label htmlFor="checkout-fullname">
-            Nome:
-            <input
-              name="fullName"
-              type="text"
-              data-testid="checkout-fullname"
-              id="checkout-fullname"
-              value={ fullName }
-              onChange={ this.onChange }
-              required
-            />
-          </label>
-          <label htmlFor="checkout-email">
-            E-mail:
-            <input
-              name="email"
-              type="text"
-              data-testid="checkout-email"
-              id="checkout-email"
-              value={ email }
-              onChange={ this.onChange }
-              required
-            />
-          </label>
-          <label htmlFor="checkout-cpf">
-            CPF:
-            <input
-              name="cpf"
-              type="text"
-              data-testid="checkout-cpf"
-              id="checkout-cpf"
-              maxLength="11"
-              value={ cpf }
-              onChange={ this.onChange }
-              required
-            />
-          </label>
-          <label htmlFor="checkout-phone">
-            Telefone:
-            <input
-              name="phone"
-              type="text"
-              data-testid="checkout-phone"
-              id="checkout-phone"
-              value={ phone }
-              onChange={ this.onChange }
-              required
-            />
-          </label>
-          <label htmlFor="checkout-cep">
-            CEP:
-            <input
-              name="cep"
-              type="text"
-              data-testid="checkout-cep"
-              id="checkout-cep"
-              value={ cep }
-              onChange={ this.onChange }
-              required
-            />
-          </label>
-          <label htmlFor="checkout-address">
-            Endereço:
-            <input
-              name="address"
-              type="text"
-              data-testid="checkout-address"
-              id="checkout-address"
-              value={ address }
-              onChange={ this.onChange }
-              required
-            />
-          </label>
-          <input type="button" value="finalizar compra" onClick={ this.concludeBuy } />
+        <form className="formGroup">
+          <input
+            placeholder="Nome"
+            name="fullName"
+            type="text"
+            data-testid="checkout-fullname"
+            id="checkout-fullname"
+            value={ fullName }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="Email"
+            name="email"
+            type="text"
+            data-testid="checkout-email"
+            id="checkout-email"
+            value={ email }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="CPF"
+            name="cpf"
+            type="text"
+            data-testid="checkout-cpf"
+            id="checkout-cpf"
+            maxLength="11"
+            value={ cpf }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="Telefone"
+            name="phone"
+            type="text"
+            data-testid="checkout-phone"
+            id="checkout-phone"
+            value={ phone }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="CEP"
+            name="cep"
+            type="text"
+            data-testid="checkout-cep"
+            id="checkout-cep"
+            value={ cep }
+            onChange={ this.onChange }
+            required
+          />
+          <input
+            placeholder="Endereço"
+            name="address"
+            type="text"
+            data-testid="checkout-address"
+            id="checkout-address"
+            value={ address }
+            onChange={ this.onChange }
+            required
+          />
+          <input type="button" value="Finalizar compra" onClick={ this.concludeBuy } />
         </form>
       </div>
     );
