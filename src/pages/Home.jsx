@@ -16,9 +16,10 @@ class Home extends React.Component {
     this.sendCategoryId = this.sendCategoryId.bind(this);
 
     this.state = {
+      newSearch: '',
       searchKey: '',
       searchProducts: [],
-      categoryId: '',
+      categoryId: ' ',
       loading: false,
     };
   }
@@ -45,6 +46,7 @@ class Home extends React.Component {
         this.setState({
           loading: false,
           searchProducts: [...response.results],
+          newSearch: searchKey,
         });
       },
     );
@@ -61,7 +63,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { searchKey, searchProducts, loading } = this.state;
+    const { newSearch, searchKey, categoryId, searchProducts, loading } = this.state;
     return (
       <div className="home-container">
         <div className="home-aside-container">
@@ -103,6 +105,8 @@ class Home extends React.Component {
                   <CardProduct
                     key={ item.id }
                     item={ item }
+                    categoryId={ categoryId }
+                    searchKey={ newSearch === '' ? ' ' : newSearch }
                   />
                 ))
               )}
