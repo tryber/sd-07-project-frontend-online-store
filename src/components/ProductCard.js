@@ -9,7 +9,7 @@ class ProductCard extends React.Component {
 
     this.addToCart = this.addToCart.bind(this);
     this.handleProduct = this.handleProduct.bind(this);
-
+    this.freeShipping = this.freeShipping.bind(this);
     this.state = {
       product: {},
     };
@@ -30,12 +30,19 @@ class ProductCard extends React.Component {
     addCartItem({ id, price, title, quantity: initialQuantity });
   }
 
+  freeShipping(status) {
+    return (
+      status
+        ? <div data-testid="free-shipping">Frete Grátis</div>
+        : <div />
+    );
+  }
+
 
   render() {
-    // const { product } = this.props;
-    const { product: { title, thumbnail, price } } = this.props;
+    const { product: { title, thumbnail, price, shipping } } = this.props;
     const { product } = this.state;
-    // const { title, thumbnail, price } = this.state.product;
+
     return (
       <div>
         <article data-testid="product">
@@ -44,6 +51,7 @@ class ProductCard extends React.Component {
           </header>
           <main>
             <img alt="product thumbnail" src={ thumbnail } />
+            { this.freeShipping(shipping.free_shipping) }
           </main>
           <footer>
             <p>{`R$ ${price}`}</p>
@@ -79,6 +87,9 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
