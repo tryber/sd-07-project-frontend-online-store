@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import { Link } from 'react-router-dom';
 import ItemCart from '../components/ItemCart';
 import TopBar from '../components/TopBar';
 
@@ -54,6 +55,9 @@ class Cart extends React.Component {
               <ItemCart key={ product.id } product={ product } />
             ))}
           </div>
+          <Link data-testid="checkout-products" to="/Cart/Finish">
+            Finalizar Compra
+          </Link>
         </div>
       </div>
     );
