@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
 export const CategoriesContainer = styled.div`
-  width: 25%;
+  display: flex;
 `;
 
 export const CategoriesContent = styled.div`
-  display: flex;
-  flex-direction: column;
+display: flex;
+flex-direction: column;
+width: 80%;
 `;
 
-export const CategoriesTitle = styled.h3``;
+export const CategoryLabel = styled.label`
+display: flex;
+  a {
+    color: #5c687c;
+  }
+`;
 
-export const Label = styled.label``;
-
-export const InputRadio = styled.input``;
+export const CategoryInput = styled.input``;

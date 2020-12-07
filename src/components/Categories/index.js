@@ -1,56 +1,58 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
+import { getCategories } from '../../services/api';
+
 import {
   CategoriesContainer,
   CategoriesContent,
-  CategoriesTitle,
-  InputRadio,
-  Label,
+  CategoryInput,
+  CategoryLabel,
 } from './styles';
-import { getCategories } from '../../services/api';
 
 class Categories extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { categories: [] };
+    this.state = { categories: [], loading: true };
   }
 
-  componentDidMount() {
-    this.fetchAPI();
+  async componentDidMount() {
+    await this.setup();
   }
 
-  async fetchAPI() {
+  async setup() {
     const response = await getCategories();
-    this.setState({ categories: response });
+    this.setStateCategories(response);
+  }
+
+  setStateCategories(categories) {
+    this.setState({ categories, loading: false });
   }
 
   render() {
-    const { categories } = this.state;
-    const { handleIdCategory } = this.props;
+    const { categories, loading } = this.state;
+    if (loading) {
+      return <h3>Loading...</h3>;
+    }
+
     return (
       <CategoriesContainer>
-        <CategoriesTitle>Filtrar por</CategoriesTitle>
         <CategoriesContent>
-          { categories.map(({ id, name }) => (
-            <Label key={ id } data-testid="category">
-              <InputRadio
-                value={ id }
-                type="radio"
-                name="category"
-                onClick={ handleIdCategory }
-              />
-              { name }
-            </Label>
-          )) }
+          {categories.map(({ id, name }) => (
+            <CategoryLabel key={ id } data-testid="category">
+              <Link to={ `/search/${id}/0` }>
+                <CategoryInput
+                  type="radio"
+                  name="category"
+                />
+                { name }
+              </Link>
+            </CategoryLabel>
+          ))}
         </CategoriesContent>
       </CategoriesContainer>
     );
   }
 }
-
-Categories.propTypes = {
-  handleIdCategory: PropTypes.func.isRequired,
-};
 
 export default Categories;
