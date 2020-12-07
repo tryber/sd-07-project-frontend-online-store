@@ -57,7 +57,7 @@ export default class SearchBar extends Component {
 
   async addToCart(item) {
     const { title, price, thumbnail, id } = item;
-    console.log(item);
+    // console.log(item);
     const { objeto } = this.state;
     const objItem = {
       id,
