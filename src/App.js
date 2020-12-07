@@ -4,6 +4,7 @@ import './App.css';
 import Listagem from './pages/listagem';
 import Carrinho from './pages/carrinho';
 import ProductDetails from './pages/productDetails';
+import Payment from './pages/payment'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route exact path="/" component={ Listagem } />
           <Route exact path="/carrinho" component={ Carrinho } />
           <Route exact path="/ProductDetails/:id" component={ ProductDetails } />
+          <Route exact path="/payment" component={ Payment } />
 
         </Switch>
       </BrowserRouter>
