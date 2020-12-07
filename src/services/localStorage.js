@@ -6,6 +6,7 @@ export const saveProductIntoShoppingCart = (itemCart) => {
   localStorage.setItem('products', JSON.stringify(cartItems));
 };
 
+
 export const picksUpItemsFromTheCartInLocalStorage = () => {
   const products = JSON.parse(localStorage.getItem('products'));
   return products;
