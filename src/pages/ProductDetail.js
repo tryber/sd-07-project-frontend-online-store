@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import CartIcon from '../images/CartIcon.png';
+import Review from './review';
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -82,6 +83,7 @@ class ProductDetail extends Component {
             data-testid="shopping-cart-button"
           />
         </Link>
+        <Review />
       </div>
     );
   }
