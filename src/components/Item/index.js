@@ -35,7 +35,7 @@ class Item extends Component {
       const product = arrayCarrinho.find((carrinhoItem) => id === carrinhoItem.id);
 
       if (product) {
-        if (product.quantity < product.available_quantity) product.quantity += 1;
+        if (product.quantity < product.availableQuantity) product.quantity += 1;
         product.total = product.quantity * product.price;
         localStorage.setItem('carrinho', JSON.stringify(arrayCarrinho));
       } else {
