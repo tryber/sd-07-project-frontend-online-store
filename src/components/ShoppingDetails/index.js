@@ -21,7 +21,7 @@ function ShoppingDetails({ item, modifyCart }) {
     );
 
     if (value === '+') {
-      if (product.quantity < product.available_quantity) {
+      if (product.quantity < product.availableQuantity) {
         product.quantity += 1;
         product.total = product.quantity * product.price;
 
@@ -29,7 +29,7 @@ function ShoppingDetails({ item, modifyCart }) {
         setTotal(product.quantity * product.price);
       }
     } else if (product.quantity > 1) {
-      if (product.quantity < product.available_quantity) {
+      if (product.quantity < product.availableQuantity) {
         product.quantity -= 1;
         product.total = product.quantity * product.price;
 
@@ -54,7 +54,7 @@ function ShoppingDetails({ item, modifyCart }) {
       );
 
       if (product) {
-        if (product.quantity < product.available_quantity) { product.quantity += 1; }
+        if (product.quantity < product.availableQuantity) { product.quantity += 1; }
         product.total = product.quantity * product.price;
         localStorage.setItem('carrinho', JSON.stringify(arrayCarrinho));
         modifyCart();
