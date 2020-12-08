@@ -25,7 +25,8 @@ class ProductCard extends React.Component {
 
   render() {
     const { product } = this.props;
-    const { title, thumbnail, price, id } = product;
+    const { title, thumbnail, price, id, shipping } = product;
+    const p = <p data-testid="free-shipping">Frete grátis!</p>;
     return (
       <div data-testid="product">
         <Link
@@ -42,6 +43,9 @@ class ProductCard extends React.Component {
             R$
             { price }
           </h2>
+        </div>
+        <div>
+          {shipping.free_shipping ? p : ''}
         </div>
         <button
           type="button"
@@ -67,6 +71,9 @@ ProductCard.propTypes = {
     price: PropTypes.number,
     id: PropTypes.string,
     categoryId: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }),
   }),
   counter: PropTypes.number,
 }.isRequired;
