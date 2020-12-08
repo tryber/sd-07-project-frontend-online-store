@@ -14,7 +14,7 @@ class Item extends Component {
 
   onClickComprar() {
     const { modifyCart, item } = this.props;
-    const { id, title, thumbnail, price, available_quantity } = item;
+    const { id, title, thumbnail, price, available_quantity: availableQuantity } = item;
 
     const pattern = {
       id,
@@ -23,7 +23,7 @@ class Item extends Component {
       price,
       total: price,
       quantity: 1,
-      available_quantity
+      availableQuantity,
     };
 
     const stringCarrinho = localStorage.getItem('carrinho');
@@ -35,7 +35,7 @@ class Item extends Component {
       const product = arrayCarrinho.find((carrinhoItem) => id === carrinhoItem.id);
 
       if (product) {
-        if(product.quantity < product.available_quantity) product.quantity += 1;
+        if (product.quantity < product.available_quantity) product.quantity += 1;
         product.total = product.quantity * product.price;
         localStorage.setItem('carrinho', JSON.stringify(arrayCarrinho));
       } else {
@@ -98,6 +98,7 @@ Item.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     shipping: PropTypes.object.isRequired,
+    available_quantity: PropTypes.number.isRequired,
   }).isRequired,
 };
 
