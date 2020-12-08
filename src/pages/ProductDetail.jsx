@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as mlAPI from '../services/api';
-import Evaluations from '../components/Evaluations'
+import Evaluations from '../components/Evaluations';
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class ProductDetail extends Component {
     this.state = {
       itemDetails: '',
       loading: true,
-      rating: 0,
+      // rating: 0,
     };
     this.fetchApiById = this.fetchApiById.bind(this);
   }
@@ -46,8 +47,8 @@ class ProductDetail extends Component {
       const parsedItems = JSON.parse(itemsInStorage);
       localStorage.setItem('cartItems', JSON.stringify(parsedItems
         .concat(cartItemProperties)));
-    };
-  };
+    }
+  }
 
   render() {
     const { loading, itemDetails } = this.state;
@@ -61,13 +62,13 @@ class ProductDetail extends Component {
           {loading ? loadingElement : (
             <div>
               <h1>{title}</h1>
-              <img src={thumbnail} alt="product" />
+              <img src={ thumbnail } alt="product" />
               <p>{price}</p>
               <div>
                 {
                   attributes.map((element) => (
-                    <div key={element.id}>
-                      { element.name}
+                    <div key={ element.id }>
+                      { element.name }
                       <span>{element.value_name}</span>
                     </div>
                   ))
@@ -77,7 +78,7 @@ class ProductDetail extends Component {
                 type="button"
                 name="productId"
                 data-testid="product-detail-add-to-cart"
-                onClick={() => this.addCartItem({ id, title, price })}
+                onClick={ () => this.addCartItem({ id, title, price }) }
               >
                 Adicionar ao carrinho
               </button>
@@ -91,3 +92,12 @@ class ProductDetail extends Component {
 }
 
 export default ProductDetail;
+
+ProductDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
