@@ -16,20 +16,26 @@ function ShoppingDetails({ item, modifyCart }) {
     const stringCarrinho = localStorage.getItem('carrinho');
     const arrayCarrinho = JSON.parse(stringCarrinho);
 
-    const product = arrayCarrinho.find((itemCarrinho) => itemCarrinho.id === id);
+    const product = arrayCarrinho.find(
+      (itemCarrinho) => itemCarrinho.id === id,
+    );
 
     if (value === '+') {
-      product.quantity += 1;
-      product.total = product.quantity * product.price;
+      if (product.quantity < product.availableQuantity) {
+        product.quantity += 1;
+        product.total = product.quantity * product.price;
 
-      setQuantity(quantity + 1);
-      setTotal(product.quantity * product.price);
+        setQuantity(quantity + 1);
+        setTotal(product.quantity * product.price);
+      }
     } else if (product.quantity > 1) {
-      product.quantity -= 1;
-      product.total = product.quantity * product.price;
+      if (product.quantity < product.availableQuantity) {
+        product.quantity -= 1;
+        product.total = product.quantity * product.price;
 
-      setQuantity(quantity - 1);
-      setTotal(product.quantity * product.price);
+        setQuantity(quantity - 1);
+        setTotal(product.quantity * product.price);
+      }
     }
 
     localStorage.setItem('carrinho', JSON.stringify(arrayCarrinho));
@@ -43,10 +49,12 @@ function ShoppingDetails({ item, modifyCart }) {
       localStorage.setItem('carrinho', JSON.stringify([item]));
       modifyCart();
     } else {
-      const product = arrayCarrinho.find((itemCarrinho) => id === itemCarrinho.id);
+      const product = arrayCarrinho.find(
+        (itemCarrinho) => id === itemCarrinho.id,
+      );
 
       if (product) {
-        product.quantity += 1;
+        if (product.quantity < product.availableQuantity) { product.quantity += 1; }
         product.total = product.quantity * product.price;
         localStorage.setItem('carrinho', JSON.stringify(arrayCarrinho));
         modifyCart();
@@ -103,7 +111,7 @@ function ShoppingDetails({ item, modifyCart }) {
   );
 }
 
-ShoppingDetails.defaultProps = { modifyCart: () => { } };
+ShoppingDetails.defaultProps = { modifyCart: () => {} };
 
 ShoppingDetails.propTypes = {
   item: PropTypes.shape({
