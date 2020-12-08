@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GetIcon from './Icons';
 
 class CartItens extends React.Component {
   constructor(props) {
@@ -44,9 +43,8 @@ class CartItens extends React.Component {
 
     return (
       <div className="cart-item">
-        <GetIcon name="CloseIcon" />
-        <p data-testid="shopping-cart-product-name">{ title }</p>
-        <p>{ price * quantity }</p>
+        <p data-testid="shopping-cart-product-name">{title}</p>
+        <p>{price * quantity}</p>
 
         <button
           type="button"
@@ -54,11 +52,11 @@ class CartItens extends React.Component {
           data-testid="product-decrease-quantity"
           onClick={ () => { this.setState(decreaseQuantity); } }
         >
-          <GetIcon name="DashIcon" />
+          -
         </button>
 
         <div data-testid="shopping-cart-product-quantity" className="cart-item-quantity">
-          { quantity }
+          {quantity}
         </div>
 
         <button
@@ -67,7 +65,7 @@ class CartItens extends React.Component {
           data-testid="product-increase-quantity"
           onClick={ () => { this.setState(increaseQuantity); } }
         >
-          <GetIcon name="PlusIcon" />
+          +
         </button>
       </div>
     );
