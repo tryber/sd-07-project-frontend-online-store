@@ -38,8 +38,8 @@ class ProductDetail extends Component {
     );
   }
 
-  addCartItem({ id, title, price }) {
-    const cartItemProperties = { id, title, price };
+  addCartItem({ id, title, price, inStock }) {
+    const cartItemProperties = { id, title, price, inStock };
     if (!localStorage.cartItems) {
       localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
     } else {
@@ -52,7 +52,14 @@ class ProductDetail extends Component {
 
   render() {
     const { loading, itemDetails } = this.state;
-    const { id, title, price, thumbnail, attributes } = itemDetails;
+    const {
+      id,
+      title,
+      price,
+      thumbnail,
+      attributes,
+      available_quantity: inStock,
+    } = itemDetails;
     const loadingElement = <span>Carregando...</span>;
     return (
       <div>
@@ -78,7 +85,8 @@ class ProductDetail extends Component {
                 type="button"
                 name="productId"
                 data-testid="product-detail-add-to-cart"
-                onClick={ () => this.addCartItem({ id, title, price }) }
+                onClick={ () => this
+                  .addCartItem({ id, title, price, inStock }) }
               >
                 Adicionar ao carrinho
               </button>
