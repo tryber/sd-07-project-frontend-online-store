@@ -70,7 +70,6 @@ class ShoppingCart extends React.Component {
         >
           <button
             type="button"
-            onClick={ console.log('incrementar') }
           >
             Finalizar Compra
           </button>
