@@ -10,13 +10,43 @@ class ProductDetail extends Component {
     this.state = {
       itemDetails: '',
       loading: true,
-      // rating: 0,
+      counter: 0,
     };
     this.fetchApiById = this.fetchApiById.bind(this);
+    this.getItensLocalStorage = this.getItensLocalStorage.bind(this);
   }
 
   componentDidMount() {
+    this.getItensLocalStorage();
     this.fetchApiById();
+  }
+
+  getItensLocalStorage() {
+    const quantity = JSON.parse(localStorage.getItem('cartItems'));
+    if (!quantity) {
+      const tamanho = 0;
+      this.setState({ counter: tamanho });
+    } else {
+      const tamanho = quantity.length;
+      this.setState({ counter: tamanho });
+    }
+  }
+
+  productsCounter() {
+    this.setState((prevState) => ({ counter: prevState.counter + 1 }));
+  }
+
+  addCartItem({ id, title, price, inStock }) {
+    const cartItemProperties = { id, title, price, inStock };
+    this.productsCounter();
+    if (!localStorage.cartItems) {
+      localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
+    } else {
+      const itemsInStorage = localStorage.getItem('cartItems');
+      const parsedItems = JSON.parse(itemsInStorage);
+      localStorage.setItem('cartItems', JSON.stringify(parsedItems
+        .concat(cartItemProperties)));
+    }
   }
 
   async fetchApiById() {
@@ -38,20 +68,8 @@ class ProductDetail extends Component {
     );
   }
 
-  addCartItem({ id, title, price, inStock }) {
-    const cartItemProperties = { id, title, price, inStock };
-    if (!localStorage.cartItems) {
-      localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
-    } else {
-      const itemsInStorage = localStorage.getItem('cartItems');
-      const parsedItems = JSON.parse(itemsInStorage);
-      localStorage.setItem('cartItems', JSON.stringify(parsedItems
-        .concat(cartItemProperties)));
-    }
-  }
-
   render() {
-    const { loading, itemDetails } = this.state;
+    const { loading, itemDetails, counter } = this.state;
     const {
       id,
       title,
@@ -65,6 +83,7 @@ class ProductDetail extends Component {
       <div>
         <Link to="/">Home</Link>
         <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
+        <p data-testid="shopping-cart-size">{counter}</p>
         <div data-testid="product-detail-name" className="cardProduct">
           {loading ? loadingElement : (
             <div>
@@ -76,7 +95,7 @@ class ProductDetail extends Component {
                   attributes.map((element) => (
                     <div key={ element.id }>
                       { element.name }
-                      <span>{element.value_name}</span>
+                      <span>{ element.value_name }</span>
                     </div>
                   ))
                 }

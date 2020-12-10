@@ -21,6 +21,8 @@ class ProductCard extends React.Component {
         JSON.stringify(parsedItems.concat(cartItemProperties)),
       );
     }
+    const { onAddCard } = this.props;
+    onAddCard();
   }
 
   render() {
