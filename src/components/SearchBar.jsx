@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class SearchBar extends React.Component {
   render() {
-    const { handleChange, fetchApi } = this.props;
+    const { handleChange, fetchApi, counter } = this.props;
     return (
       <div>
         <div>
@@ -27,6 +27,7 @@ class SearchBar extends React.Component {
             <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
           </div>
           <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
+          <p data-testid="shopping-cart-size">{counter}</p>
         </div>
       </div>
     );

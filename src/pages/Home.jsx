@@ -12,14 +12,33 @@ class Home extends Component {
       products: [],
       categoryId: '',
       searchElement: '',
+      counter: 0,
     };
     this.fetchCategories = this.fetchCategories.bind(this);
     this.changeStateValue = this.changeStateValue.bind(this);
     this.fetchApiByQuery = this.fetchApiByQuery.bind(this);
+    this.getItensLocalStorage = this.getItensLocalStorage.bind(this);
+    this.productsCounter = this.productsCounter.bind(this);
   }
 
   componentDidMount() {
     this.fetchCategories();
+    this.getItensLocalStorage();
+  }
+
+  getItensLocalStorage() {
+    const quantity = JSON.parse(localStorage.getItem('cartItems'));
+    if (!quantity) {
+      const tamanho = 0;
+      this.setState({ counter: tamanho });
+    } else {
+      const tamanho = quantity.length;
+      this.setState({ counter: tamanho });
+    }
+  }
+
+  productsCounter() {
+    this.setState((prevState) => ({ counter: prevState.counter + 1 }));
   }
 
   async fetchCategories() {
@@ -50,18 +69,22 @@ class Home extends Component {
   }
 
   render() {
-    const { products, categories } = this.state;
+    const { products, categories, counter } = this.state;
     return (
       <div>
         <SearchBar
           handleChange={ this.changeStateValue }
           fetchApi={ this.fetchApiByQuery }
+          counter={ counter }
         />
         <CategoriesList
           handleChange={ this.changeStateValue }
           arrayOfCategories={ categories }
         />
-        <ProductList arrayOfProducts={ products } />
+        <ProductList
+          arrayOfProducts={ products }
+          onAddList={ this.productsCounter }
+        />
       </div>
     );
   }

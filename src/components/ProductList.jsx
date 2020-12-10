@@ -4,13 +4,14 @@ import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
   render() {
-    const { arrayOfProducts } = this.props;
+    const { arrayOfProducts, onAddList } = this.props;
 
     return (
       <div>
         { arrayOfProducts.map((item) => (<ProductCard
           key={ item.id }
           product={ item }
+          onAddCard={ onAddList }
         />)) }
       </div>
     );
