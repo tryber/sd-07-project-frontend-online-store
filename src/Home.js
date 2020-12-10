@@ -1,10 +1,10 @@
+// requisito8
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from './services/api';
 import ProductCard from './components/ProductCard';
-import cart from './images/cart.png';
 import './App.css';
 import Categories from './components/Categories';
+import Button from './components/Button';
 
 class ProductsList extends Component {
   constructor() {
@@ -72,27 +72,9 @@ class ProductsList extends Component {
                 </span>
               </div>
             </div>
-            <div>
-              <Link to="./pages/cart">
-                <img
-                  className="btImg"
-                  data-testid="shopping-cart-button"
-                  src={ cart }
-                  alt="Carrinho de Compras"
-                />
-              </Link>
-            </div>
+            <Button productsCart={ [] } />
             <Categories fecthProductsCategoryId={ this.fecthProductsCategoryId }>
-              <div>
-                <Link to="./pages/cart">
-                  <img
-                    className="btImg"
-                    data-testid="shopping-cart-button"
-                    src={ cart }
-                    alt="Carrinho de Compras"
-                  />
-                </Link>
-              </div>
+            {/* <Button /> */}
             </Categories>
           </form>
         </div>
