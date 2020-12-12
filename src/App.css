@@ -15,86 +15,10 @@ body,
   font-family: "Roboto", sans-serif;
 }
 
-.grid {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  margin: 5px 0;
-  grid-template-columns: 150px 1fr;
-  grid-template-rows: 150px;
-  grid-gap: 5px;
-}
-
-.item {
-  align-items: center;
-  border-radius: 5%;
-  grid-column-start: 2;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-}
-
-.img-card {
-  align-items: center;
-  border-radius: 5%;
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  max-height: 36px;
-  max-width: 75px;
-  width: 100%;
-  height: auto;
-}
-
-.subtitle {
-  font-size: 14px !important;
-  color: #606060;
-}
-
-.title {
-  font-size: 16px !important;
-  color: #030303;
-}
-
-.card-image {
-  margin-left: 10%;
-  margin-top: 5%;
-  max-width: 288px;
-  max-height: 162px;
-  width: 80%;
-  height: 80%;
-}
-.item-section {
-  border-radius: 5%;
-  max-width: 288px;
-  width: 100%;
-  height: auto;
-  transition: all ease-in-out 0.2s;
-  margin: 1rem 1.5rem 0 !important;
-}
-
-.check-img {
-  border: 1 solid transparent;
-  border-radius: 50%;
-  max-height: 35px;
-  max-width: 75px;
-  width: 100%;
-  height: auto;
-}
-
 /* section:hover {
   transform: translate(0, -10px);
   background: #eee;
 } */
-
-.info {
-  margin: 0;
-  padding: 0.75rem 0.75rem;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-}
 
 .auth {
   background: rgb(181, 247, 58);
@@ -151,6 +75,23 @@ body,
 }
 
 
+
+.entrie-search {
+  width: 350px;
+  height: 20px;
+}
+
+header {
+  background-color:rgba(255, 241, 89, 0.7);
+  display: grid;
+  grid-area: center;
+  grid-template-rows: 48% 48%;
+  grid-template-columns: 10% 80% 10%;
+  height: 100px;
+  width: 100%;
+  
+}  
+
 @media screen and (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
@@ -163,34 +104,3 @@ body,
     height: 183px;
   }
 }
-
-.entrie-search {
-  width: 350px;
-  height: 20px;
-}
-
-header {
-  background-color:rgba(255, 241, 89, 0.7);
-  display: grid;
-  grid-area: center;
-  grid-template-rows: 48% 48%;
-  grid-template-columns: 15% 70% 15%;
-  height: 80px;
-  width: 100%;
-
-}  
-
-.item-inputsearch {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  padding-top: 0.6em;
-
-}
-
-.category-wrapper {
-  display: flex;
-  flex-direction: column;
-  max-width: 20vw;
-}
-

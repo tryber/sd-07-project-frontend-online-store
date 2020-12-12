@@ -1,0 +1,20 @@
+.entrie-search {
+  font-size: 19px;
+  border: none;
+  height: 37px;
+  padding-left: 15px;
+}
+
+.item-inputsearch {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.6em;
+  
+}
+
+.space-input-button {
+  display: flex;
+  justify-content: space-between;
+  width: 460px;
+}

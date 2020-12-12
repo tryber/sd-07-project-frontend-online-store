@@ -1,4 +1,5 @@
-const estados = ['Acre',
+const dataStates = [
+  'Acre',
   'Alagoas',
   'Amapá',
   'Amazonas',
@@ -26,4 +27,4 @@ const estados = ['Acre',
   'Sergipe',
   'Tocantins'];
 
-export default estados;
+export default dataStates;

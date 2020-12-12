@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// import './bootstrap/dist/css/bootstrap.min.css';
-import Home from './pages/Home';
-import ShoppingCart from './pages/ShoppingCart';
-import ProductDetails from './pages/ProductDetails';
-import ProductNotFound from './pages/ProductNotFound';
-import CheckoutPage from './pages/CheckoutPage';
+import {
+  Home,
+  ShoppingCart,
+  ProductDetails,
+  ProductNotFound,
+  CheckoutPage
+}  from './pages';
 
 
 function App() {

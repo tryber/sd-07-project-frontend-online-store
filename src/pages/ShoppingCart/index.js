@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Quantity from '../components/Quantity';
+import { Quantity } from '../../components';
+import './style.css';
 
 class ShoppingCart extends React.Component {
   constructor(props) {

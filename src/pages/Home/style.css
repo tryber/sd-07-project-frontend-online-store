@@ -1,0 +1,13 @@
+.lits-container {
+  display: flex;
+}
+
+.items-container {
+  align-items: center;
+  border-radius: 5%;
+  grid-column-start: 2;
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 70vw;
+  margin-left: 20vw;
+}

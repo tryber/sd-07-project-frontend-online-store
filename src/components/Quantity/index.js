@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import PropTypes from 'prop-types';
+import './style.css';
 
 class Quantity extends Component {
   constructor(props) {

@@ -1,0 +1,20 @@
+.category-wrapper {
+  border: 2px solid #000;
+  border-radius: 5px;
+
+  height: 95vh;
+  /* position: fixed; */
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 15vw;
+  margin-left: 2%;
+  margin-top: 1%;
+  padding: 0.5%;
+}
+
+.category-input {
+  display: flex;
+  justify-content: space-between;
+}

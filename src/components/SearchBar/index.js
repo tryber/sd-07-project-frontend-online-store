@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../App.css';
+import './style.css';
 
 class SearchBar extends Component {
   render() {
@@ -10,25 +10,28 @@ class SearchBar extends Component {
         <div className="item-inputsearch">
           <h5 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
-          </h5>
-          <input
-            className="entrie-search"
-            data-testid="query-input"
-            type="text"
-            name="input-text"
-            id="input-text"
-            onChange={ handleTextInput }
-          />
-          <hr />
-          <button
-            id="input-text"
-            className="btn btn-info btn-xs"
-            data-testid="query-button"
-            type="button"
-            onClick={ handleSubmit }
-          >
-            Pesquisar
+            </h5>
+          <div className="space-input-button">
+            <input
+              className="entrie-search"
+              data-testid="query-input"
+              type="text"
+              name="input-text"
+              id="input-text"
+              placeholder="Pequisar"
+              onChange={handleTextInput}
+            />
+            <button
+              id="input-text"
+              className="btn btn-info btn-xs"
+              data-testid="query-button"
+              type="button"
+              onClick={handleSubmit}
+            >
+              <i class="bi bi-search"></i>
+              Pesquisar
           </button>
+          </div>
         </div>
       </main>
     );

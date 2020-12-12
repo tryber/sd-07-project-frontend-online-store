@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import '../App.css';
-import * as api from '../services/api';
+import * as api from '../../services/api';
+import './style.css';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -87,45 +87,47 @@ class ProductCard extends React.Component {
     const { item } = this.props;
     const { id, available_quantity: availableQuantity, title, price, thumbnail } = item;
     return (
-      <section data-testid="product" className=".item-section">
-        <img className="card-image img-card" alt="" src={ thumbnail } />
-        <div className="info">
-          <h3 className="title">{title}</h3>
-          <h5 className="subtitle"><b>{price}</b></h5>
-          <div>
-            <h6>
-              Quantidade disponível:
-              {availableQuantity}
-            </h6>
+      <section data-testid="product" className="item-section">
+        <div class="card" style={{width: '18rem'}}>
+          <img src={thumbnail} class="card-img-top" alt={title} />
+          <div class="card-body">
+            <h5 class="card-title">{title}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-center">{id}</li>
+            <li class="list-group-item text-center">Preço: R${price}</li>
+            <li class="list-group-item text-center">Quantidade: {availableQuantity}</li>
+          </ul>
+          <div class="card-body">
+            <Link
+              data-testid="product-detail-link"
+              className="btn btn-primary btn-xs"
+              to={{
+                pathname: `/pages/ProductDetails/${id}`,
+                state: { item },
+              }}
+            >
+              Mais Detalhes
+            </Link>
+            <button
+              className="btn btn-primary btn-xs"
+              data-testid="product-add-to-cart"
+              value="items"
+              type="button"
+              onClick={this.saveItems}
+            >
+              Cart
+            </button>
           </div>
         </div>
-        <Link
-          data-testid="product-detail-link"
-          className="btn btn-primary btn-xs"
-          to={ {
-            pathname: `/pages/ProductDetails/${id}`,
-            state: { item },
-          } }
-        >
-          Mais Detalhes
-        </Link>
-        <button
-          className="btn btn-primary btn-xs"
-          data-testid="product-add-to-cart"
-          value="items"
-          type="button"
-          onClick={ this.saveItems }
-        >
-          Cart
-        </button>
         <b
           className="btn btn-xs"
         >
           {this.freeShipping() ? (
             <p data-testid="free-shipping">Frete Grátis</p>
           ) : (
-            <p>Frete Pago</p>
-          )}
+              <p>Frete Pago</p>
+            )}
         </b>
       </section>
     );
