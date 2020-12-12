@@ -1,7 +1,7 @@
 .entrie-search {
   font-size: 19px;
   border: none;
-  height: 37px;
+  height: 40px;
   padding-left: 15px;
 }
 
@@ -16,5 +16,20 @@
 .space-input-button {
   display: flex;
   justify-content: space-between;
-  width: 460px;
+  width: 500px;
+}
+
+.space-input-button button {
+  font-size: 18px;
+  /* padding:  */
+}
+
+.space-input-button button svg {
+  margin-right: 7px;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

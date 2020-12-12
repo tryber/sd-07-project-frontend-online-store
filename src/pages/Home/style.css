@@ -8,6 +8,6 @@
   grid-column-start: 2;
   display: flex;
   flex-flow: row wrap;
-  max-width: 70vw;
+  max-width: 80vw;
   margin-left: 20vw;
 }
