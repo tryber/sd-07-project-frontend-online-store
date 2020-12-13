@@ -9,9 +9,9 @@ class SearchBar extends Component {
     return (
       <main>
         <div className="item-inputsearch">
-          <h5 data-testid="home-initial-message">
+          <h3 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
-            </h5>
+          </h3>
           <div className="space-input-button">
             <input
               className="entrie-search"

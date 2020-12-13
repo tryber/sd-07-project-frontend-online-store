@@ -88,17 +88,17 @@ class ProductCard extends React.Component {
     const { id, available_quantity: availableQuantity, title, price, thumbnail } = item;
     return (
       <section data-testid="product" className="item-section">
-        <div class="card" style={{width: '18rem'}}>
-          <img src={thumbnail} class="card-img-top" alt={title} />
-          <div class="card-body">
-            <h5 class="card-title">{title}</h5>
+        <div className="card" style={{width: '20rem'}}>
+          <img src={thumbnail} className="card-img-top" alt={title} />
+          <div className="card-body product-title">
+            <h5 className="card-title">{title}</h5>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item text-center">{id}</li>
-            <li class="list-group-item text-center">Preço: R${price}</li>
-            <li class="list-group-item text-center">Quantidade: {availableQuantity}</li>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item text-center">{id}</li>
+            <li className="list-group-item text-center">Preço: R${price}</li>
+            <li className="list-group-item text-center">Quantidade: {availableQuantity}</li>
           </ul>
-          <div class="card-body">
+          <div className="card-body">
             <Link
               data-testid="product-detail-link"
               className="btn btn-primary btn-xs"
@@ -110,7 +110,7 @@ class ProductCard extends React.Component {
               Mais Detalhes
             </Link>
             <button
-              className="btn btn-primary btn-xs"
+              className="btn btn-primary btn-xs ml-1"
               data-testid="product-add-to-cart"
               value="items"
               type="button"
@@ -121,7 +121,7 @@ class ProductCard extends React.Component {
           </div>
         </div>
         <b
-          className="btn btn-xs"
+          className="btn btn-xs text-danger"
         >
           {this.freeShipping() ? (
             <p data-testid="free-shipping">Frete Grátis</p>

@@ -1,5 +1,6 @@
 .lits-container {
   display: flex;
+  background-color: rgb(240, 239, 239);
 }
 
 .items-container {
@@ -8,6 +9,20 @@
   grid-column-start: 2;
   display: flex;
   flex-flow: row wrap;
-  max-width: 80vw;
-  margin-left: 20vw;
+  margin-left: 25px;
+}
+
+.logo-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center-cart-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  
 }

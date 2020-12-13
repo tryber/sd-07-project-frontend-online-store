@@ -69,8 +69,8 @@ export default class Home extends Component {
     return (
       <main>
         <header>
-          <div>
-            <h1>HOME</h1>
+          <div className="logo-center">
+            <img src="https://olist.com/wp-content/uploads/2018/04/marketplace-mercado-livre-3.png" alt="Logo Mercado Livre" />
           </div>
           <div>
             <SearchBar
@@ -81,7 +81,7 @@ export default class Home extends Component {
               handleUndefined={this.handleUndefined}
             />
           </div>
-          <div><ShoppingCartButton cartQuantity={cartQuantity} /></div>
+          <div className="center-cart-button"><ShoppingCartButton cartQuantity={cartQuantity} /></div>
         </header>
         <div className="lits-container">
           <ListCategories fetchByCategory={this.fetchByCategory} />

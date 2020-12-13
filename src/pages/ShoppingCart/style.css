@@ -28,14 +28,6 @@
   width: 80%;
   height: 80%;
 }
-.item-section {
-  border-radius: 5%;
-  max-width: 288px;
-  width: 100%;
-  height: auto;
-  transition: all ease-in-out 0.2s;
-  margin: 1rem 1.5rem 0 !important;
-}
 
 .check-img {
   border: 1 solid transparent;

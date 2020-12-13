@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto");
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 
 * {
   margin: 0;
@@ -82,14 +83,15 @@ body,
 }
 
 header {
-  background-color:rgba(255, 241, 89, 0.7);
+  background-color:#fff159;
   display: grid;
   grid-area: center;
-  grid-template-rows: 48% 48%;
-  grid-template-columns: 10% 80% 10%;
-  height: 100px;
+  grid-template-columns: 20% 60% 20%;
+  height: 140px;
   width: 100%;
-  
+  font-family: 'Lato', sans-serif;
+  font-size: 25px;
+  color: grey;
 }  
 
 @media screen and (max-width: 600px) {

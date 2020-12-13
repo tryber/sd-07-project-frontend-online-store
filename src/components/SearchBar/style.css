@@ -17,11 +17,12 @@
   display: flex;
   justify-content: space-between;
   width: 500px;
+  margin-top: 10px;
+
 }
 
 .space-input-button button {
   font-size: 18px;
-  /* padding:  */
 }
 
 .space-input-button button svg {
