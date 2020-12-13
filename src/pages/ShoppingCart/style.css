@@ -1,0 +1,39 @@
+.img-card {
+  align-items: center;
+  border-radius: 5%;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 36px;
+  max-width: 75px;
+  width: 100%;
+  height: auto;
+}
+
+.subtitle {
+  font-size: 14px !important;
+  color: #606060;
+}
+
+.title {
+  font-size: 16px !important;
+  color: #030303;
+}
+
+.card-image {
+  margin-left: 10%;
+  margin-top: 5%;
+  max-width: 288px;
+  max-height: 162px;
+  width: 80%;
+  height: 80%;
+}
+
+.check-img {
+  border: 1 solid transparent;
+  border-radius: 50%;
+  max-height: 35px;
+  max-width: 75px;
+  width: 100%;
+  height: auto;
+}
