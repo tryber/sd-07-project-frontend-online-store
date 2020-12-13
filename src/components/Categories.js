@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/categories.css'
 import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
@@ -35,7 +36,7 @@ class Categories extends Component {
       <aside>
         <form onChange={ this.selectCategory }>
           {categories.map(({ id, name }) => (
-            <div key={ id }>
+            <div key={ id } className="div-categorie">
               <input type="radio" id={ name } name="category" value={ id } />
               <label data-testid="category" htmlFor={ name }>{name}</label>
             </div>
