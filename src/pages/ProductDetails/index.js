@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ShoppingCartButton from '../components/ShoppingCartButton';
-import AvaliationList from '../components/AvaliationList';
-import AvaliationForm from '../components/AvaliationForm';
+import {
+  ShoppingCartButton,
+  AvaliationList,
+  AvaliationForm
+} from '../../components';
+import './style.css';
 
 export default class ProductDetails extends Component {
   constructor() {

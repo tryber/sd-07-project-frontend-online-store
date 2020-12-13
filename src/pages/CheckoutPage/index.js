@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css';
-import Forms from '../components/Forms';
+import { Forms } from '../../components';
+import './style.css';
 
 class CheckoutPage extends Component {
   constructor(props) {

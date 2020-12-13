@@ -1,8 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import estados from './Estados';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css';
+import dataStates from '../../data-states';
+import './style.css';
 
 class Forms extends React.Component {
   constructor(props) {
@@ -253,7 +252,7 @@ class Forms extends React.Component {
                     (event) => this.changeStateKeys('state', event.target.value)
                   }
                 >
-                  {estados.map((item) => <option key={ item }>{item}</option>)}
+                  {dataStates.map((item) => <option key={ item }>{item}</option>)}
                 </select>
               </div>
               <br />
