@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { BiCart } from 'react-icons/bi';
+import { BiCart, BiSearch, BiShoppingBag } from 'react-icons/bi';
 import * as api from '../services/api';
 import updateCartTotalinLocalStorage from '../services/updateCartTotal';
 
@@ -63,19 +63,26 @@ class Home extends Component {
     return (
       <div>
         <header>
-          <div>
+          <div className="div-logo">
+            <BiShoppingBag className="icon-logo" />
+            <h2 className="h2-title">Mall</h2>
+          </div>
+          <div className="div-search">
             <input
               data-testid="query-input"
               type="text"
               onChange={ this.handleSearchKey }
+              placeholder="O que você procura hoje?"
             />
             <button type="submit" data-testid="query-button" onClick={ this.fetchAPI }>
-              Search
+              <BiSearch className="icon-search" />
             </button>
           </div>
           <Link to="/cart" data-testid="shopping-cart-button">
             <BiCart className="icon-cart" />
-            {total !== isEmpty && <div data-testid="shopping-cart-size">{total}</div>}
+            <div className="div-number-cart">
+              {total !== isEmpty && <div data-testid="shopping-cart-size">{total}</div>}
+            </div>
           </Link>
         </header>
         <div className="div-body">

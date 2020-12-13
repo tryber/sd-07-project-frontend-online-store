@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import CartItem from '../components/CartItem';
+import '../styles/home.css';
 import * as api from '../services/api';
 import updateCartItemInLocalStorage from '../services/updateCartItem';
 import removeCartItemInLocalStorage from '../services/removeCartItem';

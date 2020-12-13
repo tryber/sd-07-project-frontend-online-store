@@ -1,0 +1,16 @@
+.div-categorie{
+    padding: 10px 0;
+    font-size: 16px;
+    color: #454637;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+input[type="radio"]:checked + label{
+    color: #2746DA;
+    background-color: #F0F2FC;
+    padding:4px;
+    border-radius: 50px;
+}
