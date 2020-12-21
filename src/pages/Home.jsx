@@ -12,7 +12,7 @@ class Home extends Component {
       // result: '',
       // search: false,
     };
-    this.upCategoryId = this.upCategoryId.bind(this);
+    // this.upCategoryId = this.upCategoryId.bind(this);
   }
 
   componentDidMount() {
