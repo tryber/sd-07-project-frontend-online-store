@@ -37,7 +37,8 @@ class ProductDetail extends Component {
   }
 
   addCartItem({ id, title, price, inStock }) {
-    const cartItemProperties = { id, title, price, inStock };
+    const evaluation = [];
+    const cartItemProperties = { id, title, price, inStock, evaluation };
     this.productsCounter();
     if (!localStorage.cartItems) {
       localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
@@ -70,6 +71,10 @@ class ProductDetail extends Component {
 
   render() {
     const { loading, itemDetails, counter } = this.state;
+    const { match } = this.props;
+    const { params } = match;
+    const { id: paramsId } = params;
+
     const {
       id,
       title,
@@ -87,9 +92,9 @@ class ProductDetail extends Component {
         <div data-testid="product-detail-name" className="cardProduct">
           {loading ? loadingElement : (
             <div>
-              <h1>{title}</h1>
+              <h1>{ title }</h1>
               <img src={ thumbnail } alt="product" />
-              <p>{price}</p>
+              <p>{ price }</p>
               <div>
                 {
                   attributes.map((element) => (
@@ -112,7 +117,7 @@ class ProductDetail extends Component {
             </div>
           )}
         </div>
-        <Evaluations />
+        <Evaluations itemId={ paramsId } />
       </div>
     );
   }

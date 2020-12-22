@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Checkout extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class Checkout extends React.Component {
     const { products } = location.state;
     return (
       <div>
+        <Link to="/">Home</Link>
         <section>
           <h2>Revise seus produtos</h2>
           {products.map((product) => (
