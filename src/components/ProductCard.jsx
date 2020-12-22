@@ -9,7 +9,8 @@ class ProductCard extends React.Component {
   }
 
   addCartItem({ id, title, price, inStock }) {
-    const cartItemProperties = { id, title, price, inStock };
+    const evaluation = [];
+    const cartItemProperties = { id, title, price, inStock, evaluation };
     cartItemProperties.quantity = 1;
     if (!localStorage.cartItems) {
       localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
@@ -38,14 +39,14 @@ class ProductCard extends React.Component {
           } }
           data-testid="product-detail-link"
         >
-          <h4>{ title }</h4>
+          <h5>{ title }</h5>
         </Link>
         <img src={ thumbnail } alt="product item" />
         <div>
-          <h2>
+          <h6>
             R$
-            { price }
-          </h2>
+            {price}
+          </h6>
         </div>
         <div>
           {shipping.free_shipping ? p : ''}
@@ -53,7 +54,6 @@ class ProductCard extends React.Component {
         <button
           type="button"
           name="productId"
-          className="product-add-to-cart"
           data-testid="product-add-to-cart"
           onClick={ () => this.addCartItem({ id, title, price, inStock }) }
         >

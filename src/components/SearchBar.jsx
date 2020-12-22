@@ -7,26 +7,37 @@ class SearchBar extends React.Component {
     const { handleChange, fetchApi, counter } = this.props;
     return (
       <div>
-        <div>
-          <div>
-            <input
-              data-testid="query-input"
-              type="text"
-              name="searchElement"
-              onChange={ handleChange }
-            />
-            <button
-              type="button"
-              data-testid="query-button"
-              onClick={ fetchApi }
-            >
-              Buscar
-            </button>
+        <div className="header-container">
+          <div className="search">
+            <div className="search-bar-content">
+              <input
+                className="search-bar"
+                data-testid="query-input"
+                type="text"
+                name="searchElement"
+                onChange={ handleChange }
+              />
+              <button
+                type="button"
+                data-testid="query-button"
+                onClick={ fetchApi }
+              >
+                Buscar
+              </button>
+            </div>
+            <div data-testid="home-initial-message">
+              <p className="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>
+            </div>
           </div>
-          <div data-testid="home-initial-message">
-            <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
-          </div>
-          <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
+          <Link
+            to="/cart"
+            className="shopping-btn"
+            data-testid="shopping-cart-button"
+          >
+            Carrinho
+          </Link>
           <p data-testid="shopping-cart-size">{counter}</p>
         </div>
       </div>
