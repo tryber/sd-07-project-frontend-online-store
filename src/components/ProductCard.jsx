@@ -75,7 +75,7 @@ class ProductCard extends React.Component {
           className="product-add-to-cart"
           onClick={ () => this.addCartItem({ id, title, price, inStock }) }
         >
-          Adicionar ao Carinho
+          Adicionar
         </button>
       </div>
     );
