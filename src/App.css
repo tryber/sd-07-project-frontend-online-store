@@ -176,7 +176,7 @@ textarea:focus, input:focus, select:focus {
   height: 50px;
   margin-top: 35px;
   outline: none;
-  width: 100px;
+  width: 80px;
 }
 
 .product-container {
