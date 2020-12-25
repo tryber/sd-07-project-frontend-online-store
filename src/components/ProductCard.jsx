@@ -52,22 +52,19 @@ class ProductCard extends React.Component {
           <Link
             className="product-detail-link"
             to={ {
-              pathname: `/details/${id} /category/${product.category_id}`,
+              pathname: `/details/${id}/category/${product.category_id}`,
             } }
             data-testid="product-detail-link"
           >
+            <h5>{title}</h5>
             <div>
-              <h4>{ title }</h4>
-            </div>
-
-            <div>
-              <h4>
+              <h6>
                 R$
-                {price}
-              </h4>
+                { price }
+              </h6>
             </div>
             <div>
-              { shipping.free_shipping ? p : '' }
+              {shipping.free_shipping ? p : ''}
             </div>
           </Link>
         </div>
