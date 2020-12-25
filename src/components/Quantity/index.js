@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { increaseCartQuantity } from '../../services/localStorageService';
 import './style.css';
 
 class Quantity extends Component {
@@ -9,32 +10,21 @@ class Quantity extends Component {
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
 
-    this.state = {
-      quantity: 1,
-    };
   }
 
   increment() {
-    const { quantity } = this.state;
-    const { availableQuantity } = this.props;
-    if (quantity === availableQuantity) return;
-    this.setState((prevState) => ({
-      quantity: prevState.quantity + 1,
-    }));
-    const cartQuantity = Number(localStorage.getItem('items_cart')) + 1;
-    localStorage.setItem('items_cart', cartQuantity);
+    const { availableQuantity, cartQuantity } = this.props;
+    if (cartQuantity === availableQuantity) return;
+    const cartNumber = Number(localStorage.getItem('items_cart')) + 1;
   }
 
   decrement() {
-    this.setState((prevState) => ({
-      quantity: Math.max(prevState.quantity - 1, 1),
-    }));
     const cartQuantity = Number(localStorage.getItem('items_cart')) - 1;
     localStorage.setItem('items_cart', cartQuantity);
   }
 
   render() {
-    const { quantity } = this.state;
+    const { cartQuantity } = this.props;
     return (
       <main>
         <div>
@@ -42,18 +32,18 @@ class Quantity extends Component {
             data-testid="product-increase-quantity"
             type="button"
             className="btn"
-            onClick={ this.increment }
+            onClick={this.increment}
           >
             +
           </button>
         </div>
-        <en>{ quantity }</en>
+        <en>{cartQuantity}</en>
         <div>
           <button
             data-testid="product-decrease-quantity"
             type="button"
             className="btn"
-            onClick={ this.decrement }
+            onClick={this.decrement}
           >
             -
           </button>

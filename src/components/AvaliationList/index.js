@@ -6,7 +6,7 @@ export default class AvaliationList extends React.Component {
   render() {
     const { avaliations } = this.props;
     return (
-      <>
+      <div>
         <h1>Histórico de comentários:</h1>
         { avaliations.map((avaliation) => (
           <div key={ avaliation.text }>
@@ -28,7 +28,7 @@ export default class AvaliationList extends React.Component {
             {' '}
           </div>
         ))}
-      </>
+      </div>
     );
   }
 }

@@ -22,13 +22,12 @@ export default class Home extends Component {
     };
   }
 
-  fetchByCategory = async ({ target }) => {
+  fetchByCategory = async ({ target: id }) => {
     try {
-      const categoryId = target.id;
-      const products = await api.getProductsFromCategoryAndQuery(categoryId);
+      const products = await api.getProductsFromCategoryAndQuery(id);
       this.setState({
         itemsFindOut: products,
-        categoryId,
+        id,
         loadItems: true,
       });
     } catch {

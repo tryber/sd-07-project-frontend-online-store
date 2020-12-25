@@ -1,20 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Quantity } from '../../components';
+import { getFromLocalStorage } from '../../services/localStorageService';
 import './style.css';
 
 class ShoppingCart extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.readCart = this.readCart.bind(this);
-  }
-
-  readCart() {
-    const objectValues = JSON.parse(localStorage.getItem('items'));
-    return objectValues;
-  }
-
   render() {
     document.addEventListener('click', this.cartItemClickListener);
     return (
@@ -69,8 +59,8 @@ class ShoppingCart extends React.Component {
           </div>
         </header>
         {!localStorage.length ? ('Aproveite as ofertas para comprar o que deseja'
-        ) : (this.readCart().map((key) => {
-          const { sku, cost, name, image, quantity } = key;
+        ) : (getFromLocalStorage().map((item) => {
+          const { sku, cost, name, image, quantity, cartQuantity } = item;
           return (
             <section key={ sku } data-testid="product">
               <table className="table table-bordered table-striped table-hover">
@@ -100,7 +90,7 @@ class ShoppingCart extends React.Component {
                     className="text-center"
                     data-testid="shopping-cart-product-quantity"
                   >
-                    <Quantity id={ sku } availableQuantity={ quantity } />
+                    <Quantity id={ sku } cartQuantity={cartQuantity} availableQuantity={ quantity } />
                   </td>
                 </tr>
               </table>

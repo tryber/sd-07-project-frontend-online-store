@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as api from '../../services/api';
+import { saveOnLocalStorage } from '../../services/localStorageService';
 import './style.css';
 
 class ProductCard extends React.Component {
@@ -35,38 +36,8 @@ class ProductCard extends React.Component {
   }
 
   saveItems() {
-    const { item, addCartQuantity } = this.props;
-    const {
-      id,
-      available_quantity: availableQuantity,
-      title,
-      price,
-      thumbnail,
-    } = item;
-    addCartQuantity();
-    if (!localStorage.length) {
-      localStorage.setItem('items',
-        JSON.stringify([{
-          sku: id,
-          name: title,
-          cost: price,
-          quantity: availableQuantity,
-          image: thumbnail,
-        }]));
-      localStorage.setItem('items_cart', 1);
-      return;
-    }
-    const objectValues = JSON.parse(localStorage.getItem('items'));
-    localStorage.setItem('items',
-      JSON.stringify([...objectValues, {
-        sku: id,
-        name: title,
-        cost: price,
-        quantity: availableQuantity,
-        image: thumbnail,
-      }]));
-    const cartQuantity = Number(localStorage.getItem('items_cart')) + 1;
-    localStorage.setItem('items_cart', cartQuantity);
+    const { item } = this.props;
+    saveOnLocalStorage(item);
   }
 
   handleUndefined() {
@@ -77,8 +48,7 @@ class ProductCard extends React.Component {
   }
 
   freeShipping() {
-    const { item } = this.props;
-    const { shipping } = item;
+    const { shipping } = this.props.item;
     const values = Object.values(shipping);
     return values[0];
   }
