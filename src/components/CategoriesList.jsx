@@ -5,23 +5,25 @@ class Categories extends React.Component {
   render() {
     const { handleChange, arrayOfCategories } = this.props;
     return (
-      <div>
-        { arrayOfCategories.map(
-          ({ id, name }) => (
-            <label key={ id } htmlFor={ name } name="category">
-              <input
-                data-testid="category"
-                type="radio"
-                id={ name }
-                name="categoryId"
-                value={ id }
-                onChange={ handleChange }
-              />
-              { name }
-              <br />
-            </label>
-          ),
-        )}
+      <div className="container">
+        <div className="categories-list">
+          {arrayOfCategories.map(
+            ({ id, name }) => (
+              <label key={ id } htmlFor={ name } name="category">
+                <input
+                  data-testid="category"
+                  type="radio"
+                  id={ name }
+                  name="categoryId"
+                  value={ id }
+                  onChange={ handleChange }
+                />
+                { name }
+                <br />
+              </label>
+            ),
+          )}
+        </div>
       </div>
     );
   }

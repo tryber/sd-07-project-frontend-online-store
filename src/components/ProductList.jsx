@@ -7,12 +7,12 @@ class ProductList extends React.Component {
     const { arrayOfProducts, onAddList } = this.props;
 
     return (
-      <div>
+      <div className="product-list">
         { arrayOfProducts.map((item) => (<ProductCard
           key={ item.id }
           product={ item }
           onAddCard={ onAddList }
-        />)) }
+        />))}
       </div>
     );
   }

@@ -171,10 +171,12 @@ textarea:focus, input:focus, select:focus {
 
 .product-add-to-cart {
   align-items: center;
-  background: none;
-  border: none;
+  border-radius: 5px;
   display: flex;
+  height: 50px;
+  margin-top: 35px;
   outline: none;
+  width: 100px;
 }
 
 .product-container {

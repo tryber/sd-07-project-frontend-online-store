@@ -36,7 +36,7 @@ class SearchBar extends React.Component {
             className="shopping-btn"
             data-testid="shopping-cart-button"
           >
-            Carrinho
+            <img src="https://img.favpng.com/12/18/15/shopping-cart-icon-png-favpng-e5DiMUYLNYaTjdsibphFUCAxC.jpg" width="30px" alt="cart" />
           </Link>
           <p data-testid="shopping-cart-size">{counter}</p>
         </div>
