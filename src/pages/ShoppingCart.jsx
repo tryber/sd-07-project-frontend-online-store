@@ -6,37 +6,22 @@ class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartItems: [],
+      cartItems: JSON.parse(localStorage.getItem('cartItems')),
     };
-  }
-
-  componentDidMount() {
-    this.ItemsFromStorage();
-  }
-
-  ItemsFromStorage() {
-    const localStorageItens = localStorage.getItem('cartItems');
-    const convertedArrayFromLocalStorage = JSON.parse(localStorageItens);
-    this.setState({
-      cartItems: convertedArrayFromLocalStorage,
-    });
   }
 
   render() {
-    const SumOfPrices = () => {
-      const arrOfPrices = [];
-      const { state } = this;
-      state.cartItems.map((product) => arrOfPrices.push(product.price));
-      const initialValue = 0;
-      const decimalPlaces = 2;
-      return (arrOfPrices.reduce((a, b) => a + b, initialValue)).toFixed(decimalPlaces);
-    };
     const { cartItems } = this.state;
     if (!cartItems) {
       return (
-        <p data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio
-        </p>
+        <div>
+          <Link to="/">
+            Home
+          </Link>
+          <p data-testid="shopping-cart-empty-message">
+            Seu carrinho está vazio
+          </p>
+        </div>
       );
     }
 
@@ -46,7 +31,6 @@ class ShoppingCart extends React.Component {
           Home
         </Link>
         <div className="shopping-cart-title">
-          Carrinho
           <h2>Carrinho de Compras</h2>
         </div>
         <div>
@@ -54,10 +38,6 @@ class ShoppingCart extends React.Component {
             {cartItems.map((item) => <CartItens key={ item.id } item={ item } />)}
           </div>
         </div>
-        <h2>
-          Valor Total da Compra:
-          { SumOfPrices() }
-        </h2>
 
         <Link
           to={ {

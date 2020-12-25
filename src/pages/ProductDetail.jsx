@@ -32,21 +32,34 @@ class ProductDetail extends Component {
     }
   }
 
-  productsCounter() {
-    this.setState((prevState) => ({ counter: prevState.counter + 1 }));
-  }
-
   addCartItem({ id, title, price, inStock }) {
     const evaluation = [];
     const cartItemProperties = { id, title, price, inStock, evaluation };
-    this.productsCounter();
     if (!localStorage.cartItems) {
+      cartItemProperties.quantity = 1;
       localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
+      this.getItensLocalStorage();
     } else {
       const itemsInStorage = localStorage.getItem('cartItems');
       const parsedItems = JSON.parse(itemsInStorage);
-      localStorage.setItem('cartItems', JSON.stringify(parsedItems
-        .concat(cartItemProperties)));
+      const productIsAlreadyInCart = parsedItems
+        .some((item) => (item.id === cartItemProperties.id));
+      if (productIsAlreadyInCart) {
+        const index = parsedItems
+          .findIndex((item) => item.id === cartItemProperties.id);
+        parsedItems[index].quantity += 1;
+        localStorage.setItem(
+          'cartItems',
+          JSON.stringify(parsedItems),
+        );
+      } else {
+        cartItemProperties.quantity = 1;
+        localStorage.setItem(
+          'cartItems',
+          JSON.stringify(parsedItems.concat(cartItemProperties)),
+        );
+        this.getItensLocalStorage();
+      }
     }
   }
 
@@ -73,7 +86,7 @@ class ProductDetail extends Component {
     const { loading, itemDetails, counter } = this.state;
     const { match } = this.props;
     const { params } = match;
-    const { id: paramsId } = params;
+    const { id: idParams } = params;
 
     const {
       id,
@@ -117,7 +130,7 @@ class ProductDetail extends Component {
             </div>
           )}
         </div>
-        <Evaluations itemId={ paramsId } />
+        <Evaluations itemId={ idParams } />
       </div>
     );
   }

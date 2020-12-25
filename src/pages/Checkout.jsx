@@ -3,40 +3,58 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Checkout extends React.Component {
-  render() {
-    const SumOfPrices = () => {
-      const arrOfPrices = [];
-      const { location } = this.props;
-      const { products } = location.state;
-      products.map((product) => {
-        arrOfPrices.push(product.price);
-        return product.price;
-      });
-      const initialValor = 0;
-      const decimalPlaces = 2;
-      return (arrOfPrices.reduce((a, b) => a + b, initialValor)).toFixed(decimalPlaces);
+  constructor(props) {
+    super(props);
+    this.state = {
+      cartItems: JSON.parse(localStorage.getItem('cartItems')),
+      totalGeral: 0,
     };
+    this.sum = this.sum.bind(this);
+  }
 
-    const { location } = this.props;
-    const { products } = location.state;
+  componentDidMount() {
+    this.sum();
+  }
+
+  sum() {
+    const arrOfPrices = [];
+    const { cartItems } = this.state;
+    cartItems.map((product) => arrOfPrices.push(product.price * product.quantity));
+    const initialValue = 0;
+    const decimalPlaces = 2;
+    const total = (arrOfPrices
+      .reduce((a, b) => a + b, initialValue))
+      .toFixed(decimalPlaces);
+    this.setState({ totalGeral: total });
+  }
+
+  render() {
+    const { cartItems, totalGeral } = this.state;
+    const two = 2;
     return (
       <div>
         <Link to="/">Home</Link>
+        <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
         <section>
           <h2>Revise seus produtos</h2>
-          {products.map((product) => (
+          {cartItems.map((product) => (
             <div key={ product.id }>
               <div>
-                {product.title}
+                { product.title }
               </div>
               <div>
-                {product.price}
+                <p>Quantidade: </p>
+                <p>{ product.quantity }</p>
+                <p>Preço Unitário: </p>
+                <p>{ product.price }</p>
+                <p>Total do Item</p>
+                <p>{ (product.quantity * product.price).toFixed(two) }</p>
               </div>
             </div>
           ))}
           <h2>
             Valor Total da Compra:
-            {SumOfPrices()}
+            { totalGeral }
           </h2>
         </section>
         <form>

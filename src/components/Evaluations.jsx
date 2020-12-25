@@ -10,6 +10,11 @@ class Evaluations extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.addEvaluation = this.addEvaluation.bind(this);
+    this.renderReviews = this.renderReviews.bind(this);
+  }
+
+  componentDidMount() {
+    this.renderReviews();
   }
 
   handleChange(event) {
@@ -24,7 +29,7 @@ class Evaluations extends React.Component {
       const index = productList
         .findIndex((item) => item.id === itemId);
       productList[index].evaluation.push(
-        { [comment]: comment, [rating]: rating },
+        { reviewTxt: comment, ratingNumber: rating },
       );
       localStorage.setItem('cartItems', JSON.stringify(productList));
     }
@@ -42,9 +47,15 @@ class Evaluations extends React.Component {
           <div>
             {
               productList[index].evaluation.map((review) => (
-                <div key={ index }>
-                  <h4>{review.comment}</h4>
-                  <p>{review.rating}</p>
+                <div key={ Math.random() }>
+                  <p>
+                    Comentário:
+                    { review.reviewTxt }
+                  </p>
+                  <p>
+                    Nota:
+                    { review.ratingNumber }
+                  </p>
                 </div>
               ))
             }

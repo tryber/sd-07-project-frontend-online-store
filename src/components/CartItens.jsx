@@ -4,114 +4,126 @@ import PropTypes from 'prop-types';
 class CartItens extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      quantity: 1,
-    };
-    this.buttonEnable = this.buttonEnable.bind(this);
-    this.buttonDisable = this.buttonDisable.bind(this);
+    this.state = { array: JSON.parse(localStorage.getItem('cartItems')) };
+    /*  this.buttonEnable = this.buttonEnable.bind(this);
+        this.buttonDisable = this.buttonDisable.bind(this); */
     this.increaseQuantity = this.increaseQuantity.bind(this);
     this.decreaseQuantity = this.decreaseQuantity.bind(this);
   }
+  /*   componentDidMount() {
+      this.buttonDisable();
+      this.buttonEnable();
+    } */
+  /*   buttonDisable() {
+      const bool = true;
+      const button = (
+        <div>
+          <button
+            type="button"
+            className="quantity-buttons"
+            data-testid="product-increase-quantity"
+            disabled={bool}
+            onClick={() => this.increaseQuantity}
+          >
+            +
+          </button>
+        </div>);
+      return button;
+    }
+    buttonEnable() {
+      const button = (
+        <div>
+          <button
+            type="button"
+            className="quantity-buttons"
+            data-testid="product-increase-quantity"
+            onClick={() => this.increaseQuantity}
+          >
+            +
+          </button>
+        </div>);
+      return button;
+    } */
 
-  componentDidMount() {
-    this.buttonDisable();
-    this.buttonEnable();
+  increaseQuantity(item) {
+    const zero = 0;
+    const localStorageItens = JSON.parse(localStorage.getItem('cartItems'));
+    const index = localStorageItens
+      .findIndex((localObject) => localObject.id === item.id);
+
+    if (localStorageItens[index].quantity >= zero) {
+      localStorageItens[index].quantity += 1;
+      localStorage.setItem(
+        'cartItems',
+        JSON.stringify(localStorageItens),
+      );
+      this.setState({ array: localStorageItens });
+    }
   }
 
-  updateQuantity(elem, func) {
-    const productList = JSON.parse(localStorage.getItem('cartItems'));
-    const productListed = elem.props.item;
-    const { quantity: quantityFromState } = this.state;
-    productList.map(({ id, quantity }) => {
-      if (id === productListed.id) quantity = quantityFromState + func;
-      return quantity;
-    });
-    const findIndexInArray = productList
-      .findIndex((item) => item.id === elem.props.item.id);
-    productList[findIndexInArray].quantity = quantityFromState + func;
-    localStorage.setItem('cartItems', JSON.stringify(productList));
-  }
+  decreaseQuantity(item) {
+    const zero = 0;
+    const localStorageItens = JSON.parse(localStorage.getItem('cartItems'));
+    const index = localStorageItens
+      .findIndex((localObject) => localObject.id === item.id);
 
-  buttonDisable() {
-    const bool = true;
-    const button = (
-      <div>
-        <button
-          type="button"
-          className="quantity-buttons"
-          data-testid="product-increase-quantity"
-          disabled={ bool }
-          onClick={ () => { this.setState(this.increaseQuantity); } }
-        >
-          +
-        </button>
-      </div>);
-
-    return button;
-  }
-
-  buttonEnable() {
-    const button = (
-      <div>
-        <button
-          type="button"
-          className="quantity-buttons"
-          data-testid="product-increase-quantity"
-          onClick={ () => { this.setState(this.increaseQuantity); } }
-        >
-          +
-        </button>
-      </div>);
-
-    return button;
-  }
-
-  increaseQuantity(state) {
-    const func = 1;
-    this.updateQuantity(this, func);
-    const newState = { ...state, quantity: state.quantity + func };
-    return newState;
-  }
-
-  decreaseQuantity(state) {
-    if (state.quantity > 1) {
-      const func = -1;
-      this.updateQuantity(this, func);
-      const newState = { ...state, quantity: state.quantity + func };
-      return newState;
+    if (localStorageItens[index].quantity > zero) {
+      localStorageItens[index].quantity -= 1;
+      localStorage.setItem(
+        'cartItems',
+        JSON.stringify(localStorageItens),
+      );
+      this.setState({ array: localStorageItens });
     }
   }
 
   render() {
+    const two = 2;
     const { item } = this.props;
-    const { title, price } = item;
-    const { quantity } = this.state;
+    const { id, title } = item;
+    const { array } = this.state;
+    const index = array
+      .findIndex((localObject) => localObject.id === id);
+    const total = array[index].price * array[index].quantity;
 
     return (
+      <div>
+        <div>
+          <div className="cart-item">
+            <p data-testid="shopping-cart-product-name">
+              { title }
+            </p>
+            <p>
+              { total.toFixed(two) }
+            </p>
 
-      <div className="cart-item">
-        <p data-testid="shopping-cart-product-name">
-          {title}
-        </p>
-        <p>
-          {price * quantity}
-        </p>
+            <button
+              type="button"
+              className="quantity-buttons"
+              data-testid="product-decrease-quantity"
+              onClick={ () => { this.decreaseQuantity(item); } }
+            >
+              -
+            </button>
 
-        <button
-          type="button"
-          className="quantity-buttons"
-          data-testid="product-decrease-quantity"
-          onClick={ () => { this.setState(this.decreaseQuantity); } }
-        >
-          -
-        </button>
+            <div
+              data-testid="shopping-cart-product-quantity"
+              className="cart-item-quantity"
+            >
+              { array[index].quantity }
+            </div>
 
-        <div data-testid="shopping-cart-product-quantity" className="cart-item-quantity">
-          {quantity}
+            <button
+              type="button"
+              className="quantity-buttons"
+              data-testid="product-increase-quantity"
+              disabled={ array[index].quantity >= array[index].inStock }
+              onClick={ () => { this.increaseQuantity(item); } }
+            >
+              +
+            </button>
+          </div>
         </div>
-
-        { quantity < item.inStock ? this.buttonEnable() : this.buttonDisable()}
-
       </div>
     );
   }
