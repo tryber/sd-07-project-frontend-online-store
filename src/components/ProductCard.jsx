@@ -46,29 +46,36 @@ class ProductCard extends React.Component {
     const { title, thumbnail, price, id, shipping } = product;
     const p = <p data-testid="free-shipping">Frete grátis!</p>;
     return (
-      <div data-testid="product">
-        <Link
-          to={ {
-            pathname: `/details/${id}/category/${product.category_id}`,
-          } }
-          data-testid="product-detail-link"
-        >
-          <h5>{ title }</h5>
-        </Link>
+      <div data-testid="product" className="cardProduct">
         <img src={ thumbnail } alt="product item" />
-        <div>
-          <h6>
-            R$
-            {price}
-          </h6>
-        </div>
-        <div>
-          {shipping.free_shipping ? p : ''}
+        <div className="product-container">
+          <Link
+            className="product-detail-link"
+            to={ {
+              pathname: `/details/${id} /category/${product.category_id}`,
+            } }
+            data-testid="product-detail-link"
+          >
+            <div>
+              <h4>{ title }</h4>
+            </div>
+
+            <div>
+              <h4>
+                R$
+                {price}
+              </h4>
+            </div>
+            <div>
+              { shipping.free_shipping ? p : '' }
+            </div>
+          </Link>
         </div>
         <button
           type="button"
           name="productId"
           data-testid="product-add-to-cart"
+          className="product-add-to-cart"
           onClick={ () => this.addCartItem({ id, title, price, inStock }) }
         >
           Adicionar ao Carinho

@@ -77,14 +77,16 @@ class Home extends Component {
           fetchApi={ this.fetchApiByQuery }
           counter={ counter }
         />
-        <CategoriesList
-          handleChange={ this.changeStateValue }
-          arrayOfCategories={ categories }
-        />
-        <ProductList
-          arrayOfProducts={ products }
-          onAddList={ this.productsCounter }
-        />
+        <div className="container">
+          <CategoriesList
+            handleChange={ this.changeStateValue }
+            arrayOfCategories={ categories }
+          />
+          <ProductList
+            arrayOfProducts={ products }
+            onAddList={ this.productsCounter }
+          />
+        </div>
       </div>
     );
   }
