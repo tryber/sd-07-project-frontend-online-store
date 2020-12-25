@@ -14,6 +14,7 @@ class ProductDetail extends Component {
     };
     this.fetchApiById = this.fetchApiById.bind(this);
     this.getItensLocalStorage = this.getItensLocalStorage.bind(this);
+    this.productsCounter = this.productsCounter.bind(this);
   }
 
   componentDidMount() {
@@ -22,23 +23,29 @@ class ProductDetail extends Component {
   }
 
   getItensLocalStorage() {
-    const quantity = JSON.parse(localStorage.getItem('cartItems'));
-    if (!quantity) {
+    const arrayFromLocalStorage = JSON.parse(localStorage.getItem('cartItems'));
+    if (!arrayFromLocalStorage) {
       const tamanho = 0;
       this.setState({ counter: tamanho });
     } else {
-      const tamanho = quantity.length;
-      this.setState({ counter: tamanho });
+      const quantitySum = arrayFromLocalStorage
+        .map((item) => item.quantity)
+        .reduce((result, number) => result + number);
+      this.setState({ counter: quantitySum });
     }
+  }
+
+  productsCounter() {
+    this.setState((prevState) => ({ counter: prevState.counter + 1 }));
   }
 
   addCartItem({ id, title, price, inStock }) {
     const evaluation = [];
     const cartItemProperties = { id, title, price, inStock, evaluation };
+    this.productsCounter();
     if (!localStorage.cartItems) {
       cartItemProperties.quantity = 1;
       localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
-      this.getItensLocalStorage();
     } else {
       const itemsInStorage = localStorage.getItem('cartItems');
       const parsedItems = JSON.parse(itemsInStorage);
@@ -58,7 +65,6 @@ class ProductDetail extends Component {
           'cartItems',
           JSON.stringify(parsedItems.concat(cartItemProperties)),
         );
-        this.getItensLocalStorage();
       }
     }
   }

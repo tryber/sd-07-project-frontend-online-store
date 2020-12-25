@@ -12,10 +12,10 @@ class ProductCard extends React.Component {
     const evaluation = [];
     const cartItemProperties = { id, title, price, inStock, evaluation };
     const { onAddCard } = this.props;
+    onAddCard();
     if (!localStorage.cartItems) {
       cartItemProperties.quantity = 1;
       localStorage.setItem('cartItems', JSON.stringify([cartItemProperties]));
-      onAddCard();
     } else {
       const itemsInStorage = localStorage.getItem('cartItems');
       const parsedItems = JSON.parse(itemsInStorage);
@@ -35,7 +35,6 @@ class ProductCard extends React.Component {
           'cartItems',
           JSON.stringify(parsedItems.concat(cartItemProperties)),
         );
-        onAddCard();
       }
     }
   }

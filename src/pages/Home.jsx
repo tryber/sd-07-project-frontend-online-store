@@ -27,13 +27,15 @@ class Home extends Component {
   }
 
   getItensLocalStorage() {
-    const quantity = JSON.parse(localStorage.getItem('cartItems'));
-    if (!quantity) {
+    const arrayFromLocalStorage = JSON.parse(localStorage.getItem('cartItems'));
+    if (!arrayFromLocalStorage) {
       const tamanho = 0;
       this.setState({ counter: tamanho });
     } else {
-      const tamanho = quantity.length;
-      this.setState({ counter: tamanho });
+      const quantitySum = arrayFromLocalStorage
+        .map((item) => item.quantity)
+        .reduce((result, number) => result + number);
+      this.setState({ counter: quantitySum });
     }
   }
 
