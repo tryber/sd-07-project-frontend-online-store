@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { increaseCartQuantity } from '../../services/localStorageService';
+import { changeCartQuantity } from '../../services/localStorageService';
+import { increaseTotal } from '../../actions/increaseTotal';
 import './style.css';
 
 class Quantity extends Component {
@@ -10,21 +12,40 @@ class Quantity extends Component {
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
 
+    this.state = {
+      itemQuantity: props.item.cartQuantity,
+    }
   }
 
   increment() {
-    const { availableQuantity, cartQuantity } = this.props;
-    if (cartQuantity === availableQuantity) return;
-    const cartNumber = Number(localStorage.getItem('items_cart')) + 1;
+    const { item, increaseTotal } = this.props;
+    const { itemQuantity } = this.state;
+    if ( itemQuantity >= item.quantity) {
+      this.setState({
+        itemQuantity: item.quantity,
+      })
+      return;
+    };
+    increaseTotal(1);
+    changeCartQuantity(item, 1);
+    this.setState((prevState) => ({
+      itemQuantity: prevState.itemQuantity + 1,
+    }));
   }
 
   decrement() {
-    const cartQuantity = Number(localStorage.getItem('items_cart')) - 1;
-    localStorage.setItem('items_cart', cartQuantity);
+    const { item, increaseTotal } = this.props;
+    const { itemQuantity } = this.state;
+    if (itemQuantity === 1) return;
+    increaseTotal(-1);
+    changeCartQuantity(item, -1);
+    this.setState((prevState) => ({
+      itemQuantity: prevState.itemQuantity - 1,
+    }));
   }
 
   render() {
-    const { cartQuantity } = this.props;
+    const { itemQuantity } = this.state;
     return (
       <main>
         <div>
@@ -37,7 +58,7 @@ class Quantity extends Component {
             +
           </button>
         </div>
-        <en>{cartQuantity}</en>
+        <en>{itemQuantity}</en>
         <div>
           <button
             data-testid="product-decrease-quantity"
@@ -53,6 +74,10 @@ class Quantity extends Component {
   }
 }
 
-Quantity.propTypes = { availableQuantity: PropTypes.string.isRequired };
+const mapDispatchToProps = (dispatch) => ({
+  increaseTotal: (number) => dispatch(increaseTotal(number)),
+})
 
-export default Quantity;
+export default connect(null, mapDispatchToProps)(Quantity);
+
+Quantity.propTypes = { availableQuantity: PropTypes.string.isRequired };

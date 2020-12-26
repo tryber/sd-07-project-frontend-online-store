@@ -6,14 +6,14 @@ export const getItemById = (id) => {
     .find(item => item.sku === id);
 }
 
-export const increaseCartQuantity = ({
+export const changeCartQuantity = ({
   sku,
   name,
   cost,
   quantity,
   image,
   cartQuantity,
-}) => {
+}, number) => {
   const storageWithoutItem = getFromLocalStorage().filter(item => item.sku !== sku);
   localStorage.setItem('items',
     JSON.stringify([...storageWithoutItem, {
@@ -22,7 +22,7 @@ export const increaseCartQuantity = ({
       cost,
       quantity,
       image,
-      cartQuantity: cartQuantity + 1,
+      cartQuantity: cartQuantity + number,
     }]));
 }
 
@@ -47,7 +47,7 @@ export const saveOnLocalStorage = ({
   }
   const cartItem = getItemById(id);
   if (cartItem) {
-    increaseCartQuantity(cartItem);
+    changeCartQuantity(cartItem);
   } else {
     const objectValues = getFromLocalStorage();
     localStorage.setItem('items',
@@ -64,9 +64,11 @@ export const saveOnLocalStorage = ({
 
 export const getItemsTotal = () => {
   const items = getFromLocalStorage()
-  let total = 0;
-  for (let i = 0; i < items.length; i++) {
-    total += items[i].cartQuantity;
+  if (items) {
+    let total = 0;
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].cartQuantity;
+    }
+    return total;
   }
-  return total;
 }

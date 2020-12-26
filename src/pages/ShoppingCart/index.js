@@ -60,7 +60,7 @@ class ShoppingCart extends React.Component {
         </header>
         {!localStorage.length ? ('Aproveite as ofertas para comprar o que deseja'
         ) : (getFromLocalStorage().map((item) => {
-          const { sku, cost, name, image, quantity, cartQuantity } = item;
+          const { sku, cost, name, image, quantity } = item;
           return (
             <section key={ sku } data-testid="product">
               <table className="table table-bordered table-striped table-hover">
@@ -90,7 +90,7 @@ class ShoppingCart extends React.Component {
                     className="text-center"
                     data-testid="shopping-cart-product-quantity"
                   >
-                    <Quantity id={ sku } cartQuantity={cartQuantity} availableQuantity={ quantity } />
+                    <Quantity item={ item } />
                   </td>
                 </tr>
               </table>
