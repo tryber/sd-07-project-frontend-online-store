@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as api from '../../services/api';
 import { saveOnLocalStorage } from '../../services/localStorageService';
+import { increaseTotal } from '../../actions/increaseTotal';
 import './style.css';
 
 class ProductCard extends React.Component {
@@ -19,12 +21,12 @@ class ProductCard extends React.Component {
     };
   }
 
-  async onClickCategory(event) {
-    const categoryId = event.target.id;
-    const products = await api.getProductsFromCategoryAndQuery(categoryId);
+  async onClickCategory({ target: id }) {
+    const products = await api.getProductsFromCategoryAndQuery(id);
+
     this.setState({
       itemsFindOut: products,
-      categoryId,
+      id,
       loading: true,
     });
   }
@@ -36,7 +38,8 @@ class ProductCard extends React.Component {
   }
 
   saveItems() {
-    const { item } = this.props;
+    const { item, increaseTotal } = this.props;
+    increaseTotal(1);
     saveOnLocalStorage(item);
   }
 
@@ -58,7 +61,7 @@ class ProductCard extends React.Component {
     const { id, available_quantity: availableQuantity, title, price, thumbnail } = item;
     return (
       <section data-testid="product" className="item-section">
-        <div className="card" style={{width: '20rem'}}>
+        <div className="card" style={{ width: '20rem' }}>
           <img src={thumbnail} className="card-img-top" alt={title} />
           <div className="card-body product-title">
             <h5 className="card-title">{title}</h5>
@@ -104,6 +107,14 @@ class ProductCard extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increaseTotal: (number) => dispatch(increaseTotal(number)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ProductCard);
+
 ProductCard.propTypes = {
   addCartQuantity: PropTypes.func.isRequired,
   item: PropTypes.shape({
@@ -116,4 +127,3 @@ ProductCard.propTypes = {
   }).isRequired,
 };
 
-export default ProductCard;
