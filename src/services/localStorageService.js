@@ -1,20 +1,31 @@
 export const getFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem('items'));
 }
+
+export const getItemsTotal = () => {
+  const items = getFromLocalStorage()
+  if (items) {
+    let total = 0;
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].cartQuantity;
+    }
+    return total;
+  }
+}
+
 export const getItemById = (id) => {
   return getFromLocalStorage()
     .find(item => item.sku === id);
 }
 
-export const changeCartQuantity = ({
-  sku,
-  name,
-  cost,
-  quantity,
-  image,
-  cartQuantity,
-}, number) => {
-  const storageWithoutItem = getFromLocalStorage().filter(item => item.sku !== sku);
+export const removeFromLocalStorage = (sku) => {
+  return getFromLocalStorage()
+  .filter(item => item.sku !== sku);
+}
+
+export const changeCartQuantity = (id , number) => {
+  const {sku, name, cost, quantity, image, cartQuantity } = getItemById(id);
+  const storageWithoutItem = removeFromLocalStorage(sku);
   localStorage.setItem('items',
     JSON.stringify([...storageWithoutItem, {
       sku,
@@ -47,7 +58,8 @@ export const saveOnLocalStorage = ({
   }
   const cartItem = getItemById(id);
   if (cartItem) {
-    changeCartQuantity(cartItem);
+    if (cartItem.cartQuantity === cartItem.quantity) return;
+    changeCartQuantity(cartItem.sku, 1);
   } else {
     const objectValues = getFromLocalStorage();
     localStorage.setItem('items',
@@ -59,16 +71,5 @@ export const saveOnLocalStorage = ({
         image: thumbnail,
         cartQuantity: 1,
       }]));
-  }
-}
-
-export const getItemsTotal = () => {
-  const items = getFromLocalStorage()
-  if (items) {
-    let total = 0;
-    for (let i = 0; i < items.length; i++) {
-      total += items[i].cartQuantity;
-    }
-    return total;
   }
 }

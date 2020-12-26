@@ -18,27 +18,27 @@ class Quantity extends Component {
   }
 
   increment() {
-    const { item, increaseTotal } = this.props;
+    const { item: {sku, quantity} , increaseTotal } = this.props;
     const { itemQuantity } = this.state;
-    if ( itemQuantity >= item.quantity) {
+    if ( itemQuantity >= quantity) {
       this.setState({
-        itemQuantity: item.quantity,
+        itemQuantity: quantity,
       })
       return;
     };
     increaseTotal(1);
-    changeCartQuantity(item, 1);
+    changeCartQuantity(sku, 1);
     this.setState((prevState) => ({
       itemQuantity: prevState.itemQuantity + 1,
     }));
   }
 
   decrement() {
-    const { item, increaseTotal } = this.props;
+    const { item: { sku }, increaseTotal } = this.props;
     const { itemQuantity } = this.state;
     if (itemQuantity === 1) return;
     increaseTotal(-1);
-    changeCartQuantity(item, -1);
+    changeCartQuantity(sku, -1);
     this.setState((prevState) => ({
       itemQuantity: prevState.itemQuantity - 1,
     }));

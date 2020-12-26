@@ -6,7 +6,7 @@ import {
   ShoppingCartButton,
   ProductCard
 } from '../../components';
-import * as api from '../../services/api';
+import { getProductsFromCategoryAndQuery } from '../../services/api';
 import './style.css';
 
 export default class Home extends Component {
@@ -24,7 +24,7 @@ export default class Home extends Component {
 
   fetchByCategory = async ({ target: id }) => {
     try {
-      const products = await api.getProductsFromCategoryAndQuery(id);
+      const products = await getProductsFromCategoryAndQuery(id);
       this.setState({
         itemsFindOut: products,
         id,
@@ -45,7 +45,7 @@ export default class Home extends Component {
 
   handleSubmit = () => {
     const { searchItems } = this.state;
-    api.getProductsFromCategoryAndQuery(searchItems)
+    getProductsFromCategoryAndQuery(searchItems)
       .then((products) => this.setState({ itemsFindOut: products, loadItems: true }))
       .catch((error) => console.log(error));
   }
