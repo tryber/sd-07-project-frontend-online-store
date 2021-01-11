@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ProductCart from '../Components/ProductCart';
+import Header from '../Components/Header';
 
 class ShoppingCartPage extends Component {
   constructor(props) {
@@ -7,6 +10,7 @@ class ShoppingCartPage extends Component {
 
     this.increaseItem = this.increaseItem.bind(this);
     this.decreaseItem = this.decreaseItem.bind(this);
+    this.totalPrice = this.totalPrice.bind(this);
 
     this.state = {
       shoppingCartItems: [],
@@ -15,6 +19,10 @@ class ShoppingCartPage extends Component {
 
   componentDidMount() {
     this.getProductsFromLocalStorage();
+  }
+
+  componentDidUpdate() {
+    this.totalPrice();
   }
 
   getProductsFromLocalStorage() {
@@ -26,8 +34,10 @@ class ShoppingCartPage extends Component {
 
   increaseItem(id) {
     const { shoppingCartItems } = this.state;
-    shoppingCartItems.find((item) => item.id === id)
-      .quantity += 1;
+    const { availableQuantity } = shoppingCartItems.find((item) => item.id === id);
+    let shopQuantity = shoppingCartItems.find((item) => item.id === id).quantity;
+    shopQuantity = (shopQuantity < availableQuantity) ? shopQuantity += 1 : shopQuantity;
+    shoppingCartItems.find((item) => item.id === id).quantity = shopQuantity;
     this.setState({
       shoppingCartItems,
     });
@@ -47,20 +57,31 @@ class ShoppingCartPage extends Component {
   }
 
   totalPrice() {
+    const zero = 0;
+    const decimals = 2;
+    const { shoppingCartItems } = this.state;
+    if (shoppingCartItems) {
+      const sum = shoppingCartItems.reduce((acc, { price, quantity }) => (
+        price * quantity + acc), zero);
+      return sum.toFixed(decimals);
+    }
   }
   
 
   render() {
     const { shoppingCartItems } = this.state;
+    // console.log(shoppingCartItems);
     if (!shoppingCartItems) {
       return (
         <div>
+          <Header />
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         </div>
       );
     }
     return (
       <div>
+        <Header />
         <div>
           {shoppingCartItems.map((item) => (
             <ProductCart
@@ -73,12 +94,21 @@ class ShoppingCartPage extends Component {
         </div>
         <div>
           Valor Total da Compra R$
-          {/* estado total price */}
+          {this.totalPrice()}
         </div>
-        <button type="button">Finalizar Compra</button>
+        <Link data-testid="checkout-products" to="/checkout">
+          Finalizar Compra
+        </Link>
       </div>
     );
   }
 }
+
+ShoppingCartPage.propTypes = {
+  product: PropTypes.shape({
+    availableQuantity: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 
 export default ShoppingCartPage;
