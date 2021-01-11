@@ -48,6 +48,7 @@ class ShoppingCartPage extends Component {
 
   totalPrice() {
   }
+  
 
   render() {
     const { shoppingCartItems } = this.state;
