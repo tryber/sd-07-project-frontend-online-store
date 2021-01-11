@@ -1,38 +1,226 @@
-.App {
+body {
+  background-color: #EBEBEB;
+}
+
+input:focus, .search-bar-button {
+  border: 0 none;
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+.home {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.header {
+  align-items: center;
+  background-color: #FFF158;
+  display: flex;
+  height: 100px;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.logo-area {
+  align-items: center;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  width: 30%;
+}
+
+.site-logo {
+  background-image: url("./Images/ml-logo.png");
+  background-size: cover;
+  height: 70px;
+  width: 250px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.search-bar {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  height: 40px;
+  margin-left: 50px;
+  width: 800px;
+}
+
+.search-bar-input {
+  border: none;
+  height: 25px;
+  padding-left: 15px;
+  width: 800px;
+}
+
+.search-bar-button {
+  background-image: url("./Images/search.png");
+  background-size: cover;
+  border: none;
+  height: 20px;
+  margin-right: 10px;
+  width: 20px;
+}
+
+.search-bar-button img {
+  display: none;
+}
+
+.cart-icon {
+  background-image: url("./Images/shopping-cart-empty.png");
+  background-size: cover;
+  height: 30px;
+  margin-right: 100px;
+  width: 35px;
+}
+
+.categories {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  width: 30%;
+}
+
+.categories-content {
+  border: 1px solid #E4E4E4;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-top: 50px;
+  padding: 20px;
+  width: 400px;
+}
+
+.categories-title {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.categories-input {
+  margin-left: 70px;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.product-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 70%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.product-card {
+  align-items: center;
+  background-color: white;
+  border: 1px solid #E4E4E4;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 380px;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 20px;
+  width: 300px;
+}
+
+.initial-message {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 70%;
+}
+
+.message {
+  font-size: x-large;
+  font-weight: 700;
+  margin-top: 50px;
+}
+
+.btn-add-to-cart {
+  background-color: #2D3277;
+  border-radius: 30px;
   color: white;
+  font-weight: 700;
+  height: 30px;
+  width: 190px;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-add-to-cart:hover {
+  background-color: #2a35cf;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.product-details {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.product-details img {
+  width: 250px;
+}
+
+.rating-content {
+  display: flex;
+  justify-content: center;
+  width: 500px;
+}
+
+.rating-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.form-label {
+  display: flex;
+  margin: 5px 0 10px 0;
+}
+
+.form-label input {
+  margin-left: 10px;
+  width: 100%;
+}
+
+.form-label input {
+  margin-left: 10px;
+  width: 100%;
+}
+
+.form-label-message {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0 10px 0;
+  width: 350px;
+}
+
+.form-label-message textarea {
+  height: 150px;
+  margin-top: 5px;
+}
+
+.form-label input {
+  margin-left: 10px;
+  width: 100%;
+}
+
+.free-shipping {
+  background-image: url('./Images/free-shipping.png');
+  background-size: cover;
+  height: 30px;
+  margin: 0 auto;
+  width: 30px;
 }
