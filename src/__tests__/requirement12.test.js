@@ -15,7 +15,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
 
 describe(`Finalizar compra, vendo um resumo dela, preenchendo os meus dados e escolhendo
           a forma de pagamento`, () => {
-  it.skip(`Faz os passos da compra com sucesso: recupera produtos de uma categoria;
+  it(`Faz os passos da compra com sucesso: recupera produtos de uma categoria;
       adiciona-os ao carrinho; faz o checkout; insere todos os dados`, async () => {
     const fullName = 'my full name';
     const email = 'my@email.com';

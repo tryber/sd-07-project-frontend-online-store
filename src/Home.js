@@ -12,6 +12,7 @@ class ProductsList extends Component {
     this.state = {
       status: false,
       products: [],
+      productsCart: [],
       demand: '',
       productId: '',
     };
@@ -19,6 +20,21 @@ class ProductsList extends Component {
     this.fecthProducts = this.fecthProducts.bind(this);
     this.change = this.change.bind(this);
     this.fecthProductsCategoryId = this.fecthProductsCategoryId.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  addToCart({ id, title, price, thumbnail }) {
+    const addProduct = {
+      id,
+      title,
+      quantity: 1,
+      price,
+      thumbnail,
+    };
+
+    this.setState((prevState) => ({
+      productsCart: [...prevState.productsCart, addProduct],
+    }));
   }
 
   async fecthProducts() {
@@ -44,34 +60,54 @@ class ProductsList extends Component {
   }
 
   render() {
-    const { status, products } = this.state;
+    const { status, products, productsCart } = this.state;
     return (
       <div>
-        {(status) ? <ProductCard products={ products } /> : false}
+        {(status) ? <ProductCard
+          products={ products }
+          addToCart={ this.addToCart }
+        /> : false}
         {(products === []) ? <span>Nenhum produto foi encontrado</span> : false}
         <div className="ContainerForm">
-          <form>
+          <div>
             <div>
-              <div>
-                <input
-                  data-testid="query-input"
-                  name="demand"
-                  className="inputHome"
-                  type="text"
-                  onChange={ this.change }
-                />
-                <button
-                  data-testid="query-button"
-                  type="button"
-                  onClick={ this.fecthProducts }
-                >
-                  PESQUISAR
-                </button>
-                <span data-testid="home-initial-message">
-                  Digite algum termo de pesquisa ou escolha uma categoria.
-                </span>
-              </div>
+              <input
+                data-testid="query-input"
+                name="demand"
+                className="inputHome"
+                type="text"
+                onChange={ this.change }
+              />
+              <button
+                data-testid="query-button"
+                type="button"
+                onClick={ this.fecthProducts }
+              >
+                PESQUISAR
+              </button>
+              <span data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </span>
             </div>
+          </div>
+
+          <div>
+            <Link
+              to={ {
+                pathname: '/pages/cartfull',
+                state: productsCart,
+              } }
+            >
+              <img
+                className="btImg"
+                data-testid="shopping-cart-button"
+                src={ cart }
+                alt="Carrinho de Compras"
+              />
+            </Link>
+          </div>
+
+          <Categories fecthProductsCategoryId={ this.fecthProductsCategoryId }>
             <div>
               <Link to="./pages/cart">
                 <img
@@ -82,19 +118,7 @@ class ProductsList extends Component {
                 />
               </Link>
             </div>
-            <Categories fecthProductsCategoryId={ this.fecthProductsCategoryId }>
-              <div>
-                <Link to="./pages/cart">
-                  <img
-                    className="btImg"
-                    data-testid="shopping-cart-button"
-                    src={ cart }
-                    alt="Carrinho de Compras"
-                  />
-                </Link>
-              </div>
-            </Categories>
-          </form>
+          </Categories>
         </div>
       </div>
     );

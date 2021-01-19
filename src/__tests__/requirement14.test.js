@@ -15,7 +15,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
 
 describe(`A quantidade de produtos adicionados ao carrinho deve ser limitada pela
           quantidade disponível em estoque`, () => {
-  it.skip(`Não adiciona ao carrinho mais produtos do que o disponível em
+  it(`Não adiciona ao carrinho mais produtos do que o disponível em
       estoque`, async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
