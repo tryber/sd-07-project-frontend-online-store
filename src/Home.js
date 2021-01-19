@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from './services/api';
 import ProductCard from './components/ProductCard';
-import cart from './images/cart.png';
 import './App.css';
 import Categories from './components/Categories';
+import ButtonCart from './components/ButtonCart';
+
 
 class ProductsList extends Component {
   constructor() {
@@ -12,7 +13,6 @@ class ProductsList extends Component {
     this.state = {
       status: false,
       products: [],
-      productsCart: [],
       demand: '',
       productId: '',
     };
@@ -20,21 +20,6 @@ class ProductsList extends Component {
     this.fecthProducts = this.fecthProducts.bind(this);
     this.change = this.change.bind(this);
     this.fecthProductsCategoryId = this.fecthProductsCategoryId.bind(this);
-    this.addToCart = this.addToCart.bind(this);
-  }
-
-  addToCart({ id, title, price, thumbnail }) {
-    const addProduct = {
-      id,
-      title,
-      quantity: 1,
-      price,
-      thumbnail,
-    };
-
-    this.setState((prevState) => ({
-      productsCart: [...prevState.productsCart, addProduct],
-    }));
   }
 
   async fecthProducts() {
@@ -60,12 +45,14 @@ class ProductsList extends Component {
   }
 
   render() {
-    const { status, products, productsCart } = this.state;
+    const { status, products } = this.state;
+    const { addToCart, productsCart } = this.props;
     return (
       <div>
         {(status) ? <ProductCard
           products={ products }
-          addToCart={ this.addToCart }
+          addToCart={ addToCart }
+          productsCart={ productsCart }
         /> : false}
         {(products === []) ? <span>Nenhum produto foi encontrado</span> : false}
         <div className="ContainerForm">
@@ -91,39 +78,18 @@ class ProductsList extends Component {
             </div>
           </div>
 
-          <div>
-            <Link
-              to={ {
-                pathname: '/pages/cartfull',
-                state: productsCart,
-              } }
-            >
-              <img
-                className="btImg"
-                data-testid="shopping-cart-button"
-                src={ cart }
-                alt="Carrinho de Compras"
-              />
-            </Link>
-          </div>
+          <ButtonCart productsCart={ productsCart } />
 
-          <Categories fecthProductsCategoryId={ this.fecthProductsCategoryId }>
-            <div>
-              <Link to="./pages/cart">
-                <img
-                  className="btImg"
-                  data-testid="shopping-cart-button"
-                  src={ cart }
-                  alt="Carrinho de Compras"
-                />
-              </Link>
-            </div>
-          </Categories>
+          <Categories fecthProductsCategoryId={ this.fecthProductsCategoryId } />
         </div>
       </div>
     );
   }
 }
 
+ProductsList.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+  productsCart: PropTypes.arrayOf.isRequired,
+};
 
 export default ProductsList;

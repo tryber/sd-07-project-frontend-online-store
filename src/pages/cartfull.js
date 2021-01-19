@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import '../App.css';
 import Cart from './cart';
 
@@ -25,7 +24,6 @@ class Cartfull extends React.Component {
     const { location } = this.props;
     const { state } = location;
     return (
-
       <div>
         <Link to="/">
           <button type="button">
@@ -34,6 +32,19 @@ class Cartfull extends React.Component {
         </Link>
         {
           state.length ? this.makeListProductsCart(state) : <Cart />
+        }
+        {
+          state.length ? (
+            <Link
+              data-testid="checkout-products"
+              to={ {
+                pathname: '/pages/checkout',
+                productsCart: state,
+              } }
+            >
+              Finalizar compra
+            </Link>
+          ) : false
         }
       </div>
     );
