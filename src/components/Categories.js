@@ -45,7 +45,6 @@ class Categories extends React.Component {
     return (
       <div>
         {this.makeList(myCategories)}
-
       </div>
     );
   }
