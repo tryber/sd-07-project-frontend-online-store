@@ -20,8 +20,14 @@ class ButtonBuy extends Component {
 
 ButtonBuy.propTypes = {
   addToCart: PropTypes.func.isRequired,
-  product: PropTypes.arrayOf.isRequired,
   testid: PropTypes.string.isRequired,
+  product: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    quantity: PropTypes.number,
+    price: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ButtonBuy;

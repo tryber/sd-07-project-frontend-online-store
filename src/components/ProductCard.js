@@ -19,7 +19,7 @@ class ProductCard extends Component {
               <Link
                 to={ {
                   pathname: `/pages/productdetails/${id}`,
-                  state: product,
+                  product,
                   addToCart,
                   productsCart,
                 } }
@@ -42,14 +42,9 @@ class ProductCard extends Component {
 }
 
 ProductCard.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-  })).isRequired,
   addToCart: PropTypes.func.isRequired,
-  productsCart: PropTypes.arrayOf.isRequired,
+  productsCart: PropTypes.arrayOf(PropTypes.object).isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductCard;

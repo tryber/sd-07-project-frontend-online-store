@@ -8,8 +8,8 @@ import EvalueProducts from '../components/EvalueProducts';
 class ProductDetails extends React.Component {
   render() {
     const { location } = this.props;
-    const { state, addToCart, productsCart } = location;
-    const { title, thumbnail, price } = state;
+    const { product, addToCart, productsCart } = location;
+    const { title, thumbnail, price } = product;
     return (
       <div>
 
@@ -28,7 +28,7 @@ class ProductDetails extends React.Component {
         <ButtonBuy
           testid="product-detail-add-to-cart"
           addToCart={ addToCart }
-          product={ state }
+          product={ product }
         />
 
         <br />
@@ -41,9 +41,17 @@ class ProductDetails extends React.Component {
 }
 
 ProductDetails.propTypes = {
-  location: PropTypes.objectOf(PropTypes.string).isRequired,
-  // state: PropTypes.objectOf(PropTypes.string).isRequired,
-  // title: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    addToCart: PropTypes.func.isRequired,
+    productsCart: PropTypes.arrayOf(PropTypes.object).isRequired,
+    product: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      quantity: PropTypes.number,
+      price: PropTypes.number.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
 
 export default ProductDetails;

@@ -25,7 +25,7 @@ describe(`Ver junto ao ícone do carrinho a quantidade de produtos dentro dele, 
     expect(screen.getByTestId('shopping-cart-size')).toHaveTextContent('2');
   });
 
-  it.skip('Vê a quantidade de produtos no carrinho da tela de detalhes', async () => {
+  it('Vê a quantidade de produtos no carrinho da tela de detalhes', async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
