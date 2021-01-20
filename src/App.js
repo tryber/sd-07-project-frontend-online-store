@@ -45,7 +45,9 @@ class App extends Component {
           <Route
             exact
             path="/pages/cartfull"
-            render={ (props) => <Cartfull { ...props } /> }
+            render={ () => (
+              <Cartfull productsCart={ productsCart } />
+            ) }
           />
           <Route
             exact

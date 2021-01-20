@@ -21,8 +21,7 @@ class Cartfull extends React.Component {
   }
 
   render() {
-    const { location } = this.props;
-    const { state } = location;
+    const { productsCart } = this.props;
     return (
       <div>
         <Link to="/">
@@ -30,31 +29,38 @@ class Cartfull extends React.Component {
             Home
           </button>
         </Link>
+
         {
-          state.length ? this.makeListProductsCart(state) : <Cart />
+          productsCart.length ? this.makeListProductsCart(productsCart) : <Cart />
         }
         {
-          state.length ? (
+          productsCart.length ? (
             <Link
               data-testid="checkout-products"
               to={ {
                 pathname: '/pages/checkout',
-                productsCart: state,
+                productsCart,
               } }
             >
               Finalizar compra
             </Link>
           ) : false
         }
+
       </div>
     );
   }
 }
 
 Cartfull.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.array,
-  }).isRequired,
+  productsCart: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+  })).isRequired,
+
 };
 
 export default Cartfull;

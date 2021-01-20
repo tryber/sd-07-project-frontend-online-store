@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Cart from './cart';
 
 class Checkout extends Component {
@@ -172,10 +172,9 @@ class Checkout extends Component {
     );
   }
 }
-
 Checkout.propTypes = {
   location: PropTypes.shape({
-    productsCart: PropTypes.array,
+    productsCart: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
 };
 
