@@ -14,15 +14,54 @@ class App extends Component {
       productsCart: [],
     };
     this.addToCart = this.addToCart.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
+    this.searchIndex = this.searchIndex.bind(this);
+    this.removeProduct = this.removeProduct.bind(this);
   }
 
-  addToCart({ id, title, price, thumbnail }) {
+  searchIndex(id) {
+    const { productsCart } = this.state;
+    const index = productsCart.findIndex((obj) => obj.id === id);
+    return index;
+  }
+
+
+  updateQuantity(id, value) {
+    const minQunatity = 0;
+    const minValue = -1;
+    const { productsCart } = this.state;
+    const copyProductsCart = productsCart;
+    const indexProduct = this.searchIndex(id);
+    const product = productsCart[indexProduct];
+
+    if (product.quantity >= minQunatity) {
+      if (product.quantity === minQunatity && value === minValue) return false;
+      product.quantity += value;
+      copyProductsCart.slice(indexProduct, 1, product);
+      this.setState({
+        productsCart: copyProductsCart,
+      });
+    }
+  }
+
+  removeProduct(id) {
+    const { productsCart } = this.state;
+    const indexProductRemove = this.searchIndex(id);
+    const newsProducts = [...productsCart];
+    newsProducts.splice(indexProductRemove, 1);
+    this.setState({
+      productsCart: newsProducts,
+    });
+  }
+
+  addToCart(product) {
     const addProducts = {
-      id,
-      title,
+      id: product.id,
+      title: product.title,
       quantity: 1,
-      price,
-      thumbnail,
+      price: product.price,
+      thumbnail: product.thumbnail,
+      availableQuantity: product.available_quantity,
     };
     this.setState((prevState) => ({
       productsCart: [...prevState.productsCart, addProducts],
@@ -46,7 +85,11 @@ class App extends Component {
             exact
             path="/pages/cartfull"
             render={ () => (
-              <Cartfull productsCart={ productsCart } />
+              <Cartfull
+                productsCart={ productsCart }
+                updateQuantity={ this.updateQuantity }
+                removeProduct={ this.removeProduct }
+              />
             ) }
           />
           <Route

@@ -9,7 +9,7 @@ class ProductCard extends Component {
     return (
       <div>
         {products.map((product) => {
-          const { id, title, thumbnail, price } = product;
+          const { id, title, thumbnail, price, shipping } = product;
           return (
             <div
               key={ id }
@@ -25,6 +25,10 @@ class ProductCard extends Component {
                 } }
               >
                 <img src={ thumbnail } alt="products" data-testid="product-detail-link" />
+                {
+                  shipping.free_shipping
+                    ? <p data-testid="free-shipping">Frete Grátis</p> : false
+                }
               </Link>
               <p>{ price }</p>
 
